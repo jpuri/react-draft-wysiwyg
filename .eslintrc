@@ -1,0 +1,12 @@
+{
+  "parser": "babel-eslint",
+  "plugins": [ "mocha" ],
+  "extends": "airbnb",
+  "globals": {
+    "describe": true,
+    "it": true
+  },
+  "rules": {
+    "react/jsx-filename-extension": 0
+  }
+}

@@ -1,0 +1,35 @@
+.image-alignment-options-popup {
+  position: absolute;;
+  background: white;
+  display: flex;
+  padding: 5px 2px;
+  border-radius: 2px;
+  border: 1px solid #F1F1F1;
+  width: 105px;
+  cursor: pointer;
+  z-index: 100;
+}
+.alignment-option-left {
+  justify-content: flex-start;
+}
+.image-alignment-option {
+  height: 15px;
+  width: 15px;
+}
+.image-alignment {
+  position: relative;
+}
+.image-imagewrapper {
+  position: relative;
+}
+.image-center {
+  float: none;
+  display: flex;
+  justify-content: center;
+}
+.image-left {
+  float: left;
+}
+.image-right {
+  float: right;
+}

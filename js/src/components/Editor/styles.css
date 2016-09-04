@@ -1,0 +1,21 @@
+.editor-wrapper {
+  position: relative;
+}
+.editor-main {
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+}
+.editor-toolbar {
+  position: absolute;
+  top: -60px;
+  padding: 6px 5px 0;
+  border-radius: 2px;
+  border: 1px solid #F1F1F1;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  background: white;
+  flex-wrap: wrap;
+  font-size: 15px;
+}

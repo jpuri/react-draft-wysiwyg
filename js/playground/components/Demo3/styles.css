@@ -1,0 +1,38 @@
+.demo3-root {
+  margin: 50px;
+  width: 90%;
+}
+.demo3-label {
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.demo3-editorSection {
+  display: flex;
+  margin-top: 125px;
+  justify-content: space-between;
+}
+.demo3-wrapper {
+  height: 400px;
+  width: 600px;
+}
+.demo3-editor {
+  border: 1px solid #F1F1F1;
+  padding: 5px;
+  border-radius: 2px;
+  height: 95%;
+}
+.demo3-editorWrapper {
+}
+.demo3-toolbar {
+  width: 100%;
+  top: -100px;
+}
+.demo3-content {
+  border: 1px solid #F1F1F1;
+  padding: 5px;
+  border-radius: 5px;
+  width: 400px;
+  border-radius: 2px;
+  height: 380px;
+}

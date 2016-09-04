@@ -1,0 +1,5 @@
+config
+node_modules
+static
+dist
+__test__

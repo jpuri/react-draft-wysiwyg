@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<!-- saved from url=(0022)http://localhost:3000/ -->
+<html lang="nl"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>Klooker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <link rel="icon" type="image/png" href="http://localhost:3000/static/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="http://localhost:3000/static/favicon-16x16.png" sizes="16x16">
+<style type="text/css">/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+
+html {
+  font-family: sans-serif; /* 1 */
+  -ms-text-size-adjust: 100%; /* 2 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+
+body {
+  margin: 0;
+}
+
+/* HTML5 display definitions
+   ========================================================================== */
+
+/**
+ * Correct `block` display not defined for any HTML5 element in IE 8/9.
+ * Correct `block` display not defined for `details` or `summary` in IE 10/11
+ * and Firefox.
+ * Correct `block` display not defined for `main` in IE 11.
+ */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * 1. Correct `inline-block` display not defined in IE 8/9.
+ * 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+ */
+
+audio,
+canvas,
+progress,
+video {
+  display: inline-block; /* 1 */
+  vertical-align: baseline; /* 2 */
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9/10.
+ * Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+ */
+
+[hidden],
+template {
+  display: none;
+}
+
+/* Links
+   ========================================================================== */
+
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Address styling not present in IE 8/9/10/11, Safari, and Chrome.
+ */
+
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari, and Chrome.
+ */
+
+b,
+strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari and Chrome.
+ */
+
+dfn {
+  font-style: italic;
+}
+
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari, and Chrome.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9.
+ */
+
+mark {
+  background: #ff0;
+  color: #000;
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sup {
+  top: -0.5em;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove border when inside `a` element in IE 8/9/10.
+ */
+
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow not hidden in IE 9/10/11.
+ */
+
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * Address margin not present in IE 8/9 and Safari.
+ */
+
+figure {
+  margin: 1em 40px;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/**
+ * Contain overflow in all browsers.
+ */
+
+pre {
+  overflow: auto;
+}
+
+/**
+ * Address odd `em`-unit font size rendering in all browsers.
+ */
+
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, monospace;
+  font-size: 1em;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * Known limitation: by default, Chrome and Safari on OS X allow very limited
+ * styling of `select`, unless a `border` property is set.
+ */
+
+/**
+ * 1. Correct color not being inherited.
+ *    Known issue: affects color of disabled elements.
+ * 2. Correct font properties not being inherited.
+ * 3. Address margins set differently in Firefox 4+, Safari, and Chrome.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: inherit; /* 1 */
+  font: inherit; /* 2 */
+  margin: 0; /* 3 */
+}
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+
+button {
+  overflow: visible;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+ * Correct `select` style inheritance in Firefox.
+ */
+
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+
+button,
+html input[type="button"], /* 1 */
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button; /* 2 */
+  cursor: pointer; /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+
+input {
+  line-height: normal;
+}
+
+/**
+ * It's recommended that you don't attempt to style these elements.
+ * Firefox's implementation doesn't respect box-sizing, padding, or width.
+ *
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Fix the cursor style for Chrome's increment/decrement buttons. For certain
+ * `font-size` values of the `input`, it causes the cursor style of the
+ * decrement button to change from `default` to `text`.
+ */
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari and Chrome
+ *    (include `-moz` to future-proof).
+ */
+
+input[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box; /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari and Chrome on OS X.
+ * Safari (but not Chrome) clips the cancel button when the search input has
+ * padding (and `textfield` appearance).
+ */
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Define consistent border, margin, and padding.
+ */
+
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9/10/11.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+
+legend {
+  border: 0; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Remove default vertical scrollbar in IE 8/9/10/11.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * Don't inherit the `font-weight` (applied by a rule above).
+ * NOTE: the default cannot safely be changed in Chrome and Safari on OS X.
+ */
+
+optgroup {
+  font-weight: bold;
+}
+
+/* Tables
+   ========================================================================== */
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+td,
+th {
+  padding: 0;
+}
+</style><style type="text/css">@font-face {
+  font-family: 'Museo Sans';
+  src: url(/static/860a3a93179ad7d2de7d134aa0b67f26.woff) format('woff');
+  font-style: normal;
+  font-weight: 100; /* thin */
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  src: url(/static/b93fa0de3fa820f251d0006d7d00a180.woff) format('woff');
+  font-style: normal;
+  font-weight: 300; /* light */
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  src: url(/static/1f5d1de04b356a004b759afa68948770.woff) format('woff');
+  font-style: normal;
+  /* The proper weight for 'medium' is 500. However, we set it to 400 (regular),
+  so it is applied by default to the most of the browser elements */
+  font-weight: 400; /* regular */
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  src: url(/static/a27291b13402ff298ac8f9a8aa8e7c0b.woff) format('woff');
+  font-style: normal;
+  font-weight: 700; /* bold */
+}
+
+@font-face {
+  font-family: 'Museo Sans';
+  src: url(/static/cd8e660effebc438945eaad5618944e3.woff) format('woff');
+  font-style: normal;
+  font-weight: 900; /* black */
+}
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fcfcfc;
+  color: #000;
+  font-family: 'Museo Sans';
+  height: 100%;
+  line-height: 1.25;
+}
+
+body,
+section#react {
+  height: 100%;
+}
+
+.clearfix:after {
+  content: ' '; /* Older browser do not support empty content */
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+/* Flexbox */
+
+.flex {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+.flex-column {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.flex-grow {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.flex-justify {
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.flex-wrap {
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+}
+
+/* Icons */
+
+.link-icon {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  padding-bottom: 3px;
+  position: relative;
+  top: 3px;
+}
+
+.link-icon path {
+  fill: #000;
+  transition: 0.2s fill ease-out;
+}
+
+.link-icon:hover path {
+  fill: #FF9526;
+  transition: none;
+}
+
+.ellipsed {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+}
+
+.ellipsed::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 30%;
+  height: 100%;
+  content: '';
+  pointer-events: none;
+  background-image: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, #fff 80%, #fff 100%);
+  background-image:         linear-gradient(to right, rgba(255, 255, 255, 0) 0%, #fff 80%, #fff 100%);
+  background-size: 100%;
+}
+
+.spinner {
+  width: 30px;
+  height: 8px;
+  text-align: center;
+  font-size: 10px;
+  display: inline-block;
+}
+
+.spinner > div {
+  background-color: #fff;
+  height: 100%;
+  width: 2px;
+  margin-right: 1px;
+  display: inline-block;
+
+  -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  animation: sk-stretchdelay 1.2s infinite ease-in-out;
+}
+
+.spinner .rect2 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.spinner .rect3 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.spinner .rect4 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.spinner .rect5 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+@-webkit-keyframes sk-stretchdelay {
+  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
+  20% { -webkit-transform: scaleY(1.0) }
+}
+
+@keyframes sk-stretchdelay {
+  0%, 40%, 100% {
+    transform: scaleY(0.4);
+    -webkit-transform: scaleY(0.4);
+  }  20% {
+    transform: scaleY(1.0);
+    -webkit-transform: scaleY(1.0);
+  }
+}
+
+a {
+  color: #000;
+  cursor: pointer;
+}
+
+/*a:hover {
+  color: #999;
+}
+
+a:active, a:focus {
+  color: #333;
+}*/
+
+.klkFocus:focus {
+  outline: none !important;
+  border: 1px solid #0A66B7 !important;
+  box-shadow: 0 0 1px #0A66B7 !important;
+}
+
+.noFocus:focus {
+  outline: none !important;
+}
+
+.hiddenScroll::-webkit-scrollbar {
+    display: none;
+}
+
+.circle:before {
+    content: ' \25CF';
+    font-size: 200px;
+}
+
+.scrollable {
+  -webkit-overflow-scrolling: touch;
+  overflowX: scroll;
+  overflowY: scroll;
+  width: 100%;
+  -webkit-transform: translateZ(0px);
+  -webkit-transform: translate3d(0,0,0);
+  -webkit-perspective: 1000;
+}
+
+.circleSpinner {
+  margin: 50px;
+  height: 28px;
+  width: 28px;
+  animation: rotate 0.8s infinite linear;
+  border: 8px solid #ff0000;
+  border-right-color: transparent;
+  border-radius: 50%;
+}
+
+@keyframes rotate {
+  0%    { transform: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
+
+@keyframes rotate {
+  0%    { height: rotate(0deg); }
+  100%  { transform: rotate(360deg); }
+}
+
+.addressNotVisible {
+  height: 0;
+  overflow: hidden;
+  transition: height 1s;
+}
+
+.addressVisible {
+  height: 185px;
+  overflow: hidden;
+  transition: height 1s;
+}
+
+/*dirty fix to prevent jumping of inputs on iPhone
+html,body {
+  overflow: auto !important;
+  height: 100% !important;
+}*/
+</style></head>
+<body><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="position:absolute;width:0;height:0;visibility:hidden"><defs><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 8 16" id="arrow-grey-left_a42cab8ff38997c39d1c12239c04e89c"> <!-- Generator: Sketch 3.4.2 (15855) - http://www.bohemiancoding.com/sketch --> <title>Shape</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="arrow-grey-left_a42cab8ff38997c39d1c12239c04e89c_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="arrow-grey-left_a42cab8ff38997c39d1c12239c04e89c_5.1-Klooker-Shopping-Cart-mobile" sketch:type="MSArtboardGroup" transform="translate(-121.000000, -782.000000)" stroke="#717171" fill-opacity="0" fill="#FFFFFF"> <g id="arrow-grey-left_a42cab8ff38997c39d1c12239c04e89c_Rectangle-261-Copy-+-Rectangle-363-+-Inloggen-Copy-+-Rectangle-3-Copy-2-+-E-mailadres-Copy" sketch:type="MSLayerGroup" transform="translate(10.000000, 720.000000)"> <g id="arrow-grey-left_a42cab8ff38997c39d1c12239c04e89c_Rectangle-363-+-Inloggen-Copy-+-Rectangle-3-Copy-2-+-E-mailadres-Copy" sketch:type="MSShapeGroup"> <g id="arrow-grey-left_a42cab8ff38997c39d1c12239c04e89c_Rectangle-3-Copy-2-+-E-mailadres-Copy" transform="translate(112.000000, 59.000000)"> <path d="M2.99787753,10.2003646 L8.44540608,13.8320503 C8.90493477,14.1384028 9.52580411,14.0142289 9.83215657,13.5547002 C10.138509,13.0951715 10.0143352,12.4743022 9.55480647,12.1679497 L3.55480647,8.16794971 C3.21890706,7.94401676 2.78130549,7.94401676 2.44540608,8.16794971 L-3.55459392,12.1679497 C-4.01412261,12.4743022 -4.13829648,13.0951715 -3.83194402,13.5547002 C-3.52559156,14.0142289 -2.90472222,14.1384028 -2.44519353,13.8320503 L2.99787753,10.2003646 Z" id="arrow-grey-left_a42cab8ff38997c39d1c12239c04e89c_Shape" transform="translate(3.000106, 11.000053) rotate(-90.000000) translate(-3.000106, -11.000053) "></path> </g> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 336 78" id="logo_331f8bdf6319dd28b39e7841588989eb"> <!-- Generator: Sketch 3.8.2 (29753) - http://www.bohemiancoding.com/sketch --> <title>logo</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="logo_331f8bdf6319dd28b39e7841588989eb_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="logo_331f8bdf6319dd28b39e7841588989eb_logo" fill="#f9402e"> <g id="logo_331f8bdf6319dd28b39e7841588989eb_Layer_1"> <g id="logo_331f8bdf6319dd28b39e7841588989eb_Group"> <path d="M51.1,32.9 C51.1,23.6 45,19.8 38.4,19.8 C29,19.8 23,25.6 19.9,31.8 L19.6,31.8 L19.6,0.7 L6.7,0.7 L6.7,50.7 L1.9,51 C1.7,54.4 1.3,57.5 0.7,60.3 L6.7,59.9 L6.7,76 L19.6,76 L19.6,58.2 C22.5,58 25.2,57.6 27.6,57 L37.7,76 L52.2,76 L39.5,52.2 C48.1,46.9 51.1,39.2 51.1,32.9 L51.1,32.9 Z M19.7,49 C20.5,40.7 26.7,30.2 33.7,30.2 C36.6,30.2 37.7,32.4 37.7,35 C37.7,42.6 30.7,48 19.7,49 L19.7,49 Z" id="logo_331f8bdf6319dd28b39e7841588989eb_Shape"></path> <path d="M111.5,19.8 C100.3,19.8 86.3,26.1 86.3,48.6 C86.3,68.2 95.3,77.5 109.8,77.5 C124.1,77.5 135.1,68 135.1,47.2 C135.2,22.3 119.6,19.8 111.5,19.8 L111.5,19.8 Z M110.7,68 C101.1,68 99.4,57.2 99.4,47.1 C99.4,36.7 103,29.3 110.9,29.3 C119.1,29.3 121.9,36.8 121.9,48.9 C121.9,60.2 118.6,68 110.7,68 L110.7,68 Z" id="logo_331f8bdf6319dd28b39e7841588989eb_Shape"></path> <path d="M82.7,66.2 C80.9,66.9 79,67.4 77.3,67.4 C72.9,67.4 71.5,64.9 71.5,58.2 L71.5,0.8 L58.6,0.8 L58.6,60.9 C58.6,69 59.5,77.6 74.1,77.6 C78.8,77.6 84.1,76.2 87,74.4 L86.8,73.7 C85.1,71.5 83.8,69 82.7,66.2 L82.7,66.2 Z" id="logo_331f8bdf6319dd28b39e7841588989eb_Shape"></path> <path d="M244.5,32.9 C244.5,23.6 238.4,19.8 231.8,19.8 C222.4,19.8 216.4,25.6 213.3,31.8 L213,31.8 L213,0.7 L200.1,0.7 L200.1,50.6 L194.4,50.9 C194.2,54.3 193.8,57.4 193.2,60.2 L200.1,59.8 L200.1,76 L213,76 L213,58.2 C215.9,58 218.6,57.6 221,57 L231.1,76 L245.6,76 L232.9,52.3 C241.5,46.9 244.5,39.2 244.5,32.9 L244.5,32.9 Z M213.1,49 C213.9,40.7 220.1,30.2 227.1,30.2 C230,30.2 231.1,32.4 231.1,35 C231.1,42.6 224.1,48 213.1,49 L213.1,49 Z" id="logo_331f8bdf6319dd28b39e7841588989eb_Shape"></path> <path d="M276.5,67.7 C267.3,67.7 263.3,60.9 262.9,53.8 C272.9,53.7 293.6,51.5 293.6,34.8 C293.6,25.2 287,19.7 276.4,19.7 C260.4,19.7 251.3,31.9 250.1,46.4 L246.9,46.6 C245.8,50 245,52.2 241.1,55.1 L250.3,54.7 C251.7,68.2 259.3,77.4 275.3,77.4 C285.5,77.4 292.6,72.9 294.4,71.3 L290.4,62.7 C287.6,64.8 282.9,67.7 276.5,67.7 L276.5,67.7 Z M275.6,29 C279.5,29 282.1,31.4 282.1,35.4 C282.1,43.7 268.3,45.6 262.5,45.5 C262.8,37.5 266.9,29 275.6,29 L275.6,29 Z" id="logo_331f8bdf6319dd28b39e7841588989eb_Shape"></path> <path d="M327,19.8 C321.6,19.8 316.3,23.2 313.9,29.3 L312.6,21.4 L302,21.4 L303,30.2 L303,75.9 L315.9,75.9 L315.9,41.7 C316.1,35.4 319.9,30.8 325.8,30.8 C328.6,30.8 331.1,31.7 333.5,33 L335.8,22.1 C333.3,20.6 330.3,19.8 327,19.8 L327,19.8 Z" id="logo_331f8bdf6319dd28b39e7841588989eb_Shape"></path> <path d="M165.2,19.8 C154,19.8 140,26.1 140,48.6 C140,68.2 149,77.5 163.5,77.5 C177.8,77.5 188.8,68 188.8,47.2 C188.8,22.3 173.2,19.8 165.2,19.8 L165.2,19.8 Z M164.3,68 C154.7,68 153,57.2 153,47.1 C153,36.7 156.6,29.3 164.5,29.3 C172.7,29.3 175.5,36.8 175.5,48.9 C175.6,60.2 172.2,68 164.3,68 L164.3,68 Z" id="logo_331f8bdf6319dd28b39e7841588989eb_Shape"></path> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 22 22" id="search-small-icon_ee22190f3dd7c9a02ec87b3f1f4f45a0"> <!-- Generator: Sketch 3.4.2 (15855) - http://www.bohemiancoding.com/sketch --> <title>Search orange 20x20</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="search-small-icon_ee22190f3dd7c9a02ec87b3f1f4f45a0_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="search-small-icon_ee22190f3dd7c9a02ec87b3f1f4f45a0_icons" sketch:type="MSArtboardGroup" transform="translate(-182.000000, -290.000000)" stroke="#f9402e" fill-opacity="0" fill="#FFFFFF"> <path d="M198.000024,298.49999 C198.000024,294.35823 194.641931,291 190.500053,291 C186.358258,291 183,294.35823 183,298.49999 C183,302.64175 186.358258,305.999815 190.500053,305.999815 C194.641931,305.999815 198.000024,302.64175 198.000024,298.49999 L198.000024,298.49999 Z M190.500053,304.124766 C187.39822,304.124766 184.875065,301.601838 184.875065,298.500031 C184.875065,295.398224 187.39822,292.87509 190.500053,292.87509 C193.601804,292.87509 196.125166,295.398224 196.125166,298.500031 C196.125166,301.601838 193.601804,304.124766 190.500053,304.124766 Z M202.450593,307.799474 L197.86227,303.210818 C197.178607,304.274061 196.273844,305.178363 195.210592,305.862061 L199.799287,310.450717 C200.531836,311.183094 201.71957,311.183094 202.450552,310.450717 C203.183142,309.719534 203.183142,308.531811 202.450593,307.799474 Z" id="search-small-icon_ee22190f3dd7c9a02ec87b3f1f4f45a0_Search-orange-20x20" sketch:type="MSShapeGroup"></path> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16" id="zoom_805002e93ca29649c0244a632d49ebb7"> <style type="text/css"> .st0{fill:#A5B7C0;} </style> <g id="zoom_805002e93ca29649c0244a632d49ebb7_Zoom_2_x2C__Magnifying_Glass_2"> <path class="st0" d="M15.7,14.3l-3.1-3.1c0,0,0,0,0,0C13.5,10,14,8.6,14,7c0-3.9-3.1-7-7-7S0,3.1,0,7s3.1,7,7,7   c1.6,0,3-0.5,4.2-1.4c0,0,0,0,0,0l3.1,3.1c0.2,0.2,0.5,0.3,0.7,0.3s0.5-0.1,0.7-0.3C16.1,15.3,16.1,14.7,15.7,14.3z M7,12   c-2.8,0-5-2.2-5-5s2.2-5,5-5s5,2.2,5,5S9.8,12,7,12z"></path> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 202.621 202.621" id="menu-icon_9af93944637a93833150873d50d35007"> <g> <g> <g> <path fill="#f9402e" d="M15.573,54.552h171.475c8.586,0,15.573-6.992,15.573-15.586s-6.987-15.586-15.573-15.586H15.573     C6.987,23.379,0,30.371,0,38.966C0,47.561,6.987,54.552,15.573,54.552z M15.573,31.172h171.475c4.29,0,7.78,3.495,7.78,7.793     c0,4.298-3.489,7.793-7.78,7.793H15.573c-4.29,0-7.78-3.495-7.78-7.793C7.793,34.667,11.282,31.172,15.573,31.172z"></path> <path fill="#f9402e" d="M187.048,85.724H15.573C6.987,85.724,0,92.716,0,101.31s6.987,15.586,15.573,15.586h171.475     c8.586,0,15.573-6.992,15.573-15.586S195.634,85.724,187.048,85.724z M187.048,109.103H15.573c-4.29,0-7.78-3.495-7.78-7.793     s3.489-7.793,7.78-7.793h171.475c4.29,0,7.78,3.495,7.78,7.793S191.338,109.103,187.048,109.103z"></path> <path fill="#f9402e" d="M187.048,148.069H15.573C6.987,148.069,0,155.061,0,163.655s6.987,15.586,15.573,15.586h171.475     c8.586,0,15.573-6.992,15.573-15.586S195.634,148.069,187.048,148.069z M187.048,171.448H15.573c-4.29,0-7.78-3.495-7.78-7.793     c0-4.298,3.489-7.793,7.78-7.793h171.475c4.29,0,7.78,3.495,7.78,7.793C194.828,167.953,191.338,171.448,187.048,171.448z"></path> </g> </g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 10 26" id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8"> <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch --> <title>arrow-grey-left</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" fill-opacity="0"> <g id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8_arrow-grey-left" transform="translate(1.000000, 1.000000)" stroke="#717171" fill="#FFFFFF"> <g id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8_Page-1"> <g id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8_5.1-Klooker-Shopping-Cart-mobile"> <g id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8_Rectangle-261-Copy-+-Rectangle-363-+-Inloggen-Copy-+-Rectangle-3-Copy-2-+-E-mailadres-Copy"> <g id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8_Rectangle-363-+-Inloggen-Copy-+-Rectangle-3-Copy-2-+-E-mailadres-Copy"> <g id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8_Rectangle-3-Copy-2-+-E-mailadres-Copy"> <path d="M3.99646234,10.9718968 L13.0756766,15.641207 C13.8415577,16.0350888 14.87634,15.8754366 15.3869274,15.284614 C15.8975148,14.6937914 15.6905585,13.8955309 14.9246772,13.5016491 L4.92467724,8.35879194 C4.36484489,8.07087815 3.63550894,8.07087815 3.07567659,8.35879194 L-6.92432341,13.5016491 C-7.69020456,13.8955309 -7.89716101,14.6937914 -7.38657358,15.284614 C-6.87598614,15.8754366 -5.84120391,16.0350888 -5.07532276,15.641207 L3.99646234,10.9718968 L3.99646234,10.9718968 Z" id="arrow-grey-left-bg_e8919770749f5b347d5a56bf6a4adfa8_Shape" transform="translate(4.000177, 12.000068) rotate(-90.000000) translate(-4.000177, -12.000068) "></path> </g> </g> </g> </g> </g> </g> </g> </symbol><symbol id="remove-white_04113c9f381bc4811c6c137ba363d4a6"> <path fill="#ffffff" d="M15.354 1.354l-.708-.708-6.646 6.647-6.646-6.647-.708.708 6.647 6.646-6.647 6.646.708.708 6.646-6.647 6.646 6.647.708-.708-6.647-6.646z"></path> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 14 10" id="triangle-down_58477e55f681ebbb24acaacf6bb3fba5"> <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch --> <title>Slice 1</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="triangle-down_58477e55f681ebbb24acaacf6bb3fba5_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <path d="M6.14777493,8.53579368 L1.24744992,2.11296867 C0.778480221,1.49829305 0.999655904,1 1.71195413,1 L12.2818853,1 C13.0073935,1 13.2218577,1.48977542 12.7463895,2.11296867 L7.84606445,8.53579368 C7.37709475,9.1504693 6.6232432,9.15898693 6.14777493,8.53579368 Z" id="triangle-down_58477e55f681ebbb24acaacf6bb3fba5_Triangle-1-Copy-2" stroke="#A5B7C0" fill-opacity="0" fill="#A5B7C0" sketch:type="MSShapeGroup"></path> </g> </symbol><symbol xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 14 10" id="triangle-up_cd0f531afaa741c5ed96a41c3feaa1af"> <metadata id="triangle-up_cd0f531afaa741c5ed96a41c3feaa1af_metadata3462"> <rdf:rdf> <cc:work rdf:about=""> <dc:format>image/svg+xml</dc:format> <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type> <dc:title>Slice 1</dc:title> </cc:work> </rdf:rdf> </metadata> <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="699" inkscape:window-height="480" id="triangle-up_cd0f531afaa741c5ed96a41c3feaa1af_namedview3460" showgrid="false" inkscape:zoom="23.5" inkscape:cx="7" inkscape:cy="5" inkscape:window-x="0" inkscape:window-y="26" inkscape:window-maximized="0" inkscape:current-layer="svg3450"></sodipodi:namedview> <!-- Generator: Sketch 3.3.3 (12081) - http://www.bohemiancoding.com/sketch --> <title id="triangle-up_cd0f531afaa741c5ed96a41c3feaa1af_title3452">Slice 1</title> <desc id="triangle-up_cd0f531afaa741c5ed96a41c3feaa1af_desc3454">Created with Sketch.</desc> <defs id="triangle-up_cd0f531afaa741c5ed96a41c3feaa1af_defs3456"></defs> <g id="triangle-up_cd0f531afaa741c5ed96a41c3feaa1af_Page-1" sketch:type="MSPage" transform="matrix(1,0,0,-1,0,9.9999996)" style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1"> <path d="M 6.1477749,8.5357937 1.2474499,2.1129687 C 0.77848022,1.498293 0.9996559,1 1.7119541,1 L 12.281885,1 c 0.725508,0 0.939973,0.4897754 0.464504,1.1129687 l -4.9003246,6.422825 c -0.4689696,0.6146756 -1.2228212,0.6231932 -1.6982895,0 z" id="triangle-up_cd0f531afaa741c5ed96a41c3feaa1af_Triangle-1-Copy-2" sketch:type="MSShapeGroup" inkscape:connector-curvature="0" style="fill:#A5B7C0;fill-opacity:0;stroke:#A5B7C0"></path> </g> </symbol><symbol xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:cc="http://creativecommons.org/ns#" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:svg="http://www.w3.org/2000/svg" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" viewBox="0 0 8 16" id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd"> <metadata id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_metadata3408"> <rdf:rdf> <cc:work rdf:about=""> <dc:format>image/svg+xml</dc:format> <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"></dc:type> <dc:title>Shape</dc:title> </cc:work> </rdf:rdf> </metadata> <sodipodi:namedview pagecolor="#ffffff" bordercolor="#666666" borderopacity="1" objecttolerance="10" gridtolerance="10" guidetolerance="10" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-width="1280" inkscape:window-height="974" id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_namedview3406" showgrid="false" inkscape:zoom="50.25" inkscape:cx="4" inkscape:cy="8" inkscape:window-x="0" inkscape:window-y="26" inkscape:window-maximized="1" inkscape:current-layer="svg3392"></sodipodi:namedview> <!-- Generator: Sketch 3.4.2 (15855) - http://www.bohemiancoding.com/sketch --> <title id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_title3394">Shape</title> <desc id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_desc3396">Created with Sketch.</desc> <defs id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_defs3398"></defs> <g id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_Page-1" sketch:type="MSPage" transform="matrix(-1,0,0,1,7.9981335,0)" style="fill:none;fill-rule:evenodd;stroke:none;stroke-width:1"> <g id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_5.1-Klooker-Shopping-Cart-mobile" sketch:type="MSArtboardGroup" transform="translate(-121,-782)" style="fill:#ffffff;fill-opacity:0;stroke:#A5B7C0"> <g id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_Rectangle-261-Copy-+-Rectangle-363-+-Inloggen-Copy-+-Rectangle-3-Copy-2-+-E-mailadres-Copy" sketch:type="MSLayerGroup" transform="translate(10,720)"> <g id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_Rectangle-363-+-Inloggen-Copy-+-Rectangle-3-Copy-2-+-E-mailadres-Copy" sketch:type="MSShapeGroup"> <g id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_Rectangle-3-Copy-2-+-E-mailadres-Copy" transform="translate(112,59)"> <path d="m 2.9978775,10.200365 5.4475286,3.631685 c 0.4595287,0.306353 1.080398,0.182179 1.3867505,-0.27735 0.3063524,-0.459529 0.1821784,-1.080398 -0.2773501,-1.38675 l -6,-4.0000003 c -0.3358994,-0.2239329 -0.773501,-0.2239329 -1.1094004,0 l -6,4.0000003 c -0.4595287,0.306352 -0.5837026,0.927221 -0.2773501,1.38675 0.3063524,0.459529 0.9272218,0.583703 1.3867505,0.27735 l 5.443071,-3.631685 z" id="arrow-grey-right_9056b0d1bf2129bfa97ea48e943f42bd_Shape" transform="matrix(0,-1,1,0,-7.999947,14.000159)" inkscape:connector-curvature="0"></path> </g> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16" id="history_e621c0aee315f5d67908cf0543c8150c"> <style type="text/css"> .st0{fill:#A5B7C0;} </style> <g id="history_e621c0aee315f5d67908cf0543c8150c_History_1_x2C__Time_Machine_1"> <path class="st0" d="M7,5C6.4,5,6,5.4,6,6v2v1c0,0.6,0.4,1,1,1h1h2c0.6,0,1-0.4,1-1s-0.4-1-1-1H8V6C8,5.4,7.6,5,7,5z"></path> <path class="st0" d="M15.3,0.7l-1.6,1.6l0,0C12.2,0.9,10.1,0,8,0C3.6,0,0,3.6,0,8s3.6,8,8,8c3.6,0,6.7-2.3,7.7-5.7   C15.8,9.8,15.5,9.2,15,9c-0.5-0.2-1.1,0.1-1.2,0.7C13,12.3,10.7,14,8,14c-3.3,0-6-2.7-6-6s2.7-6,6-6c1.6,0,3.2,0.7,4.3,1.7   l-1.6,1.6C10.3,5.7,10.4,6,11,6h4.5C15.8,6,16,5.8,16,5.5V1C16,0.4,15.7,0.3,15.3,0.7z"></path> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16" id="grid_86d7fcef7e2f59526822568ec30e4ca7"> <style type="text/css"> .st0{fill:#A5B7C0;} </style> <g id="grid_86d7fcef7e2f59526822568ec30e4ca7_Grid_2"> <path class="st0" d="M0,1v5c0,0.6,0.4,1,1,1h5c0.6,0,1-0.4,1-1V1c0-0.6-0.4-1-1-1H1C0.4,0,0,0.4,0,1z M5,5H2V2h3V5z"></path> <path class="st0" d="M1,9c-0.6,0-1,0.4-1,1v5c0,0.6,0.4,1,1,1h5c0.6,0,1-0.4,1-1v-5c0-0.6-0.4-1-1-1H1z M5,14H2v-3h3V14z"></path> <path class="st0" d="M10,9c-0.6,0-1,0.4-1,1v5c0,0.6,0.4,1,1,1h5c0.6,0,1-0.4,1-1v-5c0-0.6-0.4-1-1-1H10z M14,14h-3v-3h3V14z"></path> <path class="st0" d="M10,0C9.4,0,9,0.4,9,1v5c0,0.6,0.4,1,1,1h5c0.6,0,1-0.4,1-1V1c0-0.6-0.4-1-1-1H10z M14,5h-3V2h3V5z"></path> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16" id="gridred_b92bb414afd154110a3ded4555fa3088"> <g id="gridred_b92bb414afd154110a3ded4555fa3088_Grid_2"> <path fill="#f9402e" style="fill-rule:evenodd;clip-rule:evenodd;" d="M0,1v5c0,0.553,0.448,1,1,1h5c0.552,0,1-0.447,1-1V1c0-0.553-0.448-1-1-1H1   C0.448,0,0,0.447,0,1z M5,5H2V2h3V5z"></path> <path fill="#f9402e" style="fill-rule:evenodd;clip-rule:evenodd;" d="M1,9c-0.552,0-1,0.447-1,1v5c0,0.553,0.448,1,1,1h5c0.552,0,1-0.447,1-1v-5   c0-0.553-0.448-1-1-1H1z M5,14H2v-3h3V14z"></path> <path fill="#f9402e" style="fill-rule:evenodd;clip-rule:evenodd;" d="M10,9c-0.552,0-1,0.447-1,1v5c0,0.553,0.448,1,1,1h5c0.552,0,1-0.447,1-1v-5   c0-0.553-0.448-1-1-1H10z M14,14h-3v-3h3V14z"></path> <path fill="#f9402e" style="fill-rule:evenodd;clip-rule:evenodd;" d="M10,0C9.448,0,9,0.447,9,1v5c0,0.553,0.448,1,1,1h5c0.552,0,1-0.447,1-1V1   c0-0.553-0.448-1-1-1H10z M14,5h-3V2h3V5z"></path> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> <g> </g> </symbol><symbol viewBox="0 0 50.01 45" id="zwangerbaby_ed188c76e716c2d7dcc5f65e6dc95a51"><defs><style>.cls-1{fill:#4a5256;}</style></defs><title>Baby</title><path class="cls-1" d="M290.93,422.67a1.92,1.92,0,1,0,1.93,1.92A1.93,1.93,0,0,0,290.93,422.67Zm13.12,0A1.92,1.92,0,1,0,306,424.6,1.93,1.93,0,0,0,304.05,422.67Zm13-2.1h0a5.32,5.32,0,0,0-1.71.28A18.35,18.35,0,0,0,298.84,407h0l-.6-.68a3.73,3.73,0,0,1,.36-5.3,2.85,2.85,0,0,1,4,.27,2.07,2.07,0,0,1-.2,2.93l-.69.6,1.2,1.36.68-.6a3.87,3.87,0,0,0,.37-5.48,4.67,4.67,0,0,0-6.57-.44,5.48,5.48,0,0,0-.91,7.33,18.34,18.34,0,0,0-16.85,13.88,5.32,5.32,0,0,0-1.71-.28A5.42,5.42,0,1,0,280.06,431a18.4,18.4,0,0,0,34.86,0,5.36,5.36,0,0,0,2.12.43,5.42,5.42,0,1,0,0-10.84Zm-19.55,21.11a4.75,4.75,0,1,1,4.78-4.75A4.77,4.77,0,0,1,297.49,441.69ZM317,429.61a3.59,3.59,0,0,1-2.13-.7l-1.08-.78-.34,1.28a16.55,16.55,0,0,1-10.69,11.41,6.5,6.5,0,0,0,1.28-3.87,6.6,6.6,0,0,0-13.2,0,6.5,6.5,0,0,0,1.28,3.87,16.55,16.55,0,0,1-10.69-11.41l-.34-1.28-1.08.78a3.61,3.61,0,1,1-.24-6l1.14.69.24-1.31a16.57,16.57,0,0,1,32.59,0l.23,1.31,1.14-.69a3.61,3.61,0,0,1,1.89-.54h0a3.61,3.61,0,1,1,0,7.22Zm-19.55,4.24a3.09,3.09,0,1,0,3.11,3.09A3.1,3.1,0,0,0,297.49,433.85Zm0,4.37a1.28,1.28,0,1,1,1.29-1.28A1.29,1.29,0,0,1,297.49,438.22Z" transform="translate(-272.49 -398.5)"></path></symbol><symbol viewBox="0 0 45.01 45.01" id="dieren_364d1ec132d6085dbf1faa5a9366c357"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Dieren</title><path class="cls-1" d="M309.09,443.51a7.11,7.11,0,0,1-5-2.08h0a8.78,8.78,0,0,1-2.45-6.08h0a7.08,7.08,0,0,1,.64-3h0a1,1,0,0,1,.3-.79h0l0,0h0l.09-.09h0l.28-.28h0l.07-.07h0a11.65,11.65,0,0,0-.77-1.06h0c-.68-.85-1.66-2-2.77-3.13h0c-2.22-2.36-5-5-7.12-6.89h0a24.62,24.62,0,0,0-2.45-1.95h0l-.27.27h0l-.18.18h0l0,0h0l0,0h0l-.06,0h0a.35.35,0,0,1-.14.07h0l0,0h0l-.21,0h-.15a7.06,7.06,0,0,1-3.05.66h0a8.79,8.79,0,0,1-6.08-2.45h0a7.11,7.11,0,0,1-2.08-5h0a7.1,7.1,0,0,1,2.08-5h0a7.06,7.06,0,0,1,4.25-2h0a7.06,7.06,0,0,1,2-4.24h0a7.09,7.09,0,0,1,5-2.09h0a7.11,7.11,0,0,1,5,2.09h0a8.76,8.76,0,0,1,2.28,6.08h0a6.93,6.93,0,0,1-1.28,4.26h0l.05.09h0a10.89,10.89,0,0,0,.76,1.07h0c.67.86,1.64,2,2.75,3.13h0c2.21,2.35,5,5,7.1,6.83h0a23.1,23.1,0,0,0,2.52,2h0a7.52,7.52,0,0,1,4.54-1.54h0a8.05,8.05,0,0,1,5.75,2.6h0a7.11,7.11,0,0,1,2.09,5h0a7.1,7.1,0,0,1-2.09,5h0a7.08,7.08,0,0,1-4.24,2h0a7.09,7.09,0,0,1-2,4.25h0a7.12,7.12,0,0,1-5,2.08h0Zm-5.5-8.16a6.82,6.82,0,0,0,1.87,4.67h0a5.11,5.11,0,0,0,3.63,1.5h0a5.11,5.11,0,0,0,3.63-1.5h0a5.1,5.1,0,0,0,1.49-3.63h0s0-.09,0-.16h0v-1h1.16a5.1,5.1,0,0,0,3.63-1.5h0a5.11,5.11,0,0,0,1.5-3.63h0a5.12,5.12,0,0,0-1.5-3.63h0a6.05,6.05,0,0,0-4.34-2h0a5.45,5.45,0,0,0-3.58,1.35h0a1.14,1.14,0,0,1-.81.33h0a2.77,2.77,0,0,1-1.43-.58h0c-.46-.3-1-.7-1.59-1.19h0c-1.2-1-2.67-2.3-4.18-3.74h0a66.94,66.94,0,0,1-7.5-8.13h0a3.32,3.32,0,0,1-.73-1.71h0a1.15,1.15,0,0,1,.35-.86h0a4.69,4.69,0,0,0,1-3.25h0a6.83,6.83,0,0,0-1.7-4.68h0a5.12,5.12,0,0,0-3.63-1.5h0a5.11,5.11,0,0,0-3.63,1.51h0a5.07,5.07,0,0,0-1.5,3.61h0s0,.09,0,.14h0l0,1.06-1.06,0h-.14a5.1,5.1,0,0,0-3.63,1.5h0a5.12,5.12,0,0,0-1.5,3.63h0a5.12,5.12,0,0,0,1.5,3.63h0a6.83,6.83,0,0,0,4.67,1.87h0a4.56,4.56,0,0,0,3.18-1.13h0l.07-.07h0l0,0h0a1.13,1.13,0,0,1,.77-.29h0a2.73,2.73,0,0,1,1.42.6h0c.45.3,1,.71,1.57,1.21h0c1.19,1,2.67,2.33,4.18,3.78h0a73.19,73.19,0,0,1,7.51,8.12h0a4.69,4.69,0,0,1,.65,1.18h0l.72.36-.94.94,0,0h0l-.1.1h0a4.56,4.56,0,0,0-1.12,3.16Zm-1.05-3.82,0,0h0l0,0h0Zm-11.94-14.64a.72.72,0,0,0-.05-.3h0v0h0l0,.08h0a.65.65,0,0,1,0,.2Zm-.31-.71a.64.64,0,0,0-.23-.16h0a1,1,0,0,1,.23.16Z" transform="translate(-277.49 -398.5)"></path></symbol><symbol viewBox="0 0 53.01 34.99" id="etenendrinken_8d7bf4acdf66e08c9650e8e90d118f6a"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Etendrinken</title><path class="cls-1" d="M300.42,405.24a16.16,16.16,0,1,0,15.79,16.16A16,16,0,0,0,300.42,405.24Zm0,30.3a14.15,14.15,0,1,1,13.83-14.15A14,14,0,0,1,300.42,435.54ZM281,415.3a4.8,4.8,0,0,1-.9,2.89,2.93,2.93,0,0,1-.91.81V405.52h-2V419a2.94,2.94,0,0,1-.91-.8,4.81,4.81,0,0,1-.9-2.89v-9.78h-2v9.78c0,2.74,1.49,5.22,3.77,5.82V438.5h2V421.12c2.28-.6,3.76-3.08,3.77-5.82v-9.78h-2ZM322.17,405l-1.63-1.47v34h2V428c2.48-2.48,4-6.65,4-11.36C326.49,411.73,324.84,407.41,322.17,405Zm.33,3.52a17.29,17.29,0,0,1,0,16.3Z" transform="translate(-273.5 -403.51)"></path></symbol><symbol viewBox="0 0 30 37.97" id="verzorging_9bcb5fe3a4301f8a7bab04f22d91db7d"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Verzorging</title><path class="cls-1" d="M302.81,412.82v.82h-5.46v1.84H309.9v-1.84h-5.29v-.82h0a11.07,11.07,0,1,0-22.13,0v26.67h1.81V412.82a9.26,9.26,0,1,1,18.52,0Zm-.39,9.68c-.9-1.64-1.79-2.92-1.8-2.94a.89.89,0,0,0-1.48,0s-.86,1.29-1.73,2.93a13.1,13.1,0,0,0-1.79,5.28,4.25,4.25,0,0,0,1.53,3.47,4.45,4.45,0,0,0,2.72.94,4.74,4.74,0,0,0,2.79-.94,4.19,4.19,0,0,0,1.63-3.46A12.79,12.79,0,0,0,302.42,422.5Zm-.83,7.26a3,3,0,0,1-1.71.58,2.68,2.68,0,0,1-1.61-.54,2.38,2.38,0,0,1-.84-2,11.79,11.79,0,0,1,1.57-4.41c.31-.6.63-1.15.9-1.59.28.45.62,1,1,1.62a11.58,11.58,0,0,1,1.64,4.37A2.31,2.31,0,0,1,301.59,429.76Zm9,0c-.9-1.64-1.79-2.92-1.81-2.94a.89.89,0,0,0-1.48,0s-.86,1.29-1.73,2.93a13.07,13.07,0,0,0-1.79,5.28,4.25,4.25,0,0,0,1.53,3.47,4.44,4.44,0,0,0,2.72.93,4.74,4.74,0,0,0,2.79-.94,4.2,4.2,0,0,0,1.63-3.46A12.79,12.79,0,0,0,310.62,429.8Zm-.83,7.26a3,3,0,0,1-1.71.58,2.69,2.69,0,0,1-1.61-.55,2.38,2.38,0,0,1-.84-2,11.82,11.82,0,0,1,1.57-4.41c.31-.6.63-1.15.9-1.59.28.45.62,1,1,1.62a11.57,11.57,0,0,1,1.64,4.37A2.31,2.31,0,0,1,309.78,437.07Z" transform="translate(-282.49 -401.51)"></path></symbol><symbol viewBox="0 0 39.62 39.87" id="gezondheid_09a2db7c01ec8735f8e1afc3af05c330"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Gezondheid</title><path class="cls-1" d="M319.54,405.47c-2.31-2.88-5.08-4.34-8.25-4.34-3.88,0-7.21,2.17-9.06,3.69a11.56,11.56,0,0,0-7.9-3.54c-3,0-5.85,1.44-8.5,4.28-8.41,9,1.79,20,6.15,24.72.53.56,1,1.05,1.3,1.43,2.66,3.09,5.94,7,7.23,8.55l.06.07a1.83,1.83,0,0,0,1.4.67h.15a1.84,1.84,0,0,0,1.43-.9,38.3,38.3,0,0,1,7.18-8.18c3.2-2.73,10.73-9.93,11.44-17.75A11.77,11.77,0,0,0,319.54,405.47Zm-10,25a40.26,40.26,0,0,0-7.57,8.65c-.21-.25-4.2-5-7.3-8.65-1-1.11-2.79-2.94-4.64-5.19h1a.93.93,0,0,0,.85-.58l3-7.19,3,11.91a.94.94,0,0,0,.86.72h0a.94.94,0,0,0,.88-.65l3.1-9.37,1.29,2.91a.92.92,0,0,0,.84.56h11.15A44.54,44.54,0,0,1,309.55,430.42Zm7.85-8.8H305.51l-2-4.53a.92.92,0,0,0-1.72.09l-2.86,8.62-2.88-11.52a1,1,0,0,0-.83-.72.92.92,0,0,0-.92.58l-3.85,9.17h-1.9c-3.58-4.89-6.31-11.14-1.38-16.42,2.57-2.75,5-3.69,7.16-3.69,4.58,0,7.61,4.08,7.77,4.3.22-.22,4.27-4.46,9.2-4.46,2.25,0,4.64.93,6.82,3.65C321.93,411.47,320.36,417,317.4,421.62Z" transform="translate(-282.61 -401.12)"></path></symbol><symbol viewBox="0 0 42.99 29.99" id="kleding_031d042bfcd3c7c8cc90252b5e61ce2b"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Kleding</title><path class="cls-1" d="M281.24,436.49a2.78,2.78,0,0,1-1.94-.78h0a2.6,2.6,0,0,1-.81-1.88h0v-2.18A2.64,2.64,0,0,1,280,429.3h0l14.55-7.22.82,1.54-14.55,7.22a.9.9,0,0,0-.51.81h0v2.18a.88.88,0,0,0,.28.65h0a.94.94,0,0,0,.66.27h37.51a1,1,0,0,0,.67-.27h0a.9.9,0,0,0,.27-.63h0v0h0l-.08-2.19a.9.9,0,0,0-.49-.77h0l-16.94-9.13,0-4,.62-.19a4.76,4.76,0,0,0,3.39-4.51h0a4.82,4.82,0,0,0-4.9-4.74h0a4.82,4.82,0,0,0-4.89,4.74h-1.8a6.59,6.59,0,0,1,6.69-6.48h0A6.59,6.59,0,0,1,308,413h0a6.47,6.47,0,0,1-4,5.94h0v1.79l16,8.63a2.63,2.63,0,0,1,1.4,2.24h0l.08,2.2s0,.06,0,.08h0a2.6,2.6,0,0,1-.77,1.84h0a2.78,2.78,0,0,1-2,.81H281.24Z" transform="translate(-278.5 -406.51)"></path></symbol><symbol viewBox="0 0 46.99 33.02" id="seksualiteit_f241269ea68fdca0eb31d76f644fc80e"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Sexualiteit</title><path class="cls-1" d="M304.06,424.05a8.91,8.91,0,0,0-2.79.46,6.52,6.52,0,0,0-4.34,3.87,5.22,5.22,0,0,1-1.3,1,.48.48,0,0,1-.23.05,5.89,5.89,0,0,1-1.18-.25,9.09,9.09,0,0,0-2.48-.4,6,6,0,0,0-2.69.62,8,8,0,0,0-3.1,2.51c-.14.19-.25.36-.36.52a3.23,3.23,0,0,1-.21.3l0,0,0,0a12,12,0,0,1-2.66.69c-1.42.27-2.28.43-2.69,1.37a1.73,1.73,0,0,0,.12,1.62c.48.79,1.33,1,3.47,1a9.8,9.8,0,0,0,4.07-.66,5.86,5.86,0,0,0,2.27-2l.11-.15a3,3,0,0,1,1.33-1.05,1,1,0,0,1,.44-.11,5.31,5.31,0,0,1,1.14.23,10.2,10.2,0,0,0,2.67.41,6,6,0,0,0,2.62-.57l0,0,0,0,1.07-.59a6.72,6.72,0,0,0,2.49.45,8.76,8.76,0,0,0,2.79-.47,6.9,6.9,0,0,0,4.17-3.37,3.63,3.63,0,0,0,.08-3C308.16,425,306.37,424.05,304.06,424.05Zm0,7.29a7.12,7.12,0,0,1-2.24.38,4.35,4.35,0,0,1-2.51-.68l-1.88,1a4.28,4.28,0,0,1-1.88.4,8.62,8.62,0,0,1-2.23-.35,6.3,6.3,0,0,0-1.58-.29,2.68,2.68,0,0,0-1.19.28,4.73,4.73,0,0,0-1.94,1.56,4.53,4.53,0,0,1-1.8,1.68,8.53,8.53,0,0,1-3.28.47,4.67,4.67,0,0,1-2-.25c-.21-.33,3.25-.53,4.64-1.32h0c.6-.29.73-.71,1.19-1.32a6.28,6.28,0,0,1,2.49-2,4.33,4.33,0,0,1,1.94-.44,7.54,7.54,0,0,1,2,.34,6.46,6.46,0,0,0,1.63.31,2.18,2.18,0,0,0,1-.23,8,8,0,0,0,2.1-1.65c.16-1.22,1.44-2.49,3.34-3.12a7.19,7.19,0,0,1,2.25-.38c1.53,0,2.8.56,3.22,1.54C307.9,428.72,306.46,430.55,304.06,431.35Zm-21.52-14.92a8.58,8.58,0,0,0,3.57-.59,5.26,5.26,0,0,0,2-1.77l.1-.14a2.36,2.36,0,0,1,1-.82.57.57,0,0,1,.27-.07,4.59,4.59,0,0,1,.92.19,8.82,8.82,0,0,0,2.32.36,5.32,5.32,0,0,0,2.34-.51l0,0,0,0,.8-.44a6,6,0,0,0,2.1.36,7.69,7.69,0,0,0,2.44-.41,6,6,0,0,0,3.7-3,3.33,3.33,0,0,0,.07-2.71c-.63-1.46-2.24-2.33-4.3-2.33a7.77,7.77,0,0,0-2.45.4,5.83,5.83,0,0,0-3.83,3.39,4,4,0,0,1-1,.75.16.16,0,0,1-.09,0,5.07,5.07,0,0,1-.91-.2,8,8,0,0,0-2.19-.35,5.44,5.44,0,0,0-2.39.55,7,7,0,0,0-2.73,2.22c-.12.15-.22.3-.31.44l-.13.19,0,0a10.3,10.3,0,0,1-2.18.56c-1.24.23-2.06.39-2.47,1.31l-.36.82.48.8C279.85,416.18,280.65,416.43,282.54,416.43Zm2.22-3h0c.5-.25.63-.61,1-1.12a5.31,5.31,0,0,1,2.11-1.71,3.7,3.7,0,0,1,1.64-.37,6.39,6.39,0,0,1,1.72.29,5.66,5.66,0,0,0,1.38.26,1.84,1.84,0,0,0,.83-.19,6.8,6.8,0,0,0,1.79-1.4,3.84,3.84,0,0,1,2.83-2.65,6.11,6.11,0,0,1,1.91-.32,2.83,2.83,0,0,1,2.74,1.31c.52,1.23-.7,2.77-2.74,3.46a6.07,6.07,0,0,1-1.9.32,3.68,3.68,0,0,1-2.13-.58l-1.59.87a3.61,3.61,0,0,1-1.59.34,7.2,7.2,0,0,1-1.89-.3,5.45,5.45,0,0,0-1.35-.24,2.32,2.32,0,0,0-1,.23,4,4,0,0,0-1.64,1.33,3.87,3.87,0,0,1-1.53,1.42,7.25,7.25,0,0,1-2.79.4,4,4,0,0,1-1.72-.21C280.64,414.25,283.58,414.08,284.76,413.4Zm36.38-1.16c-.94-2.31-3.67-3.75-7.14-3.75a13.78,13.78,0,0,0-4.14.65c-3.07,1-5.48,2.88-6.48,5.05l-2.63.34h-.08a10.24,10.24,0,0,0-6.41,4.58c-1,1.32-1.36,1.79-2.5,2a10.12,10.12,0,0,1-1.71.17,7.59,7.59,0,0,1-2-.29l-.37-.1a11.77,11.77,0,0,0-3.13-.49,9,9,0,0,0-1.56.14c-2.52.35-7.07,3.78-8.1,5.22a2,2,0,0,0-.4,1.67,1.81,1.81,0,0,0,1.8,1.39,7.84,7.84,0,0,0,3-1.09A19.15,19.15,0,0,1,284,426h.1l.28,0a4.14,4.14,0,0,1,1.14.26c.31.09.64.2,1,.29a13.83,13.83,0,0,0,3.58.48,15.28,15.28,0,0,0,2.81-.27,9.54,9.54,0,0,0,6.29-4.37c1-1.38,1.33-1.79,2.16-1.94a8,8,0,0,1,1.45-.12,18,18,0,0,1,2.28.18,9.21,9.21,0,0,0,5.22,1.43,13.76,13.76,0,0,0,4.14-.65,10.53,10.53,0,0,0,6.45-5A4.92,4.92,0,0,0,321.14,412.24ZM314,419.63a12.17,12.17,0,0,1-3.62.57,7.2,7.2,0,0,1-4.56-1.36,23.08,23.08,0,0,0-2.95-.25,9.78,9.78,0,0,0-1.76.15c-1.54.28-2.19,1.19-3.23,2.62a7.87,7.87,0,0,1-5.22,3.69,13.4,13.4,0,0,1-2.5.24,12.09,12.09,0,0,1-3.16-.43,11.28,11.28,0,0,0-2.59-.6,3.34,3.34,0,0,0-.57.05v0c-2.51.29-6.61,2.86-7.45,2.86-.08,0-.14,0-.15-.08-.14-.62,4.93-4.58,7.1-4.84a7.09,7.09,0,0,1,1.3-.12,11.77,11.77,0,0,1,3.09.53,9.25,9.25,0,0,0,2.38.33,11.57,11.57,0,0,0,2-.2c1.81-.35,2.53-1.29,3.55-2.68s2.61-3.41,5.33-3.9l3.67-.48c.42-2,2.61-4,5.73-5a12.09,12.09,0,0,1,3.62-.57c2.65,0,4.86,1,5.56,2.69C320.55,415.32,318,418.35,314,419.63Z" transform="translate(-274.49 -404.49)"></path></symbol><symbol viewBox="0 0 45.02 37.99" id="kantoorartikelen_2ba586d36691bab63a9259a7aa00417c"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Kantoorartikelen</title><path class="cls-1" d="M313.51,427a2.86,2.86,0,1,0-2.88-2.86A2.87,2.87,0,0,0,313.51,427Zm0-3.87a1,1,0,1,1-1,1A1,1,0,0,1,313.51,423.12Zm-6.69-4.94V405.53l-3.06-3H281.93v15.68h-5.44v18.56h5.44v3.75h34.13v-3.75h5.44V418.18Zm-23-13.84H303l2,2v11.89H283.79Zm0,34.31v-4.58h30.42v4.58Zm35.87-3.75h-3.59v-2.67H281.93v2.67h-3.59V420h41.31Z" transform="translate(-276.49 -402.5)"></path></symbol><symbol viewBox="0 0 10.14 18.3" id="wijn_e62776f0c02125b9293d31d95076a6c9"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Wijn</title><path class="cls-1" d="M298,424.88c2.68-.27,4.68-3,4.68-6.34a20.66,20.66,0,0,0-1.54-6.95l-.1-.24h-6.85l-.1.24a20.64,20.64,0,0,0-1.55,6.95c0,3.29,2,6.07,4.68,6.34v4h-3v.78H301v-.78h-3Zm-3.29-12.75h5.81a22,22,0,0,1,1.19,4.36h-8.2A22,22,0,0,1,294.7,412.14Zm-.1,10.39a6.49,6.49,0,0,1-1.29-4,10.87,10.87,0,0,1,.08-1.26h8.42a11,11,0,0,1,.08,1.26,6.49,6.49,0,0,1-1.29,4,3.62,3.62,0,0,1-6,0Z" transform="translate(-292.53 -411.36)"></path></symbol><symbol viewBox="0 0 15.26 17.92" id="bierensterkedrank_95ace444c65b0b999725e1d68b4ac4fe"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Sterkedrank</title><path class="cls-1" d="M306.86,412.11a.28.28,0,0,0-.39,0l-.81.71a1.65,1.65,0,0,0-2.45,2.13l-1.55,1.35,0,.06h-9.94l.41.46,6.52,7.29v5.3h-2.8a.28.28,0,0,0,0,.55h6.14a.28.28,0,1,0,0-.55h-2.8v-5.3l6.93-7.75h-3.64l1.14-1a1.65,1.65,0,0,0,2.45-2.13l.81-.71A.28.28,0,0,0,306.86,412.11Zm-8,11.45-6-6.68h11.94Zm5.75-8.4a1.09,1.09,0,1,1,1.09-1.09A1.09,1.09,0,0,1,304.61,415.16Z" transform="translate(-291.66 -412.01)"></path></symbol><symbol viewBox="0 0 42 45" id="huishouden_77e012c12f1f4fdafd30451605b81158"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Huishouden</title><path class="cls-1" d="M317.38,432.76c0-.15,0-.3,0-.45a31.19,31.19,0,0,0-1.26-9.92c-.89-2.6-2.61-4.55-5.22-4.54-2.34,0-4.76,1.45-6.74,3.7h0a6.73,6.73,0,0,1-1.68-.84,1.58,1.58,0,0,1-.8-1.19,2.47,2.47,0,0,1,.92-1.61c1.7-1.73,4.66-3.57,7.22-5.57s4.85-4.16,4.9-7a6.21,6.21,0,0,0-2.64-5.42,9.28,9.28,0,0,0-5.2-1.4c-3.79,0-6.93,2.78-9.55,6.62-7.05,10.39-11,29.64-11.73,33.46h-2.75v1.65h7v-1.65h-2.61c.21-1.05.59-2.9,1.14-5.25a118.76,118.76,0,0,1,6.81-21,35.19,35.19,0,0,1,5.4-8.77c2-2.2,4.09-3.43,6.28-3.43a7.72,7.72,0,0,1,4.28,1.12,4.53,4.53,0,0,1,1.92,4.06c.05,1.78-1.76,3.79-4.26,5.71s-5.45,3.76-7.38,5.7a4,4,0,0,0-1.4,2.78,3.64,3.64,0,0,0,2.22,3,8.77,8.77,0,0,0,.86.4,16.48,16.48,0,0,0-3,9.4c0,3.89.9,6.69,2.49,8.54a7.83,7.83,0,0,0,6.15,2.64h0a8.64,8.64,0,0,0,3.44-.68,5.55,5.55,0,0,0,2.67.68,5.67,5.67,0,0,0,2.49-10.73Zm-8.63,9.09a6.19,6.19,0,0,1-4.92-2.07c-1.24-1.44-2.09-3.82-2.09-7.46a14.86,14.86,0,0,1,3.19-9.12c1.84-2.34,4.2-3.7,6-3.68s2.82,1.11,3.69,3.45a29.55,29.55,0,0,1,1.16,9.29,5.57,5.57,0,0,0-6.48,5.59,5.67,5.67,0,0,0,1.43,3.77A7.77,7.77,0,0,1,308.75,441.85Zm6.14,0a4,4,0,1,1,4-4A4,4,0,0,1,314.89,441.85ZM278.5,443.5h15.66v-1.65H278.5Z" transform="translate(-278.5 -398.5)"></path></symbol><symbol viewBox="0 0 35.01 47" id="bloemen_8ef47a6942914a8581594e095194c5db"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Bloemen</title><path class="cls-1" d="M307,413.49a7,7,0,1,0-7,6.88A6.94,6.94,0,0,0,307,413.49Zm-7,4.83a4.83,4.83,0,1,1,4.91-4.83A4.88,4.88,0,0,1,300,418.32Zm13.64,15.31a11,11,0,0,0-10.85,0,6.12,6.12,0,0,0-1.47,1.27v-6.63a7.59,7.59,0,0,0,3.9,1.08,7.46,7.46,0,0,0,7.52-7.4,7.08,7.08,0,0,0-.16-1.51,7.36,7.36,0,0,0,0-13.89,7.09,7.09,0,0,0,.16-1.51,7.46,7.46,0,0,0-7.52-7.4,7.56,7.56,0,0,0-5,1.89,7.55,7.55,0,0,0-5.16-2,7.46,7.46,0,0,0-7.52,7.39,7.22,7.22,0,0,0,.17,1.56,7.36,7.36,0,0,0,.12,14.1,7.16,7.16,0,0,0-.16,1.52,7.46,7.46,0,0,0,7.52,7.4,7.56,7.56,0,0,0,4.06-1.18v16.21h2.08v-4.29a6.16,6.16,0,0,0,1.47,1.27,11,11,0,0,0,10.85,0,4.34,4.34,0,0,0,0-7.86ZM301,425.37l-.82-1-.79,1a5.45,5.45,0,0,1-9.7-3.32,5.31,5.31,0,0,1,.37-1.91l.46-1.2-1.3-.17a5.33,5.33,0,0,1-.1-10.57l1.27-.2-.47-1.18a5.28,5.28,0,0,1-.37-1.93,5.45,5.45,0,0,1,9.75-3.25l.81,1,.83-1a5.46,5.46,0,0,1,9.67,3.36,5.16,5.16,0,0,1-.35,1.85l-.43,1.12,1.2.24a5.34,5.34,0,0,1,0,10.48l-1.2.24.43,1.12a5.15,5.15,0,0,1,.35,1.85,5.41,5.41,0,0,1-5.44,5.35A5.46,5.46,0,0,1,301,425.37Zm11.47,14.39a8.9,8.9,0,0,1-8.6,0,2.35,2.35,0,0,1,0-4.41,8.88,8.88,0,0,1,8.6,0,2.35,2.35,0,0,1,0,4.41Z" transform="translate(-282.49 -397.51)"></path></symbol><symbol viewBox="0 0 50.02 14.69" id="opticien_4adca24dd55e6aac147f564a220c5116"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Opticien</title><path class="cls-1" d="M324.5,414.21H301.78l-2.2,1.7-2.29-1.7H274.48v1.9h3.95l4.15,12.79,12.38-.27,2.34-12.1,2.3,1.71,2.09-1.62,2.32,12,12.38.27,4.16-12.79h4Zm-31,12.55-9.65.21-3.53-10.86h15.24Zm21.63.21-9.65-.21-2.06-10.66h15.24Z" transform="translate(-274.48 -414.21)"></path></symbol><symbol viewBox="0 0 30.01 44.99" id="parfumcosmetica_a8e82d99e059a7b00b881f86e6dda3df"><defs><style>.cls-1{fill:#495256;}</style></defs><title>Cosmetica</title><path class="cls-1" d="M300.65,410.67l1.05-.58h0l-2.17-3.61-2.17,3.61,1,.58,1.12-1.87Zm-7.82.25,3,.76.31-1.13-5-1.28,1.33,4.79,1.17-.3Zm0,12.87.79-2.84-1.17-.3h0l-1.33,4.79,5-1.28-.31-1.12Zm6.69,2.14-1.12-1.87-1,.58h0l2.17,3.61,2.17-3.61-1-.58Zm6.7-2.11-3-.76-.31,1.12,5,1.29-1.34-4.79-1.17.3Zm-3.27.36h0Zm3.67-10.09h0Zm-3.33-2.38,3-.76-.79,2.84,1.17.3,1.34-4.79-5,1.28Zm-9.77,5.66a6,6,0,1,0,6-5.79A5.91,5.91,0,0,0,293.48,417.36Zm6-4.63a4.63,4.63,0,1,1-4.81,4.63A4.73,4.73,0,0,1,299.51,412.74ZM312.7,400c-2.63-1.05-7.85-1.47-13.19-1.49a66,66,0,0,0-9.79.64,16.13,16.13,0,0,0-3.4.85c-.83.36-1.74.83-1.81,2v.13s.83,6,1.67,12.79,1.67,14.41,1.66,17.47a.94.94,0,0,0,.3.68,1,1,0,0,0,.71.28h1.94v9.19a.94.94,0,0,0,.29.68,1,1,0,0,0,.71.28h15.43a1,1,0,0,0,.71-.28.94.94,0,0,0,.3-.68v-9.19h1.94a1,1,0,0,0,.85-.46.94.94,0,0,0,.15-.58c0-3.11.84-10.68,1.67-17.41s1.67-12.77,1.67-12.79V402C314.43,400.82,313.53,400.36,312.7,400Zm-6.48,41.57H292.8v-2.47h13.42Zm0-3.93H292.8v-4.29h13.42Zm4.31-20.42-3.45-1.92-.61,1,1.94,1.08-1.94,1.08.61,1,3.41-1.89c-.63,5.35-1.2,10.74-1.31,13.83H289.83c-.11-3.09-.68-8.51-1.31-13.87l3.42,1.9.61-1-1.94-1.08,1.94-1.08-.6-1h0l-3.46,1.92c-.83-7-1.77-13.82-1.95-15.11a12,12,0,0,1,4.47-1.16,69.17,69.17,0,0,1,8.5-.48A64.12,64.12,0,0,1,309,401a14.18,14.18,0,0,1,2.94.72,2.49,2.49,0,0,1,.57.3C312.3,403.38,311.36,410.21,310.53,417.21Zm-2.22-14.33H290.71a.73.73,0,1,0,0,1.46h17.61a.73.73,0,1,0,0-1.46Z" transform="translate(-284.5 -398.5)"></path></symbol><symbol viewBox="0 0 52.5 32.5" id="roken_940135c0e9b645c7fe464da6b28cb7f5"><defs><style>.cls-1{fill:none;stroke:#495256;stroke-miterlimit:10;}.cls-2,.cls-3{fill:#495256;}.cls-3{fill-rule:evenodd;}</style></defs><title>Roken</title><rect class="cls-1" x="0.5" y="20" width="45" height="12" rx="2" ry="2"></rect><path class="cls-2" d="M314.9,409.9a2,2,0,0,1,.25-1,1.16,1.16,0,0,1,.14-.19h0a1.39,1.39,0,0,0,.15-1.93,1.35,1.35,0,0,0-1.92-.17,4.42,4.42,0,0,0-1.34,3.34,8.18,8.18,0,0,0,1.35,4.2,2.45,2.45,0,0,1,.44,1.21c0,.34-.18.58-.76.92a5.14,5.14,0,0,1-1.34.45l-.15,0A1.39,1.39,0,0,0,311,419a1.36,1.36,0,0,0,1,.41l.26,0h.08a7.61,7.61,0,0,0,2.17-.74,3.82,3.82,0,0,0,2.2-3.35,5.13,5.13,0,0,0-.84-2.65A5.41,5.41,0,0,1,314.9,409.9Zm6.82-1.75a2,2,0,0,1,.25-1,1.1,1.1,0,0,1,.13-.2h0a1.39,1.39,0,0,0,.15-1.93,1.35,1.35,0,0,0-1.92-.17,4.38,4.38,0,0,0-1.34,3.33,8.21,8.21,0,0,0,1.35,4.21,2.47,2.47,0,0,1,.44,1.21c0,.34-.18.58-.76.92a5,5,0,0,1-1.35.46h-.06l-.13,0a1.38,1.38,0,0,0,.31,2.72,1.49,1.49,0,0,0,.29,0h0a7.48,7.48,0,0,0,2.2-.74,3.83,3.83,0,0,0,2.2-3.35,5.16,5.16,0,0,0-.84-2.64A5.46,5.46,0,0,1,321.72,408.15Z" transform="translate(-271 -404.5)"></path><path class="cls-3" d="M286.5,425h1.25v11H286.5Z" transform="translate(-271 -404.5)"></path></symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 28 23" id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963"> <!-- Generator: Sketch 3.7.2 (28276) - http://www.bohemiancoding.com/sketch --> <title>add-to-shopping-cart</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"> <g id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_add-to-shopping-cart" transform="translate(0.000000, -3.000000)" fill="#FFFFFF"> <g id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Page-1"> <g id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_icons"> <g id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Add-to-shopping-cart"> <g id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Rectangle-169-+-Oval-14-+-Oval-14-Copy-+-Path-42"> <rect id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Rectangle-169" fill-opacity="0" x="0" y="0" width="28" height="28"></rect> <g id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Oval-14-+-Oval-14-Copy-+-Path-42" transform="translate(0.000000, 3.500000)"> <path d="M10.7333333,21.1666667 L10.7333333,21.1666667 C11.4720434,21.1666667 12.0666667,20.5782374 12.0666667,19.8576389 C12.0666667,19.1370404 11.4720434,18.5486111 10.7333333,18.5486111 C9.99462325,18.5486111 9.4,19.1370404 9.4,19.8576389 C9.4,20.5782374 9.99462325,21.1666667 10.7333333,21.1666667 L10.7333333,21.1666667 L10.7333333,21.1666667 Z M10.7333333,22.1666667 L10.7333333,22.1666667 C9.44466892,22.1666667 8.4,21.1328797 8.4,19.8576389 C8.4,18.5823981 9.44466892,17.5486111 10.7333333,17.5486111 C12.0219977,17.5486111 13.0666667,18.5823981 13.0666667,19.8576389 C13.0666667,21.1328797 12.0219977,22.1666667 10.7333333,22.1666667 L10.7333333,22.1666667 L10.7333333,22.1666667 Z" id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Shape"></path> <path d="M21,21.1666667 L21,21.1666667 C21.7387101,21.1666667 22.3333333,20.5782374 22.3333333,19.8576389 C22.3333333,19.1370404 21.7387101,18.5486111 21,18.5486111 C20.2612899,18.5486111 19.6666667,19.1370404 19.6666667,19.8576389 C19.6666667,20.5782374 20.2612899,21.1666667 21,21.1666667 L21,21.1666667 L21,21.1666667 Z M21,22.1666667 L21,22.1666667 C19.7113356,22.1666667 18.6666667,21.1328797 18.6666667,19.8576389 C18.6666667,18.5823981 19.7113356,17.5486111 21,17.5486111 C22.2886644,17.5486111 23.3333333,18.5823981 23.3333333,19.8576389 C23.3333333,21.1328797 22.2886644,22.1666667 21,22.1666667 L21,22.1666667 L21,22.1666667 Z" id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Shape"></path> <path d="M0.768815104,1.36047363 L3.88396437,1.36047363 C4.6737285,1.36047363 5.45721622,2.01622273 5.59920388,2.79489507 L7.83861844,15.0760335 C7.97465734,15.8220823 8.67373094,16.4047818 9.43462309,16.4047818 L22.5345501,16.4047818 C23.2677518,16.4047818 24.007924,15.8620772 24.2228045,15.1691516 L27.8514648,3.46780057 C28.1021817,2.65931319 27.5661247,1.93597921 26.7231549,1.93597921 L11.3173503,1.93597921 C11.0412079,1.93597921 10.8173503,2.15983683 10.8173503,2.43597921 C10.8173503,2.71212158 11.0412079,2.93597921 11.3173503,2.93597921 L26.7231549,2.93597921 C26.8937685,2.93597921 26.9470931,3.00793331 26.8963361,3.17160935 L23.2676758,14.8729604 C23.1828699,15.1464344 22.8305206,15.4047818 22.5345501,15.4047818 L9.43462309,15.4047818 C9.15667255,15.4047818 8.87174734,15.1672878 8.82239686,14.8966456 L6.5829823,2.61550716 C6.35445853,1.3622635 5.15752199,0.360473633 3.88396437,0.360473633 L0.768815104,0.360473633 C0.492672729,0.360473633 0.268815104,0.584331258 0.268815104,0.860473633 C0.268815104,1.13661601 0.492672729,1.36047363 0.768815104,1.36047363 L0.768815104,1.36047363 L0.768815104,1.36047363 Z" id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Shape"></path> <g id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Line-+-Line-Copy" transform="translate(12.000000, 8.500000)"> <path d="M8.5,0 L0.5,0 C0.223857625,0 0,0.22385763 0,0.5 C0,0.77614237 0.223857625,1 0.5,1 L8.5,1 C8.77614237,1 9,0.77614237 9,0.5 C9,0.22385763 8.77614237,0 8.5,0 L8.5,0 L8.5,0 Z" id="remove-from-shopping-cart_d324719b538ed70e1d91964d3f0af963_Shape"></path> </g> </g> </g> </g> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 28 23" id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"> <!-- Generator: Sketch 3.3.3 (12072) - http://www.bohemiancoding.com/sketch --> <title>Add to shopping cart</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_icons" sketch:type="MSArtboardGroup" transform="translate(-191.000000, -477.000000)" fill="#FFFFFF"> <g id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Add-to-shopping-cart" sketch:type="MSLayerGroup" transform="translate(191.000000, 474.000000)"> <g id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Rectangle-169-+-Oval-14-+-Oval-14-Copy-+-Path-42" sketch:type="MSShapeGroup"> <rect id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Rectangle-169" fill-opacity="0" x="0" y="0" width="28" height="28"></rect> <g id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Oval-14-+-Oval-14-Copy-+-Path-42" transform="translate(0.000000, 3.500000)"> <path d="M10.7333333,21.1666667 L10.7333333,21.1666667 C11.4720434,21.1666667 12.0666667,20.5782374 12.0666667,19.8576389 C12.0666667,19.1370404 11.4720434,18.5486111 10.7333333,18.5486111 C9.99462325,18.5486111 9.4,19.1370404 9.4,19.8576389 C9.4,20.5782374 9.99462325,21.1666667 10.7333333,21.1666667 L10.7333333,21.1666667 Z M10.7333333,22.1666667 L10.7333333,22.1666667 C9.44466892,22.1666667 8.4,21.1328797 8.4,19.8576389 C8.4,18.5823981 9.44466892,17.5486111 10.7333333,17.5486111 C12.0219977,17.5486111 13.0666667,18.5823981 13.0666667,19.8576389 C13.0666667,21.1328797 12.0219977,22.1666667 10.7333333,22.1666667 L10.7333333,22.1666667 Z" id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Shape"></path> <path d="M21,21.1666667 L21,21.1666667 C21.7387101,21.1666667 22.3333333,20.5782374 22.3333333,19.8576389 C22.3333333,19.1370404 21.7387101,18.5486111 21,18.5486111 C20.2612899,18.5486111 19.6666667,19.1370404 19.6666667,19.8576389 C19.6666667,20.5782374 20.2612899,21.1666667 21,21.1666667 L21,21.1666667 Z M21,22.1666667 L21,22.1666667 C19.7113356,22.1666667 18.6666667,21.1328797 18.6666667,19.8576389 C18.6666667,18.5823981 19.7113356,17.5486111 21,17.5486111 C22.2886644,17.5486111 23.3333333,18.5823981 23.3333333,19.8576389 C23.3333333,21.1328797 22.2886644,22.1666667 21,22.1666667 L21,22.1666667 Z" id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Shape"></path> <path d="M0.768815104,1.36047363 L3.88396437,1.36047363 C4.6737285,1.36047363 5.45721622,2.01622273 5.59920388,2.79489507 L7.83861844,15.0760335 C7.97465734,15.8220823 8.67373094,16.4047818 9.43462309,16.4047818 L22.5345501,16.4047818 C23.2677518,16.4047818 24.007924,15.8620772 24.2228045,15.1691516 L27.8514648,3.46780057 C28.1021817,2.65931319 27.5661247,1.93597921 26.7231549,1.93597921 L11.3173503,1.93597921 C11.0412079,1.93597921 10.8173503,2.15983683 10.8173503,2.43597921 C10.8173503,2.71212158 11.0412079,2.93597921 11.3173503,2.93597921 L26.7231549,2.93597921 C26.8937685,2.93597921 26.9470931,3.00793331 26.8963361,3.17160935 L23.2676758,14.8729604 C23.1828699,15.1464344 22.8305206,15.4047818 22.5345501,15.4047818 L9.43462309,15.4047818 C9.15667255,15.4047818 8.87174734,15.1672878 8.82239686,14.8966456 L6.5829823,2.61550716 C6.35445853,1.3622635 5.15752199,0.360473633 3.88396437,0.360473633 L0.768815104,0.360473633 C0.492672729,0.360473633 0.268815104,0.584331258 0.268815104,0.860473633 C0.268815104,1.13661601 0.492672729,1.36047363 0.768815104,1.36047363 L0.768815104,1.36047363 Z" id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Shape"></path> <g id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Line-+-Line-Copy" transform="translate(12.000000, 4.500000)"> <path d="M4,0.5 L4,8.5 C4,8.77614237 4.22385763,9 4.5,9 C4.77614237,9 5,8.77614237 5,8.5 L5,0.5 C5,0.223857625 4.77614237,0 4.5,0 C4.22385763,0 4,0.223857625 4,0.5 L4,0.5 Z" id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Shape"></path> <path d="M8.5,4 L0.5,4 C0.223857625,4 0,4.22385763 0,4.5 C0,4.77614237 0.223857625,5 0.5,5 L8.5,5 C8.77614237,5 9,4.77614237 9,4.5 C9,4.22385763 8.77614237,4 8.5,4 L8.5,4 Z" id="add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca_Shape"></path> </g> </g> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 42 42" id="reminder-alert_cb956c06097e55cfe0e99606b927b617"> <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch --> <title>Reminder alert</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_MVP-mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_4.-Vaker-benodigd" sketch:type="MSArtboardGroup" transform="translate(-132.000000, -108.000000)" stroke-width="1.5"> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Group" sketch:type="MSLayerGroup" transform="translate(0.000000, 99.000000)"> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Meest-verkocht-deze-week-+-Rectangle-240" transform="translate(10.000000, 0.000000)" sketch:type="MSShapeGroup"> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Meest-verkocht-deze-week"> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Rectangle-240-+-CATEGORIEËN-+-Personaliseer-+-Oval-27-+-Shape"> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Rectangle-593-+-Lacoste-Poloshirt-in-+-ZALANDO-+-Rectangle-95-+-€79,95-+-Rectangle-94-+-Bitmap"> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Reminder-alert" transform="translate(123.000000, 10.000000)"> <ellipse id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Oval-27" stroke="#2B879E" fill="#2B879E" cx="20" cy="20" rx="20" ry="20"></ellipse> <g id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Rectangle-583-Copy-+-Group" transform="translate(10.000000, 9.000000)" stroke="#FFFFFF"> <path d="M11.866403,4.01419982 C11.6133079,2.91757145 10.6307408,2.09999847 9.45721922,2.09999847 C8.28369769,2.09999847 7.30113056,2.91757145 7.04803542,4.01419982 C4.41236477,4.99264581 2.53429764,7.53020149 2.53429764,10.5064032 L2.53429764,13.4733696 C2.53429764,13.4733696 1.22224561,14.2234413 0.552215369,15.4513472 C-0.117814873,16.6792531 0.0202958494,18.9143775 0.552215367,19.4073024 C1.18699353,19.4073024 8.02616285,19.4050431 9.45721922,19.4073024 C11.0239994,19.4048288 17.6007421,19.4073024 18.3581184,19.4073024 C18.801234,18.9052848 19.0774043,16.7158332 18.3581184,15.4513472 C17.6388325,14.1868613 16.3801408,13.4733696 16.3801408,13.4733696 L16.3801408,10.5064032 C16.3801408,7.53020149 14.5020737,4.99264581 11.866403,4.01419982 Z" id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Oval-52" fill-opacity="0" fill="#FFFFFF"></path> <path d="M9.45500183,22.4624939 C10.9047493,22.4624939 12.0800018,21.2872414 12.0800018,19.8374939 L12.0800018,19.3999939 L6.83000183,19.3999939 L6.83000183,19.8374939 C6.83000183,21.2872414 8.00525436,22.4624939 9.45500183,22.4624939 Z" id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Oval-53" fill-opacity="0" fill="#FFFFFF"></path> <path d="M14.3036346,1.98652649 C14.3036346,1.98652649 18.8877563,4.12479146 18.8877563,9.1369222" id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Path-283" stroke-linecap="round"></path> <path d="M15.5540288,0.0416666667 C15.5540288,0.0416666667 21.385001,2.76152542 21.385001,9.1369222" id="reminder-alert_cb956c06097e55cfe0e99606b927b617_Path-283-Copy" stroke-linecap="round"></path> </g> </g> </g> </g> </g> </g> </g> </g> </g> </symbol><symbol id="remove_fa4bf3da1b9d8113059b9b79f1cb526d"> <path fill="#c3c3c3" d="M15.354 1.354l-.708-.708-6.646 6.647-6.646-6.647-.708.708 6.647 6.646-6.647 6.646.708.708 6.646-6.647 6.646 6.647.708-.708-6.647-6.646z"></path> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 22 23" id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b"> <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch --> <title>Reminder icon</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_icons" sketch:type="MSArtboardGroup" transform="translate(-338.000000, -487.000000)"> <g id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_Reminder-icon" sketch:type="MSLayerGroup" transform="translate(337.000000, 487.000000)"> <rect id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_Rectangle-583-Copy" fill-opacity="0" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="24" height="24"></rect> <g id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_Group" transform="translate(1.000000, 1.000000)" sketch:type="MSShapeGroup"> <path d="M11.4616212,3.660396 C11.30611,2.98658603 10.7019684,2.5 10,2.5 C9.29803163,2.5 8.69388999,2.98658603 8.53837876,3.660396 L8.41719718,4.18546006 L7.91201763,4.372999 C5.5797329,5.23881835 4,7.47052094 4,10 L4,13 L4,13.5801967 L3.49630238,13.8681497 C3.44960611,13.894845 3.34713787,13.9597529 3.2082347,14.0591795 C2.97041461,14.2294108 2.73200214,14.4275541 2.51231366,14.6481298 C2.24671819,14.914798 2.02891463,15.1944867 1.87366602,15.4789972 C1.52047819,16.1262537 1.47923704,17.4295328 1.57998657,18.0016434 C1.57998657,18 1.28684049,17.9999572 1.77038232,17.9998469 C2.11979853,17.9997671 2.61051836,17.9996521 3.29375413,17.9994924 C4.40231023,17.9992628 4.88782599,17.9991761 5.60617462,17.9990889 C7.86099072,17.9988152 9.40415084,17.999058 9.99842123,18.0000012 C10.648935,17.9989742 12.1714281,17.9987062 14.3672554,17.9989976 C15.0821076,17.9990925 15.5694481,17.9991891 16.6785972,17.9994442 C18.290502,17.9998611 18.3744712,18.0084763 18.3744711,18.0084759 C18.5047906,17.3833823 18.4848269,16.1168307 18.130788,15.4944396 C17.972257,15.2157463 17.767017,14.9482756 17.5253584,14.6961454 C17.2966435,14.4575199 17.049087,14.2464187 16.8024532,14.0674418 C16.6590769,13.9633967 16.5538546,13.8965889 16.5068655,13.8699531 L16,13.5826355 L16,13 L16,10 C16,7.47052094 14.4202671,5.23881835 12.0879824,4.372999 L11.5828028,4.18546006 L11.4616212,3.660396 Z M17,10 L17,13 C17,13 18.2727057,13.7214355 19,15 C19.7272943,16.2785645 19.4480492,18.4923931 19,19 C18.2341913,19 11.5842244,18.9974989 10,19 C8.55301053,18.9977155 1.63769527,19 0.995849615,19 C0.458007813,18.5015869 0.318359393,16.2415771 0.995849617,15 C1.67333984,13.7584229 3,13 3,13 L3,10 C3,6.99066181 4.89897715,4.42485349 7.56399283,3.43551368 C7.81990588,2.32667567 8.81341271,1.5 10,1.5 C11.1865873,1.5 12.1800941,2.32667567 12.4360072,3.43551368 C15.1010228,4.42485349 17,6.99066181 17,10 Z" id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_Shape" fill="#000000"></path> <path d="M10,21.4166667 C11.3807119,21.4166667 12.5,20.2973785 12.5,18.9166667 L12.5,18.5 L7.5,18.5 L7.5,18.9166667 C7.5,20.2973785 8.61928813,21.4166667 10,21.4166667 Z" id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_Oval-53" stroke="#000000" fill-opacity="0" fill="#FFFFFF"></path> <path d="M14.6514893,1.86706543 C14.6514893,1.86706543 19.0522461,3.9197998 19.0522461,8.73144531" id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_Path-283" stroke="#000000" stroke-linecap="round"></path> <path d="M15.8518677,0 C15.8518677,0 21.4496009,2.6110644 21.4496009,8.73144531" id="reminder-icon_d140eb47dc3378d8508d98b393e36f2b_Path-283-Copy" stroke="#000000" stroke-linecap="round"></path> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 5 8" id="triangle-right_6048d2a4d6018dbd96b8854470e91dd2"> <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch --> <title>Triangle breadcrumb</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="triangle-right_6048d2a4d6018dbd96b8854470e91dd2_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="triangle-right_6048d2a4d6018dbd96b8854470e91dd2_3.1-Klooker-product-detail-page" sketch:type="MSArtboardGroup" transform="translate(-187.000000, -160.000000)" stroke="#717171" fill-opacity="0" fill="#D8D8D8"> <g id="triangle-right_6048d2a4d6018dbd96b8854470e91dd2_Group" sketch:type="MSLayerGroup" transform="translate(35.000000, 153.000000)"> <path d="M156.709871,11.56815 L152.695605,14.8350334 C152.311433,15.1476799 152,15.0002294 152,14.5253639 L152,7.47874317 C152,6.99507097 152.30611,6.85209485 152.695605,7.16907369 L156.709871,10.435957 C157.094043,10.7486035 157.099367,11.2511712 156.709871,11.56815 Z" id="triangle-right_6048d2a4d6018dbd96b8854470e91dd2_Triangle-breadcrumb" sketch:type="MSShapeGroup"></path> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 24 21" id="triangle-info-icon_ee569f86c539011fc445e349c6720eed"> <!-- Generator: Sketch 3.4.2 (15855) - http://www.bohemiancoding.com/sketch --> <title>triangle info icon</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="triangle-info-icon_ee569f86c539011fc445e349c6720eed_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="triangle-info-icon_ee569f86c539011fc445e349c6720eed_icons" sketch:type="MSArtboardGroup" transform="translate(-167.000000, -441.000000)" fill="#FFFFFF"> <g id="triangle-info-icon_ee569f86c539011fc445e349c6720eed_triangle-info-icon" sketch:type="MSLayerGroup" transform="translate(167.000000, 441.000000)"> <path d="M12.3678958,1.37174674 L12.3678958,1.37174674 L12.3678958,1.37174674 L1.36859046,20.6205311 C1.46957592,20.4438066 1.21210081,20 1.00069463,20 L22.9993054,20 C22.7806071,20 22.5288106,20.440983 22.6314095,20.6205311 L11.6321042,1.37174674 C11.7379235,1.55693049 12.2640769,1.55342988 12.3678958,1.37174674 L12.3678958,1.37174674 Z M11.4996527,0.875607803 C11.7759869,0.392022967 12.2185262,0.382420823 12.5003473,0.875607803 L23.4996527,20.1243922 C23.7759869,20.607977 23.5525308,21 22.9993054,21 L1.00069463,21 C0.448026248,21 0.218526185,20.6175792 0.500347316,20.1243922 L11.4996527,0.875607803 L11.4996527,0.875607803 Z" id="triangle-info-icon_ee569f86c539011fc445e349c6720eed_Shape" sketch:type="MSShapeGroup"></path> <path d="M11.5,7.99703014 L11.5,7.99703014 L11.5,14.0029699 C11.5,13.997572 11.5024215,14 11.4989566,14 L12.5010434,14 C12.5031911,14 12.5,14.0031951 12.5,14.0029699 L12.5,7.99703014 C12.5,8.002428 12.4975785,8 12.5010434,8 L11.4989566,8 C11.4968089,8 11.5,7.99680493 11.5,7.99703014 L11.5,7.99703014 Z M10.5,7.99703014 C10.5,7.4463856 10.9426603,7 11.4989566,7 L12.5010434,7 C13.0527519,7 13.5,7.45303631 13.5,7.99703014 L13.5,14.0029699 C13.5,14.5536144 13.0573397,15 12.5010434,15 L11.4989566,15 C10.9472481,15 10.5,14.5469637 10.5,14.0029699 L10.5,7.99703014 L10.5,7.99703014 Z" id="triangle-info-icon_ee569f86c539011fc445e349c6720eed_Shape" sketch:type="MSShapeGroup"></path> <path d="M11.5,16.9989566 L11.5,16.9989566 L11.5,18.0010434 C11.5,18.0027579 11.4972333,18 11.4989566,18 L12.5010434,18 C12.5027579,18 12.5,18.0027667 12.5,18.0010434 L12.5,16.9989566 C12.5,16.9972421 12.5027667,17 12.5010434,17 L11.4989566,17 C11.4972421,17 11.5,16.9972333 11.5,16.9989566 L11.5,16.9989566 Z M10.5,16.9989566 C10.5,16.4472481 10.9426603,16 11.4989566,16 L12.5010434,16 C13.0527519,16 13.5,16.4426603 13.5,16.9989566 L13.5,18.0010434 C13.5,18.5527519 13.0573397,19 12.5010434,19 L11.4989566,19 C10.9472481,19 10.5,18.5573397 10.5,18.0010434 L10.5,16.9989566 L10.5,16.9989566 Z" id="triangle-info-icon_ee569f86c539011fc445e349c6720eed_Shape" sketch:type="MSShapeGroup"></path> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 8 12" id="triangle-left_0b9817f656a1a5af4ad0bbe6b4923cee"> <!-- Generator: Sketch 3.4.2 (15855) - http://www.bohemiancoding.com/sketch --> <title>Shape</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="triangle-left_0b9817f656a1a5af4ad0bbe6b4923cee_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="triangle-left_0b9817f656a1a5af4ad0bbe6b4923cee_4.1-Klooker-product-detail-page---info-folded" sketch:type="MSArtboardGroup" transform="translate(-10.000000, -84.000000)" fill="#717171"> <g id="triangle-left_0b9817f656a1a5af4ad0bbe6b4923cee_Search-bar-+-Topbar" sketch:type="MSLayerGroup"> <g id="triangle-left_0b9817f656a1a5af4ad0bbe6b4923cee_Group" transform="translate(10.000000, 79.000000)" sketch:type="MSShapeGroup"> <path d="M1.07077758,10.9428041 L1.07077758,10.9428041 C0.976473503,11.0147538 0.976349278,10.9789908 1.07077758,11.0510353 L7.4936026,15.9513603 C7.48204929,15.9425457 7,16.1467556 7,16.2818853 L7,5.71195413 C7,5.85817346 7.4719374,6.05900861 7.4936026,6.04247904 L1.07077758,10.9428041 Z M0.464206321,10.1477749 L6.88703133,5.24744992 C7.50170695,4.77848022 8,4.9996559 8,5.71195413 L8,16.2818853 C8,17.0073935 7.51022458,17.2218577 6.88703133,16.7463895 L0.464206321,11.8460645 C-0.150469302,11.3770948 -0.158986927,10.6232432 0.464206321,10.1477749 L0.464206321,10.1477749 Z" id="triangle-left_0b9817f656a1a5af4ad0bbe6b4923cee_Shape"></path> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 22 23" id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d"> <!-- Generator: Sketch 3.4 (15575) - http://www.bohemiancoding.com/sketch --> <title>Reminder icon white</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_icons" sketch:type="MSArtboardGroup" transform="translate(-338.000000, -526.000000)"> <g id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_Reminder-icon-white" sketch:type="MSLayerGroup" transform="translate(337.000000, 526.000000)"> <rect id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_Rectangle-583-Copy" fill-opacity="0" fill="#FFFFFF" sketch:type="MSShapeGroup" x="0" y="0" width="24" height="24"></rect> <g id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_Group" transform="translate(1.000000, 1.000000)" sketch:type="MSShapeGroup"> <path d="M11.4616212,3.660396 C11.30611,2.98658603 10.7019684,2.5 10,2.5 C9.29803163,2.5 8.69388999,2.98658603 8.53837876,3.660396 L8.41719718,4.18546006 L7.91201763,4.372999 C5.5797329,5.23881835 4,7.47052094 4,10 L4,13 L4,13.5801967 L3.49630238,13.8681497 C3.44960611,13.894845 3.34713787,13.9597529 3.2082347,14.0591795 C2.97041461,14.2294108 2.73200214,14.4275541 2.51231366,14.6481298 C2.24671819,14.914798 2.02891463,15.1944867 1.87366602,15.4789972 C1.52047819,16.1262537 1.47923704,17.4295328 1.57998657,18.0016434 C1.57998657,18 1.28684049,17.9999572 1.77038232,17.9998469 C2.11979853,17.9997671 2.61051836,17.9996521 3.29375413,17.9994924 C4.40231023,17.9992628 4.88782599,17.9991761 5.60617462,17.9990889 C7.86099072,17.9988152 9.40415084,17.999058 9.99842123,18.0000012 C10.648935,17.9989742 12.1714281,17.9987062 14.3672554,17.9989976 C15.0821076,17.9990925 15.5694481,17.9991891 16.6785972,17.9994442 C18.290502,17.9998611 18.3744712,18.0084763 18.3744711,18.0084759 C18.5047906,17.3833823 18.4848269,16.1168307 18.130788,15.4944396 C17.972257,15.2157463 17.767017,14.9482756 17.5253584,14.6961454 C17.2966435,14.4575199 17.049087,14.2464187 16.8024532,14.0674418 C16.6590769,13.9633967 16.5538546,13.8965889 16.5068655,13.8699531 L16,13.5826355 L16,13 L16,10 C16,7.47052094 14.4202671,5.23881835 12.0879824,4.372999 L11.5828028,4.18546006 L11.4616212,3.660396 Z M17,10 L17,13 C17,13 18.2727057,13.7214355 19,15 C19.7272943,16.2785645 19.4480492,18.4923931 19,19 C18.2341913,19 11.5842244,18.9974989 10,19 C8.55301053,18.9977155 1.63769527,19 0.995849615,19 C0.458007813,18.5015869 0.318359393,16.2415771 0.995849617,15 C1.67333984,13.7584229 3,13 3,13 L3,10 C3,6.99066181 4.89897715,4.42485349 7.56399283,3.43551368 C7.81990588,2.32667567 8.81341271,1.5 10,1.5 C11.1865873,1.5 12.1800941,2.32667567 12.4360072,3.43551368 C15.1010228,4.42485349 17,6.99066181 17,10 Z" id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_Shape" fill="#FFFFFF"></path> <path d="M10,21.4166667 C11.3807119,21.4166667 12.5,20.2973785 12.5,18.9166667 L12.5,18.5 L7.5,18.5 L7.5,18.9166667 C7.5,20.2973785 8.61928813,21.4166667 10,21.4166667 Z" id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_Oval-53" stroke="#FFFFFF" fill-opacity="0" fill="#FFFFFF"></path> <path d="M14.6514893,1.86706543 C14.6514893,1.86706543 19.0522461,3.9197998 19.0522461,8.73144531" id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_Path-283" stroke="#FFFFFF" stroke-linecap="round"></path> <path d="M15.8518677,0 C15.8518677,0 21.4496009,2.6110644 21.4496009,8.73144531" id="reminder-icon-white_88046c6a012433ce2643ebec0bf8237d_Path-283-Copy" stroke="#FFFFFF" stroke-linecap="round"></path> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 34 34" id="reminder-set_da1f4763c8d83a2ff293802876d23d12"> <!-- Generator: Sketch 3.4.4 (17249) - http://www.bohemiancoding.com/sketch --> <title>Reminder menu</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="reminder-set_da1f4763c8d83a2ff293802876d23d12_MVP-mobile" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Reminder-menu" sketch:type="MSLayerGroup" transform="translate(1.000000, 1.000000)"> <ellipse id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Oval-27" stroke="#FFFFFF" fill-opacity="0" fill="#FFFFFF" sketch:type="MSShapeGroup" cx="16" cy="16" rx="16" ry="16"></ellipse> <g id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Rectangle-583-Copy-+-Group" transform="translate(6.400000, 6.400000)" sketch:type="MSShapeGroup"> <rect id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Rectangle-583-Copy" fill-opacity="0" fill="#FFFFFF" x="0" y="0" width="20" height="20"></rect> <g id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Group" transform="translate(0.833333, 0.833333)" stroke="#FFFFFF"> <path d="M10.2339328,3.25802371 C10.0341636,2.39244969 9.25861868,1.74713542 8.33235251,1.74713542 C7.40608634,1.74713542 6.63054139,2.39244969 6.43077219,3.25802371 C4.35042471,4.03031582 2.86805732,6.03322068 2.86805732,8.382351 L2.86805732,10.7241918 C2.86805732,10.7241918 1.83244836,11.316227 1.30359028,12.285419 C0.774732202,13.254611 0.883743657,15.0188053 1.30359028,15.4078734 C1.80462373,15.4078734 7.20281285,15.4060901 8.33235251,15.4078734 C9.56901958,15.405921 14.7600742,15.4078734 15.3578749,15.4078734 C15.7076282,15.0116285 15.9256107,13.2834838 15.3578749,12.285419 C14.7901391,11.2873542 13.7966477,10.7241918 13.7966477,10.7241918 L13.7966477,8.382351 C13.7966477,6.03322068 12.3142803,4.03031582 10.2339328,3.25802371 Z" id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Oval-52" fill-opacity="0" fill="#FFFFFF"></path> <path d="M8.33667399,17.7503906 C9.44124349,17.7503906 10.336674,16.8549601 10.336674,15.7503906 L10.336674,15.4170573 L6.33667399,15.4170573 L6.33667399,15.7503906 C6.33667399,16.8549601 7.23210449,17.7503906 8.33667399,17.7503906 Z" id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Oval-53" fill-opacity="0" fill="#FFFFFF"></path> <path d="M12.2095744,1.55588786 C12.2095744,1.55588786 15.8768717,3.26649984 15.8768717,7.27620443" id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Path-283" stroke-linecap="round"></path> <path d="M13.2098897,0 C13.2098897,0 17.8746675,2.175887 17.8746675,7.27620443" id="reminder-set_da1f4763c8d83a2ff293802876d23d12_Path-283-Copy" stroke-linecap="round"></path> </g> </g> </g> </g> </symbol><symbol xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns" viewBox="0 0 8 16" id="arrow-white-right_4ce0caefd948d2e02ac6ce323d51a806"> <!-- Generator: Sketch 3.4.2 (15855) - http://www.bohemiancoding.com/sketch --> <title>Shape</title> <desc>Created with Sketch.</desc> <defs></defs> <g id="arrow-white-right_4ce0caefd948d2e02ac6ce323d51a806_Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage"> <g id="arrow-white-right_4ce0caefd948d2e02ac6ce323d51a806_5.1-Klooker-Shopping-Cart-mobile" sketch:type="MSArtboardGroup" transform="translate(-265.000000, -153.000000)" stroke="#FFFFFF" fill="#FFFFFF" fill-opacity="0"> <g id="arrow-white-right_4ce0caefd948d2e02ac6ce323d51a806_Rectangle-363-+-Inloggen-Copy-+-Rectangle-261-Copy" sketch:type="MSLayerGroup" transform="translate(10.000000, 130.000000)"> <g id="arrow-white-right_4ce0caefd948d2e02ac6ce323d51a806_Rectangle-363-+-Inloggen-Copy" transform="translate(0.000000, 11.000000)" sketch:type="MSShapeGroup"> <g id="arrow-white-right_4ce0caefd948d2e02ac6ce323d51a806_Afrekenen-+-€79,95-+-Rectangle-169-+-Oval-14-+-Oval-14-Copy-+-Path-42-Copy-+-Shape" transform="translate(93.000000, 9.000000)"> <path d="M165.997878,10.2003646 L171.445406,13.8320503 C171.904935,14.1384028 172.525804,14.0142289 172.832157,13.5547002 C173.138509,13.0951715 173.014335,12.4743022 172.554806,12.1679497 L166.554806,8.16794971 C166.218907,7.94401676 165.781305,7.94401676 165.445406,8.16794971 L159.445406,12.1679497 C158.985877,12.4743022 158.861704,13.0951715 159.168056,13.5547002 C159.474408,14.0142289 160.095278,14.1384028 160.554806,13.8320503 L165.997878,10.2003646 Z" id="arrow-white-right_4ce0caefd948d2e02ac6ce323d51a806_Shape" transform="translate(166.000106, 11.000053) rotate(-270.000000) translate(-166.000106, -11.000053) "></path> </g> </g> </g> </g> </g> </symbol></defs></svg>
+  <section id="react"><div data-reactroot="" class="flex flex-column" style="min-height: 100%; justify-content: space-between; background-color: rgb(247, 247, 247);"><div style="display: flex; flex-direction: column; min-height: 100%; flex: 1 1 0%;"><div><div class="flex flex-column" style="position: fixed; width: 100%; z-index: 1000;"><header class="flex flex-justify flex-column" style="transition: box-shadow 0.2s ease-in; width: 100%; z-index: 1000; box-shadow: rgb(153, 153, 153) 0px 0px 11px -9px; align-items: center; border-bottom: 1px solid rgb(236, 237, 239); position: relative; background-color: rgb(255, 255, 255);"><div style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; padding: 0px 1.5%; align-items: center; height: 70px; box-shadow: none; text-shadow: none; color: rgb(57, 64, 68);"><span style="display: flex; align-items: center;"><a class="noHover" href="http://localhost:3000/" style="display: flex;"><svg style="margin: 0px; width: 110px; height: 40px;"><use xlink:href="#logo_331f8bdf6319dd28b39e7841588989eb"></use></svg></a><div style="margin-left: 15px; display: flex; align-items: center; cursor: pointer;"><svg style="width: 15px; height: 15px; margin-right: 5px;"><use xlink:href="#grid_86d7fcef7e2f59526822568ec30e4ca7"></use></svg><span style="color: rgb(57, 64, 68); font-weight: 700; margin-left: 5px; margin-top: 4px; font-size: 15px;">Categorieën</span></div><div><span style="display: flex; flex-direction: column; position: relative; width: 100%; margin-left: 20px;"><span class="flex" style="align-items: center; width: 100%;"><input class="klkFocus" placeholder="Zoeken ..." style="border: 1px solid rgb(165, 183, 192); flex: 1 1 0%; height: 28px; margin-right: -1px; padding-left: 10px; padding-right: 10px; font-size: 14px; border-bottom-left-radius: 5px; border-top-left-radius: 5px;"><svg style="border: 1px solid rgba(255, 0, 0, 0.701961); width: 28px; height: 28px; display: flex; justify-content: center; align-items: center; font-size: 14px; border-bottom-right-radius: 5px; border-top-right-radius: 5px; opacity: 0.5; cursor: default; padding: 1px;"><use xlink:href="#search-small-icon_ee22190f3dd7c9a02ec87b3f1f4f45a0"></use></svg></span></span></div></span><div style="display: flex; align-items: center;"><span style="font-size: 15px; margin-left: 15px; font-weight: 700; cursor: pointer;">What is klooker</span><a href="http://localhost:3000/oftenNeeded" style="font-size: 15px; font-weight: 700; cursor: pointer; text-decoration: inherit; margin-left: 15px; display: flex; align-items: center;"><svg style="width: 15px; height: 15px; margin-right: 5px;"><use xlink:href="#history_e621c0aee315f5d67908cf0543c8150c"></use></svg><!-- react-text: 26 -->Mijn Bestellijst<!-- /react-text --></a><a href="http://localhost:3000/cart" style="text-decoration: none;"><div style="display: flex; align-items: center;"><div style="width: 70px; text-align: right; display: flex; flex-direction: column; font-size: 14px; font-weight: 700; margin-left: 5px; margin-right: 2px;"><span><!-- react-text: 31 -->€<!-- /react-text --><!-- react-text: 32 -->0.00<!-- /react-text --></span></div><svg width="25px" height="25px" viewBox="0 0 32 32" version="1.1"><g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g id="5.2-Klooker-Shopping-Cart---no-products" transform="translate(-333.000000, -14.000000)"><g id="Topbar"><g id="€79,95-+-Rectangle-169-+-Oval-14-+-Oval-14-Copy-+-Path-42-Copy" transform="translate(333.000000, 14.000000)"><rect id="Rectangle-169" fill-opacity="0" fill="#A5B7C0" x="0" y="0" width="32" height="32"></rect><g id="Oval-14-+-Oval-14-Copy-+-Path-42" transform="translate(0.000000, 6.000000)" stroke="#A5B7C0"><ellipse fill-opacity="0" fill="#A5B7C0" cx="12.2666667" cy="22.6944444" rx="2.66666667" ry="2.63888889"></ellipse><ellipse fill-opacity="0" fill="#A5B7C0" cx="24" cy="22.6944444" rx="2.66666667" ry="2.63888889"></ellipse><path d="M0.880004883,0.983398438 L4.44017547,0.983398438 C5.62096047,0.983398438 6.75120157,1.93228611 6.9626083,3.09165842 L9.52193922, 17.1272452 C9.62764597,17.7069499 10.1888776,18.1768934 10.7837854,18.1768934 L25.7551306,18.1768934 C26.3463223,18.1768934 26.9684373, 17.716214 27.1387764,17.1669212 L31.2858167,3.79394853 C31.4587915,3.23615623 31.1121831,2.78305417 30.5249118,2.78194188 L29.5,2.78000069" id="Path-42" stroke-linecap="round"></path></g></g></g></g></g></svg></div></a><a href="http://localhost:3000/loginLink" style="width: 75px; height: 25px; border-radius: 15px; color: white; display: flex; align-items: center; justify-content: center; font-size: 12px; text-decoration: none; margin-left: 15px; background: rgb(249, 64, 46);">Inloggen</a></div></div></header></div></div><div style="margin-top: 70px; display: flex; flex-direction: column; min-height: 100%; flex: 1 1 0%;"><div><div class="flex flex-column" style="text-align: center;"><div><div style="display: flex; width: 100%; justify-content: center;"><div style="position: relative;margin: 50px 0px;width: 650px;"><img src="./Klooker_files/1d7661416514131920f5f63af1500b17.png" style="width: 100%; height: auto;"><div style="width: 40%; height: 50px; color: white; position: absolute; top: 65%; left: 5%; display: flex; align-items: center; justify-content: center; font-size: 14px; border-radius: 30px; cursor: pointer; background-color: rgb(22, 29, 107);">KLOOKER IS DE OPLOSSING</div></div></div><div><span style="color: rgb(57, 64, 68); text-align: center; width: 100%; font-size: 22px; margin: 20px 0px;">Vandaag door anderen besteld</span><div class="hiddenScroll" style="padding-left: 7px; display: flex; margin: 35px 0px 7px; width: 100%; overflow: auto; justify-content: space-between;"><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 117 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/1635?selectedProductId=12fc8c41-ce19-4d1a-a627-f685032e41ae-1635" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/chocolate-block.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Boekenhoutskloof The Chocolate Block" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Boekenhoutskloof The Chocolate Block</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">VillaVino</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 127 -->€<!-- /react-text --><!-- react-text: 128 -->29.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €5.95. Gratis bezorging vanaf €95.00.</span></div><!-- react-text: 137 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 140 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/15055?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-15055" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm679773_15055_360_281.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Diesel Only The Brave Eau The Toilette 50ml" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Diesel Only The Brave Eau The Toilette 50ml</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 150 -->€<!-- /react-text --><!-- react-text: 151 -->47.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 160 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 163 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/51024?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-51024" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm5012598007519_51024_455_543.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Bronnley Eau de Toilette Lily Of The Valley 50ml" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Bronnley Eau de Toilette Lily Of The Valley 50ml</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 173 -->€<!-- /react-text --><!-- react-text: 174 -->19.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 183 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 186 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/51009?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-51009" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm5012598007595_51009_357_697.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Bronnley Badcreme Lily Of The Valley" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Bronnley Badcreme Lily Of The Valley</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 196 -->€<!-- /react-text --><!-- react-text: 197 -->14.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 206 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 209 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/9426?selectedProductId=0cc8a9bb-160a-420b-be44-e3a96428289b-9426" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/brother-tze-531-zwart.png" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Brother TZE-531 zwart" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Brother TZE-531 zwart</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">Inktweb.nl</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 219 -->€<!-- /react-text --><!-- react-text: 220 -->11.50<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bij deze webwinkel betaal je altijd €1.95 voor bezorging.</span></div><!-- react-text: 229 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 232 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/69627?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-69627" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm9026091515934_69627_400_400.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Andrelon Haarspray Get The Volume" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Andrelon Haarspray Get The Volume</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 242 -->€<!-- /react-text --><!-- react-text: 243 -->4.29<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 252 --><!-- /react-text --></div></div></div><div style="display: flex; width: 100%; justify-content: center;"><div style="position: relative; margin: 50px 0px; width: 50%;"><img src="./Klooker_files/4773bd097894fa3475ab84c9dc134c7b.png" style="width: 100%; height: auto;"><div style="width: 40%; height: 50px; color: white; position: absolute; top: 65%; left: 5%; display: flex; align-items: center; justify-content: center; font-size: 14px; border-radius: 30px; cursor: pointer; background-color: rgb(249, 64, 46);">KLOOKER IS DE OPLOSSING</div></div></div><div><span style="color: rgb(57, 64, 68); text-align: center; width: 100%; font-size: 22px; margin: 20px 0px;">Vandaag door anderen besteld</span><div class="hiddenScroll" style="padding-left: 7px; display: flex; margin: 35px 0px 7px; width: 100%; overflow: auto; justify-content: space-between;"><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 255 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/1635?selectedProductId=12fc8c41-ce19-4d1a-a627-f685032e41ae-1635" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/chocolate-block.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Boekenhoutskloof The Chocolate Block" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Boekenhoutskloof The Chocolate Block</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">VillaVino</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 265 -->€<!-- /react-text --><!-- react-text: 266 -->29.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €5.95. Gratis bezorging vanaf €95.00.</span></div><!-- react-text: 275 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 278 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/15055?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-15055" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm679773_15055_360_281.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Diesel Only The Brave Eau The Toilette 50ml" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Diesel Only The Brave Eau The Toilette 50ml</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 288 -->€<!-- /react-text --><!-- react-text: 289 -->47.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 298 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 301 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/51024?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-51024" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm5012598007519_51024_455_543.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Bronnley Eau de Toilette Lily Of The Valley 50ml" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Bronnley Eau de Toilette Lily Of The Valley 50ml</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 311 -->€<!-- /react-text --><!-- react-text: 312 -->19.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 321 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 324 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/51009?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-51009" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm5012598007595_51009_357_697.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Bronnley Badcreme Lily Of The Valley" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Bronnley Badcreme Lily Of The Valley</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 334 -->€<!-- /react-text --><!-- react-text: 335 -->14.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 344 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 347 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/9426?selectedProductId=0cc8a9bb-160a-420b-be44-e3a96428289b-9426" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/brother-tze-531-zwart.png" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Brother TZE-531 zwart" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Brother TZE-531 zwart</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">Inktweb.nl</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 357 -->€<!-- /react-text --><!-- react-text: 358 -->11.50<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bij deze webwinkel betaal je altijd €1.95 voor bezorging.</span></div><!-- react-text: 367 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 370 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/69627?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-69627" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm9026091515934_69627_400_400.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Andrelon Haarspray Get The Volume" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Andrelon Haarspray Get The Volume</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 380 -->€<!-- /react-text --><!-- react-text: 381 -->4.29<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 390 --><!-- /react-text --></div></div></div><div style="display: flex; width: 100%; justify-content: center;"><div style="position: relative; margin: 50px 0px; width: 50%;"><img src="./Klooker_files/c95a9a9ffbfd2471f13eec8d6d9b3139.png" style="width: 100%; height: auto;"><div style="width: 40%; height: 50px; color: white; position: absolute; top: 65%; left: 5%; display: flex; align-items: center; justify-content: center; font-size: 14px; border-radius: 30px; cursor: pointer; background-color: rgb(22, 29, 107);">KLOOKER IS DE OPLOSSING</div></div></div><div><span style="color: rgb(57, 64, 68); text-align: center; width: 100%; font-size: 22px; margin: 20px 0px;">Vandaag door anderen besteld</span><div class="hiddenScroll" style="padding-left: 7px; display: flex; margin: 35px 0px 7px; width: 100%; overflow: auto; justify-content: space-between;"><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 393 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/1635?selectedProductId=12fc8c41-ce19-4d1a-a627-f685032e41ae-1635" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/chocolate-block.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Boekenhoutskloof The Chocolate Block" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Boekenhoutskloof The Chocolate Block</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">VillaVino</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 403 -->€<!-- /react-text --><!-- react-text: 404 -->29.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €5.95. Gratis bezorging vanaf €95.00.</span></div><!-- react-text: 413 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 416 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/15055?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-15055" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm679773_15055_360_281.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Diesel Only The Brave Eau The Toilette 50ml" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Diesel Only The Brave Eau The Toilette 50ml</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 426 -->€<!-- /react-text --><!-- react-text: 427 -->47.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 436 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 439 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/51024?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-51024" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm5012598007519_51024_455_543.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Bronnley Eau de Toilette Lily Of The Valley 50ml" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Bronnley Eau de Toilette Lily Of The Valley 50ml</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 449 -->€<!-- /react-text --><!-- react-text: 450 -->19.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 459 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 462 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/51009?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-51009" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm5012598007595_51009_357_697.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Bronnley Badcreme Lily Of The Valley" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Bronnley Badcreme Lily Of The Valley</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 472 -->€<!-- /react-text --><!-- react-text: 473 -->14.95<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 482 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 485 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/9426?selectedProductId=0cc8a9bb-160a-420b-be44-e3a96428289b-9426" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/brother-tze-531-zwart.png" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Brother TZE-531 zwart" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Brother TZE-531 zwart</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">Inktweb.nl</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 495 -->€<!-- /react-text --><!-- react-text: 496 -->11.50<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bij deze webwinkel betaal je altijd €1.95 voor bezorging.</span></div><!-- react-text: 505 --><!-- /react-text --></div><div style="height: 350px; width: 204px; margin-right: 4px; margin-bottom: 16px; margin-left: 4px; padding: 12px 12px 9px; position: relative; transition: border 0.2s ease-out; float: left; background: rgb(255, 255, 255);"><div style="display: flex; align-items: center;"><!-- react-text: 508 --><!-- /react-text --></div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/productDetail/69627?selectedProductId=2051c19d-bba5-4b6c-88eb-c539e32b3bfc-69627" style="width: 100%; height: 190px; line-height: 190px; text-align: center; margin-bottom: 8px;"><img src="./Klooker_files/wowm9026091515934_69627_400_400.jpg" style="width: auto; height: auto; max-width: 100%; max-height: 100%; vertical-align: middle; cursor: pointer; display: inline-block; background: url(&quot;/static/f7dda0c8b6904b9f147647ace4cedb44.gif&quot;) 50% 50% no-repeat;"><div></div></a><span><h2 class="ellipsed" title="Andrelon Haarspray Get The Volume" style="font-size: 14px; font-weight: 300; margin: 0px; line-height: 1.3; overflow: hidden; height: 40px;">Andrelon Haarspray Get The Volume</h2><div style="display: flex; align-items: center; justify-content: space-between;"><div style="font-size: 14px; overflow: hidden; color: rgb(178, 189, 191); white-space: nowrap; font-weight: 400; text-transform: uppercase;">DeOnlineDrogist</div><span style="font-size: 15px; display: block; color: rgb(249, 64, 46); margin-left: 5px;"><!-- react-text: 518 -->€<!-- /react-text --><!-- react-text: 519 -->4.29<!-- /react-text --></span></div></span></div><div><div style="font-size: 18px; margin-top: 7px; height: 35px; display: flex; justify-content: space-between; align-items: center; flex-direction: row;"><span style="display: flex; justify-content: space-between; width: 100%; align-items: center;"><span style="color: rgb(178, 189, 191); font-size: 14px; width: 40px; text-align: center;"></span><span style="width: 40px; height: 40px; display: flex; cursor: pointer; justify-content: center; align-items: center; border-radius: 50%; background-color: rgb(249, 64, 46);"><svg style="width: 28px; height: 28px; margin-top: 3px; margin-right: 2px;"><use xlink:href="#add-to-shopping-cart_4cf4233916daa2a55fbd35f2bf4722ca"></use></svg></span></span></div><span style="color: rgb(178, 189, 191); font-size: 11px; display: flex; align-items: center; margin-top: 5px;">Bezorgkosten €3.95. Gratis bezorging vanaf €20.00.</span></div><!-- react-text: 528 --><!-- /react-text --></div></div></div></div></div></div></div></div><div><footer class="flex flex-justify" style="white-space: nowrap; font-size: 13px; color: rgb(57, 64, 68); padding: 40px 0px; border-top: 1px solid rgb(236, 237, 239); background-color: white;"><section class="flex" style="height: 350px; font-size: 14px; width: 100%; display: flex; align-items: center; flex-direction: column; justify-content: space-between;"><div style="display: flex; margin: 5px 0px; cursor: pointer;"><svg style="width: 100px; height: 30px;"><use xlink:href="#logo_331f8bdf6319dd28b39e7841588989eb"></use></svg></div><div style="display: flex; width: 75%; justify-content: space-between;"><div style="display: flex; flex-direction: column; width: 25%;"><div style="width: 100%; text-align: left; margin-bottom: 20px; font-weight: 700;">Klooker</div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Hoe werkt het</a><a href="http://localhost:3000/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Acties</a><a href="http://localhost:3000/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Nieuwsbrief</a><a href="http://localhost:3000/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Pers</a><a href="http://localhost:3000/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Onze merken</a><a href="http://localhost:3000/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Kwaliteitsgarantie</a><a href="http://localhost:3000/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Duurzaam</a></div></div><div style="display: flex; flex-direction: column; width: 25%;"><div style="width: 100%; text-align: left; margin-bottom: 20px; font-weight: 700;">Services</div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/klantenserviceencontact/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Klantenservice</a><a href="http://localhost:3000/veelgesteldevragen/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Veelgestelde vragen</a><a href="http://localhost:3000/gebruikersovereenkomst/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Gebruikersovereenkomst</a><a href="http://localhost:3000/gebruikersovereenkomst/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Contact</a><a href="http://localhost:3000/klookerprivacystatement/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Privacy statement</a><a href="http://localhost:3000/klookerprivacystatement/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Cookies</a><a href="http://localhost:3000/webwinkels/" target="_blank" style="transition: color 0.25s ease-out; text-decoration: none; font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; color: rgb(145, 156, 161);">Webwinkels</a></div></div><div style="display: flex; flex-direction: column; width: 25%;"><div style="width: 100%; text-align: left; margin-bottom: 20px; font-weight: 700;">Mijn Klooker</div><div style="display: flex; flex-direction: column;"><a href="http://localhost:3000/oftenNeeded" style="font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; text-decoration: none; color: rgb(145, 156, 161);">Mijn Besttellijst</a><a href="http://localhost:3000/purchaseHistory" style="font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; text-decoration: none; color: rgb(145, 156, 161);">Mijn Aankoop Historie</a><a href="http://localhost:3000/loginLink" style="font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; text-decoration: none; color: rgb(145, 156, 161);">Inloggen</a></div></div></div><div style="display: flex; align-items: center; justify-content: space-between; width: 75%;"><div style="width: 50%; display: flex; align-items: center; justify-content: space-between;"><a target="_blank" href="https://www.qshops.org/webshop/view/klooker-nl"><img src="./Klooker_files/a095079eadab158c8dc60a707d6b4fc6.png" style="height: 30px; width: 30px;"></a><a target="_blank" href="https://www.thuiswinkel.org/bedrijven/business-partners/business-partnerlijst"><img src="./Klooker_files/705e8b9d58c36feb2dc1667a1734c7a0.png" style="height: 30px; width: 30px;"></a><a target="_blank" href="http://www.keurmerk.info/Leden-en-Partners/Partners"><img src="./Klooker_files/bfde7ea3b3e64bc952db312c051a56c1.jpg" style="height: 30px; width: 100px;"></a><a target="_blank" href="https://www.paypal.com/"><img src="./Klooker_files/459c51e4e024db4720b62513d12edb6a.png" style="width: 80px; height: 25px;"></a><a target="_blank" href="https://www.paypal.com/" style="color: rgb(249, 64, 46); text-decoration: underline;">Waroom PayPal?</a></div><div style="text-align: right;"><a target="_blank" href="http://www.startersquad.com/" style="font-size: 13px; border-width: 0px; margin-bottom: 5px; font-weight: 400; text-decoration: none; color: rgb(145, 156, 161);">Made with love by Squads</a></div></div></section></footer></div></div></section>
+  <script type="text/javascript" async="" src="./Klooker_files/analytics.min.js"></script><script type="text/javascript">
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.0.1";
+  }}();
+  </script>
+  <script src="./Klooker_files/bundle.js"></script><script src="./Klooker_files/E-v1.js" async=""></script>
+
+
+<div id="window-resizer-tooltip" style="display: block;"><a href="http://localhost:3000/#" title="Edit settings"></a><span class="tooltipTitle">Window size: </span><span class="tooltipWidth" id="winWidth">1438</span> x <span class="tooltipHeight" id="winHeight">812</span><br><span class="tooltipTitle">Viewport size: </span><span class="tooltipWidth" id="vpWidth">1076</span> x <span class="tooltipHeight" id="vpHeight">694</span></div></body></html>

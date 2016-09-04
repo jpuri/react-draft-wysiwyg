@@ -1,0 +1,16 @@
+.fontsize-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.fontsize-dropdown {
+  min-width: 40px;
+}
+.fontsize-option {
+  display: flex;
+  justify-content: center;
+}
+.fontsize-icon {
+  width: 12px;
+  height: 12px;
+}

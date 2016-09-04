@@ -1,0 +1,16 @@
+.link-decorator-wrapper {
+  position: relative;
+}
+.link-decorator-link {
+  color: blue;
+  text-decoration: underline;
+}
+.link-decorator-icon {
+  position: absolute;
+  left: 40%;
+  top: 0;
+  cursor: pointer;
+  height: 17px;
+  width: 17px;
+  background-color: white;
+}

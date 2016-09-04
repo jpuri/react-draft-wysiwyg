@@ -1,0 +1,18 @@
+.list-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.list-dropdown {
+  width: 50px;
+  z-index: 90;
+}
+.list-dropdownOption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.list-icon {
+  width: 17px;
+  height: 17px;
+}

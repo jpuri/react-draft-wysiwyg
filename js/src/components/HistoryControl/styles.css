@@ -1,0 +1,9 @@
+.history-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.history-icon {
+  width: 17px;
+  height: 17px;
+}
