@@ -31,6 +31,7 @@ export default class Demo1 extends Component {
             editorClassName="demo4-editor"
             onChange={this.onEditorChange}
             toolbarAlwaysVisible
+            textAlignControlInDropdown
             inlineControlInDropdown
             listControlInDropdown
           />

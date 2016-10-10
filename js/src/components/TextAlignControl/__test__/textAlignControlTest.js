@@ -4,21 +4,21 @@ import React from 'react';
 import { expect, assert } from 'chai';
 import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
-import ListControl from '..';
+import TextAlignControl from '..';
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
 
-describe('ListControl test suite', () => {
+describe('TextAlignControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
   const contentState = ContentState.createFromBlockArray(contentBlocks);
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div when rendered', () => {
     expect(shallow(
-      <ListControl
+      <TextAlignControl
         onChange={() => {}}
         editorState={editorState}
       />
@@ -27,7 +27,7 @@ describe('ListControl test suite', () => {
 
   it('should have 4 child elements by default', () => {
     const control = mount(
-      <ListControl
+      <TextAlignControl
         onChange={() => {}}
         editorState={editorState}
       />
@@ -37,7 +37,7 @@ describe('ListControl test suite', () => {
 
   it('should have 1 child elements if inDropdown is true', () => {
     const control = mount(
-      <ListControl
+      <TextAlignControl
         onChange={() => {}}
         editorState={editorState}
         inDropdown
@@ -50,7 +50,7 @@ describe('ListControl test suite', () => {
   it('should execute onChange when any of first any child elements is clicked', () => {
     const onChange = spy();
     const control = mount(
-      <ListControl
+      <TextAlignControl
         onChange={onChange}
         editorState={editorState}
       />

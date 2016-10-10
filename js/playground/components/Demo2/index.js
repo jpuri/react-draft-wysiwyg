@@ -48,7 +48,9 @@ export default class Demo2 extends Component {
               editorClassName="demo2-editor"
               onChange={this.onEditorChange}
               contentState={contentState}
-              placeholder={'Start typing I am placeholder this is editable area...'}
+              textAlignControlInDropdown
+              inlineControlInDropdown
+              listControlInDropdown
             />
           </div>
           <textarea

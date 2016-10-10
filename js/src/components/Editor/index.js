@@ -13,12 +13,14 @@ import {
   handleNewLine,
   customStyleMap,
 } from 'draftjs-utils';
+import { blockStyleFn } from '../../Utils/BlockStyle';
 import { Map } from 'immutable';
 import InlineControl from '../InlineControl';
 import BlockControl from '../BlockControl';
 import FontSizeControl from '../FontSizeControl';
 import FontFamilyControl from '../FontFamilyControl';
 import ListControl from '../ListControl';
+import TextAlignControl from '../TextAlignControl';
 import ColorPicker from '../ColorPicker';
 import LinkControl from '../LinkControl';
 import ImageControl from '../ImageControl';
@@ -39,6 +41,7 @@ export default class WysiwygEditor extends Component {
     wrapperClassName: PropTypes.string,
     inlineControlInDropdown: PropTypes.bool,
     listControlInDropdown: PropTypes.bool,
+    textAlignControlInDropdown: PropTypes.bool,
     uploadImageCallBack: PropTypes.func,
   };
 
@@ -168,6 +171,7 @@ export default class WysiwygEditor extends Component {
 
     const {
       toolbarAlwaysVisible,
+      textAlignControlInDropdown,
       inlineControlInDropdown,
       toolbarClassName,
       editorClassName,
@@ -210,6 +214,11 @@ export default class WysiwygEditor extends Component {
               editorState={editorState}
               inDropdown={inlineControlInDropdown}
             />
+            <TextAlignControl
+              onChange={this.onChange}
+              editorState={editorState}
+              inDropdown={textAlignControlInDropdown}
+            />
             <ColorPicker
               onChange={this.onChange}
               editorState={editorState}
@@ -248,6 +257,7 @@ export default class WysiwygEditor extends Component {
             onTab={this.onTab}
             editorState={editorState}
             onChange={this.onChange}
+            blockStyleFn={blockStyleFn}
             customStyleMap={customStyleMap}
             handleReturn={this.handleReturn}
             blockRendererFn={ImageBlockRenderer}

@@ -32,6 +32,7 @@ export default class Home extends Component {
           </li>
           <li className="home-listItem">Support for font-size, font-family.</li>
           <li className="home-listItem">Support for nested indenting.</li>
+          <li className="home-listItem">Support for text-alignment.</li>
           <li className="home-listItem">Support for coloring text or background.</li>
           <li className="home-listItem">Support for adding / editing links</li>
           <li className="home-listItem">Support for adding / uploading images.</li>

@@ -13,5 +13,10 @@ A Wysiwyg editor built using ReactJS and DeaftJS libraries.
 - Support for adding / uploading images.
 - Support for configuring visibility of toolbar.
 
+## Thanks
+Thanks to [iPaoo](http://www.ipaoo.com/) for sponsoring the development.
+
 ## License
 MIT.
+
+// todo: generate new docs

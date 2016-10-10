@@ -17,24 +17,45 @@ export default class Demo1 extends Component {
     });
   };
 
+  uploadImageCallBack: Function = (file) => new Promise(
+      (resolve, reject) => {
+        const xhr = new XMLHttpRequest(); // eslint-disable-line no-undef
+        xhr.open('POST', 'https://api.imgur.com/3/image');
+        xhr.setRequestHeader('Authorization', 'Client-ID 8d26ccd12712fca');
+        const data = new FormData(); // eslint-disable-line no-undef
+        data.append('image', file);
+        xhr.send(data);
+        xhr.addEventListener('load', () => {
+          const response = JSON.parse(xhr.responseText);
+          resolve(response);
+        });
+        xhr.addEventListener('error', () => {
+          const error = JSON.parse(xhr.responseText);
+          reject(error);
+        });
+      }
+    );
+
   render() {
     const { editorContent } = this.state;
     return (
-      <div className="demo1-root">
-        <div className="demo1-label">
-          Toolbar appears as you focus the editor.
+      <div className="demo3-root">
+        <div className="demo3-label">
+          Toolbar is alwasy visible.
         </div>
-        <div className="demo1-editorSection">
-          <div className="demo1-editorWrapper">
+        <div className="demo3-editorSection">
+          <div className="demo3-editorWrapper">
             <Editor
-              toolbarClassName="demo1-toolbar"
-              wrapperClassName="demo1-wrapper"
-              editorClassName="demo1-editor"
+              toolbarClassName="demo3-toolbar"
+              wrapperClassName="demo3-wrapper"
+              editorClassName="demo3-editor"
               onChange={this.onEditorChange}
+              toolbarAlwaysVisible
+              uploadImageCallBack={this.uploadImageCallBack}
             />
           </div>
           <textarea
-            className="demo1-content no-focus"
+            className="demo3-content no-focus"
             value={draftToHtml(editorContent)}
           />
         </div>

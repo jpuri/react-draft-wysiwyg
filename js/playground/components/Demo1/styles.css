@@ -9,7 +9,7 @@
 }
 .demo1-editorSection {
   display: flex;
-  margin-top: 125px;
+  margin-top: 150px;
   justify-content: space-between;
 }
 .demo1-wrapper {
@@ -26,7 +26,7 @@
 }
 .demo1-toolbar {
   width: 100%;
-  top: -100px;
+  top: -130px;
 }
 .demo1-content {
   border: 1px solid #F1F1F1;
@@ -35,7 +35,4 @@
   width: 400px;
   border-radius: 2px;
   height: 380px;
-}
-.no-focus:focus {
-  outline: none;
 }

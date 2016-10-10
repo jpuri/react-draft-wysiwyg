@@ -1,0 +1,37 @@
+.text-align-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.text-align-dropdown {
+  width: 50px;
+  z-index: 90;
+}
+.text-align-dropdownOption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.text-align-icon {
+  width: 15px;
+  height: 15px;
+}
+.right-aligned-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+.left-aligned-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+.center-aligned-block {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.justify-aligned-block {
+  display: flex;
+  flex-direction: row;
+}
