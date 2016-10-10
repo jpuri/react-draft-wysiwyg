@@ -18,5 +18,3 @@ Thanks to [iPaoo](http://www.ipaoo.com/) for sponsoring the development.
 
 ## License
 MIT.
-
-// todo: generate new docs
