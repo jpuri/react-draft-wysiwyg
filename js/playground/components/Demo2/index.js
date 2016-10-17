@@ -23,8 +23,7 @@ export default class Demo2 extends Component {
 
   render() {
     const { editorContent } = this.state;
-    const contentBlocks = convertFromHTML('<p>This is section above ' +
-      'the editor. It has text that is not editable.Lorem ipsum ' +
+    const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
       'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
       'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
       'commodo quis dolor in, sagittis scelerisque nibh. ' +
