@@ -1,0 +1,18 @@
+.menu-root {
+  width: 10%;
+  min-width: 10%;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  border-right: 1px solid rgb(249, 64, 46);
+}
+.menu-option {
+  margin-top: 25px;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: cursive;
+  cursor: pointer;
+}
+.menu-option:hover {
+  color: rgb(249, 64, 46);
+}

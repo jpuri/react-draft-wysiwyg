@@ -3,12 +3,11 @@ const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './js/playground/index',
+    './js/src/index',
   ],
   output: {
     path: path.join(__dirname, '../dist'),
@@ -29,22 +28,6 @@ module.exports = {
     }),
     new ExtractTextPlugin('editor.css', {
       allChunks: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: './template/index.html',
-      minify: {
-        removeComments: true,
-        collapseWhitespace: true,
-        removeRedundantAttributes: true,
-        useShortDoctype: true,
-        removeEmptyAttributes: true,
-        removeStyleLinkTypeAttributes: true,
-        keepClosingSlash: true,
-        minifyJS: true,
-        minifyCSS: true,
-        minifyURLs: true,
-      },
-      inject: true,
     }),
   ],
   module: {
