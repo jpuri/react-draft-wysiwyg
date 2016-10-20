@@ -4159,9 +4159,9 @@ react-dom@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.3.2.tgz#c46b0aa5380d7b838e7a59c4a7beff2ed315531f"
 
-react-draft-wysiwyg:
-  version "0.1.4"
-  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-0.1.4.tgz#fd2a5468505651d178d69a68437dcee2729481c6"
+react-draft-wysiwyg@0.1.7:
+  version "0.1.7"
+  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-0.1.7.tgz#59d36f7e24c7df5d06bac22b80743d82c0ddb12d"
   dependencies:
     classnames "^2.2.5"
     draft-js "^0.9.1"
