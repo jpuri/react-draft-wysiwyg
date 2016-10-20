@@ -2,7 +2,7 @@
   "name": "react-draft-wysiwyg",
   "version": "0.1.4",
   "description": "A wysiwyg on top of Draft.",
-  "main": "js/src/index.js",
+  "main": "dist/index.js",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "babel-core": "^6.17.0",
@@ -50,7 +50,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config-2.js",
+    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config.js",
     "build": "npm run clean && npm run build:webpack",
     "test": "BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js js/**/*Test.js",
     "lint": "eslint js",
