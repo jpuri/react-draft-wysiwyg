@@ -31,9 +31,7 @@
     "mocha": "^3.1.0",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
-    "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
-    "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
@@ -45,7 +43,7 @@
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.12.2",
-    "react-draft-wysiwyg": "git:https://github.com/jpuri/react-draft-wysiwyg.git:c945b68",
+    "react-draft-wysiwyg": "0.1.7",
     "webpack-stream": "^3.2.0"
   },
   "repository": {
@@ -69,7 +67,7 @@
     "immutable": "^3.8.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-draft-wysiwyg": "git:https://github.com/jpuri/react-draft-wysiwyg.git:c945b68",
+    "react-draft-wysiwyg": "0.1.7",
     "react-router": "^2.8.1"
   }
 }
