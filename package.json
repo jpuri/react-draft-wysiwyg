@@ -45,8 +45,7 @@
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.12.2",
-    "webpack-stream": "^3.2.0",
-    "react-draft-wyiswyg": "file:.."
+    "webpack-stream": "^3.2.0"
   },
   "repository": {
     "type": "https://github.com/jpuri/react-draft-wysiwyg.git",
@@ -69,7 +68,6 @@
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
     "classnames": "^2.2.5",
-    "immutable": "^3.8.1",
-    "react-draft-wyiswyg": "file:.."
+    "immutable": "^3.8.1"
   }
 }
