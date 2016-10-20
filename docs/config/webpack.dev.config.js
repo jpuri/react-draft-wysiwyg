@@ -1,44 +1,35 @@
 const path = require('path');
-const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
-    './js/src/index',
+    'webpack-hot-middleware/client',
+    './src/index',
   ],
   output: {
-    path: path.join(__dirname, '../dist'),
-    filename: 'index.js',
-    publicPath: '',
+    path: path.join(__dirname, '../static'),
+    filename: 'bundle.js',
+    publicPath: '/static/',
   },
-  plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production'),
-      },
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      compressor: {
-        warnings: false,
-      },
-    }),
-    new ExtractTextPlugin('editor.css', {
-      allChunks: true,
-    }),
-  ],
   module: {
     loaders: [
       { test: /\.js$/, loader: 'babel-loader' },
       {
         test: /\.css$/,
+        exclude: /Draft\.css$|font-awesome\.css$/,
         loader: ExtractTextPlugin.extract(
           'style-loader',
           'css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader'
         ),
+      },
+      {
+        test: /Draft\.css$/,
+        loader: 'style-loader!css-loader',
       },
       { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
       {
@@ -47,8 +38,22 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new ExtractTextPlugin('main.css', {
+      allChunks: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: './template/index.html',
+      inject: true,
+    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin(),
+  ],
   postcss: () => [autoprefixer, precss],
   resolve: {
     extensions: ['', '.js', '.json'],
+    // alias: {
+    //   'react-draft-wyiswyg': path.join(__dirname, '../..', 'js/src'),
+    // },
   },
 };

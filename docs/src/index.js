@@ -11,7 +11,7 @@ import {
     Demo3,
     Demo4,
 } from './components';
-import styles from '../../css/normalize.css'; // eslint-disable-line no-unused-vars
+import styles from '../css/normalize.css'; // eslint-disable-line no-unused-vars
 
 ReactDOM.render(<Router history={hashHistory}>
   <Route path="/" component={App}>

@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import draftToHtml from 'draftjs-to-html';
-import { Editor } from '../../../src';
+import { Editor } from 'react-draft-wysiwyg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Demo1 extends Component {
