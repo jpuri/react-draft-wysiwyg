@@ -45,6 +45,7 @@
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.12.2",
+    "react-draft-wysiwyg": "file:..",
     "webpack-stream": "^3.2.0"
   },
   "repository": {
@@ -68,7 +69,7 @@
     "immutable": "^3.8.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-draft-wysiwyg": "^0.1.4",
+    "react-draft-wysiwyg": "file:..",
     "react-router": "^2.8.1"
   }
 }

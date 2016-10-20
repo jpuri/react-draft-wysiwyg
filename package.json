@@ -65,6 +65,8 @@
     "draft-js": "^0.9.1",
     "draftjs-to-html": "0.2.8",
     "draftjs-utils": "0.2.8",
+    "react": "0.14.x || 15.x.x",
+    "react-dom": "0.14.x || 15.x.x",
     "immutable": "^3.8.1"
   },
   "peerDependencies": {
