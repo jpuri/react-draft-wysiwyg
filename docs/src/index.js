@@ -3,6 +3,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, IndexRoute, Route, hashHistory } from 'react-router';
+import '../css/normalize.css'; // eslint-disable-line no-unused-vars
+import '../node_modules/react-draft-wysiwyg/dist/editor.css'; // eslint-disable-line no-unused-vars
 import {
     App,
     Home,
@@ -11,7 +13,6 @@ import {
     Demo3,
     Demo4,
 } from './components';
-import styles from '../css/normalize.css'; // eslint-disable-line no-unused-vars
 
 ReactDOM.render(<Router history={hashHistory}>
   <Route path="/" component={App}>

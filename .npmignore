@@ -1,9 +1,15 @@
 config
+css
 docs
+images
 interfaces
-template
+js
+LICENSE
+node_modules
 .babelrc
 .eslintignore
+.eslintrc
 .flowconfig
 .gitignore
-index.html
+.npmignore
+.yarn.lock

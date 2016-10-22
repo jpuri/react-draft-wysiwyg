@@ -12,7 +12,12 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'index.js',
-    publicPath: '',
+    libraryTarget: 'commonjs2',
+  },
+  externals: {
+    'draft-js': 'draft-js',
+    react: 'react',
+    'react-dom': 'react-dom',
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),

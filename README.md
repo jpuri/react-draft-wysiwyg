@@ -16,8 +16,7 @@ A Wysiwyg editor built using ReactJS and DeaftJS libraries.
 
 ## Installing
 - The package can be installed from npm `react-draft-wysiwyg@0.1.7`
-- The current version is `0.1.7` it can be installed from npm, though npm page show still old package 0.0.7 - I am following up with npm team to get that fixed.
-- Due to some build issues current npm code is not minified version - I will fix it in few days. 
+- The current version is `0.1.8` it can be installed from npm, though npm page show still old package 0.0.7 - I am following up with npm team to get that fixed.
 
 ## Thanks
 Thanks to [iPaoo](http://www.ipaoo.com/) for sponsoring the development.
