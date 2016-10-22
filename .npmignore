@@ -1,6 +1,9 @@
 config
+css
 docs
+images
 interfaces
+js
 LICENSE
 node_modules
 .babelrc
