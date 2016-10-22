@@ -15,7 +15,7 @@ A Wysiwyg editor built using ReactJS and DeaftJS libraries.
 - Support for configuring visibility of toolbar.
 
 ## Installing
-- The package can be installed from npm `react-draft-wysiwyg@0.1.7`
+- The package can be installed from npm `react-draft-wysiwyg@0.1.8`
 - The current version is `0.1.8` it can be installed from npm, though npm page show still old package 0.0.7 - I am following up with npm team to get that fixed.
 
 ## Thanks
