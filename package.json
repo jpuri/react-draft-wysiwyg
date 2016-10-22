@@ -1,8 +1,13 @@
 {
   "name": "react-draft-wysiwyg",
   "version": "0.1.7",
-  "description": "A wysiwyg on top of Draft.",
+  "description": "A wysiwyg on top of DraftJS.",
   "main": "js/src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpuri/react-draft-wysiwyg.git"
+  },
+  "author": "Jyoti Puri",
   "devDependencies": {
     "autoprefixer": "^6.5.0",
     "babel-core": "^6.17.0",
@@ -22,11 +27,8 @@
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-mocha": "^4.5.1",
     "eslint-plugin-react": "^6.2.0",
-    "express": "^4.14.0",
-    "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "flow-bin": "^0.33.0",
-    "html-webpack-plugin": "^2.22.0",
     "immutable": "^3.8.1",
     "mocha": "^3.1.0",
     "postcss-loader": "^0.13.0",
@@ -44,22 +46,6 @@
     "webpack-hot-middleware": "^2.12.2",
     "webpack-stream": "^3.2.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jpuri/react-draft-wysiwyg.git"
-  },
-  "scripts": {
-    "clean": "rimraf dist",
-    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config.js",
-    "build": "npm run clean && npm run build:webpack",
-    "test": "BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js js/**/*Test.js",
-    "lint": "eslint js",
-    "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "check": "npm run lint && npm run flow",
-    "start": "node config/server.dev.js"
-  },
-  "author": "Jyoti Puri",
-  "license": "MIT",
   "dependencies": {
     "classnames": "^2.2.5",
     "draft-js": "^0.9.1",
@@ -70,5 +56,15 @@
   "peerDependencies": {
     "react": "0.14.x || 15.x.x",
     "react-dom": "0.14.x || 15.x.x"
-  }
+  },
+  "scripts": {
+    "clean": "rimraf dist",
+    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config.js",
+    "build": "npm run clean && npm run build:webpack",
+    "test": "BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js js/**/*Test.js",
+    "lint": "eslint js",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "check": "npm run lint && npm run flow"
+  },
+  "license": "MIT"
 }

@@ -1,9 +1,12 @@
 config
 docs
 interfaces
-template
+LICENSE
+node_modules
 .babelrc
 .eslintignore
+.eslintrc
 .flowconfig
 .gitignore
-index.html
+.npmignore
+.yarn.lock
