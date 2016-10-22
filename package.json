@@ -46,7 +46,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "draft-js": "^0.9.1",
-    "react-draft-wysiwyg": "file:..",
+    "react-draft-wysiwyg": "0.1.8",
     "webpack-stream": "^3.2.0"
   },
   "repository": {
@@ -71,7 +71,7 @@
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "draft-js": "^0.9.1",
-    "react-draft-wysiwyg": "file:..",
+    "react-draft-wysiwyg": "0.1.8",
     "react-router": "^2.8.1"
   }
 }
