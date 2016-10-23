@@ -6,6 +6,7 @@ import {
   EditorState,
   RichUtils,
   convertToRaw,
+  ContentState,
   CompositeDecorator,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
@@ -13,8 +14,8 @@ import {
   handleNewLine,
   customStyleMap,
 } from 'draftjs-utils';
-import { blockStyleFn } from '../../Utils/BlockStyle';
 import { Map } from 'immutable';
+import blockStyleFn from '../../Utils/BlockStyle';
 import InlineControl from '../InlineControl';
 import BlockControl from '../BlockControl';
 import FontSizeControl from '../FontSizeControl';
@@ -34,7 +35,7 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    contentState: PropTypes.object,
+    contentState: PropTypes.instanceOf(ContentState),
     toolbarAlwaysVisible: PropTypes.bool,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
@@ -173,6 +174,7 @@ export default class WysiwygEditor extends Component {
       toolbarAlwaysVisible,
       textAlignControlInDropdown,
       inlineControlInDropdown,
+      listControlInDropdown,
       toolbarClassName,
       editorClassName,
       wrapperClassName,
@@ -183,66 +185,66 @@ export default class WysiwygEditor extends Component {
 
     return (
       <div className={`editor-wrapper ${wrapperClassName}`}>
-      {
-        (hasFocus || toolbarAlwaysVisible) ?
-          <div
-            className={`editor-toolbar ${toolbarClassName}`}
-            onMouseDown={this.onToolbarMouseDown}
-            onMouseUp={this.onToolbarMouseUp}
-            onClick={this.focusEditor}
-          >
-            <InlineControl
-              onChange={this.onChange}
-              editorState={editorState}
-              inDropdown={inlineControlInDropdown}
-            />
-            <BlockControl
-              onChange={this.onChange}
-              focusEditor={this.focusEditor}
-              editorState={editorState}
-            />
-            <FontSizeControl
-              onChange={this.onChange}
-              editorState={editorState}
-            />
-            <FontFamilyControl
-              onChange={this.onChange}
-              editorState={editorState}
-            />
-            <ListControl
-              onChange={this.onChange}
-              editorState={editorState}
-              inDropdown={inlineControlInDropdown}
-            />
-            <TextAlignControl
-              onChange={this.onChange}
-              editorState={editorState}
-              inDropdown={textAlignControlInDropdown}
-            />
-            <ColorPicker
-              onChange={this.onChange}
-              editorState={editorState}
-              hideModal={editorMouseDown || !hasFocus}
-            />
-            <LinkControl
-              editorState={editorState}
-              onChange={this.onChange}
-              hideModal={editorMouseDown || !hasFocus}
-            />
-            <ImageControl
-              editorState={editorState}
-              onChange={this.onChange}
-              uploadImageCallBack={uploadImageCallBack}
-              hideModal={editorMouseDown || !hasFocus}
-            />
-            <HistoryControl
-              editorState={editorState}
-              onChange={this.onChange}
-            />
-          </div>
-        :
-        undefined
-      }
+        {
+          (hasFocus || toolbarAlwaysVisible) ?
+            <div
+              className={`editor-toolbar ${toolbarClassName}`}
+              onMouseDown={this.onToolbarMouseDown}
+              onMouseUp={this.onToolbarMouseUp}
+              onClick={this.focusEditor}
+            >
+              <InlineControl
+                onChange={this.onChange}
+                editorState={editorState}
+                inDropdown={inlineControlInDropdown}
+              />
+              <BlockControl
+                onChange={this.onChange}
+                focusEditor={this.focusEditor}
+                editorState={editorState}
+              />
+              <FontSizeControl
+                onChange={this.onChange}
+                editorState={editorState}
+              />
+              <FontFamilyControl
+                onChange={this.onChange}
+                editorState={editorState}
+              />
+              <ListControl
+                onChange={this.onChange}
+                editorState={editorState}
+                inDropdown={listControlInDropdown}
+              />
+              <TextAlignControl
+                onChange={this.onChange}
+                editorState={editorState}
+                inDropdown={textAlignControlInDropdown}
+              />
+              <ColorPicker
+                onChange={this.onChange}
+                editorState={editorState}
+                hideModal={editorMouseDown || !hasFocus}
+              />
+              <LinkControl
+                editorState={editorState}
+                onChange={this.onChange}
+                hideModal={editorMouseDown || !hasFocus}
+              />
+              <ImageControl
+                editorState={editorState}
+                onChange={this.onChange}
+                uploadImageCallBack={uploadImageCallBack}
+                hideModal={editorMouseDown || !hasFocus}
+              />
+              <HistoryControl
+                editorState={editorState}
+                onChange={this.onChange}
+              />
+            </div>
+          :
+          undefined
+        }
         <div
           className={`editor-main ${editorClassName}`}
           onClick={this.focusEditor}

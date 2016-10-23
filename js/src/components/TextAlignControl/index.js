@@ -1,12 +1,13 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
+import { EditorState } from 'draft-js';
+import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
 import Option from '../Option';
 import {
   Dropdown,
   DropdownOption,
 } from '../Dropdown';
-import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
 import left from '../../../../images/align-left.svg';
 import center from '../../../../images/align-center.svg';
 import right from '../../../../images/align-right.svg';
@@ -16,7 +17,7 @@ import styles from './styles.css'; // eslint-disable-line no-unused-vars
 export default class TextAlignControl extends Component {
 
   static propTypes = {
-    editorState: PropTypes.object.isRequired,
+    editorState: PropTypes.instanceOf(EditorState).isRequired,
     onChange: PropTypes.func.isRequired,
     inDropdown: PropTypes.bool,
   };

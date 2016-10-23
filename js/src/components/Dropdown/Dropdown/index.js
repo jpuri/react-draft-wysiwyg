@@ -7,7 +7,7 @@ import styles from './styles.css'; // eslint-disable-line no-unused-vars
 export default class Dropdown extends Component {
 
   static propTypes = {
-    children: PropTypes.array,
+    children: PropTypes.instanceOf(Component),
     onChange: PropTypes.func,
     className: PropTypes.string,
     optionWrapperClassName: PropTypes.string,
@@ -97,18 +97,18 @@ export default class Dropdown extends Component {
           <ul
             className={`dropdown-optionwrapper ${optionWrapperClassName}`}
           >
-          {
-            React.Children.map(options, (option, index) => {
-              const temp = React.cloneElement(
-                option, {
-                  onSelect: this.onChange,
-                  highlighted: highlighted === index,
-                  setHighlighted: this.setHighlighted,
-                  index,
-                });
-              return temp;
-            })
-          }
+            {
+              React.Children.map(options, (option, index) => {
+                const temp = React.cloneElement(
+                  option, {
+                    onSelect: this.onChange,
+                    highlighted: highlighted === index,
+                    setHighlighted: this.setHighlighted,
+                    index,
+                  });
+                return temp;
+              })
+            }
           </ul> : undefined}
       </div>
     );

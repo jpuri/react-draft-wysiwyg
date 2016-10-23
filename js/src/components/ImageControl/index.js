@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { Entity, AtomicBlockUtils } from 'draft-js';
+import { Entity, AtomicBlockUtils, EditorState } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
 import Spinner from '../Spinner';
@@ -11,10 +11,9 @@ import image from '../../../../images/image.svg';
 export default class ImageControl extends Component {
 
   static propTypes: Object = {
-    editorState: PropTypes.object.isRequired,
+    editorState: PropTypes.instanceOf(EditorState).isRequired,
     onChange: PropTypes.func.isRequired,
     uploadImageCallBack: PropTypes.func,
-    hideModal: PropTypes.bool,
   };
 
   state: Object = {
@@ -129,22 +128,22 @@ export default class ImageControl extends Component {
         onClick={this.stopPropagation}
       >
         <div className="image-modal-header">
-        {uploadImageCallBack ?
-          <span
-            onClick={this.showImageUploadOption}
-            className="image-modal-header-option"
-          >
-            <span>File Upload</span>
+          {uploadImageCallBack ?
             <span
-              className={classNames(
-                'image-modal-header-label',
-                { 'image-modal-header-label-highlighted': showImageUpload }
-              )}
-            />
-          </span>
-          :
-          undefined
-        }
+              onClick={this.showImageUploadOption}
+              className="image-modal-header-option"
+            >
+              <span>File Upload</span>
+              <span
+                className={classNames(
+                  'image-modal-header-label',
+                  { 'image-modal-header-label-highlighted': showImageUpload }
+                )}
+              />
+            </span>
+            :
+            undefined
+          }
           <span
             onClick={this.showImageURLOption}
             className="image-modal-header-option"
@@ -183,15 +182,15 @@ export default class ImageControl extends Component {
                 className="image-modal-upload-option-input"
               />
             </div> :
-            <div className="image-modal-url-section">
-              <input
-                className="image-modal-url-input"
-                placeholder="Enter url"
-                onChange={this.updateImageSrc}
-                onBlur={this.updateImageSrc}
-                value={imgSrc}
-              />
-            </div>
+              <div className="image-modal-url-section">
+                <input
+                  className="image-modal-url-input"
+                  placeholder="Enter url"
+                  onChange={this.updateImageSrc}
+                  onBlur={this.updateImageSrc}
+                  value={imgSrc}
+                />
+              </div>
         }
         <span className="image-modal-btn-section">
           <button

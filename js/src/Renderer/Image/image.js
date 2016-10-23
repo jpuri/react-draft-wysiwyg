@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Entity } from 'draft-js';
+import { Entity, ContentBlock } from 'draft-js';
 import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import Option from '../../components/Option';
@@ -7,7 +7,7 @@ import Option from '../../components/Option';
 export default class Image extends Component {
 
   static propTypes: Object = {
-    block: PropTypes.object.isRequired,
+    block: PropTypes.instanceOf(ContentBlock).isRequired,
   };
 
   state: Object = {
