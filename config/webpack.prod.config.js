@@ -11,13 +11,13 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: 'index.js',
+    filename: 'react-draft-wysiwyg.js',
     libraryTarget: 'commonjs2',
   },
   externals: {
-    'draft-js': 'draft-js',
     react: 'react',
     'react-dom': 'react-dom',
+    'draft-js': 'draft-js',
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -31,13 +31,13 @@ module.exports = {
         warnings: false,
       },
     }),
-    new ExtractTextPlugin('editor.css', {
+    new ExtractTextPlugin('react-draft-wysiwyg.css', {
       allChunks: true,
     }),
   ],
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader' },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$/ },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(

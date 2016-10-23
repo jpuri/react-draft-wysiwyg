@@ -2,7 +2,7 @@
   "name": "react-draft-wysiwyg",
   "version": "0.1.8",
   "description": "A wysiwyg on top of DraftJS.",
-  "main": "dist/index.js",
+  "main": "dist/react-draft-wysiwyg.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jpuri/react-draft-wysiwyg.git"
@@ -31,6 +31,7 @@
     "file-loader": "^0.9.0",
     "flow-bin": "^0.33.0",
     "immutable": "^3.8.1",
+    "jsdom": "^9.8.0",
     "mocha": "^3.1.0",
     "postcss-loader": "^0.13.0",
     "precss": "^1.4.0",
@@ -48,7 +49,7 @@
     "immutable": "^3.8.1"
   },
   "peerDependencies": {
-    "draft-js": "^0.9.1",
+    "draft-js": "^0.9.x",
     "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x",
     "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x"
   },
