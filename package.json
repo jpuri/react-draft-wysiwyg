@@ -2,7 +2,7 @@
   "name": "react-draft-wysiwyg",
   "version": "0.1.8",
   "description": "A wysiwyg on top of DraftJS.",
-  "main": "dist/index.js",
+  "main": "dist/react-draft-wysiwyg.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jpuri/react-draft-wysiwyg.git"
@@ -20,10 +20,11 @@
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
     "css-loader": "^0.25.0",
+    "draft-js": "^0.9.1",
     "enzyme": "^2.4.1",
     "eslint": "^3.4.0",
-    "eslint-config-airbnb": "^10.0.1",
-    "eslint-plugin-import": "1.14.0",
+    "eslint-config-airbnb": "^12.0.0",
+    "eslint-plugin-import": "^2.0.1",
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-mocha": "^4.5.1",
     "eslint-plugin-react": "^6.2.0",
@@ -31,10 +32,13 @@
     "file-loader": "^0.9.0",
     "flow-bin": "^0.33.0",
     "immutable": "^3.8.1",
+    "jsdom": "^9.8.0",
     "mocha": "^3.1.0",
-    "postcss-loader": "^0.13.0",
+    "postcss-loader": "^1.0.0",
     "precss": "^1.4.0",
+    "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
+    "react-dom": "^15.3.2",
     "rimraf": "^2.5.4",
     "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
@@ -44,11 +48,11 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "draftjs-to-html": "0.2.8",
-    "draftjs-utils": "0.2.8",
+    "draftjs-utils": "0.2.9",
     "immutable": "^3.8.1"
   },
   "peerDependencies": {
-    "draft-js": "^0.9.1",
+    "draft-js": "^0.9.x",
     "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x",
     "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x"
   },

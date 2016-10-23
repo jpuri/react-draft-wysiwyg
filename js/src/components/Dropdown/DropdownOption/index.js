@@ -7,11 +7,11 @@ import styles from './styles.css'; // eslint-disable-line no-unused-vars
 export default class DropDownOption extends Component {
 
   static propTypes = {
-    children: PropTypes.any,
+    children: PropTypes.instanceOf(Component),
+    value: PropTypes.oneOf(['string', 'number']),
     onSelect: PropTypes.func,
     setHighlighted: PropTypes.func,
     index: PropTypes.number,
-    value: PropTypes.any,
     active: PropTypes.bool,
     highlighted: PropTypes.bool,
     className: PropTypes.string,

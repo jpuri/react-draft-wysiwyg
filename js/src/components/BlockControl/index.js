@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { getSelectedBlocksType } from 'draftjs-utils';
-import { RichUtils } from 'draft-js';
+import { RichUtils, EditorState } from 'draft-js';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -10,7 +10,7 @@ export default class BlockControl extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.object,
+    editorState: PropTypes.instanceOf(EditorState),
   };
 
   state: Object = {
@@ -62,7 +62,7 @@ export default class BlockControl extends Component {
     if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
       currentBlockType = 'unstyled';
     }
-    const currentBlockData = this.blocksTypes.filter((blk) => blk.style === currentBlockType);
+    const currentBlockData = this.blocksTypes.filter(blk => blk.style === currentBlockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
     return (
       <div className="block-wrapper">

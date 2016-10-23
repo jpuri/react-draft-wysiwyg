@@ -4,7 +4,6 @@ docs
 images
 interfaces
 js
-LICENSE
 node_modules
 .babelrc
 .eslintignore
@@ -12,4 +11,4 @@ node_modules
 .flowconfig
 .gitignore
 .npmignore
-.yarn.lock
+yarn.lock

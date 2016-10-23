@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
-import { RichUtils } from 'draft-js';
+import { RichUtils, EditorState } from 'draft-js';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
 
@@ -17,7 +17,7 @@ export default class InlineControl extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.object.isRequired,
+    editorState: PropTypes.instanceOf(EditorState).isRequired,
     inDropdown: PropTypes.bool,
   };
 
@@ -74,22 +74,22 @@ export default class InlineControl extends Component {
   renderInFlatList(currentStyles: string): Object {
     return (
       <div className="inline-wrapper">
-      {
-        this.stylesMap.map((style, index) =>
-          <Option
-            key={index}
-            value={style.value}
-            onClick={this.toggleInlineStyle}
-            active={currentStyles[style.value] === true}
-          >
-            <img
-              role="presentation"
-              src={style.icon}
-              className="inline-icon"
-            />
-          </Option>
-        )
-      }
+        {
+          this.stylesMap.map((style, index) =>
+            <Option
+              key={index}
+              value={style.value}
+              onClick={this.toggleInlineStyle}
+              active={currentStyles[style.value] === true}
+            >
+              <img
+                role="presentation"
+                src={style.icon}
+                className="inline-icon"
+              />
+            </Option>
+          )
+        }
       </div>
     );
   }

@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
+import { EditorState } from 'draft-js';
 import {
   colors,
   toggleInlineStyle,
@@ -15,8 +16,7 @@ export default class ColorPicker extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.object.isRequired,
-    hideModal: PropTypes.bool,
+    editorState: PropTypes.instanceOf(EditorState).isRequired,
   };
 
   state: Object = {
@@ -116,22 +116,22 @@ export default class ColorPicker extends Component {
           </span>
         </span>
         <span className="colorpicker-modal-options">
-        {
-          colors.map((color, index) =>
-            <Option
-              value={color}
-              key={index}
-              className="colorpicker-option"
-              activeClassName="colorpicker-option-active"
-              active={currentSelectedColor === `${currentStyle}-${color}`}
-              onClick={this.toggleColor}
-            >
-              <span
-                style={{ backgroundColor: color }}
-                className="colorpicker-cube"
-              />
-            </Option>)
-        }
+          {
+            colors.map((color, index) =>
+              <Option
+                value={color}
+                key={index}
+                className="colorpicker-option"
+                activeClassName="colorpicker-option-active"
+                active={currentSelectedColor === `${currentStyle}-${color}`}
+                onClick={this.toggleColor}
+              >
+                <span
+                  style={{ backgroundColor: color }}
+                  className="colorpicker-cube"
+                />
+              </Option>)
+          }
         </span>
       </div>
     );
