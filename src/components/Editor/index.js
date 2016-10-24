@@ -28,7 +28,7 @@ import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../Decorators/Link';
 import ImageBlockRenderer from '../../Renderer/Image';
-import draft from '../../../../css/Draft.css'; // eslint-disable-line no-unused-vars
+import draft from '../../../css/Draft.css'; // eslint-disable-line no-unused-vars
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class WysiwygEditor extends Component {

@@ -9,7 +9,7 @@ import {
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import Option from '../Option';
-import colorIcon from '../../../../images/color.svg';
+import colorIcon from '../../../images/color.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ColorPicker extends Component {

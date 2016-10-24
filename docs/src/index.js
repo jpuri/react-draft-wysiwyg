@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, IndexRoute, Route, hashHistory } from 'react-router';
 import '../css/normalize.css'; // eslint-disable-line no-unused-vars
-import '../node_modules/react-draft-wysiwyg/dist/editor.css'; // eslint-disable-line no-unused-vars
+import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'; // eslint-disable-line no-unused-vars
 import {
     App,
     Home,

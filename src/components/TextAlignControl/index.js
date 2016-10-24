@@ -8,10 +8,10 @@ import {
   Dropdown,
   DropdownOption,
 } from '../Dropdown';
-import left from '../../../../images/align-left.svg';
-import center from '../../../../images/align-center.svg';
-import right from '../../../../images/align-right.svg';
-import justify from '../../../../images/align-justify.svg';
+import left from '../../../images/align-left.svg';
+import center from '../../../images/align-center.svg';
+import right from '../../../images/align-right.svg';
+import justify from '../../../images/align-justify.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class TextAlignControl extends Component {
