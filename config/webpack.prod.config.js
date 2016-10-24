@@ -7,7 +7,7 @@ const precss = require('precss');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './js/src/index',
+    './src/index',
   ],
   output: {
     path: path.join(__dirname, '../dist'),
@@ -37,7 +37,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$/ },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$|draftjs-utils\.js$/ },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract(

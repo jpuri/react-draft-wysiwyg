@@ -20,7 +20,6 @@
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
     "css-loader": "^0.25.0",
-    "draft-js": "^0.9.1",
     "enzyme": "^2.4.1",
     "eslint": "^3.4.0",
     "eslint-config-airbnb": "^12.0.0",
@@ -36,8 +35,9 @@
     "mocha": "^3.1.0",
     "postcss-loader": "^1.0.0",
     "precss": "^1.4.0",
-    "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
+    "react": "^15.3.2",
+    "draft-js": "^0.9.1",
     "react-dom": "^15.3.2",
     "rimraf": "^2.5.4",
     "sinon": "^1.17.6",
@@ -47,8 +47,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-to-html": "0.2.8",
-    "draftjs-utils": "0.2.9",
+    "draftjs-to-html": "0.3.0",
+    "draftjs-utils": "0.3.0",
     "immutable": "^3.8.1"
   },
   "peerDependencies": {

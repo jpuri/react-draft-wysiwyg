@@ -1,13 +1,13 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, ReactComponent } from 'react';
 import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Dropdown extends Component {
 
   static propTypes = {
-    children: PropTypes.instanceOf(Component),
+    children: PropTypes.instanceOf(ReactComponent),
     onChange: PropTypes.func,
     className: PropTypes.string,
     optionWrapperClassName: PropTypes.string,

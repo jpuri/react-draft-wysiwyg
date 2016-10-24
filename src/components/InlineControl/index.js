@@ -6,11 +6,11 @@ import { RichUtils, EditorState } from 'draft-js';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
 
-import bold from '../../../../images/bold.svg';
-import italic from '../../../../images/italic.svg';
-import underline from '../../../../images/underline.svg';
-import strikethrough from '../../../../images/strikethrough.svg';
-import monospace from '../../../../images/monospace.svg';
+import bold from '../../../images/bold.svg';
+import italic from '../../../images/italic.svg';
+import underline from '../../../images/underline.svg';
+import strikethrough from '../../../images/strikethrough.svg';
+import monospace from '../../../images/monospace.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class InlineControl extends Component {

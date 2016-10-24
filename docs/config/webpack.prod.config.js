@@ -49,7 +49,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader' },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$|draftjs-utils\.js$|draftjs-to-html\.js$|lodash\.js$/ },
       {
         test: /\.css$/,
         exclude: /Draft\.css$|font-awesome\.css$/,

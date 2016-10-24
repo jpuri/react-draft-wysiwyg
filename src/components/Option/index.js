@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, ReactComponent } from 'react';
 import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -8,7 +8,7 @@ export default class Option extends Component {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,
-    children: PropTypes.instanceOf(Component),
+    children: PropTypes.instanceOf(ReactComponent),
     value: PropTypes.string,
     className: PropTypes.string,
     activeClassName: PropTypes.string,

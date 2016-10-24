@@ -8,8 +8,8 @@ import {
   getSelectionEntity,
 } from 'draftjs-utils';
 import Option from '../Option';
-import link from '../../../../images/link.svg';
-import unlink from '../../../../images/unlink.svg';
+import link from '../../../images/link.svg';
+import unlink from '../../../images/unlink.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class LinkControl extends Component {
