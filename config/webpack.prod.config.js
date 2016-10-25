@@ -7,7 +7,7 @@ const precss = require('precss');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './src/index',
+    './js/src/index',
   ],
   output: {
     path: path.join(__dirname, '../dist'),

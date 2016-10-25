@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Option from '../Option';
 import Spinner from '../Spinner';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
-import image from '../../../images/image.svg';
+import image from '../../../../images/image.svg';
 
 export default class ImageControl extends Component {
 

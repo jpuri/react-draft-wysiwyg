@@ -5,10 +5,10 @@ import { RichUtils } from 'draft-js';
 import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import Option from '../Option';
-import indent from '../../../images/indent.svg';
-import outdent from '../../../images/outdent.svg';
-import ordered from '../../../images/list-ordered.svg';
-import unordered from '../../../images/list-unordered.svg';
+import indent from '../../../../images/indent.svg';
+import outdent from '../../../../images/outdent.svg';
+import ordered from '../../../../images/list-ordered.svg';
+import unordered from '../../../../images/list-unordered.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ListControl extends Component {
