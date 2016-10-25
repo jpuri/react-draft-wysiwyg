@@ -15,7 +15,7 @@ import styles from './styles.css'; // eslint-disable-line no-unused-vars
 export default class LinkControl extends Component {
 
   static propTypes = {
-    editorState: PropTypes.instanceOf(EditorState).isRequired,
+    editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
   };
 

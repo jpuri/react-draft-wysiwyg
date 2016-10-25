@@ -52,8 +52,5 @@ module.exports = {
   postcss: () => [autoprefixer, precss],
   resolve: {
     extensions: ['', '.js', '.json'],
-    alias: {
-      'react-draft-wyiswyg': path.join(__dirname, '../../', 'src'),
-    },
   },
 };

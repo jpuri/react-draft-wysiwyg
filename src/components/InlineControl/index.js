@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
-import { RichUtils, EditorState } from 'draft-js';
+import { RichUtils } from 'draft-js';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
 
@@ -17,7 +17,7 @@ export default class InlineControl extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.instanceOf(EditorState).isRequired,
+    editorState: PropTypes.object.isRequired,
     inDropdown: PropTypes.bool,
   };
 

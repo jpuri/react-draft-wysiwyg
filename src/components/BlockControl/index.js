@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { getSelectedBlocksType } from 'draftjs-utils';
-import { RichUtils, EditorState } from 'draft-js';
+import { RichUtils } from 'draft-js';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -10,7 +10,7 @@ export default class BlockControl extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.instanceOf(EditorState),
+    editorState: PropTypes.object,
   };
 
   state: Object = {

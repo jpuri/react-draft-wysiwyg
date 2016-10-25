@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { RichUtils, EditorState } from 'draft-js';
+import { RichUtils } from 'draft-js';
 import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import Option from '../Option';
@@ -15,7 +15,7 @@ export default class ListControl extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.instanceOf(EditorState).isRequired,
+    editorState: PropTypes.object.isRequired,
     inDropdown: PropTypes.bool,
   };
 

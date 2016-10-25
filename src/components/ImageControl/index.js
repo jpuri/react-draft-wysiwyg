@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { Entity, AtomicBlockUtils, EditorState } from 'draft-js';
+import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
 import Spinner from '../Spinner';
@@ -11,7 +11,7 @@ import image from '../../../images/image.svg';
 export default class ImageControl extends Component {
 
   static propTypes: Object = {
-    editorState: PropTypes.instanceOf(EditorState).isRequired,
+    editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     uploadImageCallBack: PropTypes.func,
   };

@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { EditorState } from 'draft-js';
 import {
   fontSizes,
   toggleInlineStyle,
@@ -15,7 +14,7 @@ export default class FontSizeControl extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.instanceOf(EditorState),
+    editorState: PropTypes.object,
   };
 
   state: Object = {
