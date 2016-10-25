@@ -40,6 +40,7 @@
     "webpack-hot-middleware": "^2.12.2",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "draftjs-to-html": "0.3.1",
     "draft-js": "^0.9.1"
   },
   "repository": {
@@ -59,6 +60,7 @@
     "immutable": "^3.8.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
+    "draftjs-to-html": "0.3.1",
     "draft-js": "^0.9.1",
     "react-router": "^2.8.1"
   }
