@@ -9,7 +9,7 @@
   },
   "author": "Jyoti Puri",
   "devDependencies": {
-    "autoprefixer": "^6.5.0",
+    "autoprefixer": "^6.5.1",
     "babel-core": "^6.17.0",
     "babel-eslint": "^7.0.0",
     "babel-loader": "^6.2.5",
@@ -20,6 +20,8 @@
     "babel-preset-stage-0": "^6.16.0",
     "chai": "^3.5.0",
     "css-loader": "^0.25.0",
+    "draft-js": "^0.9.1",
+    "draftjs-to-html": "^0.3.1",
     "enzyme": "^2.4.1",
     "eslint": "^3.4.0",
     "eslint-config-airbnb": "^12.0.0",
@@ -27,23 +29,26 @@
     "eslint-plugin-jsx-a11y": "^2.2.1",
     "eslint-plugin-mocha": "^4.5.1",
     "eslint-plugin-react": "^6.2.0",
+    "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "flow-bin": "^0.33.0",
+    "html-webpack-plugin": "^2.24.0",
     "immutable": "^3.8.1",
     "jsdom": "^9.8.0",
     "mocha": "^3.1.0",
     "postcss-loader": "^1.0.0",
     "precss": "^1.4.0",
-    "react-addons-test-utils": "^15.3.2",
     "react": "^15.3.2",
-    "draft-js": "^0.9.1",
+    "react-addons-test-utils": "^15.3.2",
     "react-dom": "^15.3.2",
     "rimraf": "^2.5.4",
     "sinon": "^1.17.6",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.2"
+    "webpack": "^1.13.2",
+    "webpack-dev-middleware": "^1.8.4",
+    "webpack-hot-middleware": "^2.13.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -62,7 +67,8 @@
     "test": "BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js js/**/*Test.js",
     "lint": "eslint js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "check": "npm run lint && npm run flow"
+    "check": "npm run lint && npm run flow",
+    "start": "node config/server.dev.js"
   },
   "license": "MIT"
 }

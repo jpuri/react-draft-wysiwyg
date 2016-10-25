@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react';
 import { Entity } from 'draft-js';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
-import openlink from '../../../images/openlink.svg';
+import openlink from '../../../../images/openlink.svg';
 
 function findLinkEntities(contentBlock, callback) {
   contentBlock.findEntityRanges(

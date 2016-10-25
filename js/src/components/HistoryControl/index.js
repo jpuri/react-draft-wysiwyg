@@ -3,8 +3,8 @@
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
 import Option from '../Option';
-import undo from '../../../images/undo.svg';
-import redo from '../../../images/redo.svg';
+import undo from '../../../../images/undo.svg';
+import redo from '../../../../images/redo.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class HistoryControl extends Component {

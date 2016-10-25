@@ -7,7 +7,7 @@ import {
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import { Dropdown, DropdownOption } from '../Dropdown';
-import fontSizeIcon from '../../../images/font-size.svg';
+import fontSizeIcon from '../../../../images/font-size.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class FontSizeControl extends Component {
