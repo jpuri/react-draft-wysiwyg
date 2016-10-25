@@ -2,7 +2,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import { EditorState } from 'draft-js';
 import {
   colors,
   toggleInlineStyle,
@@ -16,7 +15,7 @@ export default class ColorPicker extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.instanceOf(EditorState).isRequired,
+    editorState: PropTypes.object.isRequired,
   };
 
   state: Object = {

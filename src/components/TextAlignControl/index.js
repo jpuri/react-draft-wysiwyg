@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { EditorState } from 'draft-js';
 import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
 import Option from '../Option';
 import {
@@ -17,7 +16,7 @@ import styles from './styles.css'; // eslint-disable-line no-unused-vars
 export default class TextAlignControl extends Component {
 
   static propTypes = {
-    editorState: PropTypes.instanceOf(EditorState).isRequired,
+    editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     inDropdown: PropTypes.bool,
   };
@@ -36,7 +35,12 @@ export default class TextAlignControl extends Component {
 
   addBlockAlignmentData:Function = (value: string) => {
     const { editorState, onChange } = this.props;
-    onChange(setBlockData(editorState, { 'text-align': value }));
+    const { currentTextAlignment } = this.state;
+    if (currentTextAlignment !== value) {
+      onChange(setBlockData(editorState, { 'text-align': value }));
+    } else {
+      onChange(setBlockData(editorState, { 'text-align': undefined }));
+    }
   }
 
   renderInFlatList(): Object {

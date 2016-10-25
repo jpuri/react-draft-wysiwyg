@@ -11,7 +11,7 @@ export default class HistoryControl extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
-    editorState: PropTypes.instanceOf(EditorState),
+    editorState: PropTypes.object,
   };
 
   state: Object = {
