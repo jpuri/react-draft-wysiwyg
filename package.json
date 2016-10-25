@@ -47,7 +47,6 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-to-html": "0.3.0",
     "draftjs-utils": "0.3.0",
     "immutable": "^3.8.1"
   },
