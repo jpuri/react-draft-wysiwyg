@@ -54,43 +54,6 @@ class Playground extends Component {
               onChange={this.onEditorChange}
               toolbarAlwaysVisible
               uploadImageCallBack={this.uploadImageCallBack}
-              toolbarConfig={fromJS({
-                inline: {
-                  visible: true,
-                  inDropdown: false,
-                },
-                blockType: {
-                  visible: true,
-                },
-                fontSize: {
-                  visible: true,
-                },
-                fontFamily: {
-                  visible: true,
-                },
-                list: {
-                  visible: true,
-                  inDropdown: false,
-                },
-                textAlign: {
-                  visible: true,
-                  inDropdown: false,
-                },
-                colorPicker: {
-                  visible: true,
-                },
-                link: {
-                  visible: true,
-                  inDropdown: true,
-                },
-                image: {
-                  visible: true,
-                },
-                history: {
-                  visible: true,
-                  inDropdown: true,
-                },
-              })}
             />
           </div>
           <textarea

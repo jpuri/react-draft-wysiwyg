@@ -14,7 +14,7 @@ import {
   customStyleMap,
 } from 'draftjs-utils';
 import { Map } from 'immutable';
-import blockStyleFn from '../../Utils/BlockStyle';
+import blockStyleFn from '../../utils/blockStyle';
 import InlineControl from '../InlineControl';
 import BlockControl from '../BlockControl';
 import FontSizeControl from '../FontSizeControl';
@@ -25,8 +25,9 @@ import ColorPicker from '../ColorPicker';
 import LinkControl from '../LinkControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
-import LinkDecorator from '../../Decorators/Link';
-import ImageBlockRenderer from '../../Renderer/Image';
+import LinkDecorator from '../../decorators/Link';
+import ImageBlockRenderer from '../../renderer/Image';
+import toolbarDefaultConfig from '../../config/toolbarDefaultConfig';
 import draft from '../../../../css/Draft.css'; // eslint-disable-line no-unused-vars
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -47,12 +48,16 @@ export default class WysiwygEditor extends Component {
     toolbarAlwaysVisible: true,
   };
 
-  state: Object = {
-    editorState: undefined,
-    toolBarMouseDown: false,
-    editorFocused: false,
-    editorMouseDown: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      editorState: undefined,
+      toolBarMouseDown: false,
+      editorFocused: false,
+      editorMouseDown: false,
+      toolbarConfig: toolbarDefaultConfig.mergeDeep(props.toolbarConfig),
+    };
+  }
 
   componentWillMount(): void {
     let editorState;
@@ -65,6 +70,14 @@ export default class WysiwygEditor extends Component {
     this.setState({
       editorState,
     });
+  }
+
+  componentWillReceiveProps(props) {
+    if (this.props.toolbarConfig !== props.toolbarConfig) {
+      this.setState({
+        toolbarConfig: toolbarDefaultConfig.mergeDeep(props.toolbarConfig),
+      });
+    }
   }
 
   onChange: Function = (editorState: Object, focusEditor: boolean): void => {
@@ -165,11 +178,11 @@ export default class WysiwygEditor extends Component {
       editorFocused,
       editorMouseDown,
       toolBarMouseDown,
+      toolbarConfig,
      } = this.state;
 
     const {
       toolbarAlwaysVisible,
-      toolbarConfig,
       uploadImageCallBack,
       toolbarClassName,
       editorClassName,
