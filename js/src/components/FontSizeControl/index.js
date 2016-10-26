@@ -7,7 +7,6 @@ import {
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import { Dropdown, DropdownOption } from '../Dropdown';
-import fontSizeIcon from '../../../../images/font-size.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class FontSizeControl extends Component {
@@ -15,6 +14,7 @@ export default class FontSizeControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -55,6 +55,7 @@ export default class FontSizeControl extends Component {
   };
 
   render() {
+    const { config } = this.props;
     let { currentFontSize } = this.state;
     currentFontSize = currentFontSize
       && Number(currentFontSize.substring(9, currentFontSize.length));
@@ -68,7 +69,7 @@ export default class FontSizeControl extends Component {
             <span>{currentFontSize}</span>
           :
             <img
-              src={fontSizeIcon}
+              src={config.get('icon')}
               role="presentation"
               className="fontsize-icon"
             />
