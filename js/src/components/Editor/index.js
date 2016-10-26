@@ -6,7 +6,6 @@ import {
   EditorState,
   RichUtils,
   convertToRaw,
-  ContentState,
   CompositeDecorator,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
@@ -189,55 +188,55 @@ export default class WysiwygEditor extends Component {
               onMouseUp={this.onToolbarMouseUp}
               onClick={this.focusEditor}
             >
-              {toolbarConfig.inline.visible && <InlineControl
+              {toolbarConfig.get('inline').get('visible') && <InlineControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.inline}
+                config={toolbarConfig && toolbarConfig.get('inline')}
               />}
-              {toolbarConfig.blockType.visible && <BlockControl
+              {toolbarConfig.get('blockType').get('visible') && <BlockControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.blockType}
+                config={toolbarConfig && toolbarConfig.get('blockType')}
               />}
-              {toolbarConfig.fontSize.visible && <FontSizeControl
+              {toolbarConfig.get('fontSize').get('visible') && <FontSizeControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.fontSize}
+                config={toolbarConfig && toolbarConfig.get('fontSize')}
               />}
-              {toolbarConfig.fontFamily.visible && <FontFamilyControl
+              {toolbarConfig.get('fontFamily').get('visible') && <FontFamilyControl
                 onChange={this.onChange}
                 editorState={editorState}
               />}
-              {toolbarConfig.list.visible && <ListControl
+              {toolbarConfig.get('list').get('visible') && <ListControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.list}
+                config={toolbarConfig && toolbarConfig.get('list')}
               />}
-              {toolbarConfig.textAlign.visible && <TextAlignControl
+              {toolbarConfig.get('textAlign').get('visible') && <TextAlignControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.textAlign}
+                config={toolbarConfig && toolbarConfig.get('textAlign')}
               />}
-              {toolbarConfig.colorPicker.visible && <ColorPicker
+              {toolbarConfig.get('colorPicker').get('visible') && <ColorPicker
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.colorPicker}
+                config={toolbarConfig && toolbarConfig.get('colorPicker')}
               />}
-              {toolbarConfig.link.visible && <LinkControl
+              {toolbarConfig.get('link').get('visible') && <LinkControl
                 editorState={editorState}
                 onChange={this.onChange}
-                config={toolbarConfig && toolbarConfig.link}
+                config={toolbarConfig && toolbarConfig.get('link')}
               />}
-              {toolbarConfig.image.visible && <ImageControl
+              {toolbarConfig.get('image').get('visible') && <ImageControl
                 editorState={editorState}
                 onChange={this.onChange}
                 uploadImageCallBack={uploadImageCallBack}
-                config={toolbarConfig && toolbarConfig.image}
+                config={toolbarConfig && toolbarConfig.get('image')}
               />}
-              {toolbarConfig.history.visible && <HistoryControl
+              {toolbarConfig.get('history').get('visible') && <HistoryControl
                 editorState={editorState}
                 onChange={this.onChange}
-                config={toolbarConfig && toolbarConfig.history}
+                config={toolbarConfig && toolbarConfig.get('history')}
               />}
             </div>
           :

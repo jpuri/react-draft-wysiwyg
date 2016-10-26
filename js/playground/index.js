@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
 import { Editor } from '../src';
+import { fromJS } from 'immutable';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class Playground extends Component {
@@ -53,7 +54,7 @@ class Playground extends Component {
               onChange={this.onEditorChange}
               toolbarAlwaysVisible
               uploadImageCallBack={this.uploadImageCallBack}
-              toolbarConfig={{
+              toolbarConfig={fromJS({
                 inline: {
                   visible: true,
                   inDropdown: false,
@@ -69,23 +70,27 @@ class Playground extends Component {
                 },
                 list: {
                   visible: true,
+                  inDropdown: false,
                 },
                 textAlign: {
                   visible: true,
+                  inDropdown: false,
                 },
                 colorPicker: {
                   visible: true,
                 },
                 link: {
                   visible: true,
+                  inDropdown: false,
                 },
                 image: {
                   visible: true,
                 },
                 history: {
                   visible: true,
+                  inDropdown: true,
                 },
-              }}
+              })}
             />
           </div>
           <textarea

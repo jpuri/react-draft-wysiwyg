@@ -18,7 +18,7 @@ export default class TextAlignControl extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    inDropdown: PropTypes.bool,
+    config: PropTypes.object,
   };
 
   state = {
@@ -156,8 +156,8 @@ export default class TextAlignControl extends Component {
   }
 
   render(): Object {
-    const { inDropdown } = this.props;
-    if (inDropdown) {
+    const { config } = this.props;
+    if (config && config.get('inDropdown')) {
       return this.renderInDropDown();
     }
     return this.renderInFlatList();

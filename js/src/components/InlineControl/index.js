@@ -127,7 +127,7 @@ export default class InlineControl extends Component {
   render(): Object {
     const { config } = this.props;
     const { currentStyles } = this.state;
-    if (config && config.inDropdown) {
+    if (config && config.get('inDropdown')) {
       return this.renderInDropDown(currentStyles);
     }
     return this.renderInFlatList(currentStyles);

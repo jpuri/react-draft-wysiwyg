@@ -16,7 +16,7 @@ export default class ListControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
-    inDropdown: PropTypes.bool,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -187,9 +187,9 @@ export default class ListControl extends Component {
   }
 
   render(): Object {
-    const { inDropdown } = this.props;
+    const { config } = this.props;
     const { currentBlockType } = this.state;
-    if (inDropdown) {
+    if (config && config.get('inDropdown')) {
       return this.renderInDropDown(currentBlockType);
     }
     return this.renderInFlatList(currentBlockType);

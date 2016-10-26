@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
 import Option from '../Option';
+import { Dropdown, DropdownOption } from '../Dropdown';
 import undo from '../../../../images/undo.svg';
 import redo from '../../../../images/redo.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -12,6 +13,7 @@ export default class HistoryControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -55,11 +57,44 @@ export default class HistoryControl extends Component {
     }
   };
 
-  render(): Object {
-    const {
-      undoDisabled,
-      redoDisabled,
-    } = this.state;
+  renderInDropDown(undoDisabled: bool, redoDisabled: bool): Object {
+    return (
+      <Dropdown
+        className="inline-dropdown"
+        onChange={this.toggleInlineStyle}
+      >
+        <img
+          src={undo}
+          role="presentation"
+          className="inline-icon"
+        />
+        <DropdownOption
+          onClick={this.undo}
+          disabled={undoDisabled}
+          className="history-dropdownoption"
+        >
+          <img
+            src={undo}
+            role="presentation"
+            className="history-icon"
+          />
+        </DropdownOption>
+        <DropdownOption
+          onClick={this.redo}
+          disabled={redoDisabled}
+          className="history-dropdownoption"
+        >
+          <img
+            src={redo}
+            role="presentation"
+            className="history-icon"
+          />
+        </DropdownOption>
+      </Dropdown>
+    );
+  }
+
+  renderInFlatList(undoDisabled: bool, redoDisabled: bool): Object {
     return (
       <div className="history-wrapper">
         <Option
@@ -87,4 +122,17 @@ export default class HistoryControl extends Component {
       </div>
     );
   }
+
+  render(): Object {
+    const { config } = this.props;
+    const {
+      undoDisabled,
+      redoDisabled,
+    } = this.state;
+    if (config && config.get('inDropdown')) {
+      return this.renderInDropDown(undoDisabled, redoDisabled);
+    }
+    return this.renderInFlatList(undoDisabled, redoDisabled);
+  }
+
 }

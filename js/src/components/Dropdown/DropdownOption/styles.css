@@ -10,3 +10,7 @@
 .dropdownoption-active {
   background: #f5f5f5;
 }
+.dropdownoption-disabled {
+  opacity: 0.3;
+  cursor: default;
+}

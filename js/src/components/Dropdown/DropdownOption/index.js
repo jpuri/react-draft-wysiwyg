@@ -9,20 +9,28 @@ export default class DropDownOption extends Component {
   static propTypes = {
     children: PropTypes.any,
     value: PropTypes.any,
+    onClick: PropTypes.func,
     onSelect: PropTypes.func,
     setHighlighted: PropTypes.func,
     index: PropTypes.number,
+    disabled: PropTypes.bool,
     active: PropTypes.bool,
     highlighted: PropTypes.bool,
     className: PropTypes.string,
     activeClassName: PropTypes.string,
+    disabledClassName: PropTypes.string,
     highlightedClassName: PropTypes.string,
   };
 
   onClick: Function = (): void => {
-    const { onSelect, value } = this.props;
-    if (onSelect) {
-      onSelect(value);
+    const { onSelect, onClick, value, disabled } = this.props;
+    if (!disabled) {
+      if (onSelect) {
+        onSelect(value);
+      }
+      if (onClick) {
+        onClick(value);
+      }
     }
   };
 
@@ -40,9 +48,11 @@ export default class DropDownOption extends Component {
     const {
       children,
       active,
+      disabled,
       highlighted,
       className,
       activeClassName,
+      disabledClassName,
       highlightedClassName,
      } = this.props;
     return (
@@ -52,6 +62,7 @@ export default class DropDownOption extends Component {
             className,
             { [`dropdownoption-active ${activeClassName}`]: active,
               [`dropdownoption-highlighted ${highlightedClassName}`]: highlighted,
+              [`dropdownoption-disabled ${disabledClassName}`]: disabled,
             })
         }
         onMouseEnter={this.setHighlighted}
