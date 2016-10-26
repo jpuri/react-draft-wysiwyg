@@ -8,6 +8,7 @@ import {
   getSelectionEntity,
 } from 'draftjs-utils';
 import Option from '../Option';
+import { Dropdown, DropdownOption } from '../Dropdown';
 import link from '../../../../images/link.svg';
 import unlink from '../../../../images/unlink.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -17,6 +18,7 @@ export default class LinkControl extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -158,8 +160,7 @@ export default class LinkControl extends Component {
     );
   }
 
-  render(): Object {
-    const { showModal, currentEntity } = this.state;
+  renderInFlatList(showModal: bool, currentEntity: Object): Object {
     return (
       <div className="link-wrapper">
         <Option
@@ -187,4 +188,53 @@ export default class LinkControl extends Component {
       </div>
     );
   }
+
+  renderInDropDown(showModal: bool, currentEntity: Object): Object {
+    return (
+      <div className="link-wrapper">
+        <Dropdown
+          className="link-dropdown"
+          onChange={this.toggleInlineStyle}
+        >
+          <img
+            src={link}
+            role="presentation"
+            className="link-icon"
+          />
+          <DropdownOption
+            onClick={this.toggleLinkModal}
+            className="link-dropdownoption"
+          >
+            <img
+              src={link}
+              role="presentation"
+              className="link-icon"
+            />
+          </DropdownOption>
+          <DropdownOption
+            onClick={this.removeLink}
+            disabled={!currentEntity}
+            className="link-dropdownoption"
+          >
+            <img
+              src={unlink}
+              role="presentation"
+              className="link-icon"
+            />
+          </DropdownOption>
+        </Dropdown>
+        {showModal ? this.renderAddLinkModal() : undefined}
+      </div>
+    );
+  }
+
+  render(): Object {
+    const { config } = this.props;
+    const { showModal, currentEntity } = this.state;
+    if (config && config.get('inDropdown')) {
+      return this.renderInDropDown(showModal, currentEntity);
+    }
+    return this.renderInFlatList(showModal, currentEntity);
+  }
+
 }

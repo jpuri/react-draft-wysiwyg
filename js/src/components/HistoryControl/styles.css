@@ -12,3 +12,6 @@
   display: flex;
   justify-content: center;
 }
+.history-dropdown {
+  width: 50px;
+}

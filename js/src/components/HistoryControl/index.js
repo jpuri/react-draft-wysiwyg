@@ -60,13 +60,13 @@ export default class HistoryControl extends Component {
   renderInDropDown(undoDisabled: bool, redoDisabled: bool): Object {
     return (
       <Dropdown
-        className="inline-dropdown"
+        className="history-dropdown"
         onChange={this.toggleInlineStyle}
       >
         <img
           src={undo}
           role="presentation"
-          className="inline-icon"
+          className="history-icon"
         />
         <DropdownOption
           onClick={this.undo}

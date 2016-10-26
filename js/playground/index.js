@@ -3,8 +3,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
-import { Editor } from '../src';
 import { fromJS } from 'immutable';
+import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class Playground extends Component {
@@ -81,7 +81,7 @@ class Playground extends Component {
                 },
                 link: {
                   visible: true,
-                  inDropdown: false,
+                  inDropdown: true,
                 },
                 image: {
                   visible: true,
