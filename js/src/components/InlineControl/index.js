@@ -18,7 +18,7 @@ export default class InlineControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
-    inDropdown: PropTypes.bool,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -125,9 +125,9 @@ export default class InlineControl extends Component {
   }
 
   render(): Object {
-    const { inDropdown } = this.props;
+    const { config } = this.props;
     const { currentStyles } = this.state;
-    if (inDropdown) {
+    if (config && config.inDropdown) {
       return this.renderInDropDown(currentStyles);
     }
     return this.renderInFlatList(currentStyles);

@@ -35,19 +35,17 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    contentState: PropTypes.instanceOf(ContentState),
+    contentState: PropTypes.object,
     toolbarAlwaysVisible: PropTypes.bool,
+    toolbarConfig: PropTypes.object,
+    uploadImageCallBack: PropTypes.func,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
-    inlineControlInDropdown: PropTypes.bool,
-    listControlInDropdown: PropTypes.bool,
-    textAlignControlInDropdown: PropTypes.bool,
-    uploadImageCallBack: PropTypes.func,
   };
 
   static defaultProps = {
-    toolbarAlwaysVisible: false,
+    toolbarAlwaysVisible: true,
   };
 
   state: Object = {
@@ -172,13 +170,11 @@ export default class WysiwygEditor extends Component {
 
     const {
       toolbarAlwaysVisible,
-      textAlignControlInDropdown,
-      inlineControlInDropdown,
-      listControlInDropdown,
+      toolbarConfig,
+      uploadImageCallBack,
       toolbarClassName,
       editorClassName,
       wrapperClassName,
-      uploadImageCallBack,
     } = this.props;
 
     const hasFocus = editorFocused || toolBarMouseDown || editorMouseDown;
@@ -193,54 +189,56 @@ export default class WysiwygEditor extends Component {
               onMouseUp={this.onToolbarMouseUp}
               onClick={this.focusEditor}
             >
-              <InlineControl
+              {toolbarConfig.inline.visible && <InlineControl
                 onChange={this.onChange}
                 editorState={editorState}
-                inDropdown={inlineControlInDropdown}
-              />
-              <BlockControl
-                onChange={this.onChange}
-                focusEditor={this.focusEditor}
-                editorState={editorState}
-              />
-              <FontSizeControl
+                config={toolbarConfig && toolbarConfig.inline}
+              />}
+              {toolbarConfig.blockType.visible && <BlockControl
                 onChange={this.onChange}
                 editorState={editorState}
-              />
-              <FontFamilyControl
+                config={toolbarConfig && toolbarConfig.blockType}
+              />}
+              {toolbarConfig.fontSize.visible && <FontSizeControl
                 onChange={this.onChange}
                 editorState={editorState}
-              />
-              <ListControl
+                config={toolbarConfig && toolbarConfig.fontSize}
+              />}
+              {toolbarConfig.fontFamily.visible && <FontFamilyControl
                 onChange={this.onChange}
                 editorState={editorState}
-                inDropdown={listControlInDropdown}
-              />
-              <TextAlignControl
+              />}
+              {toolbarConfig.list.visible && <ListControl
                 onChange={this.onChange}
                 editorState={editorState}
-                inDropdown={textAlignControlInDropdown}
-              />
-              <ColorPicker
+                config={toolbarConfig && toolbarConfig.list}
+              />}
+              {toolbarConfig.textAlign.visible && <TextAlignControl
                 onChange={this.onChange}
                 editorState={editorState}
-                hideModal={editorMouseDown || !hasFocus}
-              />
-              <LinkControl
+                config={toolbarConfig && toolbarConfig.textAlign}
+              />}
+              {toolbarConfig.colorPicker.visible && <ColorPicker
+                onChange={this.onChange}
+                editorState={editorState}
+                config={toolbarConfig && toolbarConfig.colorPicker}
+              />}
+              {toolbarConfig.link.visible && <LinkControl
                 editorState={editorState}
                 onChange={this.onChange}
-                hideModal={editorMouseDown || !hasFocus}
-              />
-              <ImageControl
+                config={toolbarConfig && toolbarConfig.link}
+              />}
+              {toolbarConfig.image.visible && <ImageControl
                 editorState={editorState}
                 onChange={this.onChange}
                 uploadImageCallBack={uploadImageCallBack}
-                hideModal={editorMouseDown || !hasFocus}
-              />
-              <HistoryControl
+                config={toolbarConfig && toolbarConfig.image}
+              />}
+              {toolbarConfig.history.visible && <HistoryControl
                 editorState={editorState}
                 onChange={this.onChange}
-              />
+                config={toolbarConfig && toolbarConfig.history}
+              />}
             </div>
           :
           undefined
