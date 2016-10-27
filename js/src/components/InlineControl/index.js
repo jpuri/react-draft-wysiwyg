@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
 import { RichUtils } from 'draft-js';
+import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
 
@@ -38,8 +39,6 @@ export default class InlineControl extends Component {
     }
   }
 
-  styleList: Array<string> = ['bold', 'italic', 'underline', 'strikeThrough', 'code'];
-
   toggleInlineStyle: Function = (style: string): void => {
     const { editorState, onChange } = this.props;
     const newState = RichUtils.toggleInlineStyle(
@@ -51,17 +50,11 @@ export default class InlineControl extends Component {
     }
   };
 
-  getFirstVisibleStyle = (config:Object): Object => {
-    const filteredStyles = this.styleList.filter(style => config.get(style).get('visible'));
-    return filteredStyles && config.get(filteredStyles[0]);
-  }
-
   renderInFlatList(currentStyles: string, config: Object): Object {
     return (
       <div className="inline-wrapper">
         {
-          this.styleList
-          .filter(style => config.get(style).get('visible'))
+          config.get('options')
           .map((style, index) =>
             <Option
               key={index}
@@ -82,20 +75,18 @@ export default class InlineControl extends Component {
   }
 
   renderInDropDown(currentStyles: string, config: Object): Object {
-    const firstVisibleStyle = this.getFirstVisibleStyle(config);
     return (
       <Dropdown
         className="inline-dropdown"
         onChange={this.toggleInlineStyle}
       >
         <img
-          src={firstVisibleStyle && firstVisibleStyle.get('icon')}
+          src={getFirstIcon(config)}
           role="presentation"
           className="inline-icon"
         />
         {
-          this.styleList
-          .filter(style => config.get(style).get('visible'))
+          config.get('options')
           .map((style, index) =>
             <DropdownOption
               key={index}
@@ -123,3 +114,5 @@ export default class InlineControl extends Component {
     return this.renderInFlatList(currentStyles, config);
   }
 }
+
+// todo: move all controls to separate folder controls

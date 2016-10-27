@@ -19,7 +19,7 @@ class Playground extends Component {
     });
   };
 
-  uploadImageCallBack: Function = file => new Promise(
+  imageUploadCallBack: Function = file => new Promise(
       (resolve, reject) => {
         const xhr = new XMLHttpRequest(); // eslint-disable-line no-undef
         xhr.open('POST', 'https://api.imgur.com/3/image');
@@ -53,7 +53,11 @@ class Playground extends Component {
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
               toolbarAlwaysVisible
-              uploadImageCallBack={this.uploadImageCallBack}
+              toolbar={fromJS({
+                image: {
+                  uploadCallback: this.imageUploadCallBack,
+                },
+              })}
             />
           </div>
           <textarea

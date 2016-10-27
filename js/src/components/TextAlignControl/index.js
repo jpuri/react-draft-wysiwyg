@@ -3,14 +3,8 @@
 import React, { Component, PropTypes } from 'react';
 import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
 import Option from '../Option';
-import {
-  Dropdown,
-  DropdownOption,
-} from '../Dropdown';
-import left from '../../../../images/align-left.svg';
-import center from '../../../../images/align-center.svg';
-import right from '../../../../images/align-right.svg';
-import justify from '../../../../images/align-justify.svg';
+import { Dropdown, DropdownOption } from '../Dropdown';
+import { getFirstIcon } from '../../utils/toolbar';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class TextAlignControl extends Component {
@@ -43,59 +37,59 @@ export default class TextAlignControl extends Component {
     }
   }
 
-  renderInFlatList(): Object {
+  renderInFlatList(config: Object): Object {
     const { currentTextAlignment } = this.state;
     return (
       <div className="text-align-wrapper">
-        <Option
+        {config.get('options').first('left') && <Option
           value="left"
           active={currentTextAlignment === 'left'}
           onClick={this.addBlockAlignmentData}
         >
           <img
-            src={left}
+            src={config.get('left').get('icon')}
             role="presentation"
             className="text-align-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {config.get('options').first('center') && <Option
           value="center"
           active={currentTextAlignment === 'center'}
           onClick={this.addBlockAlignmentData}
         >
           <img
-            src={center}
+            src={config.get('center').get('icon')}
             role="presentation"
             className="text-align-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {config.get('options').first('right') && <Option
           value="right"
           active={currentTextAlignment === 'right'}
           onClick={this.addBlockAlignmentData}
         >
           <img
-            src={right}
+            src={config.get('right').get('icon')}
             role="presentation"
             className="text-align-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {config.get('options').first('justify') && <Option
           value="justify"
           active={currentTextAlignment === 'justify'}
           onClick={this.addBlockAlignmentData}
         >
           <img
-            src={justify}
+            src={config.get('justify').get('icon')}
             role="presentation"
             className="text-align-icon"
           />
-        </Option>
+        </Option>}
       </div>
     );
   }
 
-  renderInDropDown(): Object {
+  renderInDropDown(config: Object): Object {
     const { currentTextAlignment } = this.state;
     return (
       <Dropdown
@@ -103,54 +97,54 @@ export default class TextAlignControl extends Component {
         onChange={this.addBlockAlignmentData}
       >
         <img
-          src={left}
+          src={getFirstIcon(config)}
           role="presentation"
           className="text-align-icon"
         />
-        <DropdownOption
+        {config.get('options').first('left') && <DropdownOption
           value="left"
           active={currentTextAlignment === 'left'}
           className="text-align-dropdownOption"
         >
           <img
-            src={left}
+            src={config.get('left').get('icon')}
             role="presentation"
             className="text-align-icon"
           />
-        </DropdownOption>
-        <DropdownOption
+        </DropdownOption>}
+        {config.get('options').first('center') && <DropdownOption
           value="center"
           active={currentTextAlignment === 'center'}
           className="text-align-dropdownOption"
         >
           <img
-            src={center}
+            src={config.get('center').get('icon')}
             role="presentation"
             className="text-align-icon"
           />
-        </DropdownOption>
-        <DropdownOption
+        </DropdownOption>}
+        {config.get('options').first('right') && <DropdownOption
           value="right"
           active={currentTextAlignment === 'right'}
           className="text-align-dropdownOption"
         >
           <img
-            src={right}
+            src={config.get('right').get('icon')}
             role="presentation"
             className="text-align-icon"
           />
-        </DropdownOption>
-        <DropdownOption
+        </DropdownOption>}
+        {config.get('options').first('justify') && <DropdownOption
           value="justify"
           active={currentTextAlignment === 'justify'}
           className="text-align-dropdownOption"
         >
           <img
-            src={justify}
+            src={config.get('justify').get('icon')}
             role="presentation"
             className="text-align-icon"
           />
-        </DropdownOption>
+        </DropdownOption>}
       </Dropdown>
     );
   }
@@ -158,8 +152,8 @@ export default class TextAlignControl extends Component {
   render(): Object {
     const { config } = this.props;
     if (config && config.get('inDropdown')) {
-      return this.renderInDropDown();
+      return this.renderInDropDown(config);
     }
-    return this.renderInFlatList();
+    return this.renderInFlatList(config);
   }
 }

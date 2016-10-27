@@ -7,10 +7,9 @@ import {
   getEntityRange,
   getSelectionEntity,
 } from 'draftjs-utils';
+import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
-import link from '../../../../images/link.svg';
-import unlink from '../../../../images/unlink.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class LinkControl extends Component {
@@ -41,9 +40,6 @@ export default class LinkControl extends Component {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       newState.currentEntity = getSelectionEntity(properties.editorState);
-    }
-    if (properties.hideModal && this.state.showModal) {
-      newState.showModal = false;
     }
     this.setState(newState);
   }
@@ -160,36 +156,36 @@ export default class LinkControl extends Component {
     );
   }
 
-  renderInFlatList(showModal: bool, currentEntity: Object): Object {
+  renderInFlatList(showModal: bool, currentEntity: Object, config: Object): Object {
     return (
       <div className="link-wrapper">
-        <Option
+        {config.get('options').first('link') && <Option
           value="unordered-list-item"
           onClick={this.toggleLinkModal}
         >
           <img
-            src={link}
+            src={config.get('link').get('icon')}
             role="presentation"
             className="link-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {config.get('options').first('unlink') && <Option
           disabled={!currentEntity}
           value="ordered-list-item"
           onClick={this.removeLink}
         >
           <img
-            src={unlink}
+            src={config.get('unlink').get('icon')}
             role="presentation"
             className="link-icon"
           />
-        </Option>
+        </Option>}
         {showModal ? this.renderAddLinkModal() : undefined}
       </div>
     );
   }
 
-  renderInDropDown(showModal: bool, currentEntity: Object): Object {
+  renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
     return (
       <div className="link-wrapper">
         <Dropdown
@@ -197,31 +193,31 @@ export default class LinkControl extends Component {
           onChange={this.toggleInlineStyle}
         >
           <img
-            src={link}
+            src={getFirstIcon(config)}
             role="presentation"
             className="link-icon"
           />
-          <DropdownOption
+          {config.get('options').first('link') && <DropdownOption
             onClick={this.toggleLinkModal}
             className="link-dropdownoption"
           >
             <img
-              src={link}
+              src={config.get('link').get('icon')}
               role="presentation"
               className="link-icon"
             />
-          </DropdownOption>
-          <DropdownOption
+          </DropdownOption>}
+          {config.get('options').first('unlink') && <DropdownOption
             onClick={this.removeLink}
             disabled={!currentEntity}
             className="link-dropdownoption"
           >
             <img
-              src={unlink}
+              src={config.get('unlink').get('icon')}
               role="presentation"
               className="link-icon"
             />
-          </DropdownOption>
+          </DropdownOption>}
         </Dropdown>
         {showModal ? this.renderAddLinkModal() : undefined}
       </div>
@@ -232,9 +228,9 @@ export default class LinkControl extends Component {
     const { config } = this.props;
     const { showModal, currentEntity } = this.state;
     if (config && config.get('inDropdown')) {
-      return this.renderInDropDown(showModal, currentEntity);
+      return this.renderInDropDown(showModal, currentEntity, config);
     }
-    return this.renderInFlatList(showModal, currentEntity);
+    return this.renderInFlatList(showModal, currentEntity, config);
   }
 
 }

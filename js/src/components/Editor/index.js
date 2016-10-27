@@ -27,7 +27,7 @@ import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
 import ImageBlockRenderer from '../../renderer/Image';
-import toolbarDefaultConfig from '../../config/toolbarDefaultConfig';
+import defaultToolbar from '../../config/defaultToolbar';
 import draft from '../../../../css/Draft.css'; // eslint-disable-line no-unused-vars
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -37,8 +37,7 @@ export default class WysiwygEditor extends Component {
     onChange: PropTypes.func,
     contentState: PropTypes.object,
     toolbarAlwaysVisible: PropTypes.bool,
-    toolbarConfig: PropTypes.object,
-    uploadImageCallBack: PropTypes.func,
+    toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
@@ -55,7 +54,7 @@ export default class WysiwygEditor extends Component {
       toolBarMouseDown: false,
       editorFocused: false,
       editorMouseDown: false,
-      toolbarConfig: toolbarDefaultConfig.mergeDeep(props.toolbarConfig),
+      toolbar: defaultToolbar.mergeDeep(props.toolbar),
     };
   }
 
@@ -73,9 +72,9 @@ export default class WysiwygEditor extends Component {
   }
 
   componentWillReceiveProps(props) {
-    if (this.props.toolbarConfig !== props.toolbarConfig) {
+    if (this.props.toolbar !== props.toolbar) {
       this.setState({
-        toolbarConfig: toolbarDefaultConfig.mergeDeep(props.toolbarConfig),
+        toolbar: defaultToolbar.mergeDeep(props.toolbar),
       });
     }
   }
@@ -178,19 +177,16 @@ export default class WysiwygEditor extends Component {
       editorFocused,
       editorMouseDown,
       toolBarMouseDown,
-      toolbarConfig,
+      toolbar,
      } = this.state;
-
     const {
       toolbarAlwaysVisible,
-      uploadImageCallBack,
       toolbarClassName,
       editorClassName,
       wrapperClassName,
     } = this.props;
 
     const hasFocus = editorFocused || toolBarMouseDown || editorMouseDown;
-
     return (
       <div className={`editor-wrapper ${wrapperClassName}`}>
         {
@@ -201,55 +197,54 @@ export default class WysiwygEditor extends Component {
               onMouseUp={this.onToolbarMouseUp}
               onClick={this.focusEditor}
             >
-              {toolbarConfig.get('inline').get('visible') && <InlineControl
+              {toolbar.get('options').first('inline') && <InlineControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.get('inline')}
+                config={toolbar && toolbar.get('inline')}
               />}
-              {toolbarConfig.get('blockType').get('visible') && <BlockControl
+              {toolbar.get('options').first('blockType') && <BlockControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.get('blockType')}
+                config={toolbar && toolbar.get('blockType')}
               />}
-              {toolbarConfig.get('fontSize').get('visible') && <FontSizeControl
+              {toolbar.get('options').first('fontSize') && <FontSizeControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.get('fontSize')}
+                config={toolbar && toolbar.get('fontSize')}
               />}
-              {toolbarConfig.get('fontFamily').get('visible') && <FontFamilyControl
+              {toolbar.get('options').first('fontFamily') && <FontFamilyControl
                 onChange={this.onChange}
                 editorState={editorState}
               />}
-              {toolbarConfig.get('list').get('visible') && <ListControl
+              {toolbar.get('options').first('list') && <ListControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.get('list')}
+                config={toolbar && toolbar.get('list')}
               />}
-              {toolbarConfig.get('textAlign').get('visible') && <TextAlignControl
+              {toolbar.get('options').first('textAlign') && <TextAlignControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.get('textAlign')}
+                config={toolbar && toolbar.get('textAlign')}
               />}
-              {toolbarConfig.get('colorPicker').get('visible') && <ColorPicker
+              {toolbar.get('options').first('colorPicker') && <ColorPicker
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbarConfig && toolbarConfig.get('colorPicker')}
+                config={toolbar && toolbar.get('colorPicker')}
               />}
-              {toolbarConfig.get('link').get('visible') && <LinkControl
+              {toolbar.get('options').first('link') && <LinkControl
                 editorState={editorState}
                 onChange={this.onChange}
-                config={toolbarConfig && toolbarConfig.get('link')}
+                config={toolbar && toolbar.get('link')}
               />}
-              {toolbarConfig.get('image').get('visible') && <ImageControl
+              {toolbar.get('options').first('image') && <ImageControl
                 editorState={editorState}
                 onChange={this.onChange}
-                uploadImageCallBack={uploadImageCallBack}
-                config={toolbarConfig && toolbarConfig.get('image')}
+                config={toolbar && toolbar.get('image')}
               />}
-              {toolbarConfig.get('history').get('visible') && <HistoryControl
+              {toolbar.get('options').first('history') && <HistoryControl
                 editorState={editorState}
                 onChange={this.onChange}
-                config={toolbarConfig && toolbarConfig.get('history')}
+                config={toolbar && toolbar.get('history')}
               />}
             </div>
           :

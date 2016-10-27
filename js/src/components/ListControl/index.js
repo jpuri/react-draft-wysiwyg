@@ -3,12 +3,9 @@
 import React, { Component, PropTypes } from 'react';
 import { RichUtils } from 'draft-js';
 import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
+import { getFirstIcon } from '../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import Option from '../Option';
-import indent from '../../../../images/indent.svg';
-import outdent from '../../../../images/outdent.svg';
-import ordered from '../../../../images/list-ordered.svg';
-import unordered from '../../../../images/list-unordered.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ListControl extends Component {
@@ -82,106 +79,106 @@ export default class ListControl extends Component {
     this.adjustDepth(-1);
   };
 
-  renderInFlatList(currentBlockType: string): Object {
+  renderInFlatList(currentBlockType: string, config: Object): Object {
     return (
       <div className="list-wrapper">
-        <Option
+        {config.get('options').first('unordered') && <Option
           value="unordered-list-item"
           onClick={this.toggleBlockType}
           active={currentBlockType === 'unordered-list-item'}
         >
           <img
-            src={unordered}
+            src={config.get('unordered').get('icon')}
             className="list-icon"
             role="presentation"
           />
-        </Option>
-        <Option
+        </Option>}
+        {config.get('options').first('ordered') && <Option
           value="ordered-list-item"
           onClick={this.toggleBlockType}
           active={currentBlockType === 'ordered-list-item'}
         >
           <img
-            src={ordered}
+            src={config.get('ordered').get('icon')}
             role="presentation"
             className="list-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {config.get('options').first('indent') && <Option
           onClick={this.indent}
         >
           <img
-            src={indent}
+            src={config.get('indent').get('icon')}
             role="presentation"
             className="list-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {config.get('options').first('outdent') && <Option
           onClick={this.outdent}
         >
           <img
-            src={outdent}
+            src={config.get('outdent').get('icon')}
             role="presentation"
             className="list-icon"
           />
-        </Option>
+        </Option>}
       </div>
     );
   }
 
-  renderInDropDown(currentBlockType: string): Object {
+  renderInDropDown(currentBlockType: string, config: Object): Object {
     return (
       <Dropdown
         className="list-dropdown"
         onChange={this.onDropdownChange}
       >
         <img
-          src={unordered}
+          src={getFirstIcon(config)}
           role="presentation"
           className="list-icon"
         />
-        <DropdownOption
+        {config.get('options').first('unordered') && <DropdownOption
           value="unordered-list-item"
           className="list-dropdownOption"
           active={currentBlockType === 'unordered-list-item'}
         >
           <img
-            src={unordered}
+            src={config.get('unordered').get('icon')}
             role="presentation"
             className="list-icon"
           />
-        </DropdownOption>
-        <DropdownOption
+        </DropdownOption>}
+        {config.get('options').first('ordered') && <DropdownOption
           value="ordered-list-item"
           className="list-dropdownOption"
           active={currentBlockType === 'ordered-list-item'}
         >
           <img
-            src={ordered}
+            src={config.get('ordered').get('icon')}
             role="presentation"
             className="list-icon"
           />
-        </DropdownOption>
-        <DropdownOption
+        </DropdownOption>}
+        {config.get('options').first('indent') && <DropdownOption
           value="indent"
           className="list-dropdownOption"
         >
           <img
-            src={indent}
+            src={config.get('indent').get('icon')}
             role="presentation"
             className="list-icon"
           />
-        </DropdownOption>
-        <DropdownOption
+        </DropdownOption>}
+        {config.get('options').first('outdent') && <DropdownOption
           value="outdent"
           className="list-dropdownOption"
         >
           <img
-            src={outdent}
+            src={config.get('outdent').get('icon')}
             role="presentation"
             className="list-icon"
           />
-        </DropdownOption>
+        </DropdownOption>}
       </Dropdown>
     );
   }
@@ -190,8 +187,8 @@ export default class ListControl extends Component {
     const { config } = this.props;
     const { currentBlockType } = this.state;
     if (config && config.get('inDropdown')) {
-      return this.renderInDropDown(currentBlockType);
+      return this.renderInDropDown(currentBlockType, config);
     }
-    return this.renderInFlatList(currentBlockType);
+    return this.renderInFlatList(currentBlockType, config);
   }
 }

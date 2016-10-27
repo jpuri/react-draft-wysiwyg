@@ -6,28 +6,27 @@ import classNames from 'classnames';
 import Option from '../Option';
 import Spinner from '../Spinner';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
-import image from '../../../../images/image.svg';
 
 export default class ImageControl extends Component {
 
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    uploadImageCallBack: PropTypes.func,
+    config: PropTypes.object,
   };
 
   state: Object = {
     imgSrc: '',
     showModal: false,
     dragEnter: false,
-    showImageUpload: !!this.props.uploadImageCallBack,
+    showImageUpload: !!this.props.config.get('uploadCallback'),
     showImageLoading: false,
   };
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.hideModal && this.state.showModal) {
+    if (properties.config && this.props.config) {
       this.setState({
-        showModal: false,
+        showImageUpload: !!this.props.config.get('uploadCallback'),
       });
     }
   }
@@ -60,8 +59,8 @@ export default class ImageControl extends Component {
 
   uploadImage: Function = (file: Object): void => {
     this.toggleShowImageLoading();
-    const { uploadImageCallBack } = this.props;
-    uploadImageCallBack(file)
+    const { config } = this.props;
+    config.get('uploadCallback')(file)
       .then(({ data }) => {
         this.setState({
           showImageLoading: false,
@@ -121,14 +120,14 @@ export default class ImageControl extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, showImageUpload, showImageLoading, dragEnter } = this.state;
-    const { uploadImageCallBack } = this.props;
+    const { config } = this.props;
     return (
       <div
         className="image-modal"
         onClick={this.stopPropagation}
       >
         <div className="image-modal-header">
-          {uploadImageCallBack ?
+          {config.get('uploadCallback') ?
             <span
               onClick={this.showImageUploadOption}
               className="image-modal-header-option"
@@ -158,7 +157,7 @@ export default class ImageControl extends Component {
           </span>
         </div>
         {
-          showImageUpload && uploadImageCallBack ?
+          showImageUpload && config.get('uploadCallback') ?
             <div>
               <div
                 onDragEnter={this.stopPropagationPreventDefault}
@@ -217,6 +216,7 @@ export default class ImageControl extends Component {
   }
 
   render(): Object {
+    const { config } = this.props;
     const { showModal } = this.state;
     return (
       <div className="image-wrapper">
@@ -225,7 +225,7 @@ export default class ImageControl extends Component {
           onClick={this.toggleModal}
         >
           <img
-            src={image}
+            src={config.get('icon')}
             role="presentation"
             className="image-icon"
           />

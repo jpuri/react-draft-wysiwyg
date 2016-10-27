@@ -2,10 +2,9 @@
 
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
+import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
-import undo from '../../../../images/undo.svg';
-import redo from '../../../../images/redo.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class HistoryControl extends Component {
@@ -57,68 +56,68 @@ export default class HistoryControl extends Component {
     }
   };
 
-  renderInDropDown(undoDisabled: bool, redoDisabled: bool): Object {
+  renderInDropDown(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
     return (
       <Dropdown
         className="history-dropdown"
         onChange={this.toggleInlineStyle}
       >
         <img
-          src={undo}
+          src={getFirstIcon(config)}
           role="presentation"
           className="history-icon"
         />
-        <DropdownOption
+        {config.get('options').first('undo') && <DropdownOption
           onClick={this.undo}
           disabled={undoDisabled}
           className="history-dropdownoption"
         >
           <img
-            src={undo}
+            src={config.get('undo').get('icon')}
             role="presentation"
             className="history-icon"
           />
-        </DropdownOption>
-        <DropdownOption
+        </DropdownOption>}
+        {config.get('options').first('redo') && <DropdownOption
           onClick={this.redo}
           disabled={redoDisabled}
           className="history-dropdownoption"
         >
           <img
-            src={redo}
+            src={config.get('redo').get('icon')}
             role="presentation"
             className="history-icon"
           />
-        </DropdownOption>
+        </DropdownOption>}
       </Dropdown>
     );
   }
 
-  renderInFlatList(undoDisabled: bool, redoDisabled: bool): Object {
+  renderInFlatList(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
     return (
       <div className="history-wrapper">
-        <Option
+        {config.get('options').first('undo') && <Option
           value="unordered-list-item"
           onClick={this.undo}
           disabled={undoDisabled}
         >
           <img
-            src={undo}
+            src={config.get('undo').get('icon')}
             role="presentation"
             className="history-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {config.get('options').first('redo') && <Option
           value="ordered-list-item"
           onClick={this.redo}
           disabled={redoDisabled}
         >
           <img
-            src={redo}
+            src={config.get('redo').get('icon')}
             role="presentation"
             className="history-icon"
           />
-        </Option>
+        </Option>}
       </div>
     );
   }
@@ -130,9 +129,9 @@ export default class HistoryControl extends Component {
       redoDisabled,
     } = this.state;
     if (config && config.get('inDropdown')) {
-      return this.renderInDropDown(undoDisabled, redoDisabled);
+      return this.renderInDropDown(undoDisabled, redoDisabled, config);
     }
-    return this.renderInFlatList(undoDisabled, redoDisabled);
+    return this.renderInFlatList(undoDisabled, redoDisabled, config);
   }
 
 }
