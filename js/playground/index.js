@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
-import { fromJS } from 'immutable';
 import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -53,11 +52,11 @@ class Playground extends Component {
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
               toolbarAlwaysVisible
-              toolbar={fromJS({
+              toolbar={{
                 image: {
                   uploadCallback: this.imageUploadCallBack,
                 },
-              })}
+              }}
             />
           </div>
           <textarea

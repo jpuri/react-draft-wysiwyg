@@ -84,7 +84,7 @@ export default class ListControl extends Component {
     this.adjustDepth(-1);
   };
 
-  // todo: evaluate refactoring this code to put a loop  there
+  // todo: evaluate refactoring this code to put a loop there and in other places also in code
   // hint: it will require moving click handlers
   renderInFlatList(currentBlockType: string, config: Object): Object {
     const { options, unordered, ordered, indent, outdent } = config;

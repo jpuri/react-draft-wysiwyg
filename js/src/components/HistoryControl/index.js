@@ -95,26 +95,27 @@ export default class HistoryControl extends Component {
   }
 
   renderInFlatList(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
+    const { options, undo, redo } = config;
     return (
       <div className="history-wrapper">
-        {config.indexOf('undo') >= 0 && <Option
+        {options.indexOf('undo') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.undo}
           disabled={undoDisabled}
         >
           <img
-            src={config.get('undo').get('icon')}
+            src={undo.icon}
             role="presentation"
             className="history-icon"
           />
         </Option>}
-        {config.indexOf('redo') >= 0 && <Option
+        {options.indexOf('redo') >= 0 && <Option
           value="ordered-list-item"
           onClick={this.redo}
           disabled={redoDisabled}
         >
           <img
-            src={config.get('redo').get('icon')}
+            src={redo.icon}
             role="presentation"
             className="history-icon"
           />

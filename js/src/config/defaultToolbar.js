@@ -1,4 +1,3 @@
-import { fromJS } from 'immutable';
 import bold from '../../../images/bold.svg';
 import italic from '../../../images/italic.svg';
 import underline from '../../../images/underline.svg';
@@ -20,7 +19,11 @@ import image from '../../../images/image.svg';
 import undo from '../../../images/undo.svg';
 import redo from '../../../images/redo.svg';
 
-export default fromJS({
+/**
+* This is default toolbar configuration,
+* whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
+*/
+export default {
   options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'image', 'history'],
   inline: {
     inDropdown: false,
@@ -55,13 +58,13 @@ export default fromJS({
     link: { icon: link },
     unlink: { icon: unlink },
   },
-  image: { icon: image },
+  image: { icon: image, uploadCallback: undefined },
   history: {
     inDropdown: false,
     options: ['undo', 'redo'],
     undo: { icon: undo },
     redo: { icon: redo },
   },
-});
+};
 
 // todo: icons should have same size
