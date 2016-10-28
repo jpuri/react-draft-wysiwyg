@@ -48,7 +48,12 @@ export default class ListControl extends Component {
     }
   };
 
-  toggleBlockType: Function = (blockType): void => {
+  options: Array = [{ type: 'unordered', value: 'unordered-list-item' },
+    { type: 'ordered', value: 'ordered-list-item' },
+    { type: 'indent', value: 'indent' },
+    { type: 'outdent', value: 'outdent' }];
+
+  toggleBlockType: Function = (blockType: String): void => {
     const { onChange, editorState } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
@@ -79,45 +84,48 @@ export default class ListControl extends Component {
     this.adjustDepth(-1);
   };
 
+  // todo: evaluate refactoring this code to put a loop  there
+  // hint: it will require moving click handlers
   renderInFlatList(currentBlockType: string, config: Object): Object {
+    const { options, unordered, ordered, indent, outdent } = config;
     return (
       <div className="list-wrapper">
-        {config.get('options').first('unordered') && <Option
+        {options.indexOf('unordered') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.toggleBlockType}
           active={currentBlockType === 'unordered-list-item'}
         >
           <img
-            src={config.get('unordered').get('icon')}
+            src={unordered.icon}
             className="list-icon"
             role="presentation"
           />
         </Option>}
-        {config.get('options').first('ordered') && <Option
+        {options.indexOf('ordered') >= 0 && <Option
           value="ordered-list-item"
           onClick={this.toggleBlockType}
           active={currentBlockType === 'ordered-list-item'}
         >
           <img
-            src={config.get('ordered').get('icon')}
+            src={ordered.icon}
             role="presentation"
             className="list-icon"
           />
         </Option>}
-        {config.get('options').first('indent') && <Option
+        {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
         >
           <img
-            src={config.get('indent').get('icon')}
+            src={indent.icon}
             role="presentation"
             className="list-icon"
           />
         </Option>}
-        {config.get('options').first('outdent') && <Option
+        {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
         >
           <img
-            src={config.get('outdent').get('icon')}
+            src={outdent.icon}
             role="presentation"
             className="list-icon"
           />
@@ -127,6 +135,7 @@ export default class ListControl extends Component {
   }
 
   renderInDropDown(currentBlockType: string, config: Object): Object {
+    const { options } = config;
     return (
       <Dropdown
         className="list-dropdown"
@@ -137,48 +146,20 @@ export default class ListControl extends Component {
           role="presentation"
           className="list-icon"
         />
-        {config.get('options').first('unordered') && <DropdownOption
-          value="unordered-list-item"
-          className="list-dropdownOption"
-          active={currentBlockType === 'unordered-list-item'}
-        >
-          <img
-            src={config.get('unordered').get('icon')}
-            role="presentation"
-            className="list-icon"
-          />
-        </DropdownOption>}
-        {config.get('options').first('ordered') && <DropdownOption
-          value="ordered-list-item"
-          className="list-dropdownOption"
-          active={currentBlockType === 'ordered-list-item'}
-        >
-          <img
-            src={config.get('ordered').get('icon')}
-            role="presentation"
-            className="list-icon"
-          />
-        </DropdownOption>}
-        {config.get('options').first('indent') && <DropdownOption
-          value="indent"
-          className="list-dropdownOption"
-        >
-          <img
-            src={config.get('indent').get('icon')}
-            role="presentation"
-            className="list-icon"
-          />
-        </DropdownOption>}
-        {config.get('options').first('outdent') && <DropdownOption
-          value="outdent"
-          className="list-dropdownOption"
-        >
-          <img
-            src={config.get('outdent').get('icon')}
-            role="presentation"
-            className="list-icon"
-          />
-        </DropdownOption>}
+        { this.filter(option => options.indexOf(option.type) >= 0)
+          .map((option, index) => (<DropdownOption
+            key={index}
+            value={option.value}
+            className="list-dropdownOption"
+            active={currentBlockType === option.value}
+          >
+            <img
+              src={config[option.type].icon}
+              role="presentation"
+              className="list-icon"
+            />
+          </DropdownOption>))
+        }
       </Dropdown>
     );
   }
@@ -186,7 +167,7 @@ export default class ListControl extends Component {
   render(): Object {
     const { config } = this.props;
     const { currentBlockType } = this.state;
-    if (config && config.get('inDropdown')) {
+    if (config.inDropdown) {
       return this.renderInDropDown(currentBlockType, config);
     }
     return this.renderInFlatList(currentBlockType, config);

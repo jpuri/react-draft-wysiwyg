@@ -57,6 +57,7 @@ export default class HistoryControl extends Component {
   };
 
   renderInDropDown(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
+    const { options, undo, redo } = config;
     return (
       <Dropdown
         className="history-dropdown"
@@ -67,24 +68,24 @@ export default class HistoryControl extends Component {
           role="presentation"
           className="history-icon"
         />
-        {config.get('options').first('undo') && <DropdownOption
+        {options.indexOf('undo') >= 0 && <DropdownOption
           onClick={this.undo}
           disabled={undoDisabled}
           className="history-dropdownoption"
         >
           <img
-            src={config.get('undo').get('icon')}
+            src={undo.icon}
             role="presentation"
             className="history-icon"
           />
         </DropdownOption>}
-        {config.get('options').first('redo') && <DropdownOption
+        {options.indexOf('redo') >= 0 && <DropdownOption
           onClick={this.redo}
           disabled={redoDisabled}
           className="history-dropdownoption"
         >
           <img
-            src={config.get('redo').get('icon')}
+            src={redo.icon}
             role="presentation"
             className="history-icon"
           />
@@ -96,7 +97,7 @@ export default class HistoryControl extends Component {
   renderInFlatList(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
     return (
       <div className="history-wrapper">
-        {config.get('options').first('undo') && <Option
+        {config.indexOf('undo') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.undo}
           disabled={undoDisabled}
@@ -107,7 +108,7 @@ export default class HistoryControl extends Component {
             className="history-icon"
           />
         </Option>}
-        {config.get('options').first('redo') && <Option
+        {config.indexOf('redo') >= 0 && <Option
           value="ordered-list-item"
           onClick={this.redo}
           disabled={redoDisabled}
@@ -128,7 +129,7 @@ export default class HistoryControl extends Component {
       undoDisabled,
       redoDisabled,
     } = this.state;
-    if (config && config.get('inDropdown')) {
+    if (config.inDropdown) {
       return this.renderInDropDown(undoDisabled, redoDisabled, config);
     }
     return this.renderInFlatList(undoDisabled, redoDisabled, config);

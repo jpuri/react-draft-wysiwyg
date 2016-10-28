@@ -54,7 +54,7 @@ export default class InlineControl extends Component {
     return (
       <div className="inline-wrapper">
         {
-          config.get('options')
+          config.options
           .map((style, index) =>
             <Option
               key={index}
@@ -64,7 +64,7 @@ export default class InlineControl extends Component {
             >
               <img
                 role="presentation"
-                src={config.get(style).get('icon')}
+                src={config[style].icon}
                 className="inline-icon"
               />
             </Option>
@@ -86,7 +86,7 @@ export default class InlineControl extends Component {
           className="inline-icon"
         />
         {
-          config.get('options')
+          config.options
           .map((style, index) =>
             <DropdownOption
               key={index}
@@ -95,7 +95,7 @@ export default class InlineControl extends Component {
               active={currentStyles[style.value] === true}
             >
               <img
-                src={config.get(style).get('icon')}
+                src={config[style].icon}
                 role="presentation"
                 className="inline-icon"
               />
@@ -108,7 +108,7 @@ export default class InlineControl extends Component {
   render(): Object {
     const { config } = this.props;
     const { currentStyles } = this.state;
-    if (config && config.get('inDropdown')) {
+    if (config.inDropdown) {
       return this.renderInDropDown(currentStyles, config);
     }
     return this.renderInFlatList(currentStyles, config);

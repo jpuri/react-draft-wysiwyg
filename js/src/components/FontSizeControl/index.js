@@ -55,7 +55,7 @@ export default class FontSizeControl extends Component {
   };
 
   render() {
-    const { config } = this.props;
+    const { config: { icon } } = this.props;
     let { currentFontSize } = this.state;
     currentFontSize = currentFontSize
       && Number(currentFontSize.substring(9, currentFontSize.length));
@@ -69,7 +69,7 @@ export default class FontSizeControl extends Component {
             <span>{currentFontSize}</span>
           :
             <img
-              src={config.get('icon')}
+              src={icon}
               role="presentation"
               className="fontsize-icon"
             />

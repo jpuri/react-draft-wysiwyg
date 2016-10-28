@@ -15,6 +15,7 @@ import {
 } from 'draftjs-utils';
 import { Map } from 'immutable';
 import blockStyleFn from '../../utils/blockStyle';
+import { mergeRecursive } from '../../utils/toolbar';
 import InlineControl from '../InlineControl';
 import BlockControl from '../BlockControl';
 import FontSizeControl from '../FontSizeControl';
@@ -54,7 +55,7 @@ export default class WysiwygEditor extends Component {
       toolBarMouseDown: false,
       editorFocused: false,
       editorMouseDown: false,
-      toolbar: defaultToolbar.mergeDeep(props.toolbar),
+      toolbar: mergeRecursive(defaultToolbar, props.toolbar),
     };
   }
 
@@ -74,7 +75,7 @@ export default class WysiwygEditor extends Component {
   componentWillReceiveProps(props) {
     if (this.props.toolbar !== props.toolbar) {
       this.setState({
-        toolbar: defaultToolbar.mergeDeep(props.toolbar),
+        toolbar: mergeRecursive(defaultToolbar, props.toolbar),
       });
     }
   }
@@ -185,6 +186,18 @@ export default class WysiwygEditor extends Component {
       editorClassName,
       wrapperClassName,
     } = this.props;
+    const {
+      options,
+      inline,
+      blockType,
+      fontSize,
+      list,
+      textAlign,
+      colorPicker,
+      link,
+      image,
+      history,
+    } = toolbar;
 
     const hasFocus = editorFocused || toolBarMouseDown || editorMouseDown;
     return (
@@ -197,54 +210,54 @@ export default class WysiwygEditor extends Component {
               onMouseUp={this.onToolbarMouseUp}
               onClick={this.focusEditor}
             >
-              {toolbar.get('options').first('inline') && <InlineControl
+              {options.indexOf('inline') >= 0 && <InlineControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbar && toolbar.get('inline')}
+                config={inline}
               />}
-              {toolbar.get('options').first('blockType') && <BlockControl
+              {options.indexOf('blockType') >= 0 && <BlockControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbar && toolbar.get('blockType')}
+                config={blockType}
               />}
-              {toolbar.get('options').first('fontSize') && <FontSizeControl
+              {options.indexOf('fontSize') >= 0 && <FontSizeControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbar && toolbar.get('fontSize')}
+                config={fontSize}
               />}
-              {toolbar.get('options').first('fontFamily') && <FontFamilyControl
+              {options.indexOf('fontFamily') >= 0 && <FontFamilyControl
                 onChange={this.onChange}
                 editorState={editorState}
               />}
-              {toolbar.get('options').first('list') && <ListControl
+              {options.indexOf('list') >= 0 && <ListControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbar && toolbar.get('list')}
+                config={list}
               />}
-              {toolbar.get('options').first('textAlign') && <TextAlignControl
+              {options.indexOf('textAlign') >= 0 && <TextAlignControl
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbar && toolbar.get('textAlign')}
+                config={textAlign}
               />}
-              {toolbar.get('options').first('colorPicker') && <ColorPicker
+              {options.indexOf('colorPicker') >= 0 && <ColorPicker
                 onChange={this.onChange}
                 editorState={editorState}
-                config={toolbar && toolbar.get('colorPicker')}
+                config={colorPicker}
               />}
-              {toolbar.get('options').first('link') && <LinkControl
+              {options.indexOf('link') >= 0 && <LinkControl
                 editorState={editorState}
                 onChange={this.onChange}
-                config={toolbar && toolbar.get('link')}
+                config={link}
               />}
-              {toolbar.get('options').first('image') && <ImageControl
+              {options.indexOf('image') >= 0 && <ImageControl
                 editorState={editorState}
                 onChange={this.onChange}
-                config={toolbar && toolbar.get('image')}
+                config={image}
               />}
-              {toolbar.get('options').first('history') && <HistoryControl
+              {options.indexOf('history') >= 0 && <HistoryControl
                 editorState={editorState}
                 onChange={this.onChange}
-                config={toolbar && toolbar.get('history')}
+                config={history}
               />}
             </div>
           :

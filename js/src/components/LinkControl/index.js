@@ -157,25 +157,26 @@ export default class LinkControl extends Component {
   }
 
   renderInFlatList(showModal: bool, currentEntity: Object, config: Object): Object {
+    const { options, link, unlink } = config;
     return (
       <div className="link-wrapper">
-        {config.get('options').first('link') && <Option
+        {options.indexOf('link') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.toggleLinkModal}
         >
           <img
-            src={config.get('link').get('icon')}
+            src={link.icon}
             role="presentation"
             className="link-icon"
           />
         </Option>}
-        {config.get('options').first('unlink') && <Option
+        {options.indexOf('unlink') >= 0 && <Option
           disabled={!currentEntity}
           value="ordered-list-item"
           onClick={this.removeLink}
         >
           <img
-            src={config.get('unlink').get('icon')}
+            src={unlink.icon}
             role="presentation"
             className="link-icon"
           />
@@ -186,6 +187,7 @@ export default class LinkControl extends Component {
   }
 
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
+    const { options, link, unlink } = config;
     return (
       <div className="link-wrapper">
         <Dropdown
@@ -197,23 +199,23 @@ export default class LinkControl extends Component {
             role="presentation"
             className="link-icon"
           />
-          {config.get('options').first('link') && <DropdownOption
+          {options.indexOf('link') >= 0 && <DropdownOption
             onClick={this.toggleLinkModal}
             className="link-dropdownoption"
           >
             <img
-              src={config.get('link').get('icon')}
+              src={link.icon}
               role="presentation"
               className="link-icon"
             />
           </DropdownOption>}
-          {config.get('options').first('unlink') && <DropdownOption
+          {options.indexOf('unlink') >= 0 && <DropdownOption
             onClick={this.removeLink}
             disabled={!currentEntity}
             className="link-dropdownoption"
           >
             <img
-              src={config.get('unlink').get('icon')}
+              src={unlink.icon}
               role="presentation"
               className="link-icon"
             />
@@ -227,7 +229,7 @@ export default class LinkControl extends Component {
   render(): Object {
     const { config } = this.props;
     const { showModal, currentEntity } = this.state;
-    if (config && config.get('inDropdown')) {
+    if (config.inDropdown) {
       return this.renderInDropDown(showModal, currentEntity, config);
     }
     return this.renderInFlatList(showModal, currentEntity, config);
