@@ -227,7 +227,6 @@ export default class ImageControl extends Component {
           <img
             src={icon}
             role="presentation"
-            className="image-icon"
           />
         </Option>
         {showModal ? this.renderAddImageModal() : undefined}

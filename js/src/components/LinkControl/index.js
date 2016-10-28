@@ -167,7 +167,6 @@ export default class LinkControl extends Component {
           <img
             src={link.icon}
             role="presentation"
-            className="link-icon"
           />
         </Option>}
         {options.indexOf('unlink') >= 0 && <Option
@@ -178,7 +177,6 @@ export default class LinkControl extends Component {
           <img
             src={unlink.icon}
             role="presentation"
-            className="link-icon"
           />
         </Option>}
         {showModal ? this.renderAddLinkModal() : undefined}
@@ -197,7 +195,6 @@ export default class LinkControl extends Component {
           <img
             src={getFirstIcon(config)}
             role="presentation"
-            className="link-icon"
           />
           {options.indexOf('link') >= 0 && <DropdownOption
             onClick={this.toggleLinkModal}
@@ -206,7 +203,6 @@ export default class LinkControl extends Component {
             <img
               src={link.icon}
               role="presentation"
-              className="link-icon"
             />
           </DropdownOption>}
           {options.indexOf('unlink') >= 0 && <DropdownOption
@@ -217,7 +213,6 @@ export default class LinkControl extends Component {
             <img
               src={unlink.icon}
               role="presentation"
-              className="link-icon"
             />
           </DropdownOption>}
         </Dropdown>

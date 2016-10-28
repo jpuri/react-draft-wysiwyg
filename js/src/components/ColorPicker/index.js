@@ -144,7 +144,6 @@ export default class ColorPicker extends Component {
           <img
             src={icon}
             role="presentation"
-            className="colorpicker-icon"
           />
         </Option>
         {showModal ? this.renderModal() : undefined}

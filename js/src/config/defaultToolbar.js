@@ -66,5 +66,3 @@ export default {
     redo: { icon: redo },
   },
 };
-
-// todo: icons should have same size

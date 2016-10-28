@@ -97,7 +97,6 @@ export default class ListControl extends Component {
         >
           <img
             src={unordered.icon}
-            className="list-icon"
             role="presentation"
           />
         </Option>}
@@ -109,7 +108,6 @@ export default class ListControl extends Component {
           <img
             src={ordered.icon}
             role="presentation"
-            className="list-icon"
           />
         </Option>}
         {options.indexOf('indent') >= 0 && <Option
@@ -118,7 +116,6 @@ export default class ListControl extends Component {
           <img
             src={indent.icon}
             role="presentation"
-            className="list-icon"
           />
         </Option>}
         {options.indexOf('outdent') >= 0 && <Option
@@ -127,7 +124,6 @@ export default class ListControl extends Component {
           <img
             src={outdent.icon}
             role="presentation"
-            className="list-icon"
           />
         </Option>}
       </div>
@@ -144,7 +140,6 @@ export default class ListControl extends Component {
         <img
           src={getFirstIcon(config)}
           role="presentation"
-          className="list-icon"
         />
         { this.filter(option => options.indexOf(option.type) >= 0)
           .map((option, index) => (<DropdownOption
@@ -156,7 +151,6 @@ export default class ListControl extends Component {
             <img
               src={config[option.type].icon}
               role="presentation"
-              className="list-icon"
             />
           </DropdownOption>))
         }

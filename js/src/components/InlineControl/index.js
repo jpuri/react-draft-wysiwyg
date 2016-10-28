@@ -65,7 +65,6 @@ export default class InlineControl extends Component {
               <img
                 role="presentation"
                 src={config[style].icon}
-                className="inline-icon"
               />
             </Option>
           )
@@ -83,7 +82,6 @@ export default class InlineControl extends Component {
         <img
           src={getFirstIcon(config)}
           role="presentation"
-          className="inline-icon"
         />
         {
           config.options
@@ -97,7 +95,6 @@ export default class InlineControl extends Component {
               <img
                 src={config[style].icon}
                 role="presentation"
-                className="inline-icon"
               />
             </DropdownOption>)
           }
