@@ -12,10 +12,6 @@
   display: flex;
   justify-content: center;
 }
-.text-align-icon {
-  width: 15px;
-  height: 15px;
-}
 .right-aligned-block {
   display: flex;
   flex-direction: row;

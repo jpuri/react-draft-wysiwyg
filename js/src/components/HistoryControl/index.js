@@ -2,9 +2,9 @@
 
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
+import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
-import undo from '../../../../images/undo.svg';
-import redo from '../../../../images/redo.svg';
+import { Dropdown, DropdownOption } from '../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class HistoryControl extends Component {
@@ -12,6 +12,7 @@ export default class HistoryControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -55,36 +56,79 @@ export default class HistoryControl extends Component {
     }
   };
 
-  render(): Object {
-    const {
-      undoDisabled,
-      redoDisabled,
-    } = this.state;
+  renderInDropDown(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
+    const { options, undo, redo } = config;
+    return (
+      <Dropdown
+        className="history-dropdown"
+        onChange={this.toggleInlineStyle}
+      >
+        <img
+          src={getFirstIcon(config)}
+          role="presentation"
+        />
+        {options.indexOf('undo') >= 0 && <DropdownOption
+          onClick={this.undo}
+          disabled={undoDisabled}
+          className="history-dropdownoption"
+        >
+          <img
+            src={undo.icon}
+            role="presentation"
+          />
+        </DropdownOption>}
+        {options.indexOf('redo') >= 0 && <DropdownOption
+          onClick={this.redo}
+          disabled={redoDisabled}
+          className="history-dropdownoption"
+        >
+          <img
+            src={redo.icon}
+            role="presentation"
+          />
+        </DropdownOption>}
+      </Dropdown>
+    );
+  }
+
+  renderInFlatList(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
+    const { options, undo, redo } = config;
     return (
       <div className="history-wrapper">
-        <Option
+        {options.indexOf('undo') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.undo}
           disabled={undoDisabled}
         >
           <img
-            src={undo}
+            src={undo.icon}
             role="presentation"
-            className="history-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {options.indexOf('redo') >= 0 && <Option
           value="ordered-list-item"
           onClick={this.redo}
           disabled={redoDisabled}
         >
           <img
-            src={redo}
+            src={redo.icon}
             role="presentation"
-            className="history-icon"
           />
-        </Option>
+        </Option>}
       </div>
     );
   }
+
+  render(): Object {
+    const { config } = this.props;
+    const {
+      undoDisabled,
+      redoDisabled,
+    } = this.state;
+    if (config.inDropdown) {
+      return this.renderInDropDown(undoDisabled, redoDisabled, config);
+    }
+    return this.renderInFlatList(undoDisabled, redoDisabled, config);
+  }
+
 }

@@ -1,14 +1,15 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import LinkControl from '..';
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import LinkControl from '..';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('InlineControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -20,6 +21,7 @@ describe('InlineControl test suite', () => {
       <LinkControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.link}
       />
     ).node.type).to.equal('div');
   });
@@ -29,6 +31,7 @@ describe('InlineControl test suite', () => {
       <LinkControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.link}
       />
     );
     expect(control.children().length).to.equal(2);
@@ -39,6 +42,7 @@ describe('InlineControl test suite', () => {
       <LinkControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.link}
       />
     );
     control.childAt(0).simulate('click');
@@ -50,6 +54,7 @@ describe('InlineControl test suite', () => {
       <LinkControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.link}
       />
     );
     assert.isNotTrue(control.state().showModal);

@@ -3,7 +3,11 @@
   align-items: center;
   margin-bottom: 6px;
 }
-.history-icon {
-  width: 17px;
-  height: 17px;
+.history-dropdownoption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.history-dropdown {
+  width: 50px;
 }

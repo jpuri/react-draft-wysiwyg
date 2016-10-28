@@ -68,7 +68,11 @@
 .link-modal-btn:disabled {
   background: #ece9e9;
 }
-.link-icon {
-  width: 17px;
-  height: 17px;
+.link-dropdownoption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.history-dropdown {
+  width: 50px;
 }

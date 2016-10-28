@@ -20,7 +20,7 @@ class Link extends Component {
 
   static propTypes = {
     entityKey: PropTypes.string.isRequired,
-    children: PropTypes.string,
+    children: PropTypes.array,
   };
 
   state: Object = {

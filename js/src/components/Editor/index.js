@@ -6,7 +6,6 @@ import {
   EditorState,
   RichUtils,
   convertToRaw,
-  ContentState,
   CompositeDecorator,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
@@ -15,7 +14,8 @@ import {
   customStyleMap,
 } from 'draftjs-utils';
 import { Map } from 'immutable';
-import blockStyleFn from '../../Utils/BlockStyle';
+import blockStyleFn from '../../utils/blockStyle';
+import { mergeRecursive } from '../../utils/toolbar';
 import InlineControl from '../InlineControl';
 import BlockControl from '../BlockControl';
 import FontSizeControl from '../FontSizeControl';
@@ -26,8 +26,9 @@ import ColorPicker from '../ColorPicker';
 import LinkControl from '../LinkControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
-import LinkDecorator from '../../Decorators/Link';
-import ImageBlockRenderer from '../../Renderer/Image';
+import LinkDecorator from '../../decorators/Link';
+import ImageBlockRenderer from '../../renderer/Image';
+import defaultToolbar from '../../config/defaultToolbar';
 import draft from '../../../../css/Draft.css'; // eslint-disable-line no-unused-vars
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -35,27 +36,28 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    contentState: PropTypes.instanceOf(ContentState),
+    contentState: PropTypes.object,
     toolbarAlwaysVisible: PropTypes.bool,
+    toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
-    inlineControlInDropdown: PropTypes.bool,
-    listControlInDropdown: PropTypes.bool,
-    textAlignControlInDropdown: PropTypes.bool,
-    uploadImageCallBack: PropTypes.func,
   };
 
   static defaultProps = {
-    toolbarAlwaysVisible: false,
+    toolbarAlwaysVisible: true,
   };
 
-  state: Object = {
-    editorState: undefined,
-    toolBarMouseDown: false,
-    editorFocused: false,
-    editorMouseDown: false,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      editorState: undefined,
+      toolBarMouseDown: false,
+      editorFocused: false,
+      editorMouseDown: false,
+      toolbar: mergeRecursive(defaultToolbar, props.toolbar),
+    };
+  }
 
   componentWillMount(): void {
     let editorState;
@@ -68,6 +70,14 @@ export default class WysiwygEditor extends Component {
     this.setState({
       editorState,
     });
+  }
+
+  componentWillReceiveProps(props) {
+    if (this.props.toolbar !== props.toolbar) {
+      this.setState({
+        toolbar: mergeRecursive(defaultToolbar, props.toolbar),
+      });
+    }
   }
 
   onChange: Function = (editorState: Object, focusEditor: boolean): void => {
@@ -168,21 +178,28 @@ export default class WysiwygEditor extends Component {
       editorFocused,
       editorMouseDown,
       toolBarMouseDown,
+      toolbar,
      } = this.state;
-
     const {
       toolbarAlwaysVisible,
-      textAlignControlInDropdown,
-      inlineControlInDropdown,
-      listControlInDropdown,
       toolbarClassName,
       editorClassName,
       wrapperClassName,
-      uploadImageCallBack,
     } = this.props;
+    const {
+      options,
+      inline,
+      blockType,
+      fontSize,
+      list,
+      textAlign,
+      colorPicker,
+      link,
+      image,
+      history,
+    } = toolbar;
 
     const hasFocus = editorFocused || toolBarMouseDown || editorMouseDown;
-
     return (
       <div className={`editor-wrapper ${wrapperClassName}`}>
         {
@@ -193,54 +210,55 @@ export default class WysiwygEditor extends Component {
               onMouseUp={this.onToolbarMouseUp}
               onClick={this.focusEditor}
             >
-              <InlineControl
+              {options.indexOf('inline') >= 0 && <InlineControl
                 onChange={this.onChange}
                 editorState={editorState}
-                inDropdown={inlineControlInDropdown}
-              />
-              <BlockControl
-                onChange={this.onChange}
-                focusEditor={this.focusEditor}
-                editorState={editorState}
-              />
-              <FontSizeControl
+                config={inline}
+              />}
+              {options.indexOf('blockType') >= 0 && <BlockControl
                 onChange={this.onChange}
                 editorState={editorState}
-              />
-              <FontFamilyControl
+                config={blockType}
+              />}
+              {options.indexOf('fontSize') >= 0 && <FontSizeControl
                 onChange={this.onChange}
                 editorState={editorState}
-              />
-              <ListControl
+                config={fontSize}
+              />}
+              {options.indexOf('fontFamily') >= 0 && <FontFamilyControl
                 onChange={this.onChange}
                 editorState={editorState}
-                inDropdown={listControlInDropdown}
-              />
-              <TextAlignControl
+              />}
+              {options.indexOf('list') >= 0 && <ListControl
                 onChange={this.onChange}
                 editorState={editorState}
-                inDropdown={textAlignControlInDropdown}
-              />
-              <ColorPicker
+                config={list}
+              />}
+              {options.indexOf('textAlign') >= 0 && <TextAlignControl
                 onChange={this.onChange}
                 editorState={editorState}
-                hideModal={editorMouseDown || !hasFocus}
-              />
-              <LinkControl
+                config={textAlign}
+              />}
+              {options.indexOf('colorPicker') >= 0 && <ColorPicker
+                onChange={this.onChange}
+                editorState={editorState}
+                config={colorPicker}
+              />}
+              {options.indexOf('link') >= 0 && <LinkControl
                 editorState={editorState}
                 onChange={this.onChange}
-                hideModal={editorMouseDown || !hasFocus}
-              />
-              <ImageControl
+                config={link}
+              />}
+              {options.indexOf('image') >= 0 && <ImageControl
                 editorState={editorState}
                 onChange={this.onChange}
-                uploadImageCallBack={uploadImageCallBack}
-                hideModal={editorMouseDown || !hasFocus}
-              />
-              <HistoryControl
+                config={image}
+              />}
+              {options.indexOf('history') >= 0 && <HistoryControl
                 editorState={editorState}
                 onChange={this.onChange}
-              />
+                config={history}
+              />}
             </div>
           :
           undefined

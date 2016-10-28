@@ -1,14 +1,15 @@
 /* @flow */
 
 import React from 'react';
-import { expect } from 'chai';
-import { shallow, mount } from 'enzyme';
-import HistoryControl from '..';
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import { expect } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
+import HistoryControl from '..';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('HistoryControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -20,6 +21,7 @@ describe('HistoryControl test suite', () => {
       <HistoryControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.history}
       />
     ).node.type).to.equal('div');
   });
@@ -29,6 +31,7 @@ describe('HistoryControl test suite', () => {
       <HistoryControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.history}
       />
     );
     expect(control.children().length).to.equal(2);

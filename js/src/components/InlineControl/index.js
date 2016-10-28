@@ -3,14 +3,10 @@
 import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
 import { RichUtils } from 'draft-js';
+import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
 
-import bold from '../../../../images/bold.svg';
-import italic from '../../../../images/italic.svg';
-import underline from '../../../../images/underline.svg';
-import strikethrough from '../../../../images/strikethrough.svg';
-import monospace from '../../../../images/monospace.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class InlineControl extends Component {
@@ -18,7 +14,7 @@ export default class InlineControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
-    inDropdown: PropTypes.bool,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -43,23 +39,6 @@ export default class InlineControl extends Component {
     }
   }
 
-  stylesMap: Array<Object> = [{
-    value: 'BOLD',
-    icon: bold,
-  }, {
-    value: 'ITALIC',
-    icon: italic,
-  }, {
-    value: 'UNDERLINE',
-    icon: underline,
-  }, {
-    value: 'STRIKETHROUGH',
-    icon: strikethrough,
-  }, {
-    value: 'CODE',
-    icon: monospace,
-  }];
-
   toggleInlineStyle: Function = (style: string): void => {
     const { editorState, onChange } = this.props;
     const newState = RichUtils.toggleInlineStyle(
@@ -71,11 +50,12 @@ export default class InlineControl extends Component {
     }
   };
 
-  renderInFlatList(currentStyles: string): Object {
+  renderInFlatList(currentStyles: string, config: Object): Object {
     return (
       <div className="inline-wrapper">
         {
-          this.stylesMap.map((style, index) =>
+          config.options
+          .map((style, index) =>
             <Option
               key={index}
               value={style.value}
@@ -84,8 +64,7 @@ export default class InlineControl extends Component {
             >
               <img
                 role="presentation"
-                src={style.icon}
-                className="inline-icon"
+                src={config[style].icon}
               />
             </Option>
           )
@@ -94,19 +73,19 @@ export default class InlineControl extends Component {
     );
   }
 
-  renderInDropDown(currentStyles: string): Object {
+  renderInDropDown(currentStyles: string, config: Object): Object {
     return (
       <Dropdown
         className="inline-dropdown"
         onChange={this.toggleInlineStyle}
       >
         <img
-          src={bold}
+          src={getFirstIcon(config)}
           role="presentation"
-          className="inline-icon"
         />
         {
-          this.stylesMap.map((style, index) =>
+          config.options
+          .map((style, index) =>
             <DropdownOption
               key={index}
               value={style.value}
@@ -114,9 +93,8 @@ export default class InlineControl extends Component {
               active={currentStyles[style.value] === true}
             >
               <img
-                src={style.icon}
+                src={config[style].icon}
                 role="presentation"
-                className="inline-icon"
               />
             </DropdownOption>)
           }
@@ -125,11 +103,13 @@ export default class InlineControl extends Component {
   }
 
   render(): Object {
-    const { inDropdown } = this.props;
+    const { config } = this.props;
     const { currentStyles } = this.state;
-    if (inDropdown) {
-      return this.renderInDropDown(currentStyles);
+    if (config.inDropdown) {
+      return this.renderInDropDown(currentStyles, config);
     }
-    return this.renderInFlatList(currentStyles);
+    return this.renderInFlatList(currentStyles, config);
   }
 }
+
+// todo: move all controls to separate folder controls

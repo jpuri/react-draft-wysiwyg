@@ -8,7 +8,6 @@ import {
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import Option from '../Option';
-import colorIcon from '../../../../images/color.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ColorPicker extends Component {
@@ -16,6 +15,7 @@ export default class ColorPicker extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -43,9 +43,6 @@ export default class ColorPicker extends Component {
         = getSelectionCustomInlineStyle(properties.editorState, ['COLOR']).COLOR;
       newState.currentBgColor
         = getSelectionCustomInlineStyle(properties.editorState, ['BGCOLOR']).BGCOLOR;
-    }
-    if (properties.hideModal && this.state.showModal) {
-      newState.showModal = false;
     }
     this.setState(newState);
   }
@@ -137,6 +134,7 @@ export default class ColorPicker extends Component {
   };
 
   render(): Object {
+    const { config: { icon } } = this.props;
     const { showModal } = this.state;
     return (
       <div className="colorpicker-wrapper">
@@ -144,9 +142,8 @@ export default class ColorPicker extends Component {
           onClick={this.toggleModal}
         >
           <img
-            src={colorIcon}
+            src={icon}
             role="presentation"
-            className="colorpicker-icon"
           />
         </Option>
         {showModal ? this.renderModal() : undefined}

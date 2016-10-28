@@ -3,12 +3,9 @@
 import React, { Component, PropTypes } from 'react';
 import { RichUtils } from 'draft-js';
 import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
+import { getFirstIcon } from '../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import Option from '../Option';
-import indent from '../../../../images/indent.svg';
-import outdent from '../../../../images/outdent.svg';
-import ordered from '../../../../images/list-ordered.svg';
-import unordered from '../../../../images/list-unordered.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ListControl extends Component {
@@ -16,7 +13,7 @@ export default class ListControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
-    inDropdown: PropTypes.bool,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -51,7 +48,12 @@ export default class ListControl extends Component {
     }
   };
 
-  toggleBlockType: Function = (blockType): void => {
+  options: Array = [{ type: 'unordered', value: 'unordered-list-item' },
+    { type: 'ordered', value: 'ordered-list-item' },
+    { type: 'indent', value: 'indent' },
+    { type: 'outdent', value: 'outdent' }];
+
+  toggleBlockType: Function = (blockType: String): void => {
     const { onChange, editorState } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
@@ -82,116 +84,87 @@ export default class ListControl extends Component {
     this.adjustDepth(-1);
   };
 
-  renderInFlatList(currentBlockType: string): Object {
+  // todo: evaluate refactoring this code to put a loop there and in other places also in code
+  // hint: it will require moving click handlers
+  renderInFlatList(currentBlockType: string, config: Object): Object {
+    const { options, unordered, ordered, indent, outdent } = config;
     return (
       <div className="list-wrapper">
-        <Option
+        {options.indexOf('unordered') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.toggleBlockType}
           active={currentBlockType === 'unordered-list-item'}
         >
           <img
-            src={unordered}
-            className="list-icon"
+            src={unordered.icon}
             role="presentation"
           />
-        </Option>
-        <Option
+        </Option>}
+        {options.indexOf('ordered') >= 0 && <Option
           value="ordered-list-item"
           onClick={this.toggleBlockType}
           active={currentBlockType === 'ordered-list-item'}
         >
           <img
-            src={ordered}
+            src={ordered.icon}
             role="presentation"
-            className="list-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
         >
           <img
-            src={indent}
+            src={indent.icon}
             role="presentation"
-            className="list-icon"
           />
-        </Option>
-        <Option
+        </Option>}
+        {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
         >
           <img
-            src={outdent}
+            src={outdent.icon}
             role="presentation"
-            className="list-icon"
           />
-        </Option>
+        </Option>}
       </div>
     );
   }
 
-  renderInDropDown(currentBlockType: string): Object {
+  renderInDropDown(currentBlockType: string, config: Object): Object {
+    const { options } = config;
     return (
       <Dropdown
         className="list-dropdown"
         onChange={this.onDropdownChange}
       >
         <img
-          src={unordered}
+          src={getFirstIcon(config)}
           role="presentation"
-          className="list-icon"
         />
-        <DropdownOption
-          value="unordered-list-item"
-          className="list-dropdownOption"
-          active={currentBlockType === 'unordered-list-item'}
-        >
-          <img
-            src={unordered}
-            role="presentation"
-            className="list-icon"
-          />
-        </DropdownOption>
-        <DropdownOption
-          value="ordered-list-item"
-          className="list-dropdownOption"
-          active={currentBlockType === 'ordered-list-item'}
-        >
-          <img
-            src={ordered}
-            role="presentation"
-            className="list-icon"
-          />
-        </DropdownOption>
-        <DropdownOption
-          value="indent"
-          className="list-dropdownOption"
-        >
-          <img
-            src={indent}
-            role="presentation"
-            className="list-icon"
-          />
-        </DropdownOption>
-        <DropdownOption
-          value="outdent"
-          className="list-dropdownOption"
-        >
-          <img
-            src={outdent}
-            role="presentation"
-            className="list-icon"
-          />
-        </DropdownOption>
+        { this.options
+          .filter(option => options.indexOf(option.type) >= 0)
+          .map((option, index) => (<DropdownOption
+            key={index}
+            value={option.value}
+            className="list-dropdownOption"
+            active={currentBlockType === option.value}
+          >
+            <img
+              src={config[option.type].icon}
+              role="presentation"
+            />
+          </DropdownOption>))
+        }
       </Dropdown>
     );
   }
 
   render(): Object {
-    const { inDropdown } = this.props;
+    const { config } = this.props;
     const { currentBlockType } = this.state;
-    if (inDropdown) {
-      return this.renderInDropDown(currentBlockType);
+    if (config.inDropdown) {
+      return this.renderInDropDown(currentBlockType, config);
     }
-    return this.renderInFlatList(currentBlockType);
+    return this.renderInFlatList(currentBlockType, config);
   }
 }

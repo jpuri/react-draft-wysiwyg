@@ -1,15 +1,15 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import BlockControl from '..';
-import { Dropdown } from '../../Dropdown';
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import BlockControl from '..';
+import { Dropdown } from '../../Dropdown';
 
 describe('BlockControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
