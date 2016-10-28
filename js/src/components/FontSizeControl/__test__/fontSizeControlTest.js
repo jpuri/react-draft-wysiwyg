@@ -1,15 +1,16 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import FontSizeControl from '..';
-import { Dropdown } from '../../Dropdown';
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import FontSizeControl from '..';
+import { Dropdown } from '../../Dropdown';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('FontSizeControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -21,6 +22,7 @@ describe('FontSizeControl test suite', () => {
       <FontSizeControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.fontSize}
       />
     ).node.type).to.equal('div');
   });
@@ -30,6 +32,7 @@ describe('FontSizeControl test suite', () => {
       <FontSizeControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.fontSize}
       />
     );
     assert.equal(control.childAt(0).props().children.length, 2);

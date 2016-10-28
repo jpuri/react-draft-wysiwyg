@@ -1,15 +1,16 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { spy } from 'sinon';
-import { shallow, mount } from 'enzyme';
-import TextAlignControl from '..';
+import { expect, assert } from 'chai';// eslint-disable-line import/no-extraneous-dependencies
+import { spy } from 'sinon';// eslint-disable-line import/no-extraneous-dependencies
+import { shallow, mount } from 'enzyme';// eslint-disable-line import/no-extraneous-dependencies
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import TextAlignControl from '..';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('TextAlignControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -21,6 +22,7 @@ describe('TextAlignControl test suite', () => {
       <TextAlignControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.textAlign}
       />
     ).node.type).to.equal('div');
   });
@@ -30,6 +32,7 @@ describe('TextAlignControl test suite', () => {
       <TextAlignControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.textAlign}
       />
     );
     expect(control.children().length).to.equal(4);
@@ -40,7 +43,7 @@ describe('TextAlignControl test suite', () => {
       <TextAlignControl
         onChange={() => {}}
         editorState={editorState}
-        inDropdown
+        config={{ ...defaultToolbar.textAlign, inDropdown: true }}
       />
     );
     expect(control.children().length).to.equal(1);
@@ -53,6 +56,7 @@ describe('TextAlignControl test suite', () => {
       <TextAlignControl
         onChange={onChange}
         editorState={editorState}
+        config={defaultToolbar.textAlign}
       />
     );
     control.childAt(0).simulate('click');

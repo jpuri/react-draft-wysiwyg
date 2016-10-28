@@ -1,14 +1,15 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
-import ColorPicker from '..';
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
+import ColorPicker from '..';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('ColorPicker test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -20,6 +21,7 @@ describe('ColorPicker test suite', () => {
       <ColorPicker
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.colorPicker}
       />
     ).node.type).to.equal('div');
   });
@@ -29,6 +31,7 @@ describe('ColorPicker test suite', () => {
       <ColorPicker
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.colorPicker}
       />
     );
     assert.isNotTrue(control.state().showModal);
@@ -42,6 +45,7 @@ describe('ColorPicker test suite', () => {
       <ColorPicker
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.colorPicker}
       />
     );
     assert.isNotTrue(control.state().showModal);
@@ -54,6 +58,7 @@ describe('ColorPicker test suite', () => {
       <ColorPicker
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.colorPicker}
       />
     );
     expect(control.children().length).to.equal(1);

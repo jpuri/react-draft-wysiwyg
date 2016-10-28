@@ -1,15 +1,15 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { spy } from 'sinon';
-import { shallow, mount } from 'enzyme';
-import ImageControl from '..';
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import { expect } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
+import ImageControl from '..';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('InlineControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -21,6 +21,7 @@ describe('InlineControl test suite', () => {
       <ImageControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.image}
       />
     ).node.type).to.equal('div');
   });
@@ -30,6 +31,7 @@ describe('InlineControl test suite', () => {
       <ImageControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.image}
       />
     );
     expect(control.children().length).to.equal(1);
@@ -40,6 +42,7 @@ describe('InlineControl test suite', () => {
       <ImageControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.image}
       />
     );
     control.childAt(0).simulate('click');

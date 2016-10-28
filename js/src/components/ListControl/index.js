@@ -141,7 +141,8 @@ export default class ListControl extends Component {
           src={getFirstIcon(config)}
           role="presentation"
         />
-        { this.filter(option => options.indexOf(option.type) >= 0)
+        { this.options
+          .filter(option => options.indexOf(option.type) >= 0)
           .map((option, index) => (<DropdownOption
             key={index}
             value={option.value}

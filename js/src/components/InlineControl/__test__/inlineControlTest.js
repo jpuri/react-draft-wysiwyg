@@ -1,15 +1,16 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { spy } from 'sinon';
-import { shallow, mount } from 'enzyme';
-import InlineControl from '..';
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { spy } from 'sinon'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
+import InlineControl from '..';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('InlineControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -21,6 +22,7 @@ describe('InlineControl test suite', () => {
       <InlineControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.inline}
       />
     ).node.type).to.equal('div');
   });
@@ -30,6 +32,7 @@ describe('InlineControl test suite', () => {
       <InlineControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.inline}
       />
     );
     expect(control.children().length).to.equal(5);
@@ -40,7 +43,7 @@ describe('InlineControl test suite', () => {
       <InlineControl
         onChange={() => {}}
         editorState={editorState}
-        inDropdown
+        config={{ ...defaultToolbar.inline, inDropdown: true }}
       />
     );
     expect(control.children().length).to.equal(1);
@@ -53,6 +56,7 @@ describe('InlineControl test suite', () => {
       <InlineControl
         onChange={onChange}
         editorState={editorState}
+        config={defaultToolbar.inline}
       />
     );
     control.childAt(0).simulate('click');
@@ -72,6 +76,7 @@ describe('InlineControl test suite', () => {
       <InlineControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.inline}
       />
     );
     assert.isNotTrue(control.state().currentStyles.BOLD);
