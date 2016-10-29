@@ -23,13 +23,13 @@ import FontFamilyControl from '../FontFamilyControl';
 import ListControl from '../ListControl';
 import TextAlignControl from '../TextAlignControl';
 import ColorPicker from '../ColorPicker';
+import RemoveControl from '../RemoveControl';
 import LinkControl from '../LinkControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
 import ImageBlockRenderer from '../../renderer/Image';
 import defaultToolbar from '../../config/defaultToolbar';
-import draft from '../../../../css/Draft.css'; // eslint-disable-line no-unused-vars
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class WysiwygEditor extends Component {
@@ -196,6 +196,7 @@ export default class WysiwygEditor extends Component {
       colorPicker,
       link,
       image,
+      remove,
       history,
     } = toolbar;
 
@@ -253,6 +254,11 @@ export default class WysiwygEditor extends Component {
                 editorState={editorState}
                 onChange={this.onChange}
                 config={image}
+              />}
+              {options.indexOf('remove') >= 0 && <RemoveControl
+                editorState={editorState}
+                onChange={this.onChange}
+                config={remove}
               />}
               {options.indexOf('history') >= 0 && <HistoryControl
                 editorState={editorState}

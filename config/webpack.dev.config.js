@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
     './js/playground/index',
@@ -21,15 +21,10 @@ module.exports = {
       { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$|draftjs-utils\.js$|draftjs-to-html\.js$|lodash\.js$/ },
       {
         test: /\.css$/,
-        exclude: /Draft\.css$|font-awesome\.css$/,
         loader: ExtractTextPlugin.extract(
           'style-loader',
           'css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader'
         ),
-      },
-      {
-        test: /Draft\.css$/,
-        loader: 'style-loader!css-loader',
       },
       { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
       {
@@ -46,8 +41,7 @@ module.exports = {
       template: './js/playground/index.html',
       inject: true,
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin()
   ],
   postcss: () => [autoprefixer, precss],
   resolve: {

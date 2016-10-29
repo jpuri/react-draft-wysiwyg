@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-utils": "0.3.0",
+    "draftjs-utils": "../draftjs-utils",
     "immutable": "^3.8.1"
   },
   "peerDependencies": {

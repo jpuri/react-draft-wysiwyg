@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
 import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import draft from '../../css/Draft.css'; // eslint-disable-line no-unused-vars
 
 class Playground extends Component {
 
@@ -42,7 +43,7 @@ class Playground extends Component {
     return (
       <div className="playground-root">
         <div className="playground-label">
-          Toolbar is alwasy visible.
+          Toolbar is alwasy <sup>visible</sup>
         </div>
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">

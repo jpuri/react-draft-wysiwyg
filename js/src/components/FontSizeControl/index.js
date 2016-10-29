@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import {
   fontSizes,
-  toggleInlineStyle,
+  toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import { Dropdown, DropdownOption } from '../Dropdown';
@@ -44,7 +44,7 @@ export default class FontSizeControl extends Component {
   toggleFontSize: Function = (fontSize: number) => {
     const { editorState, onChange } = this.props;
     const fontSizeStr = fontSize && (fontSize.toString() || '');
-    const newState = toggleInlineStyle(
+    const newState = toggleCustomInlineStyle(
       editorState,
       'fontSize',
       fontSizeStr,
