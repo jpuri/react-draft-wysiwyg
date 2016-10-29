@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import {
   fontFamilies,
-  toggleInlineStyle,
+  toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import { Dropdown, DropdownOption } from '../Dropdown';
@@ -41,7 +41,7 @@ export default class FontFamilyControl extends Component {
 
   toggleFontFamily: Function = (fontFamily: string) => {
     const { editorState, onChange } = this.props;
-    const newState = toggleInlineStyle(
+    const newState = toggleCustomInlineStyle(
       editorState,
       'fontFamily',
       fontFamily,

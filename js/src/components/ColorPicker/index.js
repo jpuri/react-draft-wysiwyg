@@ -4,7 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import {
   colors,
-  toggleInlineStyle,
+  toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import Option from '../Option';
@@ -62,7 +62,7 @@ export default class ColorPicker extends Component {
   toggleColor: Function = (color: string): void => {
     const { editorState, onChange } = this.props;
     const { currentStyle } = this.state;
-    const newState = toggleInlineStyle(
+    const newState = toggleCustomInlineStyle(
       editorState,
       currentStyle,
       `${currentStyle}-${color}`

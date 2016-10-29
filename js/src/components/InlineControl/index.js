@@ -58,7 +58,7 @@ export default class InlineControl extends Component {
           .map((style, index) =>
             <Option
               key={index}
-              value={style.value}
+              value={style.toUpperCase()}
               onClick={this.toggleInlineStyle}
               active={currentStyles[style.value] === true}
             >
@@ -88,7 +88,7 @@ export default class InlineControl extends Component {
           .map((style, index) =>
             <DropdownOption
               key={index}
-              value={style.value}
+              value={style.toUpperCase()}
               className="inline-dropdownoption"
               active={currentStyles[style.value] === true}
             >

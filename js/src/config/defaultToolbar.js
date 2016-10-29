@@ -13,6 +13,7 @@ import center from '../../../images/align-center.svg';
 import right from '../../../images/align-right.svg';
 import justify from '../../../images/align-justify.svg';
 import color from '../../../images/color.svg';
+import eraser from '../../../images/eraser.svg';
 import link from '../../../images/link.svg';
 import unlink from '../../../images/unlink.svg';
 import image from '../../../images/image.svg';
@@ -24,7 +25,7 @@ import redo from '../../../images/redo.svg';
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'image', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'image', 'remove', 'history'],
   inline: {
     inDropdown: false,
     options: ['bold', 'italic', 'underline', 'strikethrough', 'code'],
@@ -59,6 +60,7 @@ export default {
     unlink: { icon: unlink },
   },
   image: { icon: image, uploadCallback: undefined },
+  remove: { icon: eraser },
   history: {
     inDropdown: false,
     options: ['undo', 'redo'],
