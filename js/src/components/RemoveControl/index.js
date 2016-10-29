@@ -13,9 +13,9 @@ export default class ColorPicker extends Component {
   };
 
   removeAllInlineStyles: Function = (editorState: EditorState): void => {
-    const currentStyles = editorState.getCurrentInlineStyle();
     let contentState = editorState.getCurrentContent();
-    currentStyles.forEach((style) => {
+    ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH', 'CODE',
+    'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE'].forEach((style) => {
       contentState = Modifier.removeInlineStyle(
         contentState,
         editorState.getSelection(),
