@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
-import { RichUtils } from 'draft-js';
+import { RichUtils, EditorState, Modifier } from 'draft-js';
 import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
@@ -41,10 +41,19 @@ export default class InlineControl extends Component {
 
   toggleInlineStyle: Function = (style: string): void => {
     const { editorState, onChange } = this.props;
-    const newState = RichUtils.toggleInlineStyle(
+    let newState = RichUtils.toggleInlineStyle(
       editorState,
       style
     );
+    if (style === 'SUBSCRIPT' || style === 'SUPERSCRIPT') {
+      const removeStyle = style === 'SUBSCRIPT' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
+      const contentState = Modifier.removeInlineStyle(
+        newState.getCurrentContent(),
+        newState.getSelection(),
+        removeStyle
+      );
+      newState = EditorState.push(newState, contentState, 'change-inline-style');
+    }
     if (newState) {
       onChange(newState, true);
     }
@@ -60,11 +69,13 @@ export default class InlineControl extends Component {
               key={index}
               value={style.toUpperCase()}
               onClick={this.toggleInlineStyle}
-              active={currentStyles[style.value] === true}
+              active={currentStyles[style.toUpperCase()] === true}
             >
               <img
                 role="presentation"
                 src={config[style].icon}
+                height="15px"
+                width="15px"
               />
             </Option>
           )
@@ -82,6 +93,8 @@ export default class InlineControl extends Component {
         <img
           src={getFirstIcon(config)}
           role="presentation"
+          height="15px"
+          width="15px"
         />
         {
           config.options
@@ -90,11 +103,13 @@ export default class InlineControl extends Component {
               key={index}
               value={style.toUpperCase()}
               className="inline-dropdownoption"
-              active={currentStyles[style.value] === true}
+              active={currentStyles[style.toUpperCase()] === true}
             >
               <img
                 src={config[style].icon}
                 role="presentation"
+                height="15px"
+                width="15px"
               />
             </DropdownOption>)
           }
@@ -113,3 +128,5 @@ export default class InlineControl extends Component {
 }
 
 // todo: move all controls to separate folder controls
+// fix: subscript, superscript images and remove image sizing
+// make subscript less low
