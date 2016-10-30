@@ -32,7 +32,7 @@
     "precss": "^1.4.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-draft-wysiwyg": "^0.2.0",
+    "react-draft-wysiwyg": "0.2.1",
     "react-router": "^2.8.1",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
@@ -50,7 +50,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config-2.js",
+    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config.js",
     "build": "npm run clean && npm run build:webpack",
     "start": "node config/server.dev.js"
   },
@@ -59,6 +59,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "draft-js": "^0.9.1",
+    "react-draft-wysiwyg": "0.2.1",
     "draftjs-to-html": "0.3.1",
     "immutable": "^3.8.1",
     "react": "^15.3.2",

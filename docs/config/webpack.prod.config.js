@@ -8,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    './js/playground/index',
+    './src/index',
   ],
   output: {
     path: path.join(__dirname, '../dist'),

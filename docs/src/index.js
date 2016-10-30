@@ -23,3 +23,6 @@ ReactDOM.render(<Router history={hashHistory}>
     <IndexRoute component={Home} />
   </Route>
 </Router>, document.getElementById('app')); // eslint-disable-line no-undef
+
+
+// tobe used for docs gerenation: /react-draft-wysiwyg/
