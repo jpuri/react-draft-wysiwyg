@@ -15,7 +15,7 @@ import {
 } from './components';
 
 ReactDOM.render(<Router history={hashHistory}>
-  <Route path="/" component={App}>
+  <Route path="/react-draft-wysiwyg/" component={App}>
     <Route path="/demo1" component={Demo1} />
     <Route path="/demo2" component={Demo2} />
     <Route path="/demo3" component={Demo3} />
