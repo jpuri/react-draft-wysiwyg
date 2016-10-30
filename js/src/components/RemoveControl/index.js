@@ -15,7 +15,7 @@ export default class ColorPicker extends Component {
   removeAllInlineStyles: Function = (editorState: EditorState): void => {
     let contentState = editorState.getCurrentContent();
     ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH', 'CODE',
-    'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE'].forEach((style) => {
+    'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE', 'SUPERSCRIPT', 'SUBSCRIPT'].forEach((style) => {
       contentState = Modifier.removeInlineStyle(
         contentState,
         editorState.getSelection(),
@@ -46,3 +46,5 @@ export default class ColorPicker extends Component {
     );
   }
 }
+
+// todo: add unit test case

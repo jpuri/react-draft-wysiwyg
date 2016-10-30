@@ -19,6 +19,8 @@ import unlink from '../../../images/unlink.svg';
 import image from '../../../images/image.svg';
 import undo from '../../../images/undo.svg';
 import redo from '../../../images/redo.svg';
+import subscript from '../../../images/subscript.svg';
+import superscript from '../../../images/superscript.svg';
 
 /**
 * This is default toolbar configuration,
@@ -28,12 +30,14 @@ export default {
   options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'image', 'remove', 'history'],
   inline: {
     inDropdown: false,
-    options: ['bold', 'italic', 'underline', 'strikethrough', 'code'],
+    options: ['bold', 'italic', 'underline', 'strikethrough', 'code', 'superscript', 'subscript'],
     bold: { icon: bold },
     italic: { icon: italic },
     underline: { icon: underline },
     strikethrough: { icon: strikethrough },
     code: { icon: code },
+    superscript: { icon: superscript },
+    subscript: { icon: subscript },
   },
   fontSize: { icon: fontSize },
   list: {
