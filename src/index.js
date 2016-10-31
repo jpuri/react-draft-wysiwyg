@@ -2,7 +2,8 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, IndexRoute, Route, hashHistory } from 'react-router';
+import { Router, IndexRoute, Route, browserHistory } from 'react-router';
+import '../css/fonts.css'; // eslint-disable-line no-unused-vars
 import '../css/normalize.css'; // eslint-disable-line no-unused-vars
 import '../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'; // eslint-disable-line no-unused-vars
 import {
@@ -14,7 +15,7 @@ import {
     Demo4,
 } from './components';
 
-ReactDOM.render(<Router history={hashHistory}>
+ReactDOM.render(<Router history={browserHistory}>
   <Route path="/" component={App}>
     <Route path="/demo1" component={Demo1} />
     <Route path="/demo2" component={Demo2} />
