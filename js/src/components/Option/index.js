@@ -8,7 +8,7 @@ export default class Option extends Component {
 
   static propTypes = {
     onClick: PropTypes.func.isRequired,
-    children: PropTypes.object,
+    children: PropTypes.any,
     value: PropTypes.string,
     className: PropTypes.string,
     activeClassName: PropTypes.string,
