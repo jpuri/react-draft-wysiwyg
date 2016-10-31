@@ -32,7 +32,7 @@
     "precss": "^1.4.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-draft-wysiwyg": "0.2.1",
+    "react-draft-wysiwyg": "file:../",
     "react-router": "^2.8.1",
     "react-transform-catch-errors": "^1.0.2",
     "react-transform-hmr": "^1.0.4",
@@ -59,7 +59,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "draft-js": "^0.9.1",
-    "react-draft-wysiwyg": "0.2.1",
+    "react-draft-wysiwyg": "file:../",
     "draftjs-to-html": "0.3.1",
     "immutable": "^3.8.1",
     "react": "^15.3.2",
