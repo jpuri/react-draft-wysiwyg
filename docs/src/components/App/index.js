@@ -1,34 +1,39 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import Menu from '../Menu';
+import github from '../../../images/github.png';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class App extends Component {
 
   static propTypes = {
-    children: React.PropTypes.object.isRequired,
+    children: PropTypes.object.isRequired,
+    location: PropTypes.object,
   };
 
   render() {
-    return (<div className="app-root">
-      <div>
-        <span className="app-header">React Draft Wysiwyg</span>
-        <iframe
-          src="https://ghbtns.com/github-btn.html?user=jpuri&repo=react-draft-wysiwyg&type=star&count=true&size=large"
-          frameBorder="0"
-          scrolling="0"
-          className="gitLink"
-        />
+    return (
+      <div className="app-root">
+        <div>
+          <span className="header">
+            <span className="header-text">
+              <span className="header-title">React Draft Wysiwyg</span>
+              <span className="header-subtitle">A Wysiwyg Built on ReactJS and DraftJS</span>
+            </span>
+            <a target="_blank" href="https://github.com/jpuri/react-draft-wysiwyg" rel="noopener noreferrer">
+              <img className="github" src={github} alt="Fork me on GitHub" />
+            </a>
+          </span>
+        </div>
+        <div className="flex-layout">
+          <Menu pathname={this.props.location.pathname} />
+          {this.props.children}
+        </div>
+        <span className="footer">
+          Made with ❤ by <a target="_blank" href="https://twitter.com/jyopur" className="author-link" rel="noopener noreferrer"> Jyoti</a>
+        </span>
       </div>
-      <div className="flex-layout">
-        <Menu />
-        {this.props.children}
-      </div>
-      <span className="app-footer">
-        Made with ❤ by <a target="_blank" href="https://twitter.com/jyopur" className="app-href"> Jyoti</a>.
-        With support from  <a target="_blank" href="http://www.ipaoo.com/" className="app-href">ipaoo</a>.
-      </span>
-    </div>);
+    );
   }
 }

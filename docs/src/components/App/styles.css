@@ -1,42 +1,54 @@
 .app-root {
   width: 100%;
 }
-.app-header {
-  height: 150px;
+.header {
+  height: 125px;
   width: 100%;
-  font-size: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: cursive;
+  font-family: Roboto;
   color: white;
-  background: rgb(249, 64, 46);
+  background: #a21717;
 }
 .flex-layout {
   display: flex;
   min-height: 600px;
 }
-.gitLink {
+.github {
   position: absolute;
-  width: 150px;
-  right: 20px;
-  top: 20px;
-  height: 50px;
+  top: 0;
+  right: 0;
+  border: 0;
+  height: 140px;
 }
-.app-footer {
+.footer {
   height: 100px;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgb(249, 64, 46);
+  background: #a21717;
   color: white;
   font-size: 18px;
-  font-family: cursive;
+  font-family: Roboto;
+  font-weight: 300;
 }
-.app-href {
+.author-link {
   color: white;
   text-decoration: none;
   margin-left: 5px;
-  font-weight: bold;
+}
+.header-text {
+  display: flex;
+  flex-direction: column;
+}
+.header-title {
+  font-size: 50px;
+}
+.header-subtitle {
+  text-align: right;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 300;
 }

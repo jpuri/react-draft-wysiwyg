@@ -7,7 +7,7 @@ import styles from './styles.css'; // eslint-disable-line no-unused-vars
 export default class Dropdown extends Component {
 
   static propTypes = {
-    children: PropTypes.array,
+    children: PropTypes.any,
     onChange: PropTypes.func,
     className: PropTypes.string,
     optionWrapperClassName: PropTypes.string,

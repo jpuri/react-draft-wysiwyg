@@ -1,6 +1,10 @@
 .root {
-  margin: 50px;
-  font-size: 18px;
+  width: 100%;
+  display: flex;
+  font-family: Roboto;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 }
 .label {
   font-size: 20px;
@@ -12,4 +16,41 @@
 }
 .home-listItem {
   margin-bottom: 10px;
+}
+.home-wrapper {
+  margin-top: 50px;
+  width: 700px;
+  display: block;
+}
+.home-editor {
+  border: 1px solid #F1F1F1;
+  padding: 5px;
+  border-radius: 2px;
+  height: 400px;
+}
+.home-toolbar {
+  width: 100%;
+}
+.quote {
+  display: flex;
+  align-items: center;
+  margin-top: 50px;
+}
+.quote-text {
+  font-size: 20px;
+}
+.quote-author {
+  font-size: 18px;
+  margin-left: 15px;
+  font-style: italic;
+  font-weight: 500;
+}
+.home-label {
+  font-size: 25px;
+  font-weight: 500;
+  margin-top: 50px;
+}
+.feature-list {
+  margin: 50px 0 50px 50px;
+  list-style-type: decimal;
 }
