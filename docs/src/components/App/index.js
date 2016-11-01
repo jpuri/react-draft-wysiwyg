@@ -19,7 +19,7 @@ export default class App extends Component {
           <span className="header">
             <span className="header-text">
               <span className="header-title">React Draft Wysiwyg</span>
-              <span className="header-subtitle">A Wysiwyg Based on ReactJS and DraftJS</span>
+              <span className="header-subtitle">A Wysiwyg Built on ReactJS and DraftJS</span>
             </span>
             <a target="_blank" href="https://github.com/jpuri/react-draft-wysiwyg" rel="noopener noreferrer">
               <img className="github" src={github} alt="Fork me on GitHub" />
