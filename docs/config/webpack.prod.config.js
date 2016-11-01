@@ -11,7 +11,7 @@ module.exports = {
     './src/index',
   ],
   output: {
-    path: path.join(__dirname, '../dist'),
+    path: path.join(__dirname, '../static'),
     filename: 'bundle.js',
     publicPath: '',
   },
@@ -49,7 +49,7 @@ module.exports = {
   ],
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$|draftjs-utils\.js$|draftjs-to-html\.js$|lodash\.js$/ },
+      { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$|draftjs-utils\.js$|draftjs-to-html\.js$|lodash\.js$|react-draft-wysiwyg\.js$/ },
       {
         test: /\.css$/,
         exclude: /Draft\.css$|font-awesome\.css$/,

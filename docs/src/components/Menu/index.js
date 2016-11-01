@@ -26,16 +26,16 @@ export default class Menu extends Component {
     const { pathname } = this.props;
     return (
       <div className="menu-root">
-        <Link to={'/'} className={classNames('menu-option', { 'menu-option-active': pathname === '/' })}>
+        <Link to={'/'} className={classNames('menu-option', { 'menu-option-active': pathname === '/react-draft-wysiwyg' })}>
           Home
         </Link>
-        <Link to={'/demo'} className={classNames('menu-option', { 'menu-option-active': pathname === '/demo1' })}>
+        <Link to={'/demo'} className={classNames('menu-option', { 'menu-option-active': pathname === '/demo' })}>
           Demo
         </Link>
-        <Link to={'/docs'} className={classNames('menu-option', { 'menu-option-active': pathname === '/demo2' })}>
+        <Link to={'/docs'} className={classNames('menu-option', { 'menu-option-active': pathname === '/docs' })}>
           Docs
         </Link>
-        <Link to={'/author'} className={classNames('menu-option', { 'menu-option-active': pathname === '/demo3' })}>
+        <Link to={'/author'} className={classNames('menu-option', { 'menu-option-active': pathname === '/author' })}>
           Author
         </Link>
       </div>
