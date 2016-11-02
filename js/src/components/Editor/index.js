@@ -37,15 +37,11 @@ export default class WysiwygEditor extends Component {
   static propTypes = {
     onChange: PropTypes.func,
     contentState: PropTypes.object,
-    toolbarAlwaysVisible: PropTypes.bool,
+    toolbarOnFocus: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
-  };
-
-  static defaultProps = {
-    toolbarAlwaysVisible: true,
   };
 
   constructor(props) {
@@ -181,7 +177,7 @@ export default class WysiwygEditor extends Component {
       toolbar,
      } = this.state;
     const {
-      toolbarAlwaysVisible,
+      toolbarOnFocus,
       toolbarClassName,
       editorClassName,
       wrapperClassName,
@@ -204,7 +200,7 @@ export default class WysiwygEditor extends Component {
     return (
       <div className={`editor-wrapper ${wrapperClassName}`}>
         {
-          (hasFocus || toolbarAlwaysVisible) ?
+          (hasFocus || !toolbarOnFocus) ?
             <div
               className={`editor-toolbar ${toolbarClassName}`}
               onMouseDown={this.onToolbarMouseDown}
