@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
+import uploadImageCallBack from '../../util/uploadImageCallBack';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Home extends Component {
@@ -25,8 +26,11 @@ export default class Home extends Component {
           wrapperClassName="home-wrapper"
           editorClassName="home-editor"
           onChange={this.onEditorChange}
-          toolbarAlwaysVisible
-          uploadImageCallBack={this.uploadImageCallBack}
+          toolbar={{
+            image: {
+              uploadCallback: uploadImageCallBack,
+            },
+          }}
         />
         <div className="quote">
           <span className="quote-text">This is incredibly well done!</span>
