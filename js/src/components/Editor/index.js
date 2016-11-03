@@ -6,6 +6,7 @@ import {
   EditorState,
   RichUtils,
   convertToRaw,
+  convertFromRaw,
   CompositeDecorator,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
@@ -36,16 +37,12 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    contentState: PropTypes.object,
-    toolbarAlwaysVisible: PropTypes.bool,
+    rawContentState: PropTypes.object,
+    toolbarOnFocus: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
-  };
-
-  static defaultProps = {
-    toolbarAlwaysVisible: true,
   };
 
   constructor(props) {
@@ -62,8 +59,9 @@ export default class WysiwygEditor extends Component {
   componentWillMount(): void {
     let editorState;
     const decorator = new CompositeDecorator([LinkDecorator]);
-    if (this.props.contentState) {
-      editorState = EditorState.createWithContent(this.props.contentState, decorator);
+    if (this.props.rawContentState) {
+      const contentState = convertFromRaw(this.props.rawContentState);
+      editorState = EditorState.createWithContent(contentState, decorator);
     } else {
       editorState = EditorState.createEmpty(decorator);
     }
@@ -181,7 +179,7 @@ export default class WysiwygEditor extends Component {
       toolbar,
      } = this.state;
     const {
-      toolbarAlwaysVisible,
+      toolbarOnFocus,
       toolbarClassName,
       editorClassName,
       wrapperClassName,
@@ -204,7 +202,7 @@ export default class WysiwygEditor extends Component {
     return (
       <div className={`editor-wrapper ${wrapperClassName}`}>
         {
-          (hasFocus || toolbarAlwaysVisible) ?
+          (hasFocus || !toolbarOnFocus) ?
             <div
               className={`editor-toolbar ${toolbarClassName}`}
               onMouseDown={this.onToolbarMouseDown}
@@ -295,3 +293,5 @@ export default class WysiwygEditor extends Component {
     );
   }
 }
+
+// todo: rename code to monospace

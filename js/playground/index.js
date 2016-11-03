@@ -3,9 +3,29 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
+import {
+  convertFromHTML,
+  convertToRaw,
+  ContentState,
+} from 'draft-js';
 import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import draft from '../../css/Draft.css'; // eslint-disable-line no-unused-vars
+
+const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
+      'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
+      'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
+      'commodo quis dolor in, sagittis scelerisque nibh. ' +
+      'Suspendisse consequat, sapien sit amet pulvinar  ' +
+      'tristique, augue ante dapibus nulla, eget gravida ' +
+      'turpis est sit amet nulla. Vestibulum lacinia mollis  ' +
+      'accumsan. Vivamus porta cursus libero vitae mattis. ' +
+      'In gravida bibendum orci, id faucibus felis molestie ac.  ' +
+      'Etiam vel elit cursus, scelerisque dui quis, auctor risus.</p>');
+
+const contentState = ContentState.createFromBlockArray(contentBlocks);
+
+const rawContentState = convertToRaw(contentState);
 
 class Playground extends Component {
 
@@ -52,7 +72,8 @@ class Playground extends Component {
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
-              toolbarAlwaysVisible
+              rawContentState={rawContentState}
+              toolbarOnFocus
               toolbar={{
                 image: {
                   uploadCallback: this.imageUploadCallBack,
