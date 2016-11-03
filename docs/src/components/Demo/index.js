@@ -4,9 +4,10 @@ import React, { Component } from 'react';
 import draftToHtml from 'draftjs-to-html';
 import { Editor } from 'react-draft-wysiwyg';
 import uploadImageCallBack from '../../util/uploadImageCallBack';
+import sampleEditorContent from '../../util/sampleEditorContent';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class Demo1 extends Component {
+export default class Demo extends Component {
 
   state: any = {
     editorContent: undefined,
@@ -108,6 +109,25 @@ export default class Demo1 extends Component {
               options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'remove', 'history'],
               inline: {
                 options: ['bold', 'italic', 'underline', 'strikethrough'],
+              },
+            }}
+          />
+        </div>
+        <div className="demo-label">
+          Editor with toolbar visible only when user starts typing.
+        </div>
+        <div className="demo-editorSection">
+          <Editor
+            toolbarClassName="demo-toolbar-absolute"
+            wrapperClassName="demo-wrapper-relative"
+            editorClassName="demo-editor-plain"
+            onChange={this.onEditorChange}
+            rawContentState={sampleEditorContent}
+            toolbarOnFocus
+            toolbar={{
+              options: ['inline', 'blockType', 'fontSize', 'fontFamily'],
+              inline: {
+                options: ['bold', 'italic', 'underline', 'strikethrough', 'code'],
               },
             }}
           />
