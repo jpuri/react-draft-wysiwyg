@@ -47,3 +47,20 @@
   margin-left: 30px;
   resize: none;
 }
+.demo-toolbar-absolute {
+  position: absolute;
+  top: -40px;
+  width: 515px;
+  border-radius: 3px;
+  background: #f3f3f3;
+}
+.demo-editor-plain {
+  height: 200px;
+  border-width: 0px;
+}
+.demo-wrapper-relative {
+  width: 715px;
+  display: block;
+  position: relative;
+  margin-bottom: 50px;
+}
