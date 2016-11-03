@@ -6,6 +6,7 @@ import {
   EditorState,
   RichUtils,
   convertToRaw,
+  convertFromRaw,
   CompositeDecorator,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
@@ -36,7 +37,7 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    contentState: PropTypes.object,
+    rawContentState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
@@ -58,8 +59,9 @@ export default class WysiwygEditor extends Component {
   componentWillMount(): void {
     let editorState;
     const decorator = new CompositeDecorator([LinkDecorator]);
-    if (this.props.contentState) {
-      editorState = EditorState.createWithContent(this.props.contentState, decorator);
+    if (this.props.rawContentState) {
+      const contentState = convertFromRaw(this.props.rawContentState);
+      editorState = EditorState.createWithContent(contentState, decorator);
     } else {
       editorState = EditorState.createEmpty(decorator);
     }
