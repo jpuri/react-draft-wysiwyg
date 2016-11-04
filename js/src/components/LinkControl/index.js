@@ -59,6 +59,12 @@ export default class LinkControl extends Component {
     this.setState(newState);
   };
 
+  hideLinkModal: Function = (): void => {
+    this.setState({
+      showModal: false,
+    });
+  };
+
   updateLinkTitle: Function = (event: Object): void => {
     this.setState({
       linkTitle: event.target.value,
@@ -187,7 +193,7 @@ export default class LinkControl extends Component {
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink } = config;
     return (
-      <div className="link-wrapper">
+      <div className="link-wrapper" onClick={this.hideLinkModal}>
         <Dropdown
           className="link-dropdown"
           onChange={this.toggleInlineStyle}

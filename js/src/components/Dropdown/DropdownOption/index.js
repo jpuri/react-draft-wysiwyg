@@ -22,13 +22,14 @@ export default class DropDownOption extends Component {
     highlightedClassName: PropTypes.string,
   };
 
-  onClick: Function = (): void => {
+  onClick: Function = (event): void => {
     const { onSelect, onClick, value, disabled } = this.props;
     if (!disabled) {
       if (onSelect) {
         onSelect(value);
       }
       if (onClick) {
+        event.stopPropagation();
         onClick(value);
       }
     }
