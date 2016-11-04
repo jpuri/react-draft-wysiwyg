@@ -73,10 +73,24 @@ class Playground extends Component {
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
               rawContentState={rawContentState}
-              toolbarOnFocus
               toolbar={{
+                inline: {
+                  inDropdown: true,
+                },
+                list: {
+                  inDropdown: true,
+                },
+                textAlign: {
+                  inDropdown: true,
+                },
+                link: {
+                  inDropdown: true,
+                },
                 image: {
                   uploadCallback: this.imageUploadCallBack,
+                },
+                history: {
+                  inDropdown: true,
                 },
               }}
             />
