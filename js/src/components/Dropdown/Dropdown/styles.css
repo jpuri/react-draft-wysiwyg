@@ -6,7 +6,6 @@
   border-radius: 2px;
   margin: 0 3px;
   text-transform: capitalize;
-  z-index: 100;
   background: white;
 }
 .dropdown-wrapper:focus {
@@ -49,6 +48,8 @@
   padding: 0 5px;
 }
 .dropdown-optionwrapper {
+  z-index: 100;
+  position: relative;
   border: 1px solid #F1F1F1;
   width: 98%;
   background: white;
