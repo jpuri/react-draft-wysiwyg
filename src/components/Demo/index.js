@@ -10,17 +10,20 @@ import styles from './styles.css'; // eslint-disable-line no-unused-vars
 export default class Demo extends Component {
 
   state: any = {
-    editorContent: undefined,
+    editorContents: [],
   };
 
-  onEditorChange: Function = (editorContent) => {
+  onEditorChange: Function = (index, editorContent) => {
+    let editorContents = this.state.editorContents;
+    editorContents[index] = editorContent;
+    editorContents = [...editorContents];
     this.setState({
-      editorContent,
+      editorContents,
     });
   };
 
   render() {
-    const { editorContent } = this.state;
+    const { editorContents } = this.state;
     return (
       <div className="demo-root">
         <div className="demo-label">
@@ -31,7 +34,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange}
+            onChange={this.onEditorChange.bind(this, 0)}
             toolbar={{
               image: {
                 uploadCallback: uploadImageCallBack,
@@ -41,7 +44,7 @@ export default class Demo extends Component {
           <textarea
             disabled
             className="demo-content no-focus"
-            value={draftToHtml(editorContent)}
+            value={draftToHtml(editorContents[0])}
           />
         </div>
         <div className="demo-label">
@@ -52,7 +55,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange}
+            onChange={this.onEditorChange.bind(this, 1)}
             toolbar={{
               image: {
                 uploadCallback: uploadImageCallBack,
@@ -62,7 +65,7 @@ export default class Demo extends Component {
           <textarea
             disabled
             className="demo-content no-focus"
-            value={JSON.stringify(editorContent, null, 4)}
+            value={JSON.stringify(editorContents[1], null, 4)}
           />
         </div>
         <div className="demo-label">
@@ -73,7 +76,6 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange}
             toolbar={{
               inline: {
                 inDropdown: true,
@@ -104,7 +106,6 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange}
             toolbar={{
               options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'remove', 'history'],
               inline: {
@@ -114,14 +115,13 @@ export default class Demo extends Component {
           />
         </div>
         <div className="demo-label">
-          Editor with toolbar visible only when user starts typing.
+          Editor with toolbar visible only when editor is foused.
         </div>
         <div className="demo-editorSection">
           <Editor
             toolbarClassName="demo-toolbar-absolute"
             wrapperClassName="demo-wrapper-relative"
             editorClassName="demo-editor-plain"
-            onChange={this.onEditorChange}
             rawContentState={sampleEditorContent}
             toolbarOnFocus
             toolbar={{
