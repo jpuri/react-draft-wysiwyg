@@ -5,22 +5,32 @@ import draftToHtml from 'draftjs-to-html';
 import { Editor } from 'react-draft-wysiwyg';
 import uploadImageCallBack from '../../util/uploadImageCallBack';
 import sampleEditorContent from '../../util/sampleEditorContent';
+import bold from '../../../images/bold.svg';
+import italic from '../../../images/italic.svg';
+import underline from '../../../images/underline.svg';
+import strikethrough from '../../../images/strikethrough.svg';
+import subscript from '../../../images/subscript.svg';
+import superscript from '../../../images/superscript.svg';
+import eraser from '../../../images/eraser.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Demo extends Component {
 
   state: any = {
-    editorContent: undefined,
+    editorContents: [],
   };
 
-  onEditorChange: Function = (editorContent) => {
+  onEditorChange: Function = (index, editorContent) => {
+    let editorContents = this.state.editorContents;
+    editorContents[index] = editorContent;
+    editorContents = [...editorContents];
     this.setState({
-      editorContent,
+      editorContents,
     });
   };
 
   render() {
-    const { editorContent } = this.state;
+    const { editorContents } = this.state;
     return (
       <div className="demo-root">
         <div className="demo-label">
@@ -31,7 +41,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange}
+            onChange={this.onEditorChange.bind(this, 0)}
             toolbar={{
               image: {
                 uploadCallback: uploadImageCallBack,
@@ -41,7 +51,7 @@ export default class Demo extends Component {
           <textarea
             disabled
             className="demo-content no-focus"
-            value={draftToHtml(editorContent)}
+            value={draftToHtml(editorContents[0])}
           />
         </div>
         <div className="demo-label">
@@ -52,7 +62,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange}
+            onChange={this.onEditorChange.bind(this, 1)}
             toolbar={{
               image: {
                 uploadCallback: uploadImageCallBack,
@@ -62,7 +72,7 @@ export default class Demo extends Component {
           <textarea
             disabled
             className="demo-content no-focus"
-            value={JSON.stringify(editorContent, null, 4)}
+            value={JSON.stringify(editorContents[1], null, 4)}
           />
         </div>
         <div className="demo-label">
@@ -73,26 +83,15 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange}
             toolbar={{
-              inline: {
-                inDropdown: true,
-              },
-              list: {
-                inDropdown: true,
-              },
-              textAlign: {
-                inDropdown: true,
-              },
-              link: {
-                inDropdown: true,
-              },
+              inline: { inDropdown: true },
+              list: { inDropdown: true },
+              textAlign: { inDropdown: true },
+              link: { inDropdown: true },
               image: {
                 uploadCallback: uploadImageCallBack,
               },
-              history: {
-                inDropdown: true,
-              },
+              history: { inDropdown: true },
             }}
           />
         </div>
@@ -104,7 +103,6 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange}
             toolbar={{
               options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'remove', 'history'],
               inline: {
@@ -114,14 +112,13 @@ export default class Demo extends Component {
           />
         </div>
         <div className="demo-label">
-          Editor with toolbar visible only when user starts typing.
+          Editor with toolbar visible only when editor is foused.
         </div>
         <div className="demo-editorSection">
           <Editor
             toolbarClassName="demo-toolbar-absolute"
             wrapperClassName="demo-wrapper-relative"
             editorClassName="demo-editor-plain"
-            onChange={this.onEditorChange}
             rawContentState={sampleEditorContent}
             toolbarOnFocus
             toolbar={{
@@ -129,6 +126,30 @@ export default class Demo extends Component {
               inline: {
                 options: ['bold', 'italic', 'underline', 'strikethrough', 'code'],
               },
+            }}
+          />
+        </div>
+        <div className="demo-label">
+          Editor toolbar with custom icons.
+          <image src={bold} height="20px" width="20px" />
+        </div>
+        <div className="demo-editorSection">
+          <Editor
+            toolbarClassName="demo-toolbar-custom"
+            wrapperClassName="demo-wrapper-wide"
+            editorClassName="demo-editor-custom"
+            toolbar={{
+              options: ['inline', 'remove'],
+              inline: {
+                options: ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript'],
+                bold: { icon: bold },
+                italic: { icon: italic },
+                underline: { icon: underline },
+                strikethrough: { icon: strikethrough },
+                superscript: { icon: superscript },
+                subscript: { icon: subscript },
+              },
+              remove: { icon: eraser },
             }}
           />
         </div>

@@ -68,7 +68,7 @@ module.exports = {
         loader: 'url?limit=10000&mimetype=image/svg+xml',
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        test: /\.(eot|ttf|woff|woff2)$/,
         loader: 'file?name=public/fonts/[name].[ext]',
       },
     ],

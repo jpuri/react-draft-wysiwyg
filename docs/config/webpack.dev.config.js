@@ -21,7 +21,7 @@ module.exports = {
       { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$|draftjs-utils\.js$|draftjs-to-html\.js$|lodash\.js$/ },
       {
         test: /\.css$/,
-        exclude: /Draft\.css$|font-awesome\.css$/,
+        exclude: /Draft\.css$/,
         loader: ExtractTextPlugin.extract(
           'style-loader',
           'css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader'
@@ -37,7 +37,7 @@ module.exports = {
         loader: 'url?limit=10000&mimetype=image/svg+xml',
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        test: /\.(eot|ttf|woff|woff2)$/,
         loader: 'file?name=public/fonts/[name].[ext]',
       },
     ],
