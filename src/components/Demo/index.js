@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import draftToHtml from 'draftjs-to-html';
+import draftToMarkdown from 'draftjs-to-markdown';
 import { Editor } from 'react-draft-wysiwyg';
 import uploadImageCallBack from '../../util/uploadImageCallBack';
 import sampleEditorContent from '../../util/sampleEditorContent';
@@ -73,6 +74,27 @@ export default class Demo extends Component {
             disabled
             className="demo-content no-focus"
             value={JSON.stringify(editorContents[1], null, 4)}
+          />
+        </div>
+        <div className="demo-label">
+          Editor with output generated in Markdown.
+        </div>
+        <div className="demo-editorSection">
+          <Editor
+            toolbarClassName="demo-toolbar"
+            wrapperClassName="demo-wrapper"
+            editorClassName="demo-editor"
+            onChange={this.onEditorChange.bind(this, 2)}
+            toolbar={{
+              image: {
+                uploadCallback: uploadImageCallBack,
+              },
+            }}
+          />
+          <textarea
+            disabled
+            className="demo-content no-focus"
+            value={draftToMarkdown(editorContents[2])}
           />
         </div>
         <div className="demo-label">
