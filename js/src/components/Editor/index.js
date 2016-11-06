@@ -295,3 +295,4 @@ export default class WysiwygEditor extends Component {
 }
 
 // todo: rename code to monospace
+// todo: evaluate draftjs-utils to move some methods here

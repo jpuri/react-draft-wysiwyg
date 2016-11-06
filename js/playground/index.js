@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
+import draftToMarkdown from 'draftjs-to-markdown'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   convertFromHTML,
   convertToRaw,
@@ -98,6 +99,10 @@ class Playground extends Component {
           <textarea
             className="playground-content no-focus"
             value={draftToHtml(editorContent)}
+          />
+          <textarea
+            className="playground-content no-focus"
+            value={draftToMarkdown(editorContent)}
           />
         </div>
       </div>
