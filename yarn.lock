@@ -1621,9 +1621,13 @@ draftjs-to-html:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.3.1.tgz#cffeb434d5a8e82b3704d47920beb10fe4af7c38"
 
-draftjs-utils@0.3.0:
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.3.0.tgz#94423569ffcda97061da994bcca30e76234bab37"
+draftjs-to-markdown:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.0.1.tgz#1abfafe3e77dc48e41143d61fcaade7c76739361"
+
+draftjs-utils@0.3.2:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.3.2.tgz#a8182bf4135c4bb5f1ad1ea1f604aa6cbb50a03e"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"

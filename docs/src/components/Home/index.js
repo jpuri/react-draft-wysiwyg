@@ -52,6 +52,8 @@ export default class Home extends Component {
           <li className="home-listItem">Support for adding / uploading images.</li>
           <li className="home-listItem">Option provided to remove added styling.</li>
           <li className="home-listItem">Option of undo and redo.</li>
+          <li className="home-listItem">Support to convert Editor Content to HTML, JSON, Markdown.</li>
+          <li className="home-listItem">Support to convert Editor Content to HTML, JSON, Markdown.</li>
         </ul>
       </div>
     );
