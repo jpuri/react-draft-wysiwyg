@@ -16,7 +16,7 @@ import color from '../../../images/color.svg';
 import eraser from '../../../images/eraser.svg';
 import link from '../../../images/link.svg';
 import unlink from '../../../images/unlink.svg';
-import emoticon from '../../../images/emoticon.svg';
+import emoji from '../../../images/emoji.svg';
 import image from '../../../images/image.svg';
 import undo from '../../../images/undo.svg';
 import redo from '../../../images/redo.svg';
@@ -28,7 +28,7 @@ import superscript from '../../../images/superscript.svg';
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoticon', 'image', 'remove', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'image', 'remove', 'history'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -70,7 +70,7 @@ export default {
     link: { icon: link, className: undefined },
     unlink: { icon: unlink, className: undefined },
   },
-  emoticon: { icon: emoticon, className: undefined },
+  emoji: { icon: emoji, className: undefined },
   image: { icon: image, uploadCallback: undefined, className: undefined },
   remove: { icon: eraser, className: undefined },
   history: {
