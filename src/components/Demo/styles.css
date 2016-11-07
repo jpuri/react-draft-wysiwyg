@@ -65,8 +65,8 @@
   position: relative;
   margin-bottom: 50px;
 }
-.demo-toolbar-absolute div {
-  border-color: #e3e3e3 !important;
+.bordered-option-classname {
+  border: 1px solid #e3e3e3;
 }
 .demo-toolbar-absolute > div:not(:last-of-type) {
   border-right: 2px solid #e3e3e3;

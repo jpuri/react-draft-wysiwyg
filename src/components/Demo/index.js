@@ -147,6 +147,20 @@ export default class Demo extends Component {
               options: ['inline', 'blockType', 'fontSize', 'fontFamily'],
               inline: {
                 options: ['bold', 'italic', 'underline', 'strikethrough', 'code'],
+                bold: { className: 'bordered-option-classname' },
+                italic: { className: 'bordered-option-classname' },
+                underline: { className: 'bordered-option-classname' },
+                strikethrough: { className: 'bordered-option-classname' },
+                code: { className: 'bordered-option-classname' },
+              },
+              blockType: {
+                className: 'bordered-option-classname',
+              },
+              fontSize: {
+                className: 'bordered-option-classname',
+              },
+              fontFamily: {
+                className: 'bordered-option-classname',
               },
             }}
           />
