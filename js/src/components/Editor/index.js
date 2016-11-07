@@ -26,6 +26,7 @@ import TextAlignControl from '../TextAlignControl';
 import ColorPicker from '../ColorPicker';
 import RemoveControl from '../RemoveControl';
 import LinkControl from '../LinkControl';
+import EmojiControl from '../EmojiControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
@@ -194,6 +195,7 @@ export default class WysiwygEditor extends Component {
       textAlign,
       colorPicker,
       link,
+      emoji,
       image,
       remove,
       history,
@@ -249,6 +251,11 @@ export default class WysiwygEditor extends Component {
                 editorState={editorState}
                 onChange={this.onChange}
                 config={link}
+              />}
+              {options.indexOf('emoji') >= 0 && <EmojiControl
+                editorState={editorState}
+                onChange={this.onChange}
+                config={emoji}
               />}
               {options.indexOf('image') >= 0 && <ImageControl
                 editorState={editorState}
