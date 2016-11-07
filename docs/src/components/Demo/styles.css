@@ -66,7 +66,7 @@
   margin-bottom: 50px;
 }
 .bordered-option-classname {
-  border: 1px solid #e3e3e3;
+  border: 1px solid red;
 }
 .demo-toolbar-absolute > div:not(:last-of-type) {
   border-right: 2px solid #e3e3e3;

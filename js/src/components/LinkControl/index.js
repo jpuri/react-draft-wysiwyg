@@ -195,9 +195,9 @@ export default class LinkControl extends Component {
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink, className } = config;
     return (
-      <div className={`link-wrapper ${className}`} onClick={this.hideLinkModal}>
+      <div className="link-wrapper" onClick={this.hideLinkModal}>
         <Dropdown
-          className="link-dropdown"
+          className={`link-dropdown ${className}`}
           onChange={this.toggleInlineStyle}
         >
           <img

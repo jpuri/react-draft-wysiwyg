@@ -41,6 +41,7 @@ export default class Home extends Component {
         </div>
         <ul className="feature-list">
           <li className="home-listItem">Configurable toolbar with option to add/remove controls.</li>
+          <li className="home-listItem">Option to change styles and icons in the toolbar.</li>
           <li className="home-listItem">Option to show toolbar only when editor is focused.</li>
           <li className="home-listItem">Support for inline styles: Bold, Italic, Underline, StrikeThrough, Code, Subscript, Superscript.</li>
           <li className="home-listItem">Support for block types: Paragraph, H1 - H6, Blockquote.</li>
