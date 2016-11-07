@@ -61,7 +61,7 @@ export default class InlineControl extends Component {
 
   renderInFlatList(currentStyles: string, config: Object): Object {
     return (
-      <div className="inline-wrapper">
+      <div className={`inline-wrapper ${config.className}`}>
         {
           config.options
           .map((style, index) =>
@@ -69,6 +69,7 @@ export default class InlineControl extends Component {
               key={index}
               value={style.toUpperCase()}
               onClick={this.toggleInlineStyle}
+              className={config[style].className}
               active={currentStyles[style.toUpperCase()] === true}
             >
               <img
@@ -87,7 +88,7 @@ export default class InlineControl extends Component {
   renderInDropDown(currentStyles: string, config: Object): Object {
     return (
       <Dropdown
-        className="inline-dropdown"
+        className={`inline-dropdown ${config.className}`}
         onChange={this.toggleInlineStyle}
       >
         <img
@@ -102,7 +103,7 @@ export default class InlineControl extends Component {
             <DropdownOption
               key={index}
               value={style.toUpperCase()}
-              className="inline-dropdownoption"
+              className={`inline-dropdownoption ${config[style].className}`}
               active={currentStyles[style.toUpperCase()] === true}
             >
               <img
@@ -128,5 +129,4 @@ export default class InlineControl extends Component {
 }
 
 // todo: move all controls to separate folder controls
-// fix: subscript, superscript images and remove image sizing
 // make subscript less low

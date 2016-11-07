@@ -15,7 +15,7 @@ import {
   customStyleMap,
 } from 'draftjs-utils';
 import { Map } from 'immutable';
-import blockStyleFn from '../../utils/blockStyle';
+import blockStyleFn from '../../utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import InlineControl from '../InlineControl';
 import BlockControl from '../BlockControl';
@@ -189,6 +189,7 @@ export default class WysiwygEditor extends Component {
       inline,
       blockType,
       fontSize,
+      fontFamily,
       list,
       textAlign,
       colorPicker,
@@ -227,6 +228,7 @@ export default class WysiwygEditor extends Component {
               {options.indexOf('fontFamily') >= 0 && <FontFamilyControl
                 onChange={this.onChange}
                 editorState={editorState}
+                config={fontFamily}
               />}
               {options.indexOf('list') >= 0 && <ListControl
                 onChange={this.onChange}

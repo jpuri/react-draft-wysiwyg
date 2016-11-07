@@ -55,14 +55,14 @@ export default class FontSizeControl extends Component {
   };
 
   render() {
-    const { config: { icon } } = this.props;
+    const { config: { icon, className } } = this.props;
     let { currentFontSize } = this.state;
     currentFontSize = currentFontSize
       && Number(currentFontSize.substring(9, currentFontSize.length));
     return (
       <div className="fontsize-wrapper">
         <Dropdown
-          className="fontsize-dropdown"
+          className={`fontsize-dropdown ${className}`}
           onChange={this.toggleFontSize}
         >
           {currentFontSize ?

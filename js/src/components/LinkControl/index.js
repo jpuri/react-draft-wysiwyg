@@ -163,11 +163,12 @@ export default class LinkControl extends Component {
   }
 
   renderInFlatList(showModal: bool, currentEntity: Object, config: Object): Object {
-    const { options, link, unlink } = config;
+    const { options, link, unlink, className } = config;
     return (
-      <div className="link-wrapper">
+      <div className={`link-wrapper ${className}`}>
         {options.indexOf('link') >= 0 && <Option
           value="unordered-list-item"
+          className={link.className}
           onClick={this.toggleLinkModal}
         >
           <img
@@ -178,6 +179,7 @@ export default class LinkControl extends Component {
         {options.indexOf('unlink') >= 0 && <Option
           disabled={!currentEntity}
           value="ordered-list-item"
+          className={unlink.className}
           onClick={this.removeLink}
         >
           <img
@@ -191,11 +193,11 @@ export default class LinkControl extends Component {
   }
 
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
-    const { options, link, unlink } = config;
+    const { options, link, unlink, className } = config;
     return (
       <div className="link-wrapper" onClick={this.hideLinkModal}>
         <Dropdown
-          className="link-dropdown"
+          className={`link-dropdown ${className}`}
           onChange={this.toggleInlineStyle}
         >
           <img
@@ -204,7 +206,7 @@ export default class LinkControl extends Component {
           />
           {options.indexOf('link') >= 0 && <DropdownOption
             onClick={this.toggleLinkModal}
-            className="link-dropdownoption"
+            className={`link-dropdownoption ${link.className}`}
           >
             <img
               src={link.icon}
@@ -214,7 +216,7 @@ export default class LinkControl extends Component {
           {options.indexOf('unlink') >= 0 && <DropdownOption
             onClick={this.removeLink}
             disabled={!currentEntity}
-            className="link-dropdownoption"
+            className={`link-dropdownoption ${unlink.className}`}
           >
             <img
               src={unlink.icon}

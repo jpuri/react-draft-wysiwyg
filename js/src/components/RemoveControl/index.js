@@ -31,10 +31,11 @@ export default class ColorPicker extends Component {
   };
 
   render(): Object {
-    const { config: { icon } } = this.props;
+    const { config: { icon, className } } = this.props;
     return (
       <div className="remove-wrapper">
         <Option
+          className={className}
           onClick={this.removeInlineStyles}
         >
           <img

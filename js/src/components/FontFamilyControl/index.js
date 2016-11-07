@@ -14,6 +14,7 @@ export default class FontFamilyControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -53,12 +54,13 @@ export default class FontFamilyControl extends Component {
 
   render() {
     let { currentFontFamily } = this.state;
+    const { config: { className } } = this.props;
     currentFontFamily =
       currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length);
     return (
       <div className="fontfamily-wrapper">
         <Dropdown
-          className="fontfamily-dropdown"
+          className={`fontfamily-dropdown ${className}`}
           onChange={this.toggleFontFamily}
           optionWrapperClassName="fontfamily-optionwrapper"
         >

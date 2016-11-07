@@ -134,12 +134,13 @@ export default class ColorPicker extends Component {
   };
 
   render(): Object {
-    const { config: { icon } } = this.props;
+    const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
       <div className="colorpicker-wrapper">
         <Option
           onClick={this.toggleModal}
+          className={className}
         >
           <img
             src={icon}

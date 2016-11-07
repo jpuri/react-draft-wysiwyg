@@ -87,12 +87,13 @@ export default class ListControl extends Component {
   // todo: evaluate refactoring this code to put a loop there and in other places also in code
   // hint: it will require moving click handlers
   renderInFlatList(currentBlockType: string, config: Object): Object {
-    const { options, unordered, ordered, indent, outdent } = config;
+    const { options, unordered, ordered, indent, outdent, className } = config;
     return (
-      <div className="list-wrapper">
+      <div className={`list-wrapper ${className}`}>
         {options.indexOf('unordered') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.toggleBlockType}
+          className={unordered.className}
           active={currentBlockType === 'unordered-list-item'}
         >
           <img
@@ -103,6 +104,7 @@ export default class ListControl extends Component {
         {options.indexOf('ordered') >= 0 && <Option
           value="ordered-list-item"
           onClick={this.toggleBlockType}
+          className={ordered.className}
           active={currentBlockType === 'ordered-list-item'}
         >
           <img
@@ -112,6 +114,7 @@ export default class ListControl extends Component {
         </Option>}
         {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
+          className={indent.className}
         >
           <img
             src={indent.icon}
@@ -120,6 +123,7 @@ export default class ListControl extends Component {
         </Option>}
         {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
+          className={outdent.className}
         >
           <img
             src={outdent.icon}
@@ -131,10 +135,10 @@ export default class ListControl extends Component {
   }
 
   renderInDropDown(currentBlockType: string, config: Object): Object {
-    const { options } = config;
+    const { options, className } = config;
     return (
       <Dropdown
-        className="list-dropdown"
+        className={`list-dropdown ${className}`}
         onChange={this.onDropdownChange}
       >
         <img
@@ -146,7 +150,7 @@ export default class ListControl extends Component {
           .map((option, index) => (<DropdownOption
             key={index}
             value={option.value}
-            className="list-dropdownOption"
+            className={`list-dropdownOption ${config[option.type].className}`}
             active={currentBlockType === option.value}
           >
             <img

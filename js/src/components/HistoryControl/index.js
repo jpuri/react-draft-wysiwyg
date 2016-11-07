@@ -57,10 +57,10 @@ export default class HistoryControl extends Component {
   };
 
   renderInDropDown(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
-    const { options, undo, redo } = config;
+    const { options, undo, redo, className } = config;
     return (
       <Dropdown
-        className="history-dropdown"
+        className={`history-dropdown ${className}`}
         onChange={this.toggleInlineStyle}
       >
         <img
@@ -70,7 +70,7 @@ export default class HistoryControl extends Component {
         {options.indexOf('undo') >= 0 && <DropdownOption
           onClick={this.undo}
           disabled={undoDisabled}
-          className="history-dropdownoption"
+          className={`history-dropdownoption ${undo.className}`}
         >
           <img
             src={undo.icon}
@@ -80,7 +80,7 @@ export default class HistoryControl extends Component {
         {options.indexOf('redo') >= 0 && <DropdownOption
           onClick={this.redo}
           disabled={redoDisabled}
-          className="history-dropdownoption"
+          className={`history-dropdownoption ${redo.className}`}
         >
           <img
             src={redo.icon}
@@ -92,12 +92,13 @@ export default class HistoryControl extends Component {
   }
 
   renderInFlatList(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
-    const { options, undo, redo } = config;
+    const { options, undo, redo, className } = config;
     return (
-      <div className="history-wrapper">
+      <div className={`history-wrapper ${className}`}>
         {options.indexOf('undo') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.undo}
+          className={undo.className}
           disabled={undoDisabled}
         >
           <img
@@ -108,6 +109,7 @@ export default class HistoryControl extends Component {
         {options.indexOf('redo') >= 0 && <Option
           value="ordered-list-item"
           onClick={this.redo}
+          className={redo.className}
           disabled={redoDisabled}
         >
           <img

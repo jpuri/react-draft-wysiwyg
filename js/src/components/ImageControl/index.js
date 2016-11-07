@@ -216,11 +216,12 @@ export default class ImageControl extends Component {
   }
 
   render(): Object {
-    const { config: { icon } } = this.props;
+    const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
       <div className="image-wrapper">
         <Option
+          className={className}
           value="unordered-list-item"
           onClick={this.toggleModal}
         >
