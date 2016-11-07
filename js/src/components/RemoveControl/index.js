@@ -33,8 +33,9 @@ export default class ColorPicker extends Component {
   render(): Object {
     const { config: { icon, className } } = this.props;
     return (
-      <div className={`remove-wrapper ${className}`}>
+      <div className="remove-wrapper">
         <Option
+          className={className}
           onClick={this.removeInlineStyles}
         >
           <img

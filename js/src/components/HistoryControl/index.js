@@ -2,7 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { EditorState } from 'draft-js';
-import { getFirstIcon } from '../../Utils/toolbar';
+import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars

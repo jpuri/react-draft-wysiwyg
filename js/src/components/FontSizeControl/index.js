@@ -60,9 +60,9 @@ export default class FontSizeControl extends Component {
     currentFontSize = currentFontSize
       && Number(currentFontSize.substring(9, currentFontSize.length));
     return (
-      <div className={`fontsize-wrapper ${className}`}>
+      <div className="fontsize-wrapper">
         <Dropdown
-          className="fontsize-dropdown"
+          className={`fontsize-dropdown ${className}`}
           onChange={this.toggleFontSize}
         >
           {currentFontSize ?

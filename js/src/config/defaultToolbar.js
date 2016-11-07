@@ -40,7 +40,9 @@ export default {
     superscript: { icon: superscript, className: undefined },
     subscript: { icon: subscript, className: undefined },
   },
+  blockType: { className: undefined },
   fontSize: { icon: fontSize, className: undefined },
+  fontFamily: { className: undefined },
   list: {
     inDropdown: false,
     className: undefined,

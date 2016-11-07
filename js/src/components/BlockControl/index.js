@@ -11,6 +11,7 @@ export default class BlockControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    config: PropTypes.object,
   };
 
   state: Object = {
@@ -64,10 +65,11 @@ export default class BlockControl extends Component {
     }
     const currentBlockData = this.blocksTypes.filter(blk => blk.style === currentBlockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
+    const { config: { className } } = this.props;
     return (
       <div className="block-wrapper">
         <Dropdown
-          className="block-dropdown"
+          className={`block-dropdown ${className}`}
           onChange={this.toggleBlockType}
         >
           <span>{currentLabel}</span>
