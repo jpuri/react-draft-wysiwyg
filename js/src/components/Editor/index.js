@@ -148,7 +148,7 @@ export default class WysiwygEditor extends Component {
   customBlockRenderMap: Map = DefaultDraftBlockRenderMap
     .merge(new Map({
       unstyled: {
-        element: 'div',
+        element: 'p',
       },
     }));
 

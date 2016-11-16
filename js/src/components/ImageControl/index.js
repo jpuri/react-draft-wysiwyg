@@ -24,7 +24,7 @@ export default class ImageControl extends Component {
   };
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.config && this.props.config) {
+    if (properties.config !== this.props.config) {
       this.setState({
         showImageUpload: !!this.props.config.uploadCallback,
       });
