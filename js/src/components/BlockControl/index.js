@@ -65,11 +65,12 @@ export default class BlockControl extends Component {
     }
     const currentBlockData = this.blocksTypes.filter(blk => blk.style === currentBlockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
-    const { config: { className } } = this.props;
+    const { config: { className, dropdownClassName } } = this.props;
     return (
       <div className="block-wrapper">
         <Dropdown
           className={`block-dropdown ${className}`}
+          optionWrapperClassName={dropdownClassName}
           onChange={this.toggleBlockType}
         >
           <span>{currentLabel}</span>
