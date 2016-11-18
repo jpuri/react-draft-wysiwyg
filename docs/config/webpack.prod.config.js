@@ -62,7 +62,7 @@ module.exports = {
         test: /Draft\.css$/,
         loader: 'style-loader!css-loader',
       },
-      { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
+      { test: /\.(png|jpg|gif)$/, loader: 'url-loader?limit=8192' },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'url?limit=10000&mimetype=image/svg+xml',

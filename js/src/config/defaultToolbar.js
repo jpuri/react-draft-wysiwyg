@@ -41,9 +41,9 @@ export default {
     superscript: { icon: superscript, className: undefined },
     subscript: { icon: subscript, className: undefined },
   },
-  blockType: { className: undefined },
+  blockType: { className: undefined, dropdownClassName: undefined },
   fontSize: { icon: fontSize, className: undefined },
-  fontFamily: { className: undefined },
+  fontFamily: { className: undefined, dropdownClassName: undefined },
   list: {
     inDropdown: false,
     className: undefined,

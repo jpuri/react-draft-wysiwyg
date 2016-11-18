@@ -46,6 +46,8 @@
   height: 425px;
   margin-left: 30px;
   resize: none;
+  margin-top: 127px;
+  height: 400px;
 }
 .demo-toolbar-absolute {
   position: absolute;
@@ -66,7 +68,7 @@
   margin-bottom: 50px;
 }
 .bordered-option-classname {
-  border: 1px solid red;
+  border: 1px solid #e3e3e3;
 }
 .demo-toolbar-absolute > div:not(:last-of-type) {
   border-right: 2px solid #e3e3e3;
@@ -77,16 +79,33 @@
 }
 .demo-toolbar-custom {
   width: 100%;
-  border-color: #ff7e7e;
-}
-.demo-toolbar-custom div {
-  color: #ff7e7e !important;
-  border-color: #ff7e7e !important;
+  border-color: rgb(0,47,126);
+  background-color: #9EBEF5;
 }
 .demo-editor-custom {
   height: 200px;
   border: 1px solid #F1F1F1;
   padding: 5px;
   border-radius: 2px;
-  border-color: #ff7e7e;
+  border-color: rgb(0,47,126);
+}
+.demo-option-custom {
+  width: 15px;
+  height: 15px;
+  border-color: rgb(0,47,126);
+  color: rgb(0,47,126);
+}
+.demo-option-custom-wide {
+  width: 125px;
+  height: 25px;
+  border-color: rgb(0,47,126);
+  color: rgb(0,47,126);
+}
+.demo-option-custom-medium {
+  height: 25px;
+  border-color: rgb(0,47,126);
+  color: rgb(0,47,126);
+}
+.demo-dropdown-custom {
+  border-color: rgb(0,47,126);
 }
