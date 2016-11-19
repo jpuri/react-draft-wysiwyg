@@ -1,35 +1,26 @@
-.demo2-root {
+.docs-root {
+  width: 100%;
+  margin: 30px;
 }
-.demo2-label {
+.docs-label {
+  display: block;
   font-size: 20px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin: 20px 0;
 }
-.demo2-editorSection {
-  display: flex;
-  justify-content: space-between;
+.docs-section {
+  margin: 20px 0 40px;
 }
-.demo2-wrapper {
-  height: 400px;
-  width: 600px;
-  margin-top: 25px;
+code {
+  padding: 20px;
+  font-size: 13px;
+  display: inline-flex;
+  flex-direction: column;
+  background-color: #ffedf0;
+  color: #a21717;
 }
-.demo2-editor {
-  padding: 5px;
-  height: 95%;
-}
-.demo2-editorWrapper {
-  margin-top: 20px;
-}
-.demo2-toolbar {
-  width: 600px;
-  top: -75px;
-}
-.demo2-content {
-  border: 1px solid #F1F1F1;
-  padding: 5px;
-  border-radius: 5px;
-  width: 400px;
-  border-radius: 2px;
-  height: 380px;
+.docs-desc {
+  width: 75%;
+  font-size: 15px;
+  margin-bottom: 10px;
 }

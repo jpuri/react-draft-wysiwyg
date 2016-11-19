@@ -84,11 +84,12 @@ export default class ColorPicker extends Component {
   };
 
   renderModal: Function = (): Object => {
+    const { config: { popupClassName } } = this.props;
     const { currentColor, currentBgColor, currentStyle } = this.state;
     const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
     return (
       <div
-        className="colorpicker-modal"
+        className={`colorpicker-modal ${popupClassName}`}
         onClick={this.stopPropagation}
       >
         <span className="colorpicker-modal-header">

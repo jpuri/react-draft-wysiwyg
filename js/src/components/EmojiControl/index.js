@@ -52,9 +52,10 @@ export default class EmojiControl extends Component {
   };
 
   renderEmojiModal(): Object {
+    const { config: { popupClassName } } = this.props;
     return (
       <div
-        className="emoji-modal"
+        className={`emoji-modal ${popupClassName}`}
         onClick={this.stopPropagation}
       >
         {

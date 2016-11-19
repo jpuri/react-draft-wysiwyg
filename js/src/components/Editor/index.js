@@ -30,6 +30,7 @@ import EmojiControl from '../EmojiControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
+import MentionDecorator from '../../decorators/Mention';
 import ImageBlockRenderer from '../../renderer/Image';
 import defaultToolbar from '../../config/defaultToolbar';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -38,7 +39,7 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    rawContentState: PropTypes.object,
+    initialContentState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
@@ -59,9 +60,9 @@ export default class WysiwygEditor extends Component {
 
   componentWillMount(): void {
     let editorState;
-    const decorator = new CompositeDecorator([LinkDecorator]);
-    if (this.props.rawContentState) {
-      const contentState = convertFromRaw(this.props.rawContentState);
+    const decorator = new CompositeDecorator([LinkDecorator, MentionDecorator]);
+    if (this.props.initialContentState) {
+      const contentState = convertFromRaw(this.props.initialContentState);
       editorState = EditorState.createWithContent(contentState, decorator);
     } else {
       editorState = EditorState.createEmpty(decorator);
