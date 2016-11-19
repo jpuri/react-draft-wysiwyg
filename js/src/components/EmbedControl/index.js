@@ -35,8 +35,7 @@ export default class EmbedControl extends Component {
 
   addEmbedURL: Function = (url: string): void => {
     const { editorState, onChange } = this.props;
-    const src = url || this.state.embedSrc;
-    console.log('embedSrc', src);
+    const src = this.state.embedSrc || url;
     const entityKey = Entity.create('EMBED', 'IMMUTABLE', {src});
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
