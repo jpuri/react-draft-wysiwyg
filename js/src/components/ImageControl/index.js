@@ -122,10 +122,10 @@ export default class ImageControl extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, showImageUpload, showImageLoading, dragEnter } = this.state;
-    const { config: { uploadCallback } } = this.props;
+    const { config: { uploadCallback, popupClassName } } = this.props;
     return (
       <div
-        className="image-modal"
+        className={`image-modal ${popupClassName}`}
         onClick={this.stopPropagation}
       >
         <div className="image-modal-header">
