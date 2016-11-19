@@ -36,6 +36,9 @@ export default class Home extends Component {
           <span className="quote-text">This is incredibly well done!</span>
           <span className="quote-author">Simon Sturmer (<a target="_blank" href="https://kodefox.com" rel="noopener noreferrer">KodeFox</a>)</span>
         </div>
+        <div className="discussion">
+          For discussions join <a target="_blank" href="https://draftjs.herokuapp.com/" rel="noopener noreferrer">DraftJS Slack Organization</a>
+        </div>
         <div className="home-label">
           Features
         </div>

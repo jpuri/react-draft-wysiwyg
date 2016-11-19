@@ -39,7 +39,7 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    rawContentState: PropTypes.object,
+    initialContentState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
@@ -61,8 +61,8 @@ export default class WysiwygEditor extends Component {
   componentWillMount(): void {
     let editorState;
     const decorator = new CompositeDecorator([LinkDecorator, MentionDecorator]);
-    if (this.props.rawContentState) {
-      const contentState = convertFromRaw(this.props.rawContentState);
+    if (this.props.initialContentState) {
+      const contentState = convertFromRaw(this.props.initialContentState);
       editorState = EditorState.createWithContent(contentState, decorator);
     } else {
       editorState = EditorState.createEmpty(decorator);

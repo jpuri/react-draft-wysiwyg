@@ -123,10 +123,11 @@ export default class LinkControl extends Component {
   };
 
   renderAddLinkModal() {
+    const { config: { popupClassName } } = this.props;
     const { linkTitle, linkTarget } = this.state;
     return (
       <div
-        className="link-modal"
+        className={`link-modal ${popupClassName}`}
         onClick={this.stopPropagation}
       >
         <span className="link-modal-label">Link Title</span>
