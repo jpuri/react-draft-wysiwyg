@@ -17,12 +17,12 @@
   justify-content: space-between;
 }
 .demo-wrapper {
-  width: 500px;
+  width: 600px;
   display: block;
   margin-bottom: 50px;
 }
 .demo-wrapper-wide {
-  width: 715px;
+  width: 800px;
   display: block;
   margin-bottom: 50px;
 }
@@ -41,7 +41,7 @@
   border: 1px solid #F1F1F1;
   padding: 5px;
   border-radius: 5px;
-  width: 300px;
+  width: 400px;
   border-radius: 2px;
   height: 425px;
   margin-left: 30px;
@@ -107,5 +107,15 @@
   color: rgb(0,47,126);
 }
 .demo-dropdown-custom {
+  border-color: rgb(0,47,126);
+}
+.demo-popup-custom {
+  border-color: rgb(0,47,126);
+  padding: 5px;
+}
+.demo-popup-custom input {
+  border-color: rgb(0,47,126);
+}
+.demo-popup-custom button {
   border-color: rgb(0,47,126);
 }

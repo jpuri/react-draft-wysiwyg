@@ -154,7 +154,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar-absolute"
             wrapperClassName="demo-wrapper-relative"
             editorClassName="demo-editor-plain"
-            rawContentState={sampleEditorContent}
+            initialContentState={sampleEditorContent}
             toolbarOnFocus
             toolbar={{
               options: ['inline', 'blockType', 'fontSize', 'fontFamily'],
@@ -212,13 +212,14 @@ export default class Demo extends Component {
                 justify: { icon: justify, className: 'demo-option-custom' },
               },
               fontFamily: { className: 'demo-option-custom-wide', dropdownClassName: 'demo-dropdown-custom' },
-              colorPicker: { className: 'demo-option-custom' },
+              colorPicker: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
               link: {
+                popupClassName: 'demo-popup-custom',
                 link: { icon: link, className: 'demo-option-custom' },
                 unlink: { icon: unlink, className: 'demo-option-custom' },
               },
-              emoji: { className: 'demo-option-custom' },
-              image: { icon: image, className: 'demo-option-custom' },
+              emoji: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+              image: { icon: image, className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
               remove: { icon: eraser, className: 'demo-option-custom' },
               history: {
                 undo: { icon: undo, className: 'demo-option-custom' },
