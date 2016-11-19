@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import Option from '../../components/Option';
 
-export default class Image extends Component {
+export default class Embed extends Component {
 
   static propTypes: Object = {
     block: PropTypes.instanceOf(ContentBlock).isRequired,
@@ -13,6 +13,40 @@ export default class Image extends Component {
   state: Object = {
     hovered: false,
   };
+
+  componentDidMount() {
+    this.renderEmbedly();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.showIframe !== this.state.showIframe && this.state.showIframe === true) {
+      this.renderEmbedly();
+    }
+  }
+
+  getScript() {
+    const script = document.createElement('script');
+    script.async = 1;
+    script.src = '//cdn.embedly.com/widgets/platform.js';
+    script.onload = () => {
+      window.embedly();
+    };
+    document.body.appendChild(script);
+  }
+
+  enablePreview = () => {
+    this.setState({
+      showIframe: true,
+    });
+  };
+
+  renderEmbedly() {
+    if (window.embedly) {
+      window.embedly();
+    } else {
+      this.getScript();
+    }
+  }
 
   setEntityAlignmentLeft: Function = (): void => {
     this.setEntityAlignment('left');
@@ -48,23 +82,23 @@ export default class Image extends Component {
   renderAlignmentOptions(): Object {
     return (
       <div
-        className="image-alignment-options-popup"
+        className="embed-alignment-options-popup"
       >
         <Option
           onClick={this.setEntityAlignmentLeft}
-          className="image-alignment-option"
+          className="embed-alignment-option"
         >
           L
         </Option>
         <Option
           onClick={this.setEntityAlignmentCenter}
-          className="image-alignment-option"
+          className="embed-alignment-option"
         >
           C
         </Option>
         <Option
           onClick={this.setEntityAlignmentRight}
-          className="image-alignment-option"
+          className="embed-alignment-option"
         >
           R
         </Option>
@@ -77,25 +111,22 @@ export default class Image extends Component {
     const { hovered } = this.state;
     const entity = Entity.get(block.getEntityAt(0));
     const { src, alignment } = entity.getData();
+    const innerHTML = `<div><a class="embedly-card" href="${src}" data-card-controls="0" data-card-theme="dark">Embedded ― ${src}</a></div>`;
     return (
       <span
         onMouseEnter={this.toggleHovered}
         onMouseLeave={this.toggleHovered}
         className={classNames(
-          'image-alignment',
+          'embed-alignment',
           {
-            'image-left': alignment === 'left',
-            'image-right': alignment === 'right',
-            'image-center': !alignment || alignment === 'none',
+            'embed-left': alignment === 'left',
+            'embed-right': alignment === 'right',
+            'embed-center': !alignment || alignment === 'none',
           }
         )}
       >
-        <span className="image-imagewrapper">
-          <img
-            src={src}
-            role="presentation"
-
-          />
+        <span className="embed-embedwrapper">
+          <div dangerouslySetInnerHTML={{ __html: innerHTML }} />
           {
             hovered ?
               this.renderAlignmentOptions()

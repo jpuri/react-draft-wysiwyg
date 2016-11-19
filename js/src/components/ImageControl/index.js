@@ -47,6 +47,7 @@ export default class ImageControl extends Component {
   addImage: Function = (event: Object, imgSrc: string): void => {
     const { editorState, onChange } = this.props;
     const src = imgSrc || this.state.imgSrc;
+    console.log('imgSrc', src, imgSrc, this.state.imgSrc);
     const entityKey = Entity.create('IMAGE', 'MUTABLE', { src });
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
@@ -85,6 +86,7 @@ export default class ImageControl extends Component {
   };
 
   updateImageSrc: Function = (event: Object): void => {
+    console.log(event.target.value);
     this.setState({
       imgSrc: event.target.value,
     });

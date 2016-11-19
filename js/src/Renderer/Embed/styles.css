@@ -1,0 +1,35 @@
+.embed-alignment-options-popup {
+  position: absolute;;
+  background: white;
+  display: flex;
+  padding: 5px 2px;
+  border-radius: 2px;
+  border: 1px solid #F1F1F1;
+  width: 105px;
+  cursor: pointer;
+  z-index: 100;
+}
+.alignment-option-left {
+  justify-content: flex-start;
+}
+.embed-alignment-option {
+  height: 15px;
+  width: 15px;
+}
+.embed-alignment {
+  position: relative;
+}
+.embed-embedwrapper {
+  position: relative;
+}
+.embed-center {
+  float: none;
+  display: flex;
+  justify-content: center;
+}
+.embed-left {
+  float: left;
+}
+.embed-right {
+  float: right;
+}

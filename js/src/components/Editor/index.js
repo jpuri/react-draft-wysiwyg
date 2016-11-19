@@ -30,7 +30,8 @@ import EmojiControl from '../EmojiControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
-import ImageBlockRenderer from '../../renderer/Image';
+import BlockRenderer from '../../renderer';
+import EmbedControl from '../EmbedControl';
 import defaultToolbar from '../../config/defaultToolbar';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -197,6 +198,7 @@ export default class WysiwygEditor extends Component {
       link,
       emoji,
       image,
+      embed,
       remove,
       history,
     } = toolbar;
@@ -262,6 +264,11 @@ export default class WysiwygEditor extends Component {
                 onChange={this.onChange}
                 config={image}
               />}
+              {options.indexOf('embed') >= 0 && <EmbedControl
+                editorState={editorState}
+                onChange={this.onChange}
+                config={embed}
+              />}
               {options.indexOf('remove') >= 0 && <RemoveControl
                 editorState={editorState}
                 onChange={this.onChange}
@@ -293,7 +300,7 @@ export default class WysiwygEditor extends Component {
             blockStyleFn={blockStyleFn}
             customStyleMap={customStyleMap}
             handleReturn={this.handleReturn}
-            blockRendererFn={ImageBlockRenderer}
+            blockRendererFn={BlockRenderer}
             blockRenderMap={this.customBlockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
           />

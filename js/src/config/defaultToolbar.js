@@ -18,6 +18,7 @@ import link from '../../../images/link.svg';
 import unlink from '../../../images/unlink.svg';
 import emoji from '../../../images/emoji.svg';
 import image from '../../../images/image.svg';
+import embed from '../../../images/embed.svg';
 import undo from '../../../images/undo.svg';
 import redo from '../../../images/redo.svg';
 import subscript from '../../../images/subscript.svg';
@@ -28,7 +29,7 @@ import superscript from '../../../images/superscript.svg';
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'image', 'remove', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'image', 'embed', 'remove', 'history'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -72,6 +73,7 @@ export default {
   },
   emoji: { icon: emoji, className: undefined },
   image: { icon: image, uploadCallback: undefined, className: undefined },
+  embed: { icon: embed, className: undefined },
   remove: { icon: eraser, className: undefined },
   history: {
     inDropdown: false,
