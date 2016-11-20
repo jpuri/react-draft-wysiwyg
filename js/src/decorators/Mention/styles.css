@@ -1,25 +1,19 @@
-.link-decorator-wrapper {
+.suggestion-wrapper {
   position: relative;
 }
-.link-decorator-link {
-  color: blue;
-  text-decoration: underline;
-}
-.link-decorator-icon {
-  position: absolute;
-  left: 40%;
-  top: 0;
-  cursor: pointer;
-  background-color: white;
-}
-.mention-suggestion-wrapper {
+.suggestion-dropdown {
   position: absolute;
   display: flex;
   flex-direction: column;
   left: 15px;
+  border: 1px solid #F1F1F1;
+  min-width: 100px;
 }
-.mention-suggestion:hover {
-  background-color: red;
+.suggestion-option {
+  padding: 7px 5px;
+}
+.suggestion-option:hover {
+  background-color: #F1F1F1;
 }
 .mention {
   color: #ff2a2a;

@@ -97,7 +97,11 @@ class Playground extends Component {
               mention={{
                 separator: ' ',
                 trigger: '@',
-                suggestions: ['abc', 'abcd', 'abcde'],
+                suggestions: [
+                  { text: 'abc', value: 'abc' },
+                  { text: 'abcd', value: 'abcd' },
+                  { text: 'abcde', value: 'abcde' },
+                ],
               }}
             />
           </div>

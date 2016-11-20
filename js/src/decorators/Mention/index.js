@@ -7,7 +7,7 @@ let config = {
   trigger: '@',
   suggestions: undefined,
   addMention: undefined,
-  mentionStyle: undefined,
+  mentionClassName: undefined,
 };
 
 function configDefined() {
@@ -15,17 +15,20 @@ function configDefined() {
 }
 
 // todo: add check for focused block
-// todo: add check when its first character in the block
 function findSuggestionEntities(contentBlock, callback) {
   if (configDefined()) {
     const text = contentBlock.getText();
-    const index = text.lastIndexOf(config.separator + config.trigger);
+    let index = text.lastIndexOf(config.separator + config.trigger);
+    if ((index === undefined || index < 0) && text[0] === config.trigger) {
+      index = 0;
+    }
     if (index >= 0) {
-      const mentionText = text.substr(index + 2, text.length);
+      const mentionText = index === 0 ? '' : text.substr(index + 2, text.length);
       const suggestionPresent =
-        config.suggestions.some(suggestion => suggestion.indexOf(mentionText) >= 0);
+        config.suggestions.some(suggestion =>
+          suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
       if (suggestionPresent) {
-        callback(index + 1, text.length);
+        callback(index === 0 ? 0 : index + 1, text.length);
       }
     }
   }
@@ -39,7 +42,7 @@ class Suggestion extends Component {
 
   addMention = (suggestion) => {
     config.addMention(
-      { text: suggestion, value: suggestion },
+      suggestion,
       { separator: config.separator, trigger: config.trigger }
     );
   }
@@ -49,12 +52,20 @@ class Suggestion extends Component {
     const mentionText = children[0].props.text.substr(1);
     const filteredSuggestions =
       config.suggestions &&
-      config.suggestions.filter(suggestion => suggestion.indexOf(mentionText) >= 0);
+      config.suggestions.filter(suggestion =>
+        suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
     return (
-      <span className="link-decorator-wrapper">
-        <span className="link-decorator-link">{children}</span>
-        <span className="mention-suggestion-wrapper" contentEditable="false">
-          {filteredSuggestions.map(suggestion => <span onClick={this.addMention.bind(undefined, suggestion)} className="mention-suggestion">{suggestion}</span>)}
+      <span className="suggestion-wrapper">
+        <span>{children}</span>
+        <span className="suggestion-dropdown" contentEditable="false">
+          {filteredSuggestions.map((suggestion, index) =>
+            <span
+              key={index}
+              onClick={this.addMention.bind(undefined, suggestion)}
+              className="suggestion-option"
+            >
+              {suggestion.text}
+            </span>)}
         </span>
       </span>
     );
@@ -77,7 +88,7 @@ function findMentionEntities(contentBlock, callback) {
 const Mention = ({ entityKey }) => {
   const { text } = Entity.get(entityKey).getData();
   return (
-    <span className={`mention ${config.mentionStyle}`}>{text}</span>
+    <span className={`mention ${config.mentionClassName}`}>{text}</span>
   );
 };
 

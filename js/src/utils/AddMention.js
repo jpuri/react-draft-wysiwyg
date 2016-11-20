@@ -18,12 +18,12 @@ export default function addMention(
   });
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
-  const mentionIndex = selectedBlockText.lastIndexOf(config.separator + config.trigger) || 0;
+  const mentionIndex = (selectedBlockText.lastIndexOf(config.separator + config.trigger) || 0) + 1;
 
   // insert mention
   let updatedSelection = editorState.getSelection().merge({
-    anchorOffset: mentionIndex + 1,
-    focusOffset: selectedBlockText.length,
+    anchorOffset: mentionIndex,
+    focusOffset: mentionIndex + text.length,
   });
   let newEditorState = EditorState.acceptSelection(editorState, updatedSelection);
   let contentState = Modifier.replaceText(
@@ -33,17 +33,20 @@ export default function addMention(
     newEditorState.getCurrentInlineStyle(),
     entityKey,
   );
+  newEditorState = EditorState.push(newEditorState, contentState, 'insert-characters');
 
   // insert a blank space after mention
   updatedSelection = newEditorState.getSelection().merge({
-    anchorOffset: selectedBlockText.length + 1,
-    focusOffset: selectedBlockText.length + 1,
+    anchorOffset: mentionIndex + text.length,
+    focusOffset: mentionIndex + text.length,
   });
   newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
   contentState = Modifier.insertText(
-    contentState,
+    newEditorState.getCurrentContent(),
     updatedSelection,
     ' ',
+    newEditorState.getCurrentInlineStyle(),
+    undefined
   );
   onChange(EditorState.push(newEditorState, contentState, 'insert-characters'), true);
 }
