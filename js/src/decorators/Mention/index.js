@@ -8,6 +8,8 @@ let config = {
   suggestions: undefined,
   addMention: undefined,
   mentionClassName: undefined,
+  dropdownClassName: undefined,
+  optionClassName: undefined,
 };
 
 function configDefined() {
@@ -49,20 +51,20 @@ class Suggestion extends Component {
 
   render() {
     const { children } = this.props;
-    const mentionText = children[0].props.text.substr(1);
+    const { suggestions, dropdownClassName, optionClassName } = config;
+    const mentionText = children[0].props.text;
     const filteredSuggestions =
-      config.suggestions &&
-      config.suggestions.filter(suggestion =>
+      suggestions && suggestions.filter(suggestion =>
         suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
     return (
       <span className="suggestion-wrapper">
         <span>{children}</span>
-        <span className="suggestion-dropdown" contentEditable="false">
+        <span className={`suggestion-dropdown ${dropdownClassName}`} contentEditable="false">
           {filteredSuggestions.map((suggestion, index) =>
             <span
               key={index}
               onClick={this.addMention.bind(undefined, suggestion)}
-              className="suggestion-option"
+              className={`suggestion-option ${optionClassName}`}
             >
               {suggestion.text}
             </span>)}
