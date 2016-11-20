@@ -148,7 +148,6 @@ export default class Demo2 extends Component {
               <li>which images are used for options</li>
               <li>CSS classes that are applied to the options and option group</li>
               <li>showing option groups in drop-down</li>
-              <li>for image options it allows image upload callback</li>
             </ol>
             Below is the complete toolbar property object, user can provide any or all of these properties.
             For editor to reflect the changes in this object you need to make sure that you do not mutate it but rather create a new copy.
@@ -200,7 +199,7 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;unlink: {'{ icon: unlink, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
               &nbsp;&nbsp;emoji: {'{ icon: emoji, className: undefined }'}, <br />
-              &nbsp;&nbsp;image: {'{ icon: image, uploadCallback: undefined, className: undefined }'}, <br />
+              &nbsp;&nbsp;image: {'{ icon: image, className: undefined }'}, <br />
               &nbsp;&nbsp;remove: {'{ icon: eraser, className: undefined }'}, <br />
               &nbsp;&nbsp;history: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
@@ -212,6 +211,27 @@ export default class Demo2 extends Component {
               {'}'} <br />
               <br />
               {'<Editor toolbar={toolbar} />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            Uploading Image
+          </div>
+          <div className="docs-desc">
+            If property uploadCallback is passed image control shows the option to upload image.
+            The callback should return a promise. When resolved this promise should provide an object with a link property whose value is image source(url).
+          </div>
+          <div>
+            <code>
+              {'export default function uploadImageCallBack(file) {'}<br />
+              &nbsp;&nbsp;return new Promise(<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'(resolve, reject) => {'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'resolve({ link: "http://dummy_image_src.com" });'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'}'}<br />
+              &nbsp;&nbsp;);<br />
+              {'}'}<br />
+              {'<Editor uploadCallback={this.uploadCallback} />'}
             </code>
           </div>
         </div>
