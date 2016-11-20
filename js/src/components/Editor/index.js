@@ -45,6 +45,7 @@ export default class WysiwygEditor extends Component {
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
+    uploadCallback: PropTypes.func,
   };
 
   constructor(props) {
@@ -185,6 +186,7 @@ export default class WysiwygEditor extends Component {
       toolbarClassName,
       editorClassName,
       wrapperClassName,
+      uploadCallback,
     } = this.props;
     const {
       options,
@@ -261,6 +263,7 @@ export default class WysiwygEditor extends Component {
               {options.indexOf('image') >= 0 && <ImageControl
                 editorState={editorState}
                 onChange={this.onChange}
+                uploadCallback={uploadCallback}
                 config={image}
               />}
               {options.indexOf('remove') >= 0 && <RemoveControl

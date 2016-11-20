@@ -74,7 +74,6 @@ export default {
   emoji: { icon: emoji, className: undefined, popupClassName: undefined },
   image: {
     icon: image,
-    uploadCallback: undefined,
     className: undefined,
     popupClassName: undefined,
   },
