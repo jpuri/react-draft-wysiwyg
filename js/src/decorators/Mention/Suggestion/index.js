@@ -8,7 +8,7 @@ let config = {
   suggestions: undefined,
   onChange: undefined,
   getEditorState: undefined,
-  getContainerRef: undefined,
+  getWrapperRef: undefined,
   dropdownClassName: undefined,
   optionClassName: undefined,
 };
@@ -50,7 +50,7 @@ class Suggestion extends Component {
   }
 
   componentDidMount() {
-    const editorRect = config.getContainerRef().getBoundingClientRect();
+    const editorRect = config.getWrapperRef().getBoundingClientRect();
     const suggestionRect = this.suggestion.getBoundingClientRect();
     const dropdownRect = this.dropdown.getBoundingClientRect();
     let left;
@@ -120,3 +120,6 @@ module.exports = {
   },
   setSuggestionConfig: setConfig,
 };
+
+
+// change html / markdown generators to use data from entity

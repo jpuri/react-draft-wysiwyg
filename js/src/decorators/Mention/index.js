@@ -9,7 +9,7 @@ let config = {
   suggestions: undefined,
   onChange: undefined,
   getEditorState: undefined,
-  getContainerRef: undefined,
+  getWrapperRef: undefined,
   mentionClassName: undefined,
   dropdownClassName: undefined,
   optionClassName: undefined,
@@ -24,7 +24,7 @@ function setConfig(conf) {
     suggestions: config.suggestions,
     onChange: config.onChange,
     getEditorState: config.getEditorState,
-    getContainerRef: config.getContainerRef,
+    getWrapperRef: config.getWrapperRef,
     dropdownClassName: config.dropdownClassName,
     optionClassName: config.optionClassName,
   });
