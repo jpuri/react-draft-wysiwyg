@@ -9,21 +9,23 @@ export default function addMention(
   editorState: EditorState,
   onChange: Function,
   suggestion: Object,
-  config: Object
+  separator: string,
+  trigger: string,
 ): void {
-  const { text, value } = suggestion;
+  const { text, value, url } = suggestion;
   const entityKey = Entity.create('MENTION', 'MUTABLE', {
-    text,
+    text: `${trigger}${text}`,
     value,
+    url,
   });
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
-  const mentionIndex = (selectedBlockText.lastIndexOf(config.separator + config.trigger) || 0) + 1;
+  const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger) || 0) + 1;
 
   // insert mention
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
-    focusOffset: mentionIndex + text.length,
+    focusOffset: selectedBlockText.length - mentionIndex,
   });
   let newEditorState = EditorState.acceptSelection(editorState, updatedSelection);
   let contentState = Modifier.replaceText(

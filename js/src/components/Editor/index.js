@@ -31,7 +31,6 @@ import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
 import MentionDecorator from '../../decorators/Mention';
-import addMention from '../../utils/AddMention';
 import ImageBlockRenderer from '../../renderer/Image';
 import defaultToolbar from '../../config/defaultToolbar';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -66,7 +65,10 @@ export default class WysiwygEditor extends Component {
     const decorators = [LinkDecorator];
     if (this.props.mention) {
       MentionDecorator.setConfig(this.props.mention);
-      MentionDecorator.setConfig({ addMention: this.addMention });
+      MentionDecorator.setConfig({
+        onChange: this.onChange,
+        getEditorState: () => this.state.editorState,
+      });
       decorators.push(...MentionDecorator.decorators);
     }
     const compositeDecorator = new CompositeDecorator(decorators);
@@ -176,17 +178,16 @@ export default class WysiwygEditor extends Component {
   };
 
   handleReturn: Function = (event: Object): boolean => {
+    let returnValue = false;
+    if (this.props.mention) {
+      returnValue = MentionDecorator.handleReturn();
+    }
     const editorState = handleNewLine(this.state.editorState, event);
     if (editorState) {
       this.onChange(editorState);
-      return true;
+      returnValue = true;
     }
-    return false;
-  };
-
-  addMention: Function = (suggestion: Object, config: Object): void => {
-    const { editorState } = this.state;
-    addMention(editorState, this.onChange, suggestion, config);
+    return returnValue;
   };
 
   render() {

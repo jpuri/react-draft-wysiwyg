@@ -8,6 +8,10 @@
   left: 15px;
   border: 1px solid #F1F1F1;
   min-width: 100px;
+  max-height: 150px;
+  overflow: auto;
+  background: white;
+  z-index: 100;
 }
 .suggestion-option {
   padding: 7px 5px;
@@ -16,8 +20,8 @@
   background-color: #F1F1F1;
 }
 .mention {
-  color: #ff2a2a;
-  background-color: #fff0f2;
+  color: #1236ff;
+  background-color: #f0fbff;
   padding: 1px 2px;
   border-radius: 2px;
 }

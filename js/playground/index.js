@@ -98,9 +98,19 @@ class Playground extends Component {
                 separator: ' ',
                 trigger: '@',
                 suggestions: [
-                  { text: 'abc', value: 'abc' },
-                  { text: 'abcd', value: 'abcd' },
-                  { text: 'abcde', value: 'abcde' },
+                  { text: 'abc', value: 'abc', url: 'abc' },
+                  { text: 'abcd', value: 'abcd', url: 'abcd' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcdef', url: 'abcde' },
+                  { text: 'abcde', value: 'abcdefg', url: 'abcde' },
+                  { text: 'abcde', value: 'abcdefgh', url: 'abcde' },
+                  { text: 'abcde', value: 'abcdefghi', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
                 ],
               }}
             />
