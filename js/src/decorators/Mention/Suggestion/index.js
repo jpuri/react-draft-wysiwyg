@@ -8,6 +8,7 @@ let config = {
   suggestions: undefined,
   onChange: undefined,
   getEditorState: undefined,
+  getContainerRef: undefined,
   dropdownClassName: undefined,
   optionClassName: undefined,
 };
@@ -44,6 +45,38 @@ class Suggestion extends Component {
     children: PropTypes.array,
   };
 
+  state: Object = {
+    style: { left: 15 },
+  }
+
+  componentDidMount() {
+    const editorRect = config.getContainerRef().getBoundingClientRect();
+    const suggestionRect = this.suggestion.getBoundingClientRect();
+    const dropdownRect = this.dropdown.getBoundingClientRect();
+    let left;
+    let right;
+    let bottom;
+    if (editorRect.width < suggestionRect.left + dropdownRect.width) {
+      right = 15;
+    } else {
+      left = 15;
+    }
+    if (editorRect.bottom < dropdownRect.bottom) {
+      bottom = 0;
+    }
+    this.setState({ // eslint-disable-line react/no-did-mount-set-state
+      style: { left, right, bottom },
+    });
+  }
+
+  setSuggestionReference: Function = (ref: Object): void => {
+    this.suggestion = ref;
+  };
+
+  setDropdownReference: Function = (ref: Object): void => {
+    this.dropdown = ref;
+  };
+
   addMention = (suggestion) => {
     const editorState = config.getEditorState();
     const { onChange, separator, trigger } = config;
@@ -58,9 +91,9 @@ class Suggestion extends Component {
       suggestions && suggestions.filter(suggestion =>
         suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
     return (
-      <span className="suggestion-wrapper">
+      <span className="suggestion-wrapper" ref={this.setSuggestionReference}>
         <span>{children}</span>
-        <span className={`suggestion-dropdown ${dropdownClassName}`} contentEditable="false">
+        <span className={`suggestion-dropdown ${dropdownClassName}`} contentEditable="false" style={this.state.style} ref={this.setDropdownReference}>
           {filteredSuggestions.map((suggestion, index) =>
             <span
               key={index}

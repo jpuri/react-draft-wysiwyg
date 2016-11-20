@@ -5,7 +5,6 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  left: 15px;
   border: 1px solid #F1F1F1;
   min-width: 100px;
   max-height: 150px;

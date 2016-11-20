@@ -68,6 +68,7 @@ export default class WysiwygEditor extends Component {
         ...this.props.mention,
         onChange: this.onChange,
         getEditorState: () => this.state.editorState,
+        getContainerRef: () => this.container,
       });
       decorators.push(...MentionDecorator.decorators);
     }
@@ -140,6 +141,10 @@ export default class WysiwygEditor extends Component {
 
   setEditorReference: Function = (ref: Object): void => {
     this.editor = ref;
+  };
+
+  setContainerReference: Function = (ref: Object): void => {
+    this.container = ref;
   };
 
   focusEditor: Function = (): void => {
@@ -298,6 +303,7 @@ export default class WysiwygEditor extends Component {
           undefined
         }
         <div
+          ref={this.setContainerReference}
           className={`editor-main ${editorClassName}`}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}

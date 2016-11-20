@@ -1,4 +1,4 @@
-import Mention, { mentionDecorator, setMentionConfig } from './Mention';
+import { mentionDecorator, setMentionConfig } from './Mention';
 import { suggestionDecorator, setSuggestionConfig } from './Suggestion';
 import { handleReturn, setHandleReturnConfig } from './handleReturn';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -9,6 +9,7 @@ let config = {
   suggestions: undefined,
   onChange: undefined,
   getEditorState: undefined,
+  getContainerRef: undefined,
   mentionClassName: undefined,
   dropdownClassName: undefined,
   optionClassName: undefined,
@@ -23,6 +24,7 @@ function setConfig(conf) {
     suggestions: config.suggestions,
     onChange: config.onChange,
     getEditorState: config.getEditorState,
+    getContainerRef: config.getContainerRef,
     dropdownClassName: config.dropdownClassName,
     optionClassName: config.optionClassName,
   });
