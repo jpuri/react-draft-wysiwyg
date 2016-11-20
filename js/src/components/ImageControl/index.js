@@ -12,6 +12,7 @@ export default class ImageControl extends Component {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    uploadCallback: PropTypes.func,
     config: PropTypes.object,
   };
 
@@ -19,14 +20,14 @@ export default class ImageControl extends Component {
     imgSrc: '',
     showModal: false,
     dragEnter: false,
-    showImageUpload: !!this.props.config.uploadCallback,
+    showImageUpload: !!this.props.uploadCallback,
     showImageLoading: false,
   };
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.config !== this.props.config) {
+    if (properties.uploadCallback !== this.props.uploadCallback) {
       this.setState({
-        showImageUpload: !!this.props.config.uploadCallback,
+        showImageUpload: !!this.props.uploadCallback,
       });
     }
   }
@@ -59,7 +60,7 @@ export default class ImageControl extends Component {
 
   uploadImage: Function = (file: Object): void => {
     this.toggleShowImageLoading();
-    const { config: { uploadCallback } } = this.props;
+    const { uploadCallback } = this.props;
     uploadCallback(file)
       .then(({ data }) => {
         this.setState({
@@ -120,7 +121,7 @@ export default class ImageControl extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, showImageUpload, showImageLoading, dragEnter } = this.state;
-    const { config: { uploadCallback, popupClassName } } = this.props;
+    const { config: { popupClassName }, uploadCallback } = this.props;
     return (
       <div
         className={`image-modal ${popupClassName}`}
