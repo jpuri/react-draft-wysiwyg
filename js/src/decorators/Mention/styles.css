@@ -21,3 +21,9 @@
 .mention-suggestion:hover {
   background-color: red;
 }
+.mention {
+  color: #ff2a2a;
+  background-color: #fff0f2;
+  padding: 1px 2px;
+  border-radius: 2px;
+}

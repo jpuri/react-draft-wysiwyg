@@ -94,6 +94,11 @@ class Playground extends Component {
                   inDropdown: true,
                 },
               }}
+              mention={{
+                separator: ' ',
+                trigger: '@',
+                suggestions: ['abc', 'abcd', 'abcde'],
+              }}
             />
           </div>
           <textarea

@@ -31,6 +31,7 @@ import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
 import MentionDecorator from '../../decorators/Mention';
+import addMention from '../../utils/AddMention';
 import ImageBlockRenderer from '../../renderer/Image';
 import defaultToolbar from '../../config/defaultToolbar';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -46,6 +47,7 @@ export default class WysiwygEditor extends Component {
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     uploadCallback: PropTypes.func,
+    mention: PropTypes.object,
   };
 
   constructor(props) {
@@ -61,12 +63,18 @@ export default class WysiwygEditor extends Component {
 
   componentWillMount(): void {
     let editorState;
-    const decorator = new CompositeDecorator([LinkDecorator, MentionDecorator]);
+    const decorators = [LinkDecorator];
+    if (this.props.mention) {
+      MentionDecorator.setConfig(this.props.mention);
+      MentionDecorator.setConfig({ addMention: this.addMention });
+      decorators.push(...MentionDecorator.decorators);
+    }
+    const compositeDecorator = new CompositeDecorator(decorators);
     if (this.props.initialContentState) {
       const contentState = convertFromRaw(this.props.initialContentState);
-      editorState = EditorState.createWithContent(contentState, decorator);
+      editorState = EditorState.createWithContent(contentState, compositeDecorator);
     } else {
-      editorState = EditorState.createEmpty(decorator);
+      editorState = EditorState.createEmpty(compositeDecorator);
     }
     this.setState({
       editorState,
@@ -78,6 +86,9 @@ export default class WysiwygEditor extends Component {
       this.setState({
         toolbar: mergeRecursive(defaultToolbar, props.toolbar),
       });
+    }
+    if (this.props.mention !== props.mention) {
+      MentionDecorator.setConfig(this.props.mention);
     }
   }
 
@@ -171,6 +182,11 @@ export default class WysiwygEditor extends Component {
       return true;
     }
     return false;
+  };
+
+  addMention: Function = (suggestion: Object, config: Object): void => {
+    const { editorState } = this.state;
+    addMention(editorState, this.onChange, suggestion, config);
   };
 
   render() {
