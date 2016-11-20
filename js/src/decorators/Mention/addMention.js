@@ -8,9 +8,9 @@ import { getSelectedBlock } from 'draftjs-utils';
 export default function addMention(
   editorState: EditorState,
   onChange: Function,
-  suggestion: Object,
   separator: string,
   trigger: string,
+  suggestion: Object,
 ): void {
   const { text, value, url } = suggestion;
   const entityKey = Entity.create('MENTION', 'MUTABLE', {
@@ -25,13 +25,13 @@ export default function addMention(
   // insert mention
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
-    focusOffset: selectedBlockText.length - mentionIndex,
+    focusOffset: selectedBlockText.length,
   });
   let newEditorState = EditorState.acceptSelection(editorState, updatedSelection);
   let contentState = Modifier.replaceText(
     newEditorState.getCurrentContent(),
     updatedSelection,
-    `${text}`,
+    `${trigger}${text}`,
     newEditorState.getCurrentInlineStyle(),
     entityKey,
   );
@@ -39,8 +39,8 @@ export default function addMention(
 
   // insert a blank space after mention
   updatedSelection = newEditorState.getSelection().merge({
-    anchorOffset: mentionIndex + text.length,
-    focusOffset: mentionIndex + text.length,
+    anchorOffset: mentionIndex + text.length + trigger.length,
+    focusOffset: mentionIndex + text.length + trigger.length,
   });
   newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
   contentState = Modifier.insertText(

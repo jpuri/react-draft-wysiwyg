@@ -64,8 +64,8 @@ export default class WysiwygEditor extends Component {
     let editorState;
     const decorators = [LinkDecorator];
     if (this.props.mention) {
-      MentionDecorator.setConfig(this.props.mention);
       MentionDecorator.setConfig({
+        ...this.props.mention,
         onChange: this.onChange,
         getEditorState: () => this.state.editorState,
       });
