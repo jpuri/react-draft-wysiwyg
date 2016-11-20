@@ -1,48 +1,44 @@
-import React, { PropTypes, Component } from 'react';
+import { mentionDecorator, setMentionConfig } from './Mention';
+import { suggestionDecorator, setSuggestionConfig } from './Suggestion';
+import { handleReturn, setHandleReturnConfig } from './handleReturn';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-const separator = ' ';
-const trigger = '@';
-const suggestions = ['abc', 'abcd', 'abcde'];
+let config = {
+  separator: ' ',
+  trigger: '@',
+  suggestions: undefined,
+  onChange: undefined,
+  getEditorState: undefined,
+  getWrapperRef: undefined,
+  mentionClassName: undefined,
+  dropdownClassName: undefined,
+  optionClassName: undefined,
+};
 
-// todo: add check for focused block
-function findMentionEntities(contentBlock, callback) {
-  const text = contentBlock.getText();
-  const index = text.lastIndexOf(separator + trigger);
-  if (index >= 0) {
-    const mentionText = text.substr(index + 2, text.length);
-    const suggestionPresent =
-      suggestions.some(suggestion => suggestion.indexOf(mentionText) >= 0);
-    if (suggestionPresent) {
-      callback(index + 1, text.length);
-    }
-  }
-}
-
-class Mention extends Component {
-
-  static propTypes = {
-    children: PropTypes.array,
-  };
-
-  render() {
-    const { children } = this.props;
-    console.log('children', children[0].props.text)
-    const mentionText = children[0].props.text.substr(1);
-    const filteredSuggestions =
-      suggestions.filter(suggestion => suggestion.indexOf(mentionText) >= 0);
-    return (
-      <span className="link-decorator-wrapper">
-        <span className="link-decorator-link">{children}</span>
-        <span className="mention-suggestion-wrapper" contentEditable="false">
-          {filteredSuggestions.map(suggestion => <span className="mention-suggestion">{suggestion}</span>)}
-        </span>
-      </span>
-    );
-  }
+function setConfig(conf) {
+  config = { ...config, ...conf };
+  setMentionConfig({ mentionClassName: config.mentionClassName });
+  setSuggestionConfig({
+    separator: config.separator,
+    trigger: config.trigger,
+    suggestions: config.suggestions,
+    onChange: config.onChange,
+    getEditorState: config.getEditorState,
+    getWrapperRef: config.getWrapperRef,
+    dropdownClassName: config.dropdownClassName,
+    optionClassName: config.optionClassName,
+  });
+  setHandleReturnConfig({
+    separator: config.separator,
+    trigger: config.trigger,
+    suggestions: config.suggestions,
+    onChange: config.onChange,
+    getEditorState: config.getEditorState,
+  });
 }
 
 export default {
-  strategy: findMentionEntities,
-  component: Mention,
+  decorators: [mentionDecorator, suggestionDecorator],
+  setConfig,
+  handleReturn,
 };

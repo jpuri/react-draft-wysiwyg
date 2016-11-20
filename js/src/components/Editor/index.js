@@ -46,6 +46,7 @@ export default class WysiwygEditor extends Component {
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     uploadCallback: PropTypes.func,
+    mention: PropTypes.object,
   };
 
   constructor(props) {
@@ -61,12 +62,22 @@ export default class WysiwygEditor extends Component {
 
   componentWillMount(): void {
     let editorState;
-    const decorator = new CompositeDecorator([LinkDecorator, MentionDecorator]);
+    const decorators = [LinkDecorator];
+    if (this.props.mention) {
+      MentionDecorator.setConfig({
+        ...this.props.mention,
+        onChange: this.onChange,
+        getEditorState: () => this.state.editorState,
+        getWrapperRef: () => this.wrapper,
+      });
+      decorators.push(...MentionDecorator.decorators);
+    }
+    const compositeDecorator = new CompositeDecorator(decorators);
     if (this.props.initialContentState) {
       const contentState = convertFromRaw(this.props.initialContentState);
-      editorState = EditorState.createWithContent(contentState, decorator);
+      editorState = EditorState.createWithContent(contentState, compositeDecorator);
     } else {
-      editorState = EditorState.createEmpty(decorator);
+      editorState = EditorState.createEmpty(compositeDecorator);
     }
     this.setState({
       editorState,
@@ -78,6 +89,9 @@ export default class WysiwygEditor extends Component {
       this.setState({
         toolbar: mergeRecursive(defaultToolbar, props.toolbar),
       });
+    }
+    if (this.props.mention !== props.mention) {
+      MentionDecorator.setConfig(this.props.mention);
     }
   }
 
@@ -129,6 +143,10 @@ export default class WysiwygEditor extends Component {
     this.editor = ref;
   };
 
+  setWrapperReference: Function = (ref: Object): void => {
+    this.wrapper = ref;
+  };
+
   focusEditor: Function = (): void => {
     setTimeout(() => {
       this.editor.focus();
@@ -165,12 +183,16 @@ export default class WysiwygEditor extends Component {
   };
 
   handleReturn: Function = (event: Object): boolean => {
+    let returnValue = false;
+    if (this.props.mention) {
+      returnValue = MentionDecorator.handleReturn();
+    }
     const editorState = handleNewLine(this.state.editorState, event);
     if (editorState) {
       this.onChange(editorState);
-      return true;
+      returnValue = true;
     }
-    return false;
+    return returnValue;
   };
 
   render() {
@@ -281,6 +303,7 @@ export default class WysiwygEditor extends Component {
           undefined
         }
         <div
+          ref={this.setWrapperReference}
           className={`editor-main ${editorClassName}`}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
