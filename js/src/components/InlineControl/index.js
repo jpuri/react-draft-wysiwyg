@@ -40,13 +40,14 @@ export default class InlineControl extends Component {
   }
 
   toggleInlineStyle: Function = (style: string): void => {
+    const newStyle = style === 'MONOSPACE' ? 'CODE' : style;
     const { editorState, onChange } = this.props;
     let newState = RichUtils.toggleInlineStyle(
       editorState,
-      style
+      newStyle
     );
-    if (style === 'SUBSCRIPT' || style === 'SUPERSCRIPT') {
-      const removeStyle = style === 'SUBSCRIPT' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
+    if (newStyle === 'SUBSCRIPT' || newStyle === 'SUPERSCRIPT') {
+      const removeStyle = newStyle === 'SUBSCRIPT' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
       const contentState = Modifier.removeInlineStyle(
         newState.getCurrentContent(),
         newState.getSelection(),

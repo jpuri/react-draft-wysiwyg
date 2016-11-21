@@ -83,6 +83,6 @@ describe('InlineControl test suite', () => {
     assert.isNotTrue(control.state().currentStyles.ITALIC);
     assert.isNotTrue(control.state().currentStyles.UNDERLINE);
     assert.isNotTrue(control.state().currentStyles.STRIKETHROUGH);
-    assert.isNotTrue(control.state().currentStyles.CODE);
+    assert.isNotTrue(control.state().currentStyles.MONOSPACE);
   });
 });

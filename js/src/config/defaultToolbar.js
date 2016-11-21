@@ -2,7 +2,7 @@ import bold from '../../../images/bold.svg';
 import italic from '../../../images/italic.svg';
 import underline from '../../../images/underline.svg';
 import strikethrough from '../../../images/strikethrough.svg';
-import code from '../../../images/code.svg';
+import monospace from '../../../images/monospace.svg';
 import fontSize from '../../../images/font-size.svg';
 import indent from '../../../images/indent.svg';
 import outdent from '../../../images/outdent.svg';
@@ -33,12 +33,12 @@ export default {
   inline: {
     inDropdown: false,
     className: undefined,
-    options: ['bold', 'italic', 'underline', 'strikethrough', 'code', 'superscript', 'subscript'],
+    options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace', 'superscript', 'subscript'],
     bold: { icon: bold, className: undefined },
     italic: { icon: italic, className: undefined },
     underline: { icon: underline, className: undefined },
     strikethrough: { icon: strikethrough, className: undefined },
-    code: { icon: code, className: undefined },
+    monospace: { icon: monospace, className: undefined },
     superscript: { icon: superscript, className: undefined },
     subscript: { icon: subscript, className: undefined },
   },
