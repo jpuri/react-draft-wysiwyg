@@ -146,7 +146,7 @@ export default class Demo extends Component {
             toolbar={{
               options: ['inline', 'blockType', 'fontSize', 'fontFamily'],
               inline: {
-                options: ['bold', 'italic', 'underline', 'strikethrough', 'code'],
+                options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace'],
                 bold: { className: 'bordered-option-classname' },
                 italic: { className: 'bordered-option-classname' },
                 underline: { className: 'bordered-option-classname' },
