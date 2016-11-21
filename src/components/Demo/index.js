@@ -186,7 +186,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar-absolute"
             wrapperClassName="demo-wrapper-relative"
             editorClassName="demo-editor-embedded"
-            initialContentState={{ "entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"link":"https://www.youtube.com/embed/VbXNmIvWa1c"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links, this work so awesome with DraftJS:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"This song is awesome.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}] }}
+            initialContentState={{ "entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"link":"https://www.youtube.com/embed/VbXNmIvWa1c"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links, this work so awesome with DraftJS:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"This is cool. Check by typing more here ...","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}] }}
             toolbarOnFocus
             toolbar={{
               inline: { inDropdown: true },
