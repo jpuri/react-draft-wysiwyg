@@ -19,6 +19,7 @@ A Wysiwyg editor built using ReactJS and DeaftJS libraries.
 - Choice of more than 150 emojis.
 - Support for mentions.
 - Support for adding / uploading images.
+- Support for aligning images.
 - Support for Embedded links.
 - Option provided to remove added styling.
 - Option of undo and redo.
