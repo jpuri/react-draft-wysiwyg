@@ -52,6 +52,7 @@ export default class Home extends Component {
           <li className="home-listItem">Choice of more than 150 emojis.</li>
           <li className="home-listItem">Support for mentions.</li>
           <li className="home-listItem">Support for adding / uploading images.</li>
+          <li className="home-listItem">Support for aligning images.</li>
           <li className="home-listItem">Support for Embedded links.</li>
           <li className="home-listItem">Option provided to remove added styling.</li>
           <li className="home-listItem">Option of undo and redo.</li>

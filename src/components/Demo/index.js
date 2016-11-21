@@ -196,7 +196,7 @@ export default class Demo extends Component {
               separator: ' ',
               trigger: '@',
               suggestions: [
-                { text: 'Luis Rudge', value: '@Luis Rudge', url: 'Luis Rudge' },
+                { text: 'apple', value: 'apple', url: 'apple' },
                 { text: 'banana', value: 'banana', url: 'banana' },
                 { text: 'cherry', value: 'cherry', url: 'cherry' },
                 { text: 'durian', value: 'durian', url: 'durian' },
