@@ -17,6 +17,6 @@ const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
 
 const contentState = ContentState.createFromBlockArray(contentBlocks);
 
-const rawContentState = convertToRaw(contentState);
+const initialContentState = convertToRaw(contentState);
 
-export default rawContentState;
+export default initialContentState;

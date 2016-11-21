@@ -19,7 +19,7 @@
 }
 .home-wrapper {
   margin-top: 50px;
-  width: 720px;
+  width: 775px;
   display: block;
 }
 .home-editor {
@@ -53,4 +53,7 @@
 .feature-list {
   margin: 50px 0 50px 50px;
   list-style-type: decimal;
+}
+.discussion {
+  margin-top: 15px;
 }
