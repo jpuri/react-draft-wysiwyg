@@ -10,7 +10,10 @@
   display: block;
   font-size: 20px;
   font-weight: 500;
-  margin: 50px 0;
+  margin: 50px 0 25px;
+}
+.demo-subLabel {
+  margin-bottom: 20px;
 }
 .demo-editorSection {
   display: flex;

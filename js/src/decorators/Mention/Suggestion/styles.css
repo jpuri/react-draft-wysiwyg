@@ -14,6 +14,7 @@
 }
 .suggestion-option {
   padding: 7px 5px;
+  border-bottom: 1px solid #f1f1f1;
 }
 .suggestion-option:hover {
   background-color: #F1F1F1;

@@ -56,7 +56,7 @@ class Suggestion extends Component {
     let left;
     let right;
     let bottom;
-    if (editorRect.width < suggestionRect.left + dropdownRect.width) {
+    if (editorRect.width < (suggestionRect.left - editorRect.left) + dropdownRect.width) {
       right = 15;
     } else {
       left = 15;
