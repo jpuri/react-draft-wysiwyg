@@ -280,6 +280,9 @@ export default class Demo2 extends Component {
             I definitely plan to improve it in future.
           </div>
         </div>
+        <div className="docs-text">
+          For code examples you can check <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/docs/src/components/Demo/index.js">here</a>.
+        </div>
       </div>
     );
   }

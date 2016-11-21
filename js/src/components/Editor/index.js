@@ -320,7 +320,6 @@ export default class WysiwygEditor extends Component {
         >
           <Editor
             ref={this.setEditorReference}
-            spellCheck
             onTab={this.onTab}
             editorState={editorState}
             onChange={this.onChange}

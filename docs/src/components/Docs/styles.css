@@ -16,11 +16,16 @@ code {
   font-size: 13px;
   display: inline-flex;
   flex-direction: column;
-  background-color: #ffedf0;
-  color: #a21717;
+  background-color: #d7fbff;
+  color: #0b082f;
 }
 .docs-desc {
   width: 75%;
   font-size: 15px;
   margin-bottom: 10px;
+}
+.docs-text {
+  width: 75%;
+  font-size: 17px;
+  margin: 15px 0;
 }

@@ -56,11 +56,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onChange={this.onEditorChange.bind(this, 0)}
-            toolbar={{
-              image: {
-                uploadCallback: uploadImageCallBack,
-              },
-            }}
+            uploadCallback={uploadImageCallBack}
           />
           <textarea
             disabled
@@ -77,11 +73,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onChange={this.onEditorChange.bind(this, 1)}
-            toolbar={{
-              image: {
-                uploadCallback: uploadImageCallBack,
-              },
-            }}
+            uploadCallback={uploadImageCallBack}
           />
           <textarea
             disabled
@@ -98,11 +90,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onChange={this.onEditorChange.bind(this, 2)}
-            toolbar={{
-              image: {
-                uploadCallback: uploadImageCallBack,
-              },
-            }}
+            uploadCallback={uploadImageCallBack}
           />
           <textarea
             disabled
@@ -118,14 +106,12 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
+            uploadCallback={uploadImageCallBack}
             toolbar={{
               inline: { inDropdown: true },
               list: { inDropdown: true },
               textAlign: { inDropdown: true },
               link: { inDropdown: true },
-              image: {
-                uploadCallback: uploadImageCallBack,
-              },
               history: { inDropdown: true },
             }}
           />
@@ -178,12 +164,12 @@ export default class Demo extends Component {
             }}
           />
         </div>
-        <div className="demo-label">
+        <div className="demo-label-high">
           Editor with embedded links.
         </div>
         <div className="demo-editorSection">
           <Editor
-            toolbarClassName="demo-toolbar-absolute"
+            toolbarClassName="demo-toolbar-absolute-high"
             wrapperClassName="demo-wrapper-relative"
             editorClassName="demo-editor-embedded"
             initialContentState={{ "entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"link":"https://www.youtube.com/embed/VbXNmIvWa1c"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links, this work so awesome with DraftJS:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"This is cool. Check by typing more here ...","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}] }}
@@ -210,7 +196,7 @@ export default class Demo extends Component {
               separator: ' ',
               trigger: '@',
               suggestions: [
-                { text: 'apple', value: 'apple', url: 'apple' },
+                { text: 'Luis Rudge', value: '@Luis Rudge', url: 'Luis Rudge' },
                 { text: 'banana', value: 'banana', url: 'banana' },
                 { text: 'cherry', value: 'cherry', url: 'cherry' },
                 { text: 'durian', value: 'durian', url: 'durian' },

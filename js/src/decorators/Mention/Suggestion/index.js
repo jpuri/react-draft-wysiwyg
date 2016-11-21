@@ -97,7 +97,6 @@ class Suggestion extends Component {
           {filteredSuggestions.map((suggestion, index) =>
             <span
               key={index}
-              spellCheck={false}
               onClick={this.addMention.bind(undefined, suggestion)}
               className={`suggestion-option ${optionClassName}`}
             >

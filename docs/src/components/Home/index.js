@@ -26,11 +26,7 @@ export default class Home extends Component {
           wrapperClassName="home-wrapper"
           editorClassName="home-editor"
           onChange={this.onEditorChange}
-          toolbar={{
-            image: {
-              uploadCallback: uploadImageCallBack,
-            },
-          }}
+          uploadCallback={uploadImageCallBack}
         />
         <div className="quote">
           <span className="quote-text">This is incredibly well done!</span>
