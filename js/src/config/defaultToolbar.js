@@ -17,6 +17,7 @@ import eraser from '../../../images/eraser.svg';
 import link from '../../../images/link.svg';
 import unlink from '../../../images/unlink.svg';
 import emoji from '../../../images/emoji.svg';
+import embedded from '../../../images/embedded.svg';
 import image from '../../../images/image.svg';
 import undo from '../../../images/undo.svg';
 import redo from '../../../images/redo.svg';
@@ -28,7 +29,7 @@ import superscript from '../../../images/superscript.svg';
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'emoji', 'image', 'remove', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -72,6 +73,11 @@ export default {
     unlink: { icon: unlink, className: undefined },
   },
   emoji: { icon: emoji, className: undefined, popupClassName: undefined },
+  embedded: {
+    icon: embedded,
+    className: undefined,
+    popupClassName: undefined,
+  },
   image: {
     icon: image,
     className: undefined,

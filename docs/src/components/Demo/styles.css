@@ -25,7 +25,12 @@
   margin-bottom: 50px;
 }
 .demo-wrapper-wide {
-  width: 800px;
+  width: 810px;
+  display: block;
+  margin-bottom: 50px;
+}
+.demo-wrapper-medium {
+  width: 650px;
   display: block;
   margin-bottom: 50px;
 }
@@ -62,6 +67,10 @@
 }
 .demo-editor-plain {
   height: 200px;
+  border-width: 0px;
+}
+.demo-editor-embedded {
+  height: 450px;
   border-width: 0px;
 }
 .demo-wrapper-relative {

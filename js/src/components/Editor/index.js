@@ -26,12 +26,13 @@ import TextAlignControl from '../TextAlignControl';
 import ColorPicker from '../ColorPicker';
 import RemoveControl from '../RemoveControl';
 import LinkControl from '../LinkControl';
+import EmbeddedControl from '../EmbeddedControl';
 import EmojiControl from '../EmojiControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
 import MentionDecorator from '../../decorators/Mention';
-import ImageBlockRenderer from '../../renderer/Image';
+import BlockRendererFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -220,6 +221,7 @@ export default class WysiwygEditor extends Component {
       textAlign,
       colorPicker,
       link,
+      embedded,
       emoji,
       image,
       remove,
@@ -277,6 +279,11 @@ export default class WysiwygEditor extends Component {
                 onChange={this.onChange}
                 config={link}
               />}
+              {options.indexOf('embedded') >= 0 && <EmbeddedControl
+                editorState={editorState}
+                onChange={this.onChange}
+                config={embedded}
+              />}
               {options.indexOf('emoji') >= 0 && <EmojiControl
                 editorState={editorState}
                 onChange={this.onChange}
@@ -320,7 +327,7 @@ export default class WysiwygEditor extends Component {
             blockStyleFn={blockStyleFn}
             customStyleMap={customStyleMap}
             handleReturn={this.handleReturn}
-            blockRendererFn={ImageBlockRenderer}
+            blockRendererFn={BlockRendererFunc}
             blockRenderMap={this.customBlockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
           />

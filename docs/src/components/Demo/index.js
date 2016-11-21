@@ -136,7 +136,7 @@ export default class Demo extends Component {
         <div className="demo-editorSection">
           <Editor
             toolbarClassName="demo-toolbar"
-            wrapperClassName="demo-wrapper-wide"
+            wrapperClassName="demo-wrapper-medium"
             editorClassName="demo-editor"
             toolbar={{
               options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'remove', 'history'],
@@ -175,6 +175,25 @@ export default class Demo extends Component {
               fontFamily: {
                 className: 'bordered-option-classname',
               },
+            }}
+          />
+        </div>
+        <div className="demo-label">
+          Editor with embedded links.
+        </div>
+        <div className="demo-editorSection">
+          <Editor
+            toolbarClassName="demo-toolbar-absolute"
+            wrapperClassName="demo-wrapper-relative"
+            editorClassName="demo-editor-embedded"
+            initialContentState={{ "entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"link":"https://www.youtube.com/embed/VbXNmIvWa1c"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links, this work so awesome with DraftJS:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"This song is awesome.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}] }}
+            toolbarOnFocus
+            toolbar={{
+              inline: { inDropdown: true },
+              list: { inDropdown: true },
+              textAlign: { inDropdown: true },
+              link: { inDropdown: true },
+              history: { inDropdown: true },
             }}
           />
         </div>
@@ -244,6 +263,7 @@ export default class Demo extends Component {
                 unlink: { icon: unlink, className: 'demo-option-custom' },
               },
               emoji: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
+              embedded: { className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
               image: { icon: image, className: 'demo-option-custom', popupClassName: 'demo-popup-custom' },
               remove: { icon: eraser, className: 'demo-option-custom' },
               history: {
