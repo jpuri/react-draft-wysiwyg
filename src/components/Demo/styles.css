@@ -12,6 +12,12 @@
   font-weight: 500;
   margin: 50px 0 25px;
 }
+.demo-label-high {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 50px 0 90px;
+}
 .demo-subLabel {
   margin-bottom: 20px;
 }
@@ -60,6 +66,14 @@
 .demo-toolbar-absolute {
   position: absolute;
   top: -40px;
+  width: 550px;
+  border-radius: 3px;
+  background: #f3f3f3;
+  border: 1px solid #e3e3e3;
+}
+.demo-toolbar-absolute-high {
+  position: absolute;
+  top: -80px;
   width: 550px;
   border-radius: 3px;
   background: #f3f3f3;
