@@ -235,7 +235,68 @@ export default class Demo2 extends Component {
             </code>
           </div>
         </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            Enabling mentions
+          </div>
+          <div className="docs-desc">
+            Mentions can be enabled by passing mention property to the editor.
+          </div>
+          <div>
+            <code>
+              {'<Editor'}<br />
+              &nbsp;&nbsp;{'wrapperClassName="wrapper-class"'} <br />
+              &nbsp;&nbsp;{'editorClassName="editor-class"'} <br />
+              &nbsp;&nbsp;{'toolbarClassName="toolbar-class"'} <br />
+              &nbsp;&nbsp;{'mention={{'} <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;separator: {"' '"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;trigger: {"'@'"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{"mentionClassName: 'mention-className'"},<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{"dropdownClassName: 'dropdown-className'"},<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{"optionClassName: 'option-className'"},<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;suggestions: [ <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"{ text: 'apple', value: 'apple', url: 'apple' }"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"{ text: 'banana', value: 'banana', url: 'banana' }"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"{ text: 'cherry', value: 'cherry', url: 'cherry' }"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"{ text: 'durian', value: 'durian', url: 'durian' }"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"{ text: 'eggfruit', value: 'eggfruit', url: 'eggfruit' }"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"{ text: 'fig', value: 'fig', url: 'fig' }"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"{ text: 'grapefruit', value: 'grapefruit', url: 'grapefruit' }"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"{ text: 'honeydew', value: 'honeydew', url: 'honeydew' }"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;], <br />
+              &nbsp;&nbsp;{'}}'} <br />
+              {'/>'}
+            </code>
+          </div>
+        </div>
       </div>
     );
   }
 }
+
+
+/**
+<Editor
+  toolbarClassName="demo-toolbar"
+  wrapperClassName="demo-wrapper"
+  editorClassName="demo-editor"
+  mention={{
+    separator: ' ',
+    trigger: '@',
+    suggestions: [
+      { text: 'abc', value: 'abc', url: 'abc' },
+      { text: 'abcd', value: 'abcd', url: 'abcd' },
+      { text: 'abcde', value: 'abcde', url: 'abcde' },
+      { text: 'abcde', value: 'abcdef', url: 'abcde' },
+      { text: 'abcde', value: 'abcdefg', url: 'abcde' },
+      { text: 'abcde', value: 'abcdefgh', url: 'abcde' },
+      { text: 'abcde', value: 'abcdefghi', url: 'abcde' },
+      { text: 'abcde', value: 'abcde', url: 'abcde' },
+      { text: 'abcde', value: 'abcde', url: 'abcde' },
+      { text: 'abcde', value: 'abcde', url: 'abcde' },
+      { text: 'abcde', value: 'abcde', url: 'abcde' },
+      { text: 'abcde', value: 'abcde', url: 'abcde' },
+      { text: 'abcde', value: 'abcde', url: 'abcde' },
+    ],
+  }}
+/>*/
