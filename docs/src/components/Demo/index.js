@@ -179,6 +179,31 @@ export default class Demo extends Component {
           />
         </div>
         <div className="demo-label">
+          Editor with mentions.
+        </div>
+        <div className="demo-subLabel">Try out by entering @.</div>
+        <div className="demo-editorSection">
+          <Editor
+            toolbarClassName="demo-toolbar"
+            wrapperClassName="demo-wrapper"
+            editorClassName="demo-editor"
+            mention={{
+              separator: ' ',
+              trigger: '@',
+              suggestions: [
+                { text: 'apple', value: 'apple', url: 'apple' },
+                { text: 'banana', value: 'banana', url: 'banana' },
+                { text: 'cherry', value: 'cherry', url: 'cherry' },
+                { text: 'durian', value: 'durian', url: 'durian' },
+                { text: 'eggfruit', value: 'eggfruit', url: 'eggfruit' },
+                { text: 'fig', value: 'fig', url: 'fig' },
+                { text: 'grapefruit', value: 'grapefruit', url: 'grapefruit' },
+                { text: 'honeydew', value: 'honeydew', url: 'honeydew' },
+              ],
+            }}
+          />
+        </div>
+        <div className="demo-label">
           Editor toolbar with custom icons and styling.
           <image src={bold} height="20px" width="20px" />
         </div>
