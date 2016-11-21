@@ -35,6 +35,7 @@ class Playground extends Component {
   };
 
   onEditorChange: Function = (editorContent) => {
+    console.log('*****', JSON.stringify(editorContent))
     this.setState({
       editorContent,
     });
@@ -73,7 +74,7 @@ class Playground extends Component {
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
-              rawContentState={rawContentState}
+              initialContentState={{"entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"link":"https://www.youtube.com/embed/VbXNmIvWa1c"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]}}
               toolbar={{
                 inline: {
                   inDropdown: true,
@@ -94,6 +95,25 @@ class Playground extends Component {
                   inDropdown: true,
                 },
               }}
+              mention={{
+                separator: ' ',
+                trigger: '@',
+                suggestions: [
+                  { text: 'abc', value: 'abc', url: 'abc' },
+                  { text: 'abcd', value: 'abcd', url: 'abcd' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcdef', url: 'abcde' },
+                  { text: 'abcde', value: 'abcdefg', url: 'abcde' },
+                  { text: 'abcde', value: 'abcdefgh', url: 'abcde' },
+                  { text: 'abcde', value: 'abcdefghi', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                  { text: 'abcde', value: 'abcde', url: 'abcde' },
+                ],
+              }}
             />
           </div>
           <textarea
@@ -111,3 +131,9 @@ class Playground extends Component {
 }
 
 ReactDOM.render(<Playground />, document.getElementById('app')); // eslint-disable-line no-undef
+
+
+/**
+const rawContentState = ;
+
+*/

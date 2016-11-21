@@ -36,6 +36,9 @@ export default class Home extends Component {
           <span className="quote-text">This is incredibly well done!</span>
           <span className="quote-author">Simon Sturmer (<a target="_blank" href="https://kodefox.com" rel="noopener noreferrer">KodeFox</a>)</span>
         </div>
+        <div className="discussion">
+          For discussions join public channel #rd-wysiwyg in <a target="_blank" href="https://draftjs.herokuapp.com/" rel="noopener noreferrer">DraftJS Slack Organization</a>
+        </div>
         <div className="home-label">
           Features
         </div>
@@ -50,11 +53,12 @@ export default class Home extends Component {
           <li className="home-listItem">Support for text-alignment.</li>
           <li className="home-listItem">Support for coloring text or background.</li>
           <li className="home-listItem">Support for adding / editing links</li>
-          <li className="home-listItem">Choice of more than 200 emojis.</li>
+          <li className="home-listItem">Choice of more than 150 emojis.</li>
+          <li className="home-listItem">Support for mentions.</li>
           <li className="home-listItem">Support for adding / uploading images.</li>
+          <li className="home-listItem">Support for Embedded links.</li>
           <li className="home-listItem">Option provided to remove added styling.</li>
           <li className="home-listItem">Option of undo and redo.</li>
-          <li className="home-listItem">Support to convert Editor Content to HTML, JSON, Markdown.</li>
           <li className="home-listItem">Support to convert Editor Content to HTML, JSON, Markdown.</li>
         </ul>
       </div>

@@ -54,7 +54,7 @@ export default class FontFamilyControl extends Component {
 
   render() {
     let { currentFontFamily } = this.state;
-    const { config: { className } } = this.props;
+    const { config: { className, dropdownClassName } } = this.props;
     currentFontFamily =
       currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length);
     return (
@@ -62,7 +62,7 @@ export default class FontFamilyControl extends Component {
         <Dropdown
           className={`fontfamily-dropdown ${className}`}
           onChange={this.toggleFontFamily}
-          optionWrapperClassName="fontfamily-optionwrapper"
+          optionWrapperClassName={`fontfamily-optionwrapper ${dropdownClassName}`}
         >
           <span className="fontfamily-placeholder">
             {currentFontFamily || 'Font-Family'}

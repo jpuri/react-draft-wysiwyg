@@ -26,11 +26,13 @@ import TextAlignControl from '../TextAlignControl';
 import ColorPicker from '../ColorPicker';
 import RemoveControl from '../RemoveControl';
 import LinkControl from '../LinkControl';
+import EmbeddedControl from '../EmbeddedControl';
 import EmojiControl from '../EmojiControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
-import ImageBlockRenderer from '../../renderer/Image';
+import MentionDecorator from '../../decorators/Mention';
+import BlockRendererFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -38,12 +40,14 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    rawContentState: PropTypes.object,
+    initialContentState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
+    uploadCallback: PropTypes.func,
+    mention: PropTypes.object,
   };
 
   constructor(props) {
@@ -59,12 +63,22 @@ export default class WysiwygEditor extends Component {
 
   componentWillMount(): void {
     let editorState;
-    const decorator = new CompositeDecorator([LinkDecorator]);
-    if (this.props.rawContentState) {
-      const contentState = convertFromRaw(this.props.rawContentState);
-      editorState = EditorState.createWithContent(contentState, decorator);
+    const decorators = [LinkDecorator];
+    if (this.props.mention) {
+      MentionDecorator.setConfig({
+        ...this.props.mention,
+        onChange: this.onChange,
+        getEditorState: () => this.state.editorState,
+        getWrapperRef: () => this.wrapper,
+      });
+      decorators.push(...MentionDecorator.decorators);
+    }
+    const compositeDecorator = new CompositeDecorator(decorators);
+    if (this.props.initialContentState) {
+      const contentState = convertFromRaw(this.props.initialContentState);
+      editorState = EditorState.createWithContent(contentState, compositeDecorator);
     } else {
-      editorState = EditorState.createEmpty(decorator);
+      editorState = EditorState.createEmpty(compositeDecorator);
     }
     this.setState({
       editorState,
@@ -76,6 +90,9 @@ export default class WysiwygEditor extends Component {
       this.setState({
         toolbar: mergeRecursive(defaultToolbar, props.toolbar),
       });
+    }
+    if (this.props.mention !== props.mention) {
+      MentionDecorator.setConfig(this.props.mention);
     }
   }
 
@@ -127,6 +144,10 @@ export default class WysiwygEditor extends Component {
     this.editor = ref;
   };
 
+  setWrapperReference: Function = (ref: Object): void => {
+    this.wrapper = ref;
+  };
+
   focusEditor: Function = (): void => {
     setTimeout(() => {
       this.editor.focus();
@@ -163,12 +184,16 @@ export default class WysiwygEditor extends Component {
   };
 
   handleReturn: Function = (event: Object): boolean => {
+    let returnValue = false;
+    if (this.props.mention) {
+      returnValue = MentionDecorator.handleReturn();
+    }
     const editorState = handleNewLine(this.state.editorState, event);
     if (editorState) {
       this.onChange(editorState);
-      return true;
+      returnValue = true;
     }
-    return false;
+    return returnValue;
   };
 
   render() {
@@ -184,6 +209,7 @@ export default class WysiwygEditor extends Component {
       toolbarClassName,
       editorClassName,
       wrapperClassName,
+      uploadCallback,
     } = this.props;
     const {
       options,
@@ -195,6 +221,7 @@ export default class WysiwygEditor extends Component {
       textAlign,
       colorPicker,
       link,
+      embedded,
       emoji,
       image,
       remove,
@@ -252,6 +279,11 @@ export default class WysiwygEditor extends Component {
                 onChange={this.onChange}
                 config={link}
               />}
+              {options.indexOf('embedded') >= 0 && <EmbeddedControl
+                editorState={editorState}
+                onChange={this.onChange}
+                config={embedded}
+              />}
               {options.indexOf('emoji') >= 0 && <EmojiControl
                 editorState={editorState}
                 onChange={this.onChange}
@@ -260,6 +292,7 @@ export default class WysiwygEditor extends Component {
               {options.indexOf('image') >= 0 && <ImageControl
                 editorState={editorState}
                 onChange={this.onChange}
+                uploadCallback={uploadCallback}
                 config={image}
               />}
               {options.indexOf('remove') >= 0 && <RemoveControl
@@ -277,6 +310,7 @@ export default class WysiwygEditor extends Component {
           undefined
         }
         <div
+          ref={this.setWrapperReference}
           className={`editor-main ${editorClassName}`}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
@@ -293,7 +327,7 @@ export default class WysiwygEditor extends Component {
             blockStyleFn={blockStyleFn}
             customStyleMap={customStyleMap}
             handleReturn={this.handleReturn}
-            blockRendererFn={ImageBlockRenderer}
+            blockRendererFn={BlockRendererFunc}
             blockRenderMap={this.customBlockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
           />
@@ -303,5 +337,4 @@ export default class WysiwygEditor extends Component {
   }
 }
 
-// todo: rename code to monospace
 // todo: evaluate draftjs-utils to move some methods here
