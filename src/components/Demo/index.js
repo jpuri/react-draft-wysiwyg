@@ -237,7 +237,7 @@ export default class Demo extends Component {
                 italic: { icon: italic, className: 'demo-option-custom' },
                 underline: { icon: underline, className: 'demo-option-custom' },
                 strikethrough: { icon: strikethrough, className: 'demo-option-custom' },
-                code: { className: 'demo-option-custom' },
+                monospace: { className: 'demo-option-custom' },
                 superscript: { icon: superscript, className: 'demo-option-custom' },
                 subscript: { icon: subscript, className: 'demo-option-custom' },
               },
