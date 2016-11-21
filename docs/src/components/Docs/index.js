@@ -156,7 +156,7 @@ export default class Demo2 extends Component {
             <code>
               {'{'} <br />
               &nbsp;&nbsp;options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;'link', 'emoji', 'image', 'remove', 'history'], <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;'link', 'embedded', 'emoji', 'image', 'remove', 'history'], <br />
               &nbsp;&nbsp;inline: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
@@ -190,16 +190,18 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;right: {'{ icon: right, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;justify: {'{ icon: justify, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;colorPicker: {'{ icon: color, className: undefined }'}, <br />
+              &nbsp;&nbsp;colorPicker: {'{ icon: color, className: undefined, popClassName: undefined }'}, <br />
               &nbsp;&nbsp;link: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;popClassName: undefined, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;options: {['link', 'unlink']}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;link: {'{ icon: link, className: undefined }'},<br />
               &nbsp;&nbsp;&nbsp;&nbsp;unlink: {'{ icon: unlink, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;emoji: {'{ icon: emoji, className: undefined }'}, <br />
-              &nbsp;&nbsp;image: {'{ icon: image, className: undefined }'}, <br />
+              &nbsp;&nbsp;embedded: {'{ icon: image, className: undefined, popClassName: undefined }'}, <br />
+              &nbsp;&nbsp;emoji: {'{ icon: emoji, className: undefined, popClassName: undefined }'}, <br />
+              &nbsp;&nbsp;image: {'{ icon: image, className: undefined, popClassName: undefined }'}, <br />
               &nbsp;&nbsp;remove: {'{ icon: eraser, className: undefined }'}, <br />
               &nbsp;&nbsp;history: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
@@ -269,34 +271,16 @@ export default class Demo2 extends Component {
             </code>
           </div>
         </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            Embedded links
+          </div>
+          <div className="docs-desc">
+            Embedded link can be added to the editor using embedded control, it shows-up in the editor in fixed dimentions. <br />
+            I definitely plan to improve it in future.
+          </div>
+        </div>
       </div>
     );
   }
 }
-
-
-/**
-<Editor
-  toolbarClassName="demo-toolbar"
-  wrapperClassName="demo-wrapper"
-  editorClassName="demo-editor"
-  mention={{
-    separator: ' ',
-    trigger: '@',
-    suggestions: [
-      { text: 'abc', value: 'abc', url: 'abc' },
-      { text: 'abcd', value: 'abcd', url: 'abcd' },
-      { text: 'abcde', value: 'abcde', url: 'abcde' },
-      { text: 'abcde', value: 'abcdef', url: 'abcde' },
-      { text: 'abcde', value: 'abcdefg', url: 'abcde' },
-      { text: 'abcde', value: 'abcdefgh', url: 'abcde' },
-      { text: 'abcde', value: 'abcdefghi', url: 'abcde' },
-      { text: 'abcde', value: 'abcde', url: 'abcde' },
-      { text: 'abcde', value: 'abcde', url: 'abcde' },
-      { text: 'abcde', value: 'abcde', url: 'abcde' },
-      { text: 'abcde', value: 'abcde', url: 'abcde' },
-      { text: 'abcde', value: 'abcde', url: 'abcde' },
-      { text: 'abcde', value: 'abcde', url: 'abcde' },
-    ],
-  }}
-/>*/

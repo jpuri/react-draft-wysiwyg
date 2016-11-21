@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -21,9 +21,8 @@
     "chai": "^3.5.0",
     "css-loader": "^0.25.0",
     "draft-js": "^0.9.1",
-    "draftjs-to-markdown": "0.0.1",
-    "draftjs-to-html": "0.3.5",
-    "draftjs-to-markdown": "^0.0.2",
+    "draftjs-to-html": "0.3.7",
+    "draftjs-to-markdown": "0.0.4",
     "enzyme": "^2.4.1",
     "eslint": "^3.4.0",
     "eslint-config-airbnb": "^12.0.0",
