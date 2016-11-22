@@ -1,6 +1,6 @@
 # React Draft Wysiwyg
 
-A Wysiwyg editor built using ReactJS and DeaftJS libraries.
+A Wysiwyg editor built using ReactJS and DraftJS libraries.
 [Demo Page](https://jpuri.github.io/react-draft-wysiwyg).
 
 ![](http://i.imgur.com/tU7kJ6i.gif)
