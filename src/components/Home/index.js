@@ -28,12 +28,18 @@ export default class Home extends Component {
           onChange={this.onEditorChange}
           uploadCallback={uploadImageCallBack}
         />
-        <div className="quote">
-          <span className="quote-text">This is incredibly well done!</span>
-          <span className="quote-author">Simon Sturmer (<a target="_blank" href="https://kodefox.com" rel="noopener noreferrer">KodeFox</a>)</span>
+        <div className="quote-section">
+          <div className="quote">
+            <span className="quote-text">This is incredibly well done!</span>
+            <span className="quote-author">Simon Sturmer (<a target="_blank" href="https://kodefox.com" rel="noopener noreferrer">KodeFox</a>)</span>
+          </div>
+          <div className="quote">
+            <span className="quote-text">Jyoti’s WYSIWYG editor has a lot of cool features. A great place for inspiration and learning from the code.</span>
+            <span className="quote-author">Nik Graf (<a target="_blank" href="https://www.draft-js-plugins.com/" rel="noopener noreferrer">DraftJS Plugins</a>)</span>
+          </div>
         </div>
         <div className="discussion">
-          For discussions join public channel #rd-wysiwyg in <a target="_blank" href="https://draftjs.herokuapp.com/" rel="noopener noreferrer">DraftJS Slack Organization</a>
+          For discussions join public channel #rd-wysiwyg <a target="_blank" href="https://draftjs.herokuapp.com/" rel="noopener noreferrer">DraftJS Slack Organization</a>
         </div>
         <div className="home-label">
           Features

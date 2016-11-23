@@ -16,8 +16,7 @@ code {
   font-size: 13px;
   display: inline-flex;
   flex-direction: column;
-  background-color: #d7fbff;
-  color: #0b082f;
+  background-color: #f1f1f1;
 }
 .docs-desc {
   width: 75%;
