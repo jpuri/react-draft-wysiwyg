@@ -35,6 +35,7 @@ export default class Demo extends Component {
   };
 
   onEditorChange: Function = (index, editorContent) => {
+    console.log('****', JSON.stringify(editorContent))
     let editorContents = this.state.editorContents;
     editorContents[index] = editorContent;
     editorContents = [...editorContents];

@@ -32,10 +32,11 @@ export default class Demo2 extends Component {
           <div className="docs-label">
             Using editor component.
           </div>
-          <div className="docs-desc">Editor can be simply imported and used as a React Component.</div>
+          <div className="docs-desc">Editor can be simply imported and used as a React Component. Make sure to also include react-draft-wysiwyg.css from npm distributable.</div>
           <div>
             <code>
               {'import { Editor } from \'react-draft-wysiwyg\';'}<br />
+              {'import \'react-draft-wysiwyg.css\';'}<br />
               {'<Editor />'}
             </code>
           </div>

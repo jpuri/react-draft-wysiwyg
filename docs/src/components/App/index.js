@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import Menu from '../Menu';
 import github from '../../../images/github.png';
+import paperPen from '../../../images/paper_pen.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class App extends Component {
@@ -17,8 +18,11 @@ export default class App extends Component {
       <div className="app-root">
         <div>
           <span className="header">
+            <img src={paperPen} className="header-logo" role="presentation" />
             <span className="header-text">
-              <span className="header-title">React Draft Wysiwyg</span>
+              <span className="header-title">
+                <a href="https://jpuri.github.io/react-draft-wysiwyg/" className="header-label">React Draft Wysiwyg</a>
+              </span>
               <span className="header-subtitle">A Wysiwyg Built on ReactJS and DraftJS</span>
             </span>
             <a target="_blank" href="https://github.com/jpuri/react-draft-wysiwyg" rel="noopener noreferrer">
