@@ -16,4 +16,5 @@
   flex-wrap: wrap;
   font-size: 15px;
   margin-bottom: 5px;
+  user-select: none;
 }
