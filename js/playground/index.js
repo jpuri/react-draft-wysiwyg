@@ -117,7 +117,7 @@ class Playground extends Component {
           </div>
           <textarea
             className="playground-content no-focus"
-            value={draftToHtml(editorContent)}
+            value={draftToHtml(editorContent, true)}
           />
           <textarea
             className="playground-content no-focus"
