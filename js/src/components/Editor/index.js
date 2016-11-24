@@ -34,7 +34,8 @@ import LinkDecorator from '../../decorators/Link';
 import MentionDecorator from '../../decorators/Mention';
 import BlockRendererFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
+import '../../../../css/Draft.css';
 
 export default class WysiwygEditor extends Component {
 
