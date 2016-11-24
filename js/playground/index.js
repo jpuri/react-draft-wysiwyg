@@ -73,6 +73,7 @@ class Playground extends Component {
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
+              textAlignment={'right'}
               toolbar={{
                 inline: {
                   inDropdown: true,
@@ -121,6 +122,10 @@ class Playground extends Component {
           <textarea
             className="playground-content no-focus"
             value={draftToMarkdown(editorContent)}
+          />
+          <textarea
+            className="playground-content no-focus"
+            value={JSON.stringify(editorContent)}
           />
         </div>
       </div>
