@@ -283,6 +283,35 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
+            RTL and Text Alignment
+          </div>
+          <div className="docs-desc">
+            DraftJS library has out of box sopport for RTL, it decides text-direction using bidi algorithm. It works at block-level. <br /><br />
+            Property 'textAlignment' can be used to force text-alignment in a particular direction. It can have values 'left', 'right' and 'center'.
+            It will over-ride the results of bidi-algorigthm. This property will be applicable to all blocks.
+            Toobar option of text-alignment will override 'textAlignment' property also at block level.
+          </div>
+          <div>
+            <code>
+              {'<Editor textAlignment="left" />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            Spell check
+          </div>
+          <div className="docs-desc">
+            Default browser spell-check can be enabled in the editor using property spellCheck, it can have value true, false.
+          </div>
+          <div>
+            <code>
+              {'<Editor spellCheck />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
             Generating HTML / Markdown
           </div>
           <div className="docs-desc">

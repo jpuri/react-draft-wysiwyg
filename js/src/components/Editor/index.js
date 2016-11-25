@@ -7,6 +7,7 @@ import {
   RichUtils,
   convertToRaw,
   convertFromRaw,
+  RawDraftContentState,
   CompositeDecorator,
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
@@ -34,7 +35,8 @@ import LinkDecorator from '../../decorators/Link';
 import MentionDecorator from '../../decorators/Mention';
 import BlockRendererFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
+import '../../../../css/Draft.css';
 
 export default class WysiwygEditor extends Component {
 
@@ -42,12 +44,14 @@ export default class WysiwygEditor extends Component {
     onChange: PropTypes.func,
     initialContentState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
+    spellCheck: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     uploadCallback: PropTypes.func,
     mention: PropTypes.object,
+    textAlignment: PropTypes.string,
   };
 
   constructor(props) {
@@ -160,11 +164,24 @@ export default class WysiwygEditor extends Component {
         this.focusEditor();
       }
       if (this.props.onChange) {
-        const editorContent = convertToRaw(this.state.editorState.getCurrentContent());
+        let editorContent = convertToRaw(this.state.editorState.getCurrentContent());
+        editorContent = this.enrichData(editorContent);
         this.props.onChange(editorContent);
       }
     });
   };
+
+  enrichData: Function = (editorContent: RawDraftContentState): RawDraftContentState => {
+    const newEditorContent = editorContent;
+    if (this.props.textAlignment) {
+      editorContent.blocks.forEach((block) => {
+        if (!block.data['text-align']) {
+          block.data['text-align'] = this.props.textAlignment; // eslint-disable-line no-param-reassign
+        }
+      });
+    }
+    return newEditorContent;
+  }
 
   customBlockRenderMap: Map = DefaultDraftBlockRenderMap
     .merge(new Map({
@@ -210,6 +227,8 @@ export default class WysiwygEditor extends Component {
       editorClassName,
       wrapperClassName,
       uploadCallback,
+      textAlignment,
+      spellCheck,
     } = this.props;
     const {
       options,
@@ -321,8 +340,10 @@ export default class WysiwygEditor extends Component {
           <Editor
             ref={this.setEditorReference}
             onTab={this.onTab}
+            spellCheck={spellCheck}
             editorState={editorState}
             onChange={this.onChange}
+            textAlignment={textAlignment}
             blockStyleFn={blockStyleFn}
             customStyleMap={customStyleMap}
             handleReturn={this.handleReturn}
