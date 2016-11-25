@@ -34,7 +34,6 @@ class Playground extends Component {
   };
 
   onEditorChange: Function = (editorContent) => {
-    console.log('*****', JSON.stringify(editorContent))
     this.setState({
       editorContent,
     });
@@ -73,7 +72,7 @@ class Playground extends Component {
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
-              textAlignment={'right'}
+              spellCheck
               toolbar={{
                 inline: {
                   inDropdown: true,
@@ -117,7 +116,7 @@ class Playground extends Component {
           </div>
           <textarea
             className="playground-content no-focus"
-            value={draftToHtml(editorContent, true)}
+            value={draftToHtml(editorContent)}
           />
           <textarea
             className="playground-content no-focus"
