@@ -299,6 +299,19 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
+            Spell check
+          </div>
+          <div className="docs-desc">
+            Default browser spell-check can be enabled in the editor using property spellCheck, it can have value true, false.
+          </div>
+          <div>
+            <code>
+              {'<Editor spellCheck />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
             Generating HTML / Markdown
           </div>
           <div className="docs-desc">
