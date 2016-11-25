@@ -44,12 +44,14 @@ export default class WysiwygEditor extends Component {
     onChange: PropTypes.func,
     initialContentState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
+    spellCheck: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     uploadCallback: PropTypes.func,
     mention: PropTypes.object,
+    textAlignment: PropTypes.string,
   };
 
   constructor(props) {
@@ -172,11 +174,11 @@ export default class WysiwygEditor extends Component {
   enrichData: Function = (editorContent: RawDraftContentState): RawDraftContentState => {
     const newEditorContent = editorContent;
     if (this.props.textAlignment) {
-      editorContent.blocks.forEach(block => {
+      editorContent.blocks.forEach((block) => {
         if (!block.data['text-align']) {
-          block.data['text-align'] = this.props.textAlignment;
+          block.data['text-align'] = this.props.textAlignment; // eslint-disable-line no-param-reassign
         }
-      })
+      });
     }
     return newEditorContent;
   }
@@ -226,6 +228,7 @@ export default class WysiwygEditor extends Component {
       wrapperClassName,
       uploadCallback,
       textAlignment,
+      spellCheck,
     } = this.props;
     const {
       options,
@@ -337,6 +340,7 @@ export default class WysiwygEditor extends Component {
           <Editor
             ref={this.setEditorReference}
             onTab={this.onTab}
+            spellCheck={spellCheck}
             editorState={editorState}
             onChange={this.onChange}
             textAlignment={textAlignment}
