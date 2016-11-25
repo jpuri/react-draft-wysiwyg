@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import classNames from 'classnames';
 import addMention from '../addMention';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -93,13 +94,13 @@ class Suggestion extends Component {
     return (
       <span className="suggestion-wrapper" ref={this.setSuggestionReference}>
         <span>{children}</span>
-        <span className={`suggestion-dropdown ${dropdownClassName}`} contentEditable="false" style={this.state.style} ref={this.setDropdownReference}>
+        <span className={classNames('suggestion-dropdown', dropdownClassName)} contentEditable="false" style={this.state.style} ref={this.setDropdownReference}>
           {filteredSuggestions.map((suggestion, index) =>
             <span
               key={index}
               spellCheck={false}
               onClick={this.addMention.bind(undefined, suggestion)}
-              className={`suggestion-option ${optionClassName}`}
+              className={classNames('suggestion-option', optionClassName)}
             >
               {suggestion.text}
             </span>)}

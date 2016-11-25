@@ -124,7 +124,7 @@ export default class ImageControl extends Component {
     const { config: { popupClassName }, uploadCallback } = this.props;
     return (
       <div
-        className={`image-modal ${popupClassName}`}
+        className={classNames('image-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
         <div className="image-modal-header">
@@ -222,7 +222,7 @@ export default class ImageControl extends Component {
     return (
       <div className="image-wrapper">
         <Option
-          className={className}
+          className={classNames(className)}
           value="unordered-list-item"
           onClick={this.toggleModal}
         >

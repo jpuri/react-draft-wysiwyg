@@ -6,6 +6,7 @@ import {
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
+import classNames from 'classnames';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -60,9 +61,9 @@ export default class FontFamilyControl extends Component {
     return (
       <div className="fontfamily-wrapper">
         <Dropdown
-          className={`fontfamily-dropdown ${className}`}
+          className={classNames('fontfamily-dropdown', className)}
           onChange={this.toggleFontFamily}
-          optionWrapperClassName={`fontfamily-optionwrapper ${dropdownClassName}`}
+          optionWrapperClassName={classNames('fontfamily-optionwrapper', dropdownClassName)}
         >
           <span className="fontfamily-placeholder">
             {currentFontFamily || 'Font-Family'}

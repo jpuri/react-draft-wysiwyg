@@ -35,7 +35,7 @@ describe('InlineControl test suite', () => {
         config={defaultToolbar.inline}
       />
     );
-    expect(control.children().length).to.equal(5);
+    expect(control.children().length).to.equal(7);
   });
 
   it('should have 1 child elements if inDropdown is true', () => {

@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
 import { RichUtils, EditorState, Modifier } from 'draft-js';
+import classNames from 'classnames';
 import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
@@ -62,7 +63,7 @@ export default class InlineControl extends Component {
 
   renderInFlatList(currentStyles: string, config: Object): Object {
     return (
-      <div className={`inline-wrapper ${config.className}`}>
+      <div className={classNames('inline-wrapper', config.className)}>
         {
           config.options
           .map((style, index) =>
@@ -70,7 +71,7 @@ export default class InlineControl extends Component {
               key={index}
               value={style.toUpperCase()}
               onClick={this.toggleInlineStyle}
-              className={config[style].className}
+              className={classNames(config[style].className)}
               active={currentStyles[style.toUpperCase()] === true}
             >
               <img
@@ -87,7 +88,7 @@ export default class InlineControl extends Component {
   renderInDropDown(currentStyles: string, config: Object): Object {
     return (
       <Dropdown
-        className={`inline-dropdown ${config.className}`}
+        className={classNames('inline-dropdown', config.className)}
         onChange={this.toggleInlineStyle}
       >
         <img
@@ -100,7 +101,7 @@ export default class InlineControl extends Component {
             <DropdownOption
               key={index}
               value={style.toUpperCase()}
-              className={`inline-dropdownoption ${config[style].className}`}
+              className={classNames('inline-dropdownoption', config[style].className)}
               active={currentStyles[style.toUpperCase()] === true}
             >
               <img

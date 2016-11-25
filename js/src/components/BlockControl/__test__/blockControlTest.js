@@ -10,6 +10,7 @@ import {
 } from 'draft-js';
 import BlockControl from '..';
 import { Dropdown } from '../../Dropdown';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('BlockControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -21,6 +22,7 @@ describe('BlockControl test suite', () => {
       <BlockControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.blockType}
       />
     ).node.type).to.equal('div');
   });
@@ -30,6 +32,7 @@ describe('BlockControl test suite', () => {
       <BlockControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.blockType}
       />
     );
     assert.equal(control.childAt(0).props().children.length, 2);

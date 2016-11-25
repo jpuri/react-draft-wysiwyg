@@ -78,7 +78,7 @@ export default class Dropdown extends Component {
       <div
         tabIndex="0"
         onKeyDown={this.onKeyDown}
-        className={`dropdown-wrapper ${className}`}
+        className={classNames('dropdown-wrapper', className)}
         onMouseLeave={this.collapse}
       >
         <a
@@ -95,7 +95,7 @@ export default class Dropdown extends Component {
         </a>
         {expanded ?
           <ul
-            className={`dropdown-optionwrapper ${optionWrapperClassName}`}
+            className={classNames('dropdown-optionwrapper', optionWrapperClassName)}
           >
             {
               React.Children.map(options, (option, index) => {
