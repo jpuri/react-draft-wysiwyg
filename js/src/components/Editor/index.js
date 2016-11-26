@@ -16,6 +16,7 @@ import {
   customStyleMap,
 } from 'draftjs-utils';
 import { Map } from 'immutable';
+import classNames from 'classnames';
 import blockStyleFn from '../../utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import InlineControl from '../InlineControl';
@@ -249,11 +250,11 @@ export default class WysiwygEditor extends Component {
 
     const hasFocus = editorFocused || toolBarMouseDown || editorMouseDown;
     return (
-      <div className={`editor-wrapper ${wrapperClassName}`}>
+      <div className={classNames('editor-wrapper', wrapperClassName)}>
         {
           (hasFocus || !toolbarOnFocus) ?
             <div
-              className={`editor-toolbar ${toolbarClassName}`}
+              className={classNames('editor-toolbar', toolbarClassName)}
               onMouseDown={this.onToolbarMouseDown}
               onMouseUp={this.onToolbarMouseUp}
               onClick={this.focusEditor}
@@ -330,7 +331,7 @@ export default class WysiwygEditor extends Component {
         }
         <div
           ref={this.setWrapperReference}
-          className={`editor-main ${editorClassName}`}
+          className={classNames('editor-main', editorClassName)}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}

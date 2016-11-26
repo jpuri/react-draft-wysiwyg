@@ -89,7 +89,7 @@ export default class ColorPicker extends Component {
     const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
     return (
       <div
-        className={`colorpicker-modal ${popupClassName}`}
+        className={classNames('colorpicker-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
         <span className="colorpicker-modal-header">
@@ -141,7 +141,7 @@ export default class ColorPicker extends Component {
       <div className="colorpicker-wrapper">
         <Option
           onClick={this.toggleModal}
-          className={className}
+          className={classNames(className)}
         >
           <img
             src={icon}

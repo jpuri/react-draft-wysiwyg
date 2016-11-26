@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { RichUtils } from 'draft-js';
 import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
+import classNames from 'classnames';
 import { getFirstIcon } from '../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import Option from '../Option';
@@ -89,11 +90,11 @@ export default class ListControl extends Component {
   renderInFlatList(currentBlockType: string, config: Object): Object {
     const { options, unordered, ordered, indent, outdent, className } = config;
     return (
-      <div className={`list-wrapper ${className}`}>
+      <div className={classNames('list-wrapper', className)}>
         {options.indexOf('unordered') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.toggleBlockType}
-          className={unordered.className}
+          className={classNames(unordered.className)}
           active={currentBlockType === 'unordered-list-item'}
         >
           <img
@@ -104,7 +105,7 @@ export default class ListControl extends Component {
         {options.indexOf('ordered') >= 0 && <Option
           value="ordered-list-item"
           onClick={this.toggleBlockType}
-          className={ordered.className}
+          className={classNames(ordered.className)}
           active={currentBlockType === 'ordered-list-item'}
         >
           <img
@@ -114,7 +115,7 @@ export default class ListControl extends Component {
         </Option>}
         {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
-          className={indent.className}
+          className={classNames(indent.className)}
         >
           <img
             src={indent.icon}
@@ -123,7 +124,7 @@ export default class ListControl extends Component {
         </Option>}
         {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
-          className={outdent.className}
+          className={classNames(outdent.className)}
         >
           <img
             src={outdent.icon}
@@ -138,7 +139,7 @@ export default class ListControl extends Component {
     const { options, className } = config;
     return (
       <Dropdown
-        className={`list-dropdown ${className}`}
+        className={classNames('list-dropdown', className)}
         onChange={this.onDropdownChange}
       >
         <img
@@ -150,7 +151,7 @@ export default class ListControl extends Component {
           .map((option, index) => (<DropdownOption
             key={index}
             value={option.value}
-            className={`list-dropdownOption ${config[option.type].className}`}
+            className={classNames('list-dropdownOption', config[option.type].className)}
             active={currentBlockType === option.value}
           >
             <img

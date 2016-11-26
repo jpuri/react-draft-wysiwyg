@@ -10,6 +10,7 @@ import {
   convertFromHTML,
   ContentState,
 } from 'draft-js';
+import defaultToolbar from '../../../config/defaultToolbar';
 
 describe('FontFamilyControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -21,6 +22,7 @@ describe('FontFamilyControl test suite', () => {
       <FontFamilyControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.fontFamily}
       />
     ).node.type).to.equal('div');
   });
@@ -30,6 +32,7 @@ describe('FontFamilyControl test suite', () => {
       <FontFamilyControl
         onChange={() => {}}
         editorState={editorState}
+        config={defaultToolbar.fontFamily}
       />
     );
     assert.equal(control.childAt(0).props().children.length, 2);

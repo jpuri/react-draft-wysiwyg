@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Modifier, EditorState } from 'draft-js';
+import classNames from 'classnames';
 import Option from '../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -54,7 +55,7 @@ export default class EmojiControl extends Component {
     const { config: { popupClassName } } = this.props;
     return (
       <div
-        className={`emoji-modal ${popupClassName}`}
+        className={classNames('emoji-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
         {
@@ -75,7 +76,7 @@ export default class EmojiControl extends Component {
     return (
       <div className="emoji-wrapper">
         <Option
-          className={className}
+          className={classNames(className)}
           value="unordered-list-item"
           onClick={this.toggleModal}
         >

@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { getSelectedBlocksType } from 'draftjs-utils';
 import { RichUtils } from 'draft-js';
+import classNames from 'classnames';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -69,8 +70,8 @@ export default class BlockControl extends Component {
     return (
       <div className="block-wrapper">
         <Dropdown
-          className={`block-dropdown ${className}`}
-          optionWrapperClassName={dropdownClassName}
+          className={classNames('block-dropdown', className)}
+          optionWrapperClassName={classNames(dropdownClassName)}
           onChange={this.toggleBlockType}
         >
           <span>{currentLabel}</span>

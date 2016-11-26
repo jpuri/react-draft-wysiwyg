@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
+import classNames from 'classnames';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import { getFirstIcon } from '../../utils/toolbar';
@@ -41,10 +42,10 @@ export default class TextAlignControl extends Component {
     const { currentTextAlignment } = this.state;
     const { options, left, center, right, justify, className } = config;
     return (
-      <div className={`text-align-wrapper ${className}`}>
+      <div className={classNames('text-align-wrapper', className)}>
         {options.indexOf('left') >= 0 && <Option
           value="left"
-          className={left.className}
+          className={classNames(left.className)}
           active={currentTextAlignment === 'left'}
           onClick={this.addBlockAlignmentData}
         >
@@ -55,7 +56,7 @@ export default class TextAlignControl extends Component {
         </Option>}
         {options.indexOf('center') >= 0 && <Option
           value="center"
-          className={center.className}
+          className={classNames(center.className)}
           active={currentTextAlignment === 'center'}
           onClick={this.addBlockAlignmentData}
         >
@@ -66,7 +67,7 @@ export default class TextAlignControl extends Component {
         </Option>}
         {options.indexOf('right') >= 0 && <Option
           value="right"
-          className={right.className}
+          className={classNames(right.className)}
           active={currentTextAlignment === 'right'}
           onClick={this.addBlockAlignmentData}
         >
@@ -77,7 +78,7 @@ export default class TextAlignControl extends Component {
         </Option>}
         {options.indexOf('justify') >= 0 && <Option
           value="justify"
-          className={justify.className}
+          className={classNames(justify.className)}
           active={currentTextAlignment === 'justify'}
           onClick={this.addBlockAlignmentData}
         >
@@ -95,7 +96,7 @@ export default class TextAlignControl extends Component {
     const { options, left, center, right, justify, className } = config;
     return (
       <Dropdown
-        className={`text-align-dropdown ${className}`}
+        className={classNames('text-align-dropdown', className)}
         onChange={this.addBlockAlignmentData}
       >
         <img
@@ -105,7 +106,7 @@ export default class TextAlignControl extends Component {
         {options.indexOf('left') >= 0 && <DropdownOption
           value="left"
           active={currentTextAlignment === 'left'}
-          className={`text-align-dropdownOption ${left.className}`}
+          className={classNames('text-align-dropdownOption', left.className)}
         >
           <img
             src={left.icon}
@@ -115,7 +116,7 @@ export default class TextAlignControl extends Component {
         {options.indexOf('center') >= 0 && <DropdownOption
           value="center"
           active={currentTextAlignment === 'center'}
-          className={`text-align-dropdownOption ${center.className}`}
+          className={classNames('text-align-dropdownOption', center.className)}
         >
           <img
             src={center.icon}
@@ -125,7 +126,7 @@ export default class TextAlignControl extends Component {
         {options.indexOf('right') >= 0 && <DropdownOption
           value="right"
           active={currentTextAlignment === 'right'}
-          className={`text-align-dropdownOption ${right.className}`}
+          className={classNames('text-align-dropdownOption', right.className)}
         >
           <img
             src={right.icon}
@@ -135,7 +136,7 @@ export default class TextAlignControl extends Component {
         {options.indexOf('justify') >= 0 && <DropdownOption
           value="justify"
           active={currentTextAlignment === 'justify'}
-          className={`text-align-dropdownOption ${justify.className}`}
+          className={classNames('text-align-dropdownOption', justify.className)}
         >
           <img
             src={justify.icon}

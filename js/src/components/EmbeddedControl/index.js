@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Entity, AtomicBlockUtils } from 'draft-js';
+import classNames from 'classnames';
 import Option from '../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -54,7 +55,7 @@ export default class EmbeddedControl extends Component {
     const { config: { popupClassName } } = this.props;
     return (
       <div
-        className={`embedded-modal ${popupClassName}`}
+        className={classNames('embedded-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
         <div className="embedded-modal-header">
@@ -97,7 +98,7 @@ export default class EmbeddedControl extends Component {
     return (
       <div className="embedded-wrapper">
         <Option
-          className={className}
+          className={classNames(className)}
           value="unordered-list-item"
           onClick={this.toggleModal}
         >

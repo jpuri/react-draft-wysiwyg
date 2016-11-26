@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Entity } from 'draft-js';
+import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 let config = {
@@ -19,7 +20,7 @@ function findMentionEntities(contentBlock, callback) {
   );
 }
 
-const Mention = ({ children }) => <span className={`mention ${config.mentionClassName}`}>{children}</span>;
+const Mention = ({ children }) => <span className={classNames('mention', config.mentionClassName)}>{children}</span>;
 
 Mention.propTypes = {
   children: PropTypes.array,

@@ -3,8 +3,8 @@
 import React from 'react';
 import { expect, assert } from 'chai';
 import { shallow } from 'enzyme';
-import Image from '../image';
 import { getAllBlocks } from 'draftjs-utils';
+import Image from '../index';
 import { convertFromHTML, Entity, AtomicBlockUtils, ContentState, EditorState } from 'draft-js';
 
 describe('ImageRenderer test suite', () => {
