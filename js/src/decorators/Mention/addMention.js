@@ -50,5 +50,5 @@ export default function addMention(
     newEditorState.getCurrentInlineStyle(),
     undefined
   );
-  onChange(EditorState.push(newEditorState, contentState, 'insert-characters'), true);
+  onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
 }

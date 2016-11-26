@@ -45,7 +45,7 @@ export default class HistoryControl extends Component {
     const { editorState, onChange } = this.props;
     const newState = EditorState.undo(editorState);
     if (newState) {
-      onChange(newState, true);
+      onChange(newState);
     }
   };
 
@@ -53,7 +53,7 @@ export default class HistoryControl extends Component {
     const { editorState, onChange } = this.props;
     const newState = EditorState.redo(editorState);
     if (newState) {
-      onChange(newState, true);
+      onChange(newState);
     }
   };
 

@@ -101,7 +101,7 @@ export default class LinkControl extends Component {
       editorState.getCurrentInlineStyle(),
       entityKey,
     );
-    onChange(EditorState.push(editorState, contentState, 'insert-characters'), true);
+    onChange(EditorState.push(editorState, contentState, 'insert-characters'));
     this.toggleLinkModal();
   };
 
@@ -115,7 +115,7 @@ export default class LinkControl extends Component {
         anchorOffset: entityRange.start,
         focusOffset: entityRange.end,
       });
-      onChange(RichUtils.toggleLink(editorState, selection, null), true);
+      onChange(RichUtils.toggleLink(editorState, selection, null));
     }
   };
 

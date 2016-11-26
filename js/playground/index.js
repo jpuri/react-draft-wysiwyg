@@ -73,6 +73,7 @@ class Playground extends Component {
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
               spellCheck
+              toolbarOnFocus
               toolbar={{
                 inline: {
                   inDropdown: true,
