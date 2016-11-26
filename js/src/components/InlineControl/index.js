@@ -57,7 +57,7 @@ export default class InlineControl extends Component {
       newState = EditorState.push(newState, contentState, 'change-inline-style');
     }
     if (newState) {
-      onChange(newState, true);
+      onChange(newState);
     }
   };
 

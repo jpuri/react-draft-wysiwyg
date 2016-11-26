@@ -61,7 +61,7 @@ export default class ListControl extends Component {
       blockType
     );
     if (newState) {
-      onChange(newState, true);
+      onChange(newState);
     }
   };
 
@@ -73,7 +73,7 @@ export default class ListControl extends Component {
       4,
     );
     if (newState) {
-      onChange(newState, true);
+      onChange(newState);
     }
   };
 

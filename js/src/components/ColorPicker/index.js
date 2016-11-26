@@ -68,7 +68,7 @@ export default class ColorPicker extends Component {
       `${currentStyle}-${color}`
     );
     if (newState) {
-      onChange(newState, true);
+      onChange(newState);
     }
   };
 

@@ -36,7 +36,7 @@ export default class EmojiControl extends Component {
       `${event.target.innerHTML} `,
       editorState.getCurrentInlineStyle(),
     );
-    onChange(EditorState.push(editorState, contentState, 'insert-characters'), true);
+    onChange(EditorState.push(editorState, contentState, 'insert-characters'));
     this.toggleModal();
   };
 

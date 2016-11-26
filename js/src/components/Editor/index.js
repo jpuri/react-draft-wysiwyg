@@ -59,9 +59,7 @@ export default class WysiwygEditor extends Component {
     super(props);
     this.state = {
       editorState: undefined,
-      toolBarMouseDown: false,
       editorFocused: false,
-      editorMouseDown: false,
       toolbar: mergeRecursive(defaultToolbar, props.toolbar),
     };
   }
@@ -101,28 +99,15 @@ export default class WysiwygEditor extends Component {
     }
   }
 
-  onChange: Function = (editorState: Object, focusEditor: boolean): void => {
+  onChange: Function = (editorState: Object): void => {
     this.setState({
       editorState,
-    }, this.afterChange(focusEditor));
-  };
-
-  onToolbarMouseDown: Function = (): void => {
-    this.setState({
-      toolBarMouseDown: true,
-    });
-  };
-
-  onToolbarMouseUp: Function = (): void => {
-    this.setState({
-      toolBarMouseDown: false,
-      editorFocused: true,
-    });
+    },
+    this.afterChange());
   };
 
   onEditorFocus: Function = (): void => {
     this.setState({
-      toolBarMouseDown: false,
       editorFocused: true,
     });
   };
@@ -130,18 +115,6 @@ export default class WysiwygEditor extends Component {
   onEditorBlur: Function = (): void => {
     this.setState({
       editorFocused: false,
-    });
-  };
-
-  onEditorMouseDown: Function = (): void => {
-    this.setState({
-      editorMouseDown: true,
-    });
-  };
-
-  onEditorMouseUp: Function = (): void => {
-    this.setState({
-      editorMouseDown: false,
     });
   };
 
@@ -159,11 +132,8 @@ export default class WysiwygEditor extends Component {
     });
   };
 
-  afterChange: Function = (focusEditor: Boolean): void => {
+  afterChange: Function = (): void => {
     setTimeout(() => {
-      if (focusEditor) {
-        this.focusEditor();
-      }
       if (this.props.onChange) {
         let editorContent = convertToRaw(this.state.editorState.getCurrentContent());
         editorContent = this.enrichData(editorContent);
@@ -195,7 +165,7 @@ export default class WysiwygEditor extends Component {
     const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
     if (newState) {
-      this.onChange(newState, this.focusEditor);
+      this.onChange(newState);
       return true;
     }
     return false;
@@ -214,12 +184,14 @@ export default class WysiwygEditor extends Component {
     return returnValue;
   };
 
+  preventDefault: Function = (event: Object) => {
+    event.preventDefault();
+  }
+
   render() {
     const {
       editorState,
       editorFocused,
-      editorMouseDown,
-      toolBarMouseDown,
       toolbar,
      } = this.state;
     const {
@@ -248,16 +220,13 @@ export default class WysiwygEditor extends Component {
       history,
     } = toolbar;
 
-    const hasFocus = editorFocused || toolBarMouseDown || editorMouseDown;
     return (
       <div className={classNames('editor-wrapper', wrapperClassName)}>
         {
-          (hasFocus || !toolbarOnFocus) ?
+          (editorFocused || !toolbarOnFocus) ?
             <div
               className={classNames('editor-toolbar', toolbarClassName)}
-              onMouseDown={this.onToolbarMouseDown}
-              onMouseUp={this.onToolbarMouseUp}
-              onClick={this.focusEditor}
+              onMouseDown={this.preventDefault}
             >
               {options.indexOf('inline') >= 0 && <InlineControl
                 onChange={this.onChange}
@@ -335,8 +304,6 @@ export default class WysiwygEditor extends Component {
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
-          onMouseUp={this.onEditorMouseUp}
-          onMouseDown={this.onEditorMouseDown}
         >
           <Editor
             ref={this.setEditorReference}
