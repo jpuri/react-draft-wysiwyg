@@ -28,11 +28,11 @@ export default class Option extends Component {
     return (
       <div
         className={classNames(
-          'option-wrapper',
+          'rdw-option-wrapper',
           className,
           {
-            [`option-active ${activeClassName}`]: active,
-            'option-disabled': disabled,
+            [`rdw-option-active ${activeClassName}`]: active,
+            'rdw-option-disabled': disabled,
           }
         )}
         onClick={this.onClick}

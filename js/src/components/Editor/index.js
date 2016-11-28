@@ -221,11 +221,11 @@ export default class WysiwygEditor extends Component {
     } = toolbar;
 
     return (
-      <div className={classNames('editor-wrapper', wrapperClassName)}>
+      <div className={wrapperClassName}>
         {
           (editorFocused || !toolbarOnFocus) ?
             <div
-              className={classNames('editor-toolbar', toolbarClassName)}
+              className={classNames('rdw-editor-toolbar', toolbarClassName)}
               onMouseDown={this.preventDefault}
             >
               {options.indexOf('inline') >= 0 && <InlineControl
@@ -300,7 +300,7 @@ export default class WysiwygEditor extends Component {
         }
         <div
           ref={this.setWrapperReference}
-          className={classNames('editor-main', editorClassName)}
+          className={classNames('rdw-editor-main', editorClassName)}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}

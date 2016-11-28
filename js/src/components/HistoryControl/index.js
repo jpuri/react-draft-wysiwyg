@@ -61,7 +61,7 @@ export default class HistoryControl extends Component {
     const { options, undo, redo, className } = config;
     return (
       <Dropdown
-        className={classNames('history-dropdown', className)}
+        className={classNames('rdw-history-dropdown', className)}
         onChange={this.toggleInlineStyle}
       >
         <img
@@ -71,7 +71,7 @@ export default class HistoryControl extends Component {
         {options.indexOf('undo') >= 0 && <DropdownOption
           onClick={this.undo}
           disabled={undoDisabled}
-          className={classNames('history-dropdownoption', undo.className)}
+          className={classNames('rdw-history-dropdownoption', undo.className)}
         >
           <img
             src={undo.icon}
@@ -81,7 +81,7 @@ export default class HistoryControl extends Component {
         {options.indexOf('redo') >= 0 && <DropdownOption
           onClick={this.redo}
           disabled={redoDisabled}
-          className={classNames('history-dropdownoption', redo.className)}
+          className={classNames('rdw-history-dropdownoption', redo.className)}
         >
           <img
             src={redo.icon}
@@ -95,7 +95,7 @@ export default class HistoryControl extends Component {
   renderInFlatList(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
     const { options, undo, redo, className } = config;
     return (
-      <div className={classNames('history-wrapper', className)}>
+      <div className={classNames('rdw-history-wrapper', className)}>
         {options.indexOf('undo') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.undo}

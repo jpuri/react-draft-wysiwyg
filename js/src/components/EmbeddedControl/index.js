@@ -55,34 +55,34 @@ export default class EmbeddedControl extends Component {
     const { config: { popupClassName } } = this.props;
     return (
       <div
-        className={classNames('embedded-modal', popupClassName)}
+        className={classNames('rdw-embedded-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
-        <div className="embedded-modal-header">
-          <span className="embedded-modal-header-option">
+        <div className="rdw-embedded-modal-header">
+          <span className="rdw-embedded-modal-header-option">
             <span>Embedded Link</span>
-            <span className="embedded-modal-header-label" />
+            <span className="rdw-embedded-modal-header-label" />
           </span>
         </div>
-        <div className="embedded-modal-link-section">
+        <div className="rdw-embedded-modal-link-section">
           <input
-            className="embedded-modal-link-input"
+            className="rdw-embedded-modal-link-input"
             placeholder="Enter link"
             onChange={this.updateEmbeddedLink}
             onBlur={this.updateEmbeddedLink}
             value={embeddedLink}
           />
         </div>
-        <span className="embedded-modal-btn-section">
+        <span className="rdw-embedded-modal-btn-section">
           <button
-            className="embedded-modal-btn"
+            className="rdw-embedded-modal-btn"
             onClick={this.addEmbeddedLink}
             disabled={!embeddedLink}
           >
             Add
           </button>
           <button
-            className="embedded-modal-btn"
+            className="rdw-embedded-modal-btn"
             onClick={this.toggleModal}
           >
             Cancel
@@ -96,7 +96,7 @@ export default class EmbeddedControl extends Component {
     const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
-      <div className="embedded-wrapper">
+      <div className="rdw-embedded-wrapper">
         <Option
           className={classNames(className)}
           value="unordered-list-item"

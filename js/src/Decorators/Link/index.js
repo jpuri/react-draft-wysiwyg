@@ -46,17 +46,17 @@ class Link extends Component {
     const { showPopOver } = this.state;
     return (
       <span
-        className="link-decorator-wrapper"
+        className="rdw-link-decorator-wrapper"
         onMouseEnter={this.toggleShowPopOver}
         onMouseLeave={this.toggleShowPopOver}
       >
-        <span className="link-decorator-link">{children}</span>
+        <span className="rdw-link-decorator-link">{children}</span>
         {showPopOver ?
           <img
             src={openlink}
             role="presentation"
             onClick={this.openLink}
-            className="link-decorator-icon"
+            className="rdw-link-decorator-icon"
           />
           : undefined
         }

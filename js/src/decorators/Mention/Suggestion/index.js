@@ -92,15 +92,15 @@ class Suggestion extends Component {
       suggestions && suggestions.filter(suggestion =>
         suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
     return (
-      <span className="suggestion-wrapper" ref={this.setSuggestionReference}>
+      <span className="rdw-suggestion-wrapper" ref={this.setSuggestionReference}>
         <span>{children}</span>
-        <span className={classNames('suggestion-dropdown', dropdownClassName)} contentEditable="false" style={this.state.style} ref={this.setDropdownReference}>
+        <span className={classNames('rdw-suggestion-dropdown', dropdownClassName)} contentEditable="false" style={this.state.style} ref={this.setDropdownReference}>
           {filteredSuggestions.map((suggestion, index) =>
             <span
               key={index}
               spellCheck={false}
               onClick={this.addMention.bind(undefined, suggestion)}
-              className={classNames('suggestion-option', optionClassName)}
+              className={classNames('rdw-suggestion-option', optionClassName)}
             >
               {suggestion.text}
             </span>)}

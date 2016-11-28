@@ -59,11 +59,11 @@ export default class DropDownOption extends Component {
     return (
       <li
         className={classNames(
-            'dropdownoption-default',
+            'rdw-dropdownoption-default',
             className,
-            { [`dropdownoption-active ${activeClassName}`]: active,
-              [`dropdownoption-highlighted ${highlightedClassName}`]: highlighted,
-              [`dropdownoption-disabled ${disabledClassName}`]: disabled,
+            { [`rdw-dropdownoption-active ${activeClassName}`]: active,
+              [`rdw-dropdownoption-highlighted ${highlightedClassName}`]: highlighted,
+              [`rdw-dropdownoption-disabled ${disabledClassName}`]: disabled,
             })
         }
         onMouseEnter={this.setHighlighted}
@@ -75,3 +75,4 @@ export default class DropDownOption extends Component {
     );
   }
 }
+// todo: review classname use above.

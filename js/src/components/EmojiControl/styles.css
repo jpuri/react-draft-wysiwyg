@@ -1,10 +1,10 @@
-.emoji-wrapper {
+.rdw-emoji-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
 }
-.emoji-modal {
+.rdw-emoji-modal {
   overflow: auto;
   position: absolute;
   top: 35px;
@@ -20,7 +20,7 @@
   background: white;
   box-shadow: 3px 3px 5px #BFBDBD;
 }
-.emoji-icon {
+.rdw-emoji-icon {
   margin: 2.5px;
   height: 24px;
   width: 24px;

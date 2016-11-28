@@ -1,8 +1,8 @@
-.block-wrapper {
+.rdw-block-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
 }
-.block-dropdown {
+.rdw-block-dropdown {
   width: 110px;
 }

@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import { Entity, ContentBlock } from 'draft-js';
 import classNames from 'classnames';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import Option from '../../components/Option';
+import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Image extends Component {
 
@@ -48,23 +48,23 @@ export default class Image extends Component {
   renderAlignmentOptions(): Object {
     return (
       <div
-        className="image-alignment-options-popup"
+        className="rdw-image-alignment-options-popup"
       >
         <Option
           onClick={this.setEntityAlignmentLeft}
-          className="image-alignment-option"
+          className="rdw-image-alignment-option"
         >
           L
         </Option>
         <Option
           onClick={this.setEntityAlignmentCenter}
-          className="image-alignment-option"
+          className="rdw-image-alignment-option"
         >
           C
         </Option>
         <Option
           onClick={this.setEntityAlignmentRight}
-          className="image-alignment-option"
+          className="rdw-image-alignment-option"
         >
           R
         </Option>
@@ -82,15 +82,15 @@ export default class Image extends Component {
         onMouseEnter={this.toggleHovered}
         onMouseLeave={this.toggleHovered}
         className={classNames(
-          'image-alignment',
+          'rdw-image-alignment',
           {
-            'image-left': alignment === 'left',
-            'image-right': alignment === 'right',
-            'image-center': !alignment || alignment === 'none',
+            'rdw-image-left': alignment === 'left',
+            'rdw-image-right': alignment === 'right',
+            'rdw-image-center': !alignment || alignment === 'none',
           }
         )}
       >
-        <span className="image-imagewrapper">
+        <span className="rdw-image-imagewrapper">
           <img
             src={src}
             role="presentation"

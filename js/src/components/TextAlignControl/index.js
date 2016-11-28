@@ -42,7 +42,7 @@ export default class TextAlignControl extends Component {
     const { currentTextAlignment } = this.state;
     const { options, left, center, right, justify, className } = config;
     return (
-      <div className={classNames('text-align-wrapper', className)}>
+      <div className={classNames('rdw-text-align-wrapper', className)}>
         {options.indexOf('left') >= 0 && <Option
           value="left"
           className={classNames(left.className)}
@@ -96,7 +96,7 @@ export default class TextAlignControl extends Component {
     const { options, left, center, right, justify, className } = config;
     return (
       <Dropdown
-        className={classNames('text-align-dropdown', className)}
+        className={classNames('rdw-text-align-dropdown', className)}
         onChange={this.addBlockAlignmentData}
       >
         <img
@@ -106,7 +106,7 @@ export default class TextAlignControl extends Component {
         {options.indexOf('left') >= 0 && <DropdownOption
           value="left"
           active={currentTextAlignment === 'left'}
-          className={classNames('text-align-dropdownOption', left.className)}
+          className={classNames('rdw-text-align-dropdownOption', left.className)}
         >
           <img
             src={left.icon}
@@ -116,7 +116,7 @@ export default class TextAlignControl extends Component {
         {options.indexOf('center') >= 0 && <DropdownOption
           value="center"
           active={currentTextAlignment === 'center'}
-          className={classNames('text-align-dropdownOption', center.className)}
+          className={classNames('rdw-text-align-dropdownOption', center.className)}
         >
           <img
             src={center.icon}
@@ -126,7 +126,7 @@ export default class TextAlignControl extends Component {
         {options.indexOf('right') >= 0 && <DropdownOption
           value="right"
           active={currentTextAlignment === 'right'}
-          className={classNames('text-align-dropdownOption', right.className)}
+          className={classNames('rdw-text-align-dropdownOption', right.className)}
         >
           <img
             src={right.icon}
@@ -136,7 +136,7 @@ export default class TextAlignControl extends Component {
         {options.indexOf('justify') >= 0 && <DropdownOption
           value="justify"
           active={currentTextAlignment === 'justify'}
-          className={classNames('text-align-dropdownOption', justify.className)}
+          className={classNames('rdw-text-align-dropdownOption', justify.className)}
         >
           <img
             src={justify.icon}

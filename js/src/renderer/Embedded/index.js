@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Entity } from 'draft-js';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 const Image = ({ block }) => {
   const entity = Entity.get(block.getEntityAt(0));

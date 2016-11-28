@@ -1,12 +1,12 @@
-.fontsize-wrapper {
+.rdw-fontsize-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
 }
-.fontsize-dropdown {
+.rdw-fontsize-dropdown {
   min-width: 40px;
 }
-.fontsize-option {
+.rdw-fontsize-option {
   display: flex;
   justify-content: center;
 }

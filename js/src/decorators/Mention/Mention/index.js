@@ -20,7 +20,7 @@ function findMentionEntities(contentBlock, callback) {
   );
 }
 
-const Mention = ({ children }) => <span className={classNames('mention', config.mentionClassName)}>{children}</span>;
+const Mention = ({ children }) => <span className={classNames('rdw-mention', config.mentionClassName)}>{children}</span>;
 
 Mention.propTypes = {
   children: PropTypes.array,

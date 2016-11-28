@@ -63,7 +63,7 @@ export default class InlineControl extends Component {
 
   renderInFlatList(currentStyles: string, config: Object): Object {
     return (
-      <div className={classNames('inline-wrapper', config.className)}>
+      <div className={classNames('rdw-inline-wrapper', config.className)}>
         {
           config.options
           .map((style, index) =>
@@ -88,7 +88,7 @@ export default class InlineControl extends Component {
   renderInDropDown(currentStyles: string, config: Object): Object {
     return (
       <Dropdown
-        className={classNames('inline-dropdown', config.className)}
+        className={classNames('rdw-inline-dropdown', config.className)}
         onChange={this.toggleInlineStyle}
       >
         <img
@@ -101,7 +101,7 @@ export default class InlineControl extends Component {
             <DropdownOption
               key={index}
               value={style.toUpperCase()}
-              className={classNames('inline-dropdownoption', config[style].className)}
+              className={classNames('rdw-inline-dropdownoption', config[style].className)}
               active={currentStyles[style.toUpperCase()] === true}
             >
               <img

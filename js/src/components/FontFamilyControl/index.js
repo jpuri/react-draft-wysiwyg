@@ -59,19 +59,18 @@ export default class FontFamilyControl extends Component {
     currentFontFamily =
       currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length);
     return (
-      <div className="fontfamily-wrapper">
+      <div className="rdw-fontfamily-wrapper">
         <Dropdown
-          className={classNames('fontfamily-dropdown', className)}
+          className={classNames('rdw-fontfamily-dropdown', className)}
           onChange={this.toggleFontFamily}
-          optionWrapperClassName={classNames('fontfamily-optionwrapper', dropdownClassName)}
+          optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
         >
-          <span className="fontfamily-placeholder">
+          <span className="rdw-fontfamily-placeholder">
             {currentFontFamily || 'Font-Family'}
           </span>
           {
             fontFamilies.map((family, index) =>
               <DropdownOption
-                className="fontfamily-option"
                 active={currentFontFamily === family}
                 value={`fontfamily-${family}`}
                 key={index}

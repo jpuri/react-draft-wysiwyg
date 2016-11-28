@@ -90,7 +90,7 @@ export default class ListControl extends Component {
   renderInFlatList(currentBlockType: string, config: Object): Object {
     const { options, unordered, ordered, indent, outdent, className } = config;
     return (
-      <div className={classNames('list-wrapper', className)}>
+      <div className={classNames('rdw-list-wrapper', className)}>
         {options.indexOf('unordered') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.toggleBlockType}
@@ -139,7 +139,7 @@ export default class ListControl extends Component {
     const { options, className } = config;
     return (
       <Dropdown
-        className={classNames('list-dropdown', className)}
+        className={classNames('rdw-list-dropdown', className)}
         onChange={this.onDropdownChange}
       >
         <img
@@ -151,7 +151,7 @@ export default class ListControl extends Component {
           .map((option, index) => (<DropdownOption
             key={index}
             value={option.value}
-            className={classNames('list-dropdownOption', config[option.type].className)}
+            className={classNames('rdw-list-dropdownOption', config[option.type].className)}
             active={currentBlockType === option.value}
           >
             <img
