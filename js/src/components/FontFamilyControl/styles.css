@@ -1,19 +1,17 @@
-.fontfamily-wrapper {
+.rdw-fontfamily-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
 }
-.fontfamily-dropdown {
+.rdw-fontfamily-dropdown {
   width: 115px;
 }
-.fontfamily-option {
-}
-.fontfamily-placeholder {
+.rdw-fontfamily-placeholder {
   white-space: nowrap;
   max-width: 90px;
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.fontfamily-optionwrapper {
+.rdw-fontfamily-optionwrapper {
   width: 140px;
 }

@@ -89,14 +89,14 @@ export default class ColorPicker extends Component {
     const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
     return (
       <div
-        className={classNames('colorpicker-modal', popupClassName)}
+        className={classNames('rdw-colorpicker-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
-        <span className="colorpicker-modal-header">
+        <span className="rdw-colorpicker-modal-header">
           <span
             className={classNames(
-              'colorpicker-modal-style-label',
-              { 'colorpicker-modal-style-label-active': currentStyle === 'color' }
+              'rdw-colorpicker-modal-style-label',
+              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'color' }
             )}
             onClick={this.setCurrentStyleColor}
           >
@@ -104,28 +104,28 @@ export default class ColorPicker extends Component {
           </span>
           <span
             className={classNames(
-              'colorpicker-modal-style-label',
-              { 'colorpicker-modal-style-label-active': currentStyle === 'bgcolor' }
+              'rdw-colorpicker-modal-style-label',
+              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'bgcolor' }
             )}
             onClick={this.setCurrentStyleBgcolor}
           >
             Background
           </span>
         </span>
-        <span className="colorpicker-modal-options">
+        <span className="rdw-colorpicker-modal-options">
           {
             colors.map((color, index) =>
               <Option
                 value={color}
                 key={index}
-                className="colorpicker-option"
-                activeClassName="colorpicker-option-active"
+                className="rdw-colorpicker-option"
+                activeClassName="rdw-colorpicker-option-active"
                 active={currentSelectedColor === `${currentStyle}-${color}`}
                 onClick={this.toggleColor}
               >
                 <span
                   style={{ backgroundColor: color }}
-                  className="colorpicker-cube"
+                  className="rdw-colorpicker-cube"
                 />
               </Option>)
           }
@@ -138,7 +138,7 @@ export default class ColorPicker extends Component {
     const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
-      <div className="colorpicker-wrapper">
+      <div className="rdw-colorpicker-wrapper">
         <Option
           onClick={this.toggleModal}
           className={classNames(className)}

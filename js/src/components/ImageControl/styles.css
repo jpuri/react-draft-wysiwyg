@@ -1,10 +1,10 @@
-.image-wrapper {
+.rdw-image-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
 }
-.image-modal {
+.rdw-image-modal {
   position: absolute;
   top: 35px;
   left: 5px;
@@ -19,12 +19,12 @@
   background: white;
   box-shadow: 3px 3px 5px #BFBDBD;
 }
-.image-modal-header {
+.rdw-image-modal-header {
   font-size: 15px;
   margin: 10px 0;
   display: flex;
 }
-.image-modal-header-option {
+.rdw-image-modal-header-option {
   width: 50%;
   cursor: pointer;
   display: flex;
@@ -32,17 +32,17 @@
   align-items: center;
   flex-direction: column;
 }
-.image-modal-header-label {
+.rdw-image-modal-header-label {
   width: 80px;
   background: #f1f1f1;
   border: 1px solid #f1f1f1;
   margin-top: 5px;
 }
-.image-modal-header-label-highlighted {
+.rdw-image-modal-header-label-highlighted {
   background: #6EB8D4;
   border-bottom: 2px solid #0a66b7;
 }
-.image-modal-upload-option {
+.rdw-image-modal-upload-option {
   height: 75px;
   width: 100%;
   color: gray;
@@ -57,10 +57,10 @@
   outline-offset: -10px;
   margin: 10px 0;
 }
-.image-modal-upload-option-highlighted {
+.rdw-image-modal-upload-option-highlighted {
   outline: 2px dashed #0a66b7;
 }
-.image-modal-upload-option-label {
+.rdw-image-modal-upload-option-label {
   cursor: pointer;
   height: 100%;
   width: 100%;
@@ -68,7 +68,7 @@
   justify-content: center;
   align-items: center;
 }
-.image-modal-upload-option-input {
+.rdw-image-modal-upload-option-input {
 	width: 0.1px;
 	height: 0.1px;
 	opacity: 0;
@@ -76,10 +76,10 @@
 	position: absolute;
 	z-index: -1;
 }
-.image-modal-url-section {
+.rdw-image-modal-url-section {
   display: flex;
 }
-.image-modal-url-input {
+.rdw-image-modal-url-input {
   width: 90%;
   height: 35px;
   margin: 29px auto;
@@ -88,13 +88,13 @@
   font-size: 15px;
   padding: 0 5px;
 }
-.image-modal-btn-section {
+.rdw-image-modal-btn-section {
   margin: 10px auto 0;
 }
-.image-modal-url-input:focus {
+.rdw-image-modal-url-input:focus {
   outline: none;
 }
-.image-modal-btn {
+.rdw-image-modal-btn {
   margin-left: 10px;
   width: 75px;
   height: 30px;
@@ -104,19 +104,19 @@
   background: white;
   text-transform: capitalize;
 }
-.image-modal-btn:hover {
+.rdw-image-modal-btn:hover {
   box-shadow: 1px 1px 0px #BFBDBD;
 }
-.image-modal-btn:active {
+.rdw-image-modal-btn:active {
   box-shadow: 1px 1px 0px #BFBDBD inset;
 }
-.image-modal-btn:focus {
+.rdw-image-modal-btn:focus {
   outline: none !important;
 }
-.image-modal-btn:disabled {
+.rdw-image-modal-btn:disabled {
   background: #ece9e9;
 }
-.image-modal-spinner {
+.rdw-image-modal-spinner {
   position: absolute;
   top: 0;
   left: 0;

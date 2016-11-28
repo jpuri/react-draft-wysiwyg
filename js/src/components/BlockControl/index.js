@@ -68,9 +68,9 @@ export default class BlockControl extends Component {
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
     const { config: { className, dropdownClassName } } = this.props;
     return (
-      <div className="block-wrapper">
+      <div className="rdw-block-wrapper">
         <Dropdown
-          className={classNames('block-dropdown', className)}
+          className={classNames('rdw-block-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={this.toggleBlockType}
         >

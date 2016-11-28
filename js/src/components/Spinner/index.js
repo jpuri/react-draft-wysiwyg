@@ -1,12 +1,11 @@
 /* @flow */
 
 import React from 'react';
-import styles from './styles.css';
+import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-// This is stateless component
 export default () =>
-  <div className={styles.spinner}>
-    <div className={styles.bounce1} />
-    <div className={styles.bounce2} />
-    <div className={styles.bounce3} />
+  <div className="rdw-spinner">
+    <div className="rdw-bounce1" />
+    <div className="rdw-bounce2" />
+    <div className="rdw-bounce3" />
   </div>;

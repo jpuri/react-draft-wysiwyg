@@ -1,21 +1,21 @@
-.link-wrapper {
+.rdw-link-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
 }
-.link-dropdown {
+.rdw-link-dropdown {
   width: 50px;
 }
-.link-dropdownOption {
+.rdw-link-dropdownOption {
   height: 40px;
   display: flex;
   justify-content: center;
 }
-.link-dropdownPlaceholder {
+.rdw-link-dropdownPlaceholder {
   margin-left: 8px;
 }
-.link-modal {
+.rdw-link-modal {
   position: absolute;
   top: 35px;
   left: 5px;
@@ -30,23 +30,23 @@
   background: white;
   box-shadow: 3px 3px 5px #BFBDBD;
 }
-.link-modal-label {
+.rdw-link-modal-label {
   font-size: 15px;
 }
-.link-modal-input {
+.rdw-link-modal-input {
   margin-top: 5px;
   border-radius: 2px;
   border: 1px solid #F1F1F1;
   height: 25px;
   margin-bottom: 15px;
 }
-.link-modal-input:focus {
+.rdw-link-modal-input:focus {
   outline: none;
 }
-.link-modal-buttonsection {
+.rdw-link-modal-buttonsection {
   margin: 0 auto;
 }
-.link-modal-btn {
+.rdw-link-modal-btn {
   margin-left: 10px;
   width: 75px;
   height: 30px;
@@ -56,23 +56,23 @@
   background: white;
   text-transform: capitalize;
 }
-.link-modal-btn:hover {
+.rdw-link-modal-btn:hover {
   box-shadow: 1px 1px 0px #BFBDBD;
 }
-.link-modal-btn:active {
+.rdw-link-modal-btn:active {
   box-shadow: 1px 1px 0px #BFBDBD inset;
 }
-.link-modal-btn:focus {
+.rdw-link-modal-btn:focus {
   outline: none !important;
 }
-.link-modal-btn:disabled {
+.rdw-link-modal-btn:disabled {
   background: #ece9e9;
 }
-.link-dropdownoption {
+.rdw-link-dropdownoption {
   height: 40px;
   display: flex;
   justify-content: center;
 }
-.history-dropdown {
+.rdw-history-dropdown {
   width: 50px;
 }

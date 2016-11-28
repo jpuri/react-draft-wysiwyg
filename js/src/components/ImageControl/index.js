@@ -124,20 +124,20 @@ export default class ImageControl extends Component {
     const { config: { popupClassName }, uploadCallback } = this.props;
     return (
       <div
-        className={classNames('image-modal', popupClassName)}
+        className={classNames('rdw-image-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
-        <div className="image-modal-header">
+        <div className="rdw-image-modal-header">
           {uploadCallback ?
             <span
               onClick={this.showImageUploadOption}
-              className="image-modal-header-option"
+              className="rdw-image-modal-header-option"
             >
               <span>File Upload</span>
               <span
                 className={classNames(
-                  'image-modal-header-label',
-                  { 'image-modal-header-label-highlighted': showImageUpload }
+                  'rdw-image-modal-header-label',
+                  { 'rdw-image-modal-header-label-highlighted': showImageUpload }
                 )}
               />
             </span>
@@ -146,13 +146,13 @@ export default class ImageControl extends Component {
           }
           <span
             onClick={this.showImageURLOption}
-            className="image-modal-header-option"
+            className="rdw-image-modal-header-option"
           >
             <span>URL</span>
             <span
               className={classNames(
-                'image-modal-header-label',
-                { 'image-modal-header-label-highlighted': !showImageUpload }
+                'rdw-image-modal-header-label',
+                { 'rdw-image-modal-header-label-highlighted': !showImageUpload }
               )}
             />
           </span>
@@ -165,12 +165,12 @@ export default class ImageControl extends Component {
                 onDragOver={this.stopPropagationPreventDefault}
                 onDrop={this.onImageDrop}
                 className={classNames(
-                'image-modal-upload-option',
-                { 'image-modal-upload-option-highlighted': dragEnter })}
+                'rdw-image-modal-upload-option',
+                { 'rdw-image-modal-upload-option-highlighted': dragEnter })}
               >
                 <label
                   htmlFor="file"
-                  className="image-modal-upload-option-label"
+                  className="rdw-image-modal-upload-option-label"
                 >
                   Drop the file or click to upload
                 </label>
@@ -179,12 +179,12 @@ export default class ImageControl extends Component {
                 type="file"
                 id="file"
                 onChange={this.selectImage}
-                className="image-modal-upload-option-input"
+                className="rdw-image-modal-upload-option-input"
               />
             </div> :
-              <div className="image-modal-url-section">
+              <div className="rdw-image-modal-url-section">
                 <input
-                  className="image-modal-url-input"
+                  className="rdw-image-modal-url-input"
                   placeholder="Enter url"
                   onChange={this.updateImageSrc}
                   onBlur={this.updateImageSrc}
@@ -192,23 +192,23 @@ export default class ImageControl extends Component {
                 />
               </div>
         }
-        <span className="image-modal-btn-section">
+        <span className="rdw-image-modal-btn-section">
           <button
-            className="image-modal-btn"
+            className="rdw-image-modal-btn"
             onClick={this.addImage}
             disabled={!imgSrc}
           >
             Add
           </button>
           <button
-            className="image-modal-btn"
+            className="rdw-image-modal-btn"
             onClick={this.toggleModal}
           >
             Cancel
           </button>
         </span>
         {showImageLoading ?
-          <div className="image-modal-spinner">
+          <div className="rdw-image-modal-spinner">
             <Spinner />
           </div> :
           undefined}
@@ -220,7 +220,7 @@ export default class ImageControl extends Component {
     const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
-      <div className="image-wrapper">
+      <div className="rdw-image-wrapper">
         <Option
           className={classNames(className)}
           value="unordered-list-item"

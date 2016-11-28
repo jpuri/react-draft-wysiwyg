@@ -78,25 +78,23 @@ export default class Dropdown extends Component {
       <div
         tabIndex="0"
         onKeyDown={this.onKeyDown}
-        className={classNames('dropdown-wrapper', className)}
+        className={classNames('rdw-dropdown-wrapper', className)}
         onMouseLeave={this.collapse}
       >
         <a
-          className="dropdown-selectedtext"
+          className="rdw-dropdown-selectedtext"
           onClick={this.toggleExpansion}
         >
           {children[0]}
           <div
             className={classNames({
-              'dropdown-carettoclose': expanded,
-              'dropdown-carettoopen': !expanded,
+              'rdw-dropdown-carettoclose': expanded,
+              'rdw-dropdown-carettoopen': !expanded,
             })}
           />
         </a>
         {expanded ?
-          <ul
-            className={classNames('dropdown-optionwrapper', optionWrapperClassName)}
-          >
+          <ul className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)}>
             {
               React.Children.map(options, (option, index) => {
                 const temp = option && React.cloneElement(

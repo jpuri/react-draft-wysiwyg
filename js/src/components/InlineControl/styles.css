@@ -1,11 +1,11 @@
-.inline-wrapper {
+.rdw-inline-wrapper {
   display: flex;
   margin-bottom: 6px;
 }
-.inline-dropdown {
+.rdw-inline-dropdown {
   width: 50px;
 }
-.inline-dropdownoption {
+.rdw-inline-dropdownoption {
   height: 40px;
   display: flex;
   justify-content: center;

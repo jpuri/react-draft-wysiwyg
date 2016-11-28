@@ -1,11 +1,11 @@
-.spinner {
+.rdw-spinner {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100%;
   width: 100%;
 }
-.spinner > div {
+.rdw-spinner > div {
   width: 12px;
   height: 12px;
   background-color: #333;
@@ -15,11 +15,11 @@
   -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
   animation: sk-bouncedelay 1.4s infinite ease-in-out both;
 }
-.spinner .bounce1 {
+.rdw-spinner .rdw-bounce1 {
   -webkit-animation-delay: -0.32s;
   animation-delay: -0.32s;
 }
-.spinner .bounce2 {
+.rdw-spinner .rdw-bounce2 {
   -webkit-animation-delay: -0.16s;
   animation-delay: -0.16s;
 }

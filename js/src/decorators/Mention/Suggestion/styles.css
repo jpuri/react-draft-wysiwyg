@@ -1,7 +1,7 @@
-.suggestion-wrapper {
+.rdw-suggestion-wrapper {
   position: relative;
 }
-.suggestion-dropdown {
+.rdw-suggestion-dropdown {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -12,10 +12,10 @@
   background: white;
   z-index: 100;
 }
-.suggestion-option {
+.rdw-suggestion-option {
   padding: 7px 5px;
   border-bottom: 1px solid #f1f1f1;
 }
-.suggestion-option:hover {
+.rdw-suggestion-option:hover {
   background-color: #F1F1F1;
 }

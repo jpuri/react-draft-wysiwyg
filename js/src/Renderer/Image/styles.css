@@ -1,4 +1,4 @@
-.image-alignment-options-popup {
+.rdw-image-alignment-options-popup {
   position: absolute;;
   background: white;
   display: flex;
@@ -9,27 +9,27 @@
   cursor: pointer;
   z-index: 100;
 }
-.alignment-option-left {
+.rdw-alignment-option-left {
   justify-content: flex-start;
 }
-.image-alignment-option {
+.rdw-image-alignment-option {
   height: 15px;
   width: 15px;
 }
-.image-alignment {
+.rdw-image-alignment {
   position: relative;
 }
-.image-imagewrapper {
+.rdw-image-imagewrapper {
   position: relative;
 }
-.image-center {
+.rdw-image-center {
   float: none;
   display: flex;
   justify-content: center;
 }
-.image-left {
+.rdw-image-left {
   float: left;
 }
-.image-right {
+.rdw-image-right {
   float: right;
 }

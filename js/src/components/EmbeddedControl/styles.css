@@ -1,10 +1,10 @@
-.embedded-wrapper {
+.rdw-embedded-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
 }
-.embedded-modal {
+.rdw-embedded-modal {
   position: absolute;
   top: 35px;
   left: 5px;
@@ -19,12 +19,12 @@
   background: white;
   box-shadow: 3px 3px 5px #BFBDBD;
 }
-.embedded-modal-header {
+.rdw-embedded-modal-header {
   font-size: 15px;
   margin: 10px 0;
   display: flex;
 }
-.embedded-modal-header-option {
+.rdw-embedded-modal-header-option {
   width: 50%;
   cursor: pointer;
   display: flex;
@@ -32,17 +32,17 @@
   align-items: center;
   flex-direction: column;
 }
-.embedded-modal-header-label {
+.rdw-embedded-modal-header-label {
   width: 95px;
   border: 1px solid #f1f1f1;
   margin-top: 5px;
   background: #6EB8D4;
   border-bottom: 2px solid #0a66b7;
 }
-.embedded-modal-link-section {
+.rdw-embedded-modal-link-section {
   display: flex;
 }
-.embedded-modal-link-input {
+.rdw-embedded-modal-link-input {
   width: 90%;
   height: 35px;
   margin: 29px auto;
@@ -51,13 +51,13 @@
   font-size: 15px;
   padding: 0 5px;
 }
-.embedded-modal-link-input:focus {
+.rdw-embedded-modal-link-input:focus {
   outline: none;
 }
-.embedded-modal-btn-section {
+.rdw-embedded-modal-btn-section {
   margin: 10px auto 0;
 }
-.embedded-modal-btn {
+.rdw-embedded-modal-btn {
   margin-left: 10px;
   width: 75px;
   height: 30px;
@@ -67,15 +67,15 @@
   background: white;
   text-transform: capitalize;
 }
-.embedded-modal-btn:hover {
+.rdw-embedded-modal-btn:hover {
   box-shadow: 1px 1px 0px #BFBDBD;
 }
-.embedded-modal-btn:active {
+.rdw-embedded-modal-btn:active {
   box-shadow: 1px 1px 0px #BFBDBD inset;
 }
-.embedded-modal-btn:focus {
+.rdw-embedded-modal-btn:focus {
   outline: none !important;
 }
-.embedded-modal-btn:disabled {
+.rdw-embedded-modal-btn:disabled {
   background: #ece9e9;
 }

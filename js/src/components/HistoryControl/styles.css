@@ -1,13 +1,13 @@
-.history-wrapper {
+.rdw-history-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
 }
-.history-dropdownoption {
+.rdw-history-dropdownoption {
   height: 40px;
   display: flex;
   justify-content: center;
 }
-.history-dropdown {
+.rdw-history-dropdown {
   width: 50px;
 }

@@ -1,7 +1,6 @@
 import { mentionDecorator, setMentionConfig } from './Mention';
 import { suggestionDecorator, setSuggestionConfig } from './Suggestion';
 import { handleReturn, setHandleReturnConfig } from './handleReturn';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 let config = {
   separator: ' ',
