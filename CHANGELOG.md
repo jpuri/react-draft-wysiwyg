@@ -3,7 +3,7 @@
 ## 22/11/2016 (1.0.0)
 Initial stable release
 
-## 29/11/2016 (1.1.0)
+## 29/11/2016 (1.1.1)
 - #62: Toolbar behaves weird at times if toolbarOnFocus is set.
 - #73: Making spell check configurable.
 - #74: Allow user to use RTL.
