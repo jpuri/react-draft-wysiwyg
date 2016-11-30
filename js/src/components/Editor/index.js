@@ -12,6 +12,7 @@ import {
   DefaultDraftBlockRenderMap,
 } from 'draft-js';
 import {
+  changeDepth,
   handleNewLine,
   customStyleMap,
 } from 'draftjs-utils';
@@ -182,6 +183,16 @@ export default class WysiwygEditor extends Component {
       returnValue = true;
     }
     return returnValue;
+  };
+
+  onTab: Function = (event): boolean => {
+    event.preventDefault();
+    const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
+    if (editorState) {
+      this.onChange(editorState);
+      return true;
+    }
+    return false;
   };
 
   preventDefault: Function = (event: Object) => {
