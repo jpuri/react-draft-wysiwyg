@@ -110,6 +110,14 @@ export default class ImageControl extends Component {
     });
   };
 
+  setImageURLInputReference: Function = (ref: Object): void => {
+    this.imageURLInput = ref;
+  };
+
+  focusImageURLInput: Function = (event): Object => {
+    this.imageURLInput.focus();
+  }
+
   stopPropagationPreventDefault: Function = (event: Object): void => {
     event.preventDefault();
     event.stopPropagation();
@@ -184,11 +192,13 @@ export default class ImageControl extends Component {
             </div> :
               <div className="rdw-image-modal-url-section">
                 <input
+                  ref={this.setImageURLInputReference}
                   className="rdw-image-modal-url-input"
                   placeholder="Enter url"
                   onChange={this.updateImageSrc}
                   onBlur={this.updateImageSrc}
                   value={imgSrc}
+                  onMouseDown={this.focusImageURLInput}
                 />
               </div>
         }
