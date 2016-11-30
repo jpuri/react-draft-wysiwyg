@@ -72,6 +72,7 @@ class Playground extends Component {
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
+              uploadCallback={this.imageUploadCallBack}
               spellCheck
               toolbar={{
                 inline: {

@@ -10,3 +10,8 @@ Initial stable release
 - #69: Prefix 'rdw-' to all class names.
 - #70: Avoid 'undefined' class name.
 - #65: Cannot set bold/italics/underline without any text highlighted.
+
+## 29/11/2016 (1.1.2)
+- #35: use of tab for indenting is broken
+- #30: As user types after link the new text should not be linkified.
+- #92: Inputs in toolbar can not be focused.
