@@ -29,19 +29,22 @@
   width: 600px;
   display: block;
   margin-bottom: 50px;
+  height: 450px;
 }
 .demo-wrapper-wide {
   width: 810px;
   display: block;
   margin-bottom: 50px;
+  height: 355px;
 }
 .demo-wrapper-medium {
   width: 650px;
   display: block;
   margin-bottom: 50px;
+  height: 300px;
 }
 .demo-editor {
-  height: 400px;
+  height: 80%;
   border: 1px solid #F1F1F1;
   padding: 5px;
   border-radius: 2px;
@@ -61,7 +64,7 @@
   margin-left: 30px;
   resize: none;
   margin-top: 127px;
-  height: 400px;
+  height: 355px;
 }
 .demo-toolbar-absolute {
   position: absolute;
@@ -80,11 +83,11 @@
   border: 1px solid #e3e3e3;
 }
 .demo-editor-plain {
-  height: 200px;
+  height: 80%;
   border-width: 0px;
 }
 .demo-editor-embedded {
-  height: 450px;
+  height: 90%;
   border-width: 0px;
 }
 .demo-wrapper-relative {
@@ -92,6 +95,14 @@
   display: block;
   position: relative;
   margin-bottom: 50px;
+  height: 200px;
+}
+.demo-wrapper-relative-long {
+  width: 715px;
+  display: block;
+  position: relative;
+  margin-bottom: 50px;
+  height: 450px;
 }
 .bordered-option-classname {
   border: 1px solid #e3e3e3;
@@ -112,6 +123,7 @@
   height: 200px;
   border: 1px solid #F1F1F1;
   padding: 5px;
+  height: 75%;
   border-radius: 2px;
   border-color: rgb(0,47,126);
 }

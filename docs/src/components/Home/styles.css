@@ -21,12 +21,13 @@
   margin-top: 50px;
   width: 775px;
   display: block;
+  height: 500px;
 }
 .home-editor {
   border: 1px solid #F1F1F1;
   padding: 5px;
   border-radius: 2px;
-  height: 400px;
+  height: 80%;
 }
 .home-toolbar {
   width: 100%;
