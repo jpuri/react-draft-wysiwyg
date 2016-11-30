@@ -46,6 +46,14 @@ export default class EmbeddedControl extends Component {
     });
   };
 
+  setURLInputReference: Function = (ref: Object): void => {
+    this.urlInput = ref;
+  };
+
+  focusURLInput: Function = (event): Object => {
+    this.urlInput.focus();
+  }
+
   stopPropagation: Function = (event: Object): void => {
     event.stopPropagation();
   };
@@ -66,11 +74,13 @@ export default class EmbeddedControl extends Component {
         </div>
         <div className="rdw-embedded-modal-link-section">
           <input
+            ref={this.setURLInputReference}
             className="rdw-embedded-modal-link-input"
             placeholder="Enter link"
             onChange={this.updateEmbeddedLink}
             onBlur={this.updateEmbeddedLink}
             value={embeddedLink}
+            onMouseDown={this.focusURLInput}
           />
         </div>
         <span className="rdw-embedded-modal-btn-section">

@@ -94,14 +94,29 @@ export default class LinkControl extends Component {
       title: linkTitle,
       url: linkTarget,
     });
-    const contentState = Modifier.replaceText(
+    let contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
       selection,
       `${linkTitle}`,
       editorState.getCurrentInlineStyle(),
       entityKey,
     );
-    onChange(EditorState.push(editorState, contentState, 'insert-characters'));
+    let newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
+
+    // insert a blank space after link
+    selection = newEditorState.getSelection().merge({
+      anchorOffset: selection.get('focusOffset'),
+    });
+    newEditorState = EditorState.acceptSelection(newEditorState, selection);
+    contentState = Modifier.insertText(
+      newEditorState.getCurrentContent(),
+      selection,
+      ' ',
+      newEditorState.getCurrentInlineStyle(),
+      undefined
+    );
+    onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
+
     this.toggleLinkModal();
   };
 
@@ -119,7 +134,23 @@ export default class LinkControl extends Component {
     }
   };
 
-  stopPropagation: Function = (event) => {
+  setLinkTitleReference: Function = (ref: Object): void => {
+    this.linkTitle = ref;
+  };
+
+  setLinkTextReference: Function = (ref: Object): void => {
+    this.linkText = ref;
+  };
+
+  focusLinkTitle: Function = (event): Object => {
+    this.linkTitle.focus();
+  }
+
+  focusLinkText: Function = (event: Object) => {
+    this.linkText.focus();
+  }
+
+  stopPropagation: Function = (event: Object) => {
     event.stopPropagation();
   };
 
@@ -133,17 +164,21 @@ export default class LinkControl extends Component {
       >
         <span className="rdw-link-modal-label">Link Title</span>
         <input
+          ref={this.setLinkTitleReference}
           className="rdw-link-modal-input"
           onChange={this.updateLinkTitle}
           onBlur={this.updateLinkTitle}
           value={linkTitle}
+          onMouseDown={this.focusLinkTitle}
         />
         <span className="rdw-link-modal-label">Link Target</span>
         <input
+          ref={this.setLinkTextReference}
           className="rdw-link-modal-input"
           onChange={this.updateLinkTarget}
           onBlur={this.updateLinkTarget}
           value={linkTarget}
+          onMouseDown={this.focusLinkText}
         />
         <span className="rdw-link-modal-buttonsection">
           <button
