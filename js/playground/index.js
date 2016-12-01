@@ -74,6 +74,7 @@ class Playground extends Component {
               onChange={this.onEditorChange}
               uploadCallback={this.imageUploadCallBack}
               spellCheck
+              tabIndex="1"
               toolbar={{
                 inline: {
                   inDropdown: true,
