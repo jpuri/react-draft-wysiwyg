@@ -15,3 +15,7 @@ Initial stable release
 - #35: use of tab for indenting is broken
 - #30: As user types after link the new text should not be linkified.
 - #92: Inputs in toolbar can not be focused.
+
+## 1/12/2016 (1.1.3)
+- #94: Support ReadOnly mode.
+- #84: Developer to be able to update editor editor content.

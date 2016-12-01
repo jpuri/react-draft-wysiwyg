@@ -80,9 +80,9 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            Initializing editor content
+            Initializing / resetting editor content
           </div>
-          <div className="docs-desc">Editor state can be initialized using property initialContentState its is instance of&nbsp;
+          <div className="docs-desc">Editor content can be initialized / reset using property contentState its is instance of&nbsp;
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -90,10 +90,13 @@ export default class Demo2 extends Component {
             >
               RawDraftContentState.
             </a>
+              &nbsp; Previously property initialContentState was used for this purpose, the editor continues to support it for some time.
+              A change in property contentState will change editor content. <br />
+              Editor is uncontrolled component. Using this property along with onChange callback can turn editor into something like controlled component, but that is not recommended due to performance impacts it will have.
           </div>
           <div>
             <code>
-              {'<Editor initialContentState={contentState} />'}
+              {'<Editor contentState={contentState} />'}
             </code>
           </div>
         </div>
@@ -109,8 +112,7 @@ export default class Demo2 extends Component {
             >
               RawDraftContentState.
             </a>
-            &nbsp;Editor is UNCONTROLLED component.
-            Making it controlled can effect performance.
+            &nbsp;
             If provided this callback is called each time after editor state changes.
           </div>
           <div>
