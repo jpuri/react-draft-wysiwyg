@@ -312,6 +312,32 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
+            Read Only
+          </div>
+          <div className="docs-desc">
+            Using this property editor can be turned read only, it can have value true, false. false by default.
+          </div>
+          <div>
+            <code>
+              {'<Editor readOnly />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            TabIndex
+          </div>
+          <div className="docs-desc">
+            TabIndex can also be passed as property.
+          </div>
+          <div>
+            <code>
+              {'<Editor tabIndex={1} />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
             Generating HTML / Markdown
           </div>
           <div className="docs-desc">
