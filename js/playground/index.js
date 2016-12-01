@@ -31,11 +31,18 @@ class Playground extends Component {
 
   state: any = {
     editorContent: undefined,
+    contentState: undefined,
   };
 
   onEditorChange: Function = (editorContent) => {
     this.setState({
       editorContent,
+    });
+  };
+
+  setContentState: Function = () => {
+    this.setState({
+      contentState: rawContentState,
     });
   };
 
@@ -59,21 +66,24 @@ class Playground extends Component {
     );
 
   render() {
-    const { editorContent } = this.state;
+    const { editorContent, contentState } = this.state;
     return (
       <div className="playground-root">
         <div className="playground-label">
           Toolbar is alwasy <sup>visible</sup>
         </div>
+        <button onClick={this.setContentState}>Force Editor State</button>
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
+              contentState={contentState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
               uploadCallback={this.imageUploadCallBack}
               spellCheck
+              tabIndex={1}
               toolbar={{
                 inline: {
                   inDropdown: true,

@@ -44,7 +44,9 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
+    // initialContentState is deprecated and will be removed in 2.0
     initialContentState: PropTypes.object,
+    contentState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
     spellCheck: PropTypes.bool,
     toolbar: PropTypes.object,
@@ -54,6 +56,8 @@ export default class WysiwygEditor extends Component {
     uploadCallback: PropTypes.func,
     mention: PropTypes.object,
     textAlignment: PropTypes.string,
+    readOnly: PropTypes.bool,
+    tabIndex: PropTypes.number,
   };
 
   constructor(props) {
@@ -72,14 +76,15 @@ export default class WysiwygEditor extends Component {
       MentionDecorator.setConfig({
         ...this.props.mention,
         onChange: this.onChange,
-        getEditorState: () => this.state.editorState,
-        getWrapperRef: () => this.wrapper,
+        getEditorState: this.getEditorState,
+        getWrapperRef: this.getWrapperRef,
       });
       decorators.push(...MentionDecorator.decorators);
     }
     const compositeDecorator = new CompositeDecorator(decorators);
-    if (this.props.initialContentState) {
-      const contentState = convertFromRaw(this.props.initialContentState);
+    const propContentState = this.props.initialContentState || this.props.contentState;
+    if (propContentState) {
+      const contentState = convertFromRaw(propContentState);
       editorState = EditorState.createWithContent(contentState, compositeDecorator);
     } else {
       editorState = EditorState.createEmpty(compositeDecorator);
@@ -88,17 +93,34 @@ export default class WysiwygEditor extends Component {
       editorState,
     });
   }
+  // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
   componentWillReceiveProps(props) {
+    const newState = {};
     if (this.props.toolbar !== props.toolbar) {
-      this.setState({
-        toolbar: mergeRecursive(defaultToolbar, props.toolbar),
-      });
+      newState.toolbar = mergeRecursive(defaultToolbar, props.toolbar);
     }
     if (this.props.mention !== props.mention) {
       MentionDecorator.setConfig(this.props.mention);
     }
+    if (props.contentState && this.props.contentState !== props.contentState) {
+      const newEditorState = this.changeEditorState(props.contentState);
+      if (newEditorState) {
+        newState.editorState = newEditorState;
+      }
+    }
+    this.setState(newState);
   }
+
+  changeEditorState = (contentState) => {
+    const newContentState = convertFromRaw(contentState);
+    const { editorState } = this.state;
+    return EditorState.push(editorState, newContentState, 'change-block-data');
+  }
+
+  getEditorState = () => this.state.editorState;
+
+  getWrapperRef = () => this.wrapper;
 
   onChange: Function = (editorState: Object): void => {
     this.setState({
