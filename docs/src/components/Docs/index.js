@@ -304,7 +304,7 @@ export default class Demo2 extends Component {
             Spell check
           </div>
           <div className="docs-desc">
-            Default browser spell-check can be enabled in the editor using property spellCheck, it can have value true, false.
+            Default browser spell-check can be enabled in the editor using property spellCheck, it can have value true, false. false by default.
           </div>
           <div>
             <code>

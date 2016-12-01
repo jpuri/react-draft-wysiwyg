@@ -235,6 +235,8 @@ export default class WysiwygEditor extends Component {
       uploadCallback,
       textAlignment,
       spellCheck,
+      readOnly,
+      tabIndex,
     } = this.props;
     const {
       options,
@@ -341,6 +343,9 @@ export default class WysiwygEditor extends Component {
           <Editor
             ref={this.setEditorReference}
             onTab={this.onTab}
+            tabIndex={tabIndex}
+            readOnly={readOnly}
+            readOnly={readOnly}
             spellCheck={spellCheck}
             editorState={editorState}
             onChange={this.onChange}
