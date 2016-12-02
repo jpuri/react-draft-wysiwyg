@@ -345,7 +345,6 @@ export default class WysiwygEditor extends Component {
             onTab={this.onTab}
             tabIndex={tabIndex}
             readOnly={readOnly}
-            readOnly={readOnly}
             spellCheck={spellCheck}
             editorState={editorState}
             onChange={this.onChange}
