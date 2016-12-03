@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { Modifier, EditorState } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
+import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class EmojiControl extends Component {
@@ -16,7 +17,12 @@ export default class EmojiControl extends Component {
 
   state: Object = {
     showModal: false,
+    prevShowModal: false,
   };
+
+  componentWillMount(): void {
+    ModalHandler.registerCallBack(this.closeModal);
+  }
 
   emojis: Array<string> = ['😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌',
     '🤓', '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉', '🙊',
@@ -41,13 +47,23 @@ export default class EmojiControl extends Component {
   };
 
   toggleModal: Function = (): void => {
-    const { showModal } = this.state;
+    const showModal = !this.state.prevShowModal;
     this.setState({
-      showModal: !showModal,
+      prevShowModal: showModal,
+      showModal,
     });
   };
 
+  closeModal: Function = (): void => {
+    const { showModal } = this.state;
+    this.setState({
+      prevShowModal: showModal,
+      showModal: false,
+    });
+  }
+
   stopPropagation: Function = (event: Object): void => {
+    event.preventDefault();
     event.stopPropagation();
   };
 
@@ -56,7 +72,7 @@ export default class EmojiControl extends Component {
     return (
       <div
         className={classNames('rdw-emoji-modal', popupClassName)}
-        onClick={this.stopPropagation}
+        onMouseDown={this.stopPropagation}
       >
         {
           this.emojis.map((emoji, index) => (<span

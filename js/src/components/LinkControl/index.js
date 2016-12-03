@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
+import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class LinkControl extends Component {
@@ -23,6 +24,7 @@ export default class LinkControl extends Component {
 
   state: Object = {
     showModal: false,
+    prevShowModal: false,
     linkTarget: '',
     linkTitle: '',
   };
@@ -34,6 +36,7 @@ export default class LinkControl extends Component {
         currentEntity: getSelectionEntity(editorState),
       });
     }
+    ModalHandler.registerCallBack(this.closeModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -45,37 +48,26 @@ export default class LinkControl extends Component {
     this.setState(newState);
   }
 
-  toggleLinkModal: Function = (): void => {
-    const { editorState } = this.props;
-    const { showModal, currentEntity } = this.state;
-    const newState = {};
-    newState.showModal = !showModal;
-    if (newState.showModal) {
-      newState.entity = currentEntity;
-      const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-      newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
-      newState.linkTitle = (entityRange && entityRange.text) ||
-        getSelectionText(editorState);
+  setLinkTextReference: Function = (ref: Object): void => {
+    this.linkText = ref;
+  };
+
+  setLinkTitleReference: Function = (ref: Object): void => {
+    this.linkTitle = ref;
+  };
+
+  removeLink: Function = (): void => {
+    const { editorState, onChange } = this.props;
+    const { currentEntity } = this.state;
+    let selection = editorState.getSelection();
+    if (currentEntity) {
+      const entityRange = getEntityRange(editorState, currentEntity);
+      selection = selection.merge({
+        anchorOffset: entityRange.start,
+        focusOffset: entityRange.end,
+      });
+      onChange(RichUtils.toggleLink(editorState, selection, null));
     }
-    this.setState(newState);
-  };
-
-  hideLinkModal: Function = (): void => {
-    this.setState({
-      showModal: false,
-    });
-  };
-
-  updateLinkTitle: Function = (event: Object): void => {
-    this.setState({
-      linkTitle: event.target.value,
-    });
-  };
-
-  updateLinkTarget: Function = (event: Object): void => {
-    this.setState({
-      linkTarget: event.target.value,
-    });
   };
 
   addLink: Function = (): void => {
@@ -94,6 +86,7 @@ export default class LinkControl extends Component {
       title: linkTitle,
       url: linkTarget,
     });
+
     let contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
       selection,
@@ -105,7 +98,8 @@ export default class LinkControl extends Component {
 
     // insert a blank space after link
     selection = newEditorState.getSelection().merge({
-      anchorOffset: selection.get('focusOffset'),
+      anchorOffset: selection.get('anchorOffset') + linkTitle.length,
+      focusOffset: selection.get('anchorOffset') + linkTitle.length,
     });
     newEditorState = EditorState.acceptSelection(newEditorState, selection);
     contentState = Modifier.insertText(
@@ -120,37 +114,53 @@ export default class LinkControl extends Component {
     this.toggleLinkModal();
   };
 
-  removeLink: Function = (): void => {
-    const { editorState, onChange } = this.props;
+  updateLinkTarget: Function = (event: Object): void => {
+    this.setState({
+      linkTarget: event.target.value,
+    });
+  };
+
+  updateLinkTitle: Function = (event: Object): void => {
+    this.setState({
+      linkTitle: event.target.value,
+    });
+  };
+
+  toggleLinkModal: Function = (): void => {
+    const { editorState } = this.props;
     const { currentEntity } = this.state;
-    let selection = editorState.getSelection();
-    if (currentEntity) {
-      const entityRange = getEntityRange(editorState, currentEntity);
-      selection = selection.merge({
-        anchorOffset: entityRange.start,
-        focusOffset: entityRange.end,
-      });
-      onChange(RichUtils.toggleLink(editorState, selection, null));
+    const showModal = !this.state.prevShowModal;
+    const newState = {};
+    newState.prevShowModal = showModal;
+    newState.showModal = showModal;
+    if (newState.showModal) {
+      newState.entity = currentEntity;
+      const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
+      newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
+      newState.linkTitle = (entityRange && entityRange.text) ||
+        getSelectionText(editorState);
     }
+    this.setState(newState);
   };
 
-  setLinkTitleReference: Function = (ref: Object): void => {
-    this.linkTitle = ref;
-  };
+  closeModal: Function = (): void => {
+    const { showModal } = this.state;
+    this.setState({
+      prevShowModal: showModal,
+      showModal: false,
+    });
+  }
 
-  setLinkTextReference: Function = (ref: Object): void => {
-    this.linkText = ref;
-  };
-
-  focusLinkTitle: Function = (event): Object => {
+  focusLinkTitle: Function = (): void => {
     this.linkTitle.focus();
   }
 
-  focusLinkText: Function = (event: Object) => {
+  focusLinkText: Function = (): void => {
     this.linkText.focus();
   }
 
-  stopPropagation: Function = (event: Object) => {
+  stopPropagation: Function = (event: Object): void => {
+    event.preventDefault();
     event.stopPropagation();
   };
 
@@ -160,7 +170,7 @@ export default class LinkControl extends Component {
     return (
       <div
         className={classNames('rdw-link-modal', popupClassName)}
-        onClick={this.stopPropagation}
+        onMouseDown={this.stopPropagation}
       >
         <span className="rdw-link-modal-label">Link Title</span>
         <input
@@ -232,7 +242,7 @@ export default class LinkControl extends Component {
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink, className } = config;
     return (
-      <div className="rdw-link-wrapper" onClick={this.hideLinkModal}>
+      <div className="rdw-link-wrapper">
         <Dropdown
           className={classNames('rdw-link-dropdown', className)}
           onChange={this.toggleInlineStyle}

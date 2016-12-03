@@ -18,6 +18,7 @@ import {
 } from 'draftjs-utils';
 import { Map } from 'immutable';
 import classNames from 'classnames';
+import ModalHandler from '../../modal-handler/modals';
 import blockStyleFn from '../../utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import InlineControl from '../InlineControl';
@@ -93,6 +94,10 @@ export default class WysiwygEditor extends Component {
       editorState,
     });
   }
+
+  componentDidMount(): void {
+    ModalHandler.init();
+  }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
   componentWillReceiveProps(props) {
@@ -112,21 +117,28 @@ export default class WysiwygEditor extends Component {
     this.setState(newState);
   }
 
+  setWrapperReference: Function = (ref: Object): void => {
+    this.wrapper = ref;
+  };
+
+  setEditorReference: Function = (ref: Object): void => {
+    this.editor = ref;
+  };
+
+  getWrapperRef = () => this.wrapper;
+
+  getEditorState = () => this.state.editorState;
+
   changeEditorState = (contentState) => {
     const newContentState = convertFromRaw(contentState);
     const { editorState } = this.state;
     return EditorState.push(editorState, newContentState, 'change-block-data');
   }
 
-  getEditorState = () => this.state.editorState;
-
-  getWrapperRef = () => this.wrapper;
-
-  onChange: Function = (editorState: Object): void => {
+  onEditorBlur: Function = (): void => {
     this.setState({
-      editorState,
-    },
-    this.afterChange());
+      editorFocused: false,
+    });
   };
 
   onEditorFocus: Function = (): void => {
@@ -135,18 +147,14 @@ export default class WysiwygEditor extends Component {
     });
   };
 
-  onEditorBlur: Function = (): void => {
-    this.setState({
-      editorFocused: false,
-    });
-  };
-
-  setEditorReference: Function = (ref: Object): void => {
-    this.editor = ref;
-  };
-
-  setWrapperReference: Function = (ref: Object): void => {
-    this.wrapper = ref;
+  onChange: Function = (editorState: Object): void => {
+    const { readOnly } = this.props;
+    if (!readOnly) {
+      this.setState({
+        editorState,
+      },
+      this.afterChange());
+    }
   };
 
   focusEditor: Function = (): void => {
@@ -256,7 +264,11 @@ export default class WysiwygEditor extends Component {
     } = toolbar;
 
     return (
-      <div className={wrapperClassName}>
+      <div
+        id="rdw-wrapper"
+        className={wrapperClassName}
+        onMouseDown={ModalHandler.closeModals}
+      >
         {
           (editorFocused || !toolbarOnFocus) ?
             <div
@@ -336,7 +348,7 @@ export default class WysiwygEditor extends Component {
         <div
           ref={this.setWrapperReference}
           className={classNames('rdw-editor-main', editorClassName)}
-          onClick={this.focusEditor}
+          onMouseDown={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
         >

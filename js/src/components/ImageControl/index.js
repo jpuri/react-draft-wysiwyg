@@ -5,6 +5,7 @@ import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
 import Spinner from '../Spinner';
+import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ImageControl extends Component {
@@ -19,10 +20,15 @@ export default class ImageControl extends Component {
   state: Object = {
     imgSrc: '',
     showModal: false,
+    prevShowModal: false,
     dragEnter: false,
     showImageUpload: !!this.props.uploadCallback,
     showImageLoading: false,
   };
+
+  componentWillMount(): void {
+    ModalHandler.registerCallBack(this.closeModal);
+  }
 
   componentWillReceiveProps(properties: Object): void {
     if (properties.uploadCallback !== this.props.uploadCallback) {
@@ -45,44 +51,8 @@ export default class ImageControl extends Component {
     });
   };
 
-  addImage: Function = (event: Object, imgSrc: string): void => {
-    const { editorState, onChange } = this.props;
-    const src = imgSrc || this.state.imgSrc;
-    const entityKey = Entity.create('IMAGE', 'MUTABLE', { src });
-    const newEditorState = AtomicBlockUtils.insertAtomicBlock(
-      editorState,
-      entityKey,
-      ' '
-    );
-    onChange(newEditorState);
-    this.toggleModal();
-  };
-
-  uploadImage: Function = (file: Object): void => {
-    this.toggleShowImageLoading();
-    const { uploadCallback } = this.props;
-    uploadCallback(file)
-      .then(({ data }) => {
-        this.setState({
-          showImageLoading: false,
-          dragEnter: false,
-        });
-        this.addImage(undefined, data.link);
-      });
-  };
-
-  selectImage: Function = (event: Object): void => {
-    if (event.target.files && event.target.files.length > 0) {
-      this.uploadImage(event.target.files[0]);
-    }
-  };
-
-  toggleModal: Function = (): void => {
-    const { showModal } = this.state;
-    const newState = {};
-    newState.showModal = !showModal;
-    newState.imgSrc = undefined;
-    this.setState(newState);
+  setImageURLInputReference: Function = (ref: Object): void => {
+    this.imageURLInput = ref;
   };
 
   updateImageSrc: Function = (event: Object): void => {
@@ -110,20 +80,64 @@ export default class ImageControl extends Component {
     });
   };
 
-  setImageURLInputReference: Function = (ref: Object): void => {
-    this.imageURLInput = ref;
+  toggleModal: Function = (): void => {
+    const showModal = !this.state.prevShowModal;
+    const newState = {};
+    newState.prevShowModal = showModal;
+    newState.showModal = showModal;
+    newState.imgSrc = undefined;
+    if (showModal) {
+      newState.showImageUpload = !!this.props.uploadCallback;
+    }
+    this.setState(newState);
   };
 
-  focusImageURLInput: Function = (event): Object => {
+  closeModal: Function = (): void => {
+    const { showModal } = this.state;
+    this.setState({
+      prevShowModal: showModal,
+      showModal: false,
+    });
+  }
+
+  selectImage: Function = (event: Object): void => {
+    if (event.target.files && event.target.files.length > 0) {
+      this.uploadImage(event.target.files[0]);
+    }
+  };
+
+  uploadImage: Function = (file: Object): void => {
+    this.toggleShowImageLoading();
+    const { uploadCallback } = this.props;
+    uploadCallback(file)
+      .then(({ data }) => {
+        this.setState({
+          showImageLoading: false,
+          dragEnter: false,
+        });
+        this.addImage(undefined, data.link);
+      });
+  };
+
+  addImage: Function = (event: Object, imgSrc: string): void => {
+    const { editorState, onChange } = this.props;
+    const src = imgSrc || this.state.imgSrc;
+    const entityKey = Entity.create('IMAGE', 'MUTABLE', { src });
+    const newEditorState = AtomicBlockUtils.insertAtomicBlock(
+      editorState,
+      entityKey,
+      ' '
+    );
+    onChange(newEditorState);
+    this.toggleModal();
+  };
+
+  focusImageURLInput: Function = (): Object => {
     this.imageURLInput.focus();
   }
 
-  stopPropagationPreventDefault: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
   stopPropagation: Function = (event: Object): void => {
+    event.preventDefault();
     event.stopPropagation();
   };
 
@@ -133,7 +147,7 @@ export default class ImageControl extends Component {
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
-        onClick={this.stopPropagation}
+        onMouseDown={this.stopPropagation}
       >
         <div className="rdw-image-modal-header">
           {uploadCallback ?

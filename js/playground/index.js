@@ -83,28 +83,6 @@ class Playground extends Component {
               onChange={this.onEditorChange}
               uploadCallback={this.imageUploadCallBack}
               spellCheck
-              tabIndex={1}
-              readOnly
-              toolbar={{
-                inline: {
-                  inDropdown: true,
-                },
-                list: {
-                  inDropdown: true,
-                },
-                textAlign: {
-                  inDropdown: true,
-                },
-                link: {
-                  inDropdown: true,
-                },
-                image: {
-                  uploadCallback: this.imageUploadCallBack,
-                },
-                history: {
-                  inDropdown: true,
-                },
-              }}
               mention={{
                 separator: ' ',
                 trigger: '@',
@@ -150,4 +128,24 @@ ReactDOM.render(<Playground />, document.getElementById('app')); // eslint-disab
 /**
 const rawContentState = ;
 
-*/
+
+toolbar={{
+  inline: {
+    inDropdown: true,
+  },
+  list: {
+    inDropdown: true,
+  },
+  textAlign: {
+    inDropdown: true,
+  },
+  link: {
+    inDropdown: true,
+  },
+  image: {
+    uploadCallback: this.imageUploadCallBack,
+  },
+  history: {
+    inDropdown: true,
+  },
+}}*/
