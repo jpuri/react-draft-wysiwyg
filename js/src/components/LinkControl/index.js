@@ -11,6 +11,7 @@ import classNames from 'classnames';
 import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
+import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class LinkControl extends Component {
@@ -23,6 +24,7 @@ export default class LinkControl extends Component {
 
   state: Object = {
     showModal: false,
+    prevShowModal: false,
     linkTarget: '',
     linkTitle: '',
   };
@@ -34,6 +36,7 @@ export default class LinkControl extends Component {
         currentEntity: getSelectionEntity(editorState),
       });
     }
+    ModalHandler.registerCallBack(this.closeModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -47,9 +50,11 @@ export default class LinkControl extends Component {
 
   toggleLinkModal: Function = (): void => {
     const { editorState } = this.props;
-    const { showModal, currentEntity } = this.state;
+    const { currentEntity } = this.state;
+    const showModal = !this.state.prevShowModal;
     const newState = {};
-    newState.showModal = !showModal;
+    newState.prevShowModal = showModal;
+    newState.showModal = showModal;
     if (newState.showModal) {
       newState.entity = currentEntity;
       const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
@@ -60,22 +65,29 @@ export default class LinkControl extends Component {
     this.setState(newState);
   };
 
-  hideLinkModal: Function = (): void => {
-    this.setState({
-      showModal: false,
-    });
-  };
-
   updateLinkTitle: Function = (event: Object): void => {
     this.setState({
       linkTitle: event.target.value,
     });
   };
 
+  onLinkTitleBlur: Function = (event: Object): void => {
+    console.log('onLinkTitleBlur')
+    this.updateLinkTitle(event);
+    ModalHandler.resetFocusFlag();
+    ModalHandler.closeModals();
+  };
+
   updateLinkTarget: Function = (event: Object): void => {
     this.setState({
       linkTarget: event.target.value,
     });
+  };
+
+  onLinkTargetBlur: Function = (event: Object): void => {
+    this.updateLinkTarget(event);
+    ModalHandler.resetFocusFlag();
+    ModalHandler.closeModals();
   };
 
   addLink: Function = (): void => {
@@ -142,15 +154,27 @@ export default class LinkControl extends Component {
     this.linkText = ref;
   };
 
-  focusLinkTitle: Function = (event): Object => {
+  closeModal: Function = (): void => {
+    const { showModal } = this.state;
+    this.setState({
+      prevShowModal: showModal,
+      showModal: false,
+    });
+  }
+
+  focusLinkTitle: Function = (): void => {
+    ModalHandler.setFocusFlag();
     this.linkTitle.focus();
   }
 
-  focusLinkText: Function = (event: Object) => {
+  focusLinkText: Function = (): void => {
+    console.log('focusLinkText')
+    ModalHandler.setFocusFlag();
     this.linkText.focus();
   }
 
-  stopPropagation: Function = (event: Object) => {
+  stopPropagation: Function = (event: Object): void => {
+    event.preventDefault();
     event.stopPropagation();
   };
 
@@ -160,14 +184,14 @@ export default class LinkControl extends Component {
     return (
       <div
         className={classNames('rdw-link-modal', popupClassName)}
-        onClick={this.stopPropagation}
+        onMouseDown={this.stopPropagation}
       >
         <span className="rdw-link-modal-label">Link Title</span>
         <input
           ref={this.setLinkTitleReference}
           className="rdw-link-modal-input"
           onChange={this.updateLinkTitle}
-          onBlur={this.updateLinkTitle}
+          onBlur={this.onLinkTitleBlur}
           value={linkTitle}
           onMouseDown={this.focusLinkTitle}
         />
@@ -176,7 +200,7 @@ export default class LinkControl extends Component {
           ref={this.setLinkTextReference}
           className="rdw-link-modal-input"
           onChange={this.updateLinkTarget}
-          onBlur={this.updateLinkTarget}
+          onBlur={this.onLinkTargetBlur}
           value={linkTarget}
           onMouseDown={this.focusLinkText}
         />
@@ -232,7 +256,7 @@ export default class LinkControl extends Component {
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink, className } = config;
     return (
-      <div className="rdw-link-wrapper" onClick={this.hideLinkModal}>
+      <div className="rdw-link-wrapper">
         <Dropdown
           className={classNames('rdw-link-dropdown', className)}
           onChange={this.toggleInlineStyle}

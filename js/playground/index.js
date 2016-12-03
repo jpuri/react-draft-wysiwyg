@@ -84,7 +84,6 @@ class Playground extends Component {
               uploadCallback={this.imageUploadCallBack}
               spellCheck
               tabIndex={1}
-              readOnly
               toolbar={{
                 inline: {
                   inDropdown: true,
