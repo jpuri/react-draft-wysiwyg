@@ -8,6 +8,7 @@ import {
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import Option from '../Option';
+import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ColorPicker extends Component {
@@ -22,6 +23,7 @@ export default class ColorPicker extends Component {
     currentColor: undefined,
     currentBgColor: undefined,
     showModal: false,
+    prevShowModal: false,
     currentStyle: 'color',
   };
 
@@ -33,6 +35,7 @@ export default class ColorPicker extends Component {
         currentBgColor: getSelectionCustomInlineStyle(editorState, ['BGCOLOR']).BGCOLOR,
       });
     }
+    ModalHandler.registerCallBack(this.closeModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -47,9 +50,11 @@ export default class ColorPicker extends Component {
     this.setState(newState);
   }
 
-  setCurrentStyleColor: Function = (): void => {
+  onOptionClick: Function = (): void => {
+    const showModal = !this.state.prevShowModal;
     this.setState({
-      currentStyle: 'color',
+      prevShowModal: showModal,
+      showModal,
     });
   };
 
@@ -58,6 +63,20 @@ export default class ColorPicker extends Component {
       currentStyle: 'bgcolor',
     });
   };
+
+  setCurrentStyleColor: Function = (): void => {
+    this.setState({
+      currentStyle: 'color',
+    });
+  };
+
+  closeModal: Function = (): void => {
+    const { showModal } = this.state;
+    this.setState({
+      prevShowModal: showModal,
+      showModal: false,
+    });
+  }
 
   toggleColor: Function = (color: string): void => {
     const { editorState, onChange } = this.props;
@@ -72,14 +91,8 @@ export default class ColorPicker extends Component {
     }
   };
 
-  toggleModal: Function = (): void => {
-    const showModal = !this.state.showModal;
-    this.setState({
-      showModal,
-    });
-  };
-
   stopPropagation: Function = (event: Object): void => {
+    event.preventDefault();
     event.stopPropagation();
   };
 
@@ -91,6 +104,7 @@ export default class ColorPicker extends Component {
       <div
         className={classNames('rdw-colorpicker-modal', popupClassName)}
         onClick={this.stopPropagation}
+        onMouseDown={this.stopPropagation}
       >
         <span className="rdw-colorpicker-modal-header">
           <span
@@ -118,6 +132,7 @@ export default class ColorPicker extends Component {
               <Option
                 value={color}
                 key={index}
+                name={'colorPicker'}
                 className="rdw-colorpicker-option"
                 activeClassName="rdw-colorpicker-option-active"
                 active={currentSelectedColor === `${currentStyle}-${color}`}
@@ -140,7 +155,7 @@ export default class ColorPicker extends Component {
     return (
       <div className="rdw-colorpicker-wrapper">
         <Option
-          onClick={this.toggleModal}
+          onClick={this.onOptionClick}
           className={classNames(className)}
         >
           <img

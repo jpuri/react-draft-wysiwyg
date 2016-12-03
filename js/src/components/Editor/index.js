@@ -18,6 +18,7 @@ import {
 } from 'draftjs-utils';
 import { Map } from 'immutable';
 import classNames from 'classnames';
+import ModalHandler from '../../modal-handler/modals';
 import blockStyleFn from '../../utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import InlineControl from '../InlineControl';
@@ -123,10 +124,13 @@ export default class WysiwygEditor extends Component {
   getWrapperRef = () => this.wrapper;
 
   onChange: Function = (editorState: Object): void => {
-    this.setState({
-      editorState,
-    },
-    this.afterChange());
+    const { readOnly } = this.props;
+    if (!readOnly) {
+      this.setState({
+        editorState,
+      },
+      this.afterChange());
+    }
   };
 
   onEditorFocus: Function = (): void => {
@@ -136,6 +140,7 @@ export default class WysiwygEditor extends Component {
   };
 
   onEditorBlur: Function = (): void => {
+    ModalHandler.closeModals();
     this.setState({
       editorFocused: false,
     });
@@ -219,6 +224,7 @@ export default class WysiwygEditor extends Component {
 
   preventDefault: Function = (event: Object) => {
     event.preventDefault();
+    this.focusEditor();
   }
 
   render() {
@@ -256,7 +262,10 @@ export default class WysiwygEditor extends Component {
     } = toolbar;
 
     return (
-      <div className={wrapperClassName}>
+      <div
+        className={wrapperClassName}
+        onMouseDown={ModalHandler.closeModals}
+      >
         {
           (editorFocused || !toolbarOnFocus) ?
             <div
@@ -336,7 +345,7 @@ export default class WysiwygEditor extends Component {
         <div
           ref={this.setWrapperReference}
           className={classNames('rdw-editor-main', editorClassName)}
-          onClick={this.focusEditor}
+          onMouseDown={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
         >
