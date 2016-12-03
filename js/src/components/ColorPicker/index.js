@@ -50,14 +50,6 @@ export default class ColorPicker extends Component {
     this.setState(newState);
   }
 
-  onOptionClick: Function = (): void => {
-    const showModal = !this.state.prevShowModal;
-    this.setState({
-      prevShowModal: showModal,
-      showModal,
-    });
-  };
-
   setCurrentStyleBgcolor: Function = (): void => {
     this.setState({
       currentStyle: 'bgcolor',
@@ -67,6 +59,14 @@ export default class ColorPicker extends Component {
   setCurrentStyleColor: Function = (): void => {
     this.setState({
       currentStyle: 'color',
+    });
+  };
+
+  toggleModal: Function = (): void => {
+    const showModal = !this.state.prevShowModal;
+    this.setState({
+      prevShowModal: showModal,
+      showModal,
     });
   };
 
@@ -154,7 +154,7 @@ export default class ColorPicker extends Component {
     return (
       <div className="rdw-colorpicker-wrapper">
         <Option
-          onClick={this.onOptionClick}
+          onClick={this.toggleModal}
           className={classNames(className)}
         >
           <img

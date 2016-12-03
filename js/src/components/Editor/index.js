@@ -113,21 +113,23 @@ export default class WysiwygEditor extends Component {
     this.setState(newState);
   }
 
+  setWrapperReference: Function = (ref: Object): void => {
+    this.wrapper = ref;
+  };
+
+  setEditorReference: Function = (ref: Object): void => {
+    this.editor = ref;
+  };
+
+  getWrapperRef = () => this.wrapper;
+
+  getEditorState = () => this.state.editorState;
+
   changeEditorState = (contentState) => {
     const newContentState = convertFromRaw(contentState);
     const { editorState } = this.state;
     return EditorState.push(editorState, newContentState, 'change-block-data');
   }
-
-  getEditorState = () => this.state.editorState;
-
-  getWrapperRef = () => this.wrapper;
-
-  onEditorFocus: Function = (): void => {
-    this.setState({
-      editorFocused: true,
-    });
-  };
 
   onEditorBlur: Function = (): void => {
     ModalHandler.closeModals();
@@ -136,12 +138,10 @@ export default class WysiwygEditor extends Component {
     });
   };
 
-  setEditorReference: Function = (ref: Object): void => {
-    this.editor = ref;
-  };
-
-  setWrapperReference: Function = (ref: Object): void => {
-    this.wrapper = ref;
+  onEditorFocus: Function = (): void => {
+    this.setState({
+      editorFocused: true,
+    });
   };
 
   onChange: Function = (editorState: Object): void => {
