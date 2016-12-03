@@ -131,7 +131,6 @@ export default class ColorPicker extends Component {
               <Option
                 value={color}
                 key={index}
-                name={'colorPicker'}
                 className="rdw-colorpicker-option"
                 activeClassName="rdw-colorpicker-option-active"
                 active={currentSelectedColor === `${currentStyle}-${color}`}

@@ -17,6 +17,7 @@ export default class EmojiControl extends Component {
 
   state: Object = {
     showModal: false,
+    prevShowModal: false,
   };
 
   componentWillMount(): void {

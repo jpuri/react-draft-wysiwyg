@@ -18,6 +18,7 @@ export default class EmbeddedControl extends Component {
   state: Object = {
     embeddedLink: '',
     showModal: false,
+    prevShowModal: false,
   };
 
   componentWillMount(): void {

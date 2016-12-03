@@ -20,6 +20,7 @@ export default class ImageControl extends Component {
   state: Object = {
     imgSrc: '',
     showModal: false,
+    prevShowModal: false,
     dragEnter: false,
     showImageUpload: !!this.props.uploadCallback,
     showImageLoading: false,
