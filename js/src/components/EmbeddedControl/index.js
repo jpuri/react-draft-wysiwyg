@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
+import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class EmbeddedControl extends Component {
@@ -19,6 +20,26 @@ export default class EmbeddedControl extends Component {
     showModal: false,
   };
 
+  componentWillMount(): void {
+    ModalHandler.registerCallBack(this.closeModal);
+  }
+
+  onURLInputBlur: Function = (event): Object => {
+    this.updateEmbeddedLink(event);
+    ModalHandler.resetFocusFlag();
+    ModalHandler.closeModals();
+  }
+
+  setURLInputReference: Function = (ref: Object): void => {
+    this.urlInput = ref;
+  };
+
+  updateEmbeddedLink: Function = (event: Object): void => {
+    this.setState({
+      embeddedLink: event.target.value,
+    });
+  };
+
   addEmbeddedLink: Function = (event: Object, embeddedLink: string): void => {
     const { editorState, onChange } = this.props;
     const link = embeddedLink || this.state.embeddedLink;
@@ -32,29 +53,33 @@ export default class EmbeddedControl extends Component {
     this.toggleModal();
   };
 
-  toggleModal: Function = (): void => {
+  closeModal: Function = (): void => {
     const { showModal } = this.state;
+    this.setState({
+      prevShowModal: showModal,
+      showModal: false,
+    });
+  }
+
+  toggleModal: Function = (): void => {
+    const showModal = !this.state.prevShowModal;
     const newState = {};
-    newState.showModal = !showModal;
+    newState.prevShowModal = showModal;
+    newState.showModal = showModal;
     newState.embeddedLink = undefined;
     this.setState(newState);
+    if (!showModal) {
+      ModalHandler.resetFocusFlag();
+    }
   };
 
-  updateEmbeddedLink: Function = (event: Object): void => {
-    this.setState({
-      embeddedLink: event.target.value,
-    });
-  };
-
-  setURLInputReference: Function = (ref: Object): void => {
-    this.urlInput = ref;
-  };
-
-  focusURLInput: Function = (event): Object => {
+  focusURLInput: Function = (): Object => {
+    ModalHandler.setFocusFlag();
     this.urlInput.focus();
   }
 
   stopPropagation: Function = (event: Object): void => {
+    event.preventDefault();
     event.stopPropagation();
   };
 
@@ -64,7 +89,7 @@ export default class EmbeddedControl extends Component {
     return (
       <div
         className={classNames('rdw-embedded-modal', popupClassName)}
-        onClick={this.stopPropagation}
+        onMouseDown={this.stopPropagation}
       >
         <div className="rdw-embedded-modal-header">
           <span className="rdw-embedded-modal-header-option">
@@ -78,7 +103,7 @@ export default class EmbeddedControl extends Component {
             className="rdw-embedded-modal-link-input"
             placeholder="Enter link"
             onChange={this.updateEmbeddedLink}
-            onBlur={this.updateEmbeddedLink}
+            onBlur={this.onURLInputBlur}
             value={embeddedLink}
             onMouseDown={this.focusURLInput}
           />

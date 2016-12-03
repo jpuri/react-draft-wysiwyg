@@ -123,16 +123,6 @@ export default class WysiwygEditor extends Component {
 
   getWrapperRef = () => this.wrapper;
 
-  onChange: Function = (editorState: Object): void => {
-    const { readOnly } = this.props;
-    if (!readOnly) {
-      this.setState({
-        editorState,
-      },
-      this.afterChange());
-    }
-  };
-
   onEditorFocus: Function = (): void => {
     this.setState({
       editorFocused: true,
@@ -152,6 +142,16 @@ export default class WysiwygEditor extends Component {
 
   setWrapperReference: Function = (ref: Object): void => {
     this.wrapper = ref;
+  };
+
+  onChange: Function = (editorState: Object): void => {
+    const { readOnly } = this.props;
+    if (!readOnly) {
+      this.setState({
+        editorState,
+      },
+      this.afterChange());
+    }
   };
 
   focusEditor: Function = (): void => {

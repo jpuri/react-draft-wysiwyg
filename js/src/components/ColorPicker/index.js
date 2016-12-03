@@ -103,7 +103,6 @@ export default class ColorPicker extends Component {
     return (
       <div
         className={classNames('rdw-colorpicker-modal', popupClassName)}
-        onClick={this.stopPropagation}
         onMouseDown={this.stopPropagation}
       >
         <span className="rdw-colorpicker-modal-header">

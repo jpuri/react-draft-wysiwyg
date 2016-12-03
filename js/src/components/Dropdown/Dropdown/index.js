@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
+import ModalHandler from '../../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Dropdown extends Component {
@@ -17,6 +18,10 @@ export default class Dropdown extends Component {
     expanded: false,
     highlighted: -1,
   };
+
+  componentWillMount(): void {
+    ModalHandler.registerCallBack(this.collapse);
+  }
 
   onChange: Function = (value: any): void => {
     const { onChange } = this.props;
@@ -70,6 +75,11 @@ export default class Dropdown extends Component {
     });
   };
 
+  stopPropagation: Function = (event: Object): void => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
+
   render() {
     const { children, className, optionWrapperClassName } = this.props;
     const { expanded, highlighted } = this.state;
@@ -79,7 +89,6 @@ export default class Dropdown extends Component {
         tabIndex="0"
         onKeyDown={this.onKeyDown}
         className={classNames('rdw-dropdown-wrapper', className)}
-        onMouseLeave={this.collapse}
       >
         <a
           className="rdw-dropdown-selectedtext"
@@ -94,7 +103,7 @@ export default class Dropdown extends Component {
           />
         </a>
         {expanded ?
-          <ul className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)}>
+          <ul className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)} onMouseDown={this.stopPropagation}>
             {
               React.Children.map(options, (option, index) => {
                 const temp = option && React.cloneElement(
