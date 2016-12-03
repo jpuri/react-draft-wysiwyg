@@ -48,46 +48,26 @@ export default class LinkControl extends Component {
     this.setState(newState);
   }
 
-  toggleLinkModal: Function = (): void => {
-    const { editorState } = this.props;
+  setLinkTextReference: Function = (ref: Object): void => {
+    this.linkText = ref;
+  };
+
+  setLinkTitleReference: Function = (ref: Object): void => {
+    this.linkTitle = ref;
+  };
+
+  removeLink: Function = (): void => {
+    const { editorState, onChange } = this.props;
     const { currentEntity } = this.state;
-    const showModal = !this.state.prevShowModal;
-    const newState = {};
-    newState.prevShowModal = showModal;
-    newState.showModal = showModal;
-    if (newState.showModal) {
-      newState.entity = currentEntity;
-      const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-      newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
-      newState.linkTitle = (entityRange && entityRange.text) ||
-        getSelectionText(editorState);
+    let selection = editorState.getSelection();
+    if (currentEntity) {
+      const entityRange = getEntityRange(editorState, currentEntity);
+      selection = selection.merge({
+        anchorOffset: entityRange.start,
+        focusOffset: entityRange.end,
+      });
+      onChange(RichUtils.toggleLink(editorState, selection, null));
     }
-    this.setState(newState);
-  };
-
-  updateLinkTitle: Function = (event: Object): void => {
-    this.setState({
-      linkTitle: event.target.value,
-    });
-  };
-
-  onLinkTitleBlur: Function = (event: Object): void => {
-    console.log('onLinkTitleBlur')
-    this.updateLinkTitle(event);
-    ModalHandler.resetFocusFlag();
-    ModalHandler.closeModals();
-  };
-
-  updateLinkTarget: Function = (event: Object): void => {
-    this.setState({
-      linkTarget: event.target.value,
-    });
-  };
-
-  onLinkTargetBlur: Function = (event: Object): void => {
-    this.updateLinkTarget(event);
-    ModalHandler.resetFocusFlag();
-    ModalHandler.closeModals();
   };
 
   addLink: Function = (): void => {
@@ -106,6 +86,7 @@ export default class LinkControl extends Component {
       title: linkTitle,
       url: linkTarget,
     });
+
     let contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
       selection,
@@ -117,7 +98,8 @@ export default class LinkControl extends Component {
 
     // insert a blank space after link
     selection = newEditorState.getSelection().merge({
-      anchorOffset: selection.get('focusOffset'),
+      anchorOffset: selection.get('anchorOffset') + linkTitle.length,
+      focusOffset: selection.get('anchorOffset') + linkTitle.length,
     });
     newEditorState = EditorState.acceptSelection(newEditorState, selection);
     contentState = Modifier.insertText(
@@ -132,26 +114,33 @@ export default class LinkControl extends Component {
     this.toggleLinkModal();
   };
 
-  removeLink: Function = (): void => {
-    const { editorState, onChange } = this.props;
+  updateLinkTarget: Function = (event: Object): void => {
+    this.setState({
+      linkTarget: event.target.value,
+    });
+  };
+
+  updateLinkTitle: Function = (event: Object): void => {
+    this.setState({
+      linkTitle: event.target.value,
+    });
+  };
+
+  toggleLinkModal: Function = (): void => {
+    const { editorState } = this.props;
     const { currentEntity } = this.state;
-    let selection = editorState.getSelection();
-    if (currentEntity) {
-      const entityRange = getEntityRange(editorState, currentEntity);
-      selection = selection.merge({
-        anchorOffset: entityRange.start,
-        focusOffset: entityRange.end,
-      });
-      onChange(RichUtils.toggleLink(editorState, selection, null));
+    const showModal = !this.state.prevShowModal;
+    const newState = {};
+    newState.prevShowModal = showModal;
+    newState.showModal = showModal;
+    if (newState.showModal) {
+      newState.entity = currentEntity;
+      const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
+      newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
+      newState.linkTitle = (entityRange && entityRange.text) ||
+        getSelectionText(editorState);
     }
-  };
-
-  setLinkTitleReference: Function = (ref: Object): void => {
-    this.linkTitle = ref;
-  };
-
-  setLinkTextReference: Function = (ref: Object): void => {
-    this.linkText = ref;
+    this.setState(newState);
   };
 
   closeModal: Function = (): void => {
@@ -163,13 +152,10 @@ export default class LinkControl extends Component {
   }
 
   focusLinkTitle: Function = (): void => {
-    ModalHandler.setFocusFlag();
     this.linkTitle.focus();
   }
 
   focusLinkText: Function = (): void => {
-    console.log('focusLinkText')
-    ModalHandler.setFocusFlag();
     this.linkText.focus();
   }
 
@@ -191,7 +177,7 @@ export default class LinkControl extends Component {
           ref={this.setLinkTitleReference}
           className="rdw-link-modal-input"
           onChange={this.updateLinkTitle}
-          onBlur={this.onLinkTitleBlur}
+          onBlur={this.updateLinkTitle}
           value={linkTitle}
           onMouseDown={this.focusLinkTitle}
         />
@@ -200,7 +186,7 @@ export default class LinkControl extends Component {
           ref={this.setLinkTextReference}
           className="rdw-link-modal-input"
           onChange={this.updateLinkTarget}
-          onBlur={this.onLinkTargetBlur}
+          onBlur={this.updateLinkTarget}
           value={linkTarget}
           onMouseDown={this.focusLinkText}
         />

@@ -94,6 +94,10 @@ export default class WysiwygEditor extends Component {
       editorState,
     });
   }
+
+  componentDidMount(): void {
+    ModalHandler.init();
+  }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
   componentWillReceiveProps(props) {
@@ -132,7 +136,6 @@ export default class WysiwygEditor extends Component {
   }
 
   onEditorBlur: Function = (): void => {
-    ModalHandler.closeModals();
     this.setState({
       editorFocused: false,
     });
@@ -224,7 +227,6 @@ export default class WysiwygEditor extends Component {
 
   preventDefault: Function = (event: Object) => {
     event.preventDefault();
-    this.focusEditor();
   }
 
   render() {
@@ -263,6 +265,7 @@ export default class WysiwygEditor extends Component {
 
     return (
       <div
+        id="rdw-wrapper"
         className={wrapperClassName}
         onMouseDown={ModalHandler.closeModals}
       >

@@ -50,16 +50,6 @@ export default class ImageControl extends Component {
     });
   };
 
-  onImageSrcBlur: Function = (event): Object => {
-    this.updateImageSrc(event);
-    ModalHandler.resetFocusFlag();
-    ModalHandler.closeModals();
-  }
-
-  onImageInputMouseDown: Function = (): Object => {
-    ModalHandler.setFocusFlag();
-  }
-
   setImageURLInputReference: Function = (ref: Object): void => {
     this.imageURLInput = ref;
   };
@@ -95,10 +85,10 @@ export default class ImageControl extends Component {
     newState.prevShowModal = showModal;
     newState.showModal = showModal;
     newState.imgSrc = undefined;
-    this.setState(newState);
-    if (!showModal) {
-      ModalHandler.resetFocusFlag();
+    if (showModal) {
+      newState.showImageUpload = !!this.props.uploadCallback;
     }
+    this.setState(newState);
   };
 
   closeModal: Function = (): void => {
@@ -142,7 +132,6 @@ export default class ImageControl extends Component {
   };
 
   focusImageURLInput: Function = (): Object => {
-    ModalHandler.setFocusFlag();
     this.imageURLInput.focus();
   }
 
@@ -191,7 +180,7 @@ export default class ImageControl extends Component {
         </div>
         {
           showImageUpload && uploadCallback ?
-            <div onMouseDown={this.onImageInputMouseDown}>
+            <div>
               <div
                 onDragEnter={this.stopPropagationPreventDefault}
                 onDragOver={this.stopPropagationPreventDefault}
@@ -220,7 +209,7 @@ export default class ImageControl extends Component {
                   className="rdw-image-modal-url-input"
                   placeholder="Enter url"
                   onChange={this.updateImageSrc}
-                  onBlur={this.onImageSrcBlur}
+                  onBlur={this.updateImageSrc}
                   value={imgSrc}
                   onMouseDown={this.focusImageURLInput}
                 />

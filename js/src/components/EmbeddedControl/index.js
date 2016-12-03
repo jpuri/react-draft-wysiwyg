@@ -24,12 +24,6 @@ export default class EmbeddedControl extends Component {
     ModalHandler.registerCallBack(this.closeModal);
   }
 
-  onURLInputBlur: Function = (event): Object => {
-    this.updateEmbeddedLink(event);
-    ModalHandler.resetFocusFlag();
-    ModalHandler.closeModals();
-  }
-
   setURLInputReference: Function = (ref: Object): void => {
     this.urlInput = ref;
   };
@@ -68,13 +62,9 @@ export default class EmbeddedControl extends Component {
     newState.showModal = showModal;
     newState.embeddedLink = undefined;
     this.setState(newState);
-    if (!showModal) {
-      ModalHandler.resetFocusFlag();
-    }
   };
 
   focusURLInput: Function = (): Object => {
-    ModalHandler.setFocusFlag();
     this.urlInput.focus();
   }
 
@@ -103,7 +93,7 @@ export default class EmbeddedControl extends Component {
             className="rdw-embedded-modal-link-input"
             placeholder="Enter link"
             onChange={this.updateEmbeddedLink}
-            onBlur={this.onURLInputBlur}
+            onBlur={this.updateEmbeddedLink}
             value={embeddedLink}
             onMouseDown={this.focusURLInput}
           />
