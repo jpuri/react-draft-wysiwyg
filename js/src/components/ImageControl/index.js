@@ -24,6 +24,8 @@ export default class ImageControl extends Component {
     dragEnter: false,
     showImageUpload: !!this.props.uploadCallback,
     showImageLoading: false,
+    height: 'auto',
+    width: '100%',
   };
 
   componentWillMount(): void {
@@ -55,9 +57,29 @@ export default class ImageControl extends Component {
     this.imageURLInput = ref;
   };
 
+  setHeightInputReference: Function = (ref: Object): void => {
+    this.heightInput = ref;
+  };
+
+  setWidthInputReference: Function = (ref: Object): void => {
+    this.widthInput = ref;
+  };
+
   updateImageSrc: Function = (event: Object): void => {
     this.setState({
       imgSrc: event.target.value,
+    });
+  };
+
+  updateHeight: Function = (event: Object): void => {
+    this.setState({
+      height: event.target.value,
+    });
+  };
+
+  updateWidth: Function = (event: Object): void => {
+    this.setState({
+      width: event.target.value,
     });
   };
 
@@ -115,14 +137,23 @@ export default class ImageControl extends Component {
           showImageLoading: false,
           dragEnter: false,
         });
-        this.addImage(undefined, data.link);
+        this.addImageFromSrcLink(data.link);
       });
   };
 
-  addImage: Function = (event: Object, imgSrc: string): void => {
+  addImageFromState: Function = (): void => {
+    this.addImage(this.state.imgSrc);
+  };
+
+  addImageFromSrcLink: Function = (src: string): void => {
+    this.addImage(src);
+  };
+
+  addImage: Function = (imgSrc: string): void => {
     const { editorState, onChange } = this.props;
     const src = imgSrc || this.state.imgSrc;
-    const entityKey = Entity.create('IMAGE', 'MUTABLE', { src });
+    const { height, width } = this.state;
+    const entityKey = Entity.create('IMAGE', 'MUTABLE', { src, height, width });
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
@@ -136,13 +167,21 @@ export default class ImageControl extends Component {
     this.imageURLInput.focus();
   }
 
+  focusHeightInput: Function = (): Object => {
+    this.heightInput.focus();
+  }
+
+  focusWidthInput: Function = (): Object => {
+    this.widthInput.focus();
+  }
+
   stopPropagation: Function = (event: Object): void => {
     event.preventDefault();
     event.stopPropagation();
   };
 
   renderAddImageModal(): Object {
-    const { imgSrc, showImageUpload, showImageLoading, dragEnter } = this.state;
+    const { imgSrc, showImageUpload, showImageLoading, dragEnter, height, width } = this.state;
     const { config: { popupClassName }, uploadCallback } = this.props;
     return (
       <div
@@ -216,11 +255,31 @@ export default class ImageControl extends Component {
                 />
               </div>
         }
+        <div className="rdw-embedded-modal-size">
+          <input
+            ref={this.setHeightInputReference}
+            onChange={this.updateHeight}
+            onBlur={this.updateHeight}
+            onMouseDown={this.focusHeightInput}
+            value={height}
+            className="rdw-embedded-modal-size-input"
+            placeholder="Height"
+          />
+          <input
+            ref={this.setWidthInputReference}
+            onChange={this.updateWidth}
+            onBlur={this.updateWidth}
+            onMouseDown={this.focusWidthInput}
+            value={width}
+            className="rdw-embedded-modal-size-input"
+            placeholder="Width"
+          />
+        </div>
         <span className="rdw-image-modal-btn-section">
           <button
             className="rdw-image-modal-btn"
-            onClick={this.addImage}
-            disabled={!imgSrc}
+            onClick={this.addImageFromState}
+            disabled={!imgSrc || !height || !width}
           >
             Add
           </button>

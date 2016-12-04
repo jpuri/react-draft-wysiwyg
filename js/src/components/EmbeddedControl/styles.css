@@ -17,11 +17,11 @@
   border-radius: 2px;
   z-index: 100;
   background: white;
+  justify-content: space-between;
   box-shadow: 3px 3px 5px #BFBDBD;
 }
 .rdw-embedded-modal-header {
   font-size: 15px;
-  margin: 10px 0;
   display: flex;
 }
 .rdw-embedded-modal-header-option {
@@ -41,11 +41,12 @@
 }
 .rdw-embedded-modal-link-section {
   display: flex;
+  flex-direction: column;
 }
 .rdw-embedded-modal-link-input {
-  width: 90%;
+  width: 95%;
   height: 35px;
-  margin: 29px auto;
+  margin: 10px 0;
   border: 1px solid #F1F1F1;
   border-radius: 2px;
   font-size: 15px;
@@ -55,10 +56,11 @@
   outline: none;
 }
 .rdw-embedded-modal-btn-section {
-  margin: 10px auto 0;
+  display: flex;
+  justify-content: center;
 }
 .rdw-embedded-modal-btn {
-  margin-left: 10px;
+  margin: 0 3px;
   width: 75px;
   height: 30px;
   border: 1px solid #F1F1F1;
@@ -78,4 +80,19 @@
 }
 .rdw-embedded-modal-btn:disabled {
   background: #ece9e9;
+}
+.rdw-embedded-modal-size {
+  display: flex;
+  margin: 5px 0 10px;
+  justify-content: space-between;
+}
+.rdw-embedded-modal-size-input {
+  width: 45%;
+  height: 20px;
+  border: 1px solid #F1F1F1;
+  border-radius: 2px;
+  font-size: 12px;
+}
+.rdw-embedded-modal-size-input:focus {
+  outline: none;
 }

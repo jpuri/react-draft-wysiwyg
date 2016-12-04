@@ -19,6 +19,8 @@ export default class EmbeddedControl extends Component {
     embeddedLink: '',
     showModal: false,
     prevShowModal: false,
+    height: 'auto',
+    width: '100%',
   };
 
   componentWillMount(): void {
@@ -29,16 +31,36 @@ export default class EmbeddedControl extends Component {
     this.urlInput = ref;
   };
 
+  setHeightInputReference: Function = (ref: Object): void => {
+    this.heightInput = ref;
+  };
+
+  setWidthInputReference: Function = (ref: Object): void => {
+    this.widthInput = ref;
+  };
+
   updateEmbeddedLink: Function = (event: Object): void => {
     this.setState({
       embeddedLink: event.target.value,
     });
   };
 
-  addEmbeddedLink: Function = (event: Object, embeddedLink: string): void => {
+  updateHeight: Function = (event: Object): void => {
+    this.setState({
+      height: event.target.value,
+    });
+  };
+
+  updateWidth: Function = (event: Object): void => {
+    this.setState({
+      width: event.target.value,
+    });
+  };
+
+  addEmbeddedLink: Function = (): void => {
     const { editorState, onChange } = this.props;
-    const link = embeddedLink || this.state.embeddedLink;
-    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { link });
+    const { embeddedLink, height, width } = this.state;
+    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { link: embeddedLink, height, width });
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
@@ -69,13 +91,21 @@ export default class EmbeddedControl extends Component {
     this.urlInput.focus();
   }
 
+  focusHeightInput: Function = (): Object => {
+    this.heightInput.focus();
+  }
+
+  focusWidthInput: Function = (): Object => {
+    this.widthInput.focus();
+  }
+
   stopPropagation: Function = (event: Object): void => {
     event.preventDefault();
     event.stopPropagation();
   };
 
   rendeEmbeddedLinkModal(): Object {
-    const { embeddedLink } = this.state;
+    const { embeddedLink, height, width } = this.state;
     const { config: { popupClassName } } = this.props;
     return (
       <div
@@ -98,12 +128,32 @@ export default class EmbeddedControl extends Component {
             value={embeddedLink}
             onMouseDown={this.focusURLInput}
           />
+          <div className="rdw-embedded-modal-size">
+            <input
+              ref={this.setHeightInputReference}
+              onChange={this.updateHeight}
+              onBlur={this.updateHeight}
+              onMouseDown={this.focusHeightInput}
+              value={height}
+              className="rdw-embedded-modal-size-input"
+              placeholder="Height"
+            />
+            <input
+              ref={this.setWidthInputReference}
+              onChange={this.updateWidth}
+              onBlur={this.updateWidth}
+              onMouseDown={this.focusWidthInput}
+              value={width}
+              className="rdw-embedded-modal-size-input"
+              placeholder="Width"
+            />
+          </div>
         </div>
         <span className="rdw-embedded-modal-btn-section">
           <button
             className="rdw-embedded-modal-btn"
             onClick={this.addEmbeddedLink}
-            disabled={!embeddedLink}
+            disabled={!embeddedLink || !height || !width}
           >
             Add
           </button>
