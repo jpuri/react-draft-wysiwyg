@@ -17,12 +17,15 @@ export default class EmojiControl extends Component {
 
   state: Object = {
     showModal: false,
-    prevShowModal: false,
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.closeModal);
+    ModalHandler.registerCallBack(this.showHideModal);
   }
+
+  onOptionClick: Function = (): void => {
+    this.signalShowModal = !this.state.showModal;
+  };
 
   emojis: Array<string> = ['😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌',
     '🤓', '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉', '🙊',
@@ -43,23 +46,20 @@ export default class EmojiControl extends Component {
       editorState.getCurrentInlineStyle(),
     );
     onChange(EditorState.push(editorState, contentState, 'insert-characters'));
-    this.toggleModal();
+    this.hideModal();
   };
 
-  toggleModal: Function = (): void => {
-    const showModal = !this.state.prevShowModal;
+  hideModal: Function = (): void => {
     this.setState({
-      prevShowModal: showModal,
-      showModal,
-    });
-  };
-
-  closeModal: Function = (): void => {
-    const { showModal } = this.state;
-    this.setState({
-      prevShowModal: showModal,
       showModal: false,
     });
+  };
+
+  showHideModal: Function = (): void => {
+    this.setState({
+      showModal: this.signalShowModal,
+    });
+    this.signalShowModal = false;
   }
 
   stopPropagation: Function = (event: Object): void => {
@@ -72,7 +72,7 @@ export default class EmojiControl extends Component {
     return (
       <div
         className={classNames('rdw-emoji-modal', popupClassName)}
-        onMouseDown={this.stopPropagation}
+        onClick={this.stopPropagation}
       >
         {
           this.emojis.map((emoji, index) => (<span
@@ -94,7 +94,7 @@ export default class EmojiControl extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={this.toggleModal}
+          onClick={this.onOptionClick}
         >
           <img
             src={icon}

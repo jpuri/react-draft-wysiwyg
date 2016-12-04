@@ -10,10 +10,10 @@ const closeAllModals = (event): void => {
 export default {
   init: () => {
     const wrapper = document.getElementById('rdw-wrapper');
-    wrapper.addEventListener('mousedown', () => {
+    wrapper.addEventListener('click', () => {
       editorFlag = true;
     });
-    document.addEventListener('mousedown', () => {
+    document.addEventListener('click', () => {
       if (!editorFlag) {
         closeAllModals();
       } else {

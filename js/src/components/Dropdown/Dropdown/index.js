@@ -20,7 +20,7 @@ export default class Dropdown extends Component {
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.collapse);
+    ModalHandler.registerCallBack(this.expandCollapseDropdown);
   }
 
   onChange: Function = (value: any): void => {
@@ -54,11 +54,23 @@ export default class Dropdown extends Component {
     }
   };
 
+  onDropdownClick: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
   setHighlighted: Function = (highlighted: number): void => {
     this.setState({
       highlighted,
     });
   };
+
+  expandCollapseDropdown = () => {
+    this.setState({
+      highlighted: -1,
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
 
   collapse: Function = (): void => {
     this.setState({
@@ -92,7 +104,7 @@ export default class Dropdown extends Component {
       >
         <a
           className="rdw-dropdown-selectedtext"
-          onClick={this.toggleExpansion}
+          onClick={this.onDropdownClick}
         >
           {children[0]}
           <div
@@ -103,7 +115,7 @@ export default class Dropdown extends Component {
           />
         </a>
         {expanded ?
-          <ul className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)} onMouseDown={this.stopPropagation}>
+          <ul className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)} onClick={this.stopPropagation}>
             {
               React.Children.map(options, (option, index) => {
                 const temp = option && React.cloneElement(

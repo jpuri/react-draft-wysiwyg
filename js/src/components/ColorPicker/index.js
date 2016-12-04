@@ -23,7 +23,6 @@ export default class ColorPicker extends Component {
     currentColor: undefined,
     currentBgColor: undefined,
     showModal: false,
-    prevShowModal: false,
     currentStyle: 'color',
   };
 
@@ -35,7 +34,7 @@ export default class ColorPicker extends Component {
         currentBgColor: getSelectionCustomInlineStyle(editorState, ['BGCOLOR']).BGCOLOR,
       });
     }
-    ModalHandler.registerCallBack(this.closeModal);
+    ModalHandler.registerCallBack(this.showHideModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -50,6 +49,10 @@ export default class ColorPicker extends Component {
     this.setState(newState);
   }
 
+  onOptionClick: Function = (): void => {
+    this.signalShowModal = !this.state.showModal;
+  };
+
   setCurrentStyleBgcolor: Function = (): void => {
     this.setState({
       currentStyle: 'bgcolor',
@@ -62,20 +65,11 @@ export default class ColorPicker extends Component {
     });
   };
 
-  toggleModal: Function = (): void => {
-    const showModal = !this.state.prevShowModal;
+  showHideModal: Function = (): void => {
     this.setState({
-      prevShowModal: showModal,
-      showModal,
+      showModal: this.signalShowModal,
     });
-  };
-
-  closeModal: Function = (): void => {
-    const { showModal } = this.state;
-    this.setState({
-      prevShowModal: showModal,
-      showModal: false,
-    });
+    this.signalShowModal = false;
   }
 
   toggleColor: Function = (color: string): void => {
@@ -103,7 +97,7 @@ export default class ColorPicker extends Component {
     return (
       <div
         className={classNames('rdw-colorpicker-modal', popupClassName)}
-        onMouseDown={this.stopPropagation}
+        onClick={this.stopPropagation}
       >
         <span className="rdw-colorpicker-modal-header">
           <span
@@ -153,7 +147,7 @@ export default class ColorPicker extends Component {
     return (
       <div className="rdw-colorpicker-wrapper">
         <Option
-          onClick={this.toggleModal}
+          onClick={this.onOptionClick}
           className={classNames(className)}
         >
           <img

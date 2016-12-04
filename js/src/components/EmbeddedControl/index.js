@@ -18,13 +18,16 @@ export default class EmbeddedControl extends Component {
   state: Object = {
     embeddedLink: '',
     showModal: false,
-    prevShowModal: false,
     height: 'auto',
     width: '100%',
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.closeModal);
+    ModalHandler.registerCallBack(this.showHideModal);
+  }
+
+  onOptionClick: Function = (): void => {
+    this.signalShowModal = !this.state.showModal;
   }
 
   setURLInputReference: Function = (ref: Object): void => {
@@ -67,24 +70,22 @@ export default class EmbeddedControl extends Component {
       ' '
     );
     onChange(newEditorState);
-    this.toggleModal();
+    this.closeModal();
   };
 
-  closeModal: Function = (): void => {
-    const { showModal } = this.state;
+  showHideModal: Function = (): void => {
     this.setState({
-      prevShowModal: showModal,
-      showModal: false,
+      showModal: this.signalShowModal,
+      embeddedLink: undefined,
     });
+    this.signalShowModal = false;
   }
 
-  toggleModal: Function = (): void => {
-    const showModal = !this.state.prevShowModal;
-    const newState = {};
-    newState.prevShowModal = showModal;
-    newState.showModal = showModal;
-    newState.embeddedLink = undefined;
-    this.setState(newState);
+  closeModal: Function = (): void => {
+    this.setState({
+      showModal: false,
+      embeddedLink: undefined,
+    });
   };
 
   focusURLInput: Function = (): Object => {
@@ -110,7 +111,7 @@ export default class EmbeddedControl extends Component {
     return (
       <div
         className={classNames('rdw-embedded-modal', popupClassName)}
-        onMouseDown={this.stopPropagation}
+        onClick={this.stopPropagation}
       >
         <div className="rdw-embedded-modal-header">
           <span className="rdw-embedded-modal-header-option">
@@ -126,14 +127,14 @@ export default class EmbeddedControl extends Component {
             onChange={this.updateEmbeddedLink}
             onBlur={this.updateEmbeddedLink}
             value={embeddedLink}
-            onMouseDown={this.focusURLInput}
+            onClick={this.focusURLInput}
           />
           <div className="rdw-embedded-modal-size">
             <input
               ref={this.setHeightInputReference}
               onChange={this.updateHeight}
               onBlur={this.updateHeight}
-              onMouseDown={this.focusHeightInput}
+              onClick={this.focusHeightInput}
               value={height}
               className="rdw-embedded-modal-size-input"
               placeholder="Height"
@@ -142,7 +143,7 @@ export default class EmbeddedControl extends Component {
               ref={this.setWidthInputReference}
               onChange={this.updateWidth}
               onBlur={this.updateWidth}
-              onMouseDown={this.focusWidthInput}
+              onClick={this.focusWidthInput}
               value={width}
               className="rdw-embedded-modal-size-input"
               placeholder="Width"
@@ -159,7 +160,7 @@ export default class EmbeddedControl extends Component {
           </button>
           <button
             className="rdw-embedded-modal-btn"
-            onClick={this.toggleModal}
+            onClick={this.closeModal}
           >
             Cancel
           </button>
@@ -176,7 +177,7 @@ export default class EmbeddedControl extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={this.toggleModal}
+          onClick={this.onOptionClick}
         >
           <img
             src={icon}

@@ -267,7 +267,7 @@ export default class WysiwygEditor extends Component {
       <div
         id="rdw-wrapper"
         className={wrapperClassName}
-        onMouseDown={ModalHandler.closeModals}
+        onClick={ModalHandler.closeModals}
       >
         {
           (editorFocused || !toolbarOnFocus) ?
@@ -348,7 +348,7 @@ export default class WysiwygEditor extends Component {
         <div
           ref={this.setWrapperReference}
           className={classNames('rdw-editor-main', editorClassName)}
-          onMouseDown={this.focusEditor}
+          onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
         >
