@@ -1,30 +1,37 @@
-const callBacks = [];
-let editorFlag = false;
+export default class ModalHandler {
 
-const closeAllModals = (event): void => {
-  callBacks.forEach((callBack) => {
-    callBack(event);
-  });
-};
+  callBacks = [];
+  editorFlag = false;
 
-export default {
-  init: () => {
-    const wrapper = document.getElementById('rdw-wrapper');
-    wrapper.addEventListener('click', () => {
-      editorFlag = true;
+  closeAllModals = (event: Object) => {
+    this.callBacks.forEach((callBack) => {
+      callBack(event);
     });
-    document.addEventListener('click', () => {
-      if (!editorFlag) {
-        closeAllModals();
+  };
+
+  init = (wrapperId: string) => {
+    const wrapper = document.getElementById(wrapperId); // eslint-disable-line no-undef
+    wrapper.addEventListener('click', () => {
+      this.editorFlag = true;
+    });
+    document.addEventListener('click', () => { // eslint-disable-line no-undef
+      if (!this.editorFlag) {
+        this.closeAllModals();
       } else {
-        editorFlag = false;
+        this.editorFlag = false;
       }
     });
-  },
-  closeModals: (event: Object): void => {
-    closeAllModals(event);
-  },
-  registerCallBack: (callBack): void => {
-    callBacks.push(callBack);
-  },
-};
+  };
+
+  closeModals = (event: Object): void => {
+    this.closeAllModals(event);
+  };
+
+  registerCallBack = (callBack): void => {
+    this.callBacks.push(callBack);
+  };
+
+  deregisterCallBack = (callBack): void => {
+    this.callBacks = this.callBacks.filter(cb => cb !== callBack);
+  };
+}

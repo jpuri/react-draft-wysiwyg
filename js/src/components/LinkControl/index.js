@@ -11,7 +11,6 @@ import classNames from 'classnames';
 import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
-import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class LinkControl extends Component {
@@ -19,6 +18,7 @@ export default class LinkControl extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -29,13 +29,13 @@ export default class LinkControl extends Component {
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
         currentEntity: getSelectionEntity(editorState),
       });
     }
-    ModalHandler.registerCallBack(this.showHideModal);
+    modalHandler.registerCallBack(this.showHideModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -45,6 +45,11 @@ export default class LinkControl extends Component {
       newState.currentEntity = getSelectionEntity(properties.editorState);
     }
     this.setState(newState);
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.showHideModal);
   }
 
   onOptionClick: Function = (): void => {
@@ -240,11 +245,13 @@ export default class LinkControl extends Component {
 
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink, className } = config;
+    const { modalHandler } = this.props;
     return (
       <div className="rdw-link-wrapper">
         <Dropdown
           className={classNames('rdw-link-dropdown', className)}
           onChange={this.toggleInlineStyle}
+          modalHandler={modalHandler}
         >
           <img
             src={getFirstIcon(config)}

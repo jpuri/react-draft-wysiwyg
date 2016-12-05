@@ -2,7 +2,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import ModalHandler from '../../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Dropdown extends Component {
@@ -11,6 +10,7 @@ export default class Dropdown extends Component {
     children: PropTypes.any,
     onChange: PropTypes.func,
     className: PropTypes.string,
+    modalHandler: PropTypes.object,
     optionWrapperClassName: PropTypes.string,
   };
 
@@ -20,7 +20,13 @@ export default class Dropdown extends Component {
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.expandCollapseDropdown);
+    const { modalHandler } = this.props;
+    modalHandler.registerCallBack(this.expandCollapseDropdown);
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.expandCollapseDropdown);
   }
 
   onChange: Function = (value: any): void => {

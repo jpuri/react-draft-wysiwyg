@@ -13,6 +13,7 @@ export default class HistoryControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -59,10 +60,12 @@ export default class HistoryControl extends Component {
 
   renderInDropDown(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
     const { options, undo, redo, className } = config;
+    const { modalHandler } = this.props;
     return (
       <Dropdown
         className={classNames('rdw-history-dropdown', className)}
         onChange={this.toggleInlineStyle}
+        modalHandler={modalHandler}
       >
         <img
           src={getFirstIcon(config)}

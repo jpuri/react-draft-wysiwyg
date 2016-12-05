@@ -8,7 +8,6 @@ import {
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import Option from '../Option';
-import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ColorPicker extends Component {
@@ -16,6 +15,7 @@ export default class ColorPicker extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -27,14 +27,14 @@ export default class ColorPicker extends Component {
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
         currentColor: getSelectionCustomInlineStyle(editorState, ['COLOR']).COLOR,
         currentBgColor: getSelectionCustomInlineStyle(editorState, ['BGCOLOR']).BGCOLOR,
       });
     }
-    ModalHandler.registerCallBack(this.showHideModal);
+    modalHandler.registerCallBack(this.showHideModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -47,6 +47,11 @@ export default class ColorPicker extends Component {
         = getSelectionCustomInlineStyle(properties.editorState, ['BGCOLOR']).BGCOLOR;
     }
     this.setState(newState);
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.showHideModal);
   }
 
   onOptionClick: Function = (): void => {

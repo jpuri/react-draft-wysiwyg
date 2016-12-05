@@ -5,7 +5,6 @@ import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
 import Spinner from '../Spinner';
-import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ImageControl extends Component {
@@ -14,6 +13,7 @@ export default class ImageControl extends Component {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     uploadCallback: PropTypes.func,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -28,7 +28,8 @@ export default class ImageControl extends Component {
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.showHideModal);
+    const { modalHandler } = this.props;
+    modalHandler.registerCallBack(this.showHideModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -37,6 +38,11 @@ export default class ImageControl extends Component {
         showImageUpload: !!this.props.uploadCallback,
       });
     }
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.showHideModal);
   }
 
   onImageDrop: Function = (event: Object): void => {
@@ -119,7 +125,7 @@ export default class ImageControl extends Component {
       imgSrc: undefined,
       showImageUpload: !!this.props.uploadCallback,
     });
-    // this.signalShowModal = false;
+    this.signalShowModal = false;
   }
 
   selectImage: Function = (event: Object): void => {

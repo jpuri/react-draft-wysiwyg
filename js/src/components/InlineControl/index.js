@@ -15,6 +15,7 @@ export default class InlineControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -86,10 +87,12 @@ export default class InlineControl extends Component {
   }
 
   renderInDropDown(currentStyles: string, config: Object): Object {
+    const { modalHandler } = this.props;
     return (
       <Dropdown
         className={classNames('rdw-inline-dropdown', config.className)}
         onChange={this.toggleInlineStyle}
+        modalHandler={modalHandler}
       >
         <img
           src={getFirstIcon(config)}

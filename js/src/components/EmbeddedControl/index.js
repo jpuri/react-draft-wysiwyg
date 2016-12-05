@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
-import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class EmbeddedControl extends Component {
@@ -12,6 +11,7 @@ export default class EmbeddedControl extends Component {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -23,7 +23,13 @@ export default class EmbeddedControl extends Component {
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.showHideModal);
+    const { modalHandler } = this.props;
+    modalHandler.registerCallBack(this.showHideModal);
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.showHideModal);
   }
 
   onOptionClick: Function = (): void => {
