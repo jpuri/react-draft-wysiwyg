@@ -19,3 +19,10 @@ Initial stable release
 ## 1/12/2016 (1.1.3)
 - #94: Support ReadOnly mode.
 - #84: Developer to be able to update editor editor content.
+
+## 5/12/2016 (1.2.0)
+- #80: It should be possible for user to set size of embedded media.
+- #75: Issue in image, embedded link.
+- #66: Multiple toolbar modals open causes bugs.
+- #31: Popups in toolbar should close when user clicks anywhere else on the page.
+- #20: It should be possible for user to provide image size also.
