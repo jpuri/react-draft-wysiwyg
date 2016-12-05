@@ -145,11 +145,13 @@ export default class LinkControl extends Component {
     if (newState.showModal) {
       const { editorState } = this.props;
       const { currentEntity } = this.state;
-      newState.entity = currentEntity;
-      const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-      newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
-      newState.linkTitle = (entityRange && entityRange.text) ||
-        getSelectionText(editorState);
+      if (currentEntity && (Entity.get(currentEntity).get('type') === 'LINK')) {
+        newState.entity = currentEntity;
+        const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
+        newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
+        newState.linkTitle = (entityRange && entityRange.text) ||
+          getSelectionText(editorState);
+      }
     }
     this.setState(newState);
     this.signalShowModal = false;
@@ -215,6 +217,7 @@ export default class LinkControl extends Component {
 
   renderInFlatList(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink, className } = config;
+    const linkEntityCurrently = currentEntity && (Entity.get(currentEntity).get('type') === 'LINK');
     return (
       <div className={classNames('rdw-link-wrapper', className)}>
         {options.indexOf('link') >= 0 && <Option
@@ -228,7 +231,7 @@ export default class LinkControl extends Component {
           />
         </Option>}
         {options.indexOf('unlink') >= 0 && <Option
-          disabled={!currentEntity}
+          disabled={!linkEntityCurrently}
           value="ordered-list-item"
           className={classNames(unlink.className)}
           onClick={this.removeLink}
