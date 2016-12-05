@@ -11,7 +11,6 @@ import classNames from 'classnames';
 import { getFirstIcon } from '../../utils/toolbar';
 import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
-import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class LinkControl extends Component {
@@ -19,24 +18,24 @@ export default class LinkControl extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
   state: Object = {
     showModal: false,
-    prevShowModal: false,
     linkTarget: '',
     linkTitle: '',
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
         currentEntity: getSelectionEntity(editorState),
       });
     }
-    ModalHandler.registerCallBack(this.closeModal);
+    modalHandler.registerCallBack(this.showHideModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -47,6 +46,15 @@ export default class LinkControl extends Component {
     }
     this.setState(newState);
   }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.showHideModal);
+  }
+
+  onOptionClick: Function = (): void => {
+    this.signalShowModal = !this.state.showModal;
+  };
 
   setLinkTextReference: Function = (ref: Object): void => {
     this.linkText = ref;
@@ -110,8 +118,7 @@ export default class LinkControl extends Component {
       undefined
     );
     onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
-
-    this.toggleLinkModal();
+    this.hideLinkModal();
   };
 
   updateLinkTarget: Function = (event: Object): void => {
@@ -126,14 +133,18 @@ export default class LinkControl extends Component {
     });
   };
 
-  toggleLinkModal: Function = (): void => {
-    const { editorState } = this.props;
-    const { currentEntity } = this.state;
-    const showModal = !this.state.prevShowModal;
+  hideLinkModal: Function = (): void => {
+    this.setState({
+      showModal: false,
+    });
+  };
+
+  showHideModal: Function = (): void => {
     const newState = {};
-    newState.prevShowModal = showModal;
-    newState.showModal = showModal;
+    newState.showModal = this.signalShowModal;
     if (newState.showModal) {
+      const { editorState } = this.props;
+      const { currentEntity } = this.state;
       newState.entity = currentEntity;
       const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
       newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
@@ -141,14 +152,7 @@ export default class LinkControl extends Component {
         getSelectionText(editorState);
     }
     this.setState(newState);
-  };
-
-  closeModal: Function = (): void => {
-    const { showModal } = this.state;
-    this.setState({
-      prevShowModal: showModal,
-      showModal: false,
-    });
+    this.signalShowModal = false;
   }
 
   focusLinkTitle: Function = (): void => {
@@ -170,7 +174,7 @@ export default class LinkControl extends Component {
     return (
       <div
         className={classNames('rdw-link-modal', popupClassName)}
-        onMouseDown={this.stopPropagation}
+        onClick={this.stopPropagation}
       >
         <span className="rdw-link-modal-label">Link Title</span>
         <input
@@ -179,7 +183,7 @@ export default class LinkControl extends Component {
           onChange={this.updateLinkTitle}
           onBlur={this.updateLinkTitle}
           value={linkTitle}
-          onMouseDown={this.focusLinkTitle}
+          onClick={this.focusLinkTitle}
         />
         <span className="rdw-link-modal-label">Link Target</span>
         <input
@@ -188,7 +192,7 @@ export default class LinkControl extends Component {
           onChange={this.updateLinkTarget}
           onBlur={this.updateLinkTarget}
           value={linkTarget}
-          onMouseDown={this.focusLinkText}
+          onClick={this.focusLinkText}
         />
         <span className="rdw-link-modal-buttonsection">
           <button
@@ -200,7 +204,7 @@ export default class LinkControl extends Component {
           </button>
           <button
             className="rdw-link-modal-btn"
-            onClick={this.toggleLinkModal}
+            onClick={this.hideLinkModal}
           >
             Cancel
           </button>
@@ -216,7 +220,7 @@ export default class LinkControl extends Component {
         {options.indexOf('link') >= 0 && <Option
           value="unordered-list-item"
           className={classNames(link.className)}
-          onClick={this.toggleLinkModal}
+          onClick={this.onOptionClick}
         >
           <img
             src={link.icon}
@@ -241,18 +245,20 @@ export default class LinkControl extends Component {
 
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink, className } = config;
+    const { modalHandler } = this.props;
     return (
       <div className="rdw-link-wrapper">
         <Dropdown
           className={classNames('rdw-link-dropdown', className)}
           onChange={this.toggleInlineStyle}
+          modalHandler={modalHandler}
         >
           <img
             src={getFirstIcon(config)}
             role="presentation"
           />
           {options.indexOf('link') >= 0 && <DropdownOption
-            onClick={this.toggleLinkModal}
+            onClick={this.onOptionClick}
             className={classNames('rdw-link-dropdownoption', link.className)}
           >
             <img

@@ -5,7 +5,6 @@ import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
 import Spinner from '../Spinner';
-import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ImageControl extends Component {
@@ -14,20 +13,23 @@ export default class ImageControl extends Component {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     uploadCallback: PropTypes.func,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
   state: Object = {
     imgSrc: '',
     showModal: false,
-    prevShowModal: false,
     dragEnter: false,
     showImageUpload: !!this.props.uploadCallback,
     showImageLoading: false,
+    height: 'auto',
+    width: '100%',
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.closeModal);
+    const { modalHandler } = this.props;
+    modalHandler.registerCallBack(this.showHideModal);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -36,6 +38,11 @@ export default class ImageControl extends Component {
         showImageUpload: !!this.props.uploadCallback,
       });
     }
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.showHideModal);
   }
 
   onImageDrop: Function = (event: Object): void => {
@@ -51,13 +58,37 @@ export default class ImageControl extends Component {
     });
   };
 
+  onOptionClick: Function = (): void => {
+    this.signalShowModal = !this.state.showModal;
+  };
+
   setImageURLInputReference: Function = (ref: Object): void => {
     this.imageURLInput = ref;
+  };
+
+  setHeightInputReference: Function = (ref: Object): void => {
+    this.heightInput = ref;
+  };
+
+  setWidthInputReference: Function = (ref: Object): void => {
+    this.widthInput = ref;
   };
 
   updateImageSrc: Function = (event: Object): void => {
     this.setState({
       imgSrc: event.target.value,
+    });
+  };
+
+  updateHeight: Function = (event: Object): void => {
+    this.setState({
+      height: event.target.value,
+    });
+  };
+
+  updateWidth: Function = (event: Object): void => {
+    this.setState({
+      width: event.target.value,
     });
   };
 
@@ -80,24 +111,21 @@ export default class ImageControl extends Component {
     });
   };
 
-  toggleModal: Function = (): void => {
-    const showModal = !this.state.prevShowModal;
-    const newState = {};
-    newState.prevShowModal = showModal;
-    newState.showModal = showModal;
-    newState.imgSrc = undefined;
-    if (showModal) {
-      newState.showImageUpload = !!this.props.uploadCallback;
-    }
-    this.setState(newState);
+  hideModal: Function = (): void => {
+    this.setState({
+      showModal: false,
+      imgSrc: undefined,
+      showImageUpload: !!this.props.uploadCallback,
+    });
   };
 
-  closeModal: Function = (): void => {
-    const { showModal } = this.state;
+  showHideModal: Function = (): void => {
     this.setState({
-      prevShowModal: showModal,
-      showModal: false,
+      showModal: this.signalShowModal,
+      imgSrc: undefined,
+      showImageUpload: !!this.props.uploadCallback,
     });
+    this.signalShowModal = false;
   }
 
   selectImage: Function = (event: Object): void => {
@@ -115,39 +143,65 @@ export default class ImageControl extends Component {
           showImageLoading: false,
           dragEnter: false,
         });
-        this.addImage(undefined, data.link);
+        this.addImageFromSrcLink(data.link);
       });
   };
 
-  addImage: Function = (event: Object, imgSrc: string): void => {
+  addImageFromState: Function = (): void => {
+    this.addImage(this.state.imgSrc);
+  };
+
+  addImageFromSrcLink: Function = (src: string): void => {
+    this.addImage(src);
+  };
+
+  addImage: Function = (imgSrc: string): void => {
     const { editorState, onChange } = this.props;
     const src = imgSrc || this.state.imgSrc;
-    const entityKey = Entity.create('IMAGE', 'MUTABLE', { src });
+    const { height, width } = this.state;
+    const entityKey = Entity.create('IMAGE', 'MUTABLE', { src, height, width });
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
       ' '
     );
     onChange(newEditorState);
-    this.toggleModal();
+    this.hideModal();
   };
 
   focusImageURLInput: Function = (): Object => {
     this.imageURLInput.focus();
   }
 
+  focusHeightInput: Function = (): Object => {
+    this.heightInput.focus();
+  }
+
+  focusWidthInput: Function = (): Object => {
+    this.widthInput.focus();
+  }
+
+  fileUploadClick = () => {
+    this.fileUpload = true;
+    this.signalShowModal = true;
+  }
+
   stopPropagation: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
+    if (!this.fileUpload) {
+      event.preventDefault();
+      event.stopPropagation();
+    } else {
+      this.fileUpload = false;
+    }
   };
 
   renderAddImageModal(): Object {
-    const { imgSrc, showImageUpload, showImageLoading, dragEnter } = this.state;
+    const { imgSrc, showImageUpload, showImageLoading, dragEnter, height, width } = this.state;
     const { config: { popupClassName }, uploadCallback } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
-        onMouseDown={this.stopPropagation}
+        onClick={this.stopPropagation}
       >
         <div className="rdw-image-modal-header">
           {uploadCallback ?
@@ -181,7 +235,7 @@ export default class ImageControl extends Component {
         </div>
         {
           showImageUpload && uploadCallback ?
-            <div>
+            <div onClick={this.fileUploadClick}>
               <div
                 onDragEnter={this.stopPropagationPreventDefault}
                 onDragOver={this.stopPropagationPreventDefault}
@@ -212,21 +266,41 @@ export default class ImageControl extends Component {
                   onChange={this.updateImageSrc}
                   onBlur={this.updateImageSrc}
                   value={imgSrc}
-                  onMouseDown={this.focusImageURLInput}
+                  onClick={this.focusImageURLInput}
                 />
               </div>
         }
+        <div className="rdw-embedded-modal-size">
+          <input
+            ref={this.setHeightInputReference}
+            onChange={this.updateHeight}
+            onBlur={this.updateHeight}
+            onClick={this.focusHeightInput}
+            value={height}
+            className="rdw-embedded-modal-size-input"
+            placeholder="Height"
+          />
+          <input
+            ref={this.setWidthInputReference}
+            onChange={this.updateWidth}
+            onBlur={this.updateWidth}
+            onClick={this.focusWidthInput}
+            value={width}
+            className="rdw-embedded-modal-size-input"
+            placeholder="Width"
+          />
+        </div>
         <span className="rdw-image-modal-btn-section">
           <button
             className="rdw-image-modal-btn"
-            onClick={this.addImage}
-            disabled={!imgSrc}
+            onClick={this.addImageFromState}
+            disabled={!imgSrc || !height || !width}
           >
             Add
           </button>
           <button
             className="rdw-image-modal-btn"
-            onClick={this.toggleModal}
+            onClick={this.hideModal}
           >
             Cancel
           </button>
@@ -248,7 +322,7 @@ export default class ImageControl extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={this.toggleModal}
+          onClick={this.onOptionClick}
         >
           <img
             src={icon}

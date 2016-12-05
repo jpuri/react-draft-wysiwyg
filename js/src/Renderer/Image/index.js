@@ -76,7 +76,7 @@ export default class Image extends Component {
     const { block } = this.props;
     const { hovered } = this.state;
     const entity = Entity.get(block.getEntityAt(0));
-    const { src, alignment } = entity.getData();
+    const { src, alignment, height, width } = entity.getData();
     return (
       <span
         onMouseEnter={this.toggleHovered}
@@ -94,7 +94,10 @@ export default class Image extends Component {
           <img
             src={src}
             role="presentation"
-
+            style={{
+              height,
+              width,
+            }}
           />
           {
             hovered ?

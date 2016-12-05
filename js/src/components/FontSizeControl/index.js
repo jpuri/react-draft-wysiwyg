@@ -15,6 +15,7 @@ export default class FontSizeControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -56,7 +57,7 @@ export default class FontSizeControl extends Component {
   };
 
   render() {
-    const { config: { icon, className } } = this.props;
+    const { config: { icon, className }, modalHandler } = this.props;
     let { currentFontSize } = this.state;
     currentFontSize = currentFontSize
       && Number(currentFontSize.substring(9, currentFontSize.length));
@@ -65,6 +66,7 @@ export default class FontSizeControl extends Component {
         <Dropdown
           className={classNames('rdw-fontsize-dropdown', className)}
           onChange={this.toggleFontSize}
+          modalHandler={modalHandler}
         >
           {currentFontSize ?
             <span>{currentFontSize}</span>

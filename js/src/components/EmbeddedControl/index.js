@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
-import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class EmbeddedControl extends Component {
@@ -12,21 +11,41 @@ export default class EmbeddedControl extends Component {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
   state: Object = {
     embeddedLink: '',
     showModal: false,
-    prevShowModal: false,
+    height: 'auto',
+    width: '100%',
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.closeModal);
+    const { modalHandler } = this.props;
+    modalHandler.registerCallBack(this.showHideModal);
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.showHideModal);
+  }
+
+  onOptionClick: Function = (): void => {
+    this.signalShowModal = !this.state.showModal;
   }
 
   setURLInputReference: Function = (ref: Object): void => {
     this.urlInput = ref;
+  };
+
+  setHeightInputReference: Function = (ref: Object): void => {
+    this.heightInput = ref;
+  };
+
+  setWidthInputReference: Function = (ref: Object): void => {
+    this.widthInput = ref;
   };
 
   updateEmbeddedLink: Function = (event: Object): void => {
@@ -35,38 +54,56 @@ export default class EmbeddedControl extends Component {
     });
   };
 
-  addEmbeddedLink: Function = (event: Object, embeddedLink: string): void => {
+  updateHeight: Function = (event: Object): void => {
+    this.setState({
+      height: event.target.value,
+    });
+  };
+
+  updateWidth: Function = (event: Object): void => {
+    this.setState({
+      width: event.target.value,
+    });
+  };
+
+  addEmbeddedLink: Function = (): void => {
     const { editorState, onChange } = this.props;
-    const link = embeddedLink || this.state.embeddedLink;
-    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { link });
+    const { embeddedLink, height, width } = this.state;
+    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { link: embeddedLink, height, width });
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
       ' '
     );
     onChange(newEditorState);
-    this.toggleModal();
+    this.closeModal();
   };
 
-  closeModal: Function = (): void => {
-    const { showModal } = this.state;
+  showHideModal: Function = (): void => {
     this.setState({
-      prevShowModal: showModal,
-      showModal: false,
+      showModal: this.signalShowModal,
+      embeddedLink: undefined,
     });
+    this.signalShowModal = false;
   }
 
-  toggleModal: Function = (): void => {
-    const showModal = !this.state.prevShowModal;
-    const newState = {};
-    newState.prevShowModal = showModal;
-    newState.showModal = showModal;
-    newState.embeddedLink = undefined;
-    this.setState(newState);
+  closeModal: Function = (): void => {
+    this.setState({
+      showModal: false,
+      embeddedLink: undefined,
+    });
   };
 
   focusURLInput: Function = (): Object => {
     this.urlInput.focus();
+  }
+
+  focusHeightInput: Function = (): Object => {
+    this.heightInput.focus();
+  }
+
+  focusWidthInput: Function = (): Object => {
+    this.widthInput.focus();
   }
 
   stopPropagation: Function = (event: Object): void => {
@@ -75,12 +112,12 @@ export default class EmbeddedControl extends Component {
   };
 
   rendeEmbeddedLinkModal(): Object {
-    const { embeddedLink } = this.state;
+    const { embeddedLink, height, width } = this.state;
     const { config: { popupClassName } } = this.props;
     return (
       <div
         className={classNames('rdw-embedded-modal', popupClassName)}
-        onMouseDown={this.stopPropagation}
+        onClick={this.stopPropagation}
       >
         <div className="rdw-embedded-modal-header">
           <span className="rdw-embedded-modal-header-option">
@@ -96,20 +133,40 @@ export default class EmbeddedControl extends Component {
             onChange={this.updateEmbeddedLink}
             onBlur={this.updateEmbeddedLink}
             value={embeddedLink}
-            onMouseDown={this.focusURLInput}
+            onClick={this.focusURLInput}
           />
+          <div className="rdw-embedded-modal-size">
+            <input
+              ref={this.setHeightInputReference}
+              onChange={this.updateHeight}
+              onBlur={this.updateHeight}
+              onClick={this.focusHeightInput}
+              value={height}
+              className="rdw-embedded-modal-size-input"
+              placeholder="Height"
+            />
+            <input
+              ref={this.setWidthInputReference}
+              onChange={this.updateWidth}
+              onBlur={this.updateWidth}
+              onClick={this.focusWidthInput}
+              value={width}
+              className="rdw-embedded-modal-size-input"
+              placeholder="Width"
+            />
+          </div>
         </div>
         <span className="rdw-embedded-modal-btn-section">
           <button
             className="rdw-embedded-modal-btn"
             onClick={this.addEmbeddedLink}
-            disabled={!embeddedLink}
+            disabled={!embeddedLink || !height || !width}
           >
             Add
           </button>
           <button
             className="rdw-embedded-modal-btn"
-            onClick={this.toggleModal}
+            onClick={this.closeModal}
           >
             Cancel
           </button>
@@ -126,7 +183,7 @@ export default class EmbeddedControl extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={this.toggleModal}
+          onClick={this.onOptionClick}
         >
           <img
             src={icon}

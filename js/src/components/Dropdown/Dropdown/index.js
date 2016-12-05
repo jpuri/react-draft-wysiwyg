@@ -2,7 +2,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import ModalHandler from '../../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Dropdown extends Component {
@@ -11,6 +10,7 @@ export default class Dropdown extends Component {
     children: PropTypes.any,
     onChange: PropTypes.func,
     className: PropTypes.string,
+    modalHandler: PropTypes.object,
     optionWrapperClassName: PropTypes.string,
   };
 
@@ -20,7 +20,13 @@ export default class Dropdown extends Component {
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.collapse);
+    const { modalHandler } = this.props;
+    modalHandler.registerCallBack(this.expandCollapseDropdown);
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.expandCollapseDropdown);
   }
 
   onChange: Function = (value: any): void => {
@@ -54,11 +60,23 @@ export default class Dropdown extends Component {
     }
   };
 
+  onDropdownClick: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
   setHighlighted: Function = (highlighted: number): void => {
     this.setState({
       highlighted,
     });
   };
+
+  expandCollapseDropdown = () => {
+    this.setState({
+      highlighted: -1,
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
 
   collapse: Function = (): void => {
     this.setState({
@@ -92,7 +110,7 @@ export default class Dropdown extends Component {
       >
         <a
           className="rdw-dropdown-selectedtext"
-          onClick={this.toggleExpansion}
+          onClick={this.onDropdownClick}
         >
           {children[0]}
           <div
@@ -103,7 +121,7 @@ export default class Dropdown extends Component {
           />
         </a>
         {expanded ?
-          <ul className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)} onMouseDown={this.stopPropagation}>
+          <ul className={classNames('rdw-dropdown-optionwrapper', optionWrapperClassName)} onClick={this.stopPropagation}>
             {
               React.Children.map(options, (option, index) => {
                 const temp = option && React.cloneElement(

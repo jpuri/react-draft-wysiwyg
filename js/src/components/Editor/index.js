@@ -93,10 +93,12 @@ export default class WysiwygEditor extends Component {
     this.setState({
       editorState,
     });
+    this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
+    this.modalHandler = new ModalHandler();
   }
 
   componentDidMount(): void {
-    ModalHandler.init();
+    this.modalHandler.init(this.wrapperId);
   }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
@@ -117,6 +119,18 @@ export default class WysiwygEditor extends Component {
     this.setState(newState);
   }
 
+  onEditorBlur: Function = (): void => {
+    this.setState({
+      editorFocused: false,
+    });
+  };
+
+  onEditorFocus: Function = (): void => {
+    this.setState({
+      editorFocused: true,
+    });
+  };
+
   setWrapperReference: Function = (ref: Object): void => {
     this.wrapper = ref;
   };
@@ -134,18 +148,6 @@ export default class WysiwygEditor extends Component {
     const { editorState } = this.state;
     return EditorState.push(editorState, newContentState, 'change-block-data');
   }
-
-  onEditorBlur: Function = (): void => {
-    this.setState({
-      editorFocused: false,
-    });
-  };
-
-  onEditorFocus: Function = (): void => {
-    this.setState({
-      editorFocused: true,
-    });
-  };
 
   onChange: Function = (editorState: Object): void => {
     const { readOnly } = this.props;
@@ -265,9 +267,9 @@ export default class WysiwygEditor extends Component {
 
     return (
       <div
-        id="rdw-wrapper"
+        id={this.wrapperId}
         className={wrapperClassName}
-        onMouseDown={ModalHandler.closeModals}
+        onClick={this.modalHandler.closeModals}
       >
         {
           (editorFocused || !toolbarOnFocus) ?
@@ -276,56 +278,67 @@ export default class WysiwygEditor extends Component {
               onMouseDown={this.preventDefault}
             >
               {options.indexOf('inline') >= 0 && <InlineControl
+                modalHandler={this.modalHandler}
                 onChange={this.onChange}
                 editorState={editorState}
                 config={inline}
               />}
               {options.indexOf('blockType') >= 0 && <BlockControl
+                modalHandler={this.modalHandler}
                 onChange={this.onChange}
                 editorState={editorState}
                 config={blockType}
               />}
               {options.indexOf('fontSize') >= 0 && <FontSizeControl
+                modalHandler={this.modalHandler}
                 onChange={this.onChange}
                 editorState={editorState}
                 config={fontSize}
               />}
               {options.indexOf('fontFamily') >= 0 && <FontFamilyControl
+                modalHandler={this.modalHandler}
                 onChange={this.onChange}
                 editorState={editorState}
                 config={fontFamily}
               />}
               {options.indexOf('list') >= 0 && <ListControl
+                modalHandler={this.modalHandler}
                 onChange={this.onChange}
                 editorState={editorState}
                 config={list}
               />}
               {options.indexOf('textAlign') >= 0 && <TextAlignControl
+                modalHandler={this.modalHandler}
                 onChange={this.onChange}
                 editorState={editorState}
                 config={textAlign}
               />}
               {options.indexOf('colorPicker') >= 0 && <ColorPicker
+                modalHandler={this.modalHandler}
                 onChange={this.onChange}
                 editorState={editorState}
                 config={colorPicker}
               />}
               {options.indexOf('link') >= 0 && <LinkControl
+                modalHandler={this.modalHandler}
                 editorState={editorState}
                 onChange={this.onChange}
                 config={link}
               />}
               {options.indexOf('embedded') >= 0 && <EmbeddedControl
+                modalHandler={this.modalHandler}
                 editorState={editorState}
                 onChange={this.onChange}
                 config={embedded}
               />}
               {options.indexOf('emoji') >= 0 && <EmojiControl
+                modalHandler={this.modalHandler}
                 editorState={editorState}
                 onChange={this.onChange}
                 config={emoji}
               />}
               {options.indexOf('image') >= 0 && <ImageControl
+                modalHandler={this.modalHandler}
                 editorState={editorState}
                 onChange={this.onChange}
                 uploadCallback={uploadCallback}
@@ -337,6 +350,7 @@ export default class WysiwygEditor extends Component {
                 config={remove}
               />}
               {options.indexOf('history') >= 0 && <HistoryControl
+                modalHandler={this.modalHandler}
                 editorState={editorState}
                 onChange={this.onChange}
                 config={history}
@@ -348,7 +362,7 @@ export default class WysiwygEditor extends Component {
         <div
           ref={this.setWrapperReference}
           className={classNames('rdw-editor-main', editorClassName)}
-          onMouseDown={this.focusEditor}
+          onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
         >

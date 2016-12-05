@@ -15,6 +15,7 @@ export default class FontFamilyControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -55,7 +56,7 @@ export default class FontFamilyControl extends Component {
 
   render() {
     let { currentFontFamily } = this.state;
-    const { config: { className, dropdownClassName } } = this.props;
+    const { config: { className, dropdownClassName }, modalHandler } = this.props;
     currentFontFamily =
       currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length);
     return (
@@ -63,6 +64,7 @@ export default class FontFamilyControl extends Component {
         <Dropdown
           className={classNames('rdw-fontfamily-dropdown', className)}
           onChange={this.toggleFontFamily}
+          modalHandler={modalHandler}
           optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
         >
           <span className="rdw-fontfamily-placeholder">

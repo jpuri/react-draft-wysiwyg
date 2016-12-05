@@ -13,6 +13,7 @@ export default class TextAlignControl extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -94,10 +95,12 @@ export default class TextAlignControl extends Component {
   renderInDropDown(config: Object): Object {
     const { currentTextAlignment } = this.state;
     const { options, left, center, right, justify, className } = config;
+    const { modalHandler } = this.props;
     return (
       <Dropdown
         className={classNames('rdw-text-align-dropdown', className)}
         onChange={this.addBlockAlignmentData}
+        modalHandler={modalHandler}
       >
         <img
           src={getFirstIcon(config)}

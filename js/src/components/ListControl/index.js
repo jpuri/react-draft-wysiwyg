@@ -14,6 +14,7 @@ export default class ListControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -137,10 +138,12 @@ export default class ListControl extends Component {
 
   renderInDropDown(currentBlockType: string, config: Object): Object {
     const { options, className } = config;
+    const { modalHandler } = this.props;
     return (
       <Dropdown
         className={classNames('rdw-list-dropdown', className)}
         onChange={this.onDropdownChange}
+        modalHandler={modalHandler}
       >
         <img
           src={getFirstIcon(config)}

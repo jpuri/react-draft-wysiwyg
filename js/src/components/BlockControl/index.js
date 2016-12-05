@@ -12,6 +12,7 @@ export default class BlockControl extends Component {
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
@@ -66,13 +67,14 @@ export default class BlockControl extends Component {
     }
     const currentBlockData = this.blocksTypes.filter(blk => blk.style === currentBlockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
-    const { config: { className, dropdownClassName } } = this.props;
+    const { config: { className, dropdownClassName }, modalHandler } = this.props;
     return (
       <div className="rdw-block-wrapper">
         <Dropdown
           className={classNames('rdw-block-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={this.toggleBlockType}
+          modalHandler={modalHandler}
         >
           <span>{currentLabel}</span>
           {

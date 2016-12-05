@@ -4,7 +4,6 @@ import React, { Component, PropTypes } from 'react';
 import { Modifier, EditorState } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../Option';
-import ModalHandler from '../../modal-handler/modals';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class EmojiControl extends Component {
@@ -12,17 +11,27 @@ export default class EmojiControl extends Component {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
 
   state: Object = {
     showModal: false,
-    prevShowModal: false,
   };
 
   componentWillMount(): void {
-    ModalHandler.registerCallBack(this.closeModal);
+    const { modalHandler } = this.props;
+    modalHandler.registerCallBack(this.showHideModal);
   }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.showHideModal);
+  }
+
+  onOptionClick: Function = (): void => {
+    this.signalShowModal = !this.state.showModal;
+  };
 
   emojis: Array<string> = ['😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌',
     '🤓', '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉', '🙊',
@@ -43,23 +52,20 @@ export default class EmojiControl extends Component {
       editorState.getCurrentInlineStyle(),
     );
     onChange(EditorState.push(editorState, contentState, 'insert-characters'));
-    this.toggleModal();
+    this.hideModal();
   };
 
-  toggleModal: Function = (): void => {
-    const showModal = !this.state.prevShowModal;
+  hideModal: Function = (): void => {
     this.setState({
-      prevShowModal: showModal,
-      showModal,
-    });
-  };
-
-  closeModal: Function = (): void => {
-    const { showModal } = this.state;
-    this.setState({
-      prevShowModal: showModal,
       showModal: false,
     });
+  };
+
+  showHideModal: Function = (): void => {
+    this.setState({
+      showModal: this.signalShowModal,
+    });
+    this.signalShowModal = false;
   }
 
   stopPropagation: Function = (event: Object): void => {
@@ -72,7 +78,7 @@ export default class EmojiControl extends Component {
     return (
       <div
         className={classNames('rdw-emoji-modal', popupClassName)}
-        onMouseDown={this.stopPropagation}
+        onClick={this.stopPropagation}
       >
         {
           this.emojis.map((emoji, index) => (<span
@@ -94,7 +100,7 @@ export default class EmojiControl extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={this.toggleModal}
+          onClick={this.onOptionClick}
         >
           <img
             src={icon}
