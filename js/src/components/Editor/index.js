@@ -59,6 +59,7 @@ export default class WysiwygEditor extends Component {
     textAlignment: PropTypes.string,
     readOnly: PropTypes.bool,
     tabIndex: PropTypes.number,
+    placeholder: PropTypes.string,
   };
 
   constructor(props) {
@@ -247,6 +248,7 @@ export default class WysiwygEditor extends Component {
       spellCheck,
       readOnly,
       tabIndex,
+      placeholder,
     } = this.props;
     const {
       options,
@@ -381,6 +383,7 @@ export default class WysiwygEditor extends Component {
             blockRendererFn={BlockRendererFunc}
             blockRenderMap={this.customBlockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
+            placeholder={placeholder}
           />
         </div>
       </div>
