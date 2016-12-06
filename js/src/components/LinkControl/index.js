@@ -157,14 +157,6 @@ export default class LinkControl extends Component {
     this.signalShowModal = false;
   }
 
-  focusLinkTitle: Function = (): void => {
-    this.linkTitle.focus();
-  }
-
-  focusLinkText: Function = (): void => {
-    this.linkText.focus();
-  }
-
   stopPropagation: Function = (event: Object): void => {
     event.preventDefault();
     event.stopPropagation();
@@ -185,7 +177,6 @@ export default class LinkControl extends Component {
           onChange={this.updateLinkTitle}
           onBlur={this.updateLinkTitle}
           value={linkTitle}
-          onClick={this.focusLinkTitle}
         />
         <span className="rdw-link-modal-label">Link Target</span>
         <input
@@ -194,7 +185,6 @@ export default class LinkControl extends Component {
           onChange={this.updateLinkTarget}
           onBlur={this.updateLinkTarget}
           value={linkTarget}
-          onClick={this.focusLinkText}
         />
         <span className="rdw-link-modal-buttonsection">
           <button

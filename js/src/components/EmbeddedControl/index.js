@@ -94,18 +94,6 @@ export default class EmbeddedControl extends Component {
     });
   };
 
-  focusURLInput: Function = (): Object => {
-    this.urlInput.focus();
-  }
-
-  focusHeightInput: Function = (): Object => {
-    this.heightInput.focus();
-  }
-
-  focusWidthInput: Function = (): Object => {
-    this.widthInput.focus();
-  }
-
   stopPropagation: Function = (event: Object): void => {
     event.preventDefault();
     event.stopPropagation();
@@ -133,14 +121,12 @@ export default class EmbeddedControl extends Component {
             onChange={this.updateEmbeddedLink}
             onBlur={this.updateEmbeddedLink}
             value={embeddedLink}
-            onClick={this.focusURLInput}
           />
           <div className="rdw-embedded-modal-size">
             <input
               ref={this.setHeightInputReference}
               onChange={this.updateHeight}
               onBlur={this.updateHeight}
-              onClick={this.focusHeightInput}
               value={height}
               className="rdw-embedded-modal-size-input"
               placeholder="Height"
@@ -149,7 +135,6 @@ export default class EmbeddedControl extends Component {
               ref={this.setWidthInputReference}
               onChange={this.updateWidth}
               onBlur={this.updateWidth}
-              onClick={this.focusWidthInput}
               value={width}
               className="rdw-embedded-modal-size-input"
               placeholder="Width"

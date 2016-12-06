@@ -229,7 +229,9 @@ export default class WysiwygEditor extends Component {
   };
 
   preventDefault: Function = (event: Object) => {
-    event.preventDefault();
+    if (event.target.tagName !== 'INPUT') {
+      event.preventDefault();
+    }
   }
 
   render() {
