@@ -13,7 +13,7 @@ export default function addMention(
   suggestion: Object,
 ): void {
   const { text, value, url } = suggestion;
-  const entityKey = Entity.create('MENTION', 'MUTABLE', {
+  const entityKey = Entity.create('MENTION', 'IMMUTABLE', {
     text: `${trigger}${text}`,
     value,
     url,
