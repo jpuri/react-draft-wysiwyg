@@ -26,3 +26,9 @@ Initial stable release
 - #66: Multiple toolbar modals open causes bugs.
 - #31: Popups in toolbar should close when user clicks anywhere else on the page.
 - #20: It should be possible for user to provide image size also.
+
+## 7/12/2016 (1.2.1)
+- #109: Link control behaving weird to events.
+- #105: Adding placeholder support.
+- #59: Mentions should get deleted on whole by single backspace.
+- #61: Unlink should not get highlighted for mentions.
