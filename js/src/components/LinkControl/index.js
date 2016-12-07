@@ -151,6 +151,8 @@ export default class LinkControl extends Component {
         newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
         newState.linkTitle = (entityRange && entityRange.text) ||
           getSelectionText(editorState);
+      } else {
+        newState.linkTitle = getSelectionText(editorState);
       }
     }
     this.setState(newState);

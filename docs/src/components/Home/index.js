@@ -27,6 +27,7 @@ export default class Home extends Component {
           editorClassName="home-editor"
           onChange={this.onEditorChange}
           uploadCallback={uploadImageCallBack}
+          placeholder="Begin typing..."
         />
         <div className="quote-section">
           <div className="quote">

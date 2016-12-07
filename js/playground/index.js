@@ -82,6 +82,7 @@ class Playground extends Component {
               editorClassName="playground-editor"
               onChange={this.onEditorChange}
               uploadCallback={this.imageUploadCallBack}
+              placeholder="testing"
               spellCheck
               mention={{
                 separator: ' ',

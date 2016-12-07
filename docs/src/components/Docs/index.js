@@ -340,6 +340,19 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
+            PlaceHolder
+          </div>
+          <div className="docs-desc">
+            PlaceHolder can also be passed as property.
+          </div>
+          <div>
+            <code>
+              {'<Editor placeholder="Enter text..." />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
             Generating HTML / Markdown
           </div>
           <div className="docs-desc">
