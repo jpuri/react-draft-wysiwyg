@@ -19,10 +19,12 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 - Choice of more than 150 emojis.
 - Support for mentions.
 - Support for adding / uploading images.
-- Support for aligning images.
-- Support for Embedded links.
+- Support for aligning images, setting height, width.
+- Support for Embedded links, flexibility to set height and width.
 - Option provided to remove added styling.
 - Option of undo and redo.
+- Configurable behavior for RTL and Spellcheck.
+- Support for placeholder.
 - Support to convert Editor Content to HTML, JSON, Markdown.
 
 ## Installing
