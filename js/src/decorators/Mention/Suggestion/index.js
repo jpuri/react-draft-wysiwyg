@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react';
 import classNames from 'classnames';
 import addMention from '../addMention';
+import KeyDownHandler from '../../../event-handler/keyDown';
+import SuggestionHandler from '../../../event-handler/suggestions';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 let config = {
@@ -21,20 +23,31 @@ function configDefined() {
 
 function findSuggestionEntities(contentBlock, callback) {
   if (configDefined()) {
-    const text = contentBlock.getText();
-    let index = text.lastIndexOf(config.separator + config.trigger);
-    let preText = config.separator + config.trigger;
-    if ((index === undefined || index < 0) && text[0] === config.trigger) {
-      index = 0;
-      preText = config.trigger;
-    }
-    if (index >= 0) {
-      const mentionText = text.substr(index + preText.length, text.length);
-      const suggestionPresent =
-        config.suggestions.some(suggestion =>
-          suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
-      if (suggestionPresent) {
-        callback(index === 0 ? 0 : index + 1, text.length);
+    const selection = config.getEditorState().getSelection();
+
+    if (selection.get('anchorKey') === contentBlock.get('key') &&
+      selection.get('anchorKey') === selection.get('focusKey')) {
+      let text = contentBlock.getText();
+      text = text.substr(
+        0,
+        selection.get('focusOffset') === text.length - 1
+        ? text.length
+        : selection.get('focusOffset') - 1
+      );
+      let index = text.lastIndexOf(config.separator + config.trigger);
+      let preText = config.separator + config.trigger;
+      if ((index === undefined || index < 0) && text[0] === config.trigger) {
+        index = 0;
+        preText = config.trigger;
+      }
+      if (index >= 0) {
+        const mentionText = text.substr(index + preText.length, text.length);
+        const suggestionPresent =
+          config.suggestions.some(suggestion =>
+            suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
+        if (suggestionPresent) {
+          callback(index === 0 ? 0 : index + 1, text.length);
+        }
       }
     }
   }
@@ -48,7 +61,9 @@ class Suggestion extends Component {
 
   state: Object = {
     style: { left: 15 },
-  }
+    activeOption: -1,
+    showSuggestions: true,
+  };
 
   componentDidMount() {
     const editorRect = config.getWrapperRef().getBoundingClientRect();
@@ -68,6 +83,37 @@ class Suggestion extends Component {
     this.setState({ // eslint-disable-line react/no-did-mount-set-state
       style: { left, right, bottom },
     });
+    KeyDownHandler.registerCallBack(this.onEditorKeyDown);
+    SuggestionHandler.open();
+    this.filterSuggestions(this.props);
+  }
+
+  componentWillReceiveProps(props) {
+    if (this.props.children !== props.children) {
+      this.filterSuggestions(props);
+    }
+  }
+
+  componentWillUnmount() {
+    KeyDownHandler.deregisterCallBack(this.onEditorKeyDown);
+    SuggestionHandler.close();
+  }
+
+  onEditorKeyDown = (event) => {
+    const { activeOption } = this.state;
+    const newState = {};
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      newState.activeOption = activeOption + 1;
+    } else if (event.key === 'ArrowUp') {
+      newState.activeOption = activeOption - 1;
+    } else if (event.key === 'Escape') {
+      newState.showSuggestions = false;
+      SuggestionHandler.close();
+    } else if (event.key === 'Enter') {
+      this.addMention();
+    }
+    this.setState(newState);
   }
 
   setSuggestionReference: Function = (ref: Object): void => {
@@ -78,33 +124,56 @@ class Suggestion extends Component {
     this.dropdown = ref;
   };
 
-  addMention = (suggestion) => {
+  filteredSuggestions = [];
+
+  filterSuggestions = (props) => {
+    const mentionText = props.children[0].props.text.substr(1);
+    const { suggestions } = config;
+    this.filteredSuggestions =
+      suggestions && suggestions.filter(suggestion =>
+      (!mentionText || mentionText.length === 0) ||
+      (suggestion.value && suggestion.value.indexOf(mentionText) >= 0));
+  }
+
+  addMention = () => {
+    const { activeOption } = this.state;
     const editorState = config.getEditorState();
     const { onChange, separator, trigger } = config;
-    addMention(editorState, onChange, separator, trigger, suggestion);
+    addMention(editorState, onChange, separator, trigger, this.filteredSuggestions[activeOption]);
   }
 
   render() {
     const { children } = this.props;
-    const { suggestions, dropdownClassName, optionClassName } = config;
-    const mentionText = children[0].props.text.substr(1);
-    const filteredSuggestions =
-      suggestions && suggestions.filter(suggestion =>
-        suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
+    const { activeOption, showSuggestions } = this.state;
+    const { dropdownClassName, optionClassName } = config;
     return (
-      <span className="rdw-suggestion-wrapper" ref={this.setSuggestionReference}>
+      <span
+        className="rdw-suggestion-wrapper"
+        ref={this.setSuggestionReference}
+        onClick={() => {console.log('**********')}}
+      >
         <span>{children}</span>
-        <span className={classNames('rdw-suggestion-dropdown', dropdownClassName)} contentEditable="false" style={this.state.style} ref={this.setDropdownReference}>
-          {filteredSuggestions.map((suggestion, index) =>
-            <span
-              key={index}
-              spellCheck={false}
-              onClick={this.addMention.bind(undefined, suggestion)}
-              className={classNames('rdw-suggestion-option', optionClassName)}
-            >
-              {suggestion.text}
-            </span>)}
-        </span>
+        {showSuggestions &&
+          <span
+            className={classNames('rdw-suggestion-dropdown', dropdownClassName)}
+            contentEditable="false"
+            style={this.state.style}
+            ref={this.setDropdownReference}
+          >
+            {this.filteredSuggestions.map((suggestion, index) =>
+              <span
+                key={index}
+                spellCheck={false}
+                onClick={this.addMention}
+                className={classNames(
+                  'rdw-suggestion-option',
+                  optionClassName,
+                  { 'rdw-suggestion-option-active': (index === activeOption) }
+                )}
+              >
+                {suggestion.text}
+              </span>)}
+          </span>}
       </span>
     );
   }
@@ -121,6 +190,5 @@ module.exports = {
   },
   setSuggestionConfig: setConfig,
 };
-
 
 // change html / markdown generators to use data from entity
