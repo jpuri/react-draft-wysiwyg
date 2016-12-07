@@ -76,12 +76,14 @@ export default class WysiwygEditor extends Component {
   componentWillMount(): void {
     let editorState;
     const decorators = [LinkDecorator];
+    this.modalHandler = new ModalHandler();
     if (this.props.mention) {
       MentionDecorator.setConfig({
         ...this.props.mention,
         onChange: this.onChange,
         getEditorState: this.getEditorState,
         getWrapperRef: this.getWrapperRef,
+        modalHandler: this.modalHandler,
       });
       decorators.push(...MentionDecorator.decorators);
     }
@@ -96,12 +98,10 @@ export default class WysiwygEditor extends Component {
     this.setState({
       editorState,
     });
-    this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
-    this.modalHandler = new ModalHandler();
   }
 
   componentDidMount(): void {
-    this.modalHandler.init(this.wrapperId);
+    this.modalHandler.init();
   }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
@@ -277,9 +277,8 @@ export default class WysiwygEditor extends Component {
 
     return (
       <div
-        id={this.wrapperId}
         className={wrapperClassName}
-        onClick={this.modalHandler.closeModals}
+        onClick={this.modalHandler.onEditorClick}
       >
         {
           (editorFocused || !toolbarOnFocus) ?

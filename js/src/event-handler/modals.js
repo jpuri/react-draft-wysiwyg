@@ -1,7 +1,9 @@
 export default class ModalHandler {
 
   callBacks = [];
+  suggestionCallback = undefined;
   editorFlag = false;
+  suggestionFlag = false;
 
   closeAllModals = (event: Object) => {
     this.callBacks.forEach((callBack) => {
@@ -9,19 +11,26 @@ export default class ModalHandler {
     });
   };
 
-  init = (wrapperId: string) => {
-    const wrapper = document.getElementById(wrapperId); // eslint-disable-line no-undef
-    wrapper.addEventListener('click', () => {
-      this.editorFlag = true;
-    });
+  init = () => {
     document.addEventListener('click', () => { // eslint-disable-line no-undef
       if (!this.editorFlag) {
         this.closeAllModals();
+        this.suggestionCallback();
       } else {
         this.editorFlag = false;
       }
     });
   };
+
+  onEditorClick = () => {
+    this.editorFlag = true;
+    this.closeModals();
+    if (!this.suggestionFlag && this.suggestionCallback) {
+      this.suggestionCallback();
+    } else {
+      this.suggestionFlag = false;
+    }
+  }
 
   closeModals = (event: Object): void => {
     this.closeAllModals(event);
@@ -34,4 +43,16 @@ export default class ModalHandler {
   deregisterCallBack = (callBack): void => {
     this.callBacks = this.callBacks.filter(cb => cb !== callBack);
   };
+
+  setSuggestionCallback = (callBack): void => {
+    this.suggestionCallback = callBack;
+  };
+
+  removeSuggestionCallback = (): void => {
+    this.suggestionCallback = undefined;
+  };
+
+  onSuggestionClick = ():void => {
+    this.suggestionFlag = true;
+  }
 }

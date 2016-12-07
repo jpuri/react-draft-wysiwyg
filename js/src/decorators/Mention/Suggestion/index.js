@@ -14,6 +14,7 @@ let config = {
   getWrapperRef: undefined,
   dropdownClassName: undefined,
   optionClassName: undefined,
+  modalHandler: undefined,
 };
 
 function configDefined() {
@@ -85,18 +86,23 @@ class Suggestion extends Component {
     });
     KeyDownHandler.registerCallBack(this.onEditorKeyDown);
     SuggestionHandler.open();
+    config.modalHandler.setSuggestionCallback(this.closeSuggestionDropdown);
     this.filterSuggestions(this.props);
   }
 
   componentWillReceiveProps(props) {
     if (this.props.children !== props.children) {
       this.filterSuggestions(props);
+      this.setState({
+        showSuggestions: true,
+      });
     }
   }
 
   componentWillUnmount() {
     KeyDownHandler.deregisterCallBack(this.onEditorKeyDown);
     SuggestionHandler.close();
+    config.modalHandler.removeSuggestionCallback();
   }
 
   onEditorKeyDown = (event) => {
@@ -104,9 +110,17 @@ class Suggestion extends Component {
     const newState = {};
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      newState.activeOption = activeOption + 1;
+      if (activeOption === this.filteredSuggestions.length - 1) {
+        newState.activeOption = 0;
+      } else {
+        newState.activeOption = activeOption + 1;
+      }
     } else if (event.key === 'ArrowUp') {
-      newState.activeOption = activeOption - 1;
+      if (activeOption === 0) {
+        newState.activeOption = this.filteredSuggestions.length - 1;
+      } else {
+        newState.activeOption = activeOption - 1;
+      }
     } else if (event.key === 'Escape') {
       newState.showSuggestions = false;
       SuggestionHandler.close();
@@ -116,6 +130,18 @@ class Suggestion extends Component {
     this.setState(newState);
   }
 
+  onOptionMouseEnter = (index) => {
+    this.setState({
+      activeOption: index,
+    });
+  }
+
+  onOptionMouseLeave = () => {
+    this.setState({
+      activeOption: -1,
+    });
+  }
+
   setSuggestionReference: Function = (ref: Object): void => {
     this.suggestion = ref;
   };
@@ -123,6 +149,12 @@ class Suggestion extends Component {
   setDropdownReference: Function = (ref: Object): void => {
     this.dropdown = ref;
   };
+
+  closeSuggestionDropdown: Function = (): void => {
+    this.setState({
+      showSuggestions: false,
+    });
+  }
 
   filteredSuggestions = [];
 
@@ -150,7 +182,7 @@ class Suggestion extends Component {
       <span
         className="rdw-suggestion-wrapper"
         ref={this.setSuggestionReference}
-        onClick={() => {console.log('**********')}}
+        onClick={config.modalHandler.onSuggestionClick()}
       >
         <span>{children}</span>
         {showSuggestions &&
@@ -165,6 +197,8 @@ class Suggestion extends Component {
                 key={index}
                 spellCheck={false}
                 onClick={this.addMention}
+                onMouseEnter={this.onOptionMouseEnter.bind(this, index)}
+                onMouseLeave={this.onOptionMouseLeave}
                 className={classNames(
                   'rdw-suggestion-option',
                   optionClassName,

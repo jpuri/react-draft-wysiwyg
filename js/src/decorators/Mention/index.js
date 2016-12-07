@@ -12,6 +12,7 @@ let config = {
   mentionClassName: undefined,
   dropdownClassName: undefined,
   optionClassName: undefined,
+  modalHandler: undefined,
 };
 
 function setConfig(conf) {
@@ -26,6 +27,7 @@ function setConfig(conf) {
     getWrapperRef: config.getWrapperRef,
     dropdownClassName: config.dropdownClassName,
     optionClassName: config.optionClassName,
+    modalHandler: config.modalHandler,
   });
   setHandleReturnConfig({
     separator: config.separator,
