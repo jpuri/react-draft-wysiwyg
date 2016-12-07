@@ -41,7 +41,7 @@ module.exports = {
       template: './js/playground/index.html',
       inject: true,
     }),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
   ],
   postcss: () => [autoprefixer, precss],
   resolve: {

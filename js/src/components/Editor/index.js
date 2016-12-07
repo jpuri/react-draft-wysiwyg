@@ -18,7 +18,9 @@ import {
 } from 'draftjs-utils';
 import { Map } from 'immutable';
 import classNames from 'classnames';
-import ModalHandler from '../../modal-handler/modals';
+import ModalHandler from '../../event-handler/modals';
+import KeyDownHandler from '../../event-handler/keyDown';
+import SuggestionHandler from '../../event-handler/suggestions';
 import blockStyleFn from '../../utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import InlineControl from '../InlineControl';
@@ -74,12 +76,14 @@ export default class WysiwygEditor extends Component {
   componentWillMount(): void {
     let editorState;
     const decorators = [LinkDecorator];
+    this.modalHandler = new ModalHandler();
     if (this.props.mention) {
       MentionDecorator.setConfig({
         ...this.props.mention,
         onChange: this.onChange,
         getEditorState: this.getEditorState,
         getWrapperRef: this.getWrapperRef,
+        modalHandler: this.modalHandler,
       });
       decorators.push(...MentionDecorator.decorators);
     }
@@ -94,12 +98,10 @@ export default class WysiwygEditor extends Component {
     this.setState({
       editorState,
     });
-    this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
-    this.modalHandler = new ModalHandler();
   }
 
   componentDidMount(): void {
-    this.modalHandler.init(this.wrapperId);
+    this.modalHandler.init();
   }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
@@ -132,6 +134,30 @@ export default class WysiwygEditor extends Component {
     });
   };
 
+  onTab: Function = (event): boolean => {
+    const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
+    if (editorState) {
+      this.onChange(editorState);
+      event.preventDefault();
+    }
+  };
+
+  onUpDownArrow: Function = (event): boolean => {
+    if (SuggestionHandler.isOpen()) {
+      event.preventDefault();
+    }
+  };
+
+  onChange: Function = (editorState: Object): void => {
+    const { readOnly } = this.props;
+    if (!readOnly) {
+      this.setState({
+        editorState,
+      },
+      this.afterChange());
+    }
+  };
+
   setWrapperReference: Function = (ref: Object): void => {
     this.wrapper = ref;
   };
@@ -148,16 +174,6 @@ export default class WysiwygEditor extends Component {
     const newContentState = convertFromRaw(contentState);
     const { editorState } = this.state;
     return EditorState.push(editorState, newContentState, 'change-block-data');
-  }
-
-  onChange: Function = (editorState: Object): void => {
-    const { readOnly } = this.props;
-    if (!readOnly) {
-      this.setState({
-        editorState,
-      },
-      this.afterChange());
-    }
   };
 
   focusEditor: Function = (): void => {
@@ -186,14 +202,14 @@ export default class WysiwygEditor extends Component {
       });
     }
     return newEditorContent;
-  }
+  };
 
   customBlockRenderMap: Map = DefaultDraftBlockRenderMap
-    .merge(new Map({
-      unstyled: {
-        element: 'p',
-      },
-    }));
+  .merge(new Map({
+    unstyled: {
+      element: 'p',
+    },
+  }));
 
   handleKeyCommand: Function = (command: Object): boolean => {
     const { editorState } = this.state;
@@ -218,21 +234,11 @@ export default class WysiwygEditor extends Component {
     return returnValue;
   };
 
-  onTab: Function = (event): boolean => {
-    event.preventDefault();
-    const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
-    if (editorState) {
-      this.onChange(editorState);
-      return true;
-    }
-    return false;
-  };
-
   preventDefault: Function = (event: Object) => {
     if (event.target.tagName !== 'INPUT') {
       event.preventDefault();
     }
-  }
+  };
 
   render() {
     const {
@@ -271,9 +277,8 @@ export default class WysiwygEditor extends Component {
 
     return (
       <div
-        id={this.wrapperId}
         className={wrapperClassName}
-        onClick={this.modalHandler.closeModals}
+        onClick={this.modalHandler.onEditorClick}
       >
         {
           (editorFocused || !toolbarOnFocus) ?
@@ -369,10 +374,13 @@ export default class WysiwygEditor extends Component {
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
+          onKeyDown={KeyDownHandler.onKeyDown}
         >
           <Editor
             ref={this.setEditorReference}
             onTab={this.onTab}
+            onUpArrow={this.onUpDownArrow}
+            onDownArrow={this.onUpDownArrow}
             tabIndex={tabIndex}
             readOnly={readOnly}
             spellCheck={spellCheck}

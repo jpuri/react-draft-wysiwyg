@@ -42,7 +42,8 @@ class Link extends Component {
   };
 
   render() {
-    const { children } = this.props;
+    const { children, entityKey } = this.props;
+    const { url } = Entity.get(entityKey).getData();
     const { showPopOver } = this.state;
     return (
       <span
@@ -50,7 +51,7 @@ class Link extends Component {
         onMouseEnter={this.toggleShowPopOver}
         onMouseLeave={this.toggleShowPopOver}
       >
-        <span className="rdw-link-decorator-link">{children}</span>
+        <a href={url}>{children}</a>
         {showPopOver ?
           <img
             src={openlink}

@@ -20,9 +20,17 @@ function findMentionEntities(contentBlock, callback) {
   );
 }
 
-const Mention = ({ children }) => <span className={classNames('rdw-mention', config.mentionClassName)}>{children}</span>;
+const Mention = ({ children, entityKey }) => {
+  const { url, value } = Entity.get(entityKey).getData();
+  return (
+    <a href={url || value} className="rdw-mention-link">
+      <span className={classNames('rdw-mention', config.mentionClassName)}>{children}</span>
+    </a>
+  );
+};
 
 Mention.propTypes = {
+  entityKey: PropTypes.array,
   children: PropTypes.array,
 };
 
