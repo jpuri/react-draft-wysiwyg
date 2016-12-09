@@ -33,5 +33,5 @@ Initial stable release
 - #59: Mentions should get deleted on whole by single backspace.
 - #61: Unlink should not get highlighted for mentions.
 
-## 7/12/2016 (1.2.2)
+## 7/12/2016 (1.3.0)
 - #56: Improvements in mention dropdown.

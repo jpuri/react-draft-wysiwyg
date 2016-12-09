@@ -14,7 +14,7 @@ export default function addMention(
 ): void {
   const { text, value, url } = suggestion;
   const entityKey = Entity.create('MENTION', 'IMMUTABLE', {
-    text: `${trigger}${text}`,
+    text: `${trigger}${value}`,
     value,
     url,
   });
@@ -31,7 +31,7 @@ export default function addMention(
   let contentState = Modifier.replaceText(
     newEditorState.getCurrentContent(),
     updatedSelection,
-    `${trigger}${text}`,
+    `${trigger}${value}`,
     newEditorState.getCurrentInlineStyle(),
     entityKey,
   );
