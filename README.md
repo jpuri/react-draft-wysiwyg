@@ -25,6 +25,7 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 - Option of undo and redo.
 - Configurable behavior for RTL and Spellcheck.
 - Support for placeholder.
+- Support for WAI-ARIA Support attributes.
 - Support to convert Editor Content to HTML, JSON, Markdown.
 
 ## Installing

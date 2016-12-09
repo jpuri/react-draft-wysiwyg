@@ -69,6 +69,7 @@ export default class DropDownOption extends Component {
         onMouseEnter={this.setHighlighted}
         onMouseLeave={this.resetHighlighted}
         onClick={this.onClick}
+        ariaSelected={active}
       >
         {children}
       </li>
