@@ -35,3 +35,6 @@ Initial stable release
 
 ## 7/12/2016 (1.3.0)
 - #56: Improvements in mention dropdown.
+
+## 7/12/2016 (1.3.1)
+- #115: uncaught TypeError: t.suggestionCallback is not a function.
