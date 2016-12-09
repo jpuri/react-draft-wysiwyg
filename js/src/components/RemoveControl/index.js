@@ -35,7 +35,7 @@ export default class ColorPicker extends Component {
   render(): Object {
     const { config: { icon, className } } = this.props;
     return (
-      <div className="rdw-remove-wrapper">
+      <div className="rdw-remove-wrapper" ariaLabel="rdw-remove-control">
         <Option
           className={classNames(className)}
           onClick={this.removeInlineStyles}

@@ -303,7 +303,12 @@ export default class ImageControl extends Component {
     const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
-      <div className="rdw-image-wrapper">
+      <div
+        className="rdw-image-wrapper"
+        ariaHaspopup="true"
+        ariaExpanded={showModal}
+        ariaLabel="rdw-image-control"
+      >
         <Option
           className={classNames(className)}
           value="unordered-list-item"

@@ -62,6 +62,13 @@ export default class WysiwygEditor extends Component {
     readOnly: PropTypes.bool,
     tabIndex: PropTypes.number,
     placeholder: PropTypes.string,
+    ariaLabel: PropTypes.string,
+    ariaOwneeID: PropTypes.string,
+    ariaActiveDescendantID: PropTypes.string,
+    ariaAutoComplete: PropTypes.string,
+    ariaDescribedBy: PropTypes.string,
+    ariaExpanded: PropTypes.string,
+    ariaHasPopup: PropTypes.string,
   };
 
   constructor(props) {
@@ -257,6 +264,13 @@ export default class WysiwygEditor extends Component {
       readOnly,
       tabIndex,
       placeholder,
+      ariaLabel,
+      ariaOwneeID,
+      ariaActiveDescendantID,
+      ariaAutoComplete,
+      ariaDescribedBy,
+      ariaExpanded,
+      ariaHasPopup,
     } = this.props;
     const {
       options,
@@ -279,12 +293,15 @@ export default class WysiwygEditor extends Component {
       <div
         className={wrapperClassName}
         onClick={this.modalHandler.onEditorClick}
+        ariaLabel="rdw-wrapper"
       >
         {
           (editorFocused || !toolbarOnFocus) ?
             <div
               className={classNames('rdw-editor-toolbar', toolbarClassName)}
               onMouseDown={this.preventDefault}
+              ariaLabel="rdw-toolbar"
+              ariaHidden={(!editorFocused && toolbarOnFocus)}
             >
               {options.indexOf('inline') >= 0 && <InlineControl
                 modalHandler={this.modalHandler}
@@ -393,6 +410,14 @@ export default class WysiwygEditor extends Component {
             blockRendererFn={BlockRendererFunc}
             blockRenderMap={this.customBlockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
+            ariaLabel={ariaLabel || 'rdw-editor'}
+            ariaOwneeID={ariaOwneeID}
+            ariaActiveDescendantID={ariaActiveDescendantID}
+            ariaAutoComplete={ariaAutoComplete}
+            ariaDescribedBy={ariaDescribedBy}
+            ariaExpanded={ariaExpanded}
+            ariaHasPopup={ariaHasPopup}
+            ariaReadonly={readOnly}
             placeholder={placeholder}
           />
         </div>

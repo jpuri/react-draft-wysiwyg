@@ -150,7 +150,12 @@ export default class ColorPicker extends Component {
     const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
-      <div className="rdw-colorpicker-wrapper">
+      <div
+        className="rdw-colorpicker-wrapper"
+        ariaHaspopup="true"
+        ariaExpanded={showModal}
+        ariaLabel="rdw-color-picker"
+      >
         <Option
           onClick={this.onOptionClick}
           className={classNames(className)}
