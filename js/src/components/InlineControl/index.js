@@ -64,7 +64,7 @@ export default class InlineControl extends Component {
 
   renderInFlatList(currentStyles: string, config: Object): Object {
     return (
-      <div className={classNames('rdw-inline-wrapper', config.className)} ariaLabel="rdw-inline-control">
+      <div className={classNames('rdw-inline-wrapper', config.className)} aria-label="rdw-inline-control">
         {
           config.options
           .map((style, index) =>

@@ -108,8 +108,8 @@ export default class Dropdown extends Component {
         tabIndex="0"
         onKeyDown={this.onKeyDown}
         className={classNames('rdw-dropdown-wrapper', className)}
-        ariaExpanded={expanded}
-        ariaLabel={ariaLabel || 'rdw-dropdown'}
+        aria-expanded={expanded}
+        aria-label={ariaLabel || 'rdw-dropdown'}
       >
         <a
           className="rdw-dropdown-selectedtext"

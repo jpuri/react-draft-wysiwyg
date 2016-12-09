@@ -166,9 +166,9 @@ export default class EmbeddedControl extends Component {
     return (
       <div
         className="rdw-embedded-wrapper"
-        ariaHaspopup="true"
-        ariaExpanded={showModal}
-        ariaLabel="rdw-embedded-control"
+        aria-haspopup="true"
+        aria-expanded={showModal}
+        aria-label="rdw-embedded-control"
       >
         <Option
           className={classNames(className)}

@@ -305,9 +305,9 @@ export default class ImageControl extends Component {
     return (
       <div
         className="rdw-image-wrapper"
-        ariaHaspopup="true"
-        ariaExpanded={showModal}
-        ariaLabel="rdw-image-control"
+        aria-haspopup="true"
+        aria-expanded={showModal}
+        aria-label="rdw-image-control"
       >
         <Option
           className={classNames(className)}

@@ -183,8 +183,8 @@ class Suggestion extends Component {
         className="rdw-suggestion-wrapper"
         ref={this.setSuggestionReference}
         onClick={config.modalHandler.onSuggestionClick()}
-        ariaHaspopup="true"
-        ariaLabel="rdw-suggestion-popup"
+        aria-haspopup="true"
+        aria-label="rdw-suggestion-popup"
       >
         <span>{children}</span>
         {showSuggestions &&

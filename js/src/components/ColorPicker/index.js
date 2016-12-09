@@ -152,9 +152,9 @@ export default class ColorPicker extends Component {
     return (
       <div
         className="rdw-colorpicker-wrapper"
-        ariaHaspopup="true"
-        ariaExpanded={showModal}
-        ariaLabel="rdw-color-picker"
+        aria-haspopup="true"
+        aria-expanded={showModal}
+        aria-label="rdw-color-picker"
       >
         <Option
           onClick={this.onOptionClick}

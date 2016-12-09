@@ -98,9 +98,9 @@ export default class EmojiControl extends Component {
     return (
       <div
         className="rdw-emoji-wrapper"
-        ariaHaspopup="true"
-        ariaLabel="rdw-emoji-control"
-        ariaExpanded={showModal}
+        aria-haspopup="true"
+        aria-label="rdw-emoji-control"
+        aria-expanded={showModal}
       >
         <Option
           className={classNames(className)}

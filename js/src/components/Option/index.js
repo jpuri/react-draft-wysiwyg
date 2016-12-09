@@ -36,7 +36,7 @@ export default class Option extends Component {
           }
         )}
         onClick={this.onClick}
-        ariaSelected={active}
+        aria-selected={active}
       >
         {children}
       </div>

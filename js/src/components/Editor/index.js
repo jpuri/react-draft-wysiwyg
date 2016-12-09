@@ -71,6 +71,10 @@ export default class WysiwygEditor extends Component {
     ariaHasPopup: PropTypes.string,
   };
 
+  static defaultProps = {
+    toolbarOnFocus: false,
+  }
+
   constructor(props) {
     super(props);
     this.state = {
@@ -293,15 +297,15 @@ export default class WysiwygEditor extends Component {
       <div
         className={wrapperClassName}
         onClick={this.modalHandler.onEditorClick}
-        ariaLabel="rdw-wrapper"
+        aria-label="rdw-wrapper"
       >
         {
           (editorFocused || !toolbarOnFocus) ?
             <div
               className={classNames('rdw-editor-toolbar', toolbarClassName)}
               onMouseDown={this.preventDefault}
-              ariaLabel="rdw-toolbar"
-              ariaHidden={(!editorFocused && toolbarOnFocus)}
+              aria-label="rdw-toolbar"
+              aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
             >
               {options.indexOf('inline') >= 0 && <InlineControl
                 modalHandler={this.modalHandler}
