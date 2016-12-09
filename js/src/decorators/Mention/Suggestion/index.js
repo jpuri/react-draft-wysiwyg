@@ -116,7 +116,7 @@ class Suggestion extends Component {
         newState.activeOption = activeOption + 1;
       }
     } else if (event.key === 'ArrowUp') {
-      if (activeOption === 0) {
+      if (activeOption <= 0) {
         newState.activeOption = this.filteredSuggestions.length - 1;
       } else {
         newState.activeOption = activeOption - 1;

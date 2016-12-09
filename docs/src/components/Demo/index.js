@@ -196,14 +196,14 @@ export default class Demo extends Component {
               separator: ' ',
               trigger: '@',
               suggestions: [
-                { text: 'apple', value: 'apple', url: 'apple' },
-                { text: 'banana', value: 'banana', url: 'banana' },
-                { text: 'cherry', value: 'cherry', url: 'cherry' },
-                { text: 'durian', value: 'durian', url: 'durian' },
-                { text: 'eggfruit', value: 'eggfruit', url: 'eggfruit' },
-                { text: 'fig', value: 'fig', url: 'fig' },
-                { text: 'grapefruit', value: 'grapefruit', url: 'grapefruit' },
-                { text: 'honeydew', value: 'honeydew', url: 'honeydew' },
+                { text: 'APPLE', value: 'apple', url: 'apple' },
+                { text: 'BANANA', value: 'banana', url: 'banana' },
+                { text: 'CHERRY', value: 'cherry', url: 'cherry' },
+                { text: 'DURIAN', value: 'durian', url: 'durian' },
+                { text: 'EGGFRUIT', value: 'eggfruit', url: 'eggfruit' },
+                { text: 'FIG', value: 'fig', url: 'fig' },
+                { text: 'GRAPEFRUIT', value: 'grapefruit', url: 'grapefruit' },
+                { text: 'HONEYDEW', value: 'honeydew', url: 'honeydew' },
               ],
             }}
           />
