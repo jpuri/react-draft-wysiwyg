@@ -11,7 +11,11 @@ export default class ModalHandler {
     });
   };
 
-  init = () => {
+  init = (wrapperId: string) => {
+    const wrapper = document.getElementById(wrapperId); // eslint-disable-line no-undef
+    wrapper.addEventListener('click', () => {
+      this.editorFlag = true;
+    });
     document.addEventListener('click', () => { // eslint-disable-line no-undef
       if (!this.editorFlag) {
         this.closeAllModals();
@@ -25,7 +29,6 @@ export default class ModalHandler {
   };
 
   onEditorClick = () => {
-    this.editorFlag = true;
     this.closeModals();
     if (!this.suggestionFlag && this.suggestionCallback) {
       this.suggestionCallback();

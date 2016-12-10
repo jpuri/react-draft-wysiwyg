@@ -38,3 +38,6 @@ Initial stable release
 
 ## 7/12/2016 (1.3.1)
 - #115: uncaught TypeError: t.suggestionCallback is not a function.
+
+## 10/12/2016 (1.3.2)
+- #120: Toolbar modals closing prematurely.

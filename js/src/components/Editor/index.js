@@ -76,6 +76,7 @@ export default class WysiwygEditor extends Component {
   componentWillMount(): void {
     let editorState;
     const decorators = [LinkDecorator];
+    this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
     if (this.props.mention) {
       MentionDecorator.setConfig({
@@ -101,7 +102,7 @@ export default class WysiwygEditor extends Component {
   }
 
   componentDidMount(): void {
-    this.modalHandler.init();
+    this.modalHandler.init(this.wrapperId);
   }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
@@ -277,6 +278,7 @@ export default class WysiwygEditor extends Component {
 
     return (
       <div
+        id={this.wrapperId}
         className={wrapperClassName}
         onClick={this.modalHandler.onEditorClick}
       >

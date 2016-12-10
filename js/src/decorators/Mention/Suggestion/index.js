@@ -182,7 +182,7 @@ class Suggestion extends Component {
       <span
         className="rdw-suggestion-wrapper"
         ref={this.setSuggestionReference}
-        onClick={config.modalHandler.onSuggestionClick()}
+        onClick={config.modalHandler.onSuggestionClick}
       >
         <span>{children}</span>
         {showSuggestions &&
