@@ -211,11 +211,13 @@ export default class LinkControl extends Component {
     const { options, link, unlink, className } = config;
     const linkEntityCurrently = currentEntity && (Entity.get(currentEntity).get('type') === 'LINK');
     return (
-      <div className={classNames('rdw-link-wrapper', className)}>
+      <div className={classNames('rdw-link-wrapper', className)} aria-label="rdw-link-control">
         {options.indexOf('link') >= 0 && <Option
           value="unordered-list-item"
           className={classNames(link.className)}
           onClick={this.onOptionClick}
+          aria-haspopup="true"
+          aria-expanded={showModal}
         >
           <img
             src={link.icon}
@@ -242,7 +244,12 @@ export default class LinkControl extends Component {
     const { options, link, unlink, className } = config;
     const { modalHandler } = this.props;
     return (
-      <div className="rdw-link-wrapper">
+      <div
+        className="rdw-link-wrapper"
+        aria-haspopup="true"
+        aria-label="rdw-link-control"
+        aria-expanded={showModal}
+      >
         <Dropdown
           className={classNames('rdw-link-dropdown', className)}
           onChange={this.toggleInlineStyle}

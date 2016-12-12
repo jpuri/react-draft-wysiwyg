@@ -96,7 +96,12 @@ export default class EmojiControl extends Component {
     const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
-      <div className="rdw-emoji-wrapper">
+      <div
+        className="rdw-emoji-wrapper"
+        aria-haspopup="true"
+        aria-label="rdw-emoji-control"
+        aria-expanded={showModal}
+      >
         <Option
           className={classNames(className)}
           value="unordered-list-item"

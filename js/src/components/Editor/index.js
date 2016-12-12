@@ -62,7 +62,18 @@ export default class WysiwygEditor extends Component {
     readOnly: PropTypes.bool,
     tabIndex: PropTypes.number,
     placeholder: PropTypes.string,
+    ariaLabel: PropTypes.string,
+    ariaOwneeID: PropTypes.string,
+    ariaActiveDescendantID: PropTypes.string,
+    ariaAutoComplete: PropTypes.string,
+    ariaDescribedBy: PropTypes.string,
+    ariaExpanded: PropTypes.string,
+    ariaHasPopup: PropTypes.string,
   };
+
+  static defaultProps = {
+    toolbarOnFocus: false,
+  }
 
   constructor(props) {
     super(props);
@@ -251,6 +262,13 @@ export default class WysiwygEditor extends Component {
       readOnly,
       tabIndex,
       placeholder,
+      ariaLabel,
+      ariaOwneeID,
+      ariaActiveDescendantID,
+      ariaAutoComplete,
+      ariaDescribedBy,
+      ariaExpanded,
+      ariaHasPopup,
     } = this.props;
     const {
       options,
@@ -274,12 +292,15 @@ export default class WysiwygEditor extends Component {
         id={this.wrapperId}
         className={wrapperClassName}
         onClick={this.modalHandler.onEditorClick}
+        aria-label="rdw-wrapper"
       >
         {
           (editorFocused || !toolbarOnFocus) ?
             <div
               className={classNames('rdw-editor-toolbar', toolbarClassName)}
               onMouseDown={this.preventDefault}
+              aria-label="rdw-toolbar"
+              aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
             >
               {options.indexOf('inline') >= 0 && <InlineControl
                 modalHandler={this.modalHandler}
@@ -387,6 +408,14 @@ export default class WysiwygEditor extends Component {
             handleReturn={this.handleReturn}
             blockRendererFn={BlockRendererFunc}
             handleKeyCommand={this.handleKeyCommand}
+            ariaLabel={ariaLabel || 'rdw-editor'}
+            ariaOwneeID={ariaOwneeID}
+            ariaActiveDescendantID={ariaActiveDescendantID}
+            ariaAutoComplete={ariaAutoComplete}
+            ariaDescribedBy={ariaDescribedBy}
+            ariaExpanded={ariaExpanded}
+            ariaHasPopup={ariaHasPopup}
+            ariaReadonly={readOnly}
             placeholder={placeholder}
           />
         </div>
