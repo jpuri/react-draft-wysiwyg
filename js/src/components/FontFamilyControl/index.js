@@ -60,7 +60,7 @@ export default class FontFamilyControl extends Component {
     currentFontFamily =
       currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length);
     return (
-      <div className="rdw-fontfamily-wrapper">
+      <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
         <Dropdown
           className={classNames('rdw-fontfamily-dropdown', className)}
           onChange={this.toggleFontFamily}

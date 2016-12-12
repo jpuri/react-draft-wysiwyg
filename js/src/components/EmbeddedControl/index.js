@@ -164,7 +164,12 @@ export default class EmbeddedControl extends Component {
     const { config: { icon, className } } = this.props;
     const { showModal } = this.state;
     return (
-      <div className="rdw-embedded-wrapper">
+      <div
+        className="rdw-embedded-wrapper"
+        aria-haspopup="true"
+        aria-expanded={showModal}
+        aria-label="rdw-embedded-control"
+      >
         <Option
           className={classNames(className)}
           value="unordered-list-item"
