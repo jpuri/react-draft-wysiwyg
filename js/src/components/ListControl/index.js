@@ -91,7 +91,7 @@ export default class ListControl extends Component {
   renderInFlatList(currentBlockType: string, config: Object): Object {
     const { options, unordered, ordered, indent, outdent, className } = config;
     return (
-      <div className={classNames('rdw-list-wrapper', className)} ariaLabel="rdw-list-control">
+      <div className={classNames('rdw-list-wrapper', className)} aria-label="rdw-list-control">
         {options.indexOf('unordered') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.toggleBlockType}
@@ -144,7 +144,7 @@ export default class ListControl extends Component {
         className={classNames('rdw-list-dropdown', className)}
         onChange={this.onDropdownChange}
         modalHandler={modalHandler}
-        ariaLabel="rdw-list-control"
+        aria-label="rdw-list-control"
       >
         <img
           src={getFirstIcon(config)}

@@ -66,7 +66,7 @@ export default class HistoryControl extends Component {
         className={classNames('rdw-history-dropdown', className)}
         onChange={this.toggleInlineStyle}
         modalHandler={modalHandler}
-        ariaLabel="rdw-history-control"
+        aria-label="rdw-history-control"
       >
         <img
           src={getFirstIcon(config)}

@@ -57,6 +57,8 @@ export default class WysiwygEditor extends Component {
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     uploadCallback: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     mention: PropTypes.object,
     textAlignment: PropTypes.string,
     readOnly: PropTypes.bool,
@@ -141,10 +143,23 @@ export default class WysiwygEditor extends Component {
   };
 
   onEditorFocus: Function = (): void => {
+    const { onFocus } = this.props;
     this.setState({
       editorFocused: true,
     });
+    if (!this.modalHandler.getInputFocused()) {
+      if (onFocus) {
+        onFocus(event);
+      }
+    }
+    else {
+      this.modalHandler.resetInputFocused();
+    }
   };
+
+  onEditorMouseDown: Function = (): void => {
+    this.modalHandler.setEditorFocused();
+  }
 
   onTab: Function = (event): boolean => {
     const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
@@ -239,8 +254,38 @@ export default class WysiwygEditor extends Component {
     return returnValue;
   };
 
+  onToolbarFocus: Function = (): void => {
+    const { onFocus } = this.props;
+    if (!this.modalHandler.getEditorFocused()) {
+      if (onFocus) {
+        onFocus(event);
+      }
+    } else {
+      this.modalHandler.resetEditorFocused();
+    }
+  };
+
+  onWrapperBlur: Function = (event: Object) => {
+    const { onBlur } = this.props;
+    if (event.target.tagName === 'INPUT' &&
+      !this.modalHandler.getEditorFocused()) {
+      this.modalHandler.resetInputFocused();
+      if (onBlur) {
+        onBlur(event);
+      }
+    } else if (event.target.tagName !== 'INPUT' &&
+      !this.modalHandler.getInputFocused()){
+      this.modalHandler.resetEditorFocused();
+      if (onBlur) {
+        onBlur(event);
+      }
+    }
+  };
+
   preventDefault: Function = (event: Object) => {
-    if (event.target.tagName !== 'INPUT') {
+    if (event.target.tagName === 'INPUT') {
+      this.modalHandler.setInputFocused();
+    } else {
       event.preventDefault();
     }
   };
@@ -292,7 +337,10 @@ export default class WysiwygEditor extends Component {
         id={this.wrapperId}
         className={wrapperClassName}
         onClick={this.modalHandler.onEditorClick}
+        onFocus={this.onWrapperFocus}
+        onBlur={this.onWrapperBlur}
         aria-label="rdw-wrapper"
+        tabIndex={0}
       >
         {
           (editorFocused || !toolbarOnFocus) ?
@@ -301,6 +349,7 @@ export default class WysiwygEditor extends Component {
               onMouseDown={this.preventDefault}
               aria-label="rdw-toolbar"
               aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+              onFocus={this.onToolbarFocus}
             >
               {options.indexOf('inline') >= 0 && <InlineControl
                 modalHandler={this.modalHandler}
@@ -391,6 +440,7 @@ export default class WysiwygEditor extends Component {
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
           onKeyDown={KeyDownHandler.onKeyDown}
+          onMouseDown={this.onEditorMouseDown}
         >
           <Editor
             ref={this.setEditorReference}
