@@ -205,13 +205,6 @@ export default class WysiwygEditor extends Component {
     return newEditorContent;
   };
 
-  customBlockRenderMap: Map = DefaultDraftBlockRenderMap
-  .merge(new Map({
-    unstyled: {
-      element: 'p',
-    },
-  }));
-
   handleKeyCommand: Function = (command: Object): boolean => {
     const { editorState } = this.state;
     const newState = RichUtils.handleKeyCommand(editorState, command);
@@ -393,7 +386,6 @@ export default class WysiwygEditor extends Component {
             customStyleMap={customStyleMap}
             handleReturn={this.handleReturn}
             blockRendererFn={BlockRendererFunc}
-            blockRenderMap={this.customBlockRenderMap}
             handleKeyCommand={this.handleKeyCommand}
             placeholder={placeholder}
           />
