@@ -23,7 +23,7 @@ export default class FocusHandler {
   }
 
   isEditorFocused = ():void => {
-    if (!this.inputFocused()) {
+    if (!this.inputFocused) {
       return true;
     }
     this.inputFocused = false;

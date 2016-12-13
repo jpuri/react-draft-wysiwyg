@@ -94,7 +94,7 @@ export default class WysiwygEditor extends Component {
   }
 
   componentWillMount(): void {
-    const compositeDecorator = this.getCompositeDecorator();
+    this.compositeDecorator = this.getCompositeDecorator();
     const editorState = this.createEditorState(compositeDecorator);
     this.setState({
       editorState,
@@ -112,20 +112,26 @@ export default class WysiwygEditor extends Component {
       newState.toolbar = mergeRecursive(defaultToolbar, props.toolbar);
     }
     if (this.props.mention !== props.mention) {
-      MentionDecorator.setConfig(this.props.mention);
+      MentionDecorator.setConfig(props.mention);
     }
-    if (this.props.editorState !== props.editorState) {
+    if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       let editorState;
-      const compositeDecorator = this.getCompositeDecorator();
-      if (this.props.editorState) {
-        editorState = EditorState.set(this.props.editorState, { decorator: compositeDecorator });
+      if (props.editorState) {
+        newState.editorState = EditorState.set(props.editorState, { decorator: this.compositeDecorator });
       } else {
-        editorState = EditorState.createEmpty(compositeDecorator);
+        newState.editorState = EditorState.createEmpty(this.compositeDecorator);
       }
-      this.setState({
-        editorState,
-      });
+    } else if (hasProperty(props, 'contentState') && this.props.contentState !== props.contentState) {
+      if (props.contentState) {
+        const newEditorState = this.changeEditorState(props.contentState);
+        if (newEditorState) {
+          newState.editorState = newEditorState;
+        }
+      } else {
+        newState.editorState = EditorState.createEmpty(this.compositeDecorator);
+      }
     }
+    this.setState(newState);
   }
 
   onEditorBlur: Function = (): void => {
@@ -193,12 +199,15 @@ export default class WysiwygEditor extends Component {
 
   onContentChange: Function = (): void => {
     setTimeout(() => {
-      const { onContentStateChange } = this.props;
-      if (onContentStateChange) {
+      const { onContentStateChange, onChange } = this.props;
+      if (onContentStateChange || onChange) {
         let editorContent = convertToRaw(this.state.editorState.getCurrentContent());
         editorContent = this.enrichData(editorContent);
         if (onContentStateChange) {
           onContentStateChange(editorContent);
+        }
+        if (onChange) {
+          onChange(editorContent);
         }
       }
     });
@@ -253,6 +262,12 @@ export default class WysiwygEditor extends Component {
     }
     return editorState;
   }
+
+  changeEditorState = (contentState) => {
+    const newContentState = convertFromRaw(contentState);
+    const { editorState } = this.state;
+    return EditorState.push(editorState, newContentState, 'change-block-data');
+  };
 
   focusEditor: Function = (): void => {
     setTimeout(() => {

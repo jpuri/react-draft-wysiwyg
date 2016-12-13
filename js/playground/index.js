@@ -8,6 +8,7 @@ import {
   convertFromHTML,
   convertToRaw,
   ContentState,
+  EditorState,
 } from 'draft-js';
 import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -34,6 +35,7 @@ class Playground extends Component {
   state: any = {
     editorContent: undefined,
     contentState: undefined,
+    initEditorState: EditorState.createWithContent(contentState),
   };
 
   onEditorChange: Function = (editorContent) => {
@@ -45,6 +47,12 @@ class Playground extends Component {
   setContentState: Function = () => {
     this.setState({
       contentState: rawContentState,
+    });
+  };
+
+  onEditorStateChange: Function = (initEditorState) => {
+    this.setState({
+      initEditorState,
     });
   };
 
@@ -78,7 +86,7 @@ class Playground extends Component {
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
-              contentState={rawContentState}
+              editorState={initEditorState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
@@ -88,7 +96,8 @@ class Playground extends Component {
               spellCheck
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
-              onContentStateChange={() => {console.log('content changed')}}
+              onContentStateChange={(contentState) => {/*console.log('content changed', contentState)*/}}
+              onEditorStateChange={this.onEditorStateChange}
               mention={{
                 separator: ' ',
                 trigger: '@',
