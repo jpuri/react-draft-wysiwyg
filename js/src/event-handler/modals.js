@@ -4,8 +4,6 @@ export default class ModalHandler {
   suggestionCallback = undefined;
   editorFlag = false;
   suggestionFlag = false;
-  inputFocused = false;
-  editorMouseDown = false;
 
   closeAllModals = (event: Object) => {
     this.callBacks.forEach((callBack) => {
@@ -61,29 +59,5 @@ export default class ModalHandler {
 
   onSuggestionClick = ():void => {
     this.suggestionFlag = true;
-  }
-
-  setEditorFocused = ():void => {
-    this.editorFocused = true;
-  }
-
-  resetEditorFocused = ():void => {
-    this.editorFocused = false;
-  }
-
-  getEditorFocused = ():void => {
-    return this.editorFocused;
-  }
-
-  setInputFocused = ():void => {
-    this.inputFocused = true;
-  }
-
-  resetInputFocused = ():void => {
-    this.inputFocused = false;
-  }
-
-  getInputFocused = ():void => {
-    return this.inputFocused;
   }
 }
