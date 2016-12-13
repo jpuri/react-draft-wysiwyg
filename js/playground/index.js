@@ -25,7 +25,9 @@ const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
 
 const contentState = ContentState.createFromBlockArray(contentBlocks);
 
-const rawContentState = convertToRaw(contentState);
+// const rawContentState = convertToRaw(contentState);
+
+const rawContentState = {"entityMap":{"0":{"type":"MENTION","mutability":"IMMUTABLE","data":{"text":"@abc","value":"abc","url":"href-abc"}},"1":{"type":"MENTION","mutability":"IMMUTABLE","data":{"text":"@abcd","value":"abcd","url":"href-abcd"}}},"blocks":[{"key":"3c8kv","text":"@abc testing mentions saving opps @abcd ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":4,"key":0},{"offset":34,"length":5,"key":1}],"data":{}}]};
 
 class Playground extends Component {
 

@@ -41,3 +41,6 @@ Initial stable release
 
 ## 10/12/2016 (1.3.2)
 - #120: Toolbar modals closing prematurely.
+
+## 14/12/2016 (1.3.3)
+- #126: Rehydrating editor state with mention gives error.
