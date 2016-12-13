@@ -318,7 +318,6 @@ export default class WysiwygEditor extends Component {
         id={this.wrapperId}
         className={wrapperClassName}
         onClick={this.modalHandler.onEditorClick}
-        onFocus={this.onWrapperFocus}
         onBlur={this.onWrapperBlur}
         aria-label="rdw-wrapper"
         tabIndex={0}
