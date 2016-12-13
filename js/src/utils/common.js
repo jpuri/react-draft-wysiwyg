@@ -13,6 +13,19 @@ export function forEach(obj: Object, callback: Function) {
   }
 }
 
+export function hasProperty(obj: Object, property: string) {
+  let result = false;
+  if (obj) {
+    for (const key in obj) { // eslint-disable-line no-restricted-syntax
+      if ({}.hasOwnProperty.call(obj, key) && property === key) {
+        result = true;
+        break;
+      }
+    }
+  }
+  return result;
+}
+
 /**
 * The function returns true if the string passed to it has no content.
 */

@@ -76,7 +76,7 @@ class Playground extends Component {
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
-              contentState={contentState}
+              contentState={rawContentState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
@@ -86,6 +86,7 @@ class Playground extends Component {
               spellCheck
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
+              onContentStateChange={() => {console.log('content changed')}}
               mention={{
                 separator: ' ',
                 trigger: '@',
