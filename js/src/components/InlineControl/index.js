@@ -93,7 +93,7 @@ export default class InlineControl extends Component {
         className={classNames('rdw-inline-dropdown', config.className)}
         onChange={this.toggleInlineStyle}
         modalHandler={modalHandler}
-        ariaLabel="rdw-inline-control"
+        aria-label="rdw-inline-control"
       >
         <img
           src={getFirstIcon(config)}

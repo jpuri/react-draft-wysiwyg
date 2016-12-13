@@ -84,6 +84,8 @@ class Playground extends Component {
               uploadCallback={this.imageUploadCallBack}
               placeholder="testing"
               spellCheck
+              onFocus={() => {console.log('focus')}}
+              onBlur={() => {console.log('blur')}}
               mention={{
                 separator: ' ',
                 trigger: '@',

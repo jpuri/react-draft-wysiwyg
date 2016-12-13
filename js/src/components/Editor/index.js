@@ -9,16 +9,15 @@ import {
   convertFromRaw,
   RawDraftContentState,
   CompositeDecorator,
-  DefaultDraftBlockRenderMap,
 } from 'draft-js';
 import {
   changeDepth,
   handleNewLine,
   customStyleMap,
 } from 'draftjs-utils';
-import { Map } from 'immutable';
 import classNames from 'classnames';
 import ModalHandler from '../../event-handler/modals';
+import FocusHandler from '../../event-handler/focus';
 import KeyDownHandler from '../../event-handler/keyDown';
 import SuggestionHandler from '../../event-handler/suggestions';
 import blockStyleFn from '../../utils/BlockStyle';
@@ -47,7 +46,7 @@ export default class WysiwygEditor extends Component {
 
   static propTypes = {
     onChange: PropTypes.func,
-    // initialContentState is deprecated and will be removed in 2.0
+    // initialContentState is deprecated
     initialContentState: PropTypes.object,
     contentState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
@@ -57,6 +56,8 @@ export default class WysiwygEditor extends Component {
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     uploadCallback: PropTypes.func,
+    onFocus: PropTypes.func,
+    onBlur: PropTypes.func,
     mention: PropTypes.object,
     textAlignment: PropTypes.string,
     readOnly: PropTypes.bool,
@@ -89,6 +90,7 @@ export default class WysiwygEditor extends Component {
     const decorators = [LinkDecorator];
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
+    this.focusHandler = new FocusHandler();
     if (this.props.mention) {
       MentionDecorator.setConfig({
         ...this.props.mention,
@@ -140,11 +142,19 @@ export default class WysiwygEditor extends Component {
     });
   };
 
-  onEditorFocus: Function = (): void => {
+  onEditorFocus: Function = (event): void => {
+    const { onFocus } = this.props;
     this.setState({
       editorFocused: true,
     });
+    if (onFocus && this.focusHandler.isEditorFocused()) {
+      onFocus(event);
+    }
   };
+
+  onEditorMouseDown: Function = (): void => {
+    this.focusHandler.onEditorMouseDown();
+  }
 
   onTab: Function = (event): boolean => {
     const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
@@ -157,6 +167,20 @@ export default class WysiwygEditor extends Component {
   onUpDownArrow: Function = (event): boolean => {
     if (SuggestionHandler.isOpen()) {
       event.preventDefault();
+    }
+  };
+
+  onToolbarFocus: Function = (event): void => {
+    const { onFocus } = this.props;
+    if (onFocus && this.focusHandler.isToolbarFocused()) {
+      onFocus(event);
+    }
+  };
+
+  onWrapperBlur: Function = (event: Object) => {
+    const { onBlur } = this.props;
+    if (onBlur && this.focusHandler.isEditorBlur(event)) {
+      onBlur(event);
     }
   };
 
@@ -240,7 +264,9 @@ export default class WysiwygEditor extends Component {
   };
 
   preventDefault: Function = (event: Object) => {
-    if (event.target.tagName !== 'INPUT') {
+    if (event.target.tagName === 'INPUT') {
+      this.focusHandler.onInputMouseDown();
+    } else {
       event.preventDefault();
     }
   };
@@ -292,7 +318,9 @@ export default class WysiwygEditor extends Component {
         id={this.wrapperId}
         className={wrapperClassName}
         onClick={this.modalHandler.onEditorClick}
+        onBlur={this.onWrapperBlur}
         aria-label="rdw-wrapper"
+        tabIndex={0}
       >
         {
           (editorFocused || !toolbarOnFocus) ?
@@ -301,6 +329,7 @@ export default class WysiwygEditor extends Component {
               onMouseDown={this.preventDefault}
               aria-label="rdw-toolbar"
               aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+              onFocus={this.onToolbarFocus}
             >
               {options.indexOf('inline') >= 0 && <InlineControl
                 modalHandler={this.modalHandler}
@@ -391,6 +420,7 @@ export default class WysiwygEditor extends Component {
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
           onKeyDown={KeyDownHandler.onKeyDown}
+          onMouseDown={this.onEditorMouseDown}
         >
           <Editor
             ref={this.setEditorReference}

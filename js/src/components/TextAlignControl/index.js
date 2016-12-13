@@ -101,7 +101,7 @@ export default class TextAlignControl extends Component {
         className={classNames('rdw-text-align-dropdown', className)}
         onChange={this.addBlockAlignmentData}
         modalHandler={modalHandler}
-        ariaLabel="rdw-textalign-control"
+        aria-label="rdw-textalign-control"
       >
         <img
           src={getFirstIcon(config)}
