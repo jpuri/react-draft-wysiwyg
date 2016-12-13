@@ -12,6 +12,7 @@ export default class Dropdown extends Component {
     className: PropTypes.string,
     modalHandler: PropTypes.object,
     optionWrapperClassName: PropTypes.string,
+    ariaLabel: PropTypes.string,
   };
 
   state: Object = {
@@ -99,7 +100,7 @@ export default class Dropdown extends Component {
   };
 
   render() {
-    const { children, className, optionWrapperClassName } = this.props;
+    const { children, className, optionWrapperClassName, ariaLabel } = this.props;
     const { expanded, highlighted } = this.state;
     const options = children.slice(1, children.length);
     return (
@@ -107,6 +108,8 @@ export default class Dropdown extends Component {
         tabIndex="0"
         onKeyDown={this.onKeyDown}
         className={classNames('rdw-dropdown-wrapper', className)}
+        aria-expanded={expanded}
+        aria-label={ariaLabel || 'rdw-dropdown'}
       >
         <a
           className="rdw-dropdown-selectedtext"

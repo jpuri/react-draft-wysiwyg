@@ -360,6 +360,15 @@ export default class Demo2 extends Component {
             Raw editor content can be converted to HTML or markdown simply by calling methods draftToHtml, draftToMarkdown respectively.
           </div>
         </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            WAI-ARIA Support
+          </div>
+          <div className="docs-desc">
+            All ARIA props supported by DraftJS editor are available in react-draft-wysiwyg <a target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/api-reference-editor.html#aria-props">Ref</a>.
+            In addition editor and all option in toolbar have other ARIA attributes also added with pre-configured values.
+          </div>
+        </div>
         <div className="docs-text">
           For code examples you can check <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/docs/src/components/Demo/index.js">here</a>.
         </div>

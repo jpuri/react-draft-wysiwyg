@@ -43,7 +43,7 @@ export default class TextAlignControl extends Component {
     const { currentTextAlignment } = this.state;
     const { options, left, center, right, justify, className } = config;
     return (
-      <div className={classNames('rdw-text-align-wrapper', className)}>
+      <div className={classNames('rdw-text-align-wrapper', className)} aria-label="rdw-textalign-control">
         {options.indexOf('left') >= 0 && <Option
           value="left"
           className={classNames(left.className)}
@@ -101,6 +101,7 @@ export default class TextAlignControl extends Component {
         className={classNames('rdw-text-align-dropdown', className)}
         onChange={this.addBlockAlignmentData}
         modalHandler={modalHandler}
+        aria-label="rdw-textalign-control"
       >
         <img
           src={getFirstIcon(config)}

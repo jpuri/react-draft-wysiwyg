@@ -66,6 +66,7 @@ export default class HistoryControl extends Component {
         className={classNames('rdw-history-dropdown', className)}
         onChange={this.toggleInlineStyle}
         modalHandler={modalHandler}
+        aria-label="rdw-history-control"
       >
         <img
           src={getFirstIcon(config)}
@@ -98,7 +99,7 @@ export default class HistoryControl extends Component {
   renderInFlatList(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
     const { options, undo, redo, className } = config;
     return (
-      <div className={classNames('rdw-history-wrapper', className)}>
+      <div className={classNames('rdw-history-wrapper', className)} aria-label="rdw-history-control">
         {options.indexOf('undo') >= 0 && <Option
           value="unordered-list-item"
           onClick={this.undo}

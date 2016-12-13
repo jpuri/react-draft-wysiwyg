@@ -69,7 +69,7 @@ export default class BlockControl extends Component {
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
     const { config: { className, dropdownClassName }, modalHandler } = this.props;
     return (
-      <div className="rdw-block-wrapper">
+      <div className="rdw-block-wrapper" aria-label="rdw-block-control">
         <Dropdown
           className={classNames('rdw-block-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}

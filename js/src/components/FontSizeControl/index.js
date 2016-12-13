@@ -62,7 +62,7 @@ export default class FontSizeControl extends Component {
     currentFontSize = currentFontSize
       && Number(currentFontSize.substring(9, currentFontSize.length));
     return (
-      <div className="rdw-fontsize-wrapper">
+      <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         <Dropdown
           className={classNames('rdw-fontsize-dropdown', className)}
           onChange={this.toggleFontSize}
