@@ -23,7 +23,7 @@ function configDefined() {
 }
 
 function findSuggestionEntities(contentBlock, callback) {
-  if (configDefined()) {
+  if (configDefined() && config.getEditorState()) {
     const selection = config.getEditorState().getSelection();
 
     if (selection.get('anchorKey') === contentBlock.get('key') &&
