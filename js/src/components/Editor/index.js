@@ -34,6 +34,7 @@ import EmbeddedControl from '../EmbeddedControl';
 import EmojiControl from '../EmojiControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
+import CounterControl from '../Counter';
 import LinkDecorator from '../../decorators/Link';
 import MentionDecorator from '../../decorators/Mention';
 import BlockRendererFunc from '../../renderer';
@@ -69,6 +70,7 @@ export default class WysiwygEditor extends Component {
       editorFocused: false,
       toolbar: mergeRecursive(defaultToolbar, props.toolbar),
     };
+    console.log(this.state.toolbar);
   }
 
   componentWillMount(): void {
@@ -360,7 +362,7 @@ export default class WysiwygEditor extends Component {
                 onChange={this.onChange}
                 config={history}
               />}
-              {options.indexOf('counter') >= 0 && <HistoryControl
+              {options.indexOf('counter') >= 0 && <CounterControl
                 modalHandler={this.modalHandler}
                 editorState={editorState}
                 onChange={this.onChange}

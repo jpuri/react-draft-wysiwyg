@@ -20,6 +20,7 @@ export default class CounterControl extends Component {
   
   render(): Object {
     const { config: { icon, className } } = this.props;
+    console.log('hola mundo');
     return (
       <div className="rdw-remove-wrapper">
         <Option
