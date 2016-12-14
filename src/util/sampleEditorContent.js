@@ -1,7 +1,7 @@
 import {
   convertFromHTML,
   ContentState,
-  convertToRaw,
+  EditorState,
 } from 'draft-js';
 
 const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
@@ -17,6 +17,6 @@ const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
 
 const contentState = ContentState.createFromBlockArray(contentBlocks);
 
-const initialContentState = convertToRaw(contentState);
+// const initialContentState = convertToRaw(contentState);
 
-export default initialContentState;
+export default EditorState.createWithContent(contentState);

@@ -7,17 +7,6 @@ import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Home extends Component {
 
-  state: any = {
-    status: false,
-  };
-
-  changeState: any = () => {
-    const status = !this.state.status;
-    this.setState({
-      status,
-    });
-  };
-
   render() {
     return (
       <div className="root">
@@ -25,7 +14,6 @@ export default class Home extends Component {
           toolbarClassName="home-toolbar"
           wrapperClassName="home-wrapper"
           editorClassName="home-editor"
-          onChange={this.onEditorChange}
           uploadCallback={uploadImageCallBack}
           placeholder="Begin typing..."
         />

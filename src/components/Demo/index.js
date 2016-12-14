@@ -2,6 +2,7 @@
 
 import React, { Component } from 'react';
 import draftToHtml from 'draftjs-to-html';
+import { convertToRaw } from 'draft-js';
 import draftToMarkdown from 'draftjs-to-markdown';
 import { Editor } from 'react-draft-wysiwyg';
 import uploadImageCallBack from '../../util/uploadImageCallBack';
@@ -34,7 +35,7 @@ export default class Demo extends Component {
     editorContents: [],
   };
 
-  onEditorChange: Function = (index, editorContent) => {
+  onEditorStateChange: Function = (index, editorContent) => {
     let editorContents = this.state.editorContents;
     editorContents[index] = editorContent;
     editorContents = [...editorContents];
@@ -52,16 +53,17 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            editorState={editorContents[0]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange.bind(this, 0)}
+            onEditorStateChange={this.onEditorStateChange.bind(this, 0)}
             uploadCallback={uploadImageCallBack}
           />
           <textarea
             disabled
             className="demo-content no-focus"
-            value={draftToHtml(editorContents[0])}
+            value={editorContents[0] && draftToHtml(convertToRaw(editorContents[0].getCurrentContent()))}
           />
         </div>
         <div className="demo-label">
@@ -69,16 +71,17 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            editorState={editorContents[1]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange.bind(this, 1)}
+            onEditorStateChange={this.onEditorStateChange.bind(this, 1)}
             uploadCallback={uploadImageCallBack}
           />
           <textarea
             disabled
             className="demo-content no-focus"
-            value={JSON.stringify(editorContents[1], null, 4)}
+            value={editorContents[1] && JSON.stringify(convertToRaw(editorContents[1].getCurrentContent()), null, 4)}
           />
         </div>
         <div className="demo-label">
@@ -86,16 +89,17 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            editorState={editorContents[2]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
-            onChange={this.onEditorChange.bind(this, 2)}
+            onEditorStateChange={this.onEditorStateChange.bind(this, 2)}
             uploadCallback={uploadImageCallBack}
           />
           <textarea
             disabled
             className="demo-content no-focus"
-            value={draftToMarkdown(editorContents[2])}
+            value={editorContents[2] && draftToMarkdown(convertToRaw(editorContents[2].getCurrentContent()))}
           />
         </div>
         <div className="demo-label">
@@ -140,7 +144,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar-absolute"
             wrapperClassName="demo-wrapper-relative"
             editorClassName="demo-editor-plain"
-            initialContentState={sampleEditorContent}
+            defaultEditorState={sampleEditorContent}
             toolbarOnFocus
             toolbar={{
               options: ['inline', 'blockType', 'fontSize', 'fontFamily'],
@@ -172,7 +176,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar-absolute-high"
             wrapperClassName="demo-wrapper-relative-long"
             editorClassName="demo-editor-embedded"
-            initialContentState={{ "entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"link":"https://www.youtube.com/embed/VbXNmIvWa1c","height":"auto","width":"100%"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links, this work so awesome with DraftJS:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"This is cool. Check by typing more here ...","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}] }}
+            contentState={{ "entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"link":"https://www.youtube.com/embed/VbXNmIvWa1c","height":"auto","width":"100%"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links, this work so awesome with DraftJS:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"This is cool. Check by typing more here ...","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}] }}
             toolbarOnFocus
             toolbar={{
               inline: { inDropdown: true },
