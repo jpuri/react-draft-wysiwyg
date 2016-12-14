@@ -267,6 +267,7 @@ export default class WysiwygEditor extends Component {
       image,
       remove,
       history,
+      counter,
     } = toolbar;
 
     return (
@@ -358,6 +359,12 @@ export default class WysiwygEditor extends Component {
                 editorState={editorState}
                 onChange={this.onChange}
                 config={history}
+              />}
+              {options.indexOf('counter') >= 0 && <HistoryControl
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={counter}
               />}
             </div>
           :

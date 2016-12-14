@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "draft-js-counter-plugin": "2.0.0-beta9",
     "draftjs-utils": "0.3.2",
     "immutable": "^3.8.1"
   },
