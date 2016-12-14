@@ -76,7 +76,7 @@ class Playground extends Component {
     );
 
   render() {
-    const { editorContent, contentState } = this.state;
+    const { editorContent, contentState, initEditorState } = this.state;
     return (
       <div className="playground-root">
         <div className="playground-label">
@@ -86,18 +86,15 @@ class Playground extends Component {
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
-              editorState={initEditorState}
+              defaultContentState={rawContentState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
-              onChange={this.onEditorChange}
               uploadCallback={this.imageUploadCallBack}
               placeholder="testing"
               spellCheck
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
-              onContentStateChange={(contentState) => {/*console.log('content changed', contentState)*/}}
-              onEditorStateChange={this.onEditorStateChange}
               mention={{
                 separator: ' ',
                 trigger: '@',

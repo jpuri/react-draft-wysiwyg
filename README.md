@@ -26,6 +26,7 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 - Configurable behavior for RTL and Spellcheck.
 - Support for placeholder.
 - Support for WAI-ARIA Support attributes.
+- Using editor as controlled or un-controlled React component.
 - Support to convert Editor Content to HTML, JSON, Markdown.
 
 ## Installing

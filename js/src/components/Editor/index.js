@@ -95,7 +95,7 @@ export default class WysiwygEditor extends Component {
 
   componentWillMount(): void {
     this.compositeDecorator = this.getCompositeDecorator();
-    const editorState = this.createEditorState(compositeDecorator);
+    const editorState = this.createEditorState(this.compositeDecorator);
     this.setState({
       editorState,
     });
@@ -253,9 +253,16 @@ export default class WysiwygEditor extends Component {
           { decorator: compositeDecorator }
         );
       }
-    } else if (this.props.contentState) {
-      const contentState = convertFromRaw(this.props.contentState);
-      editorState = EditorState.createWithContent(contentState, compositeDecorator);
+    } else if (hasProperty(this.props, 'contentState')) {
+      if (this.props.contentState) {
+        const contentState = convertFromRaw(this.props.contentState);
+        editorState = EditorState.createWithContent(contentState, compositeDecorator);
+      }
+    } else if (hasProperty(this.props, 'defaultContentState')) {
+      if (this.props.defaultContentState) {
+        const contentState = convertFromRaw(this.props.defaultContentState);
+        editorState = EditorState.createWithContent(contentState, compositeDecorator);
+      }
     }
     if (!editorState) {
       editorState = EditorState.createEmpty(compositeDecorator);

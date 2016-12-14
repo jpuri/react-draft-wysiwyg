@@ -30,7 +30,7 @@ const Mention = ({ children, entityKey }) => {
 };
 
 Mention.propTypes = {
-  entityKey: PropTypes.array,
+  entityKey: PropTypes.string,
   children: PropTypes.array,
 };
 

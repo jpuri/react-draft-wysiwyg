@@ -66,6 +66,7 @@ export default class Home extends Component {
           <li className="home-listItem">Configurable behavior for RTL and Spellcheck.</li>
           <li className="home-listItem">Support for placeholder.</li>
           <li className="home-listItem">Support for WAI-ARIA Support attributes</li>
+          <li className="home-listItem">Using editor as controlled or un-controlled React component.</li>
           <li className="home-listItem">Support to convert Editor Content to HTML, JSON, Markdown.</li>
         </ul>
       </div>

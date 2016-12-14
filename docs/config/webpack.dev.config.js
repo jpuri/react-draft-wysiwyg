@@ -18,7 +18,11 @@ module.exports = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$|draftjs-utils\.js$|draftjs-to-html\.js$|lodash\.js$/ },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        exclude: /react-draft-wysiwyg\.js$|immutable\.js$|draftjs-utils\.js$|draftjs-to-markdown\.js$|draftjs-to-html\.js$|lodash\.js$/
+      },
       {
         test: /\.css$/,
         exclude: /Draft\.css$/,
