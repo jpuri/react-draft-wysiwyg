@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Option from '../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class ColorPicker extends Component {
+export default class RemoveControl extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
