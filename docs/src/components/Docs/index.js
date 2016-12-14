@@ -217,7 +217,7 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            Control show/hide of toolbar
+            Control show / hide of toolbar
           </div>
           <div className="docs-desc">
             By default toolbar is always visible.

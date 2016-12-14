@@ -59,4 +59,5 @@
 .header-logo {
   width: 70px;
   margin-left: 50px;
+  cursor: pointer;
 }
