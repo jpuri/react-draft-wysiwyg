@@ -145,10 +145,6 @@ export default class Demo2 extends Component {
               {'<Editor defaultEditorState={defaultEditorState} />'}
             </code>
           </div>
-
-
-
-
           <div className="docs-sub-label">
             Using <a
               target="_blank"
@@ -210,6 +206,9 @@ export default class Demo2 extends Component {
             <code>
               {'<Editor defaultContentState={defaultContentState} />'}
             </code>
+          </div>
+          <div className="docs-desc top-margined">
+            *** Using onContentStateChange has performance over-head due to EditorState conversion to RawDraftContentState on each change.
           </div>
           <div className="docs-desc top-margined">
             PLEASE NOTE: properties initialContentState, onChange have been deprecated and they will be removed in Release 2.0.

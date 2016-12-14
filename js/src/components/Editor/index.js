@@ -7,7 +7,6 @@ import {
   RichUtils,
   convertToRaw,
   convertFromRaw,
-  RawDraftContentState,
   CompositeDecorator,
 } from 'draft-js';
 import {
@@ -51,6 +50,7 @@ export default class WysiwygEditor extends Component {
     onContentStateChange: PropTypes.func,
     // initialContentState is deprecated
     initialContentState: PropTypes.object,
+    defaultContentState: PropTypes.object,
     contentState: PropTypes.object,
     editorState: PropTypes.object,
     defaultEditorState: PropTypes.object,
@@ -115,9 +115,11 @@ export default class WysiwygEditor extends Component {
       MentionDecorator.setConfig(props.mention);
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
-      let editorState;
       if (props.editorState) {
-        newState.editorState = EditorState.set(props.editorState, { decorator: this.compositeDecorator });
+        newState.editorState = EditorState.set(
+          props.editorState,
+          { decorator: this.compositeDecorator }
+        );
       } else {
         newState.editorState = EditorState.createEmpty(this.compositeDecorator);
       }
@@ -201,8 +203,7 @@ export default class WysiwygEditor extends Component {
     setTimeout(() => {
       const { onContentStateChange, onChange } = this.props;
       if (onContentStateChange || onChange) {
-        let editorContent = convertToRaw(this.state.editorState.getCurrentContent());
-        editorContent = this.enrichData(editorContent);
+        const editorContent = convertToRaw(this.state.editorState.getCurrentContent());
         if (onContentStateChange) {
           onContentStateChange(editorContent);
         }
@@ -258,9 +259,11 @@ export default class WysiwygEditor extends Component {
         const contentState = convertFromRaw(this.props.contentState);
         editorState = EditorState.createWithContent(contentState, compositeDecorator);
       }
-    } else if (hasProperty(this.props, 'defaultContentState')) {
-      if (this.props.defaultContentState) {
-        const contentState = convertFromRaw(this.props.defaultContentState);
+    } else if (hasProperty(this.props, 'defaultContentState')
+      || hasProperty(this.props, 'initialContentState')) {
+      let contentState = this.props.defaultContentState || this.props.initialContentState;
+      if (contentState) {
+        contentState = convertFromRaw(contentState);
         editorState = EditorState.createWithContent(contentState, compositeDecorator);
       }
     }
@@ -280,18 +283,6 @@ export default class WysiwygEditor extends Component {
     setTimeout(() => {
       this.editor.focus();
     });
-  };
-
-  enrichData: Function = (editorContent: RawDraftContentState): RawDraftContentState => {
-    const newEditorContent = editorContent;
-    if (this.props.textAlignment) {
-      editorContent.blocks.forEach((block) => {
-        if (!block.data['text-align']) {
-          block.data['text-align'] = this.props.textAlignment; // eslint-disable-line no-param-reassign
-        }
-      });
-    }
-    return newEditorContent;
   };
 
   handleKeyCommand: Function = (command: Object): boolean => {

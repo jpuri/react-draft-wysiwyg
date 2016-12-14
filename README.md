@@ -38,10 +38,11 @@ Editor can be used as simple React Component:
 import { Editor } from \'react-draft-wysiwyg\';
 import 'react-draft-wysiwyg.css';
 <Editor
+  editorState={editorState}
   toolbarClassName="home-toolbar"
   wrapperClassName="home-wrapper"
   editorClassName="home-editor"
-  onChange={this.onEditorChange}
+  onEditorStateChange={this.onEditorStateChange}
   uploadCallback={uploadImageCallBack}
 />
 ```
