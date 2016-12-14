@@ -8,6 +8,12 @@
   font-weight: 500;
   margin: 20px 0;
 }
+.docs-sub-label {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px 0;
+}
 .docs-section {
   margin: 20px 0 40px;
 }
@@ -27,4 +33,7 @@ code {
   width: 75%;
   font-size: 17px;
   margin: 15px 0;
+}
+.top-margined {
+  margin-top: 10px;
 }

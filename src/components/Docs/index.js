@@ -30,7 +30,7 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            Using editor component.
+            Using editor component
           </div>
           <div className="docs-desc">Editor can be simply imported and used as a React Component. Make sure to also include react-draft-wysiwyg.css from npm distributable.</div>
           <div>
@@ -43,7 +43,7 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            Styling Editor on page.
+            Styling Editor
           </div>
           <div className="docs-desc">
             The editor by default will have uses DraftJS editor as it is without
@@ -77,12 +77,127 @@ export default class Demo2 extends Component {
               {'}'}
             </code>
           </div>
+          <div className="docs-desc top-margined">
+            Toolbar can be styles using toolbar property, detailed below. <br />
+            For more detailed styling, css classes in react-draft-wysiwyg.css can be overriden.
+          </div>
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            Initializing / resetting editor content
+            Controlled / Un-Controlled editor component
           </div>
-          <div className="docs-desc">Editor content can be initialized / reset using property contentState its is instance of&nbsp;
+          <div className="docs-sub-label">
+            Using <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content"
+            >
+              EditorState
+            </a>
+          </div>
+          <div className="docs-desc">
+            To use editor as controlled component properties editorState and onEditorStateChange can be used.
+            editorState is instance of&nbsp;
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content"
+            >
+              EditorState
+            </a>
+            , onEditorStateChange is callback that receives as argument an instance of&nbsp;
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content"
+            >
+              EditorState
+            </a>.
+          </div>
+          <div>
+            <code>
+              {'onEditorStateChange = (editorState) => {'}<br />
+              &nbsp;&nbsp;{'this.setState({'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'editorState,'}<br />
+              &nbsp;&nbsp;{'});'}<br />
+              {'}'}<br />
+              {'render() {'}<br />
+              &nbsp;&nbsp;{'const { editorState } = this.state;'}<br />
+              &nbsp;&nbsp;{'return (<Editor'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'editorState={editorState}'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'onEditorStateChange={this.onEditorStateChange}'}<br />
+              &nbsp;&nbsp;{'/>)'}<br />
+              {'}'}<br />
+            </code>
+          </div>
+          <div className="docs-desc top-margined">
+            To use editor as un-controlled component property defaultEditorState can be used. defaultEditorState is also an instance of&nbsp;
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content"
+            >
+              EditorState
+            </a>
+          </div>
+          <div>
+            <code>
+              {'<Editor defaultEditorState={defaultEditorState} />'}
+            </code>
+          </div>
+
+
+
+
+          <div className="docs-sub-label">
+            Using <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://facebook.github.io/draft-js/docs/api-reference-data-conversion.html#content"
+            >
+              RawDraftContentState.
+            </a>
+          </div>
+          <div className="docs-desc">
+            Properties contentState can be used to initialize / reset editor content. ContentState is instance of&nbsp;
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://facebook.github.io/draft-js/docs/api-reference-data-conversion.html#content"
+            >
+              RawDraftContentState
+            </a>.
+            onContentStateChange is callback that receives as argument an instance of&nbsp;
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://facebook.github.io/draft-js/docs/api-reference-data-conversion.html#content"
+            >
+              RawDraftContentState
+            </a>
+            &nbsp;whenever there is change in editor state.<br />
+            Any change in content state will change editor content,
+            but currently editor does not behaves as controlled component when using contentState, this is to support old users.
+            The plan is to fix this behavior in Release 2.0.
+          </div>
+          <div>
+            <code>
+              {'onContentStateChange = (contentState) => {'}<br />
+              &nbsp;&nbsp;{'this.setState({'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'contentState,'}<br />
+              &nbsp;&nbsp;{'});'}<br />
+              {'}'}<br />
+              {'render() {'}<br />
+              &nbsp;&nbsp;{'const { contentState } = this.state;'}<br />
+              &nbsp;&nbsp;{'return (<Editor'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'contentState={contentState}'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'onContentStateChange={this.onContentStateChange}'}<br />
+              &nbsp;&nbsp;{'/>)'}<br />
+              {'}'}<br />
+            </code>
+          </div>
+          <div className="docs-desc top-margined">
+            To use editor as un-controlled component property defaultContentState can be used. defaultContentState is also an instance of&nbsp;
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -90,39 +205,15 @@ export default class Demo2 extends Component {
             >
               RawDraftContentState.
             </a>
-              &nbsp; Previously property initialContentState was used for this purpose, the editor continues to support it for some time.
-              A change in property contentState will change editor content. <br />
-              Editor is uncontrolled component. Using this property along with onChange callback can turn editor into something like controlled component, but that is not recommended due to performance impacts it will have.
           </div>
           <div>
             <code>
-              {'<Editor contentState={contentState} />'}
+              {'<Editor defaultContentState={defaultContentState} />'}
             </code>
           </div>
-        </div>
-        <div className="docs-section">
-          <div className="docs-label">
-            Saving editor state
-          </div>
-          <div className="docs-desc">Callback property onChange can be used to save editor state. Its returns an instance of&nbsp;
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://facebook.github.io/draft-js/docs/api-reference-data-conversion.html#content"
-            >
-              RawDraftContentState.
-            </a>
-            &nbsp;
-            If provided this callback is called each time after editor state changes.
-          </div>
-          <div>
-            <code>
-              {'onEditorChange: Function = (editorContent) => {'} <br />
-              &nbsp;... <br />
-              {'};'} <br />
-              <br />
-              {'<Editor onChange={this.onEditorChange} />'}
-            </code>
+          <div className="docs-desc top-margined">
+            PLEASE NOTE: properties initialContentState, onChange have been deprecated and they will be removed in Release 2.0.
+            Also in release 2.0 behavior of editor will change with property contentState and it will turn into controlled component.
           </div>
         </div>
         <div className="docs-section">
@@ -348,6 +439,19 @@ export default class Demo2 extends Component {
           <div>
             <code>
               {'<Editor placeholder="Enter text..." />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            DOM Event Callbacks
+          </div>
+          <div className="docs-desc">
+            Editor provides onFocus and onBlur callbacks.
+          </div>
+          <div>
+            <code>
+              {'<Editor onFocus={myFocusCallback}  onBlur={myBlurCallback} />'}
             </code>
           </div>
         </div>
