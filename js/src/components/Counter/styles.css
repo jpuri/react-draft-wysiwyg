@@ -5,3 +5,29 @@
     position: relative;
 }
 
+.rdw-editor-counter .char-counter {
+    display: block
+
+}
+
+.char-counter::before {
+    content: "chars: ";
+}
+
+.rdw-editor-counter .word-counter {
+    display: block
+
+}
+
+.word-counter::before {
+    content: "words: ";
+}
+
+.rdw-editor-counter .line-counter {
+    display: block
+
+}
+
+.line-counter::before {
+    content: "lines: ";
+}

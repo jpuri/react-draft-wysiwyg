@@ -61,6 +61,7 @@ export default class WysiwygEditor extends Component {
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
+    counterClassName: PropTypes.string,
     uploadCallback: PropTypes.func,
     mention: PropTypes.object,
     textAlignment: PropTypes.string,
@@ -266,6 +267,7 @@ export default class WysiwygEditor extends Component {
       toolbarClassName,
       editorClassName,
       wrapperClassName,
+      counterClassName,
       uploadCallback,
       textAlignment,
       spellCheck,
@@ -494,7 +496,7 @@ export default class WysiwygEditor extends Component {
         {
           (this.state.counter.enable) ?
             <div
-              className={classNames('rdw-editor-counter', toolbarClassName)}
+              className={classNames('rdw-editor-counter', counterClassName)}
             >
               { counterComponents }
             </div>

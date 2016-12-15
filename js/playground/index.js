@@ -80,6 +80,7 @@ class Playground extends Component {
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
+              counterClassName="playground-counter"
               onChange={this.onEditorChange}
               uploadCallback={this.imageUploadCallBack}
               placeholder="testing"
