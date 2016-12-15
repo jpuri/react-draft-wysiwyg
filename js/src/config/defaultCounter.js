@@ -1,19 +1,26 @@
+const customCounter = (EditorState) => 0;
+
 export default {
   enable: false,
   counter: {
+    char: {
+      enable: true,
+      className: 'char-counter',
+      limit: 0,
+    },
     word: {
       enable: true,
-      className: '',
+      className: 'word-counter',
       limit: 0,
     },
     custom: {
       enable: true,
-      className: '',
+      className: 'custom-counter',
       limit: 0,
     },
     line: {
       enable: true,
-      className: '',
+      className: 'line-counter',
       limit: 0,
     }
   },
@@ -24,3 +31,5 @@ export default {
     'custom',
   ],
 }
+
+export { customCounter }

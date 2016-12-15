@@ -84,6 +84,7 @@ class Playground extends Component {
               uploadCallback={this.imageUploadCallBack}
               placeholder="testing"
               spellCheck
+              customCounter={(contentState) => 0}
               mention={{
                 separator: ' ',
                 trigger: '@',

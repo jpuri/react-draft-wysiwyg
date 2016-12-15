@@ -39,7 +39,7 @@ import LinkDecorator from '../../decorators/Link';
 import MentionDecorator from '../../decorators/Mention';
 import BlockRendererFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
-import defaultCounter from '../../config/defaultCounter';
+import defaultCounter, { customCounter } from '../../config/defaultCounter';
 
 import createCounterPlugin from 'draft-js-counter-plugin';
 
@@ -68,6 +68,7 @@ export default class WysiwygEditor extends Component {
     tabIndex: PropTypes.number,
     placeholder: PropTypes.string,
     counter: PropTypes.bool,
+    
   };
   
   static defaultProps = {
@@ -271,8 +272,9 @@ export default class WysiwygEditor extends Component {
       readOnly,
       tabIndex,
       placeholder,
-      counter
+      customCounter
     } = this.props;
+    const propsCounter = this.props.counter;
     const {
       options,
       inline,
@@ -291,11 +293,12 @@ export default class WysiwygEditor extends Component {
       counter,
     } = toolbar;
     
-    let CharCounter;
-    let CustomCounter;
-    let LineCounter;
-    let WordCounter;
-    if (this.state.counter) {
+    let counterComponents = [];
+    if (this.state.counter.enable) {
+      let CharCounter;
+      let CustomCounter;
+      let LineCounter;
+      let WordCounter;
       this.editor.setEditorState = (editorState) => {
         this.editor.onChange(editorState);
       };
@@ -310,8 +313,58 @@ export default class WysiwygEditor extends Component {
       CustomCounter = counterPlugin.CustomCounter;
       LineCounter = counterPlugin.LineCounter;
       WordCounter = counterPlugin.WordCounter;
+      
+      this.state.counter.order.forEach((v) => {
+        let r;
+        switch (v) {
+          case 'char':
+            r = (
+              <CharCounter
+                className={this.state.counter.counter.char.className}
+                editorState={editorState}
+                limit={this.state.counter.counter.char.limit}
+              />
+            );
+            break;
+          case 'word':
+            r = (
+              <WordCounter
+                className={this.state.counter.counter.word.className}
+                editorState={editorState}
+                limit={this.state.counter.counter.word.limit}
+              />
+            );
+            break;
+          case 'line':
+            r = (
+              <LineCounter
+                className={this.state.counter.counter.line.className}
+                editorState={editorState}
+                limit={this.state.counter.counter.line.limit}
+              />
+            );
+            break;
+          case 'custom':
+            r = (
+              (customCounter) ?
+                <CustomCounter
+                  className={this.state.counter.counter.custom.className}
+                  editorState={editorState}
+                  countFunction={customCounter}
+                  limit={this.state.counter.counter.custom.limit}
+                />
+                :
+                undefined
+            );
+            break;
+          default:
+            break;
+        }
+        if (r) {
+          counterComponents.push(r);
+        }
+      })
     }
-    console.log(CharCounter, CustomCounter, LineCounter, WordCounter);
 
     return (
       <div
@@ -404,7 +457,7 @@ export default class WysiwygEditor extends Component {
                 config={history}
               />}
               {options.indexOf('counter') >= 0 && <CounterControl
-                counter={this.state.counter}
+                counter={this.state.counter.enable}
                 editorState={editorState}
                 onChange={this.onCounterChange}
                 config={counter}
@@ -439,32 +492,11 @@ export default class WysiwygEditor extends Component {
           />
         </div>
         {
-          (this.state.counter) ?
+          (this.state.counter.enable) ?
             <div
               className={classNames('rdw-editor-counter', toolbarClassName)}
             >
-              <CharCounter
-                className="char-counter"
-                editorState={editorState}
-              />
-              {
-                (customCounter) ?
-                  <CustomCounter
-                    className="custom-counter"
-                    editorState={editorState}
-                    customCounter={customCounter}
-                  />
-                  :
-                  undefined
-              }
-              <LineCounter
-                className="line-counter"
-                editorState={editorState}
-              />
-              <WordCounter
-                className="word-counter"
-                editorState={editorState}
-              />
+              { counterComponents }
             </div>
             :
             undefined
