@@ -39,8 +39,14 @@ import LinkDecorator from '../../decorators/Link';
 import MentionDecorator from '../../decorators/Mention';
 import BlockRendererFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
+import defaultCounter from '../../config/defaultCounter';
+
+import createCounterPlugin from 'draft-js-counter-plugin';
+
 import './styles.css';
 import '../../../../css/Draft.css';
+
+const counterPlugin = createCounterPlugin();
 
 export default class WysiwygEditor extends Component {
 
@@ -61,6 +67,11 @@ export default class WysiwygEditor extends Component {
     readOnly: PropTypes.bool,
     tabIndex: PropTypes.number,
     placeholder: PropTypes.string,
+    counter: PropTypes.bool,
+  };
+  
+  static defaultProps = {
+    counter: false,
   };
 
   constructor(props) {
@@ -69,6 +80,7 @@ export default class WysiwygEditor extends Component {
       editorState: undefined,
       editorFocused: false,
       toolbar: mergeRecursive(defaultToolbar, props.toolbar),
+      counter: mergeRecursive(defaultCounter, props.counter)
     };
     console.log(this.state.toolbar);
   }
@@ -161,6 +173,12 @@ export default class WysiwygEditor extends Component {
       this.afterChange());
     }
   };
+  
+  onCounterChange: Function = (counter: boolean): void => {
+    const counterState = this.state.counter;
+    counterState.enable = counter;
+    this.setState({ counter: counterState });
+  };
 
   focusEditor: Function = (): void => {
     setTimeout(() => {
@@ -188,7 +206,7 @@ export default class WysiwygEditor extends Component {
       });
     }
     return newEditorContent;
-  }
+  };
 
   customBlockRenderMap: Map = DefaultDraftBlockRenderMap
     .merge(new Map({
@@ -253,6 +271,7 @@ export default class WysiwygEditor extends Component {
       readOnly,
       tabIndex,
       placeholder,
+      counter
     } = this.props;
     const {
       options,
@@ -271,6 +290,28 @@ export default class WysiwygEditor extends Component {
       history,
       counter,
     } = toolbar;
+    
+    let CharCounter;
+    let CustomCounter;
+    let LineCounter;
+    let WordCounter;
+    if (this.state.counter) {
+      this.editor.setEditorState = (editorState) => {
+        this.editor.onChange(editorState);
+      };
+      this.editor.getEditorRef = () => {
+        return this.editor;
+      };
+      this.editor.getEditorState = () => {
+        return this.state.editorState;
+      };
+      counterPlugin.initialize(this.editor);
+      CharCounter = counterPlugin.CharCounter;
+      CustomCounter = counterPlugin.CustomCounter;
+      LineCounter = counterPlugin.LineCounter;
+      WordCounter = counterPlugin.WordCounter;
+    }
+    console.log(CharCounter, CustomCounter, LineCounter, WordCounter);
 
     return (
       <div
@@ -363,9 +404,9 @@ export default class WysiwygEditor extends Component {
                 config={history}
               />}
               {options.indexOf('counter') >= 0 && <CounterControl
-                modalHandler={this.modalHandler}
+                counter={this.state.counter}
                 editorState={editorState}
-                onChange={this.onChange}
+                onChange={this.onCounterChange}
                 config={counter}
               />}
             </div>
@@ -397,9 +438,42 @@ export default class WysiwygEditor extends Component {
             placeholder={placeholder}
           />
         </div>
+        {
+          (this.state.counter) ?
+            <div
+              className={classNames('rdw-editor-counter', toolbarClassName)}
+            >
+              <CharCounter
+                className="char-counter"
+                editorState={editorState}
+              />
+              {
+                (customCounter) ?
+                  <CustomCounter
+                    className="custom-counter"
+                    editorState={editorState}
+                    customCounter={customCounter}
+                  />
+                  :
+                  undefined
+              }
+              <LineCounter
+                className="line-counter"
+                editorState={editorState}
+              />
+              <WordCounter
+                className="word-counter"
+                editorState={editorState}
+              />
+            </div>
+            :
+            undefined
+        }
       </div>
     );
   }
 }
+
+
 
 // todo: evaluate draftjs-utils to move some methods here
