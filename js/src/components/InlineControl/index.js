@@ -73,7 +73,10 @@ export default class InlineControl extends Component {
               value={style.toUpperCase()}
               onClick={this.toggleInlineStyle}
               className={classNames(config[style].className)}
-              active={currentStyles[style.toUpperCase()] === true}
+              active={
+                currentStyles[style.toUpperCase()] === true ||
+                (style.toUpperCase() === 'MONOSPACE' && currentStyles['CODE'])
+              }
             >
               <img
                 role="presentation"
@@ -106,7 +109,10 @@ export default class InlineControl extends Component {
               key={index}
               value={style.toUpperCase()}
               className={classNames('rdw-inline-dropdownoption', config[style].className)}
-              active={currentStyles[style.toUpperCase()] === true}
+              active={
+                currentStyles[style.toUpperCase()] === true ||
+                (style.toUpperCase() === 'MONOSPACE' && currentStyles['CODE'])
+              }
             >
               <img
                 src={config[style].icon}

@@ -43,7 +43,7 @@ class Link extends Component {
 
   render() {
     const { children, entityKey } = this.props;
-    const { url } = Entity.get(entityKey).getData();
+    const { url, title } = Entity.get(entityKey).getData();
     const { showPopOver } = this.state;
     return (
       <span
@@ -51,7 +51,7 @@ class Link extends Component {
         onMouseEnter={this.toggleShowPopOver}
         onMouseLeave={this.toggleShowPopOver}
       >
-        <a href={url}>{children}</a>
+        <a href={url}>{title}</a>
         {showPopOver ?
           <img
             src={openlink}

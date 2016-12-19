@@ -400,6 +400,12 @@ export default class WysiwygEditor extends Component {
                 editorState={editorState}
                 config={fontFamily}
               />}
+              {options.indexOf('colorPicker') >= 0 && <ColorPicker
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={colorPicker}
+              />}
               {options.indexOf('list') >= 0 && <ListControl
                 modalHandler={this.modalHandler}
                 onChange={this.onChange}
@@ -411,12 +417,6 @@ export default class WysiwygEditor extends Component {
                 onChange={this.onChange}
                 editorState={editorState}
                 config={textAlign}
-              />}
-              {options.indexOf('colorPicker') >= 0 && <ColorPicker
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={colorPicker}
               />}
               {options.indexOf('link') >= 0 && <LinkControl
                 modalHandler={this.modalHandler}
@@ -498,5 +498,5 @@ export default class WysiwygEditor extends Component {
     );
   }
 }
-
 // todo: evaluate draftjs-utils to move some methods here
+// todo: move color near font-family
