@@ -103,6 +103,9 @@ class Playground extends Component {
                   { text: 'abcde', value: 'abcde', url: 'abcde' },
                 ],
               }}
+              toolbar={{
+                options: ['blockType', 'fontSize', 'inline', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history'],
+              }}
             />
           </div>
           <textarea
