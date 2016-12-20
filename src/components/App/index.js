@@ -18,7 +18,7 @@ export default class App extends Component {
       <div className="app-root">
         <div>
           <span className="header">
-            <a target="_blank" href="https://github.com/jpuri/react-draft-wysiwyg" rel="noopener noreferrer">
+            <a href="https://jpuri.github.io/react-draft-wysiwyg/" rel="noopener noreferrer">
               <img src={paperPen} className="header-logo" role="presentation" />
             </a>
             <span className="header-text">
