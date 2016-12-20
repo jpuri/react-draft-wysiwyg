@@ -268,6 +268,159 @@ export default class WysiwygEditor extends Component {
       remove,
       history,
     } = toolbar;
+    
+    const toolbarOptions = [];
+    if (editorFocused || !toolbarOnFocus) {
+      options.forEach((o, i) => {
+        switch (o) {
+          case 'inline':
+            toolbarOptions.push(
+              <InlineControl
+                key={`inline-${i}`}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={inline}
+              />
+            );
+            break;
+          case 'blockType':
+            toolbarOptions.push(
+              <BlockControl
+                key={`blockType-${i}`}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={blockType}
+              />
+            );
+            break;
+          case 'fontSize':
+            toolbarOptions.push(
+              <FontSizeControl
+                key={`fontSize-${i}`}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={fontSize}
+              />
+            );
+            break;
+          case 'fontFamily':
+            toolbarOptions.push(
+              <FontFamilyControl
+                key={`fontFamily-${i}`}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={fontFamily}
+              />
+            );
+            break;
+          case 'list':
+            toolbarOptions.push(
+              <ListControl
+                key={`list-${i}`}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={list}
+              />
+            );
+            break;
+          case 'textAlign':
+            toolbarOptions.push(
+              <TextAlignControl
+                key={`textAlign-${i}`}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={textAlign}
+              />
+            );
+            break;
+          case 'colorPicker':
+            toolbarOptions.push(
+              <ColorPicker
+                key={`colorPicker-${i}`}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={colorPicker}
+              />
+            );
+            break;
+          case 'link':
+            toolbarOptions.push(
+              <LinkControl
+                key={`link-${i}`}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={link}
+              />
+            );
+            break;
+          case 'embedded':
+            toolbarOptions.push(
+              <EmbeddedControl
+                key={`embedded-${i}`}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={embedded}
+              />
+            );
+            break;
+          case 'emoji':
+            toolbarOptions.push(
+              <EmojiControl
+                key={`emoji-${i}`}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={emoji}
+              />
+            );
+            break;
+          case 'image':
+            toolbarOptions.push(
+              <ImageControl
+                key={`image-${i}`}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                uploadCallback={uploadCallback}
+                config={image}
+              />
+            );
+            break;
+          case 'remove':
+            toolbarOptions.push(
+              <RemoveControl
+                key={`remove-${i}`}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={remove}
+              />
+            );
+            break;
+          case 'history':
+            toolbarOptions.push(
+              <HistoryControl
+                key={`history-${i}`}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={history}
+              />
+            );
+            break;
+          default:
+            break;
+        }
+      });
+    }
 
     return (
       <div
@@ -281,84 +434,7 @@ export default class WysiwygEditor extends Component {
               className={classNames('rdw-editor-toolbar', toolbarClassName)}
               onMouseDown={this.preventDefault}
             >
-              {options.indexOf('inline') >= 0 && <InlineControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={inline}
-              />}
-              {options.indexOf('blockType') >= 0 && <BlockControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={blockType}
-              />}
-              {options.indexOf('fontSize') >= 0 && <FontSizeControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={fontSize}
-              />}
-              {options.indexOf('fontFamily') >= 0 && <FontFamilyControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={fontFamily}
-              />}
-              {options.indexOf('list') >= 0 && <ListControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={list}
-              />}
-              {options.indexOf('textAlign') >= 0 && <TextAlignControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={textAlign}
-              />}
-              {options.indexOf('colorPicker') >= 0 && <ColorPicker
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={colorPicker}
-              />}
-              {options.indexOf('link') >= 0 && <LinkControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={link}
-              />}
-              {options.indexOf('embedded') >= 0 && <EmbeddedControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={embedded}
-              />}
-              {options.indexOf('emoji') >= 0 && <EmojiControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={emoji}
-              />}
-              {options.indexOf('image') >= 0 && <ImageControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                uploadCallback={uploadCallback}
-                config={image}
-              />}
-              {options.indexOf('remove') >= 0 && <RemoveControl
-                editorState={editorState}
-                onChange={this.onChange}
-                config={remove}
-              />}
-              {options.indexOf('history') >= 0 && <HistoryControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={history}
-              />}
+              {toolbarOptions}
             </div>
           :
           undefined
