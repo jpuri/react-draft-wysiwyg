@@ -84,7 +84,6 @@ export default class WysiwygEditor extends Component {
       toolbar: mergeRecursive(defaultToolbar, props.toolbar),
       counter: mergeRecursive(defaultCounter, props.counter)
     };
-    console.log(this.state.toolbar);
   }
 
   componentWillMount(): void {
@@ -316,33 +315,33 @@ export default class WysiwygEditor extends Component {
       LineCounter = counterPlugin.LineCounter;
       WordCounter = counterPlugin.WordCounter;
       
-      this.state.counter.order.forEach((v) => {
+      this.state.counter.order.forEach((v, i) => {
         let r;
         switch (v) {
           case 'char':
             r = (
               <CharCounter
+                key={`char-${i}`}
                 className={this.state.counter.counter.char.className}
                 editorState={editorState}
-                limit={this.state.counter.counter.char.limit}
               />
             );
             break;
           case 'word':
             r = (
               <WordCounter
+                key={`word-${i}`}
                 className={this.state.counter.counter.word.className}
                 editorState={editorState}
-                limit={this.state.counter.counter.word.limit}
               />
             );
             break;
           case 'line':
             r = (
               <LineCounter
+                key={`line-${i}`}
                 className={this.state.counter.counter.line.className}
                 editorState={editorState}
-                limit={this.state.counter.counter.line.limit}
               />
             );
             break;
@@ -350,10 +349,10 @@ export default class WysiwygEditor extends Component {
             r = (
               (customCounter) ?
                 <CustomCounter
+                  key={`custom-${i}`}
                   className={this.state.counter.counter.custom.className}
                   editorState={editorState}
                   countFunction={customCounter}
-                  limit={this.state.counter.counter.custom.limit}
                 />
                 :
                 undefined

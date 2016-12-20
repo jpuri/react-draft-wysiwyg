@@ -85,7 +85,9 @@ class Playground extends Component {
               uploadCallback={this.imageUploadCallBack}
               placeholder="testing"
               spellCheck
-              customCounter={(contentState) => 0}
+              customCounter={(contentState) => {
+                return contentState.match(/\S+/g).length;
+              }}
               mention={{
                 separator: ' ',
                 trigger: '@',
@@ -103,6 +105,33 @@ class Playground extends Component {
                   { text: 'abcde', value: 'abcde', url: 'abcde' },
                   { text: 'abcde', value: 'abcde', url: 'abcde' },
                   { text: 'abcde', value: 'abcde', url: 'abcde' },
+                ],
+              }}
+              counter={{
+                enable: false,
+                counter: {
+                  char: {
+                    enable: true,
+                    className: 'char-counter',
+                  },
+                  word: {
+                    enable: true,
+                    className: 'word-counter',
+                  },
+                  custom: {
+                    enable: true,
+                    className: 'custom-counter',
+                  },
+                  line: {
+                    enable: true,
+                    className: 'line-counter',
+                  }
+                },
+                order: [
+                  'char',
+                  'word',
+                  'line',
+                  'custom',
                 ],
               }}
             />
