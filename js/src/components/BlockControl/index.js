@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { getSelectedBlocksType } from 'draftjs-utils';
+import Option from '../Option';
 import { RichUtils } from 'draft-js';
 import classNames from 'classnames';
 import { Dropdown, DropdownOption } from '../Dropdown';
@@ -61,6 +62,34 @@ export default class BlockControl extends Component {
   };
 
   render() {
+    let {inDropdown} = this.props.config;
+    return inDropdown ? this.renderInDropdown() : this.renderFlat();
+  }
+
+  renderFlat() {
+    let {config} = this.props;
+    let {currentStyles, currentBlockType} = this.state;
+    let blockTypes = this.blocksTypes.filter(({label}) => config.options.includes(label));
+
+    return (
+      <div className={classNames('rdw-inline-wrapper', config.className)}>
+      {
+        blockTypes.map((block, index) =>
+          <Option
+            key={index}
+            value={block.style}
+            active={currentBlockType === block.style}
+            onClick={this.toggleBlockType}
+            >
+            {block.label}
+          </Option>
+        )
+      }
+      </div>
+    );
+  }
+
+  renderInDropdown() {
     let { currentBlockType } = this.state;
     if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
       currentBlockType = 'unstyled';
