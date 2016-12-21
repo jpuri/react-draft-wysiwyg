@@ -2,9 +2,9 @@
 
 import React, { Component, PropTypes } from 'react';
 import { getSelectedBlocksType } from 'draftjs-utils';
-import Option from '../Option';
 import { RichUtils } from 'draft-js';
 import classNames from 'classnames';
+import Option from '../Option';
 import { Dropdown, DropdownOption } from '../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -61,26 +61,20 @@ export default class BlockControl extends Component {
     }
   };
 
-  render() {
-    let {inDropdown} = this.props.config;
-    return inDropdown ? this.renderInDropdown() : this.renderFlat();
-  }
-
-  renderFlat() {
-    let {config} = this.props;
-    let {currentStyles, currentBlockType} = this.state;
-    let blockTypes = this.blocksTypes.filter(({label}) => config.options.includes(label));
+  renderFlat(blocks: Array<Object>): void {
+    const { config: { className } } = this.props;
+    const { currentBlockType } = this.state;
 
     return (
-      <div className={classNames('rdw-inline-wrapper', config.className)}>
-      {
-        blockTypes.map((block, index) =>
+      <div className={classNames('rdw-inline-wrapper', className)}>
+        {
+        blocks.map((block, index) =>
           <Option
             key={index}
             value={block.style}
             active={currentBlockType === block.style}
             onClick={this.toggleBlockType}
-            >
+          >
             {block.label}
           </Option>
         )
@@ -89,7 +83,7 @@ export default class BlockControl extends Component {
     );
   }
 
-  renderInDropdown() {
+  renderInDropdown(blocks: Array<Object>): void {
     let { currentBlockType } = this.state;
     if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
       currentBlockType = 'unstyled';
@@ -97,6 +91,7 @@ export default class BlockControl extends Component {
     const currentBlockData = this.blocksTypes.filter(blk => blk.style === currentBlockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
     const { config: { className, dropdownClassName }, modalHandler } = this.props;
+    blocks.unshift(this.blocksTypes[0]); // add Normal style
     return (
       <div className="rdw-block-wrapper">
         <Dropdown
@@ -107,7 +102,7 @@ export default class BlockControl extends Component {
         >
           <span>{currentLabel}</span>
           {
-            this.blocksTypes.map((block, index) =>
+            blocks.map((block, index) =>
               <DropdownOption
                 active={currentBlockType === block.style}
                 value={block.style}
@@ -119,5 +114,12 @@ export default class BlockControl extends Component {
         </Dropdown>
       </div>
     );
+  }
+
+  render(): void {
+    const { inDropdown } = this.props.config;
+    const { config } = this.props;
+    const blocks = this.blocksTypes.filter(({ label }) => config.options.includes(label));
+    return inDropdown ? this.renderInDropdown(blocks) : this.renderFlat(blocks);
   }
 }
