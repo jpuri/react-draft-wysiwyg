@@ -28,8 +28,8 @@ describe('BlockControl test suite', () => {
     ).node.type).to.equal('div');
   });
 
-  it('should have several child elements when inDropdown is false', () => {
-    const blockDefaultCount = defaultToolbar.blockType.options.length;
+  it('should have 8 child elements when inDropdown is false', () => {
+    const blockDefaultCount = 8;
     const control = mount(
       <BlockControl
         onChange={() => {}}
