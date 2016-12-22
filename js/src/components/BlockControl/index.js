@@ -91,7 +91,9 @@ export default class BlockControl extends Component {
     const currentBlockData = this.blocksTypes.filter(blk => blk.style === currentBlockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
     const { config: { className, dropdownClassName }, modalHandler } = this.props;
-    blocks.unshift(this.blocksTypes[0]); // add Normal style
+    if (!blocks.find(({style}) => style=== 'unstyled')) {
+      blocks.unshift(this.blocksTypes[0]); // add Normal style
+    }
     return (
       <div className="rdw-block-wrapper">
         <Dropdown
