@@ -48,7 +48,6 @@ export default class WysiwygEditor extends Component {
   static propTypes = {
     onChange: PropTypes.func,
     onEditorStateChange: PropTypes.func,
-    onContentStateChange: PropTypes.func,
     // initialContentState is deprecated
     initialContentState: PropTypes.object,
     defaultContentState: PropTypes.object,
@@ -187,34 +186,23 @@ export default class WysiwygEditor extends Component {
 
   onChange: Function = (editorState: Object): void => {
     const { readOnly, onEditorStateChange } = this.props;
-    if (onEditorStateChange) {
-      onEditorStateChange(editorState);
-    }
-    if (!hasProperty(this.props, 'editorState') &&
-      !readOnly
-    ) {
-      this.setState({
-        editorState,
-      },
-      this.onContentChange(editorState));
-    } else {
-      this.onContentChange(editorState);
+    if (!readOnly) {
+      if (onEditorStateChange) {
+        onEditorStateChange(editorState);
+      }
+      if (!hasProperty(this.props, 'editorState')) {
+        this.setState({ editorState }, this.afterChange(editorState));
+      } else {
+        this.afterChange(editorState);
+      }
     }
   };
 
-  onContentChange: Function = (editorState): void => {
+  afterChange: Function = (editorState): void => {
     setTimeout(() => {
-      const { onContentStateChange, onChange } = this.props;
-      if (onContentStateChange || onChange) {
-        if (onContentStateChange) {
-          onContentStateChange({
-            content: convertToRaw(editorState.getCurrentContent()),
-            selection: editorState.getSelection(),
-          });
-        }
-        if (onChange) {
-          onChange(editorContent);
-        }
+      const { onChange } = this.props;
+      if (onChange) {
+        onChange(convertToRaw(editorState.getCurrentContent()));
       }
     });
   };
@@ -260,14 +248,10 @@ export default class WysiwygEditor extends Component {
         );
       }
     } else if (hasProperty(this.props, 'contentState')) {
-      if (this.props.contentState && this.props.contentState.content) {
-        const contentState = convertFromRaw(this.props.contentState.content);
+      if (this.props.contentState) {
+        const contentState = convertFromRaw(this.props.contentState);
         editorState = EditorState.createWithContent(contentState, compositeDecorator);
-        if(contentState.selection) {
-          editorState = EditorState.forceSelection(editorState, contentState.selection);
-        } else {
-          editorState = EditorState.moveSelectionToEnd(editorState);
-        }
+        editorState = EditorState.moveSelectionToEnd(editorState);
       }
     } else if (hasProperty(this.props, 'defaultContentState')
       || hasProperty(this.props, 'initialContentState')) {
@@ -285,14 +269,10 @@ export default class WysiwygEditor extends Component {
   }
 
   changeEditorState = (contentState) => {
-    const newContentState = convertFromRaw(contentState.content);
+    const newContentState = convertFromRaw(contentState);
     let { editorState } = this.state;
     editorState = EditorState.push(editorState, newContentState, 'insert-characters');
-    if(contentState.selection) {
-      editorState = EditorState.forceSelection(editorState, contentState.selection);
-    } else {
-      editorState = EditorState.moveSelectionToEnd(editorState);
-    }
+    editorState = EditorState.moveSelectionToEnd(editorState);
     return editorState;
   };
 
