@@ -48,6 +48,7 @@ export default class WysiwygEditor extends Component {
   static propTypes = {
     onChange: PropTypes.func,
     onEditorStateChange: PropTypes.func,
+    onContentStateChange: PropTypes.func,
     // initialContentState is deprecated
     initialContentState: PropTypes.object,
     defaultContentState: PropTypes.object,
@@ -200,9 +201,12 @@ export default class WysiwygEditor extends Component {
 
   afterChange: Function = (editorState): void => {
     setTimeout(() => {
-      const { onChange } = this.props;
+      const { onChange, onContentStateChange } = this.props;
       if (onChange) {
         onChange(convertToRaw(editorState.getCurrentContent()));
+      }
+      if (onContentStateChange) {
+        onContentStateChange(convertToRaw(editorState.getCurrentContent()));
       }
     });
   };
