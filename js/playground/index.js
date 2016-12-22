@@ -34,7 +34,7 @@ class Playground extends Component {
 
   state: any = {
     editorContent: undefined,
-    contentState: undefined,
+    contentState: { content: rawContentState },
     initEditorState: EditorState.createWithContent(contentState),
   };
 
@@ -47,6 +47,12 @@ class Playground extends Component {
   setContentState: Function = () => {
     this.setState({
       contentState: rawContentState,
+    });
+  };
+
+  onContentStateChange: Function = (contentState) => {
+    this.setState({
+      contentState,
     });
   };
 
@@ -86,11 +92,12 @@ class Playground extends Component {
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
-              defaultContentState={rawContentState}
+              contentState={contentState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               uploadCallback={this.imageUploadCallBack}
+              onContentStateChange={this.onContentStateChange}
               placeholder="testing"
               spellCheck
               onFocus={() => {console.log('focus')}}

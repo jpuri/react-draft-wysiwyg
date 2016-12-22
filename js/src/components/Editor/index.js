@@ -7,6 +7,7 @@ import {
   RichUtils,
   convertToRaw,
   convertFromRaw,
+  SelectionState,
   CompositeDecorator,
 } from 'draft-js';
 import {
@@ -189,23 +190,27 @@ export default class WysiwygEditor extends Component {
     if (onEditorStateChange) {
       onEditorStateChange(editorState);
     }
-    if (!hasProperty(this.props, 'editorState') && !readOnly) {
+    if (!hasProperty(this.props, 'editorState') &&
+      !readOnly
+    ) {
       this.setState({
         editorState,
       },
-      this.onContentChange());
+      this.onContentChange(editorState));
     } else {
-      this.onContentChange();
+      this.onContentChange(editorState);
     }
   };
 
-  onContentChange: Function = (): void => {
+  onContentChange: Function = (editorState): void => {
     setTimeout(() => {
       const { onContentStateChange, onChange } = this.props;
       if (onContentStateChange || onChange) {
-        const editorContent = convertToRaw(this.state.editorState.getCurrentContent());
         if (onContentStateChange) {
-          onContentStateChange(editorContent);
+          onContentStateChange({
+            content: convertToRaw(editorState.getCurrentContent()),
+            selection: editorState.getSelection(),
+          });
         }
         if (onChange) {
           onChange(editorContent);
@@ -255,9 +260,14 @@ export default class WysiwygEditor extends Component {
         );
       }
     } else if (hasProperty(this.props, 'contentState')) {
-      if (this.props.contentState) {
-        const contentState = convertFromRaw(this.props.contentState);
+      if (this.props.contentState && this.props.contentState.content) {
+        const contentState = convertFromRaw(this.props.contentState.content);
         editorState = EditorState.createWithContent(contentState, compositeDecorator);
+        if(contentState.selection) {
+          editorState = EditorState.forceSelection(editorState, contentState.selection);
+        } else {
+          editorState = EditorState.moveSelectionToEnd(editorState);
+        }
       }
     } else if (hasProperty(this.props, 'defaultContentState')
       || hasProperty(this.props, 'initialContentState')) {
@@ -265,6 +275,7 @@ export default class WysiwygEditor extends Component {
       if (contentState) {
         contentState = convertFromRaw(contentState);
         editorState = EditorState.createWithContent(contentState, compositeDecorator);
+        editorState = EditorState.moveSelectionToEnd(editorState);
       }
     }
     if (!editorState) {
@@ -274,9 +285,15 @@ export default class WysiwygEditor extends Component {
   }
 
   changeEditorState = (contentState) => {
-    const newContentState = convertFromRaw(contentState);
-    const { editorState } = this.state;
-    return EditorState.push(editorState, newContentState, 'change-block-data');
+    const newContentState = convertFromRaw(contentState.content);
+    let { editorState } = this.state;
+    editorState = EditorState.push(editorState, newContentState, 'insert-characters');
+    if(contentState.selection) {
+      editorState = EditorState.forceSelection(editorState, contentState.selection);
+    } else {
+      editorState = EditorState.moveSelectionToEnd(editorState);
+    }
+    return editorState;
   };
 
   focusEditor: Function = (): void => {
