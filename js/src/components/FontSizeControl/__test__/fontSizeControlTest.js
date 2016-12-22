@@ -11,6 +11,7 @@ import {
 import FontSizeControl from '..';
 import { Dropdown } from '../../Dropdown';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../modal-handler/modals';
 
 describe('FontSizeControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -23,6 +24,7 @@ describe('FontSizeControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.fontSize}
+        modalHandler={new ModalHandler()}
       />
     ).node.type).to.equal('div');
   });
@@ -33,6 +35,7 @@ describe('FontSizeControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.fontSize}
+        modalHandler={new ModalHandler()}
       />
     );
     assert.equal(control.childAt(0).props().children.length, 2);
