@@ -28,6 +28,18 @@ describe('BlockControl test suite', () => {
     ).node.type).to.equal('div');
   });
 
+  it('should have several child elements when inDropdown is false', () => {
+    const blockDefaultCount = defaultToolbar.blockType.options.length;
+    const control = mount(
+      <BlockControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={{...defaultToolbar.blockType, inDropdown: false}}
+      />
+    );
+    expect(control.children().length).to.equal(blockDefaultCount);
+  });
+
   it('should have a dropdown child component well defined', () => {
     const control = mount(
       <BlockControl
