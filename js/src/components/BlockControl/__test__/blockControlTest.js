@@ -11,6 +11,7 @@ import {
 import BlockControl from '..';
 import { Dropdown } from '../../Dropdown';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../modal-handler/modals';
 
 describe('BlockControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -33,6 +34,7 @@ describe('BlockControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.blockType}
+        modalHandler={new ModalHandler()}
       />
     );
     assert.equal(control.childAt(0).props().children.length, 2);

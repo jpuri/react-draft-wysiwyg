@@ -11,6 +11,7 @@ import {
   ContentState,
 } from 'draft-js';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../modal-handler/modals';
 
 describe('FontFamilyControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -23,6 +24,7 @@ describe('FontFamilyControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.fontFamily}
+        modalHandler={new ModalHandler()}
       />
     ).node.type).to.equal('div');
   });
@@ -33,6 +35,7 @@ describe('FontFamilyControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.fontFamily}
+        modalHandler={new ModalHandler()}
       />
     );
     assert.equal(control.childAt(0).props().children.length, 2);
