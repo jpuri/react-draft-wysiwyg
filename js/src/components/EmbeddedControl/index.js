@@ -69,7 +69,7 @@ export default class EmbeddedControl extends Component {
   addEmbeddedLink: Function = (): void => {
     const { editorState, onChange } = this.props;
     const { embeddedLink, height, width } = this.state;
-    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { link: embeddedLink, height, width });
+    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { src: embeddedLink, height, width });
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
