@@ -172,7 +172,7 @@ export default class Demo2 extends Component {
               RawDraftContentState
             </a>
             &nbsp;whenever there is change in editor state.<br />
-            Any change in content state will change editor content. But its not recommended to use contentState to achieve controlled behavior by editor.
+            Any change in contentState will change editor content. But its not recommended to use contentState to achieve controlled behavior by editor.
           </div>
           <div>
             <code>

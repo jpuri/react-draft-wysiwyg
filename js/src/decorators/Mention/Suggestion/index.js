@@ -124,6 +124,8 @@ class Suggestion extends Component {
     } else if (event.key === 'Escape') {
       newState.showSuggestions = false;
       SuggestionHandler.close();
+    } else if (event.key === 'Enter') {
+      this.addMention();
     }
     this.setState(newState);
   }
