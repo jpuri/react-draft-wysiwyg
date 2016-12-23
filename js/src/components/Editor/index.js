@@ -7,6 +7,7 @@ import {
   RichUtils,
   convertToRaw,
   convertFromRaw,
+  SelectionState,
   CompositeDecorator,
 } from 'draft-js';
 import {
@@ -186,30 +187,26 @@ export default class WysiwygEditor extends Component {
 
   onChange: Function = (editorState: Object): void => {
     const { readOnly, onEditorStateChange } = this.props;
-    if (onEditorStateChange) {
-      onEditorStateChange(editorState);
-    }
-    if (!hasProperty(this.props, 'editorState') && !readOnly) {
-      this.setState({
-        editorState,
-      },
-      this.onContentChange());
-    } else {
-      this.onContentChange();
+    if (!readOnly) {
+      if (onEditorStateChange) {
+        onEditorStateChange(editorState);
+      }
+      if (!hasProperty(this.props, 'editorState')) {
+        this.setState({ editorState }, this.afterChange(editorState));
+      } else {
+        this.afterChange(editorState);
+      }
     }
   };
 
-  onContentChange: Function = (): void => {
+  afterChange: Function = (editorState): void => {
     setTimeout(() => {
-      const { onContentStateChange, onChange } = this.props;
-      if (onContentStateChange || onChange) {
-        const editorContent = convertToRaw(this.state.editorState.getCurrentContent());
-        if (onContentStateChange) {
-          onContentStateChange(editorContent);
-        }
-        if (onChange) {
-          onChange(editorContent);
-        }
+      const { onChange, onContentStateChange } = this.props;
+      if (onChange) {
+        onChange(convertToRaw(editorState.getCurrentContent()));
+      }
+      if (onContentStateChange) {
+        onContentStateChange(convertToRaw(editorState.getCurrentContent()));
       }
     });
   };
@@ -258,6 +255,7 @@ export default class WysiwygEditor extends Component {
       if (this.props.contentState) {
         const contentState = convertFromRaw(this.props.contentState);
         editorState = EditorState.createWithContent(contentState, compositeDecorator);
+        editorState = EditorState.moveSelectionToEnd(editorState);
       }
     } else if (hasProperty(this.props, 'defaultContentState')
       || hasProperty(this.props, 'initialContentState')) {
@@ -265,6 +263,7 @@ export default class WysiwygEditor extends Component {
       if (contentState) {
         contentState = convertFromRaw(contentState);
         editorState = EditorState.createWithContent(contentState, compositeDecorator);
+        editorState = EditorState.moveSelectionToEnd(editorState);
       }
     }
     if (!editorState) {
@@ -275,8 +274,10 @@ export default class WysiwygEditor extends Component {
 
   changeEditorState = (contentState) => {
     const newContentState = convertFromRaw(contentState);
-    const { editorState } = this.state;
-    return EditorState.push(editorState, newContentState, 'change-block-data');
+    let { editorState } = this.state;
+    editorState = EditorState.push(editorState, newContentState, 'insert-characters');
+    editorState = EditorState.moveSelectionToEnd(editorState);
+    return editorState;
   };
 
   focusEditor: Function = (): void => {
@@ -296,16 +297,15 @@ export default class WysiwygEditor extends Component {
   };
 
   handleReturn: Function = (event: Object): boolean => {
-    let returnValue = false;
-    if (this.props.mention) {
-      returnValue = MentionDecorator.handleReturn();
+    if (SuggestionHandler.isOpen()) {
+      return true;
     }
     const editorState = handleNewLine(this.state.editorState, event);
     if (editorState) {
       this.onChange(editorState);
-      returnValue = true;
+      return true;
     }
-    return returnValue;
+    return false;
   };
 
   preventDefault: Function = (event: Object) => {

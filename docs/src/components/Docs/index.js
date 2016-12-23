@@ -163,7 +163,7 @@ export default class Demo2 extends Component {
             >
               RawDraftContentState
             </a>.
-            onContentStateChange is callback that receives as argument an instance of&nbsp;
+            onChange is callback that receives as argument an instance of&nbsp;
             <a
               target="_blank"
               rel="noopener noreferrer"
@@ -172,9 +172,7 @@ export default class Demo2 extends Component {
               RawDraftContentState
             </a>
             &nbsp;whenever there is change in editor state.<br />
-            Any change in content state will change editor content,
-            but currently editor does not behaves as controlled component when using contentState, this is to support old users.
-            The plan is to fix this behavior in Release 2.0.
+            Any change in contentState will change editor content. But its not recommended to use contentState to achieve controlled behavior by editor.
           </div>
           <div>
             <code>
@@ -187,32 +185,16 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;{'const { contentState } = this.state;'}<br />
               &nbsp;&nbsp;{'return (<Editor'}<br />
               &nbsp;&nbsp;&nbsp;&nbsp;{'contentState={contentState}'}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;{'onContentStateChange={this.onContentStateChange}'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;{'onContentStateChange={this.onChange}'}<br />
               &nbsp;&nbsp;{'/>)'}<br />
               {'}'}<br />
             </code>
           </div>
           <div className="docs-desc top-margined">
-            To use editor as un-controlled component property defaultContentState can be used. defaultContentState is also an instance of&nbsp;
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://facebook.github.io/draft-js/docs/api-reference-data-conversion.html#content"
-            >
-              RawDraftContentState.
-            </a>
-          </div>
-          <div>
-            <code>
-              {'<Editor defaultContentState={defaultContentState} />'}
-            </code>
+            *** Using onChange has performance over-head due to EditorState conversion to RawDraftContentState on each change.
           </div>
           <div className="docs-desc top-margined">
-            *** Using onContentStateChange has performance over-head due to EditorState conversion to RawDraftContentState on each change.
-          </div>
-          <div className="docs-desc top-margined">
-            PLEASE NOTE: properties initialContentState, onChange have been deprecated and they will be removed in Release 2.0.
-            Also in release 2.0 behavior of editor will change with property contentState and it will turn into controlled component.
+            PLEASE NOTE: properties initialContentState, defaultContentState, onContentStateChange have been deprecated and they will be removed in Release 2.0.
           </div>
         </div>
         <div className="docs-section">
