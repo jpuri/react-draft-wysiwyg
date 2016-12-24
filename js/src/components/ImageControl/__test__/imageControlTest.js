@@ -10,6 +10,7 @@ import { expect } from 'chai'; // eslint-disable-line import/no-extraneous-depen
 import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import ImageControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../modal-handler/modals';
 
 describe('InlineControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -22,6 +23,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.image}
+        modalHandler={new ModalHandler()}
       />
     ).node.type).to.equal('div');
   });
@@ -32,6 +34,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.image}
+        modalHandler={new ModalHandler()}
       />
     );
     expect(control.children().length).to.equal(1);
@@ -43,6 +46,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.image}
+        modalHandler={new ModalHandler()}
       />
     );
     control.childAt(0).simulate('click');

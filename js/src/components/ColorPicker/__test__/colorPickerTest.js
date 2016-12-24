@@ -10,6 +10,7 @@ import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneo
 import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import ColorPicker from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../modal-handler/modals';
 
 describe('ColorPicker test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -22,6 +23,7 @@ describe('ColorPicker test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.colorPicker}
+        modalHandler={new ModalHandler()}
       />
     ).node.type).to.equal('div');
   });
@@ -32,6 +34,7 @@ describe('ColorPicker test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.colorPicker}
+        modalHandler={new ModalHandler()}
       />
     );
     assert.isNotTrue(control.state().showModal);
@@ -46,6 +49,7 @@ describe('ColorPicker test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.colorPicker}
+        modalHandler={new ModalHandler()}
       />
     );
     assert.isNotTrue(control.state().showModal);
@@ -59,6 +63,7 @@ describe('ColorPicker test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.colorPicker}
+        modalHandler={new ModalHandler()}
       />
     );
     expect(control.children().length).to.equal(1);

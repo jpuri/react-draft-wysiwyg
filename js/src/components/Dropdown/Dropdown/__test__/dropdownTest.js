@@ -5,11 +5,14 @@ import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import Dropdown from '..';
 import DropdownOption from '../../DropdownOption';
+import ModalHandler from '../../../../modal-handler/modals';
 
 describe('Dropdown test suite', () => {
   it('should have a div when rendered', () => {
     expect(shallow(
-      <Dropdown>
+      <Dropdown
+        modalHandler={new ModalHandler()}
+        >
         <span>test</span>
         <DropdownOption>test1</DropdownOption>
       </Dropdown>
@@ -18,7 +21,9 @@ describe('Dropdown test suite', () => {
 
   it('should expand drop-down when first element is clicked', () => {
     const dropdown = mount(
-      <Dropdown>
+      <Dropdown
+        modalHandler={new ModalHandler()}
+        >
         <span>test</span>
         <DropdownOption>test1</DropdownOption>
       </Dropdown>
@@ -29,7 +34,9 @@ describe('Dropdown test suite', () => {
 
   it('should toggle expansion when enter is clicked', () => {
     const dropdown = mount(
-      <Dropdown>
+      <Dropdown
+        modalHandler={new ModalHandler()}
+        >
         <span>test</span>
         <DropdownOption>test1</DropdownOption>
       </Dropdown>
