@@ -46,7 +46,7 @@ export default {
     inDropdown: true,
     options: [ 'Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],
     className: undefined,
-    dropdownClassName: undefined
+    dropdownClassName: undefined,
   },
   fontSize: { icon: fontSize, className: undefined },
   fontFamily: { className: undefined, dropdownClassName: undefined },
