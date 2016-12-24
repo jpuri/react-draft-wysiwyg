@@ -68,7 +68,7 @@ export default class FontFamilyControl extends Component {
           optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
         >
           <span className="rdw-fontfamily-placeholder">
-            {currentFontFamily || 'Font-Family'}
+            {currentFontFamily || 'Font Family'}
           </span>
           {
             fontFamilies.map((family, index) =>
