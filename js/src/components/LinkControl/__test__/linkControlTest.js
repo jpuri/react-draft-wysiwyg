@@ -10,6 +10,7 @@ import {
 } from 'draft-js';
 import LinkControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../modal-handler/modals';
 
 describe('InlineControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -22,6 +23,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.link}
+        modalHandler={new ModalHandler()}
       />
     ).node.type).to.equal('div');
   });
@@ -32,6 +34,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.link}
+        modalHandler={new ModalHandler()}
       />
     );
     expect(control.children().length).to.equal(2);
@@ -43,6 +46,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.link}
+        modalHandler={new ModalHandler()}
       />
     );
     control.childAt(0).simulate('click');
@@ -55,6 +59,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.link}
+        modalHandler={new ModalHandler()}
       />
     );
     assert.isNotTrue(control.state().showModal);

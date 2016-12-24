@@ -42,7 +42,12 @@ export default {
     superscript: { icon: superscript, className: undefined },
     subscript: { icon: subscript, className: undefined },
   },
-  blockType: { className: undefined, dropdownClassName: undefined },
+  blockType: {
+    inDropdown: true,
+    options: [ 'Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote',],
+    className: undefined,
+    dropdownClassName: undefined
+  },
   fontSize: { icon: fontSize, className: undefined },
   fontFamily: { className: undefined, dropdownClassName: undefined },
   list: {

@@ -11,6 +11,7 @@ import {
 import BlockControl from '..';
 import { Dropdown } from '../../Dropdown';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../modal-handler/modals';
 
 describe('BlockControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -27,12 +28,25 @@ describe('BlockControl test suite', () => {
     ).node.type).to.equal('div');
   });
 
+  it('should have 8 child elements when inDropdown is false', () => {
+    const blockDefaultCount = 8;
+    const control = mount(
+      <BlockControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={{...defaultToolbar.blockType, inDropdown: false}}
+      />
+    );
+    expect(control.children().length).to.equal(blockDefaultCount);
+  });
+
   it('should have a dropdown child component well defined', () => {
     const control = mount(
       <BlockControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.blockType}
+        modalHandler={new ModalHandler()}
       />
     );
     assert.equal(control.childAt(0).props().children.length, 2);
