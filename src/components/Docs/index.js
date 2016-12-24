@@ -219,7 +219,7 @@ export default class Demo2 extends Component {
             Toolbar in the editor is highly customisable property toolbar can be used for it. It allows configuring:
             <ol>
               <li>which if the set of of options is available in the toolbar: inline, blockType, fontSize, fontFamily, list, textAlign, colorPicker, link, emoji, image, remove, history</li>
-              <li>for grouped options: inline, list, textAlign, history which sub-options are available</li>
+              <li>for grouped options: inline, blockType, list, textAlign, history which sub-options are available</li>
               <li>which images are used for options</li>
               <li>CSS classes that are applied to the options and option group</li>
               <li>showing option groups in drop-down</li>
@@ -244,7 +244,12 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;superscript: {'{ icon: superscript, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;subscript: {'{ icon: subscript, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;blockType: {'{ className: undefined, dropdownClassName: undefined }'}, <br />
+              &nbsp;&nbsp;blockType: {'{'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: true,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;options: [ 'Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
+              &nbsp;&nbsp;{'},'}<br />
               &nbsp;&nbsp;fontSize: {'{ icon: fontSize, className: undefined }'}, <br />
               &nbsp;&nbsp;fontFamily: {'{ className: undefined, dropdownClassName: undefined }'}, <br />
               &nbsp;&nbsp;list: {'{'} <br />
