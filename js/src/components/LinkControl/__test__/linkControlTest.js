@@ -10,9 +10,9 @@ import {
 } from 'draft-js';
 import LinkControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../modal-handler/modals';
+import ModalHandler from '../../../event-handler/modals';
 
-describe('InlineControl test suite', () => {
+describe('LinkControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
   const contentState = ContentState.createFromBlockArray(contentBlocks);
   const editorState = EditorState.createWithContent(contentState);
@@ -50,7 +50,7 @@ describe('InlineControl test suite', () => {
       />
     );
     control.childAt(0).simulate('click');
-    expect(control.children().length).to.equal(3);
+    expect(control.nodes[0].signalShowModal).to.equal(true);
   });
 
   it('should have no value for state variable by default', () => {

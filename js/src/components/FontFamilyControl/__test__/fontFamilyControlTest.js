@@ -11,7 +11,7 @@ import {
   ContentState,
 } from 'draft-js';
 import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../modal-handler/modals';
+import ModalHandler from '../../../event-handler/modals';
 
 describe('FontFamilyControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');

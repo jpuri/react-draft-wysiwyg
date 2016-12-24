@@ -10,9 +10,9 @@ import { expect } from 'chai'; // eslint-disable-line import/no-extraneous-depen
 import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import ImageControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../modal-handler/modals';
+import ModalHandler from '../../../event-handler/modals';
 
-describe('InlineControl test suite', () => {
+describe('ImageControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
   const contentState = ContentState.createFromBlockArray(contentBlocks);
   const editorState = EditorState.createWithContent(contentState);
@@ -50,6 +50,6 @@ describe('InlineControl test suite', () => {
       />
     );
     control.childAt(0).simulate('click');
-    expect(control.children().length).to.equal(2);
+    expect(control.nodes[0].signalShowModal).to.equal(true);
   });
 });

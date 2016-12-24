@@ -11,7 +11,7 @@ import {
 import BlockControl from '..';
 import { Dropdown } from '../../Dropdown';
 import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../modal-handler/modals';
+import ModalHandler from '../../../event-handler/modals';
 
 describe('BlockControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');

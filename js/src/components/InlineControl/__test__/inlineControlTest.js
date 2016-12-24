@@ -11,6 +11,7 @@ import { spy } from 'sinon'; // eslint-disable-line import/no-extraneous-depende
 import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import InlineControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../event-handler/modals';
 
 describe('InlineControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -44,6 +45,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={{ ...defaultToolbar.inline, inDropdown: true }}
+        modalHandler={new ModalHandler()}
       />
     );
     expect(control.children().length).to.equal(1);

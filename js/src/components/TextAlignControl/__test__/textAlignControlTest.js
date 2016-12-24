@@ -11,6 +11,7 @@ import {
 } from 'draft-js';
 import TextAlignControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
+import ModalHandler from '../../../event-handler/modals';
 
 describe('TextAlignControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -44,6 +45,7 @@ describe('TextAlignControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={{ ...defaultToolbar.textAlign, inDropdown: true }}
+        modalHandler={new ModalHandler()}
       />
     );
     expect(control.children().length).to.equal(1);

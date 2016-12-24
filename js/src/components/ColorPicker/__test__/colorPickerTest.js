@@ -10,7 +10,7 @@ import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneo
 import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import ColorPicker from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../modal-handler/modals';
+import ModalHandler from '../../../event-handler/modals';
 
 describe('ColorPicker test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -43,7 +43,7 @@ describe('ColorPicker test suite', () => {
     assert.isUndefined(control.state().currentBgColor);
   });
 
-  it('should open modal when first shild is clicked', () => {
+  it('should set variable signalShowModal to true when first child is clicked', () => {
     const control = mount(
       <ColorPicker
         onChange={() => {}}
@@ -54,7 +54,7 @@ describe('ColorPicker test suite', () => {
     );
     assert.isNotTrue(control.state().showModal);
     control.childAt(0).simulate('click');
-    assert.isTrue(control.state().showModal);
+    assert.isTrue(control.nodes[0].signalShowModal);
   });
 
   it('should have 2 child elements when modal is open', () => {
@@ -68,6 +68,7 @@ describe('ColorPicker test suite', () => {
     );
     expect(control.children().length).to.equal(1);
     control.childAt(0).simulate('click');
+    control.nodes[0].showHideModal();
     expect(control.children().length).to.equal(2);
   });
 });

@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import { shallow, mount } from 'enzyme';
 import Dropdown from '..';
 import DropdownOption from '../../DropdownOption';
-import ModalHandler from '../../../../modal-handler/modals';
+import ModalHandler from '../../../../event-handler/modals';
 
 describe('Dropdown test suite', () => {
   it('should have a div when rendered', () => {
@@ -29,7 +29,7 @@ describe('Dropdown test suite', () => {
       </Dropdown>
     );
     dropdown.childAt(0).simulate('click');
-    expect(dropdown.state().expanded).to.equal(true);
+    expect(dropdown.nodes[0].signalExpanded).to.equal(true);
   });
 
   it('should toggle expansion when enter is clicked', () => {
