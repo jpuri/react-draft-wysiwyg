@@ -44,3 +44,7 @@ Initial stable release
 
 ## 14/12/2016 (1.3.3)
 - #126: Rehydrating editor state with mention gives error.
+
+#25/12/2016
+- #142: Selection state broken when using contentState and onContentStateChange props.
+- #140: Request: customizable blockTypes.
