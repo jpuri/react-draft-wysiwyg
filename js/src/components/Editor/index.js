@@ -37,7 +37,7 @@ import EmojiControl from '../EmojiControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
-import MentionDecorator from '../../decorators/Mention';
+import getMentionDecorators from '../../decorators/Mention';
 import BlockRendererFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import './styles.css';
@@ -111,9 +111,6 @@ export default class WysiwygEditor extends Component {
     const newState = {};
     if (this.props.toolbar !== props.toolbar) {
       newState.toolbar = mergeRecursive(defaultToolbar, props.toolbar);
-    }
-    if (this.props.mention !== props.mention) {
-      MentionDecorator.setConfig(props.mention);
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       if (props.editorState) {
@@ -222,14 +219,14 @@ export default class WysiwygEditor extends Component {
   getCompositeDecorator = ():void => {
     const decorators = [LinkDecorator];
     if (this.props.mention) {
-      MentionDecorator.setConfig({
+      decorators.push(...getMentionDecorators({
         ...this.props.mention,
         onChange: this.onChange,
         getEditorState: this.getEditorState,
+        getSuggestions: this.getSuggestions,
         getWrapperRef: this.getWrapperRef,
         modalHandler: this.modalHandler,
-      });
-      decorators.push(...MentionDecorator.decorators);
+      }));
     }
     return new CompositeDecorator(decorators);
   }
@@ -237,6 +234,8 @@ export default class WysiwygEditor extends Component {
   getWrapperRef = () => this.wrapper;
 
   getEditorState = () => this.state.editorState;
+
+  getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
   createEditorState = (compositeDecorator) => {
     let editorState;
