@@ -57,7 +57,7 @@ export default class FontSizeControl extends Component {
   };
 
   render() {
-    const { config: { icon, className }, modalHandler } = this.props;
+    const { config: { icon, className, options }, modalHandler } = this.props;
     let { currentFontSize } = this.state;
     currentFontSize = currentFontSize
       && Number(currentFontSize.substring(9, currentFontSize.length));
@@ -77,7 +77,7 @@ export default class FontSizeControl extends Component {
             />
           }
           {
-            fontSizes.map((size, index) =>
+            options.map((size, index) =>
               <DropdownOption
                 className="rdw-fontsize-option"
                 active={currentFontSize === size}

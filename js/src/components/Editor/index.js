@@ -12,8 +12,10 @@ import {
 } from 'draft-js';
 import {
   changeDepth,
+  setFontSizes,
   handleNewLine,
-  customStyleMap,
+  setFontFamilies,
+  getCustomStyleMap,
 } from 'draftjs-utils';
 import classNames from 'classnames';
 import ModalHandler from '../../event-handler/modals';
@@ -84,10 +86,14 @@ export default class WysiwygEditor extends Component {
 
   constructor(props) {
     super(props);
+    const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
+    setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
+    setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
     this.state = {
       editorState: undefined,
       editorFocused: false,
-      toolbar: mergeRecursive(defaultToolbar, props.toolbar),
+      toolbar,
+      customStyleMap: getCustomStyleMap(),
     };
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
@@ -110,7 +116,11 @@ export default class WysiwygEditor extends Component {
   componentWillReceiveProps(props) {
     const newState = {};
     if (this.props.toolbar !== props.toolbar) {
-      newState.toolbar = mergeRecursive(defaultToolbar, props.toolbar);
+      const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
+      setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
+      setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
+      newState.toolbar = toolbar;
+      newState.customStyleMap = getCustomStyleMap();
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       if (props.editorState) {
@@ -320,6 +330,7 @@ export default class WysiwygEditor extends Component {
       editorState,
       editorFocused,
       toolbar,
+      customStyleMap,
      } = this.state;
     const {
       toolbarOnFocus,
