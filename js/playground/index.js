@@ -35,7 +35,7 @@ class Playground extends Component {
   state: any = {
     editorContent: undefined,
     contentState: rawContentState,
-    initEditorState: EditorState.createWithContent(contentState),
+    editorState: EditorState.createWithContent(contentState),
   };
 
   onEditorChange: Function = (editorContent) => {
@@ -44,9 +44,9 @@ class Playground extends Component {
     });
   };
 
-  setContentState: Function = () => {
+  clearContent: Function = () => {
     this.setState({
-      contentState: rawContentState,
+      editorState: EditorState.createEmpty(),
     });
   };
 
@@ -80,17 +80,17 @@ class Playground extends Component {
     );
 
   render() {
-    const { editorContent, contentState, initEditorState } = this.state;
+    const { editorContent, contentState, editorState } = this.state;
     return (
       <div className="playground-root">
         <div className="playground-label">
           Toolbar is alwasy <sup>visible</sup>
         </div>
-        <button onClick={this.setContentState}>Force Editor State</button>
+        <button onClick={this.clearContent}>Force Editor State</button>
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
-              editorState={initEditorState}
+              editorState={editorState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
