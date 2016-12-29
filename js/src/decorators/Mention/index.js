@@ -10,23 +10,3 @@ const getDecorators = (config) => {
 };
 
 module.exports = getDecorators;
-
-// surpressContentEditableWarning
-
-
-/*
-
-
-{
-  separator: undefined,
-  trigger: undefined,
-  getSuggestions: undefined,
-  onChange: undefined,
-  getEditorState: undefined,
-  getWrapperRef: undefined,
-  dropdownClassName: undefined,
-  optionClassName: undefined,
-  modalHandler: undefined,
-}
-
-*/
