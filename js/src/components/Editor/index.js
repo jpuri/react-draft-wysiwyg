@@ -12,8 +12,10 @@ import {
 } from 'draft-js';
 import {
   changeDepth,
+  setFontSizes,
   handleNewLine,
-  customStyleMap,
+  setFontFamilies,
+  getCustomStyleMap,
 } from 'draftjs-utils';
 import classNames from 'classnames';
 import ModalHandler from '../../event-handler/modals';
@@ -37,7 +39,7 @@ import EmojiControl from '../EmojiControl';
 import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
-import MentionDecorator from '../../decorators/Mention';
+import getMentionDecorators from '../../decorators/Mention';
 import BlockRendererFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import './styles.css';
@@ -84,10 +86,14 @@ export default class WysiwygEditor extends Component {
 
   constructor(props) {
     super(props);
+    const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
+    setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
+    setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
     this.state = {
       editorState: undefined,
       editorFocused: false,
-      toolbar: mergeRecursive(defaultToolbar, props.toolbar),
+      toolbar,
+      customStyleMap: getCustomStyleMap(),
     };
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
@@ -110,10 +116,11 @@ export default class WysiwygEditor extends Component {
   componentWillReceiveProps(props) {
     const newState = {};
     if (this.props.toolbar !== props.toolbar) {
-      newState.toolbar = mergeRecursive(defaultToolbar, props.toolbar);
-    }
-    if (this.props.mention !== props.mention) {
-      MentionDecorator.setConfig(props.mention);
+      const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
+      setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
+      setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
+      newState.toolbar = toolbar;
+      newState.customStyleMap = getCustomStyleMap();
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       if (props.editorState) {
@@ -222,14 +229,14 @@ export default class WysiwygEditor extends Component {
   getCompositeDecorator = ():void => {
     const decorators = [LinkDecorator];
     if (this.props.mention) {
-      MentionDecorator.setConfig({
+      decorators.push(...getMentionDecorators({
         ...this.props.mention,
         onChange: this.onChange,
         getEditorState: this.getEditorState,
+        getSuggestions: this.getSuggestions,
         getWrapperRef: this.getWrapperRef,
         modalHandler: this.modalHandler,
-      });
-      decorators.push(...MentionDecorator.decorators);
+      }));
     }
     return new CompositeDecorator(decorators);
   }
@@ -237,6 +244,8 @@ export default class WysiwygEditor extends Component {
   getWrapperRef = () => this.wrapper;
 
   getEditorState = () => this.state.editorState;
+
+  getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
   createEditorState = (compositeDecorator) => {
     let editorState;
@@ -321,6 +330,7 @@ export default class WysiwygEditor extends Component {
       editorState,
       editorFocused,
       toolbar,
+      customStyleMap,
      } = this.state;
     const {
       toolbarOnFocus,

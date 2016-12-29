@@ -219,7 +219,7 @@ export default class Demo2 extends Component {
             Toolbar in the editor is highly customisable property toolbar can be used for it. It allows configuring:
             <ol>
               <li>which if the set of of options is available in the toolbar: inline, blockType, fontSize, fontFamily, list, textAlign, colorPicker, link, emoji, image, remove, history</li>
-              <li>for grouped options: inline, blockType, list, textAlign, history which sub-options are available</li>
+              <li>for grouped options: inline, blockType, font-family, font-size, list, textAlign, history which sub-options are available</li>
               <li>which images are used for options</li>
               <li>CSS classes that are applied to the options and option group</li>
               <li>showing option groups in drop-down</li>
@@ -250,8 +250,17 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
               &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
               &nbsp;&nbsp;{'},'}<br />
-              &nbsp;&nbsp;fontSize: {'{ icon: fontSize, className: undefined }'}, <br />
-              &nbsp;&nbsp;fontFamily: {'{ className: undefined, dropdownClassName: undefined }'}, <br />
+              &nbsp;&nbsp;fontSize: {'{'} <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;icon: fontSize<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;options: [8, 9, 10, 11, 12, 14, 18, 24, 30, 36, 48, 60, 72, 96],<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
+              &nbsp;&nbsp;{'},'}<br />
+              &nbsp;&nbsp;fontFamily: {'{'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
+              &nbsp;&nbsp;{'},'}<br />
               &nbsp;&nbsp;list: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />

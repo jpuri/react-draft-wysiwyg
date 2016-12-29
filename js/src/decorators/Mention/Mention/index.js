@@ -1,13 +1,39 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import { Entity } from 'draft-js';
 import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-let config = {
-  mentionClassName: undefined,
-};
+class Mention {
+  constructor(className) {
+    this.className = className;
+  }
+  getMentionComponent = () => {
+    const className = this.className;
+    return class MentionComponent extends Component {
+      static PropTypes = {
+        entityKey: PropTypes.number,
+        children: PropTypes.object,
+      }
+      render() {
+        const { entityKey, children } = this.props;
+        const { url, value } = Entity.get(entityKey).getData();
+        return (
+          <a href={url || value} className="rdw-mention-link">
+            <span className={classNames('rdw-mention', className)}>{children}</span>
+          </a>
+        );
+      }
+    };
+  };
+  getMentionDecorator = () => {
+    return {
+      strategy: this.findMentionEntities,
+      component: this.getMentionComponent(),
+    }
+  };
+}
 
-function findMentionEntities(contentBlock, callback) {
+Mention.prototype.findMentionEntities = (contentBlock, callback) => {
   contentBlock.findEntityRanges(
     (character) => {
       const entityKey = character.getEntity();
@@ -20,28 +46,4 @@ function findMentionEntities(contentBlock, callback) {
   );
 }
 
-const Mention = ({ children, entityKey }) => {
-  const { url, value } = Entity.get(entityKey).getData();
-  return (
-    <a href={url || value} className="rdw-mention-link">
-      <span className={classNames('rdw-mention', config.mentionClassName)}>{children}</span>
-    </a>
-  );
-};
-
-Mention.propTypes = {
-  entityKey: PropTypes.string,
-  children: PropTypes.array,
-};
-
-function setConfig(conf) {
-  config = { ...config, ...conf };
-}
-
-module.exports = {
-  mentionDecorator: {
-    strategy: findMentionEntities,
-    component: Mention,
-  },
-  setMentionConfig: setConfig,
-};
+module.exports = Mention;
