@@ -2,7 +2,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import {
-  fontFamilies,
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
@@ -56,7 +55,7 @@ export default class FontFamilyControl extends Component {
 
   render() {
     let { currentFontFamily } = this.state;
-    const { config: { className, dropdownClassName }, modalHandler } = this.props;
+    const { config: { className, dropdownClassName, options }, modalHandler } = this.props;
     currentFontFamily =
       currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length);
     return (
@@ -71,7 +70,7 @@ export default class FontFamilyControl extends Component {
             {currentFontFamily || 'Font Family'}
           </span>
           {
-            fontFamilies.map((family, index) =>
+            options.map((family, index) =>
               <DropdownOption
                 active={currentFontFamily === family}
                 value={`fontfamily-${family}`}
