@@ -51,6 +51,7 @@ export default class WysiwygEditor extends Component {
     onChange: PropTypes.func,
     onEditorStateChange: PropTypes.func,
     onContentStateChange: PropTypes.func,
+    onTab: PropTypes.func,
     // initialContentState is deprecated
     initialContentState: PropTypes.object,
     defaultContentState: PropTypes.object,
@@ -165,11 +166,24 @@ export default class WysiwygEditor extends Component {
   }
 
   onTab: Function = (event): boolean => {
-    const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
-    if (editorState) {
-      this.onChange(editorState);
-      event.preventDefault();
+
+    const { onTab } = this.props;
+
+    let executeDefaultTabBehavior = true;
+    if (onTab) {
+      let result = onTab();
+      executeDefaultTabBehavior = (result !== true)
     }
+
+    if (executeDefaultTabBehavior) {
+      const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
+      if (editorState) {
+        this.onChange(editorState);
+        event.preventDefault();
+      }
+    }
+
+
   };
 
   onUpDownArrow: Function = (event): boolean => {
