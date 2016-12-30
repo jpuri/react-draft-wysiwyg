@@ -171,7 +171,7 @@ export default class WysiwygEditor extends Component {
 
     let executeDefaultTabBehavior = true;
     if (onTab) {
-      let result = onTab();
+      let result = onTab(event);
       executeDefaultTabBehavior = (result !== true)
     }
 
