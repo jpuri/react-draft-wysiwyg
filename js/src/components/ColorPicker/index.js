@@ -161,7 +161,7 @@ export default class ColorPicker extends Component {
 }
 
 const ColorPickerModalOptions = ({customColors, currentSelectedColor, currentStyle, onClick}) => {
-console.log(currentStyle, currentSelectedColor)
+
   let optionNodes =
       colors.map((rgb, index) => {
         return <ColorPickerModalOption

@@ -39,7 +39,6 @@ class Playground extends Component {
   };
 
   onEditorChange: Function = (editorContent) => {
-      console.log('editorContent', editorContent);
     this.setState({
       editorContent,
     });
@@ -52,7 +51,6 @@ class Playground extends Component {
   };
 
   onContentStateChange: Function = (contentState) => {
-    console.log('contentState', contentState);
       this.setState({contentState})
   };
 
