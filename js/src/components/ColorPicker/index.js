@@ -78,6 +78,7 @@ export default class ColorPicker extends Component {
   }
 
   toggleColor: Function = (color: string): void => {
+
     const { editorState, onChange } = this.props;
     const { currentStyle } = this.state;
     const newState = toggleCustomInlineStyle(
@@ -96,7 +97,7 @@ export default class ColorPicker extends Component {
   };
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName } } = this.props;
+    const { config: { popupClassName, customColors } } = this.props;
     const { currentColor, currentBgColor, currentStyle } = this.state;
     const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
     return (
@@ -124,24 +125,12 @@ export default class ColorPicker extends Component {
             Background
           </span>
         </span>
-        <span className="rdw-colorpicker-modal-options">
-          {
-            colors.map((color, index) =>
-              <Option
-                value={color}
-                key={index}
-                className="rdw-colorpicker-option"
-                activeClassName="rdw-colorpicker-option-active"
-                active={currentSelectedColor === `${currentStyle}-${color}`}
-                onClick={this.toggleColor}
-              >
-                <span
-                  style={{ backgroundColor: color }}
-                  className="rdw-colorpicker-cube"
-                />
-              </Option>)
-          }
-        </span>
+        <ColorPickerModalOptions
+            customColors={customColors}
+            currentSelectedColor={currentSelectedColor}
+            currentStyle={currentStyle}
+            onClick={this.toggleColor}
+        />
       </div>
     );
   };
@@ -169,4 +158,58 @@ export default class ColorPicker extends Component {
       </div>
     );
   }
+}
+
+const ColorPickerModalOptions = ({customColors, currentSelectedColor, currentStyle, onClick}) => {
+console.log(currentStyle, currentSelectedColor)
+  let optionNodes =
+      colors.map((rgb, index) => {
+        return <ColorPickerModalOption
+            value={rgb}
+            key={index}
+            active={currentSelectedColor === `${currentStyle}-${rgb}`}
+            onClick={onClick}
+        />
+      })
+
+  if (customColors) {
+
+    optionNodes = [];
+
+    for (var name in customColors) {
+      const rgb = customColors[name];
+      optionNodes.push(
+          <ColorPickerModalOption
+              value={name}
+              key={name}
+              active={currentSelectedColor === `${currentStyle}-${rgb}`}
+              onClick={onClick}
+          />
+      )
+    }
+
+  }
+
+  return (<span className="rdw-colorpicker-modal-options">{optionNodes}</span>)
+
+}
+
+const ColorPickerModalOption = ({value, name, active, onClick}) => {
+
+  return (
+      <Option
+          value={value}
+          key={`color-picker-option-${name}`}
+          className="rdw-colorpicker-option"
+          activeClassName="rdw-colorpicker-option-active"
+          active={active}
+          onClick={onClick}
+      >
+        <span
+            style={{ backgroundColor: value }}
+            className="rdw-colorpicker-cube"
+        />
+      </Option>
+  )
+
 }
