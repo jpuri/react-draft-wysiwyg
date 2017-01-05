@@ -93,7 +93,7 @@ export default class WysiwygEditor extends Component {
       editorState: undefined,
       editorFocused: false,
       toolbar,
-      customStyleMap: _getCustomStyleMap(toolbar.colorPicker.customColors),
+      customStyleMap: _getCustomStyleMap(toolbar.colorPicker.colors),
     };
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
@@ -120,7 +120,7 @@ export default class WysiwygEditor extends Component {
       setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
       setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
       newState.toolbar = toolbar;
-      newState.customStyleMap = _getCustomStyleMap(toolbar.colorPicker.customColors);
+      newState.customStyleMap = _getCustomStyleMap(toolbar.colorPicker.colors);
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       if (props.editorState) {

@@ -3,7 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import {
-  colors,
+  colors as defaultColors,
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
@@ -97,7 +97,7 @@ export default class ColorPicker extends Component {
   };
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName, customColors } } = this.props;
+    const { config: { popupClassName, colors } } = this.props;
     const { currentColor, currentBgColor, currentStyle } = this.state;
     const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
     return (
@@ -126,7 +126,7 @@ export default class ColorPicker extends Component {
           </span>
         </span>
         <ColorPickerModalOptions
-            customColors={customColors}
+            colors={colors}
             currentSelectedColor={currentSelectedColor}
             currentStyle={currentStyle}
             onClick={this.toggleColor}
@@ -160,10 +160,10 @@ export default class ColorPicker extends Component {
   }
 }
 
-const ColorPickerModalOptions = ({customColors, currentSelectedColor, currentStyle, onClick}) => {
+const ColorPickerModalOptions = ({colors, currentSelectedColor, currentStyle, onClick}) => {
 
   let optionNodes =
-      colors.map((rgb, index) => {
+      defaultColors.map((rgb, index) => {
         return <ColorPickerModalOption
             value={rgb}
             key={index}
@@ -172,12 +172,12 @@ const ColorPickerModalOptions = ({customColors, currentSelectedColor, currentSty
         />
       })
 
-  if (customColors) {
+  if (colors) {
 
     optionNodes = [];
 
-    for (var name in customColors) {
-      const rgb = customColors[name];
+    for (var name in colors) {
+      const rgb = colors[name];
       optionNodes.push(
           <ColorPickerModalOption
               value={name}

@@ -77,7 +77,7 @@ export default {
     right: { icon: right, className: undefined },
     justify: { icon: justify, className: undefined },
   },
-  colorPicker: { icon: color, className: undefined, popupClassName: undefined, customColors: undefined },
+  colorPicker: { icon: color, className: undefined, popupClassName: undefined, colors: undefined },
   link: {
     inDropdown: false,
     className: undefined,

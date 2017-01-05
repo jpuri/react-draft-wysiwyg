@@ -115,7 +115,7 @@ class Playground extends Component {
               }}
               toolbar={{
                 options: ['inline', 'fontSize', 'colorPicker'],
-                colorPicker: { customColors: {
+                colorPicker: { colors: {
                   pink: 'rgb(158,80,247)',
                   red: 'rgb(243,110,113)',
                   green: 'rgb(82,255,86)',
