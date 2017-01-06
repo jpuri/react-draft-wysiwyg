@@ -20,7 +20,7 @@ class Link extends Component {
 
   static propTypes = {
     entityKey: PropTypes.string.isRequired,
-    children: PropTypes.array,
+    children: PropTypes.array
   };
 
   state: Object = {
@@ -42,16 +42,18 @@ class Link extends Component {
   };
 
   render() {
+
     const { children, entityKey } = this.props;
-    const { url, title } = Entity.get(entityKey).getData();
+    const { url, title, target } = Entity.get(entityKey).getData();
     const { showPopOver } = this.state;
+
     return (
       <span
         className="rdw-link-decorator-wrapper"
         onMouseEnter={this.toggleShowPopOver}
         onMouseLeave={this.toggleShowPopOver}
       >
-        <a href={url}>{title}</a>
+        <a href={url} target={target || '_blank'}>{title}</a>
         {showPopOver ?
           <img
             src={openlink}

@@ -241,6 +241,7 @@ export default class WysiwygEditor extends Component {
   };
 
   getCompositeDecorator = ():void => {
+
     const decorators = [LinkDecorator];
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
