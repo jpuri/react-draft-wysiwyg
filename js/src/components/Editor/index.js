@@ -93,7 +93,7 @@ export default class WysiwygEditor extends Component {
       editorState: undefined,
       editorFocused: false,
       toolbar,
-      customStyleMap: getCustomStyleMap(),
+      customStyleMap: _getCustomStyleMap(toolbar.colorPicker.colors),
     };
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
@@ -120,7 +120,7 @@ export default class WysiwygEditor extends Component {
       setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
       setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
       newState.toolbar = toolbar;
-      newState.customStyleMap = getCustomStyleMap();
+      newState.customStyleMap = _getCustomStyleMap(toolbar.colorPicker.colors);
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       if (props.editorState) {
@@ -508,5 +508,25 @@ export default class WysiwygEditor extends Component {
     );
   }
 }
+
+const _getCustomStyleMap = (customColors) => {
+
+  let styleMap = getCustomStyleMap();
+
+  if (customColors) {
+    for (var k in styleMap) {
+      if (k.indexOf('color') >= 0) {
+        delete styleMap[k];
+      }
+    }
+
+    for (var color in customColors) {
+      styleMap[`color-${color}`] = {color: customColors[color]}
+      styleMap[`bgcolor-${color}`] = {backgroundColor: customColors[color]}
+    }
+  }
+  return styleMap;
+}
+
 // todo: evaluate draftjs-utils to move some methods here
 // todo: move color near font-family
