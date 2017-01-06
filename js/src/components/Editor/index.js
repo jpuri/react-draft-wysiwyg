@@ -51,6 +51,7 @@ export default class WysiwygEditor extends Component {
     onChange: PropTypes.func,
     onEditorStateChange: PropTypes.func,
     onContentStateChange: PropTypes.func,
+    onTab: PropTypes.func,
     // initialContentState is deprecated
     initialContentState: PropTypes.object,
     defaultContentState: PropTypes.object,
@@ -93,7 +94,7 @@ export default class WysiwygEditor extends Component {
       editorState: undefined,
       editorFocused: false,
       toolbar,
-      customStyleMap: getCustomStyleMap(),
+      customStyleMap: _getCustomStyleMap(toolbar.colorPicker.colors),
     };
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
@@ -120,7 +121,7 @@ export default class WysiwygEditor extends Component {
       setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
       setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
       newState.toolbar = toolbar;
-      newState.customStyleMap = getCustomStyleMap();
+      newState.customStyleMap = _getCustomStyleMap(toolbar.colorPicker.colors);
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       if (props.editorState) {
@@ -165,11 +166,24 @@ export default class WysiwygEditor extends Component {
   }
 
   onTab: Function = (event): boolean => {
-    const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
-    if (editorState) {
-      this.onChange(editorState);
-      event.preventDefault();
+
+    const { onTab } = this.props;
+
+    let executeDefaultTabBehavior = true;
+    if (onTab) {
+      let result = onTab(event);
+      executeDefaultTabBehavior = (result !== true)
     }
+
+    if (executeDefaultTabBehavior) {
+      const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
+      if (editorState) {
+        this.onChange(editorState);
+        event.preventDefault();
+      }
+    }
+
+
   };
 
   onUpDownArrow: Function = (event): boolean => {
@@ -227,6 +241,7 @@ export default class WysiwygEditor extends Component {
   };
 
   getCompositeDecorator = ():void => {
+
     const decorators = [LinkDecorator];
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
@@ -508,5 +523,25 @@ export default class WysiwygEditor extends Component {
     );
   }
 }
+
+const _getCustomStyleMap = (customColors) => {
+
+  let styleMap = getCustomStyleMap();
+
+  if (customColors) {
+    for (var k in styleMap) {
+      if (k.indexOf('color') >= 0) {
+        delete styleMap[k];
+      }
+    }
+
+    for (var color in customColors) {
+      styleMap[`color-${color}`] = {color: customColors[color]}
+      styleMap[`bgcolor-${color}`] = {backgroundColor: customColors[color]}
+    }
+  }
+  return styleMap;
+}
+
 // todo: evaluate draftjs-utils to move some methods here
 // todo: move color near font-family
