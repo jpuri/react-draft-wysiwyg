@@ -51,12 +51,12 @@ class Playground extends Component {
   };
 
   onContentStateChange: Function = (contentState) => {
-    console.log('contentState', contentState);
+      this.setState({contentState})
   };
 
-  onEditorStateChange: Function = (initEditorState) => {
+  onEditorStateChange: Function = (editorState) => {
     this.setState({
-      initEditorState,
+      editorState,
     });
   };
 
@@ -112,6 +112,21 @@ class Playground extends Component {
                   { text: 'ABCDEF', value: 'abcdef', url: 'href-abcdef' },
                   { text: 'ABCDEFG', value: 'abcdefg', url: 'href-abcdefg' },
                 ],
+              }}
+              toolbar={{
+                options: ['inline', 'fontSize', 'colorPicker'],
+                colorPicker: { colors: {
+                  pink: 'rgb(158,80,247)',
+                  red: 'rgb(243,110,113)',
+                  green: 'rgb(82,255,86)',
+                  yellow: 'rgb(247,254,89)',
+                  teal: 'rgb(93,208,217)',
+                  brown: 'rgb(244,184,75)',
+                  grey: 'rgb(222,222,222)',
+                  black: 'rgb(0,0,0)',
+                  white: 'rgb(255, 255, 255)'
+                } },
+
               }}
             />
           </div>
