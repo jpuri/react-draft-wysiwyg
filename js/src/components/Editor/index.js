@@ -40,7 +40,7 @@ import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
-import BlockRendererFunc from '../../renderer';
+import getBlockRenderFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import './styles.css';
 import '../../../../css/Draft.css';
@@ -98,6 +98,7 @@ export default class WysiwygEditor extends Component {
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
+    this.blockRendererFn = getBlockRenderFunc({ isReadOnly: this.isReadOnly });
   }
 
   componentWillMount(): void {
@@ -246,6 +247,8 @@ export default class WysiwygEditor extends Component {
   getEditorState = () => this.state.editorState;
 
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
+
+  isReadOnly = () => this.props.readOnly;
 
   createEditorState = (compositeDecorator) => {
     let editorState;
@@ -491,7 +494,7 @@ export default class WysiwygEditor extends Component {
             blockStyleFn={blockStyleFn}
             customStyleMap={customStyleMap}
             handleReturn={this.handleReturn}
-            blockRendererFn={BlockRendererFunc}
+            blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
             ariaOwneeID={ariaOwneeID}
