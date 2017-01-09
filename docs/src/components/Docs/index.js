@@ -49,11 +49,14 @@ export default class Demo2 extends Component {
             The editor by default will have uses DraftJS editor as it is without
             any styling and it will occupy 100% width of container.
             Some styling to add border to editor and set width will be nice.
-            3 className parameters are available for that:
+            3 className abd 3 style parameters are available for that:
             <ol>
               <li>wrapperClassName</li>
               <li>editorClassName</li>
               <li>toolbarClassName</li>
+              <li>wrapperStyle</li>
+              <li>editorStyle</li>
+              <li>toolbarStyle</li>
             </ol>
           </div>
           <div>
@@ -62,19 +65,10 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp; wrapperClassName="wrapper-class" <br />
               &nbsp;&nbsp; editorClassName="editor-class" <br />
               &nbsp;&nbsp; toolbarClassName="toolbar-class" <br />
+              &nbsp;&nbsp; wrapperStyle={'{wrapperStyle}'} <br />
+              &nbsp;&nbsp; editorStyle={'{editorStyle}'} <br />
+              &nbsp;&nbsp; toolbarStyle={'{toolbarStyle}'} <br />
               {'/>'}<br />
-              .editor-class {'{'}<br />
-              &nbsp;&nbsp; height: 400px; <br />
-              &nbsp;&nbsp; border: 1px solid #F1F1F1; <br />
-              &nbsp;&nbsp; padding: 5px; <br />
-              &nbsp;&nbsp; border-radius: 2px; <br />
-              {'}'}
-              .toolbar-class {'{'}<br />
-              &nbsp;&nbsp; width: 100%; <br />
-              {'}'}
-              .wrapper-class {'{'}<br />
-              &nbsp;&nbsp; {'// any required styling'} <br />
-              {'}'}
             </code>
           </div>
           <div className="docs-desc top-margined">

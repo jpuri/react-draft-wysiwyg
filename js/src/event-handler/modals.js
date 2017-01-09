@@ -26,6 +26,11 @@ export default class ModalHandler {
         this.editorFlag = false;
       }
     });
+    document.addEventListener('keydown', (event) => { // eslint-disable-line no-undef
+      if(event.key === 'Escape') {
+        this.closeAllModals();
+      }
+    });
   };
 
   onEditorClick = () => {

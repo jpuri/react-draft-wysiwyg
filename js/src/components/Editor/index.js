@@ -40,7 +40,7 @@ import ImageControl from '../ImageControl';
 import HistoryControl from '../HistoryControl';
 import LinkDecorator from '../../decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
-import BlockRendererFunc from '../../renderer';
+import getBlockRenderFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import './styles.css';
 import '../../../../css/Draft.css';
@@ -64,6 +64,9 @@ export default class WysiwygEditor extends Component {
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
+    toolbarStyle: PropTypes.object,
+    editorStyle: PropTypes.object,
+    wrapperStyle: PropTypes.object,
     uploadCallback: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
@@ -100,6 +103,7 @@ export default class WysiwygEditor extends Component {
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
+    this.blockRendererFn = getBlockRenderFunc({ isReadOnly: this.isReadOnly });
   }
 
   componentWillMount(): void {
@@ -249,6 +253,8 @@ export default class WysiwygEditor extends Component {
 
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
+  isReadOnly = () => this.props.readOnly;
+
   createEditorState = (compositeDecorator) => {
     let editorState;
     if (hasProperty(this.props, 'editorState')) {
@@ -339,6 +345,9 @@ export default class WysiwygEditor extends Component {
       toolbarClassName,
       editorClassName,
       wrapperClassName,
+      toolbarStyle,
+      editorStyle,
+      wrapperStyle,
       uploadCallback,
       textAlignment,
       spellCheck,
@@ -374,16 +383,18 @@ export default class WysiwygEditor extends Component {
     return (
       <div
         id={this.wrapperId}
-        className={wrapperClassName}
+        className={classNames('rdw-editor-wrapper', wrapperClassName)}
+        style={wrapperStyle}
         onClick={this.modalHandler.onEditorClick}
         onBlur={this.onWrapperBlur}
         aria-label="rdw-wrapper"
         tabIndex={0}
       >
         {
-          (editorFocused || !toolbarOnFocus) ?
+          (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) ?
             <div
               className={classNames('rdw-editor-toolbar', toolbarClassName)}
+              style={toolbarStyle}
               onMouseDown={this.preventDefault}
               aria-label="rdw-toolbar"
               aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
@@ -474,6 +485,7 @@ export default class WysiwygEditor extends Component {
         <div
           ref={this.setWrapperReference}
           className={classNames('rdw-editor-main', editorClassName)}
+          style={editorStyle}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
@@ -495,7 +507,7 @@ export default class WysiwygEditor extends Component {
             blockStyleFn={blockStyleFn}
             customStyleMap={customStyleMap}
             handleReturn={this.handleReturn}
-            blockRendererFn={BlockRendererFunc}
+            blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
             ariaOwneeID={ariaOwneeID}
