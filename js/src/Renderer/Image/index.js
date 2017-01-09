@@ -72,11 +72,24 @@ export default class Image extends Component {
     );
   }
 
+  openLink: Function = () => {
+
+    const { block } = this.props;
+    const entity = Entity.get(block.getEntityAt(0));
+    const { src } = entity.getData();
+
+    const linkTab = window.open(src, '_blank'); 
+    linkTab.focus();
+
+  };
+
   render(): Object {
+
     const { block } = this.props;
     const { hovered } = this.state;
     const entity = Entity.get(block.getEntityAt(0));
     const { src, alignment, height, width } = entity.getData();
+
     return (
       <span
         onMouseEnter={this.toggleHovered}
@@ -92,6 +105,7 @@ export default class Image extends Component {
       >
         <span className="rdw-image-imagewrapper">
           <img
+            onClick={this.openLink}
             src={src}
             role="presentation"
             style={{

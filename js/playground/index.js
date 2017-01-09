@@ -32,17 +32,29 @@ const contentState = ContentState.createFromBlockArray(contentBlocks);
 const rawContentState = {
   "entityMap":{
     "0":{"type":"MENTION","mutability":"IMMUTABLE","data":{"text":"@abc","value":"abc","url":"href-abc"}},
-    "1":{"type":"MENTION","mutability":"IMMUTABLE","data":{"text":"@abcd","value":"abcd","url":"href-abcd"}}
+    "1":{"type":"MENTION","mutability":"IMMUTABLE","data":{"text":"@abcd","value":"abcd","url":"href-abcd"}},
+    "2":{"type":"IMAGE","mutability":"IMMUTABLE","data":{"src":"https://files.graphiq.com/stories/t4/The_16_Dogs_That_Won8217t_Make_You_Sneeze_2060_2848.jpg","height":"auto","width":"100%"}}
   },
   "blocks":[{
-    "key":"3c8kv","text":
-    "@abc testing mentions saving opps @abcd ",
+    "key":"3c8kv",
+    "text": "@abc testing mentions saving opps @abcd ",
     "type":"unstyled",
     "depth":0,
     "inlineStyleRanges":[],
     "entityRanges":[
       {"offset":0,"length":4,"key":0},
       {"offset":34,"length":5,"key":1}
+    ],
+    "data":{}
+  },
+  {
+    "key":"2ff34",
+    "text": " ",
+    "type":"atomic",
+    "depth":0,
+    "inlineStyleRanges":[],
+    "entityRanges":[
+      {"offset":0,"length":1,"key":2},
     ],
     "data":{}
   }]
