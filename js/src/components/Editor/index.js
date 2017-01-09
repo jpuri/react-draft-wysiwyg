@@ -63,6 +63,9 @@ export default class WysiwygEditor extends Component {
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
+    toolbarStyle: PropTypes.object,
+    editorStyle: PropTypes.object,
+    wrapperStyle: PropTypes.object,
     uploadCallback: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
@@ -340,6 +343,9 @@ export default class WysiwygEditor extends Component {
       toolbarClassName,
       editorClassName,
       wrapperClassName,
+      toolbarStyle,
+      editorStyle,
+      wrapperStyle,
       uploadCallback,
       textAlignment,
       spellCheck,
@@ -375,6 +381,7 @@ export default class WysiwygEditor extends Component {
       <div
         id={this.wrapperId}
         className={classNames('rdw-editor-wrapper', wrapperClassName)}
+        style={wrapperStyle}
         onClick={this.modalHandler.onEditorClick}
         onBlur={this.onWrapperBlur}
         aria-label="rdw-wrapper"
@@ -384,6 +391,7 @@ export default class WysiwygEditor extends Component {
           (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) ?
             <div
               className={classNames('rdw-editor-toolbar', toolbarClassName)}
+              style={toolbarStyle}
               onMouseDown={this.preventDefault}
               aria-label="rdw-toolbar"
               aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
@@ -474,6 +482,7 @@ export default class WysiwygEditor extends Component {
         <div
           ref={this.setWrapperReference}
           className={classNames('rdw-editor-main', editorClassName)}
+          style={editorStyle}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
