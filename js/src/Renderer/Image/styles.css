@@ -22,6 +22,7 @@
 }
 .rdw-image-imagewrapper {
   position: relative;
+  cursor: pointer;
 }
 .rdw-image-center {
   float: none;
