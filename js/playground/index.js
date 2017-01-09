@@ -13,7 +13,7 @@ import {
 import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
+const contentBlocks = convertFromHTML('<p><p>Lorem ipsum ' +
       'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
       'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
       'commodo quis dolor in, sagittis scelerisque nibh. ' +
@@ -22,13 +22,13 @@ const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
       'turpis est sit amet nulla. Vestibulum lacinia mollis  ' +
       'accumsan. Vivamus porta cursus libero vitae mattis. ' +
       'In gravida bibendum orci, id faucibus felis molestie ac.  ' +
-      'Etiam vel elit cursus, scelerisque dui quis, auctor risus.</p>');
+      'Etiam vel elit cursus, scelerisque dui quis, auctor risus.</p><img src="http://i.imgur.com/aMtBIep.png" /></p>');
 
 const contentState = ContentState.createFromBlockArray(contentBlocks);
 
 // const rawContentState = convertToRaw(contentState);
 
-const rawContentState = {"entityMap":{"0":{"type":"MENTION","mutability":"IMMUTABLE","data":{"text":"@abc","value":"abc","url":"href-abc"}},"1":{"type":"MENTION","mutability":"IMMUTABLE","data":{"text":"@abcd","value":"abcd","url":"href-abcd"}}},"blocks":[{"key":"3c8kv","text":"@abc testing mentions saving opps @abcd ","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":4,"key":0},{"offset":34,"length":5,"key":1}],"data":{}}]};
+const rawContentState = {"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"http://i.imgur.com/aMtBIep.png","height":"auto","width":"100%"}}},"blocks":[{"key":"9unl6","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"95kn","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"7rjes","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 
 class Playground extends Component {
 
@@ -90,12 +90,13 @@ class Playground extends Component {
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
-              editorState={editorState}
+              contentState={contentState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               uploadCallback={this.imageUploadCallBack}
               onEditorStateChange={this.onEditorStateChange}
+              onContentStateChange={this.onEditorChange}
               placeholder="testing"
               spellCheck
               onFocus={() => {console.log('focus')}}
