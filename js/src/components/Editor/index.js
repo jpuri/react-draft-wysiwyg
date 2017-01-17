@@ -60,6 +60,7 @@ export default class WysiwygEditor extends Component {
     toolbarOnFocus: PropTypes.bool,
     spellCheck: PropTypes.bool,
     toolbar: PropTypes.object,
+    toolbarCustomButtons: PropTypes.array,
     toolbarClassName: PropTypes.string,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
@@ -339,6 +340,7 @@ export default class WysiwygEditor extends Component {
       customStyleMap,
      } = this.state;
     const {
+      toolbarCustomButtons,
       toolbarOnFocus,
       toolbarClassName,
       editorClassName,
@@ -475,6 +477,14 @@ export default class WysiwygEditor extends Component {
                 onChange={this.onChange}
                 config={history}
               />}
+              {toolbarCustomButtons && toolbarCustomButtons.map((comp, idx) => (
+                  React.cloneElement(comp, {
+                  key: idx,
+                  modalHandler: this.modalHandler,
+                  editorState: editorState,
+                  onChange: this.onChange,
+                })
+              ))}
             </div>
           :
           undefined
