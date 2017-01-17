@@ -480,14 +480,14 @@ export default class WysiwygEditor extends Component {
                 onChange={this.onChange}
                 config={history}
               />}
-              {toolbarCustomButtons && toolbarCustomButtons.map((comp, idx) => (
-                  React.cloneElement(comp, {
-                  key: idx,
+              {toolbarCustomButtons.map((button, idx) => {
+                return React.cloneElement(button, {
                   modalHandler: this.modalHandler,
-                  editorState: editorState,
+                  editorState,
                   onChange: this.onChange,
-                })
-              ))}
+                  key: idx,
+                });
+              })}
             </div>
           :
           undefined

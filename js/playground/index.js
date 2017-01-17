@@ -13,6 +13,18 @@ import {
 import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
+class TestOption extends Component {
+  render() {
+    return <div>testing</div>;
+  }
+}
+
+class TestOption2 extends Component {
+  render() {
+    return <div>resting</div>;
+  }
+}
+
 const contentBlocks = convertFromHTML('<p><p>Lorem ipsum ' +
       'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
       'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
@@ -99,6 +111,7 @@ class Playground extends Component {
               onContentStateChange={this.onEditorChange}
               placeholder="testing"
               spellCheck
+              toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
               mention={{
