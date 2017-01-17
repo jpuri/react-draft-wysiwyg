@@ -58,7 +58,7 @@ class Playground extends Component {
 
   clearContent: Function = () => {
     this.setState({
-      editorState: EditorState.createEmpty(),
+      contentState: convertToRaw(ContentState.createFromText('')),
     });
   };
 
