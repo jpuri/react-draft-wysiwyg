@@ -59,6 +59,7 @@ export default class WysiwygEditor extends Component {
     defaultEditorState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
     spellCheck: PropTypes.bool,
+    stripPastedStyles: PropTypes.bool,
     toolbar: PropTypes.object,
     toolbarCustomButtons: PropTypes.array,
     toolbarClassName: PropTypes.string,
@@ -86,6 +87,7 @@ export default class WysiwygEditor extends Component {
 
   static defaultProps = {
     toolbarOnFocus: false,
+    stripPastedStyles: false,
   }
 
   constructor(props) {
@@ -352,6 +354,7 @@ export default class WysiwygEditor extends Component {
       textAlignment,
       spellCheck,
       readOnly,
+      stripPastedStyles,
       tabIndex,
       placeholder,
       ariaLabel,
@@ -506,6 +509,7 @@ export default class WysiwygEditor extends Component {
             onDownArrow={this.onUpDownArrow}
             tabIndex={tabIndex}
             readOnly={readOnly}
+            stripPastedStyles={stripPastedStyles}
             spellCheck={spellCheck}
             editorState={editorState}
             onChange={this.onChange}

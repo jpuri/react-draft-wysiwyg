@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.5.7",
+  "version": "1.5.8",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -9,7 +9,7 @@
   },
   "author": "Jyoti Puri",
   "devDependencies": {
-    "autoprefixer": "^6.6.0",
+    "autoprefixer": "^6.6.1",
     "babel-core": "^6.21.0",
     "babel-eslint": "^7.1.1",
     "babel-loader": "^6.2.10",
@@ -21,45 +21,45 @@
     "chai": "^3.5.0",
     "css-loader": "^0.26.1",
     "draft-js": "^0.9.1",
-    "draftjs-to-html": "0.4.3",
-    "draftjs-to-markdown": "0.0.6",
+    "draftjs-to-html": "^0.5.0",
+    "draftjs-to-markdown": "^0.2.0",
     "enzyme": "^2.7.0",
-    "eslint": "^3.12.2",
-    "eslint-config-airbnb": "^13.0.0",
+    "eslint": "^3.13.1",
+    "eslint-config-airbnb": "^14.0.0",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-mocha": "^4.8.0",
-    "eslint-plugin-react": "^6.8.0",
+    "eslint-plugin-react": "^6.9.0",
     "express": "^4.14.0",
     "extract-text-webpack-plugin": "^1.0.1",
     "file-loader": "^0.9.0",
     "flow-bin": "^0.37.4",
-    "html-webpack-plugin": "^2.24.1",
+    "html-webpack-plugin": "^2.26.0",
     "immutable": "^3.8.1",
     "jsdom": "^9.9.1",
     "mocha": "^3.2.0",
-    "postcss-loader": "^1.2.1",
+    "postcss-loader": "^1.2.2",
     "precss": "^1.4.0",
-    "react": "^15.4.1",
-    "react-addons-test-utils": "^15.4.1",
-    "react-dom": "^15.4.1",
+    "react": "^15.4.2",
+    "react-addons-test-utils": "^15.4.2",
+    "react-dom": "^15.4.2",
     "rimraf": "^2.5.4",
-    "sinon": "^1.17.6",
+    "sinon": "^1.17.7",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.14.0",
     "webpack-dev-middleware": "^1.9.0",
-    "webpack-hot-middleware": "^2.14.0"
+    "webpack-hot-middleware": "^2.15.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-utils": "0.3.2",
-    "immutable": "^3.8.1"
+    "immutable": "^3.8.1",
+    "draftjs-utils": "0.5.0"
   },
   "peerDependencies": {
     "draft-js": "^0.9.x",
-    "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x",
-    "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x"
+    "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x",
+    "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x"
   },
   "scripts": {
     "clean": "rimraf dist",
