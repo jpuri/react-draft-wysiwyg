@@ -42,6 +42,15 @@ const contentState = ContentState.createFromBlockArray(contentBlocks);
 
 const rawContentState = {"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"http://i.imgur.com/aMtBIep.png","height":"auto","width":"100%"}}},"blocks":[{"key":"9unl6","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"95kn","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"7rjes","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 
+const toolBar = {
+  options: ['fontSize', 'inline', 'list', 'textAlign', 'colorPicker',
+    'link', 'emoji'
+  ],
+  inline: {
+    options: ['bold', 'italic', 'underline', 'strikethrough'],
+  }
+};
+
 class Playground extends Component {
 
   state: any = {
@@ -111,6 +120,7 @@ class Playground extends Component {
               onContentStateChange={this.onEditorChange}
               placeholder="testing"
               spellCheck
+              toolbar={toolBar}
               toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
