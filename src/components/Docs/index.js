@@ -212,7 +212,7 @@ export default class Demo2 extends Component {
           <div className="docs-desc">
             Toolbar in the editor is highly customisable property toolbar can be used for it. It allows configuring:
             <ol>
-              <li>which if the set of of options is available in the toolbar: inline, blockType, fontSize, fontFamily, list, textAlign, colorPicker, link, emoji, image, remove, history</li>
+              <li>which if the set of of options is available in the toolbar and in which order: inline, blockType, fontSize, fontFamily, list, textAlign, colorPicker, link, emoji, image, remove, history. This can be controlled by property options.</li>
               <li>for grouped options: inline, blockType, font-family, font-size, list, textAlign, history which sub-options are available</li>
               <li>which images are used for options</li>
               <li>CSS classes that are applied to the options and option group</li>
@@ -284,7 +284,7 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;{'}'}, <br />
               &nbsp;&nbsp;embedded: {'{ icon: image, className: undefined, popClassName: undefined }'}, <br />
               &nbsp;&nbsp;emoji: {'{ icon: emoji, className: undefined, popClassName: undefined }'}, <br />
-              &nbsp;&nbsp;image: {'{ icon: image, className: undefined, popClassName: undefined }'}, <br />
+              &nbsp;&nbsp;image: {'{ icon: image, className: undefined, popClassName: undefined, uploadCallback: uploadCallback }'}, <br />
               &nbsp;&nbsp;remove: {'{ icon: eraser, className: undefined }'}, <br />
               &nbsp;&nbsp;history: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
@@ -301,23 +301,43 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
+            Adding custom options to toolbar.
+          </div>
+          <div className="docs-desc">
+            Property toolbarCustomButtons can be used to add custom options to the toolbar.
+            It takes an array of react components and adds the options in toolbar. Properties editorState and onChange are added to the components.
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            Custom block rendering.
+          </div>
+          <div className="docs-desc">
+            Property customBlockRenderFunc can be used to pass function for custom rendering of blocks, <a  target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/advanced-topics-block-components.html#custom-block-components">ref.</a>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
             Uploading Image
           </div>
           <div className="docs-desc">
-            If property uploadCallback is passed image control shows the option to upload image.
-            The callback should return a promise. When resolved this promise should provide an object with a link property whose value is image source(url).
+            If callback function uploadCallback is passed in toolbar configuration property, image control shows the option to upload image.
+            The callback should return a promise.
           </div>
           <div>
             <code>
-              {'export default function uploadImageCallBack(file) {'}<br />
+              {'export default function uploadCallback(file) {'}<br />
               &nbsp;&nbsp;return new Promise(<br />
               &nbsp;&nbsp;&nbsp;&nbsp;{'(resolve, reject) => {'}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'resolve({ link: "http://dummy_image_src.com" });'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{'resolve({ data: { link: "http://dummy_image_src.com" } });'}<br />
               &nbsp;&nbsp;&nbsp;&nbsp;{'}'}<br />
               &nbsp;&nbsp;);<br />
               {'}'}<br />
-              {'<Editor uploadCallback={this.uploadCallback} />'}
+              {'<Editor toolbar={{ image: { uploadCallback: this.uploadCallback }}}} />'}
             </code>
+          </div>
+          <div className="docs-desc top-margined">
+            PLEASE NOTE: Property uploadCallback of editor component has been deprecated and will be removed in release 2.0. Its  now recommended to pass uploadCallback inside toolbar property.
           </div>
         </div>
         <div className="docs-section">
@@ -433,6 +453,19 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
+            stripPastedStyles
+          </div>
+          <div className="docs-desc">
+            stripPastedStyles exactly same as described <a target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/api-reference-editor.html#strippastedstyles">here</a>.
+          </div>
+          <div>
+            <code>
+              {'<Editor stripPastedStyles />'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
             DOM Event Callbacks
           </div>
           <div className="docs-desc">
@@ -451,6 +484,14 @@ export default class Demo2 extends Component {
           <div className="docs-desc">
             Two add-on libraries have been made for this purpose: draftjs-to-html, draftjs-tomarkdown. These are also available for download from npm. <br />
             Raw editor content can be converted to HTML or markdown simply by calling methods draftToHtml, draftToMarkdown respectively.
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            HTML to Editor Content conversion
+          </div>
+          <div className="docs-desc">
+            Add-on library html-to-draftjs provides the option to convert HTML generated by react-draft-wysiwyg back to draftJS ContentState which can be used to initialize the Editor.<br />
           </div>
         </div>
         <div className="docs-section">
