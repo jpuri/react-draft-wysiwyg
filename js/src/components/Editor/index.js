@@ -388,7 +388,7 @@ export default class WysiwygEditor extends Component {
               }
               return <Control key={index} {...controlProps} config={config} />
             })}
-            {toolbarCustomButtons.map((button, index) =>
+            {toolbarCustomButtons && toolbarCustomButtons.map((button, index) =>
               React.cloneElement(button, { key: index, ...controlProps }))}
           </div>
         }
