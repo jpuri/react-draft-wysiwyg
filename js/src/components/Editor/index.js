@@ -83,6 +83,7 @@ export default class WysiwygEditor extends Component {
     ariaDescribedBy: PropTypes.string,
     ariaExpanded: PropTypes.string,
     ariaHasPopup: PropTypes.string,
+    customBlockRenderFunc: PropTypes.func,
   };
 
   static defaultProps = {
@@ -104,7 +105,7 @@ export default class WysiwygEditor extends Component {
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
-    this.blockRendererFn = getBlockRenderFunc({ isReadOnly: this.isReadOnly });
+    this.blockRendererFn = getBlockRenderFunc({ isReadOnly: this.isReadOnly }, props.customBlockRenderFunc);
   }
 
   componentWillMount(): void {
