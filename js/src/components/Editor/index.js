@@ -381,7 +381,115 @@ export default class WysiwygEditor extends Component {
       remove,
       history,
     } = toolbar;
-
+    let optionsEle = [];
+    options.forEach((opt,i)=>{
+      switch (opt){
+        case 'inline':
+          optionsEle.push(<InlineControl key={i}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={inline}
+              />);
+          break;
+        case 'blockType':
+          optionsEle.push(<BlockControl key={i}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={blockType}
+              />)
+          break;
+        case 'fontSize':
+          optionsEle.push(<FontSizeControl key={i}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={fontSize}
+              />)
+          break;
+        case 'fontFamily':
+          optionsEle.push(<FontFamilyControl key={i}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={fontFamily}
+              />)
+          break;
+        case 'colorPicker':
+          optionsEle.push(<ColorPicker key={i}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={colorPicker}
+              />)
+          break;
+        case 'list':
+          optionsEle.push(<ListControl key={i}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={list}
+              />)
+          break;
+        case 'textAlign':
+          optionsEle.push(<TextAlignControl key={i}
+                modalHandler={this.modalHandler}
+                onChange={this.onChange}
+                editorState={editorState}
+                config={textAlign}
+              />)
+          break;
+        case 'link':
+            optionsEle.push(<LinkControl key={i}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={link}
+              />)
+            break;
+        case 'embedded':
+            optionsEle.push(<EmbeddedControl key={i}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={embedded}
+              />)
+            break;
+        case 'emoji':
+            optionsEle.push(<EmojiControl key={i}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={emoji}
+              />)
+            break;
+        case 'image':
+            optionsEle.push(<ImageControl key={i}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                uploadCallback={uploadCallback}
+                config={image}
+              />);
+            break;
+        case 'remove':
+            optionsEle.push(<RemoveControl key={i}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={remove}
+              />)
+            break;
+        case 'history':
+            optionsEle.push(<HistoryControl key={i}
+                modalHandler={this.modalHandler}
+                editorState={editorState}
+                onChange={this.onChange}
+                config={history}
+              />)
+            break;
+      }
+    });
     return (
       <div
         id={this.wrapperId}
@@ -402,84 +510,7 @@ export default class WysiwygEditor extends Component {
               aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
               onFocus={this.onToolbarFocus}
             >
-              {options.indexOf('inline') >= 0 && <InlineControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={inline}
-              />}
-              {options.indexOf('blockType') >= 0 && <BlockControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={blockType}
-              />}
-              {options.indexOf('fontSize') >= 0 && <FontSizeControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={fontSize}
-              />}
-              {options.indexOf('fontFamily') >= 0 && <FontFamilyControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={fontFamily}
-              />}
-              {options.indexOf('colorPicker') >= 0 && <ColorPicker
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={colorPicker}
-              />}
-              {options.indexOf('list') >= 0 && <ListControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={list}
-              />}
-              {options.indexOf('textAlign') >= 0 && <TextAlignControl
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={textAlign}
-              />}
-              {options.indexOf('link') >= 0 && <LinkControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={link}
-              />}
-              {options.indexOf('embedded') >= 0 && <EmbeddedControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={embedded}
-              />}
-              {options.indexOf('emoji') >= 0 && <EmojiControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={emoji}
-              />}
-              {options.indexOf('image') >= 0 && <ImageControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                uploadCallback={uploadCallback}
-                config={image}
-              />}
-              {options.indexOf('remove') >= 0 && <RemoveControl
-                editorState={editorState}
-                onChange={this.onChange}
-                config={remove}
-              />}
-              {options.indexOf('history') >= 0 && <HistoryControl
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={history}
-              />}
+              {optionsEle}
               {toolbarCustomButtons.map((button, idx) => {
                 return React.cloneElement(button, {
                   modalHandler: this.modalHandler,
