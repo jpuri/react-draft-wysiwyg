@@ -8,19 +8,19 @@ import {
   convertFromHTML,
   ContentState,
 } from 'draft-js';
-import BlockControl from '..';
+import Block from '..';
 import { Dropdown } from '../../Dropdown';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
 
-describe('BlockControl test suite', () => {
+describe('Block test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
   const contentState = ContentState.createFromBlockArray(contentBlocks);
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div when rendered', () => {
     expect(shallow(
-      <BlockControl
+      <Block
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.blockType}
@@ -30,27 +30,27 @@ describe('BlockControl test suite', () => {
 
   it('should have 8 child elements when inDropdown is false', () => {
     const blockDefaultCount = 8;
-    const control = mount(
-      <BlockControl
+    const block = mount(
+      <Block
         onChange={() => {}}
         editorState={editorState}
         config={{...defaultToolbar.blockType, inDropdown: false}}
       />
     );
-    expect(control.children().length).to.equal(blockDefaultCount);
+    expect(block.children().length).to.equal(blockDefaultCount);
   });
 
   it('should have a dropdown child component well defined', () => {
-    const control = mount(
-      <BlockControl
+    const block = mount(
+      <Block
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.blockType}
         modalHandler={new ModalHandler()}
       />
     );
-    assert.equal(control.childAt(0).props().children.length, 2);
-    assert.isDefined(control.childAt(0).props().onChange);
-    assert.equal(control.childAt(0).type(), Dropdown);
+    assert.equal(block.childAt(0).props().children.length, 2);
+    assert.isDefined(block.childAt(0).props().onChange);
+    assert.equal(block.childAt(0).type(), Dropdown);
   });
 });

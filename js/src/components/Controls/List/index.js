@@ -4,12 +4,12 @@ import React, { Component, PropTypes } from 'react';
 import { RichUtils } from 'draft-js';
 import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
 import classNames from 'classnames';
-import { getFirstIcon } from '../../utils/toolbar';
-import { Dropdown, DropdownOption } from '../Dropdown';
-import Option from '../Option';
+import { getFirstIcon } from '../../../utils/toolbar';
+import { Dropdown, DropdownOption } from '../../Dropdown';
+import Option from '../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class ListControl extends Component {
+export default class List extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,

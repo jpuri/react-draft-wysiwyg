@@ -4,11 +4,11 @@ import React, { Component, PropTypes } from 'react';
 import { getSelectedBlocksType } from 'draftjs-utils';
 import { RichUtils } from 'draft-js';
 import classNames from 'classnames';
-import Option from '../Option';
-import { Dropdown, DropdownOption } from '../Dropdown';
+import Option from '../../Option';
+import { Dropdown, DropdownOption } from '../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class BlockControl extends Component {
+export default class BlockType extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,

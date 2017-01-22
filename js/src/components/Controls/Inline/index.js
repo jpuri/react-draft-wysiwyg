@@ -4,13 +4,13 @@ import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
 import { RichUtils, EditorState, Modifier } from 'draft-js';
 import classNames from 'classnames';
-import { getFirstIcon } from '../../utils/toolbar';
-import Option from '../Option';
-import { Dropdown, DropdownOption } from '../Dropdown';
+import { getFirstIcon } from '../../../utils/toolbar';
+import Option from '../../Option';
+import { Dropdown, DropdownOption } from '../../Dropdown';
 
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class InlineControl extends Component {
+export default class Inline extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,

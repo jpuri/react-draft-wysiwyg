@@ -3,8 +3,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
-import Option from '../Option';
-import Spinner from '../Spinner';
+import Option from '../../Option';
+import Spinner from '../../Spinner';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class ImageControl extends Component {
@@ -12,7 +12,6 @@ export default class ImageControl extends Component {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    uploadCallback: PropTypes.func,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
   };
@@ -21,7 +20,7 @@ export default class ImageControl extends Component {
     imgSrc: '',
     showModal: false,
     dragEnter: false,
-    showImageUpload: !!this.props.uploadCallback,
+    showImageUpload: !!this.props.config.uploadCallback,
     showImageLoading: false,
     height: 'auto',
     width: '100%',
@@ -33,9 +32,9 @@ export default class ImageControl extends Component {
   }
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.uploadCallback !== this.props.uploadCallback) {
+    if (properties.config.uploadCallback !== this.props.config.uploadCallback) {
       this.setState({
-        showImageUpload: !!this.props.uploadCallback,
+        showImageUpload: !!this.props.config.uploadCallback,
       });
     }
   }
@@ -115,7 +114,7 @@ export default class ImageControl extends Component {
     this.setState({
       showModal: false,
       imgSrc: undefined,
-      showImageUpload: !!this.props.uploadCallback,
+      showImageUpload: !!this.props.config.uploadCallback,
     });
   };
 
@@ -123,7 +122,7 @@ export default class ImageControl extends Component {
     this.setState({
       showModal: this.signalShowModal,
       imgSrc: undefined,
-      showImageUpload: !!this.props.uploadCallback,
+      showImageUpload: !!this.props.config.uploadCallback,
     });
     this.signalShowModal = false;
   }
@@ -136,7 +135,7 @@ export default class ImageControl extends Component {
 
   uploadImage: Function = (file: Object): void => {
     this.toggleShowImageLoading();
-    const { uploadCallback } = this.props;
+    const { uploadCallback } = this.props.config;
     uploadCallback(file)
       .then(({ data }) => {
         this.setState({
@@ -185,7 +184,7 @@ export default class ImageControl extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, showImageUpload, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName }, uploadCallback } = this.props;
+    const { config: { popupClassName, uploadCallback } } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}

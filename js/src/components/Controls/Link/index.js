@@ -8,12 +8,12 @@ import {
   getSelectionEntity,
 } from 'draftjs-utils';
 import classNames from 'classnames';
-import { getFirstIcon } from '../../utils/toolbar';
-import Option from '../Option';
-import { Dropdown, DropdownOption } from '../Dropdown';
+import { getFirstIcon } from '../../../utils/toolbar';
+import Option from '../../Option';
+import { Dropdown, DropdownOption } from '../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class LinkControl extends Component {
+export default class Link extends Component {
 
   static propTypes = {
     editorState: PropTypes.object.isRequired,

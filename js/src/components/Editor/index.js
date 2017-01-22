@@ -25,19 +25,7 @@ import SuggestionHandler from '../../event-handler/suggestions';
 import blockStyleFn from '../../utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import { hasProperty } from '../../utils/common';
-import InlineControl from '../InlineControl';
-import BlockControl from '../BlockControl';
-import FontSizeControl from '../FontSizeControl';
-import FontFamilyControl from '../FontFamilyControl';
-import ListControl from '../ListControl';
-import TextAlignControl from '../TextAlignControl';
-import ColorPicker from '../ColorPicker';
-import RemoveControl from '../RemoveControl';
-import LinkControl from '../LinkControl';
-import EmbeddedControl from '../EmbeddedControl';
-import EmojiControl from '../EmojiControl';
-import ImageControl from '../ImageControl';
-import HistoryControl from '../HistoryControl';
+import Controls from '../Controls';
 import LinkDecorator from '../../decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
 import getBlockRenderFunc from '../../renderer';
@@ -365,131 +353,7 @@ export default class WysiwygEditor extends Component {
       ariaExpanded,
       ariaHasPopup,
     } = this.props;
-    const {
-      options,
-      inline,
-      blockType,
-      fontSize,
-      fontFamily,
-      list,
-      textAlign,
-      colorPicker,
-      link,
-      embedded,
-      emoji,
-      image,
-      remove,
-      history,
-    } = toolbar;
-    let optionsEle = [];
-    options.forEach((opt,i)=>{
-      switch (opt){
-        case 'inline':
-          optionsEle.push(<InlineControl key={i}
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={inline}
-              />);
-          break;
-        case 'blockType':
-          optionsEle.push(<BlockControl key={i}
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={blockType}
-              />)
-          break;
-        case 'fontSize':
-          optionsEle.push(<FontSizeControl key={i}
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={fontSize}
-              />)
-          break;
-        case 'fontFamily':
-          optionsEle.push(<FontFamilyControl key={i}
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={fontFamily}
-              />)
-          break;
-        case 'colorPicker':
-          optionsEle.push(<ColorPicker key={i}
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={colorPicker}
-              />)
-          break;
-        case 'list':
-          optionsEle.push(<ListControl key={i}
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={list}
-              />)
-          break;
-        case 'textAlign':
-          optionsEle.push(<TextAlignControl key={i}
-                modalHandler={this.modalHandler}
-                onChange={this.onChange}
-                editorState={editorState}
-                config={textAlign}
-              />)
-          break;
-        case 'link':
-            optionsEle.push(<LinkControl key={i}
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={link}
-              />)
-            break;
-        case 'embedded':
-            optionsEle.push(<EmbeddedControl key={i}
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={embedded}
-              />)
-            break;
-        case 'emoji':
-            optionsEle.push(<EmojiControl key={i}
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={emoji}
-              />)
-            break;
-        case 'image':
-            optionsEle.push(<ImageControl key={i}
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                uploadCallback={uploadCallback}
-                config={image}
-              />);
-            break;
-        case 'remove':
-            optionsEle.push(<RemoveControl key={i}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={remove}
-              />)
-            break;
-        case 'history':
-            optionsEle.push(<HistoryControl key={i}
-                modalHandler={this.modalHandler}
-                editorState={editorState}
-                onChange={this.onChange}
-                config={history}
-              />)
-            break;
-      }
-    });
+
     return (
       <div
         id={this.wrapperId}
@@ -510,7 +374,16 @@ export default class WysiwygEditor extends Component {
               aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
               onFocus={this.onToolbarFocus}
             >
-              {optionsEle}
+              {toolbar.options.map((opt,i)=>{
+                const Control = Controls[opt];
+                return <Control key={i}
+                    modalHandler={this.modalHandler}
+                    editorState={editorState}
+                    onChange={this.onChange}
+                    uploadCallback={uploadCallback}
+                    config={toolbar[opt]}
+                />
+              })}
               {toolbarCustomButtons.map((button, idx) => {
                 return React.cloneElement(button, {
                   modalHandler: this.modalHandler,

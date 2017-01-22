@@ -3,10 +3,10 @@
 import React, { Component, PropTypes } from 'react';
 import { EditorState, Modifier } from 'draft-js';
 import classNames from 'classnames';
-import Option from '../Option';
+import Option from '../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class RemoveControl extends Component {
+export default class Remove extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
