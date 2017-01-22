@@ -354,6 +354,12 @@ export default class WysiwygEditor extends Component {
       ariaHasPopup,
     } = this.props;
 
+    const controlProps = {
+      modalHandler: this.modalHandler,
+      editorState: editorState,
+      onChange: this.onChange,
+    }
+
     return (
       <div
         id={this.wrapperId}
@@ -364,37 +370,26 @@ export default class WysiwygEditor extends Component {
         aria-label="rdw-wrapper"
         tabIndex={0}
       >
-        {
-          (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) ?
-            <div
-              className={classNames('rdw-editor-toolbar', toolbarClassName)}
-              style={toolbarStyle}
-              onMouseDown={this.preventDefault}
-              aria-label="rdw-toolbar"
-              aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-              onFocus={this.onToolbarFocus}
-            >
-              {toolbar.options.map((opt,i)=>{
-                const Control = Controls[opt];
-                return <Control key={i}
-                    modalHandler={this.modalHandler}
-                    editorState={editorState}
-                    onChange={this.onChange}
-                    uploadCallback={uploadCallback}
-                    config={toolbar[opt]}
-                />
-              })}
-              {toolbarCustomButtons.map((button, idx) => {
-                return React.cloneElement(button, {
-                  modalHandler: this.modalHandler,
-                  editorState,
-                  onChange: this.onChange,
-                  key: idx,
-                });
-              })}
-            </div>
-          :
-          undefined
+        {(editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
+          <div
+            className={classNames('rdw-editor-toolbar', toolbarClassName)}
+            style={toolbarStyle}
+            onMouseDown={this.preventDefault}
+            aria-label="rdw-toolbar"
+            aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+            onFocus={this.onToolbarFocus}
+          >
+            {toolbar.options.map((opt,index)=>{
+              const Control = Controls[opt];
+              let config = toolbar[opt];
+              if (opt === 'image' && uploadCallback) {
+                config.uploadCallback = uploadCallback;
+              }
+              return <Control key={index} {...controlProps} config={config} />
+            })}
+            {toolbarCustomButtons.map((button, index) =>
+              React.cloneElement(button, { key: index, ...controlProps }))}
+          </div>
         }
         <div
           ref={this.setWrapperReference}
