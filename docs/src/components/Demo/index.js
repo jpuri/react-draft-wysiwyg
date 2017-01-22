@@ -58,7 +58,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 0)}
-            uploadCallback={uploadImageCallBack}
+            toolbar={{image: {uploadImageCallBack}}}
           />
           <textarea
             disabled
@@ -76,7 +76,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 1)}
-            uploadCallback={uploadImageCallBack}
+            toolbar={{image: {uploadImageCallBack}}}
           />
           <textarea
             disabled
@@ -94,7 +94,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 2)}
-            uploadCallback={uploadImageCallBack}
+            toolbar={{image: {uploadImageCallBack}}}
           />
           <textarea
             disabled
@@ -110,13 +110,32 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
-            uploadCallback={uploadImageCallBack}
             toolbar={{
               inline: { inDropdown: true },
               list: { inDropdown: true },
               textAlign: { inDropdown: true },
               link: { inDropdown: true },
               history: { inDropdown: true },
+              image: {uploadImageCallBack}
+            }}
+          />
+        </div>
+        <div className="demo-label">
+          Editor with similar options grouped in drop-down and order of options reversed.
+        </div>
+        <div className="demo-editorSection">
+          <Editor
+            toolbarClassName="demo-toolbar"
+            wrapperClassName="demo-wrapper-wide"
+            editorClassName="demo-editor"
+            toolbar={{
+              options: ['history', 'remove', 'image', 'emoji', 'embedded', 'link', 'colorPicker', 'textAlign', 'list', 'fontFamily', 'fontSize', 'blockType', 'inline'],
+              inline: { inDropdown: true },
+              list: { inDropdown: true },
+              textAlign: { inDropdown: true },
+              link: { inDropdown: true },
+              history: { inDropdown: true },
+              image: {uploadImageCallBack}
             }}
           />
         </div>
