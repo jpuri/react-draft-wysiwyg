@@ -14,7 +14,7 @@ export default class Home extends Component {
           toolbarClassName="home-toolbar"
           wrapperClassName="home-wrapper"
           editorClassName="home-editor"
-          toolbar={{image: {uploadImageCallBack}}}
+          toolbar={{image: { uploadCallback: uploadImageCallBack }}}
           placeholder="Begin typing..."
         />
         <div className="quote-section">

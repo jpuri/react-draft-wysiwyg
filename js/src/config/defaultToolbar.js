@@ -96,6 +96,7 @@ export default {
     icon: image,
     className: undefined,
     popupClassName: undefined,
+    uploadCallback: undefined,
   },
   remove: { icon: eraser, className: undefined },
   history: {

@@ -106,7 +106,7 @@ class Playground extends Component {
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
-              uploadCallback={this.imageUploadCallBack}
+              toolbar={{image: { uploadCallback: this.imageUploadCallBack }}}
               onEditorStateChange={this.onEditorStateChange}
               onContentStateChange={this.onEditorChange}
               placeholder="testing"

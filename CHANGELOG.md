@@ -52,3 +52,7 @@ Initial stable release
 ## 22/01/2016
 - #181: Ability to add custom block renderer.
 - #183: Default toolbar order by config.
+
+
+## 25/01/2016
+- #176: image upload issue: drag and drop

@@ -47,6 +47,9 @@ export default class ImageControl extends Component {
   onImageDrop: Function = (event: Object): void => {
     event.preventDefault();
     event.stopPropagation();
+    this.setState({
+      dragEnter: false,
+    });
     this.uploadImage(event.dataTransfer.files[0]);
   };
 
@@ -224,8 +227,8 @@ export default class ImageControl extends Component {
           showImageUpload && uploadCallback ?
             <div onClick={this.fileUploadClick}>
               <div
-                onDragEnter={this.stopPropagationPreventDefault}
-                onDragOver={this.stopPropagationPreventDefault}
+                onDragEnter={this.onDragEnter}
+                onDragOver={this.stopPropagation}
                 onDrop={this.onImageDrop}
                 className={classNames(
                 'rdw-image-modal-upload-option',

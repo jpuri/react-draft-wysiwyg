@@ -58,7 +58,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 0)}
-            toolbar={{image: {uploadImageCallBack}}}
+            toolbar={{image: { uploadCallback: uploadImageCallBack }}}
           />
           <textarea
             disabled
@@ -76,7 +76,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 1)}
-            toolbar={{image: {uploadImageCallBack}}}
+            toolbar={{image: { uploadCallback: uploadImageCallBack }}}
           />
           <textarea
             disabled
@@ -94,7 +94,7 @@ export default class Demo extends Component {
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 2)}
-            toolbar={{image: {uploadImageCallBack}}}
+            toolbar={{image: { uploadCallback: uploadImageCallBack }}}
           />
           <textarea
             disabled
@@ -116,7 +116,7 @@ export default class Demo extends Component {
               textAlign: { inDropdown: true },
               link: { inDropdown: true },
               history: { inDropdown: true },
-              image: {uploadImageCallBack}
+              image: { uploadCallback: uploadImageCallBack }
             }}
           />
         </div>
@@ -135,7 +135,7 @@ export default class Demo extends Component {
               textAlign: { inDropdown: true },
               link: { inDropdown: true },
               history: { inDropdown: true },
-              image: {uploadImageCallBack}
+              image: { uploadCallback: uploadImageCallBack }
             }}
           />
         </div>
