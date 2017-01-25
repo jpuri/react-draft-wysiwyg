@@ -180,6 +180,7 @@ const ColorPickerModalOptions = ({colors, currentSelectedColor, currentStyle, on
       const rgb = colors[name];
       optionNodes.push(
           <ColorPickerModalOption
+              rgb={rgb}
               value={name}
               key={name}
               active={currentSelectedColor === `${currentStyle}-${rgb}`}
@@ -194,22 +195,22 @@ const ColorPickerModalOptions = ({colors, currentSelectedColor, currentStyle, on
 
 }
 
-const ColorPickerModalOption = ({value, name, active, onClick}) => {
+const ColorPickerModalOption = ({rgb, value, name, active, onClick}) => {
 
   return (
-      <Option
-          value={value}
-          key={`color-picker-option-${name}`}
-          className="rdw-colorpicker-option"
-          activeClassName="rdw-colorpicker-option-active"
-          active={active}
-          onClick={onClick}
-      >
-        <span
-            style={{ backgroundColor: value }}
-            className="rdw-colorpicker-cube"
-        />
-      </Option>
+    <Option
+        value={value}
+        key={`color-picker-option-${name}`}
+        className="rdw-colorpicker-option"
+        activeClassName="rdw-colorpicker-option-active"
+        active={active}
+        onClick={onClick}
+    >
+      <span
+          style={{ backgroundColor: rgb }}
+          className="rdw-colorpicker-cube"
+      />
+    </Option>
   )
 
 }
