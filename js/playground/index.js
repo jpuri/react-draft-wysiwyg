@@ -114,6 +114,7 @@ class Playground extends Component {
               toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
+              onBlur={() => {console.log('tab'); return true;}}
               mention={{
                 separator: ' ',
                 trigger: '@',

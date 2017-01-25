@@ -469,11 +469,13 @@ export default class Demo2 extends Component {
             DOM Event Callbacks
           </div>
           <div className="docs-desc">
-            Editor provides onFocus and onBlur callbacks.
+            Editor provides onFocus, onBlur and onTab callbacks.<br />
+            Default behavior of editor on tab is to change depth of block if current block is of type list.
+            If onTab callback returns true editor assumes that Tab has been handled by the callback and the default behavior is not executed.
           </div>
           <div>
             <code>
-              {'<Editor onFocus={myFocusCallback}  onBlur={myBlurCallback} />'}
+              {'<Editor onFocus={myFocusCallback} onBlur={myBlurCallback} onTab={myTabCallback} />'}
             </code>
           </div>
         </div>

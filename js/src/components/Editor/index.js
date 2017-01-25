@@ -59,6 +59,7 @@ export default class WysiwygEditor extends Component {
     uploadCallback: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
+    onTab: PropTypes.func,
     mention: PropTypes.object,
     textAlignment: PropTypes.string,
     readOnly: PropTypes.bool,
@@ -161,10 +162,13 @@ export default class WysiwygEditor extends Component {
   }
 
   onTab: Function = (event): boolean => {
-    const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
-    if (editorState) {
-      this.onChange(editorState);
-      event.preventDefault();
+    const { onTab } = this.props;
+    if (!onTab || !onTab(event)) {
+      const editorState = changeDepth(this.state.editorState, event.shiftKey ? -1 : 1, 4);
+      if (editorState && editorState !== this.state.editorState) {
+        this.onChange(editorState);
+        event.preventDefault();
+      }
     }
   };
 
