@@ -210,13 +210,17 @@ export default class Demo2 extends Component {
             Customizing toolbar
           </div>
           <div className="docs-desc">
-            Toolbar in the editor is highly customisable property toolbar can be used for it. It allows configuring:
+            Toolbar in the editor is highly customisable property toolbar can be used for it. It allows:
             <ol>
-              <li>which if the set of of options is available in the toolbar and in which order: inline, blockType, fontSize, fontFamily, list, textAlign, colorPicker, link, emoji, image, remove, history. This can be controlled by property options.</li>
-              <li>for grouped options: inline, blockType, font-family, font-size, list, textAlign, history which sub-options are available</li>
-              <li>which images are used for options</li>
-              <li>CSS classes that are applied to the options and option group</li>
-              <li>showing option groups in drop-down</li>
+              <li>Which of the set of options is available in the toolbar and in which order: inline, blockType, fontSize, fontFamily, list, textAlign, colorPicker, link, emoji, image, remove, history. This can be controlled by property options.</li>
+              <li>For grouped options: inline, blockType, font-family, font-size, list, textAlign, history which sub-options are available.</li>
+              <li>Grouping the options in drop-down.</li>
+              <li>Overriding available options for font-family, in case you use a custom font-families you need to make sure that font is uploaded on the page.</li>
+              <li>Overriding available options for font-sizes, again make sure font size is available in the browser.</li>
+              <li>Overriding available options for colors, any valid color value string can be used.</li>
+              <li>Overriding available options for emojis, unicode emojis can be used.</li>
+              <li>Using custom icons in the toolbar.</li>
+              <li>Applying custom styles to the toolbar options using CSS classes.</li>
             </ol>
             Below is the complete toolbar property object, user can provide any or all of these properties.
             For editor to reflect the changes in this object you need to make sure that you do not mutate it but rather create a new copy.
@@ -273,7 +277,17 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;right: {'{ icon: right, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;justify: {'{ icon: justify, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;colorPicker: {'{ icon: color, className: undefined, popClassName: undefined }'}, <br />
+              &nbsp;&nbsp;colorPicker: {'{'}
+              &nbsp;&nbsp;&nbsp;&nbsp;icon: color, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;popClassName: undefined, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;colors: [{"'rgb(97,189,109)', 'rgb(26,188,156)', 'rgb(84,172,210)', 'rgb(44,130,201)',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(147,101,184)', 'rgb(71,85,119)', 'rgb(204,204,204)', 'rgb(65,168,95)', 'rgb(0,168,133)',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(61,142,185)', 'rgb(41,105,176)', 'rgb(85,57,130)', 'rgb(40,50,78)', 'rgb(0,0,0)',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(247,218,100)', 'rgb(251,160,38)', 'rgb(235,107,86)', 'rgb(226,80,65)', 'rgb(163,143,132)',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(239,239,239)', 'rgb(255,255,255)', 'rgb(250,197,28)', 'rgb(243,121,52)', 'rgb(209,72,65)',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(184,49,47)', 'rgb(124,112,107)', 'rgb(209,213,216)']"}<br />
+              &nbsp;&nbsp;{'}'}, <br />
               &nbsp;&nbsp;link: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
@@ -283,7 +297,20 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;unlink: {'{ icon: unlink, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
               &nbsp;&nbsp;embedded: {'{ icon: image, className: undefined, popClassName: undefined }'}, <br />
-              &nbsp;&nbsp;emoji: {'{ icon: emoji, className: undefined, popClassName: undefined }'}, <br />
+              &nbsp;&nbsp;emoji: {'{'}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;icon: emoji,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;popClassName: undefined,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;emojis: [{"'😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🤓', '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉', '🙊',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'👼', '👮', '🕵', '💂', '👳', '🎅', '👸', '👰', '👲', '🙍', '🙇', '🚶', '🏃', '💃',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'⛷', '🏂', '🏌', '🏄', '🚣', '🏊', '⛹', '🏋', '🚴', '👫', '💪', '👈', '👉', '👉', '👆', '🖕', '👇',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🖖', '🤘', '🖐', '👌', '👍', '👎', '✊', '👊', '👏', '🙌', '🙏', '🐵', '🐶',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🐇', '🐥', '🐸', '🐌', '🐛', '🐜', '🐝', '🍉', '🍄', '🍔', '🍤', '🍨', '🍪', '🎂', '🍰', '🍾', '🍷', '🍸',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🍺', '🌍', '🚑', '⏰', '🌙', '🌝', '🌞', '⭐', '🌟', '🌠', '🌨', '🌩', '⛄', '🔥', '🎄', '🎈', '🎉',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷',"}<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'💰', '🖊', '📅', '✅', '❎', '💯'],"}<br />
+              &nbsp;&nbsp;{'}'}, <br />
               &nbsp;&nbsp;image: {'{ icon: image, className: undefined, popClassName: undefined, uploadCallback: uploadCallback }'}, <br />
               &nbsp;&nbsp;remove: {'{ icon: eraser, className: undefined }'}, <br />
               &nbsp;&nbsp;history: {'{'} <br />

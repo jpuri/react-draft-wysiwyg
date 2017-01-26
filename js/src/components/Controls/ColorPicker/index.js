@@ -3,7 +3,6 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import {
-  colors,
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
@@ -96,7 +95,7 @@ export default class ColorPicker extends Component {
   };
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName } } = this.props;
+    const { config: { popupClassName, colors } } = this.props;
     const { currentColor, currentBgColor, currentStyle } = this.state;
     const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
     return (

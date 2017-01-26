@@ -33,16 +33,6 @@ export default class Emoji extends Component {
     this.signalShowModal = !this.state.showModal;
   };
 
-  emojis: Array<string> = ['😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌',
-    '🤓', '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉', '🙊',
-    '👼', '👮', '🕵', '💂', '👳', '🎅', '👸', '👰', '👲', '🙍', '🙇', '🚶', '🏃', '💃',
-    '⛷', '🏂', '🏌', '🏄', '🚣', '🏊', '⛹', '🏋', '🚴', '👫', '💪', '👈', '👉', '👉', '👆', '🖕', '👇',
-    '🖖', '🤘', '🖐', '👌', '👍', '👎', '✊', '👊', '👏', '🙌', '🙏', '🐵', '🐶',
-    '🐇', '🐥', '🐸', '🐌', '🐛', '🐜', '🐝', '🍉', '🍄', '🍔', '🍤', '🍨', '🍪', '🎂', '🍰', '🍾', '🍷', '🍸',
-    '🍺', '🌍', '🚑', '⏰', '🌙', '🌝', '🌞', '⭐', '🌟', '🌠', '🌨', '🌩', '⛄', '🔥', '🎄', '🎈', '🎉',
-    '🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷',
-    '💰', '🖊', '📅', '✅', '❎', '💯'];
-
   addEmoji: Function = (event: Object): void => {
     const { editorState, onChange } = this.props;
     const contentState = Modifier.insertText(
@@ -74,14 +64,14 @@ export default class Emoji extends Component {
   };
 
   renderEmojiModal(): Object {
-    const { config: { popupClassName } } = this.props;
+    const { config: { popupClassName, emojis } } = this.props;
     return (
       <div
         className={classNames('rdw-emoji-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
         {
-          this.emojis.map((emoji, index) => (<span
+          emojis.map((emoji, index) => (<span
             key={index}
             className="rdw-emoji-icon"
             role="presentation"

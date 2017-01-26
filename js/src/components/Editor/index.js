@@ -12,6 +12,7 @@ import {
 } from 'draft-js';
 import {
   changeDepth,
+  setColors,
   setFontSizes,
   handleNewLine,
   setFontFamilies,
@@ -85,6 +86,7 @@ export default class WysiwygEditor extends Component {
     const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
     setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
     setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
+    setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
     this.state = {
       editorState: undefined,
       editorFocused: false,
@@ -116,6 +118,7 @@ export default class WysiwygEditor extends Component {
       const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
       setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
       setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
+      setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
       newState.toolbar = toolbar;
       newState.customStyleMap = getCustomStyleMap();
     }
