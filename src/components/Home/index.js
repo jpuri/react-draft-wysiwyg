@@ -41,12 +41,12 @@ export default class Home extends Component {
           <li className="home-listItem">Option to show toolbar only when editor is focused.</li>
           <li className="home-listItem">Support for inline styles: Bold, Italic, Underline, StrikeThrough, Code, Subscript, Superscript.</li>
           <li className="home-listItem">Support for block types: Paragraph, H1 - H6, Blockquote.</li>
-          <li className="home-listItem">Support for setting font-size and font-family.</li>
+          <li className="home-listItem">Support for setting font-size and font-family and option to add custom types.</li>
           <li className="home-listItem">Support for ordered / unordered lists and indenting.</li>
           <li className="home-listItem">Support for text-alignment.</li>
-          <li className="home-listItem">Support for coloring text or background.</li>
+          <li className="home-listItem">Support for coloring text or background and option to add your own color values.</li>
           <li className="home-listItem">Support for adding / editing links</li>
-          <li className="home-listItem">Choice of more than 150 emojis.</li>
+          <li className="home-listItem">Choice of more than 150 emojis and option to add you own unicode emojis.</li>
           <li className="home-listItem">Support for mentions.</li>
           <li className="home-listItem">Support for adding / uploading images.</li>
           <li className="home-listItem">Support for aligning images, setting height, width.</li>
