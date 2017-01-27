@@ -360,6 +360,7 @@ export default class WysiwygEditor extends Component {
       ariaDescribedBy,
       ariaExpanded,
       ariaHasPopup,
+      ...props,
     } = this.props;
 
     const controlProps = {
@@ -435,6 +436,7 @@ export default class WysiwygEditor extends Component {
             ariaHasPopup={ariaHasPopup}
             ariaReadonly={readOnly}
             placeholder={placeholder}
+            {...props}
           />
         </div>
       </div>
