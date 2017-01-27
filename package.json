@@ -21,7 +21,7 @@
     "chai": "^3.5.0",
     "css-loader": "^0.26.1",
     "draft-js": "^0.9.1",
-    "draftjs-to-html": "^0.5.0",
+    "draftjs-to-html": "git://github.com/jpuri/draftjs-to-html.git#7c17c343f7b88ed0604327bcbe9a31cf88b38b1e",
     "draftjs-to-markdown": "^0.2.0",
     "enzyme": "^2.7.0",
     "eslint": "^3.13.1",
@@ -54,7 +54,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
-    "draftjs-utils": "file:../draftjs-utils"
+    "draftjs-utils": "git://github.com/jpuri/draftjs-utils.git#e121403fdc2f2b7d5750575341ec95714da9e887"
   },
   "peerDependencies": {
     "draft-js": "^0.9.x",

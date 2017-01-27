@@ -51,7 +51,7 @@ class Link extends Component {
         onMouseEnter={this.toggleShowPopOver}
         onMouseLeave={this.toggleShowPopOver}
       >
-        <a href={url}>{title}</a>
+        <a href={url}>{children}</a>
         {showPopOver ?
           <img
             src={openlink}

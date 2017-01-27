@@ -91,7 +91,6 @@ export default class Link extends Component {
       });
     }
     const entityKey = Entity.create('LINK', 'MUTABLE', {
-      title: linkTitle,
       url: linkTarget,
     });
 
@@ -145,6 +144,8 @@ export default class Link extends Component {
     if (newState.showModal) {
       const { editorState } = this.props;
       const { currentEntity } = this.state;
+      newState.linkTarget = undefined;
+      newState.linkTitle = undefined;
       if (currentEntity && (Entity.get(currentEntity).get('type') === 'LINK')) {
         newState.entity = currentEntity;
         const entityRange = currentEntity && getEntityRange(editorState, currentEntity);

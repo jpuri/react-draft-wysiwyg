@@ -39,6 +39,7 @@
   border: 1px solid #F1F1F1;
   height: 25px;
   margin-bottom: 15px;
+  padding: 0 5px;
 }
 .rdw-link-modal-input:focus {
   outline: none;
