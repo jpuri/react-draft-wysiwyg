@@ -289,9 +289,9 @@ export default class WysiwygEditor extends Component {
   }
 
   filterEditorProps = (props) => {
-    return filter(props, [ 'onChange', 'onEditorStateChange',
-      'onContentStateChange', 'initialContentState', 'defaultContentState',
-      'contentState', 'editorState', 'defaultEditorState', 'toolbarOnFocus',
+    return filter(props, [
+      'onChange', 'onEditorStateChange', 'onContentStateChange', 'initialContentState',
+      'defaultContentState', 'contentState', 'editorState', 'defaultEditorState', 'toolbarOnFocus',
       'toolbar', 'toolbarCustomButtons', 'toolbarClassName', 'editorClassName',
       'wrapperClassName', 'toolbarStyle', 'editorStyle', 'wrapperStyle', 'uploadCallback',
       'onFocus', 'onBlur', 'onTab', 'mention', 'ariaLabel', 'customBlockRenderFunc',

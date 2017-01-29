@@ -118,14 +118,15 @@ class Playground extends Component {
               mention={{
                 separator: ' ',
                 trigger: '@',
+                caseSensitive: true,
                 suggestions: [
-                  { text: 'A', value: 'a', url: 'href-a' },
-                  { text: 'AB', value: 'ab', url: 'href-ab' },
-                  { text: 'ABC', value: 'abc', url: 'href-abc' },
-                  { text: 'ABCD', value: 'abcd', url: 'href-abcd' },
-                  { text: 'ABCDE', value: 'abcde', url: 'href-abcde' },
-                  { text: 'ABCDEF', value: 'abcdef', url: 'href-abcdef' },
-                  { text: 'ABCDEFG', value: 'abcdefg', url: 'href-abcdefg' },
+                  { text: 'A', value: 'A', url: 'href-a' },
+                  { text: 'AB', value: 'AB', url: 'href-ab' },
+                  { text: 'ABC', value: 'ABC', url: 'href-abc' },
+                  { text: 'ABCD', value: 'ABCD', url: 'href-abcd' },
+                  { text: 'ABCDE', value: 'ABCDE', url: 'href-abcde' },
+                  { text: 'ABCDEF', value: 'ABCDEF', url: 'href-abcdef' },
+                  { text: 'ABCDEFG', value: 'ABCDEFG', url: 'href-abcdefg' },
                 ],
               }}
             />
