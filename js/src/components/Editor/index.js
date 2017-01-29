@@ -25,7 +25,7 @@ import KeyDownHandler from '../../event-handler/keyDown';
 import SuggestionHandler from '../../event-handler/suggestions';
 import blockStyleFn from '../../utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
-import { hasProperty } from '../../utils/common';
+import { hasProperty, filter } from '../../utils/common';
 import Controls from '../Controls';
 import LinkDecorator from '../../decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
@@ -91,12 +91,13 @@ export default class WysiwygEditor extends Component {
       editorState: undefined,
       editorFocused: false,
       toolbar,
-      customStyleMap: getCustomStyleMap(),
     };
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
     this.blockRendererFn = getBlockRenderFunc({ isReadOnly: this.isReadOnly }, props.customBlockRenderFunc);
+    this.editorProps = this.filterEditorProps(props);
+    this.customStyleMap = getCustomStyleMap();
   }
 
   componentWillMount(): void {
@@ -120,7 +121,6 @@ export default class WysiwygEditor extends Component {
       setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
       setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
       newState.toolbar = toolbar;
-      newState.customStyleMap = getCustomStyleMap();
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
       if (props.editorState) {
@@ -142,6 +142,8 @@ export default class WysiwygEditor extends Component {
       }
     }
     this.setState(newState);
+    this.editorProps = this.filterEditorProps(props);
+    this.customStyleMap = getCustomStyleMap();
   }
 
   onEditorBlur: Function = (): void => {
@@ -286,6 +288,16 @@ export default class WysiwygEditor extends Component {
     return editorState;
   }
 
+  filterEditorProps = (props) => {
+    return filter(props, [ 'onChange', 'onEditorStateChange',
+      'onContentStateChange', 'initialContentState', 'defaultContentState',
+      'contentState', 'editorState', 'defaultEditorState', 'toolbarOnFocus',
+      'toolbar', 'toolbarCustomButtons', 'toolbarClassName', 'editorClassName',
+      'wrapperClassName', 'toolbarStyle', 'editorStyle', 'wrapperStyle', 'uploadCallback',
+      'onFocus', 'onBlur', 'onTab', 'mention', 'ariaLabel', 'customBlockRenderFunc',
+    ]);
+  }
+
   changeEditorState = (contentState) => {
     const newContentState = convertFromRaw(contentState);
     let { editorState } = this.state;
@@ -335,7 +347,6 @@ export default class WysiwygEditor extends Component {
       editorState,
       editorFocused,
       toolbar,
-      customStyleMap,
      } = this.state;
     const {
       toolbarCustomButtons,
@@ -415,28 +426,15 @@ export default class WysiwygEditor extends Component {
             onTab={this.onTab}
             onUpArrow={this.onUpDownArrow}
             onDownArrow={this.onUpDownArrow}
-            tabIndex={tabIndex}
-            readOnly={readOnly}
-            stripPastedStyles={stripPastedStyles}
-            spellCheck={spellCheck}
             editorState={editorState}
             onChange={this.onChange}
-            textAlignment={textAlignment}
             blockStyleFn={blockStyleFn}
-            customStyleMap={customStyleMap}
+            customStyleMap={this.customStyleMap}
             handleReturn={this.handleReturn}
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
-            ariaOwneeID={ariaOwneeID}
-            ariaActiveDescendantID={ariaActiveDescendantID}
-            ariaAutoComplete={ariaAutoComplete}
-            ariaDescribedBy={ariaDescribedBy}
-            ariaExpanded={ariaExpanded}
-            ariaHasPopup={ariaHasPopup}
-            ariaReadonly={readOnly}
-            placeholder={placeholder}
-            {...props}
+            {...this.editorProps}
           />
         </div>
       </div>
