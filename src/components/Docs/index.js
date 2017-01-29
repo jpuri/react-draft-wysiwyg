@@ -383,6 +383,7 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;{'mention={{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;separator: {"' '"}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;trigger: {"'@'"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;caseSensitive: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;{"mentionClassName: 'mention-className'"},<br />
               &nbsp;&nbsp;&nbsp;&nbsp;{"dropdownClassName: 'dropdown-className'"},<br />
               &nbsp;&nbsp;&nbsp;&nbsp;{"optionClassName: 'option-className'"},<br />
@@ -428,67 +429,10 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            Spell check
+            DraftJS Properties
           </div>
           <div className="docs-desc">
-            Default browser spell-check can be enabled in the editor using property spellCheck, it can have value true, false. false by default.
-          </div>
-          <div>
-            <code>
-              {'<Editor spellCheck />'}
-            </code>
-          </div>
-        </div>
-        <div className="docs-section">
-          <div className="docs-label">
-            Read Only
-          </div>
-          <div className="docs-desc">
-            Using this property editor can be turned read only, it can have value true, false. false by default.
-          </div>
-          <div>
-            <code>
-              {'<Editor readOnly />'}
-            </code>
-          </div>
-        </div>
-        <div className="docs-section">
-          <div className="docs-label">
-            TabIndex
-          </div>
-          <div className="docs-desc">
-            TabIndex can also be passed as property.
-          </div>
-          <div>
-            <code>
-              {'<Editor tabIndex={1} />'}
-            </code>
-          </div>
-        </div>
-        <div className="docs-section">
-          <div className="docs-label">
-            PlaceHolder
-          </div>
-          <div className="docs-desc">
-            PlaceHolder can also be passed as property.
-          </div>
-          <div>
-            <code>
-              {'<Editor placeholder="Enter text..." />'}
-            </code>
-          </div>
-        </div>
-        <div className="docs-section">
-          <div className="docs-label">
-            stripPastedStyles
-          </div>
-          <div className="docs-desc">
-            stripPastedStyles exactly same as described <a target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/api-reference-editor.html#strippastedstyles">here</a>.
-          </div>
-          <div>
-            <code>
-              {'<Editor stripPastedStyles />'}
-            </code>
+            Properties like spellCheck, readOnly, tabIndex, placeholder, stripPastedStyles, etc are passed over to the DraftJS editor component.
           </div>
         </div>
         <div className="docs-section">
