@@ -122,12 +122,16 @@ export default class LinkControl extends Component {
   };
 
   updateLinkTarget: Function = (event: Object): void => {
+    event.stopPropagation();
+
     this.setState({
       linkTarget: event.target.value,
     });
   };
 
   updateLinkTitle: Function = (event: Object): void => {
+    event.stopPropagation();
+
     this.setState({
       linkTitle: event.target.value,
     });
@@ -141,6 +145,7 @@ export default class LinkControl extends Component {
 
   showHideModal: Function = (): void => {
     const newState = {};
+
     newState.showModal = this.signalShowModal;
     if (newState.showModal) {
       const { editorState } = this.props;
