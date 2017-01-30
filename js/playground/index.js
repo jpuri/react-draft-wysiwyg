@@ -115,6 +115,7 @@ class Playground extends Component {
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
               onBlur={() => {console.log('tab'); return true;}}
+              hashTag={{}}
               mention={{
                 separator: ' ',
                 trigger: '@',
