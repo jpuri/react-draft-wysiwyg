@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import uploadImageCallBack from '../../util/uploadImageCallBack';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
-
 export default class Home extends Component {
 
   render() {
