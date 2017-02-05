@@ -20,7 +20,6 @@ module.exports = {
     'draft-js': 'draft-js',
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production'),
@@ -31,8 +30,11 @@ module.exports = {
         warnings: false,
       },
     }),
-    new ExtractTextPlugin('react-draft-wysiwyg.css', {
-      allChunks: true,
+    new ExtractTextPlugin('react-draft-wysiwyg.css'),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer, precss],
+      }
     }),
   ],
   module: {
@@ -40,20 +42,19 @@ module.exports = {
       { test: /\.js$/, loader: 'babel-loader', exclude: /immutable\.js$|draftjs-utils\.js$/ },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader'
-        ),
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader"
+        }),
       },
       { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml',
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
       },
     ],
   },
-  postcss: () => [autoprefixer, precss],
   resolve: {
-    extensions: ['', '.js', '.json'],
+    extensions: ['.js', '.json'],
   },
 };

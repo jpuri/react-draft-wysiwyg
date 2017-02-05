@@ -2,10 +2,10 @@ import { Entity, ContentBlock } from 'draft-js';
 import Embedded from './Embedded';
 import getImageComponent from './Image';
 
-const getBlockRenderFunc = (config, customBlockRendererFunc) => {
+const getBlockRenderFunc = (config, customBlockRenderer) => {
   return (block) => {
-    if (typeof customBlockRendererFunc === 'function') {
-      const renderedComponent = customBlockRendererFunc(block, config);
+    if (typeof customBlockRenderer === 'function') {
+      const renderedComponent = customBlockRenderer(block, config);
       if (renderedComponent) return renderedComponent;
     }
     if (block.getType() === 'atomic') {
