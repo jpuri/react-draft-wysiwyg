@@ -144,12 +144,13 @@ export default class Link extends Component {
     if (newState.showModal) {
       const { editorState } = this.props;
       const { currentEntity } = this.state;
+      const contentState = editorState.getCurrentContent();
       newState.linkTarget = undefined;
       newState.linkTitle = undefined;
-      if (currentEntity && (Entity.get(currentEntity).get('type') === 'LINK')) {
+      if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
         newState.entity = currentEntity;
         const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-        newState.linkTarget = currentEntity && Entity.get(currentEntity).get('data').url;
+        newState.linkTarget = currentEntity && contentState.getEntity(currentEntity).get('data').url;
         newState.linkTitle = (entityRange && entityRange.text) ||
           getSelectionText(editorState);
       } else {
@@ -210,7 +211,9 @@ export default class Link extends Component {
 
   renderInFlatList(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink, className } = config;
-    const linkEntityCurrently = currentEntity && (Entity.get(currentEntity).get('type') === 'LINK');
+    const { editorState } = this.props;
+    const contentState = editorState.getCurrentContent();
+    const linkEntityCurrently = currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK');
     return (
       <div className={classNames('rdw-link-wrapper', className)} aria-label="rdw-link-control">
         {options.indexOf('link') >= 0 && <Option
