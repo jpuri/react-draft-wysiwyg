@@ -95,7 +95,7 @@ export default class WysiwygEditor extends Component {
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
-    this.blockRendererFn = getBlockRenderFunc({ isReadOnly: this.isReadOnly }, props.customBlockRenderFunc);
+    this.blockRendererFn = getBlockRenderFunc({ isReadOnly: this.isReadOnly, toolBar : this.toolBar }, props.customBlockRenderFunc);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
   }
@@ -253,6 +253,8 @@ export default class WysiwygEditor extends Component {
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
   isReadOnly = () => this.props.readOnly;
+
+  toolBar = () => this.props.toolbar;
 
   createEditorState = (compositeDecorator) => {
     let editorState;

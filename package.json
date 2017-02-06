@@ -23,6 +23,7 @@
     "draft-js": "^0.10.0",
     "draftjs-to-html": "^0.5.1",
     "draftjs-to-markdown": "^0.2.0",
+    "draftjs-utils": "^0.6.2",
     "enzyme": "^2.7.1",
     "eslint": "^3.15.0",
     "eslint-config-airbnb": "^14.0.0",

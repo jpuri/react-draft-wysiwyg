@@ -21,6 +21,7 @@ export default class ImageControl extends Component {
     showModal: false,
     dragEnter: false,
     showImageUpload: !!this.props.config.uploadCallback,
+    uploadOnly: !!this.props.config.uploadOnly,
     showImageLoading: false,
     height: 'auto',
     width: '100%',
@@ -186,7 +187,7 @@ export default class ImageControl extends Component {
   };
 
   renderAddImageModal(): Object {
-    const { imgSrc, showImageUpload, showImageLoading, dragEnter, height, width } = this.state;
+    const { imgSrc, showImageUpload, showImageLoading, uploadOnly, dragEnter, height, width } = this.state;
     const { config: { popupClassName, uploadCallback } } = this.props;
     return (
       <div
@@ -210,18 +211,20 @@ export default class ImageControl extends Component {
             :
             undefined
           }
-          <span
-            onClick={this.showImageURLOption}
-            className="rdw-image-modal-header-option"
-          >
-            <span>URL</span>
+          { uploadOnly && uploadCallback ? undefined :
             <span
-              className={classNames(
-                'rdw-image-modal-header-label',
-                { 'rdw-image-modal-header-label-highlighted': !showImageUpload }
-              )}
-            />
-          </span>
+              onClick={this.showImageURLOption}
+              className="rdw-image-modal-header-option"
+            >
+              <span>URL</span>
+              <span
+                className={classNames(
+                  'rdw-image-modal-header-label',
+                  { 'rdw-image-modal-header-label-highlighted': !showImageUpload }
+                )}
+              />
+            </span>
+          }
         </div>
         {
           showImageUpload && uploadCallback ?
