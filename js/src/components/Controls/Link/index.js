@@ -211,7 +211,7 @@ export default class Link extends Component {
 
   renderInFlatList(showModal: bool, currentEntity: Object, config: Object): Object {
     const { options, link, unlink, className } = config;
-    const { editorState } = this.state;
+    const { editorState } = this.props;
     const contentState = editorState.getCurrentContent();
     const linkEntityCurrently = currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK');
     return (

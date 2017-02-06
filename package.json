@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.6.5",
+  "version": "1.7.0",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -53,11 +53,10 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-utils": "file:../draftjs-utils",
     "immutable": "^3.8.1"
   },
   "peerDependencies": {
-    "draft-js": "^0.9.x",
+    "draft-js": "^0.9.x || ^0.10.x",
     "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x",
     "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x"
   },

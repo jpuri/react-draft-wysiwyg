@@ -102,19 +102,6 @@ class Playground extends Component {
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
-              contentState={contentState}
-              toolbarClassName="playground-toolbar"
-              wrapperClassName="playground-wrapper"
-              editorClassName="playground-editor"
-              toolbar={{image: { uploadCallback: this.imageUploadCallBack }}}
-              onEditorStateChange={this.onEditorStateChange}
-              onContentStateChange={this.onEditorChange}
-              placeholder="testing"
-              spellCheck
-              toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
-              onFocus={() => {console.log('focus')}}
-              onBlur={() => {console.log('blur')}}
-              onBlur={() => {console.log('tab'); return true;}}
               mention={{
                 separator: ' ',
                 trigger: '@',
