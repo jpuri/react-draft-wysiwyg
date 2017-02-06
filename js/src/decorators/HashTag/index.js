@@ -19,8 +19,9 @@ class HashTag {
       }
       render() {
         const { children } = this.props;
+        const text = children[0].props.text;
         return (
-          <a href={children} className={classNames('rdw-hashtag-link', className)}>
+          <a href={text} className={classNames('rdw-hashtag-link', className)}>
             {children}
           </a>
         );
