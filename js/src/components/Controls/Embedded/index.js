@@ -69,7 +69,8 @@ export default class Embedded extends Component {
   addEmbeddedLink: Function = (): void => {
     const { editorState, onChange } = this.props;
     const { embeddedLink, height, width } = this.state;
-    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { src: embeddedLink, height, width });
+    const modifiedEmbeddedLink = this.generateEmbeddedLink(embeddedLink);
+    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { src: modifiedEmbeddedLink, height, width });
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
@@ -77,6 +78,33 @@ export default class Embedded extends Component {
     );
     onChange(newEditorState);
     this.closeModal();
+  };
+
+  generateEmbeddedLink: Function = (embeddedLink: String): void => {
+    // Generate EmbeddedLink for YouTube and Vimeo
+    let videoID = '';
+    const embedUrl = {
+      youtube: 'https://www.youtube.com/embed/',
+      vimeo: 'https://player.vimeo.com/video/',
+    };
+
+    if (embeddedLink.match('youtube.com')) {
+      videoID = embeddedLink.split('v=')[1];
+      return embedUrl.youtube + videoID;
+    }
+
+    if (embeddedLink.match('youtu.be')) {
+      videoID = embeddedLink.split('youtu.be/')[1];
+      return embedUrl.youtube + videoID;
+    }
+
+    if (embeddedLink.match('https://vimeo.com/')) {
+      videoID = embeddedLink.split('https://vimeo.com/');
+      videoID = videoID[1].split('#')[0];
+      return embedUrl.vimeo + videoID;
+    }
+
+    return embeddedLink;
   };
 
   showHideModal: Function = (): void => {
