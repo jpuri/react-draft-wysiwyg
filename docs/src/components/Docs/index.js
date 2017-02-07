@@ -311,7 +311,7 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷',"}<br />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'💰', '🖊', '📅', '✅', '❎', '💯'],"}<br />
               &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;image: {'{ icon: image, className: undefined, popClassName: undefined, uploadCallback: uploadCallback }'}, <br />
+              &nbsp;&nbsp;image: {'{ icon: image, className: undefined, popClassName: undefined, uploadCallback: uploadCallback, uploadOnly: false, noAlignmentPopup: false }'}, <br />
               &nbsp;&nbsp;remove: {'{ icon: eraser, className: undefined }'}, <br />
               &nbsp;&nbsp;history: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
@@ -365,6 +365,24 @@ export default class Demo2 extends Component {
           </div>
           <div className="docs-desc top-margined">
             PLEASE NOTE: Property uploadCallback of editor component has been deprecated and will be removed in release 2.0. Its  now recommended to pass uploadCallback inside toolbar property.
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            Image options
+          </div>
+          <div className="docs-sub-label">
+            uploadOnly
+          </div>
+          <div className="docs-desc">
+            If callback function uploadCallback is passed in toolbar configuration property and uploadOnly is set to true, image control shows only upload image option.
+            The callback should return a promise.
+          </div>
+          <div className="docs-sub-label">
+            noAlignmentPopup
+          </div>
+          <div className="docs-desc">
+            Disable alignment popup on image hovered.
           </div>
         </div>
         <div className="docs-section">
