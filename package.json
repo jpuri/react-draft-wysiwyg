@@ -53,6 +53,8 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "draftjs-utils": "^0.6.2",
+    "extract-text-webpack-plugin": "^2.0.0-beta",
     "immutable": "^3.8.1"
   },
   "peerDependencies": {
