@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
-import draftToMarkdown from 'draftjs-to-markdown'; // eslint-disable-line import/no-extraneous-dependencies
+// import draftToMarkdown from 'draftjs-to-markdown'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   convertFromHTML,
   convertToRaw,
@@ -102,6 +102,20 @@ class Playground extends Component {
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
+              contentState={contentState}
+              toolbarClassName="playground-toolbar"
+              wrapperClassName="playground-wrapper"
+              editorClassName="playground-editor"
+              toolbar={{image: { uploadCallback: this.imageUploadCallBack }}}
+              onEditorStateChange={this.onEditorStateChange}
+              onContentStateChange={this.onEditorChange}
+              placeholder="testing"
+              spellCheck
+              toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
+              onFocus={() => {console.log('focus')}}
+              onBlur={() => {console.log('blur')}}
+              onBlur={() => {console.log('tab'); return true;}}
+              hashTag={{}}
               mention={{
                 separator: ' ',
                 trigger: '@',
@@ -124,7 +138,7 @@ class Playground extends Component {
           />
           <textarea
             className="playground-content no-focus"
-            value={draftToMarkdown(editorContent)}
+            value={draftToHtml(editorContent)}
           />
           <textarea
             className="playground-content no-focus"

@@ -51,6 +51,9 @@ module.exports = {
     })
   ],
   resolve: {
+    alias: {
+      'draftjs-to-html': path.join(__dirname, '../../draftjs-to-html', 'js'),
+    },
     extensions: ['.js', '.json'],
   },
 };

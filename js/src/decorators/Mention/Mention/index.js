@@ -18,8 +18,8 @@ class Mention {
         const { entityKey, children } = this.props;
         const { url, value } = Entity.get(entityKey).getData();
         return (
-          <a href={url || value} className="rdw-mention-link">
-            <span className={classNames('rdw-mention', className)}>{children}</span>
+          <a href={url || value} className={classNames('rdw-mention-link', className)}>
+            {children}
           </a>
         );
       }
