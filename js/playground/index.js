@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
-// import draftToMarkdown from 'draftjs-to-markdown'; // eslint-disable-line import/no-extraneous-dependencies
+import draftToMarkdown from 'draftjs-to-markdown'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   convertFromHTML,
   convertToRaw,
@@ -47,7 +47,7 @@ class Playground extends Component {
   state: any = {
     editorContent: undefined,
     contentState: rawContentState,
-    editorState: EditorState.createWithContent(contentState),
+    editorState: EditorState.createEmpty(),
   };
 
   onEditorChange: Function = (editorContent) => {
@@ -66,9 +66,9 @@ class Playground extends Component {
     console.log('contentState', contentState);
   };
 
-  onEditorStateChange: Function = (initEditorState) => {
+  onEditorStateChange: Function = (editorState) => {
     this.setState({
-      initEditorState,
+      editorState,
     });
   };
 
@@ -102,7 +102,7 @@ class Playground extends Component {
         <div className="playground-editorSection">
           <div className="playground-editorWrapper">
             <Editor
-              contentState={contentState}
+              editorState={editorState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
@@ -115,7 +115,7 @@ class Playground extends Component {
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
               onBlur={() => {console.log('tab'); return true;}}
-              hashTag={{}}
+              hashtag={{}}
               mention={{
                 separator: ' ',
                 trigger: '@',
@@ -138,7 +138,7 @@ class Playground extends Component {
           />
           <textarea
             className="playground-content no-focus"
-            value={draftToHtml(editorContent)}
+            value={draftToMarkdown(editorContent)}
           />
           <textarea
             className="playground-content no-focus"

@@ -29,7 +29,7 @@ import { hasProperty, filter } from '../../utils/common';
 import Controls from '../Controls';
 import LinkDecorator from '../../decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
-import getHashTagDecorator from '../../decorators/HashTag';
+import getHashtagDecorator from '../../decorators/Hashtag';
 import getBlockRenderFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import './styles.css';
@@ -63,7 +63,7 @@ export default class WysiwygEditor extends Component {
     onBlur: PropTypes.func,
     onTab: PropTypes.func,
     mention: PropTypes.object,
-    hashTag: PropTypes.object,
+    hashtag: PropTypes.object,
     textAlignment: PropTypes.string,
     readOnly: PropTypes.bool,
     tabIndex: PropTypes.number,
@@ -245,8 +245,8 @@ export default class WysiwygEditor extends Component {
         modalHandler: this.modalHandler,
       }));
     }
-    if (this.props.hashTag) {
-      decorators.push(getHashTagDecorator(this.props.hashTag));
+    if (this.props.hashtag) {
+      decorators.push(getHashtagDecorator(this.props.hashtag));
     }
     return new CompositeDecorator(decorators);
   }
@@ -299,7 +299,7 @@ export default class WysiwygEditor extends Component {
       'defaultContentState', 'contentState', 'editorState', 'defaultEditorState', 'toolbarOnFocus',
       'toolbar', 'toolbarCustomButtons', 'toolbarClassName', 'editorClassName',
       'wrapperClassName', 'toolbarStyle', 'editorStyle', 'wrapperStyle', 'uploadCallback',
-      'onFocus', 'onBlur', 'onTab', 'mention', 'hashTag', 'ariaLabel', 'customBlockRenderFunc',
+      'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag', 'ariaLabel', 'customBlockRenderFunc',
     ]);
   }
 

@@ -404,6 +404,28 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
+            Enabling hashtags
+          </div>
+          <div className="docs-desc">
+            Hashtags can be enabled by passing hashtag property to the editor.
+          </div>
+          <div>
+            <code>
+              {'<Editor'}<br />
+              &nbsp;&nbsp;{'wrapperClassName="wrapper-class"'} <br />
+              &nbsp;&nbsp;{'editorClassName="editor-class"'} <br />
+              &nbsp;&nbsp;{'toolbarClassName="toolbar-class"'} <br />
+              &nbsp;&nbsp;{'hashtag={{'} <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;separator: {"' '"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;trigger: {"'#'"}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;className: {"'hashtag-className'"},<br />
+              &nbsp;&nbsp;{'}}'} <br />
+              {'/>'}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
             Embedded links
           </div>
           <div className="docs-desc">

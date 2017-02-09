@@ -3,7 +3,7 @@ import { Entity } from 'draft-js';
 import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-class HashTag {
+class Hashtag {
 
   constructor(config) {
     this.className = config.className;
@@ -11,9 +11,9 @@ class HashTag {
     this.separator = config.separator || ' ';
   }
 
-  getHashTagComponent = () => {
+  getHashtagComponent = () => {
     const className = this.className;
-    return class HashTagComponent extends Component {
+    return class HashtagComponent extends Component {
       static PropTypes = {
         children: PropTypes.object,
       }
@@ -29,7 +29,7 @@ class HashTag {
     };
   };
 
-  findHashTagEntities = (contentBlock, callback) => {
+  findHashtagEntities = (contentBlock, callback) => {
     let text = contentBlock.getText();
     let startIndex = 0;
     let counter = 0;
@@ -49,21 +49,23 @@ class HashTag {
       if (startIndex >= 0) {
         const endIndex =
           text.indexOf(this.separator) >= 0 ? text.indexOf(this.separator) : text.length;
-        const hashTagText = text.substr(0, endIndex);
-        callback(counter, counter + hashTagText.length + this.hashCharacter.length);
-        counter += this.hashCharacter.length;
+        const hashtagText = text.substr(0, endIndex);
+        if (hashtagText && hashtagText.length > 0) {
+          callback(counter, counter + hashtagText.length + this.hashCharacter.length);
+          counter += this.hashCharacter.length;
+        }
       }
     }
   };
 
-  getHashTagDecorator = () => {
+  getHashtagDecorator = () => {
     return {
-      strategy: this.findHashTagEntities,
-      component: this.getHashTagComponent(),
+      strategy: this.findHashtagEntities,
+      component: this.getHashtagComponent(),
     }
   };
 }
 
-const getDecorator = (config) => (new HashTag(config)).getHashTagDecorator();
+const getDecorator = (config) => (new Hashtag(config)).getHashtagDecorator();
 
 module.exports = getDecorator;
