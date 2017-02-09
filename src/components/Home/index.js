@@ -15,6 +15,7 @@ export default class Home extends Component {
           editorClassName="home-editor"
           toolbar={{image: { uploadCallback: uploadImageCallBack }}}
           placeholder="Begin typing..."
+          hashtag={{}}
         />
         <div className="quote-section">
           <div className="quote">
@@ -47,6 +48,7 @@ export default class Home extends Component {
           <li className="home-listItem">Support for adding / editing links</li>
           <li className="home-listItem">Choice of more than 150 emojis and option to add you own unicode emojis.</li>
           <li className="home-listItem">Support for mentions.</li>
+          <li className="home-listItem">Support for hashtags.</li>
           <li className="home-listItem">Support for adding / uploading images.</li>
           <li className="home-listItem">Support for aligning images, setting height, width.</li>
           <li className="home-listItem">Support for Embedded links, flexibility to set height and width.</li>
