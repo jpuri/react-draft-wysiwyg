@@ -22,11 +22,11 @@ export default function addMention(
   const selectedBlockText = selectedBlock.getText();
   const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger) || 0) + 1;
   let focusOffset;
-  if (selectedBlockText.length === mentionIndex - 1) {
+  if (selectedBlockText.length === mentionIndex + 1) {
     focusOffset = selectedBlockText.length;
   } else {
     const searchString = selectedBlockText.substr(mentionIndex, selectedBlockText.length);
-    focusOffset = searchString.indexOf(separator) - 1;
+    focusOffset = mentionIndex + (searchString.indexOf(separator) + 1);
   }
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
@@ -53,7 +53,7 @@ export default function addMention(
     updatedSelection,
     ' ',
     newEditorState.getCurrentInlineStyle(),
-    undefined
+    undefined,
   );
   onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
 }
