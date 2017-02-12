@@ -363,19 +363,7 @@ export default class WysiwygEditor extends Component {
       editorStyle,
       wrapperStyle,
       uploadCallback,
-      textAlignment,
-      spellCheck,
-      readOnly,
-      stripPastedStyles,
-      tabIndex,
-      placeholder,
       ariaLabel,
-      ariaOwneeID,
-      ariaActiveDescendantID,
-      ariaAutoComplete,
-      ariaDescribedBy,
-      ariaExpanded,
-      ariaHasPopup,
       ...props,
     } = this.props;
 
@@ -393,7 +381,6 @@ export default class WysiwygEditor extends Component {
         onClick={this.modalHandler.onEditorClick}
         onBlur={this.onWrapperBlur}
         aria-label="rdw-wrapper"
-        tabIndex={0}
       >
         {(editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
           <div

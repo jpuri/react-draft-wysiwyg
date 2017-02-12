@@ -98,10 +98,12 @@ class Playground extends Component {
         <div className="playground-label">
           Toolbar is alwasy <sup>visible</sup>
         </div>
-        <button onClick={this.clearContent}>Force Editor State</button>
+        <button onClick={this.clearContent} tabIndex={0}>Force Editor State</button>
         <div className="playground-editorSection">
+          <input tabIndex={0} />
           <div className="playground-editorWrapper">
             <Editor
+              tabIndex={0}
               editorState={editorState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
@@ -114,7 +116,7 @@ class Playground extends Component {
               toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
-              onBlur={() => {console.log('tab'); return true;}}
+              onTab={() => {console.log('tab'); return true;}}
               hashtag={{}}
               mention={{
                 separator: ' ',
@@ -132,6 +134,7 @@ class Playground extends Component {
               }}
             />
           </div>
+          <input tabIndex={0} />
           <textarea
             className="playground-content no-focus"
             value={draftToHtml(editorContent)}
