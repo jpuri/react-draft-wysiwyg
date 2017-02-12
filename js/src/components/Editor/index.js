@@ -29,6 +29,7 @@ import { hasProperty, filter } from '../../utils/common';
 import Controls from '../Controls';
 import LinkDecorator from '../../decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
+import getHashtagDecorator from '../../decorators/Hashtag';
 import getBlockRenderFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import './styles.css';
@@ -62,6 +63,7 @@ export default class WysiwygEditor extends Component {
     onBlur: PropTypes.func,
     onTab: PropTypes.func,
     mention: PropTypes.object,
+    hashtag: PropTypes.object,
     textAlignment: PropTypes.string,
     readOnly: PropTypes.bool,
     tabIndex: PropTypes.number,
@@ -243,6 +245,9 @@ export default class WysiwygEditor extends Component {
         modalHandler: this.modalHandler,
       }));
     }
+    if (this.props.hashtag) {
+      decorators.push(getHashtagDecorator(this.props.hashtag));
+    }
     return new CompositeDecorator(decorators);
   }
 
@@ -296,7 +301,7 @@ export default class WysiwygEditor extends Component {
       'defaultContentState', 'contentState', 'editorState', 'defaultEditorState', 'toolbarOnFocus',
       'toolbar', 'toolbarCustomButtons', 'toolbarClassName', 'editorClassName',
       'wrapperClassName', 'toolbarStyle', 'editorStyle', 'wrapperStyle', 'uploadCallback',
-      'onFocus', 'onBlur', 'onTab', 'mention', 'ariaLabel', 'customBlockRenderFunc',
+      'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag', 'ariaLabel', 'customBlockRenderFunc',
     ]);
   }
 
@@ -360,19 +365,7 @@ export default class WysiwygEditor extends Component {
       editorStyle,
       wrapperStyle,
       uploadCallback,
-      textAlignment,
-      spellCheck,
-      readOnly,
-      stripPastedStyles,
-      tabIndex,
-      placeholder,
       ariaLabel,
-      ariaOwneeID,
-      ariaActiveDescendantID,
-      ariaAutoComplete,
-      ariaDescribedBy,
-      ariaExpanded,
-      ariaHasPopup,
       ...props,
     } = this.props;
 
@@ -390,7 +383,6 @@ export default class WysiwygEditor extends Component {
         onClick={this.modalHandler.onEditorClick}
         onBlur={this.onWrapperBlur}
         aria-label="rdw-wrapper"
-        tabIndex={0}
       >
         {(editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
           <div

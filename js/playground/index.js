@@ -47,7 +47,7 @@ class Playground extends Component {
   state: any = {
     editorContent: undefined,
     contentState: rawContentState,
-    editorState: EditorState.createWithContent(contentState),
+    editorState: EditorState.createEmpty(),
   };
 
   onEditorChange: Function = (editorContent) => {
@@ -66,9 +66,9 @@ class Playground extends Component {
     console.log('contentState', contentState);
   };
 
-  onEditorStateChange: Function = (initEditorState) => {
+  onEditorStateChange: Function = (editorState) => {
     this.setState({
-      initEditorState,
+      editorState,
     });
   };
 
@@ -98,10 +98,26 @@ class Playground extends Component {
         <div className="playground-label">
           Toolbar is alwasy <sup>visible</sup>
         </div>
-        <button onClick={this.clearContent}>Force Editor State</button>
+        <button onClick={this.clearContent} tabIndex={0}>Force Editor State</button>
         <div className="playground-editorSection">
+          <input tabIndex={0} />
           <div className="playground-editorWrapper">
             <Editor
+              tabIndex={0}
+              editorState={editorState}
+              toolbarClassName="playground-toolbar"
+              wrapperClassName="playground-wrapper"
+              editorClassName="playground-editor"
+              toolbar={{image: { uploadCallback: this.imageUploadCallBack }}}
+              onEditorStateChange={this.onEditorStateChange}
+              onContentStateChange={this.onEditorChange}
+              placeholder="testing"
+              spellCheck
+              toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
+              onFocus={() => {console.log('focus')}}
+              onBlur={() => {console.log('blur')}}
+              onTab={() => {console.log('tab'); return true;}}
+              hashtag={{}}
               mention={{
                 separator: ' ',
                 trigger: '@',
@@ -118,6 +134,7 @@ class Playground extends Component {
               }}
             />
           </div>
+          <input tabIndex={0} />
           <textarea
             className="playground-content no-focus"
             value={draftToHtml(editorContent)}
