@@ -20,8 +20,7 @@ export default class ImageControl extends Component {
     imgSrc: '',
     showModal: false,
     dragEnter: false,
-    showImageUpload: !!this.props.config.uploadCallback,
-    uploadOnly: !!this.props.config.uploadOnly,
+    uploadHighlighted: this.props.config.uploadOptionEnabled && !!this.props.config.uploadCallback,
     showImageLoading: false,
     height: 'auto',
     width: '100%',
@@ -33,9 +32,10 @@ export default class ImageControl extends Component {
   }
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.config.uploadCallback !== this.props.config.uploadCallback) {
+    if (properties.config.uploadCallback !== this.props.config.uploadCallback ||
+      properties.config.uploadOptionEnabled !== this.props.config.uploadOptionEnabled) {
       this.setState({
-        showImageUpload: !!this.props.config.uploadCallback,
+        uploadHighlighted: properties.config.uploadOptionEnabled && !!properties.config.uploadCallback,
       });
     }
   }
@@ -104,13 +104,13 @@ export default class ImageControl extends Component {
 
   showImageURLOption: Function = (): void => {
     this.setState({
-      showImageUpload: false,
+      uploadHighlighted: false,
     });
   };
 
   showImageUploadOption: Function = (): void => {
     this.setState({
-      showImageUpload: true,
+      uploadHighlighted: true,
     });
   };
 
@@ -118,7 +118,6 @@ export default class ImageControl extends Component {
     this.setState({
       showModal: false,
       imgSrc: undefined,
-      showImageUpload: !!this.props.config.uploadCallback,
     });
   };
 
@@ -126,7 +125,7 @@ export default class ImageControl extends Component {
     this.setState({
       showModal: this.signalShowModal,
       imgSrc: undefined,
-      showImageUpload: !!this.props.config.uploadCallback,
+      uploadHighlighted: this.props.config.uploadOptionEnabled && !!this.props.config.uploadCallback,
     });
     this.signalShowModal = false;
   }
@@ -187,15 +186,15 @@ export default class ImageControl extends Component {
   };
 
   renderAddImageModal(): Object {
-    const { imgSrc, showImageUpload, showImageLoading, uploadOnly, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback } } = this.props;
+    const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
+    const { config: { popupClassName, uploadCallback, uploadOptionEnabled, urlEnabled } } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
         <div className="rdw-image-modal-header">
-          {uploadCallback ?
+          {uploadOptionEnabled && uploadCallback &&
             <span
               onClick={this.showImageUploadOption}
               className="rdw-image-modal-header-option"
@@ -204,14 +203,11 @@ export default class ImageControl extends Component {
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': showImageUpload }
+                  { 'rdw-image-modal-header-label-highlighted': uploadHighlighted }
                 )}
               />
-            </span>
-            :
-            undefined
-          }
-          { uploadOnly && uploadCallback ? undefined :
+            </span>}
+          { urlEnabled &&
             <span
               onClick={this.showImageURLOption}
               className="rdw-image-modal-header-option"
@@ -220,14 +216,13 @@ export default class ImageControl extends Component {
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': !showImageUpload }
+                  { 'rdw-image-modal-header-label-highlighted': !uploadHighlighted }
                 )}
               />
-            </span>
-          }
+            </span>}
         </div>
         {
-          showImageUpload && uploadCallback ?
+          uploadHighlighted ?
             <div onClick={this.fileUploadClick}>
               <div
                 onDragEnter={this.onDragEnter}

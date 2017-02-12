@@ -77,10 +77,9 @@ const getImageComponent = (config) => {
     render(): Object {
       const { block } = this.props;
       const { hovered } = this.state;
-      const { isReadOnly, toolBar } = config;
+      const { isReadOnly, isImageAlignmentEnabled } = config;
       const entity = Entity.get(block.getEntityAt(0));
       const { src, alignment, height, width } = entity.getData();
-      const showAlignmentOptions = !(toolBar() && toolBar().image.noAlignmentPopup === true);
 
       return (
         <span
@@ -105,7 +104,7 @@ const getImageComponent = (config) => {
               }}
             />
             {
-              !isReadOnly() && hovered && showAlignmentOptions ?
+              !isReadOnly() && hovered && isImageAlignmentEnabled() ?
                 this.renderAlignmentOptions()
                 :
                 undefined
