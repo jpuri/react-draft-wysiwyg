@@ -21,11 +21,16 @@ export default function addMention(
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
   const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger) || 0) + 1;
-
-  // insert mention
+  let focusOffset;
+  if (selectedBlockText.length === mentionIndex - 1) {
+    focusOffset = selectedBlockText.length;
+  } else {
+    const searchString = selectedBlockText.substr(mentionIndex, selectedBlockText.length);
+    focusOffset = searchString.indexOf(separator) - 1;
+  }
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
-    focusOffset: selectedBlockText.length,
+    focusOffset,
   });
   let newEditorState = EditorState.acceptSelection(editorState, updatedSelection);
   let contentState = Modifier.replaceText(

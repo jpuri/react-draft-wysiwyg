@@ -44,7 +44,7 @@ class Suggestion {
           0,
           selection.get('focusOffset') === text.length - 1
           ? text.length
-          : selection.get('focusOffset') - 1
+          : selection.get('focusOffset') + 1
         );
         let index = text.lastIndexOf(separator + trigger);
         let preText = separator + trigger;
