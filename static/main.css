@@ -803,7 +803,7 @@ textarea {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.rdw-right-aligned-block {
+.rdw-right-aligned-block > div{
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -815,7 +815,7 @@ textarea {
       -ms-flex-pack: end;
           justify-content: flex-end;
 }
-.rdw-left-aligned-block {
+.rdw-left-aligned-block > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -827,7 +827,7 @@ textarea {
       -ms-flex-pack: start;
           justify-content: flex-start;
 }
-.rdw-center-aligned-block {
+.rdw-center-aligned-block > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -839,7 +839,7 @@ textarea {
       -ms-flex-pack: center;
           justify-content: center;
 }
-.rdw-justify-aligned-block {
+.rdw-justify-aligned-block > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
