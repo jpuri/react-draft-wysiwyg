@@ -53,6 +53,7 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            hashtag={{}}
             editorState={editorContents[0]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
@@ -71,6 +72,7 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            hashtag={{}}
             editorState={editorContents[1]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
@@ -89,6 +91,7 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            hashtag={{}}
             editorState={editorContents[2]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
@@ -209,7 +212,7 @@ export default class Demo extends Component {
         <div className="demo-label">
           Editor with mentions.
         </div>
-        <div className="demo-subLabel">Try out by entering @.</div>
+        <div className="demo-subLabel">Try out by entering @ and hashtag by entering #.</div>
         <div className="demo-editorSection">
           <Editor
             toolbarClassName="demo-toolbar"
@@ -229,6 +232,7 @@ export default class Demo extends Component {
                 { text: 'HONEYDEW', value: 'honeydew', url: 'honeydew' },
               ],
             }}
+            hashtag={{}}
           />
         </div>
         <div className="demo-label">

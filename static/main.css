@@ -1446,14 +1446,12 @@ textarea {
   cursor: pointer;
   background-color: white;
 }
-.rdw-mention {
+.rdw-mention-link {
+  text-decoration: none;
   color: #1236ff;
   background-color: #f0fbff;
   padding: 1px 2px;
   border-radius: 2px;
-}
-.rdw-mention-link {
-  text-decoration: none;
 }
 .rdw-suggestion-wrapper {
   position: relative;
@@ -1480,6 +1478,13 @@ textarea {
 }
 .rdw-suggestion-option-active {
   background-color: #F1F1F1;
+}
+.rdw-hashtag-link {
+  text-decoration: none;
+  color: #1236ff;
+  background-color: #f0fbff;
+  padding: 1px 2px;
+  border-radius: 2px;
 }
 .rdw-image-alignment-options-popup {
   position: absolute;;
