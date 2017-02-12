@@ -233,12 +233,12 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;inline: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: ['bold', 'italic', 'underline', 'strikethrough', 'code', 'superscript', 'subscript'], <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace', 'superscript', 'subscript'], <br />
               &nbsp;&nbsp;&nbsp;&nbsp;bold: {'{ icon: bold, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;italic: {'{ icon: italic, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;underline: {'{ icon: underline, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;strikethrough: {'{ icon: strikethrough, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;code: {'{ icon: code, className: undefined }'}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;monospace: {'{ icon: monospace, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;superscript: {'{ icon: superscript, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;subscript: {'{ icon: subscript, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
@@ -262,7 +262,7 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;list: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: {['unordered', 'ordered', 'indent', 'outdent']}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;options: {"['unordered', 'ordered', 'indent', 'outdent']"}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;unordered: {'{ icon: unordered, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;ordered: {'{ icon: ordered, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;indent: {'{ icon: indent, className: undefined }'}, <br />
@@ -271,13 +271,13 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;textAlign: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: {['left', 'center', 'right', 'justify']}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;options: {"['left', 'center', 'right', 'justify']"}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;left: {'{ icon: left, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;center: {'{ icon: center, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;right: {'{ icon: right, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;justify: {'{ icon: justify, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;colorPicker: {'{'}
+              &nbsp;&nbsp;colorPicker: {'{'}<br />
               &nbsp;&nbsp;&nbsp;&nbsp;icon: color, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;popClassName: undefined, <br />
@@ -292,7 +292,7 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;popClassName: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: {['link', 'unlink']}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;options: {"['link', 'unlink']"}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;link: {'{ icon: link, className: undefined }'},<br />
               &nbsp;&nbsp;&nbsp;&nbsp;unlink: {'{ icon: unlink, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
@@ -311,12 +311,20 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷',"}<br />
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'💰', '🖊', '📅', '✅', '❎', '💯'],"}<br />
               &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;image: {'{ icon: image, className: undefined, popClassName: undefined, uploadCallback: uploadCallback, uploadOnly: false, noAlignmentPopup: false }'}, <br />
+              &nbsp;&nbsp;image: {'{'} <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;icon: image,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;popupClassName: undefined,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;urlEnabled: true,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;uploadEnabled: true,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;alignmentEnabled: false,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;uploadCallback: undefined,<br />
+              &nbsp;&nbsp;{'}'}, <br />
               &nbsp;&nbsp;remove: {'{ icon: eraser, className: undefined }'}, <br />
               &nbsp;&nbsp;history: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: {['undo', 'redo']}, <br />
+              &nbsp;&nbsp;&nbsp;&nbsp;options: {"['undo', 'redo']"}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;undo: {'{ icon: undo, className: undefined }'}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;redo: {'{ icon: redo, className: undefined }'}, <br />
               &nbsp;&nbsp;{'}'}, <br />
@@ -365,24 +373,6 @@ export default class Demo2 extends Component {
           </div>
           <div className="docs-desc top-margined">
             PLEASE NOTE: Property uploadCallback of editor component has been deprecated and will be removed in release 2.0. Its  now recommended to pass uploadCallback inside toolbar property.
-          </div>
-        </div>
-        <div className="docs-section">
-          <div className="docs-label">
-            Image options
-          </div>
-          <div className="docs-sub-label">
-            uploadOnly
-          </div>
-          <div className="docs-desc">
-            If callback function uploadCallback is passed in toolbar configuration property and uploadOnly is set to true, image control shows only upload image option.
-            The callback should return a promise.
-          </div>
-          <div className="docs-sub-label">
-            noAlignmentPopup
-          </div>
-          <div className="docs-desc">
-            Disable alignment popup on image hovered.
           </div>
         </div>
         <div className="docs-section">
