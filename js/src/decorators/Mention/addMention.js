@@ -13,11 +13,10 @@ export default function addMention(
   suggestion: Object,
 ): void {
   const { text, value, url } = suggestion;
-  const entityKey = Entity.create('MENTION', 'IMMUTABLE', {
-    text: `${trigger}${value}`,
-    value,
-    url,
-  });
+  const entityKey = editorState
+    .getCurrentContent()
+    .createEntity('MENTION', 'IMMUTABLE', { text: `${trigger}${value}`, value, url })
+    .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
   const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger) || 0) + 1;

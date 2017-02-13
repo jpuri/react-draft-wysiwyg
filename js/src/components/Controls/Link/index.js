@@ -90,9 +90,10 @@ export default class Link extends Component {
         focusOffset: entityRange.end,
       });
     }
-    const entityKey = Entity.create('LINK', 'MUTABLE', {
-      url: linkTarget,
-    });
+    const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('LINK', 'MUTABLE', { url: linkTarget })
+      .getLastCreatedEntityKey();
 
     let contentState = Modifier.replaceText(
       editorState.getCurrentContent(),

@@ -10,8 +10,8 @@ import {
   ContentState,
 } from 'draft-js';
 import TextAlignControl from '..';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
+import defaultToolbar from '../../../../config/defaultToolbar';
+import ModalHandler from '../../../../event-handler/modals';
 
 describe('TextAlignControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');

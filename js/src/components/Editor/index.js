@@ -264,6 +264,8 @@ export default class WysiwygEditor extends Component {
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
 
+  getShowOpenOptionOnHover = () => this.state.toolbar.link.showOpenOptionOnHover;
+
   createEditorState = (compositeDecorator) => {
     let editorState;
     if (hasProperty(this.props, 'editorState')) {

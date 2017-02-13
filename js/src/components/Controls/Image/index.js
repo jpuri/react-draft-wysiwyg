@@ -20,7 +20,7 @@ export default class ImageControl extends Component {
     imgSrc: '',
     showModal: false,
     dragEnter: false,
-    uploadHighlighted: this.props.config.uploadOptionEnabled && !!this.props.config.uploadCallback,
+    uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
     showImageLoading: false,
     height: 'auto',
     width: '100%',
@@ -33,9 +33,9 @@ export default class ImageControl extends Component {
 
   componentWillReceiveProps(properties: Object): void {
     if (properties.config.uploadCallback !== this.props.config.uploadCallback ||
-      properties.config.uploadOptionEnabled !== this.props.config.uploadOptionEnabled) {
+      properties.config.uploadEnabled !== this.props.config.uploadEnabled) {
       this.setState({
-        uploadHighlighted: properties.config.uploadOptionEnabled && !!properties.config.uploadCallback,
+        uploadHighlighted: properties.config.uploadEnabled && !!properties.config.uploadCallback,
       });
     }
   }
@@ -125,7 +125,7 @@ export default class ImageControl extends Component {
     this.setState({
       showModal: this.signalShowModal,
       imgSrc: undefined,
-      uploadHighlighted: this.props.config.uploadOptionEnabled && !!this.props.config.uploadCallback,
+      uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
     });
     this.signalShowModal = false;
   }
@@ -161,7 +161,10 @@ export default class ImageControl extends Component {
     const { editorState, onChange } = this.props;
     const src = imgSrc || this.state.imgSrc;
     const { height, width } = this.state;
-    const entityKey = Entity.create('IMAGE', 'MUTABLE', { src, height, width });
+    const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('IMAGE', 'MUTABLE', { src, height, width })
+      .getLastCreatedEntityKey();
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
@@ -187,14 +190,14 @@ export default class ImageControl extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback, uploadOptionEnabled, urlEnabled } } = this.props;
+    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled } } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
         <div className="rdw-image-modal-header">
-          {uploadOptionEnabled && uploadCallback &&
+          {uploadEnabled && uploadCallback &&
             <span
               onClick={this.showImageUploadOption}
               className="rdw-image-modal-header-option"

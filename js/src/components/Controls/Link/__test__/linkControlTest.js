@@ -9,8 +9,8 @@ import {
   ContentState,
 } from 'draft-js';
 import LinkControl from '..';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
+import defaultToolbar from '../../../../config/defaultToolbar';
+import ModalHandler from '../../../../event-handler/modals';
 
 describe('LinkControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');

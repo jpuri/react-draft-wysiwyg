@@ -3,15 +3,15 @@
 import React from 'react';
 import { expect, assert } from 'chai';
 import { shallow, mount } from 'enzyme';
-import FontFamilyControl from '..';
-import { Dropdown } from '../../Dropdown';
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
+import FontFamilyControl from '..';
+import { Dropdown } from '../../../Dropdown';
+import defaultToolbar from '../../../../config/defaultToolbar';
+import ModalHandler from '../../../../event-handler/modals';
 
 describe('FontFamilyControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
