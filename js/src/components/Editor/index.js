@@ -99,8 +99,8 @@ export default class WysiwygEditor extends Component {
     this.focusHandler = new FocusHandler();
     this.blockRendererFn = getBlockRenderFunc({
       isReadOnly: this.isReadOnly,
-      isImageAlignmentEnabled : this.isImageAlignmentEnabled
-    }, props.customBlockRenderFunc);
+      isImageAlignmentEnabled : this.isImageAlignmentEnabled,
+    }, props.customBlockRenderFunc, this.getEditorState);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
   }

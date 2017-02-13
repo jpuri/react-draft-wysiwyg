@@ -3,13 +3,13 @@ import { Entity } from 'draft-js';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import openlink from '../../../../images/openlink.svg';
 
-function findLinkEntities(contentBlock, callback) {
+function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
     (character) => {
       const entityKey = character.getEntity();
       return (
         entityKey !== null &&
-        Entity.get(entityKey).getType() === 'LINK'
+        contentState.getEntity(entityKey).getType() === 'LINK'
       );
     },
     callback
@@ -21,6 +21,7 @@ class Link extends Component {
   static propTypes = {
     entityKey: PropTypes.string.isRequired,
     children: PropTypes.array,
+    contentState: PropTypes.object,
   };
 
   state: Object = {
@@ -28,8 +29,8 @@ class Link extends Component {
   };
 
   openLink: Function = () => {
-    const { entityKey } = this.props;
-    const { url } = Entity.get(entityKey).getData();
+    const { entityKey, contentState } = this.props;
+    const { url } = contentState.getEntity(entityKey).getData();
     const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
     linkTab.focus();
   };
@@ -42,8 +43,8 @@ class Link extends Component {
   };
 
   render() {
-    const { children, entityKey } = this.props;
-    const { url, title } = Entity.get(entityKey).getData();
+    const { children, entityKey, contentState } = this.props;
+    const { url, title } = contentState.getEntity(entityKey).getData();
     const { showPopOver } = this.state;
     return (
       <span

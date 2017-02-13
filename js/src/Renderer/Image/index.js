@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Entity, ContentBlock } from 'draft-js';
+import { Entity } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../components/Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -9,7 +9,8 @@ const getImageComponent = (config) => {
   return class Image extends Component {
 
     static propTypes: Object = {
-      block: PropTypes.instanceOf(ContentBlock).isRequired,
+      block: PropTypes.object,
+      contentState: PropTypes.object,
     };
 
     state: Object = {
@@ -29,9 +30,9 @@ const getImageComponent = (config) => {
     };
 
     setEntityAlignment: Function = (alignment): void => {
-      const { block } = this.props;
+      const { block, contentState } = this.props;
       const entityKey = block.getEntityAt(0);
-      Entity.mergeData(
+      contentState.mergeEntityData(
         entityKey,
         { alignment }
       );
@@ -75,10 +76,10 @@ const getImageComponent = (config) => {
     }
 
     render(): Object {
-      const { block } = this.props;
+      const { block, contentState } = this.props;
       const { hovered } = this.state;
       const { isReadOnly, isImageAlignmentEnabled } = config;
-      const entity = Entity.get(block.getEntityAt(0));
+      const entity = contentState.getEntity(block.getEntityAt(0));
       const { src, alignment, height, width } = entity.getData();
 
       return (

@@ -25,21 +25,14 @@
   text-align: justify;
 }
 .rdw-right-aligned-block > div {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  display: inline;
 }
 .rdw-left-aligned-block > div {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: flex-start;
+  display: inline;
 }
 .rdw-center-aligned-block > div {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: center;
+  display: inline;
 }
 .rdw-justify-aligned-block > div {
-  display: inline-flex;
-  flex-direction: row;
+  display: inline;
 }
