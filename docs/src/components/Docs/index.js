@@ -247,6 +247,7 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;options: [ 'Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],<br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
               &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
+              &nbsp;&nbsp;&nbsp;&nbsp;displayNames: undefined,<br />
               &nbsp;&nbsp;{'},'}<br />
               &nbsp;&nbsp;fontSize: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;icon: fontSize<br />
@@ -349,6 +350,17 @@ export default class Demo2 extends Component {
           </div>
           <div className="docs-desc">
             Property customBlockRenderFunc can be used to pass function for custom rendering of blocks, <a  target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/advanced-topics-block-components.html#custom-block-components">ref.</a>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            BlockType label
+          </div>
+          <div className="docs-desc">
+            To add custom labels to the blockTypeslit, in the blockType configs :
+            <code>
+              displayNames: {H1: "Title", H2: "Subtitle", ...}
+            </code>
           </div>
         </div>
         <div className="docs-section">

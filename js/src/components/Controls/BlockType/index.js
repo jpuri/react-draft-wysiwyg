@@ -41,14 +41,25 @@ export default class BlockType extends Component {
 
   blocksTypes: Array<Object> = [
     { label: 'Normal', style: 'unstyled' },
-    { label: 'H1', style: 'header-one' },
-    { label: 'H2', style: 'header-two' },
-    { label: 'H3', style: 'header-three' },
-    { label: 'H4', style: 'header-four' },
-    { label: 'H5', style: 'header-five' },
-    { label: 'H6', style: 'header-six' },
-    { label: 'Blockquote', style: 'blockquote' },
+    { label: 'H1', displayName: 'H1', style: 'header-one' },
+    { label: 'H2', displayName: 'H2', style: 'header-two' },
+    { label: 'H3', displayName: 'H3', style: 'header-three' },
+    { label: 'H4', displayName: 'H4', style: 'header-four' },
+    { label: 'H5', displayName: 'H5', style: 'header-five' },
+    { label: 'H6', displayName: 'H6', style: 'header-six' },
+    { label: 'Blockquote', displayName: 'Blockquote', style: 'blockquote' },
   ];
+
+  displayNameBlocksTypes: Function = (blocks) => {
+    const { config : { displayNames }} = this.props;
+    if(!displayNames) return blocks;
+    return blocks.map((block) => {
+      if(displayNames[block.label]){
+        block.displayName = displayNames[block.label];
+      }
+      return block;
+    })
+  }
 
   toggleBlockType: Function = (blockType: string) => {
     const { editorState, onChange } = this.props;
@@ -75,7 +86,7 @@ export default class BlockType extends Component {
             active={currentBlockType === block.style}
             onClick={this.toggleBlockType}
           >
-            {block.label}
+            {block.displayName}
           </Option>
         )
       }
@@ -104,7 +115,7 @@ export default class BlockType extends Component {
                 value={block.style}
                 key={index}
               >
-                {block.label}
+                {block.displayName}
               </DropdownOption>)
           }
         </Dropdown>
@@ -115,7 +126,7 @@ export default class BlockType extends Component {
   render(): void {
     const { config } = this.props;
     const { inDropdown } = config;
-    const blocks = this.blocksTypes.filter(({ label }) => config.options.includes(label));
+    const blocks = this.displayNameBlocksTypes(this.blocksTypes.filter(({ label }) => config.options.includes(label)));
     return inDropdown ? this.renderInDropdown(blocks) : this.renderFlat(blocks);
   }
 }
