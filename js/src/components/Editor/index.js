@@ -7,7 +7,6 @@ import {
   RichUtils,
   convertToRaw,
   convertFromRaw,
-  SelectionState,
   CompositeDecorator,
 } from 'draft-js';
 import {
@@ -99,7 +98,7 @@ export default class WysiwygEditor extends Component {
     this.focusHandler = new FocusHandler();
     this.blockRendererFn = getBlockRenderFunc({
       isReadOnly: this.isReadOnly,
-      isImageAlignmentEnabled : this.isImageAlignmentEnabled,
+      isImageAlignmentEnabled: this.isImageAlignmentEnabled,
     }, props.customBlockRenderFunc, this.getEditorState);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
@@ -376,7 +375,7 @@ export default class WysiwygEditor extends Component {
 
     const controlProps = {
       modalHandler: this.modalHandler,
-      editorState: editorState,
+      editorState,
       onChange: this.onChange,
     }
 
@@ -398,13 +397,13 @@ export default class WysiwygEditor extends Component {
             aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
             onFocus={this.onToolbarFocus}
           >
-            {toolbar.options.map((opt,index)=>{
+            {toolbar.options.map((opt,index) => {
               const Control = Controls[opt];
-              let config = toolbar[opt];
+              const config = toolbar[opt];
               if (opt === 'image' && uploadCallback) {
                 config.uploadCallback = uploadCallback;
               }
-              return <Control key={index} {...controlProps} config={config} />
+              return <Control key={index} {...controlProps} config={config} />;
             })}
             {toolbarCustomButtons && toolbarCustomButtons.map((button, index) =>
               React.cloneElement(button, { key: index, ...controlProps }))}

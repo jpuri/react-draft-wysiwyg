@@ -1,6 +1,5 @@
 import {
   EditorState,
-  Entity,
   Modifier,
 } from 'draft-js';
 import { getSelectedBlock } from 'draftjs-utils';
@@ -21,11 +20,14 @@ export default function addMention(
   const selectedBlockText = selectedBlock.getText();
   const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger) || 0) + 1;
   let focusOffset;
+  let spaceAlreadyPresent = false;
   if (selectedBlockText.length === mentionIndex + 1) {
     focusOffset = selectedBlockText.length;
   } else {
-    const searchString = selectedBlockText.substr(mentionIndex, selectedBlockText.length);
-    focusOffset = mentionIndex + (searchString.indexOf(separator) + 1);
+    focusOffset = editorState.getSelection().focusOffset;
+  }
+  if (selectedBlockText[focusOffset] === ' ') {
+    spaceAlreadyPresent = true;
   }
   let updatedSelection = editorState.getSelection().merge({
     anchorOffset: mentionIndex,
@@ -41,18 +43,20 @@ export default function addMention(
   );
   newEditorState = EditorState.push(newEditorState, contentState, 'insert-characters');
 
-  // insert a blank space after mention
-  updatedSelection = newEditorState.getSelection().merge({
-    anchorOffset: mentionIndex + text.length + trigger.length,
-    focusOffset: mentionIndex + text.length + trigger.length,
-  });
-  newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
-  contentState = Modifier.insertText(
-    newEditorState.getCurrentContent(),
-    updatedSelection,
-    ' ',
-    newEditorState.getCurrentInlineStyle(),
-    undefined,
-  );
+  if (!spaceAlreadyPresent) {
+    // insert a blank space after mention
+    updatedSelection = newEditorState.getSelection().merge({
+      anchorOffset: mentionIndex + text.length + trigger.length,
+      focusOffset: mentionIndex + text.length + trigger.length,
+    });
+    newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
+    contentState = Modifier.insertText(
+      newEditorState.getCurrentContent(),
+      updatedSelection,
+      ' ',
+      newEditorState.getCurrentInlineStyle(),
+      undefined,
+    );
+  }
   onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
 }
