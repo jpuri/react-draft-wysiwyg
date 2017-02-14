@@ -40,7 +40,7 @@ export default class BlockType extends Component {
   }
 
   blocksTypes: Array<Object> = [
-    { label: 'Normal', style: 'unstyled' },
+    { label: 'Normal', displayName: 'Normal', style: 'unstyled' },
     { label: 'H1', displayName: 'H1', style: 'header-one' },
     { label: 'H2', displayName: 'H2', style: 'header-two' },
     { label: 'H3', displayName: 'H3', style: 'header-three' },
