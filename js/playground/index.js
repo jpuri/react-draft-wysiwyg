@@ -117,16 +117,15 @@ class Playground extends Component {
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
               onTab={() => {console.log('tab'); return true;}}
-              hashtag={{}}
               mention={{
                 separator: ' ',
                 trigger: '@',
                 caseSensitive: true,
                 suggestions: [
-                  { text: 'A', value: 'A', url: 'href-a' },
-                  { text: 'AB', value: 'AB', url: 'href-ab' },
-                  { text: 'ABC', value: 'ABC', url: 'href-abc' },
-                  { text: 'ABCD', value: 'ABCD', url: 'href-abcd' },
+                  { text: 'A', value: 'AB', url: 'href-a' },
+                  { text: 'AB', value: 'ABC', url: 'href-ab' },
+                  { text: 'ABC', value: 'ABCD', url: 'href-abc' },
+                  { text: 'ABCD', value: 'ABCDDDD', url: 'href-abcd' },
                   { text: 'ABCDE', value: 'ABCDE', url: 'href-abcde' },
                   { text: 'ABCDEF', value: 'ABCDEF', url: 'href-abcdef' },
                   { text: 'ABCDEFG', value: 'ABCDEFG', url: 'href-abcdefg' },
@@ -137,11 +136,11 @@ class Playground extends Component {
           <input tabIndex={0} />
           <textarea
             className="playground-content no-focus"
-            value={draftToHtml(editorContent)}
+            value={draftToHtml(editorContent, {})}
           />
           <textarea
             className="playground-content no-focus"
-            value={draftToMarkdown(editorContent)}
+            value={draftToMarkdown(editorContent, {})}
           />
           <textarea
             className="playground-content no-focus"

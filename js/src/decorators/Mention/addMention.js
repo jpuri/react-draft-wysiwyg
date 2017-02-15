@@ -11,7 +11,7 @@ export default function addMention(
   trigger: string,
   suggestion: Object,
 ): void {
-  const { text, value, url } = suggestion;
+  const { value, url } = suggestion;
   const entityKey = editorState
     .getCurrentContent()
     .createEntity('MENTION', 'IMMUTABLE', { text: `${trigger}${value}`, value, url })
@@ -46,8 +46,8 @@ export default function addMention(
   if (!spaceAlreadyPresent) {
     // insert a blank space after mention
     updatedSelection = newEditorState.getSelection().merge({
-      anchorOffset: mentionIndex + text.length + trigger.length,
-      focusOffset: mentionIndex + text.length + trigger.length,
+      anchorOffset: mentionIndex + value.length + trigger.length,
+      focusOffset: mentionIndex + value.length + trigger.length,
     });
     newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
     contentState = Modifier.insertText(
