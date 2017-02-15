@@ -4,7 +4,7 @@ import getImageComponent from './Image';
 const getBlockRenderFunc = (config, customBlockRenderer, getEditorState) => {
   return (block) => {
     if (typeof customBlockRenderer === 'function') {
-      const renderedComponent = customBlockRenderer(block, config);
+      const renderedComponent = customBlockRenderer(block, config, getEditorState);
       if (renderedComponent) return renderedComponent;
     }
     if (block.getType() === 'atomic') {
