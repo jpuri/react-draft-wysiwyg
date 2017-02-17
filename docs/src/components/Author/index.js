@@ -12,8 +12,8 @@ export default class Demo1 extends Component {
         I love functional programming and solving complex problems.<br /><br />
         Original motivation and sponsorship for this work came from <a target="_blank" href="http://www.ipaoo.com/" rel="noopener noreferrer">iPaoo</a>.
         I am thankful to them for allowing the Editor to be open-sourced.
-        I am also thankful to the developers using this Editor, their feedbacks are always so motivating.<br /><br />
-        You can reach me at jyotipuri@gmail.com. I am freelancer, you can also hire me and my team at <a target="_blank" href="https://squads.com?referrer=551a1cc471f3c98e462a53ed" rel="noopener noreferrer">Squads</a>.
+        I am also thankful to the developers using this Editor, their feedbacks are always so motivating. And to the awesome contributors for their great work 👍<br /><br />
+        I am freelancer. You can reach me for consulting work related to react-draft-wysiwyg at jyotipuri@gmail.com.
       </div>
     );
   }

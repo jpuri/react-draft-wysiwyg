@@ -13,13 +13,14 @@ class Mention {
       static PropTypes = {
         entityKey: PropTypes.number,
         children: PropTypes.object,
+        contentState: PropTypes.object,
       }
       render() {
-        const { entityKey, children } = this.props;
-        const { url, value } = Entity.get(entityKey).getData();
+        const { entityKey, children, contentState } = this.props;
+        const { url, value } = contentState.getEntity(entityKey).getData();
         return (
-          <a href={url || value} className="rdw-mention-link">
-            <span className={classNames('rdw-mention', className)}>{children}</span>
+          <a href={url || value} className={classNames('rdw-mention-link', className)}>
+            {children}
           </a>
         );
       }
@@ -33,17 +34,17 @@ class Mention {
   };
 }
 
-Mention.prototype.findMentionEntities = (contentBlock, callback) => {
+Mention.prototype.findMentionEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(
     (character) => {
       const entityKey = character.getEntity();
       return (
         entityKey !== null &&
-        Entity.get(entityKey).getType() === 'MENTION'
+        contentState.getEntity(entityKey).getType() === 'MENTION'
       );
     },
-    callback
+    callback,
   );
-}
+};
 
 module.exports = Mention;

@@ -5,12 +5,15 @@ import { Entity } from 'draft-js';
 import { expect, assert } from 'chai';
 import { shallow, mount } from 'enzyme';
 import LinkDecorator from '..';
+import { convertFromHTML, AtomicBlockUtils, ContentState, EditorState } from 'draft-js';
 
 describe('LinkDecorator test suite', () => {
-  const entityKey = Entity.create('LINK', 'MUTABLE', {
-    title: 'title',
-    url: 'url',
-  });
+  const contentBlocks = convertFromHTML('<div>test</div>');
+  const contentState = ContentState.createFromBlockArray(contentBlocks);
+  const entityKey = contentState
+    .createEntity('LINK', 'MUTABLE', { title: 'title', url: 'url' })
+    .getLastCreatedEntityKey();
+
   it('should have a div when rendered', () => {
     const Link = LinkDecorator.component;
     expect(shallow(<Link entityKey={entityKey}>Link</Link>).node.type).to.equal('span');

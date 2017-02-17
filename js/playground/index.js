@@ -14,7 +14,19 @@ import {
 import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
+class TestOption extends Component {
+  render() {
+    return <div>testing</div>;
+  }
+}
+
+class TestOption2 extends Component {
+  render() {
+    return <div>resting</div>;
+  }
+}
+
+const contentBlocks = convertFromHTML('<p><p>Lorem ipsum ' +
       'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
       'maximus nec, tempus auctor diam. Nunc odio elit,  ' +
       'commodo quis dolor in, sagittis scelerisque nibh. ' +
@@ -23,7 +35,7 @@ const contentBlocks = convertFromHTML('<p>Lorem ipsum ' +
       'turpis est sit amet nulla. Vestibulum lacinia mollis  ' +
       'accumsan. Vivamus porta cursus libero vitae mattis. ' +
       'In gravida bibendum orci, id faucibus felis molestie ac.  ' +
-      'Etiam vel elit cursus, scelerisque dui quis, auctor risus.</p>');
+      'Etiam vel elit cursus, scelerisque dui quis, auctor risus.</p><img src="http://i.imgur.com/aMtBIep.png" /></p>');
 
 const contentState = ContentState.createFromBlockArray(contentBlocks);
 
@@ -65,7 +77,7 @@ class Playground extends Component {
   state: any = {
     editorContent: undefined,
     contentState: rawContentState,
-    editorState: EditorState.createWithContent(contentState)
+    editorState: EditorState.createEmpty()
   };
 
   onEditorChange: Function = (editorContent) => {
@@ -76,7 +88,7 @@ class Playground extends Component {
 
   clearContent: Function = () => {
     this.setState({
-      editorState: EditorState.createEmpty(),
+      contentState: convertToRaw(ContentState.createFromText('')),
     });
   };
 
@@ -116,31 +128,37 @@ class Playground extends Component {
         <div className="playground-label">
           Toolbar is alwasy <sup>visible</sup>
         </div>
-        <button onClick={this.clearContent}>Force Editor State</button>
+        <button onClick={this.clearContent} tabIndex={0}>Force Editor State</button>
         <div className="playground-editorSection">
+          <input tabIndex={0} />
           <div className="playground-editorWrapper">
             <Editor
+              tabIndex={0}
               editorState={editorState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
-              uploadCallback={this.imageUploadCallBack}
+              toolbar={{image: { uploadCallback: this.imageUploadCallBack }}}
               onEditorStateChange={this.onEditorStateChange}
+              onContentStateChange={this.onEditorChange}
               placeholder="testing"
               spellCheck
+              toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
+              onTab={() => {console.log('tab'); return true;}}
               mention={{
                 separator: ' ',
                 trigger: '@',
+                caseSensitive: true,
                 suggestions: [
-                  { text: 'A', value: 'a', url: 'href-a' },
-                  { text: 'AB', value: 'ab', url: 'href-ab' },
-                  { text: 'ABC', value: 'abc', url: 'href-abc' },
-                  { text: 'ABCD', value: 'abcd', url: 'href-abcd' },
-                  { text: 'ABCDE', value: 'abcde', url: 'href-abcde' },
-                  { text: 'ABCDEF', value: 'abcdef', url: 'href-abcdef' },
-                  { text: 'ABCDEFG', value: 'abcdefg', url: 'href-abcdefg' },
+                  { text: 'A', value: 'AB', url: 'href-a' },
+                  { text: 'AB', value: 'ABC', url: 'href-ab' },
+                  { text: 'ABC', value: 'ABCD', url: 'href-abc' },
+                  { text: 'ABCD', value: 'ABCDDDD', url: 'href-abcd' },
+                  { text: 'ABCDE', value: 'ABCDE', url: 'href-abcde' },
+                  { text: 'ABCDEF', value: 'ABCDEF', url: 'href-abcdef' },
+                  { text: 'ABCDEFG', value: 'ABCDEFG', url: 'href-abcdefg' },
                 ],
               }}
               toolbar={{
@@ -160,13 +178,14 @@ class Playground extends Component {
               }}
             />
           </div>
+          <input tabIndex={0} />
           <textarea
             className="playground-content no-focus"
-            value={draftToHtml(editorContent)}
+            value={draftToHtml(editorContent, {})}
           />
           <textarea
             className="playground-content no-focus"
-            value={draftToMarkdown(editorContent)}
+            value={draftToMarkdown(editorContent, {})}
           />
           <textarea
             className="playground-content no-focus"

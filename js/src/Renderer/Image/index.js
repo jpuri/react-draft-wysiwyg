@@ -1,126 +1,132 @@
 import React, { PropTypes, Component } from 'react';
-import { Entity, ContentBlock } from 'draft-js';
+import { Entity } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../components/Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class Image extends Component {
+const getImageComponent = (config) => {
 
-  static propTypes: Object = {
-    block: PropTypes.instanceOf(ContentBlock).isRequired,
-  };
+  return class Image extends Component {
 
-  state: Object = {
-    hovered: false,
-  };
+    static propTypes: Object = {
+      block: PropTypes.object,
+      contentState: PropTypes.object,
+    };
 
-  setEntityAlignmentLeft: Function = (): void => {
-    this.setEntityAlignment('left');
-  };
+    state: Object = {
+      hovered: false,
+    };
 
-  setEntityAlignmentRight: Function = (): void => {
-    this.setEntityAlignment('right');
-  };
+    setEntityAlignmentLeft: Function = (): void => {
+      this.setEntityAlignment('left');
+    };
 
-  setEntityAlignmentCenter: Function = (): void => {
-    this.setEntityAlignment('none');
-  };
+    setEntityAlignmentRight: Function = (): void => {
+      this.setEntityAlignment('right');
+    };
 
-  setEntityAlignment: Function = (alignment): void => {
-    const { block } = this.props;
-    const entityKey = block.getEntityAt(0);
-    Entity.mergeData(
-      entityKey,
-      { alignment }
-    );
-    this.setState({
-      dummy: true,
-    });
-  };
+    setEntityAlignmentCenter: Function = (): void => {
+      this.setEntityAlignment('none');
+    };
 
-  toggleHovered: Function = (): void => {
-    const hovered = !this.state.hovered;
-    this.setState({
-      hovered,
-    });
-  };
+    setEntityAlignment: Function = (alignment): void => {
+      const { block, contentState } = this.props;
+      const entityKey = block.getEntityAt(0);
+      contentState.mergeEntityData(
+        entityKey,
+        { alignment }
+      );
+      this.setState({
+        dummy: true,
+      });
+    };
 
-  renderAlignmentOptions(): Object {
-    return (
-      <div
-        className="rdw-image-alignment-options-popup"
-      >
-        <Option
-          onClick={this.setEntityAlignmentLeft}
-          className="rdw-image-alignment-option"
+    toggleHovered: Function = (): void => {
+      const hovered = !this.state.hovered;
+      this.setState({
+        hovered,
+      });
+    };
+
+    openLink: Function = () => {
+
+      const { block } = this.props;
+      const entity = Entity.get(block.getEntityAt(0));
+      const { src } = entity.getData();
+
+      const linkTab = window.open(src, '_blank'); 
+      linkTab.focus();
+
+    }
+
+    renderAlignmentOptions(): Object {
+      return (
+        <div
+          className="rdw-image-alignment-options-popup"
         >
-          L
-        </Option>
-        <Option
-          onClick={this.setEntityAlignmentCenter}
-          className="rdw-image-alignment-option"
+          <Option
+            onClick={this.setEntityAlignmentLeft}
+            className="rdw-image-alignment-option"
+          >
+            L
+          </Option>
+          <Option
+            onClick={this.setEntityAlignmentCenter}
+            className="rdw-image-alignment-option"
+          >
+            C
+          </Option>
+          <Option
+            onClick={this.setEntityAlignmentRight}
+            className="rdw-image-alignment-option"
+          >
+            R
+          </Option>
+        </div>
+      );
+    }
+
+    render(): Object {
+      const { block, contentState } = this.props;
+      const { hovered } = this.state;
+      const { isReadOnly, isImageAlignmentEnabled } = config;
+      const entity = contentState.getEntity(block.getEntityAt(0));
+      const { src, alignment, height, width } = entity.getData();
+
+      return (
+        <span
+          onMouseEnter={this.toggleHovered}
+          onMouseLeave={this.toggleHovered}
+          className={classNames(
+            'rdw-image-alignment',
+            {
+              'rdw-image-left': alignment === 'left',
+              'rdw-image-right': alignment === 'right',
+              'rdw-image-center': !alignment || alignment === 'none',
+            }
+          )}
         >
-          C
-        </Option>
-        <Option
-          onClick={this.setEntityAlignmentRight}
-          className="rdw-image-alignment-option"
-        >
-          R
-        </Option>
-      </div>
-    );
-  }
-
-  openLink: Function = () => {
-
-    const { block } = this.props;
-    const entity = Entity.get(block.getEntityAt(0));
-    const { src } = entity.getData();
-
-    const linkTab = window.open(src, '_blank'); 
-    linkTab.focus();
-
-  };
-
-  render(): Object {
-
-    const { block } = this.props;
-    const { hovered } = this.state;
-    const entity = Entity.get(block.getEntityAt(0));
-    const { src, alignment, height, width } = entity.getData();
-
-    return (
-      <span
-        onMouseEnter={this.toggleHovered}
-        onMouseLeave={this.toggleHovered}
-        className={classNames(
-          'rdw-image-alignment',
-          {
-            'rdw-image-left': alignment === 'left',
-            'rdw-image-right': alignment === 'right',
-            'rdw-image-center': !alignment || alignment === 'none',
-          }
-        )}
-      >
-        <span className="rdw-image-imagewrapper">
-          <img
-            onClick={this.openLink}
-            src={src}
-            role="presentation"
-            style={{
-              height,
-              width,
-            }}
-          />
-          {
-            hovered ?
-              this.renderAlignmentOptions()
-              :
-              undefined
-          }
+          <span className="rdw-image-imagewrapper">
+            <img
+              src={src}
+              role="presentation"
+              onClick={this.openLink}
+              style={{
+                height,
+                width,
+              }}
+            />
+            {
+              !isReadOnly() && hovered && isImageAlignmentEnabled() ?
+                this.renderAlignmentOptions()
+                :
+                undefined
+            }
+          </span>
         </span>
-      </span>
-    );
+      );
+    }
   }
 }
+
+export default getImageComponent;
