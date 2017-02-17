@@ -255,7 +255,6 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;options: [ 'Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],<br />
               &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
               &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;displayNames: undefined,<br />
               &nbsp;&nbsp;{'},'}<br />
               &nbsp;&nbsp;fontSize: {'{'} <br />
               &nbsp;&nbsp;&nbsp;&nbsp;icon: fontSize<br />
