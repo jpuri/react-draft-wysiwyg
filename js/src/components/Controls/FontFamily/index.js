@@ -1,6 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
+import { injectIntl } from 'react-intl';
 import {
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,

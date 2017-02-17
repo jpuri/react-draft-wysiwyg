@@ -33,6 +33,17 @@ import getBlockRenderFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import './styles.css';
 import '../../../../css/Draft.css';
+// Translations
+import { IntlProvider, addLocaleData} from 'react-intl';
+import en from 'react-intl/locale-data/en';
+import fr from 'react-intl/locale-data/fr';
+addLocaleData([...en, ...fr]);
+import draftWysiwygTranslationsEN from '../../i18n/en';
+import draftWysiwygTranslationsFR from '../../i18n/fr';
+const translations = {
+  "en": draftWysiwygTranslationsEN,
+  "fr": draftWysiwygTranslationsFR,
+}
 
 export default class WysiwygEditor extends Component {
 
