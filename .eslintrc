@@ -7,7 +7,13 @@
     "it": true
   },
   "rules": {
+    "linebreak-style": 0,
+    "padded-blocks": 0,
+    "comma-dangle": 0,
     "react/jsx-filename-extension": 0,
-    "react/forbid-prop-types": 0
+    "react/forbid-prop-types": 0,
+    "import/no-extraneous-dependencies": 0,
+    "import/no-unresolved": 0,
+    "jsx-a11y/anchor-has-content": 0
   }
 }

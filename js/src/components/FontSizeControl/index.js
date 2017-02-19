@@ -36,10 +36,19 @@ export default class FontSizeControl extends Component {
   componentWillReceiveProps(properties: Object): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
-      this.setState({
-        currentFontSize:
-          getSelectionCustomInlineStyle(properties.editorState, ['FONTSIZE']).FONTSIZE,
-      });
+        const fontSizeStyle = getSelectionCustomInlineStyle(properties.editorState, ['FONTSIZE']).FONTSIZE;
+        if (fontSizeStyle) {
+          this.setState({
+            currentFontSize:
+              fontSizeStyle,
+          });
+        } else {
+          this.setState({
+            currentFontSize:
+              'fontsize-14',
+          });
+        }
+
     }
   }
 
