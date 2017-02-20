@@ -25,6 +25,12 @@ export default class RemoveControl extends Component {
         style
       );
     });
+
+    contentState = Modifier.setBlockData(
+      contentState,
+      editorState.getSelection(),
+      { 'text-align': undefined });
+
     return EditorState.push(editorState, contentState, 'change-inline-style');
   };
 

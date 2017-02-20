@@ -82,32 +82,13 @@ export default class ColorPicker extends Component {
   }
 
   toggleColor: Function = (color: string): void => {
-
     const { editorState, onChange } = this.props;
     const { currentStyle } = this.state;
-
-    const currentInlineStyles = editorState.getCurrentInlineStyle();
-
-    let contentState = editorState.getCurrentContent();
-
-    currentInlineStyles.forEach((style) => {
-      if (style.startsWith(currentStyle)) {
-        contentState = Modifier.removeInlineStyle(
-          contentState,
-          editorState.getSelection(),
-          style
-        );
-      }
-    });
-
-    const newEditorState = EditorState.push(editorState, contentState, 'change-inline-style');
-
     const newState = toggleCustomInlineStyle(
-      newEditorState,
+      editorState,
       currentStyle,
       `${currentStyle}-${color}`
     );
-
     if (newState) {
       onChange(newState);
     }
@@ -222,6 +203,7 @@ const ColorPickerModalOptions = ({colors, currentSelectedColor, currentStyle, on
 }
 
 const ColorPickerModalOption = ({rgb, value, active, onClick}) => {
+  if (value === 'inherit') return <span />;
 
   return (
     <Option
