@@ -2,7 +2,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import { EditorState, Modifier } from 'draft-js';
-import { getSelectionInlineStyle } from 'draftjs-utils';
 import classNames from 'classnames';
 import Option from '../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -13,12 +12,15 @@ export default class RemoveControl extends Component {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
     config: PropTypes.object,
+    customStyleMap: PropTypes.object
   };
 
   removeAllInlineStyles: Function = (editorState: EditorState): void => {
-    const currentInlineStyles = editorState.getCurrentInlineStyle()
+    const { customStyleMap } = this.props;
     let contentState = editorState.getCurrentContent();
-    currentInlineStyles.forEach((style) => {
+    const inlineStyles = Object.keys(customStyleMap).concat(['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH', 'MONOSPACE',
+      'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE', 'SUPERSCRIPT', 'SUBSCRIPT']);
+    inlineStyles.forEach((style) => {
       contentState = Modifier.removeInlineStyle(
         contentState,
         editorState.getSelection(),

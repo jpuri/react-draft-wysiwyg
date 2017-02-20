@@ -472,6 +472,7 @@ export default class WysiwygEditor extends Component {
                 editorState={editorState}
                 onChange={this.onChange}
                 config={remove}
+                customStyleMap={customStyleMap}
               />}
               {options.indexOf('history') >= 0 && <HistoryControl
                 modalHandler={this.modalHandler}
