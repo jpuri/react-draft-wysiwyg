@@ -2,6 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { EditorState, Modifier } from 'draft-js';
+import { getSelectionInlineStyle } from 'draftjs-utils';
 import classNames from 'classnames';
 import Option from '../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -15,15 +16,21 @@ export default class RemoveControl extends Component {
   };
 
   removeAllInlineStyles: Function = (editorState: EditorState): void => {
+    const currentInlineStyles = editorState.getCurrentInlineStyle()
     let contentState = editorState.getCurrentContent();
-    ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH', 'MONOSPACE',
-    'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE', 'SUPERSCRIPT', 'SUBSCRIPT'].forEach((style) => {
+    currentInlineStyles.forEach((style) => {
       contentState = Modifier.removeInlineStyle(
         contentState,
         editorState.getSelection(),
         style
       );
     });
+
+    contentState = Modifier.setBlockData(
+      contentState,
+      editorState.getSelection(),
+      { 'text-align': undefined });
+
     return EditorState.push(editorState, contentState, 'change-inline-style');
   };
 

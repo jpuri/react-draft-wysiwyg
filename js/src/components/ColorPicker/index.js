@@ -5,8 +5,12 @@ import classNames from 'classnames';
 import {
   colors as defaultColors,
   toggleCustomInlineStyle,
-  getSelectionCustomInlineStyle,
+  getSelectionCustomInlineStyle
 } from 'draftjs-utils';
+import {
+  Modifier,
+  EditorState
+} from 'draft-js';
 import Option from '../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -78,7 +82,6 @@ export default class ColorPicker extends Component {
   }
 
   toggleColor: Function = (color: string): void => {
-
     const { editorState, onChange } = this.props;
     const { currentStyle } = this.state;
     const newState = toggleCustomInlineStyle(
@@ -122,14 +125,17 @@ export default class ColorPicker extends Component {
             )}
             onClick={this.setCurrentStyleBgcolor}
           >
-            Background
+            Highlight
           </span>
         </span>
         <ColorPickerModalOptions
-            colors={colors}
-            currentSelectedColor={currentSelectedColor}
-            currentStyle={currentStyle}
-            onClick={this.toggleColor}
+          colors={colors}
+          currentSelectedColor={currentSelectedColor}
+          currentStyle={currentStyle}
+          onClick={this.toggleColor}
+        />
+        <ClearColorOption
+          onClick={this.toggleColor}
         />
       </div>
     );
@@ -161,31 +167,32 @@ export default class ColorPicker extends Component {
 }
 
 const ColorPickerModalOptions = ({colors, currentSelectedColor, currentStyle, onClick}) => {
-
   let optionNodes =
-      defaultColors.map((rgb, index) => {
-        return <ColorPickerModalOption
-            value={rgb}
-            key={index}
-            active={currentSelectedColor === `${currentStyle}-${rgb}`}
-            onClick={onClick}
+    defaultColors.map((rgb, index) => {
+      return (
+        <ColorPickerModalOption
+          value={rgb}
+          key={index}
+          active={currentSelectedColor === `${currentStyle}-${rgb}`}
+          onClick={onClick}
         />
-      })
+      )
+    })
 
   if (colors) {
 
     optionNodes = [];
 
-    for (var name in colors) {
-      const rgb = colors[name];
+    for (var color in colors) {
+      const rgb = colors[color];
       optionNodes.push(
-          <ColorPickerModalOption
-              rgb={rgb}
-              value={name}
-              key={name}
-              active={currentSelectedColor === `${currentStyle}-${rgb}`}
-              onClick={onClick}
-          />
+        <ColorPickerModalOption
+          rgb={rgb}
+          value={color}
+          key={color}
+          active={currentSelectedColor === `${currentStyle}-${color}`}
+          onClick={onClick}
+        />
       )
     }
 
@@ -195,22 +202,40 @@ const ColorPickerModalOptions = ({colors, currentSelectedColor, currentStyle, on
 
 }
 
-const ColorPickerModalOption = ({rgb, value, name, active, onClick}) => {
+const ColorPickerModalOption = ({rgb, value, active, onClick}) => {
+  if (value === 'inherit') return <span />;
 
   return (
     <Option
-        value={value}
-        key={`color-picker-option-${name}`}
-        className="rdw-colorpicker-option"
-        activeClassName="rdw-colorpicker-option-active"
-        active={active}
-        onClick={onClick}
+      value={value}
+      key={`color-picker-option-${value}`}
+      className="rdw-colorpicker-option"
+      activeClassName="rdw-colorpicker-option-active"
+      active={active}
+      onClick={onClick}
     >
       <span
-          style={{ backgroundColor: rgb }}
-          className="rdw-colorpicker-cube"
+        style={{ backgroundColor: rgb }}
+        className="rdw-colorpicker-cube"
       />
     </Option>
-  )
 
-}
+  );
+
+};
+
+const ClearColorOption = ({onClick}) => {
+
+  return (
+    <Option
+      value="inherit"
+      key="color-picker-option-inherit"
+      onClick={onClick}
+    >
+      <span>
+        Clear
+      </span>
+
+    </Option>
+  );
+};
