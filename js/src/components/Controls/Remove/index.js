@@ -12,18 +12,27 @@ export default class Remove extends Component {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
     config: PropTypes.object,
+    customStyleMap: PropTypes.object
   };
 
   removeAllInlineStyles: Function = (editorState: EditorState): void => {
+    const { customStyleMap } = this.props;
     let contentState = editorState.getCurrentContent();
-    ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH', 'MONOSPACE',
-    'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE', 'SUPERSCRIPT', 'SUBSCRIPT'].forEach((style) => {
+    const inlineStyles = Object.keys(customStyleMap).concat(['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH', 'MONOSPACE',
+      'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE', 'SUPERSCRIPT', 'SUBSCRIPT']);
+    inlineStyles.forEach((style) => {
       contentState = Modifier.removeInlineStyle(
         contentState,
         editorState.getSelection(),
         style
       );
     });
+
+    contentState = Modifier.setBlockData(
+      contentState,
+      editorState.getSelection(),
+      { 'text-align': undefined });
+
     return EditorState.push(editorState, contentState, 'change-inline-style');
   };
 
