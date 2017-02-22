@@ -105,7 +105,7 @@ export default class WysiwygEditor extends Component {
       isImageAlignmentEnabled: this.isImageAlignmentEnabled,
     }, props.customBlockRenderFunc, this.getEditorState);
     this.editorProps = this.filterEditorProps(props);
-    this.customStyleMap = _getCustomStyleMap();
+    this.customStyleMap = _getCustomStyleMap(toolbar.colorPicker.colors);
   }
 
   componentWillMount(): void {
@@ -123,6 +123,7 @@ export default class WysiwygEditor extends Component {
 
   componentWillReceiveProps(props) {
     const newState = {};
+
     if (this.props.toolbar !== props.toolbar) {
       const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
       setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
@@ -152,7 +153,7 @@ export default class WysiwygEditor extends Component {
     }
     this.setState(newState);
     this.editorProps = this.filterEditorProps(props);
-    this.customStyleMap = _getCustomStyleMap();
+
   }
 
   onEditorBlur: Function = (): void => {
@@ -479,6 +480,7 @@ const _getCustomStyleMap = (customColors) => {
       styleMap[`bgcolor-${color}`] = {backgroundColor: customColors[color]}
     }
   }
+  
   return styleMap;
 }
 

@@ -90,9 +90,18 @@ export default class Link extends Component {
         focusOffset: entityRange.end,
       });
     }
+
+    /**
+     * Add https preface to all links by default
+     */
+    let formattedLinkTarget = linkTarget;
+    if (!/https:\/\/|http:\/\//gi.test(linkTarget)) {
+       formattedLinkTarget = 'http:\/\/' + linkTarget;
+    }
+
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', { url: linkTarget })
+      .createEntity('LINK', 'MUTABLE', { url: formattedLinkTarget })
       .getLastCreatedEntityKey();
 
     let contentState = Modifier.replaceText(
@@ -163,8 +172,10 @@ export default class Link extends Component {
         newState.linkTitle = getSelectionText(editorState);
       }
     }
+    
     this.setState(newState);
     this.signalShowModal = false;
+
   }
 
   stopPropagation: Function = (event: Object): void => {

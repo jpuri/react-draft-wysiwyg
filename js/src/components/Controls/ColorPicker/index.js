@@ -4,7 +4,6 @@
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
 import {
-  colors as defaultColors, 
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
@@ -165,19 +164,9 @@ export default class ColorPicker extends Component {
 
 const ColorPickerModalOptions = ({colors, currentSelectedColor, currentStyle, onClick}) => {
 
-  let optionNodes =
-      defaultColors.map((rgb, index) => {
-        return <ColorPickerModalOption
-            value={rgb}
-            key={index}
-            active={currentSelectedColor === `${currentStyle}-${rgb}`}
-            onClick={onClick}
-        />
-      })
+  let optionNodes = [];
 
   if (colors) {
-
-    optionNodes = [];
 
     for (var name in colors) {
       const rgb = colors[name];
