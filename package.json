@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "cross-env": "^3.1.4",
     "draftjs-utils": "^0.6.3",
     "immutable": "^3.8.1"
   },
@@ -63,9 +64,9 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config.js",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack.prod.config.js",
     "build": "npm run clean && npm run build:webpack",
-    "test": "BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js js/**/*Test.js",
+    "test": "cross-env BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js js/**/*Test.js",
     "lint": "eslint js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "check": "npm run lint && npm run flow",
