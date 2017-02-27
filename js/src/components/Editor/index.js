@@ -157,12 +157,14 @@ export default class WysiwygEditor extends Component {
   }
 
   onEditorBlur: Function = (): void => {
+
     this.setState({
       editorFocused: false,
     });
   };
 
   onEditorFocus: Function = (event): void => {
+
     const { onFocus } = this.props;
     this.setState({
       editorFocused: true,
@@ -224,9 +226,19 @@ export default class WysiwygEditor extends Component {
     }
   };
 
+  onControlChange: Function = (editorState: Object): void => {
+
+    if (!this.focusHandler.isEditorFocused()) this.focusEditor();
+
+    this.onChange(editorState);
+
+  };
+
   onChange: Function = (editorState: Object): void => {
+
     const { readOnly, onEditorStateChange } = this.props;
     if (!readOnly) {
+
       if (onEditorStateChange) {
         onEditorStateChange(editorState);
       }
@@ -236,6 +248,7 @@ export default class WysiwygEditor extends Component {
         this.afterChange(editorState);
       }
     }
+
   };
 
   afterChange: Function = (editorState): void => {
@@ -382,6 +395,7 @@ export default class WysiwygEditor extends Component {
       editorState,
       editorFocused,
       toolbar,
+      customStyleMap
      } = this.state;
     const {
       toolbarCustomButtons,
@@ -400,7 +414,8 @@ export default class WysiwygEditor extends Component {
     const controlProps = {
       modalHandler: this.modalHandler,
       editorState,
-      onChange: this.onChange,
+      onChange: this.onControlChange,
+      customStyleMap 
     }
 
     return (

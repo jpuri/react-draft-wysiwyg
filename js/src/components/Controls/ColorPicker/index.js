@@ -219,6 +219,7 @@ const ColorPickerModalOption = ({rgb, value, active, onClick}) => {
 const ClearColorOption = ({onClick}) => {
   return (
     <Option
+      className="rdw-colorpicker-option-clear-btn"
       value="inherit"
       key="color-picker-option-inherit"
       onClick={onClick}

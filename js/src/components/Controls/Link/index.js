@@ -65,16 +65,20 @@ export default class Link extends Component {
   };
 
   removeLink: Function = (): void => {
+
     const { editorState, onChange } = this.props;
     const { currentEntity } = this.state;
     let selection = editorState.getSelection();
+
     if (currentEntity) {
       const entityRange = getEntityRange(editorState, currentEntity);
       selection = selection.merge({
         anchorOffset: entityRange.start,
         focusOffset: entityRange.end,
       });
+
       onChange(RichUtils.toggleLink(editorState, selection, null));
+
     }
   };
 
@@ -153,6 +157,7 @@ export default class Link extends Component {
   };
 
   showHideModal: Function = (): void => {
+
     const newState = {};
 
     newState.showModal = this.signalShowModal;

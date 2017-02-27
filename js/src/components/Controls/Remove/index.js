@@ -16,7 +16,11 @@ export default class Remove extends Component {
   };
 
   removeAllInlineStyles: Function = (editorState: EditorState): void => {
+
     const { customStyleMap } = this.props;
+
+    console.log('removeAllInlineStyles > customStyleMap: ', customStyleMap);
+
     let contentState = editorState.getCurrentContent();
     const inlineStyles = Object.keys(customStyleMap).concat(['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH', 'MONOSPACE',
       'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE', 'SUPERSCRIPT', 'SUBSCRIPT']);
