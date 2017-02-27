@@ -47,6 +47,7 @@ export default {
     options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],
     className: undefined,
     dropdownClassName: undefined,
+    displayNames: undefined,
   },
   fontSize: {
     icon: fontSize,
