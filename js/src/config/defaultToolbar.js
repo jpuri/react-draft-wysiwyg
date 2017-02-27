@@ -124,6 +124,10 @@ export default {
     uploadEnabled: true,
     alignmentEnabled: true,
     uploadCallback: undefined,
+    defaultSize: {
+      height: 'auto',
+      width: '100%',
+    },
   },
   remove: { icon: eraser, className: undefined },
   history: {

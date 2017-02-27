@@ -1117,10 +1117,11 @@ textarea {
   background: #ece9e9;
 }
 .rdw-embedded-modal-size {
+  align-items: center;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin: 5px 0 10px;
+  margin: 8px 0 ;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;

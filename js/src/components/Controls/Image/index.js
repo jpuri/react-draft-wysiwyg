@@ -7,6 +7,8 @@ import Option from '../../Option';
 import Spinner from '../../Spinner';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
+const lengthRegex = new RegExp(/^auto$|^[+-]?[0-9]+\.?([0-9]+)?(px|em|ex|%|in|cm|mm|pt|pc)?$/);
+
 export default class ImageControl extends Component {
 
   static propTypes: Object = {
@@ -16,14 +18,15 @@ export default class ImageControl extends Component {
     config: PropTypes.object,
   };
 
+
   state: Object = {
     imgSrc: '',
     showModal: false,
     dragEnter: false,
     uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
     showImageLoading: false,
-    height: 'auto',
-    width: '100%',
+    height: lengthRegex.test(this.props.config.defaultSize.height) ? this.props.config.defaultSize.height : 'auto',
+    width: lengthRegex.test(this.props.config.defaultSize.width) ? this.props.config.defaultSize.width : '100%',
   };
 
   componentWillMount(): void {
@@ -261,6 +264,7 @@ export default class ImageControl extends Component {
               </div>
         }
         <div className="rdw-embedded-modal-size">
+          &#8597;&nbsp;
           <input
             ref={this.setHeightInputReference}
             onChange={this.updateHeight}
@@ -269,6 +273,7 @@ export default class ImageControl extends Component {
             className="rdw-embedded-modal-size-input"
             placeholder="Height"
           />
+          &nbsp;&#8596;&nbsp;
           <input
             ref={this.setWidthInputReference}
             onChange={this.updateWidth}
