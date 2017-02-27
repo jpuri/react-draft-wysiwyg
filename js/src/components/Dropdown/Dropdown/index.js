@@ -39,25 +39,34 @@ export default class Dropdown extends Component {
   };
 
   onKeyDown: Function = (event: Object): void => {
-    event.preventDefault();
     const { children } = this.props;
     const { expanded, highlighted } = this.state;
+    let actioned = false;
     if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
       if (!expanded) {
         this.toggleExpansion();
+        actioned = true;
       } else {
         this.setHighlighted((highlighted === children[1].length - 1) ? 0 : highlighted + 1);
+        actioned = true;
       }
     } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
       this.setHighlighted(highlighted <= 0 ? children[1].length - 1 : highlighted - 1);
+      actioned = true;
     } else if (event.key === 'Enter') {
       if (highlighted > -1) {
         this.onChange(this.props.children[1][highlighted].props.value);
+        actioned = true;
       } else {
         this.toggleExpansion();
+        actioned = true;
       }
     } else if (event.key === 'Escape') {
       this.collapse();
+      actioned = true;
+    }
+    if (actioned) {
+      event.preventDefault();
     }
   };
 
@@ -105,7 +114,6 @@ export default class Dropdown extends Component {
     const options = children.slice(1, children.length);
     return (
       <div
-        tabIndex="0"
         onKeyDown={this.onKeyDown}
         className={classNames('rdw-dropdown-wrapper', className)}
         aria-expanded={expanded}

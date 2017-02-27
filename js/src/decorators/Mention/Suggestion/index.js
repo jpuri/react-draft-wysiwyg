@@ -14,6 +14,7 @@ class Suggestion {
       onChange,
       getEditorState,
       getWrapperRef,
+      caseSensitive,
       dropdownClassName,
       optionClassName,
       modalHandler,
@@ -25,6 +26,7 @@ class Suggestion {
       onChange,
       getEditorState,
       getWrapperRef,
+      caseSensitive,
       dropdownClassName,
       optionClassName,
       modalHandler,
@@ -42,7 +44,7 @@ class Suggestion {
           0,
           selection.get('focusOffset') === text.length - 1
           ? text.length
-          : selection.get('focusOffset') - 1
+          : selection.get('focusOffset') + 1
         );
         let index = text.lastIndexOf(separator + trigger);
         let preText = separator + trigger;
@@ -53,8 +55,15 @@ class Suggestion {
         if (index >= 0) {
           const mentionText = text.substr(index + preText.length, text.length);
           const suggestionPresent =
-            getSuggestions().some(suggestion =>
-              suggestion.value && suggestion.value.indexOf(mentionText) >= 0);
+          getSuggestions().some((suggestion) => {
+            if (suggestion.value) {
+              if (this.config.caseSensitive) {
+                return suggestion.value.indexOf(mentionText) >= 0;
+              } else {
+                return suggestion.value.toLowerCase().indexOf(mentionText && mentionText.toLowerCase()) >= 0;
+              }
+            }
+          });
           if (suggestionPresent) {
             callback(index === 0 ? 0 : index + 1, text.length);
           }
@@ -183,9 +192,16 @@ function getSuggestionComponent() {
       const mentionText = props.children[0].props.text.substr(1);
       const suggestions = config.getSuggestions();
       this.filteredSuggestions =
-        suggestions && suggestions.filter(suggestion =>
-        (!mentionText || mentionText.length === 0) ||
-        (suggestion.value && suggestion.value.indexOf(mentionText) >= 0));
+        suggestions && suggestions.filter((suggestion) => {
+          if (!mentionText || mentionText.length === 0) {
+            return true;
+          }
+          if (config.caseSensitive) {
+            return suggestion.value.indexOf(mentionText) >= 0;
+          } else {
+            return suggestion.value.toLowerCase().indexOf(mentionText && mentionText.toLowerCase()) >= 0;
+          }
+        });
     }
 
     addMention = () => {

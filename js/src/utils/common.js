@@ -43,3 +43,17 @@ export function isEmptyString(str: string): boolean {
 export function isMap(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]';
 }
+
+/**
+* The function will return filter out props fron and return new props.
+*/
+export function filter(obj, keys) {
+  const filteredKeys = Object.keys(obj).filter(key => keys.indexOf(key) < 0);
+  const filteredObject = {};
+  if (filteredKeys && filteredKeys.length > 0) {
+    filteredKeys.forEach((key) => {
+      filteredObject[key] = obj[key];
+    });
+  }
+  return filteredObject;
+}

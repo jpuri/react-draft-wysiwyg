@@ -25,30 +25,36 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader'
-        ),
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader"
+        }),
       },
       { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml',
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin('main.css', {
-      allChunks: true,
-    }),
+    new ExtractTextPlugin("main.css"),
     new HtmlWebpackPlugin({
       template: './js/playground/index.html',
       inject: true,
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer, precss],
+      }
+    })
   ],
-  postcss: () => [autoprefixer, precss],
   resolve: {
-    extensions: ['', '.js', '.json'],
+    // alias: {
+    //   'draftjs-to-html': path.join(__dirname, '../../draftjs-to-html', 'js'),
+    //   'draftjs-to-markdown': path.join(__dirname, '../../draftjs-to-markdown', 'js'),
+    // },
+    extensions: ['.js', '.json'],
   },
 };

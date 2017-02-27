@@ -21,7 +21,6 @@
 .rdw-dropdown-carettoopen {
   height: 0px;
   width: 0px;
-  content: -;
   position: absolute;
   top: 35%;
   right: 10%;
@@ -32,11 +31,10 @@
 .rdw-dropdown-carettoclose {
   height: 0px;
   width: 0px;
-  content: -;
   position: absolute;
   top: 35%;
   right: 10%;
-  border-bottom: 6px solid #666;
+  border-bottom: 6px solid black;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
 }

@@ -53,12 +53,13 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            hashtag={{}}
             editorState={editorContents[0]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 0)}
-            uploadCallback={uploadImageCallBack}
+            toolbar={{image: { uploadCallback: uploadImageCallBack }}}
           />
           <textarea
             disabled
@@ -71,12 +72,13 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            hashtag={{}}
             editorState={editorContents[1]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 1)}
-            uploadCallback={uploadImageCallBack}
+            toolbar={{image: { uploadCallback: uploadImageCallBack }}}
           />
           <textarea
             disabled
@@ -89,12 +91,13 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
+            hashtag={{}}
             editorState={editorContents[2]}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 2)}
-            uploadCallback={uploadImageCallBack}
+            toolbar={{image: { uploadCallback: uploadImageCallBack }}}
           />
           <textarea
             disabled
@@ -110,13 +113,32 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
-            uploadCallback={uploadImageCallBack}
             toolbar={{
               inline: { inDropdown: true },
               list: { inDropdown: true },
               textAlign: { inDropdown: true },
               link: { inDropdown: true },
               history: { inDropdown: true },
+              image: { uploadCallback: uploadImageCallBack }
+            }}
+          />
+        </div>
+        <div className="demo-label">
+          Editor with similar options grouped in drop-down and order of options reversed.
+        </div>
+        <div className="demo-editorSection">
+          <Editor
+            toolbarClassName="demo-toolbar"
+            wrapperClassName="demo-wrapper-wide"
+            editorClassName="demo-editor"
+            toolbar={{
+              options: ['history', 'remove', 'image', 'emoji', 'embedded', 'link', 'colorPicker', 'textAlign', 'list', 'fontFamily', 'fontSize', 'blockType', 'inline'],
+              inline: { inDropdown: true },
+              list: { inDropdown: true },
+              textAlign: { inDropdown: true },
+              link: { inDropdown: true },
+              history: { inDropdown: true },
+              image: { uploadCallback: uploadImageCallBack }
             }}
           />
         </div>
@@ -176,7 +198,7 @@ export default class Demo extends Component {
             toolbarClassName="demo-toolbar-absolute-high"
             wrapperClassName="demo-wrapper-relative-long"
             editorClassName="demo-editor-embedded"
-            contentState={{ "entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"link":"https://www.youtube.com/embed/VbXNmIvWa1c","height":"auto","width":"100%"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links, this work so awesome with DraftJS:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"This is cool. Check by typing more here ...","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}] }}
+            contentState={{ "entityMap":{"0":{"type":"EMBEDDED_LINK","mutability":"MUTABLE","data":{"src":"https://www.youtube.com/embed/VbXNmIvWa1c","height":"auto","width":"100%"}}},"blocks":[{"key":"4vla1","text":"Demo of embedded links, this work so awesome with DraftJS:","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"1gls3","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"4m681","text":"This is cool. Check by typing more here ...","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}] }}
             toolbarOnFocus
             toolbar={{
               inline: { inDropdown: true },
@@ -190,7 +212,7 @@ export default class Demo extends Component {
         <div className="demo-label">
           Editor with mentions.
         </div>
-        <div className="demo-subLabel">Try out by entering @.</div>
+        <div className="demo-subLabel">Try out by entering @ and hashtag by entering #.</div>
         <div className="demo-editorSection">
           <Editor
             toolbarClassName="demo-toolbar"
@@ -210,6 +232,7 @@ export default class Demo extends Component {
                 { text: 'HONEYDEW', value: 'honeydew', url: 'honeydew' },
               ],
             }}
+            hashtag={{}}
           />
         </div>
         <div className="demo-label">
