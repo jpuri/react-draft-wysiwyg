@@ -1,6 +1,6 @@
 {
   "name": "@shoflo/react-draft-wysiwyg",
-  "version": "1.8.4",
+  "version": "1.8.5",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {

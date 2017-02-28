@@ -86,10 +86,13 @@ export default class WysiwygEditor extends Component {
   constructor(props) {
     super(props);
     const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
+    const colorsArray = Object.keys(toolbar.colorPicker.colors);
+
+    console.log(colorsArray)
 
     setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
     setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
-    //setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
+    setColors(toolbar.colorPicker && colorsArray);
 
     this.state = {
       editorState: undefined,
@@ -97,6 +100,7 @@ export default class WysiwygEditor extends Component {
       toolbar,
       customStyleMap: _getCustomStyleMap(toolbar.colorPicker.colors)
     };
+
     this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
@@ -126,9 +130,12 @@ export default class WysiwygEditor extends Component {
 
     if (this.props.toolbar !== props.toolbar) {
       const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
+      const colorsArray = Object.keys(toolbar.colorPicker.colors);
+
       setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
       setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
-      //setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
+      setColors(toolbar.colorPicker && colorsArray);
+
       newState.toolbar = toolbar;
       newState.customStyleMap = _getCustomStyleMap(toolbar.colorPicker.colors);
     }
@@ -415,8 +422,10 @@ export default class WysiwygEditor extends Component {
       modalHandler: this.modalHandler,
       editorState,
       onChange: this.onControlChange,
-      customStyleMap 
+      customStyleMap
     }
+
+    console.log(customStyleMap);
 
     return (
       <div
@@ -495,7 +504,7 @@ const _getCustomStyleMap = (customColors) => {
       styleMap[`bgcolor-${color}`] = {backgroundColor: customColors[color]}
     }
   }
-  
+
   return styleMap;
 }
 
