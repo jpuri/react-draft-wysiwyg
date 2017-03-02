@@ -30,4 +30,8 @@ module.exports = {
   'components.controls.image.fileUpload' : "File Upload",
   'components.controls.image.byURL' : "URL",
   'components.controls.image.dropFileText' : "Drop the file or click to upload",
+
+  //Link
+  'components.controls.link.linkTitle' : "Link Title",
+  'components.controls.link.linkTarget' : "Link Target",
 }

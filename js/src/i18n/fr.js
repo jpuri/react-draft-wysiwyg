@@ -30,4 +30,8 @@ module.exports = {
   'components.controls.image.fileUpload' : "Téléchargement",
   'components.controls.image.byURL' : "URL",
   'components.controls.image.dropFileText' : "Glisser une image ou cliquer pour télécharger",
+
+  //Link
+  'components.controls.link.linkTitle' : "Titre du lien",
+  'components.controls.link.linkTarget' : "Cible du lien",
 }
