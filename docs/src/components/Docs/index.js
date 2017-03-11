@@ -204,6 +204,14 @@ export default class Demo2 extends Component {
               {'<Editor toolbarOnFocus />'}
             </code>
           </div>
+          <div className="docs-desc top-margined">
+            To hide the toolbar property toolbarHidden can be used.
+          </div>
+          <div>
+            <code>
+              {'<Editor toolbarHidden />'}
+            </code>
+          </div>
         </div>
         <div className="docs-section">
           <div className="docs-label">
@@ -382,7 +390,7 @@ export default class Demo2 extends Component {
             Set DefaultSize for images
           </div>
           <div className="docs-desc">
-            Override default image size (height : auto, width : 100%).
+            Default image size is (height: auto, width: 100%). This can be overridden using property defaultSize in toolbar configurations.
           </div>
         </div>
         <div className="docs-section">
