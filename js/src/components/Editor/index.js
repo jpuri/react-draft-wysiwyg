@@ -52,6 +52,7 @@ export default class WysiwygEditor extends Component {
     toolbar: PropTypes.object,
     toolbarCustomButtons: PropTypes.array,
     toolbarClassName: PropTypes.string,
+    toolbarDisable: PropTypes.bool,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     toolbarStyle: PropTypes.object,
@@ -79,6 +80,7 @@ export default class WysiwygEditor extends Component {
 
   static defaultProps = {
     toolbarOnFocus: false,
+    toolbarDisable: false,
     stripPastedStyles: false,
   }
 
@@ -363,6 +365,7 @@ export default class WysiwygEditor extends Component {
       toolbarCustomButtons,
       toolbarOnFocus,
       toolbarClassName,
+      toolbarDisable,
       editorClassName,
       wrapperClassName,
       toolbarStyle,
@@ -388,7 +391,9 @@ export default class WysiwygEditor extends Component {
         onBlur={this.onWrapperBlur}
         aria-label="rdw-wrapper"
       >
-        {(editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
+        {
+          !toolbarDisable &&
+          (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
           <div
             className={classNames('rdw-editor-toolbar', toolbarClassName)}
             style={toolbarStyle}
