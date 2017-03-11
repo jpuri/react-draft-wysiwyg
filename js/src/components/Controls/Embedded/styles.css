@@ -82,8 +82,9 @@
   background: #ece9e9;
 }
 .rdw-embedded-modal-size {
+  align-items: center;
   display: flex;
-  margin: 5px 0 10px;
+  margin: 8px 0;
   justify-content: space-between;
 }
 .rdw-embedded-modal-size-input {
