@@ -7,8 +7,6 @@ import Option from '../../Option';
 import Spinner from '../../Spinner';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-const lengthRegex = new RegExp(/^auto$|^[+-]?[0-9]+\.?([0-9]+)?(px|em|ex|%|in|cm|mm|pt|pc)?$/);
-
 export default class ImageControl extends Component {
 
   static propTypes: Object = {
@@ -25,8 +23,8 @@ export default class ImageControl extends Component {
     dragEnter: false,
     uploadHighlighted: this.props.config.uploadEnabled && !!this.props.config.uploadCallback,
     showImageLoading: false,
-    height: lengthRegex.test(this.props.config.defaultSize.height) ? this.props.config.defaultSize.height : 'auto',
-    width: lengthRegex.test(this.props.config.defaultSize.width) ? this.props.config.defaultSize.width : '100%',
+    height: this.props.config.defaultSize.height,
+    width: this.props.config.defaultSize.width,
   };
 
   componentWillMount(): void {
