@@ -362,6 +362,17 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
+            BlockType label
+          </div>
+          <div className="docs-desc">
+            To add custom labels to the blockTypeslit, in the blockType configs :
+            <code>
+              displayNames: {H1: "Title", H2: "Subtitle", ...}
+            </code>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
             Image
           </div>
           <div className="docs-sub-label">

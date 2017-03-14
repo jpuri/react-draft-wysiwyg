@@ -68,6 +68,9 @@
   justify-content: center;
   align-items: center;
 }
+.rdw-image-modal-upload-option-label span{
+  padding: 0 20px;
+}
 .rdw-image-modal-upload-option-input {
 	width: 0.1px;
 	height: 0.1px;

@@ -55,7 +55,8 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "draftjs-utils": "^0.7.0",
-    "immutable": "^4.0.0-rc.1"
+    "immutable": "^4.0.0-rc.1",
+    "react-intl": "^2.2.3"
   },
   "peerDependencies": {
     "draft-js": "^0.10.x",

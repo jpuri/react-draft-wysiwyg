@@ -287,13 +287,13 @@ export default class ImageControl extends Component {
             onClick={this.addImageFromState}
             disabled={!imgSrc || !height || !width}
           >
-            Add
+            <FormattedMessage id="generic.add" />
           </button>
           <button
             className="rdw-image-modal-btn"
             onClick={this.hideModal}
           >
-            Cancel
+            <FormattedMessage id="generic.cancel" />
           </button>
         </span>
         {showImageLoading ?
