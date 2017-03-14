@@ -1,6 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 import {
   toggleCustomInlineStyle,
@@ -9,7 +10,7 @@ import {
 import Option from '../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class ColorPicker extends Component {
+class ColorPicker extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
@@ -111,7 +112,7 @@ export default class ColorPicker extends Component {
             )}
             onClick={this.setCurrentStyleColor}
           >
-            Text
+            <FormattedMessage id="components.controls.colorpicker.text" />
           </span>
           <span
             className={classNames(
@@ -120,7 +121,7 @@ export default class ColorPicker extends Component {
             )}
             onClick={this.setCurrentStyleBgcolor}
           >
-            Background
+            <FormattedMessage id="components.controls.colorpicker.background" />
           </span>
         </span>
         <span className="rdw-colorpicker-modal-options">
@@ -169,3 +170,5 @@ export default class ColorPicker extends Component {
     );
   }
 }
+
+export default injectIntl(ColorPicker);

@@ -1,6 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { Entity, RichUtils, EditorState, Modifier } from 'draft-js';
 import {
   getSelectionText,
@@ -13,7 +14,7 @@ import Option from '../../Option';
 import { Dropdown, DropdownOption } from '../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class Link extends Component {
+class Link extends Component {
 
   static propTypes = {
     editorState: PropTypes.object.isRequired,
@@ -175,7 +176,7 @@ export default class Link extends Component {
         className={classNames('rdw-link-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
-        <span className="rdw-link-modal-label">Link Title</span>
+        <span className="rdw-link-modal-label"><FormattedMessage id="components.controls.link.linkTitle" /></span>
         <input
           ref={this.setLinkTitleReference}
           className="rdw-link-modal-input"
@@ -183,7 +184,7 @@ export default class Link extends Component {
           onBlur={this.updateLinkTitle}
           value={linkTitle}
         />
-        <span className="rdw-link-modal-label">Link Target</span>
+        <span className="rdw-link-modal-label"><FormattedMessage id="components.controls.link.linkTarget" /></span>
         <input
           ref={this.setLinkTextReference}
           className="rdw-link-modal-input"
@@ -197,13 +198,13 @@ export default class Link extends Component {
             onClick={this.addLink}
             disabled={!linkTarget || !linkTitle}
           >
-            Add
+            <FormattedMessage id="generic.add" />
           </button>
           <button
             className="rdw-link-modal-btn"
             onClick={this.hideLinkModal}
           >
-            Cancel
+            <FormattedMessage id="generic.cancel" />
           </button>
         </span>
       </div>
@@ -298,3 +299,5 @@ export default class Link extends Component {
     return this.renderInFlatList(showModal, currentEntity, config);
   }
 }
+
+export default injectIntl(Link);
