@@ -3,6 +3,8 @@
 A Wysiwyg editor built using ReactJS and DraftJS libraries.
 [Demo Page](https://jpuri.github.io/react-draft-wysiwyg).
 
+[![Build Status](https://travis-ci.org/jpuri/react-draft-wysiwyg.svg?branch=master)](https://travis-ci.org/jpuri/react-draft-wysiwyg)
+
 ![](http://i.imgur.com/tU7kJ6i.gif)
 
 ## Features
