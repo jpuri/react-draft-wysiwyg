@@ -396,7 +396,7 @@ export default class WysiwygEditor extends Component {
     }
 
     return (
-      <IntlProvider locale={this.editorProps.locale} messages={translations[this.editorProps.locale]}>
+      <IntlProvider locale={this.editorProps.locale || 'en'} messages={translations[this.editorProps.locale || 'en']}>
         <div
           id={this.wrapperId}
           className={classNames('rdw-editor-wrapper', wrapperClassName)}
