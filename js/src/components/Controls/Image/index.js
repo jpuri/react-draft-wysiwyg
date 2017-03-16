@@ -1,6 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../Option';
