@@ -191,7 +191,7 @@ export default class ImageControl extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled } } = this.props;
+    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled,acceptFileType } } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
@@ -246,6 +246,7 @@ export default class ImageControl extends Component {
               <input
                 type="file"
                 id="file"
+                accept={acceptFileType || 'image/*'}
                 onChange={this.selectImage}
                 className="rdw-image-modal-upload-option-input"
               />

@@ -124,6 +124,7 @@ export default {
     uploadEnabled: true,
     alignmentEnabled: true,
     uploadCallback: undefined,
+    acceptFileType: 'image/*',
     defaultSize: {
       height: 'auto',
       width: '100%',
