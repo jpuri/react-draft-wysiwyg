@@ -8,7 +8,7 @@ import Option from '../../Option';
 import Spinner from '../../Spinner';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class ImageControl extends Component {
+class ImageControl extends Component {
 
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
@@ -331,3 +331,5 @@ export default class ImageControl extends Component {
     );
   }
 }
+
+export default injectIntl(ImageControl);
