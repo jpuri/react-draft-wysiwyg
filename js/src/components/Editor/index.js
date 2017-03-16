@@ -225,7 +225,6 @@ export default class WysiwygEditor extends Component {
     const currentSelection = editorState.getSelection();
     const currentFocusKey = currentSelection.getFocusKey();
     const currentBlock = currentContentState.getBlockForKey(currentFocusKey);
-    console.log('OK 0', previousBlock.getType(), currentBlock.getType());
     if (currentBlock.getType() === 'atomic' && previousBlock.getEntityAt(0)) {
       const entity = previousContentState.getEntity(previousBlock.getEntityAt(0));
       const newContentState = editorState.getCurrentContent();
@@ -233,8 +232,6 @@ export default class WysiwygEditor extends Component {
       if (blockExists && entity && entity.type === 'IMAGE') {
         this.setState({
           editorFocused: false,
-        }, () => {
-          console.log('editorFocused false');
         });
         if (!readOnly) {
           if (onEditorStateChange) {
