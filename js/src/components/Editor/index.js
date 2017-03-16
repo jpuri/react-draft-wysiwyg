@@ -218,16 +218,32 @@ export default class WysiwygEditor extends Component {
     const { readOnly, onEditorStateChange } = this.props;
     const previousEditorState = this.state.editorState;
     const previousContentState = previousEditorState.getCurrentContent();
-    const selection = previousEditorState.getSelection();
-    const focusKey = selection.getFocusKey();
-    const block = previousContentState.getBlockForKey(focusKey);
-    if (block.getType() === 'atomic' && block.getEntityAt(0)) {
-      const entity = previousContentState.getEntity(block.getEntityAt(0));
+    const previousSelection = previousEditorState.getSelection();
+    const previousFocusKey = previousSelection.getFocusKey();
+    const previousBlock = previousContentState.getBlockForKey(previousFocusKey);
+    const currentContentState = editorState.getCurrentContent();
+    const currentSelection = editorState.getSelection();
+    const currentFocusKey = currentSelection.getFocusKey();
+    const currentBlock = currentContentState.getBlockForKey(currentFocusKey);
+    console.log('OK 0', previousBlock.getType(), currentBlock.getType());
+    if (currentBlock.getType() === 'atomic' && previousBlock.getEntityAt(0)) {
+      const entity = previousContentState.getEntity(previousBlock.getEntityAt(0));
       const newContentState = editorState.getCurrentContent();
-      const blockExists = newContentState.getBlockForKey(focusKey);
-      if (blockExists && entity && entity.type === 'IMAGE') return false;
-    }
-    if (!readOnly) {
+      const blockExists = newContentState.getBlockForKey(previousFocusKey);
+      if (blockExists && entity && entity.type === 'IMAGE') {
+        this.setState({
+          editorFocused: false,
+        }, () => {
+          console.log('editorFocused false');
+        });
+        if (!readOnly) {
+          if (onEditorStateChange) {
+            onEditorStateChange(previousEditorState);
+          }
+          this.afterChange(previousEditorState);
+        }
+      }
+    } else if (!readOnly) {
       if (onEditorStateChange) {
         onEditorStateChange(editorState);
       }
