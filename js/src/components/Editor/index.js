@@ -216,6 +216,15 @@ export default class WysiwygEditor extends Component {
 
   onChange: Function = (editorState: Object): void => {
     const { readOnly, onEditorStateChange } = this.props;
+    const previousEditorState = this.state.editorState;
+    const contentState = previousEditorState.getCurrentContent();
+    const selection = previousEditorState.getSelection();
+    const focusKey = selection.getFocusKey();
+    const block = contentState.getBlockForKey(focusKey);
+    if (block.getType() === 'atomic' && block.getEntityAt(0)) {
+      const vertifiedEntity = contentState.getEntity(block.getEntityAt(0));
+      if (vertifiedEntity && vertifiedEntity.type === 'IMAGE') return false;
+    }
     if (!readOnly) {
       if (onEditorStateChange) {
         onEditorStateChange(editorState);
