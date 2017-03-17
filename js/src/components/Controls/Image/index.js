@@ -1,13 +1,14 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
+import { FormattedMessage, injectIntl } from 'react-intl';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../Option';
 import Spinner from '../../Spinner';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class ImageControl extends Component {
+class ImageControl extends Component {
 
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
@@ -203,7 +204,7 @@ export default class ImageControl extends Component {
               onClick={this.showImageUploadOption}
               className="rdw-image-modal-header-option"
             >
-              <span>File Upload</span>
+              <FormattedMessage id="components.controls.image.fileUpload" />
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
@@ -216,7 +217,7 @@ export default class ImageControl extends Component {
               onClick={this.showImageURLOption}
               className="rdw-image-modal-header-option"
             >
-              <span>URL</span>
+              <FormattedMessage id="components.controls.image.byURL" />
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
@@ -240,7 +241,7 @@ export default class ImageControl extends Component {
                   htmlFor="file"
                   className="rdw-image-modal-upload-option-label"
                 >
-                  Drop the file or click to upload
+                  <FormattedMessage id="components.controls.image.dropFileText" />
                 </label>
               </div>
               <input
@@ -330,3 +331,5 @@ export default class ImageControl extends Component {
     );
   }
 }
+
+export default injectIntl(ImageControl);
