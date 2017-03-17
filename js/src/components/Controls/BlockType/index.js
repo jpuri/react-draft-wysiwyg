@@ -120,7 +120,7 @@ class BlockType extends Component {
   render(): void {
     const { config } = this.props;
     const { inDropdown } = config;
-    const blocks = this.blocksTypes().filter(({ label }) => config.options.includes(label));
+    const blocks = this.blocksTypes().filter(({ label }) => config.options.indexOf(label) !== -1);
     return inDropdown ? this.renderInDropdown(blocks) : this.renderFlat(blocks);
   }
 }

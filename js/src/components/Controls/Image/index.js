@@ -204,7 +204,7 @@ export default class ImageControl extends Component {
               onClick={this.showImageUploadOption}
               className="rdw-image-modal-header-option"
             >
-              <span>File Upload</span>
+              <FormattedMessage id="components.controls.image.fileUpload" />
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
@@ -217,7 +217,7 @@ export default class ImageControl extends Component {
               onClick={this.showImageURLOption}
               className="rdw-image-modal-header-option"
             >
-              <span>URL</span>
+              <FormattedMessage id="components.controls.image.byURL" />
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
@@ -241,7 +241,7 @@ export default class ImageControl extends Component {
                   htmlFor="file"
                   className="rdw-image-modal-upload-option-label"
                 >
-                  Drop the file or click to upload
+                  <FormattedMessage id="components.controls.image.dropFileText" />
                 </label>
               </div>
               <input
