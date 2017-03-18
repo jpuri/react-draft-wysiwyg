@@ -115,6 +115,7 @@ export default {
   embedded: {
     icon: embedded,
     className: undefined,
+    component: undefined,
     popupClassName: undefined,
   },
   image: {

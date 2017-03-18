@@ -53,3 +53,5 @@ export default class Remove extends Component {
     );
   }
 }
+
+// todo: unit test coverage

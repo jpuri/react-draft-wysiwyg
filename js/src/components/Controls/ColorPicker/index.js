@@ -92,3 +92,5 @@ class ColorPicker extends Component {
 }
 
 export default ColorPicker;
+
+// todo: refactor to rename showModal to expanded
