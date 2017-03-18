@@ -74,7 +74,7 @@ export default class Emoji extends Component {
           emojis.map((emoji, index) => (<span
             key={index}
             className="rdw-emoji-icon"
-            role="presentation"
+            alt=""
             onClick={this.addEmoji}
           >{emoji}</span>))
         }
@@ -99,7 +99,7 @@ export default class Emoji extends Component {
         >
           <img
             src={icon}
-            role="presentation"
+            alt=""
           />
         </Option>
         {showModal ? this.renderEmojiModal() : undefined}

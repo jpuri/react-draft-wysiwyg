@@ -73,7 +73,7 @@ export default class FontSize extends Component {
           :
             <img
               src={icon}
-              role="presentation"
+              alt=""
             />
           }
           {

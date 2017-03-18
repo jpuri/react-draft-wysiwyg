@@ -100,7 +100,7 @@ export default class List extends Component {
         >
           <img
             src={unordered.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {options.indexOf('ordered') >= 0 && <Option
@@ -111,7 +111,7 @@ export default class List extends Component {
         >
           <img
             src={ordered.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {options.indexOf('indent') >= 0 && <Option
@@ -120,7 +120,7 @@ export default class List extends Component {
         >
           <img
             src={indent.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {options.indexOf('outdent') >= 0 && <Option
@@ -129,7 +129,7 @@ export default class List extends Component {
         >
           <img
             src={outdent.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
       </div>
@@ -148,7 +148,7 @@ export default class List extends Component {
       >
         <img
           src={getFirstIcon(config)}
-          role="presentation"
+          alt=""
         />
         { this.options
           .filter(option => options.indexOf(option.type) >= 0)
@@ -160,7 +160,7 @@ export default class List extends Component {
           >
             <img
               src={config[option.type].icon}
-              role="presentation"
+              alt=""
             />
           </DropdownOption>))
         }

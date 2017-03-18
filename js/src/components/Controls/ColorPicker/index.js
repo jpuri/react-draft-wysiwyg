@@ -162,7 +162,7 @@ class ColorPicker extends Component {
         >
           <img
             src={icon}
-            role="presentation"
+            alt=""
           />
         </Option>
         {showModal ? this.renderModal() : undefined}

@@ -182,7 +182,7 @@ class Embedded extends Component {
         >
           <img
             src={icon}
-            role="presentation"
+            alt=""
           />
         </Option>
         {showModal ? this.rendeEmbeddedLinkModal() : undefined}
