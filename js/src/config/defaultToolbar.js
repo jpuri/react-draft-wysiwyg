@@ -129,7 +129,7 @@ export default {
       width: '100%',
     },
   },
-  remove: { icon: eraser, className: undefined },
+  remove: { icon: eraser, className: undefined, component: undefined },
   history: {
     inDropdown: false,
     className: undefined,

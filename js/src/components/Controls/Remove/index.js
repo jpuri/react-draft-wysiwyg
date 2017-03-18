@@ -2,9 +2,7 @@
 
 import React, { Component, PropTypes } from 'react';
 import { EditorState, Modifier } from 'draft-js';
-import classNames from 'classnames';
-import Option from '../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import { Component } from './Component';
 
 export default class Remove extends Component {
 
@@ -16,8 +14,19 @@ export default class Remove extends Component {
 
   removeAllInlineStyles: Function = (editorState: EditorState): void => {
     let contentState = editorState.getCurrentContent();
-    ['BOLD', 'ITALIC', 'UNDERLINE', 'STRIKETHROUGH', 'MONOSPACE',
-    'FONTFAMILY', 'COLOR', 'BGCOLOR', 'FONTSIZE', 'SUPERSCRIPT', 'SUBSCRIPT'].forEach((style) => {
+    [
+      'BOLD',
+      'ITALIC',
+      'UNDERLINE',
+      'STRIKETHROUGH',
+      'MONOSPACE',
+      'FONTFAMILY',
+      'COLOR',
+      'BGCOLOR',
+      'FONTSIZE',
+      'SUPERSCRIPT',
+      'SUBSCRIPT',
+    ].forEach((style) => {
       contentState = Modifier.removeInlineStyle(
         contentState,
         editorState.getSelection(),
@@ -33,21 +42,15 @@ export default class Remove extends Component {
   };
 
   render(): Object {
-    const { config: { icon, className } } = this.props;
-    return (
-      <div className="rdw-remove-wrapper" aria-label="rdw-remove-control">
-        <Option
-          className={classNames(className)}
-          onClick={this.removeInlineStyles}
-        >
-          <img
-            src={icon}
-            alt=""
-          />
-        </Option>
-      </div>
-    );
+    const { config } = this.props;
+    const RemoveComponent = config.component || Component;
+    if (Comp) {
+      return (
+        <RemoveComponent
+          config={config}
+          onChange={this.removeInlineStyles}
+        />
+      );
+    }
   }
 }
-
-// todo: add unit test case
