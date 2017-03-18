@@ -323,7 +323,7 @@ class ImageControl extends Component {
         >
           <img
             src={icon}
-            role="presentation"
+            alt=""
           />
         </Option>
         {showModal ? this.renderAddImageModal() : undefined}

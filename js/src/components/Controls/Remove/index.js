@@ -42,7 +42,7 @@ export default class Remove extends Component {
         >
           <img
             src={icon}
-            role="presentation"
+            alt=""
           />
         </Option>
       </div>

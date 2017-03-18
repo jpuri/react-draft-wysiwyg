@@ -70,7 +70,7 @@ export default class History extends Component {
       >
         <img
           src={getFirstIcon(config)}
-          role="presentation"
+          alt=""
         />
         {options.indexOf('undo') >= 0 && <DropdownOption
           onClick={this.undo}
@@ -79,7 +79,7 @@ export default class History extends Component {
         >
           <img
             src={undo.icon}
-            role="presentation"
+            alt=""
           />
         </DropdownOption>}
         {options.indexOf('redo') >= 0 && <DropdownOption
@@ -89,7 +89,7 @@ export default class History extends Component {
         >
           <img
             src={redo.icon}
-            role="presentation"
+            alt=""
           />
         </DropdownOption>}
       </Dropdown>
@@ -108,7 +108,7 @@ export default class History extends Component {
         >
           <img
             src={undo.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {options.indexOf('redo') >= 0 && <Option
@@ -119,7 +119,7 @@ export default class History extends Component {
         >
           <img
             src={redo.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
       </div>

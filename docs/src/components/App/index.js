@@ -19,7 +19,7 @@ export default class App extends Component {
         <div>
           <span className="header">
             <a href="https://jpuri.github.io/react-draft-wysiwyg/" rel="noopener noreferrer">
-              <img src={paperPen} className="header-logo" role="presentation" />
+              <img src={paperPen} className="header-logo" alt="" />
             </a>
             <span className="header-text">
               <span className="header-title">

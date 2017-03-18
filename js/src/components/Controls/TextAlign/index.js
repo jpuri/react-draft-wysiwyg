@@ -52,7 +52,7 @@ export default class TextAlign extends Component {
         >
           <img
             src={left.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {options.indexOf('center') >= 0 && <Option
@@ -63,7 +63,7 @@ export default class TextAlign extends Component {
         >
           <img
             src={center.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {options.indexOf('right') >= 0 && <Option
@@ -74,7 +74,7 @@ export default class TextAlign extends Component {
         >
           <img
             src={right.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {options.indexOf('justify') >= 0 && <Option
@@ -85,7 +85,7 @@ export default class TextAlign extends Component {
         >
           <img
             src={justify.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
       </div>
@@ -105,7 +105,7 @@ export default class TextAlign extends Component {
       >
         <img
           src={getFirstIcon(config)}
-          role="presentation"
+          alt=""
         />
         {options.indexOf('left') >= 0 && <DropdownOption
           value="left"
@@ -114,7 +114,7 @@ export default class TextAlign extends Component {
         >
           <img
             src={left.icon}
-            role="presentation"
+            alt=""
           />
         </DropdownOption>}
         {options.indexOf('center') >= 0 && <DropdownOption
@@ -124,7 +124,7 @@ export default class TextAlign extends Component {
         >
           <img
             src={center.icon}
-            role="presentation"
+            alt=""
           />
         </DropdownOption>}
         {options.indexOf('right') >= 0 && <DropdownOption
@@ -134,7 +134,7 @@ export default class TextAlign extends Component {
         >
           <img
             src={right.icon}
-            role="presentation"
+            alt=""
           />
         </DropdownOption>}
         {options.indexOf('justify') >= 0 && <DropdownOption
@@ -144,7 +144,7 @@ export default class TextAlign extends Component {
         >
           <img
             src={justify.icon}
-            role="presentation"
+            alt=""
           />
         </DropdownOption>}
       </Dropdown>

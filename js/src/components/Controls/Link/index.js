@@ -227,7 +227,7 @@ class Link extends Component {
         >
           <img
             src={link.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {options.indexOf('unlink') >= 0 && <Option
@@ -238,7 +238,7 @@ class Link extends Component {
         >
           <img
             src={unlink.icon}
-            role="presentation"
+            alt=""
           />
         </Option>}
         {showModal ? this.renderAddLinkModal() : undefined}
@@ -263,7 +263,7 @@ class Link extends Component {
         >
           <img
             src={getFirstIcon(config)}
-            role="presentation"
+            alt=""
           />
           {options.indexOf('link') >= 0 && <DropdownOption
             onClick={this.onOptionClick}
@@ -271,7 +271,7 @@ class Link extends Component {
           >
             <img
               src={link.icon}
-              role="presentation"
+              alt=""
             />
           </DropdownOption>}
           {options.indexOf('unlink') >= 0 && <DropdownOption
@@ -281,7 +281,7 @@ class Link extends Component {
           >
             <img
               src={unlink.icon}
-              role="presentation"
+              alt=""
             />
           </DropdownOption>}
         </Dropdown>
