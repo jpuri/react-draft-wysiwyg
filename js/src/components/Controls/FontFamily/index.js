@@ -71,7 +71,7 @@ export default class FontFamily extends Component {
     let { currentFontFamily, defaultFontFamily } = this.state;
     const { config: { className, dropdownClassName }, modalHandler } = this.props;
     let { config: { options } } = this.props;
-    if (defaultFontFamily) {
+    if (defaultFontFamily && options && options.indexOf(defaultFontFamily) < 0) {
       options.push(defaultFontFamily);
       options.sort();
     }

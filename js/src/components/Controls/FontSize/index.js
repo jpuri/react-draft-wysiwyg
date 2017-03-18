@@ -73,7 +73,7 @@ export default class FontSize extends Component {
     const { config: { icon, className }, modalHandler } = this.props;
     let { config: { options } } = this.props;
     let { currentFontSize, defaultFontSize } = this.state;
-    if (defaultFontSize) {
+    if (defaultFontSize && options && options.indexOf(defaultFontSize) < 0) {
       options.push(Number(defaultFontSize));
       options.sort();
     }
