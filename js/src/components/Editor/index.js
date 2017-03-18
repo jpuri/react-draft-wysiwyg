@@ -435,7 +435,6 @@ export default class WysiwygEditor extends Component {
             onMouseDown={this.onEditorMouseDown}
           >
             <Editor
-              id="react-draft-wysiwyg"
               ref={this.setEditorReference}
               onTab={this.onTab}
               onUpArrow={this.onUpDownArrow}

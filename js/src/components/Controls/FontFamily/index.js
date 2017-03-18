@@ -22,6 +22,7 @@ export default class FontFamily extends Component {
 
   state: Object = {
     currentFontFamily: undefined,
+    defaultFontFamily: undefined,
   };
 
   componentWillMount(): void {
@@ -29,6 +30,17 @@ export default class FontFamily extends Component {
     if (editorState) {
       this.setState({
         currentFontFamily: getSelectionCustomInlineStyle(editorState, ['FONTFAMILY']).FONTFAMILY,
+      });
+    }
+  }
+
+  componentDidMount(): void {
+    const editorElm = document.getElementsByClassName('DraftEditor-root');
+    if (editorElm && editorElm.length > 0) {
+      const styles = window.getComputedStyle(editorElm[0]);
+      const defaultFontFamily = styles.getPropertyValue('font-family');
+      this.setState({
+        defaultFontFamily,
       });
     }
   }
@@ -56,10 +68,15 @@ export default class FontFamily extends Component {
   };
 
   render() {
-    let { currentFontFamily } = this.state;
-    const { config: { className, dropdownClassName, options }, modalHandler } = this.props;
+    let { currentFontFamily, defaultFontFamily } = this.state;
+    const { config: { className, dropdownClassName }, modalHandler } = this.props;
+    let { config: { options } } = this.props;
+    if (defaultFontFamily) {
+      options.push(defaultFontFamily);
+      options.sort();
+    }
     currentFontFamily =
-      currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length);
+      currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length) || defaultFontFamily;
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
         <Dropdown
