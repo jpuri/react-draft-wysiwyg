@@ -45,7 +45,7 @@ import draftWysiwygTranslationsZH from '../../i18n/zh';
 const translations = {
   "en": draftWysiwygTranslationsEN,
   "fr": draftWysiwygTranslationsFR,
-  "zh": draftWysiwygTranslationsZH
+  "zh": draftWysiwygTranslationsZH,
 }
 
 export default class WysiwygEditor extends Component {
