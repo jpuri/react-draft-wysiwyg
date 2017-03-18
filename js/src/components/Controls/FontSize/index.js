@@ -21,6 +21,7 @@ export default class FontSize extends Component {
 
   state: Object = {
     currentFontSize: undefined,
+    defaultFontSize: undefined,
   };
 
   componentWillMount(): void {
@@ -29,6 +30,18 @@ export default class FontSize extends Component {
       this.setState({
         currentFontSize:
           getSelectionCustomInlineStyle(editorState, ['FONTSIZE']).FONTSIZE,
+      });
+    }
+  }
+
+  componentDidMount(): void {
+    const editorElm = document.getElementsByClassName('DraftEditor-root');
+    if (editorElm && editorElm.length > 0) {
+      const styles = window.getComputedStyle(editorElm[0]);
+      let defaultFontSize = styles.getPropertyValue('font-size');
+      defaultFontSize = defaultFontSize.substring(0, defaultFontSize.length - 2);
+      this.setState({
+        defaultFontSize,
       });
     }
   }
@@ -57,10 +70,15 @@ export default class FontSize extends Component {
   };
 
   render() {
-    const { config: { icon, className, options }, modalHandler } = this.props;
-    let { currentFontSize } = this.state;
+    const { config: { icon, className }, modalHandler } = this.props;
+    let { config: { options } } = this.props;
+    let { currentFontSize, defaultFontSize } = this.state;
+    if (defaultFontSize) {
+      options.push(Number(defaultFontSize));
+      options.sort();
+    }
     currentFontSize = currentFontSize
-      && Number(currentFontSize.substring(9, currentFontSize.length));
+      && Number(currentFontSize.substring(9, currentFontSize.length)) || defaultFontSize;
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         <Dropdown
