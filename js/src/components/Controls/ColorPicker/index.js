@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import {
   toggleCustomInlineStyle,
@@ -171,4 +171,4 @@ class ColorPicker extends Component {
   }
 }
 
-export default injectIntl(ColorPicker);
+export default ColorPicker;

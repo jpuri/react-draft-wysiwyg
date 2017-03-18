@@ -122,7 +122,7 @@ class Embedded extends Component {
           <input
             ref={this.setURLInputReference}
             className="rdw-embedded-modal-link-input"
-            placeholder={formatMessage({id:"components.controls.embedded.enterlink"})}
+            placeholder={formatMessage({ id: 'components.controls.embedded.enterlink' })}
             onChange={this.updateEmbeddedLink}
             onBlur={this.updateEmbeddedLink}
             value={embeddedLink}

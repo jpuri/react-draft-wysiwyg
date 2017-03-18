@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage, injectIntl } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import { Entity, RichUtils, EditorState, Modifier } from 'draft-js';
 import {
   getSelectionText,
@@ -300,4 +300,4 @@ class Link extends Component {
   }
 }
 
-export default injectIntl(Link);
+export default Link;
