@@ -1,14 +1,12 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
 import {
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
-import Option from '../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+
+import LayoutComponent from './Component';
 
 class ColorPicker extends Component {
 
@@ -23,7 +21,6 @@ class ColorPicker extends Component {
     currentColor: undefined,
     currentBgColor: undefined,
     showModal: false,
-    currentStyle: 'color',
   };
 
   componentWillMount(): void {
@@ -58,18 +55,6 @@ class ColorPicker extends Component {
     this.signalShowModal = !this.state.showModal;
   };
 
-  setCurrentStyleBgcolor: Function = (): void => {
-    this.setState({
-      currentStyle: 'bgcolor',
-    });
-  };
-
-  setCurrentStyleColor: Function = (): void => {
-    this.setState({
-      currentStyle: 'color',
-    });
-  };
-
   showHideModal: Function = (): void => {
     this.setState({
       showModal: this.signalShowModal,
@@ -77,9 +62,8 @@ class ColorPicker extends Component {
     this.signalShowModal = false;
   }
 
-  toggleColor: Function = (color: string): void => {
+  toggleColor: Function = (currentStyle: string, color: string): void => {
     const { editorState, onChange } = this.props;
-    const { currentStyle } = this.state;
     const newState = toggleCustomInlineStyle(
       editorState,
       currentStyle,
@@ -90,83 +74,19 @@ class ColorPicker extends Component {
     }
   };
 
-  stopPropagation: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  renderModal: Function = (): Object => {
-    const { config: { popupClassName, colors } } = this.props;
-    const { currentColor, currentBgColor, currentStyle } = this.state;
-    const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
-    return (
-      <div
-        className={classNames('rdw-colorpicker-modal', popupClassName)}
-        onClick={this.stopPropagation}
-      >
-        <span className="rdw-colorpicker-modal-header">
-          <span
-            className={classNames(
-              'rdw-colorpicker-modal-style-label',
-              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'color' }
-            )}
-            onClick={this.setCurrentStyleColor}
-          >
-            <FormattedMessage id="components.controls.colorpicker.text" />
-          </span>
-          <span
-            className={classNames(
-              'rdw-colorpicker-modal-style-label',
-              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'bgcolor' }
-            )}
-            onClick={this.setCurrentStyleBgcolor}
-          >
-            <FormattedMessage id="components.controls.colorpicker.background" />
-          </span>
-        </span>
-        <span className="rdw-colorpicker-modal-options">
-          {
-            colors.map((color, index) =>
-              <Option
-                value={color}
-                key={index}
-                className="rdw-colorpicker-option"
-                activeClassName="rdw-colorpicker-option-active"
-                active={currentSelectedColor === `${currentStyle}-${color}`}
-                onClick={this.toggleColor}
-              >
-                <span
-                  style={{ backgroundColor: color }}
-                  className="rdw-colorpicker-cube"
-                />
-              </Option>)
-          }
-        </span>
-      </div>
-    );
-  };
-
   render(): Object {
-    const { config: { icon, className } } = this.props;
-    const { showModal } = this.state;
+    const { config } = this.props;
+    const { currentColor, currentBgColor, showModal } = this.state
+    const ColorPickerComponent = config.component || LayoutComponent;
     return (
-      <div
-        className="rdw-colorpicker-wrapper"
-        aria-haspopup="true"
-        aria-expanded={showModal}
-        aria-label="rdw-color-picker"
-      >
-        <Option
-          onClick={this.onOptionClick}
-          className={classNames(className)}
-        >
-          <img
-            src={icon}
-            alt=""
-          />
-        </Option>
-        {showModal ? this.renderModal() : undefined}
-      </div>
+      <ColorPickerComponent
+        config={config}
+        onChange={this.toggleColor}
+        expanded={showModal}
+        onExpand={this.onOptionClick}
+        currentColor={currentColor}
+        currentBgColor={currentBgColor}
+      />
     );
   }
 }

@@ -2,7 +2,8 @@
 
 import React, { Component, PropTypes } from 'react';
 import { EditorState, Modifier } from 'draft-js';
-import { Component } from './Component';
+
+import LayoutComponent from './Component';
 
 export default class Remove extends Component {
 
@@ -43,14 +44,12 @@ export default class Remove extends Component {
 
   render(): Object {
     const { config } = this.props;
-    const RemoveComponent = config.component || Component;
-    if (Comp) {
-      return (
-        <RemoveComponent
-          config={config}
-          onChange={this.removeInlineStyles}
-        />
-      );
-    }
+    const RemoveComponent = config.component || LayoutComponent;
+    return (
+      <RemoveComponent
+        config={config}
+        onChange={this.removeInlineStyles}
+      />
+    );
   }
 }

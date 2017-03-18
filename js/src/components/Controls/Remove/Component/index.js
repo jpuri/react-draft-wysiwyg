@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Option from '../../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-const Component = ({ config, onChange }) => {
+const RemoveComponent = ({ config, onChange }) => {
   const { icon, className } = config;
   return (
     <div className="rdw-remove-wrapper" aria-label="rdw-remove-control">
@@ -23,4 +23,4 @@ const Component = ({ config, onChange }) => {
   );
 };
 
-export default Component;
+export default RemoveComponent;
