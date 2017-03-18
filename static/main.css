@@ -1331,6 +1331,9 @@ textarea {
       -ms-flex-align: center;
           align-items: center;
 }
+.rdw-image-modal-upload-option-label span{
+  padding: 0 20px;
+}
 .rdw-image-modal-upload-option-input {
 	width: 0.1px;
 	height: 0.1px;
@@ -1340,14 +1343,12 @@ textarea {
 	z-index: -1;
 }
 .rdw-image-modal-url-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: block;
 }
 .rdw-image-modal-url-input {
   width: 95%;
   height: 35px;
-  margin: 25px 0 5px;
+  margin: 30px 0 20px;
   border: 1px solid #F1F1F1;
   border-radius: 2px;
   font-size: 15px;
