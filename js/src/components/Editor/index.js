@@ -33,20 +33,11 @@ import getBlockRenderFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
 import './styles.css';
 import '../../../../css/Draft.css';
-// Translations
 import { IntlProvider, addLocaleData} from 'react-intl';
 import en from 'react-intl/locale-data/en';
 import fr from 'react-intl/locale-data/fr';
 import zh from 'react-intl/locale-data/zh';
-addLocaleData([...en, ...fr, ...zh]);
-import draftWysiwygTranslationsEN from '../../i18n/en';
-import draftWysiwygTranslationsFR from '../../i18n/fr';
-import draftWysiwygTranslationsZH from '../../i18n/zh';
-const translations = {
-  "en": draftWysiwygTranslationsEN,
-  "fr": draftWysiwygTranslationsFR,
-  "zh": draftWysiwygTranslationsZH,
-}
+import translations from '../../i18n';
 
 export default class WysiwygEditor extends Component {
 
@@ -97,6 +88,7 @@ export default class WysiwygEditor extends Component {
     toolbarOnFocus: false,
     toolbarHidden: false,
     stripPastedStyles: false,
+    locale: 'en',
   }
 
   constructor(props) {
@@ -119,6 +111,7 @@ export default class WysiwygEditor extends Component {
     }, props.customBlockRenderFunc, this.getEditorState);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
+    addLocaleData([...en, ...fr, ...zh]);
   }
 
   componentWillMount(): void {
@@ -399,7 +392,7 @@ export default class WysiwygEditor extends Component {
     }
 
     return (
-      <IntlProvider locale={this.editorProps.locale || 'en'} messages={translations[this.editorProps.locale || 'en']}>
+      <IntlProvider locale={locale} messages={translations[locale]}>
         <div
           id={this.wrapperId}
           className={classNames('rdw-editor-wrapper', wrapperClassName)}

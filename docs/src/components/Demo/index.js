@@ -210,11 +210,12 @@ export default class Demo extends Component {
           />
         </div>
         <div className="demo-label">
-          Editor with mentions.
+          Editor with mentions and Chinese labels.
         </div>
         <div className="demo-subLabel">Try out by entering @ and hashtag by entering #.</div>
         <div className="demo-editorSection">
           <Editor
+            locale="zh"
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"

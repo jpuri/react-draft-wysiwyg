@@ -354,21 +354,19 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            Custom block rendering.
+            Internationalizing toolbar.
           </div>
           <div className="docs-desc">
-            Property customBlockRenderFunc can be used to pass function for custom rendering of blocks, <a  target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/advanced-topics-block-components.html#custom-block-components">ref.</a>
+            Toolbar labels can be internationalized using property locale. Default value for locale is 'en'.
+            Currently French('fr') and Chinese('zh') locales are also support. Its planned to add flexibility in editor for users to be able to pass in new locales and translations.
           </div>
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            BlockType label
+            Custom block rendering.
           </div>
           <div className="docs-desc">
-            To add custom labels to the blockTypeslit, in the blockType configs :
-            <code>
-              displayNames: {H1: "Title", H2: "Subtitle", ...}
-            </code>
+            Property customBlockRenderFunc can be used to pass function for custom rendering of blocks, <a  target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/advanced-topics-block-components.html#custom-block-components">ref.</a>
           </div>
         </div>
         <div className="docs-section">
