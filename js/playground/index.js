@@ -139,11 +139,11 @@ class Playground extends Component {
           <input tabIndex={0} />
           <textarea
             className="playground-content no-focus"
-            value={draftToHtml(editorContent, {})}
+            value={draftToHtml(editorContent)}
           />
           <textarea
             className="playground-content no-focus"
-            value={draftToMarkdown(editorContent, {})}
+            value={draftToMarkdown(editorContent)}
           />
           <textarea
             className="playground-content no-focus"

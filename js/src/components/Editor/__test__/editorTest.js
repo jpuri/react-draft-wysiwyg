@@ -5,9 +5,9 @@ import { expect, assert } from 'chai';
 import { shallow, mount } from 'enzyme';
 import Editor from '..';
 
-describe('Editor menu test suite', () => {
+describe('Editor test suite', () => {
   it('should have a div when rendered', () => {
-    expect(shallow(<Editor />).node.type).to.equal('div');
+    expect(shallow(<Editor />).html().startsWith('<div')).to.be.true;
   });
 
   it('should have an editorState object in state', () => {
