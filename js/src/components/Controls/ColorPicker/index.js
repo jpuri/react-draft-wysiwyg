@@ -18,9 +18,9 @@ class ColorPicker extends Component {
   };
 
   state: Object = {
+    expanded: false,
     currentColor: undefined,
     currentBgColor: undefined,
-    showModal: false,
   };
 
   componentWillMount(): void {
@@ -31,7 +31,7 @@ class ColorPicker extends Component {
         currentBgColor: getSelectionCustomInlineStyle(editorState, ['BGCOLOR']).BGCOLOR,
       });
     }
-    modalHandler.registerCallBack(this.showHideModal);
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -48,19 +48,31 @@ class ColorPicker extends Component {
 
   componentWillUnmount(): void {
     const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.showHideModal);
+    modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onOptionClick: Function = (): void => {
-    this.signalShowModal = !this.state.showModal;
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
   };
 
-  showHideModal: Function = (): void => {
+  doExpand: Function = (): void => {
     this.setState({
-      showModal: this.signalShowModal,
+      expanded: true,
     });
-    this.signalShowModal = false;
-  }
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
 
   toggleColor: Function = (currentStyle: string, color: string): void => {
     const { editorState, onChange } = this.props;
@@ -76,14 +88,16 @@ class ColorPicker extends Component {
 
   render(): Object {
     const { config } = this.props;
-    const { currentColor, currentBgColor, showModal } = this.state
+    const { currentColor, currentBgColor, expanded } = this.state
     const ColorPickerComponent = config.component || LayoutComponent;
     return (
       <ColorPickerComponent
         config={config}
         onChange={this.toggleColor}
-        expanded={showModal}
-        onExpand={this.onOptionClick}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
         currentColor={currentColor}
         currentBgColor={currentBgColor}
       />
@@ -92,5 +106,3 @@ class ColorPicker extends Component {
 }
 
 export default ColorPicker;
-
-// todo: refactor to rename showModal to expanded

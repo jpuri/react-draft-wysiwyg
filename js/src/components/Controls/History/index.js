@@ -46,6 +46,29 @@ export default class History extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
+
   undo: Function = () => {
     const { editorState, onChange } = this.props;
     const newState = EditorState.undo(editorState);
@@ -62,29 +85,6 @@ export default class History extends Component {
     }
   };
 
-  expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  }
-
-  onExpandEvent: Function = (): void => {
-    this.signalExpanded = !this.state.expanded;
-  };
-
-  onExpand: Function = (): void => {
-    this.setState({
-      expanded: true,
-    });
-  };
-
-  onCollapse: Function = (): void => {
-    this.setState({
-      expanded: false,
-    });
-  };
-
   render(): Object {
     const { config } = this.props;
     const { undoDisabled, redoDisabled, expanded } = this.state
@@ -96,8 +96,8 @@ export default class History extends Component {
         redoDisabled={redoDisabled}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
-        doExpand={this.onExpand}
-        doCollapse={this.onCollapse}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
         onUndo={this.undo}
         onRedo={this.redo}
       />

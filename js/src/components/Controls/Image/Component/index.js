@@ -12,8 +12,8 @@ class LayoutComponent extends Component {
 
   static propTypes: Object = {
     expanded: PropTypes.bool,
-    onExpand: PropTypes.func,
-    onCollpase: PropTypes.func,
+    onExpandEvent: PropTypes.func,
+    doCollapse: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
   };
@@ -133,7 +133,7 @@ class LayoutComponent extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled }, onCollpase } = this.props;
+    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled }, doCollapse } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
@@ -233,7 +233,7 @@ class LayoutComponent extends Component {
           </button>
           <button
             className="rdw-image-modal-btn"
-            onClick={onCollpase}
+            onClick={doCollapse}
           >
             <FormattedMessage id="generic.cancel" />
           </button>
@@ -248,7 +248,7 @@ class LayoutComponent extends Component {
   }
 
   render(): Object {
-    const { config: { icon, className }, expanded, onExpand } = this.props;
+    const { config: { icon, className }, expanded, onExpandEvent } = this.props;
     return (
       <div
         className="rdw-image-wrapper"
@@ -259,7 +259,7 @@ class LayoutComponent extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={onExpand}
+          onClick={onExpandEvent}
         >
           <img
             src={icon}

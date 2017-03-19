@@ -58,7 +58,7 @@ describe('LinkControl test suite', () => {
       </IntlProvider>
     );
     const linkControl = control.find('Link');
-    assert.isNotTrue(linkControl.node.state.showModal);
+    assert.isNotTrue(linkControl.node.state.expanded);
     assert.equal(linkControl.node.state.linkTarget, '');
     assert.equal(linkControl.node.state.linkTitle, '');
   });

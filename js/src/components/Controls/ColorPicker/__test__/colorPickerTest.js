@@ -45,12 +45,12 @@ describe('ColorPicker test suite', () => {
     );
     const colorPicker = control.find('ColorPicker');
     const state = colorPicker.node.state;
-    assert.isNotTrue(state.showModal);
+    assert.isNotTrue(state.expanded);
     assert.isUndefined(state.currentColor);
     assert.isUndefined(state.currentBgColor);
   });
 
-  it('should set variable signalShowModal to true when first child is clicked', () => {
+  it('should set variable signalExpanded to true when first child is clicked', () => {
     const control = mount(
       <IntlProvider locale="en">
         <ColorPicker
@@ -62,8 +62,8 @@ describe('ColorPicker test suite', () => {
       </IntlProvider>
     );
     const colorPicker = control.find('ColorPicker');
-    assert.isNotTrue(colorPicker.node.signalShowModal);
+    assert.isNotTrue(colorPicker.node.signalExpanded);
     control.find('Option').simulate('click');
-    assert.isTrue(colorPicker.node.signalShowModal);
+    assert.isTrue(colorPicker.node.signalExpanded);
   });
 });

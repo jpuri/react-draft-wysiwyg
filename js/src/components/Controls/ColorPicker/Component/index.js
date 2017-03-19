@@ -12,7 +12,7 @@ class LayoutComponent extends Component {
 
   static propTypes = {
     expanded: PropTypes.bool,
-    onExpand: PropTypes.func,
+    onExpandEvent: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
     currentColor: PropTypes.string,
@@ -93,7 +93,7 @@ class LayoutComponent extends Component {
   };
 
   render(): Object {
-    const { config: { icon, className }, expanded, onExpand } = this.props;
+    const { config: { icon, className }, expanded, onExpandEvent } = this.props;
     return (
       <div
         className="rdw-colorpicker-wrapper"
@@ -102,7 +102,7 @@ class LayoutComponent extends Component {
         aria-label="rdw-color-picker"
       >
         <Option
-          onClick={onExpand}
+          onClick={onExpandEvent}
           className={classNames(className)}
         >
           <img

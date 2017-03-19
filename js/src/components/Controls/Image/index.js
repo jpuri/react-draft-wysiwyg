@@ -15,33 +15,39 @@ class ImageControl extends Component {
   };
 
   state: Object = {
-    showModal: false,
+    expanded: false,
   };
 
   componentWillMount(): void {
     const { modalHandler } = this.props;
-    modalHandler.registerCallBack(this.showHideModal);
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillUnmount(): void {
     const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.showHideModal);
+    modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onOptionClick: Function = (): void => {
-    this.signalShowModal = !this.state.showModal;
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
   };
 
-  showHideModal: Function = (): void => {
+  doExpand: Function = (): void => {
     this.setState({
-      showModal: this.signalShowModal,
+      expanded: true,
     });
-    this.signalShowModal = false;
-  }
+  };
 
-  closeModal: Function = (): void => {
+  doCollapse: Function = (): void => {
     this.setState({
-      showModal: false,
+      expanded: false,
     });
   };
 
@@ -62,15 +68,16 @@ class ImageControl extends Component {
 
   render(): Object {
     const { config } = this.props;
-    const { showModal } = this.state
+    const { expanded } = this.state
     const ImageComponent = config.component || LayoutComponent;
     return (
       <ImageComponent
         config={config}
         onChange={this.addImage}
-        expanded={showModal}
-        onExpand={this.onOptionClick}
-        onCollpase={this.closeModal}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollpase={this.doCollpase}
       />
     );
   }

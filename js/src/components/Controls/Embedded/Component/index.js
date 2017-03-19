@@ -12,8 +12,8 @@ class LayoutComponent extends Component {
 
   static propTypes: Object = {
     expanded: PropTypes.bool,
-    onExpand: PropTypes.func,
-    onCollpase: PropTypes.func,
+    onExpandEvent: PropTypes.func,
+    doCollpase: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
   };
@@ -48,7 +48,7 @@ class LayoutComponent extends Component {
 
   rendeEmbeddedLinkModal(): Object {
     const { embeddedLink, height, width } = this.state;
-    const { config: { popupClassName }, intl: { formatMessage }, onCollpase } = this.props;
+    const { config: { popupClassName }, intl: { formatMessage }, doCollpase } = this.props;
     return (
       <div
         className={classNames('rdw-embedded-modal', popupClassName)}
@@ -98,7 +98,7 @@ class LayoutComponent extends Component {
           </button>
           <button
             className="rdw-embedded-modal-btn"
-            onClick={onCollpase}
+            onClick={doCollpase}
           >
             <FormattedMessage id="generic.cancel" />
           </button>
@@ -108,7 +108,7 @@ class LayoutComponent extends Component {
   }
 
   render(): Object {
-    const { config: { icon, className }, expanded, onExpand } = this.props;
+    const { config: { icon, className }, expanded, onExpandEvent } = this.props;
     return (
       <div
         className="rdw-embedded-wrapper"
@@ -119,7 +119,7 @@ class LayoutComponent extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={onExpand}
+          onClick={onExpandEvent}
         >
           <img
             src={icon}

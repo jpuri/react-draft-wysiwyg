@@ -15,22 +15,41 @@ class Embedded extends Component {
   };
 
   state: Object = {
-    showModal: false,
+    expanded: false,
   };
 
   componentWillMount(): void {
     const { modalHandler } = this.props;
-    modalHandler.registerCallBack(this.showHideModal);
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillUnmount(): void {
     const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.showHideModal);
+    modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onOptionClick: Function = (): void => {
-    this.signalShowModal = !this.state.showModal;
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
   }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
 
   addEmbeddedLink: Function = (embeddedLink, height, width): void => {
     const { editorState, onChange } = this.props;
@@ -47,29 +66,18 @@ class Embedded extends Component {
     this.closeModal();
   };
 
-  showHideModal: Function = (): void => {
-    this.setState({
-      showModal: this.signalShowModal,
-    });
-    this.signalShowModal = false;
-  }
-
-  closeModal: Function = (): void => {
-    this.setState({
-      showModal: false,
-    });
-  }
-
   render(): Object {
     const { config } = this.props;
-    const { showModal } = this.state
+    const { expanded } = this.state
     const EmbeddedComponent = config.component || LayoutComponent;
     return (
       <EmbeddedComponent
         config={config}
         onChange={this.addEmbeddedLink}
-        expanded={showModal}
-        onExpand={this.onOptionClick}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
         onCollpase={this.closeModal}
       />
     );

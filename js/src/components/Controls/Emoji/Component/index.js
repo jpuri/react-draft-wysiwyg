@@ -11,8 +11,7 @@ class LayoutComponent extends Component {
 
   static propTypes: Object = {
     expanded: PropTypes.bool,
-    onExpand: PropTypes.func,
-    onCollpase: PropTypes.func,
+    onExpandEvent: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
   };
@@ -42,7 +41,7 @@ class LayoutComponent extends Component {
   }
 
   render(): Object {
-    const { config: { icon, className }, expanded, onExpand } = this.props;
+    const { config: { icon, className }, expanded, onExpandEvent } = this.props;
     return (
       <div
         className="rdw-emoji-wrapper"
@@ -53,7 +52,7 @@ class LayoutComponent extends Component {
         <Option
           className={classNames(className)}
           value="unordered-list-item"
-          onClick={onExpand}
+          onClick={onExpandEvent}
         >
           <img
             src={icon}
