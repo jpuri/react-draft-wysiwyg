@@ -19,7 +19,7 @@ class LayoutComponent extends Component {
     onExpandEvent: PropTypes.func,
     config: PropTypes.object,
     onChange: PropTypes.func,
-    currentValue: PropTypes.string,
+    currentValue: PropTypes.object,
   };
 
   state: Object = {
@@ -62,10 +62,12 @@ class LayoutComponent extends Component {
   };
 
   signalExpandShowModal = () => {
-    const { onExpandEvent } = this.props;
+    const { onExpandEvent, currentValue: { link, selectionText } } = this.props;
     onExpandEvent();
     this.setState({
       showModal: true,
+      linkTarget: link && link.target,
+      linkTitle: (link && link.title) || selectionText,
     });
   }
 
@@ -74,6 +76,8 @@ class LayoutComponent extends Component {
     doExpand();
     this.setState({
       showModal: true,
+      linkTarget: link && link.target,
+      linkTitle: (link && link.title) || selectionText,
     });
   }
 
@@ -148,7 +152,7 @@ class LayoutComponent extends Component {
           />
         </Option>}
         {options.indexOf('unlink') >= 0 && <Option
-          disabled={!currentValue}
+          disabled={!currentValue.link}
           value="ordered-list-item"
           className={classNames(unlink.className)}
           onClick={this.removeLink}
@@ -205,7 +209,7 @@ class LayoutComponent extends Component {
           </DropdownOption>}
           {options.indexOf('unlink') >= 0 && <DropdownOption
             onClick={this.removeLink}
-            disabled={!currentValue}
+            disabled={!currentValue.link}
             className={classNames('rdw-link-dropdownoption', unlink.className)}
           >
             <img

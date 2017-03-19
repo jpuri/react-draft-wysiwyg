@@ -22,6 +22,8 @@ class Link extends Component {
 
   state: Object = {
     expanded: false,
+    link: undefined,
+    selectionText: undefined,
   };
 
   componentWillMount(): void {
@@ -62,8 +64,23 @@ class Link extends Component {
   doExpand: Function = (): void => {
     this.setState({
       expanded: true,
-    });
+    })
   };
+
+  getCurrentValues = () => {
+    const { editorState } = this.props;
+    const { currentEntity } = this.state;
+    const contentState = editorState.getCurrentContent();
+    const currentValues = {};
+    if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
+      currentValues.link = {};
+      const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
+      currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get('data').url;
+      currentValues.link.title = (entityRange && entityRange.text);
+    }
+    currentValues.selectionText = getSelectionText(editorState);
+    return currentValues;
+  }
 
   doCollapse: Function = (): void => {
     this.setState({
@@ -137,8 +154,10 @@ class Link extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
-    const { expanded, currentEntity } = this.state
+
+    const { editorState, config } = this.props;
+    const { expanded } = this.state;
+    const { link, selectionText } = this.getCurrentValues();
     const LinkComponent = config.component || LayoutComponent;
     return (
       <LinkComponent
@@ -147,7 +166,10 @@ class Link extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentValue={currentEntity}
+        currentValue={{
+          link,
+          selectionText,
+        }}
         onChange={this.onChange}
       />
     );
@@ -156,28 +178,7 @@ class Link extends Component {
 
 export default Link;
 
-
 // todo refct
 // 1. better action names here
 // 2. align update signatue
 // 3. align current value signature
-
-
-
-        // if (newState.showModal) {
-    //   const { editorState } = this.props;
-    //   const { currentEntity } = this.state;
-    //   const contentState = editorState.getCurrentContent();
-    //   newState.linkTarget = undefined;
-    //   newState.linkTitle = undefined;
-    //   if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
-    //     newState.entity = currentEntity;
-    //     const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-    //     newState.linkTarget = currentEntity && contentState.getEntity(currentEntity).get('data').url;
-    //     newState.linkTitle = (entityRange && entityRange.text) ||
-    //       getSelectionText(editorState);
-    //   } else {
-    //     newState.linkTitle = getSelectionText(editorState);
-    //   }
-    // }
-
