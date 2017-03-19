@@ -8,11 +8,8 @@ import {
   getEntityRange,
   getSelectionEntity,
 } from 'draftjs-utils';
-import classNames from 'classnames';
-import { getFirstIcon } from '../../../utils/toolbar';
-import Option from '../../Option';
-import { Dropdown, DropdownOption } from '../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+
+import LayoutComponent from './Component';
 
 class Link extends Component {
 
@@ -24,9 +21,7 @@ class Link extends Component {
   };
 
   state: Object = {
-    showModal: false,
-    linkTarget: '',
-    linkTitle: '',
+    expanded: false,
   };
 
   componentWillMount(): void {
@@ -36,7 +31,7 @@ class Link extends Component {
         currentEntity: getSelectionEntity(editorState),
       });
     }
-    modalHandler.registerCallBack(this.showHideModal);
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -50,20 +45,39 @@ class Link extends Component {
 
   componentWillUnmount(): void {
     const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.showHideModal);
+    modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onOptionClick: Function = (): void => {
-    this.signalShowModal = !this.state.showModal;
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
   };
 
-  setLinkTextReference: Function = (ref: Object): void => {
-    this.linkText = ref;
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
   };
 
-  setLinkTitleReference: Function = (ref: Object): void => {
-    this.linkTitle = ref;
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
   };
+
+  onChange = (action, title, target) => {
+    if (action === 'add') {
+      this.addLink(title, target);
+    } else {
+      this.removeLink();
+    }
+  }
 
   removeLink: Function = (): void => {
     const { editorState, onChange } = this.props;
@@ -79,9 +93,9 @@ class Link extends Component {
     }
   };
 
-  addLink: Function = (): void => {
+  addLink: Function = (linkTitle, linkTarget): void => {
     const { editorState, onChange } = this.props;
-    const { linkTitle, linkTarget, currentEntity } = this.state;
+    const { currentEntity } = this.state;
     let selection = editorState.getSelection();
 
     if (currentEntity) {
@@ -119,185 +133,51 @@ class Link extends Component {
       undefined
     );
     onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
-    this.hideLinkModal();
+    this.doCollapse();
   };
-
-  updateLinkTarget: Function = (event: Object): void => {
-    this.setState({
-      linkTarget: event.target.value,
-    });
-  };
-
-  updateLinkTitle: Function = (event: Object): void => {
-    this.setState({
-      linkTitle: event.target.value,
-    });
-  };
-
-  hideLinkModal: Function = (): void => {
-    this.setState({
-      showModal: false,
-    });
-  };
-
-  showHideModal: Function = (): void => {
-    const newState = {};
-    newState.showModal = this.signalShowModal;
-    if (newState.showModal) {
-      const { editorState } = this.props;
-      const { currentEntity } = this.state;
-      const contentState = editorState.getCurrentContent();
-      newState.linkTarget = undefined;
-      newState.linkTitle = undefined;
-      if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
-        newState.entity = currentEntity;
-        const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-        newState.linkTarget = currentEntity && contentState.getEntity(currentEntity).get('data').url;
-        newState.linkTitle = (entityRange && entityRange.text) ||
-          getSelectionText(editorState);
-      } else {
-        newState.linkTitle = getSelectionText(editorState);
-      }
-    }
-    this.setState(newState);
-    this.signalShowModal = false;
-  }
-
-  stopPropagation: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  renderAddLinkModal() {
-    const { config: { popupClassName } } = this.props;
-    const { linkTitle, linkTarget } = this.state;
-    return (
-      <div
-        className={classNames('rdw-link-modal', popupClassName)}
-        onClick={this.stopPropagation}
-      >
-        <span className="rdw-link-modal-label"><FormattedMessage id="components.controls.link.linkTitle" /></span>
-        <input
-          ref={this.setLinkTitleReference}
-          className="rdw-link-modal-input"
-          onChange={this.updateLinkTitle}
-          onBlur={this.updateLinkTitle}
-          value={linkTitle}
-        />
-        <span className="rdw-link-modal-label"><FormattedMessage id="components.controls.link.linkTarget" /></span>
-        <input
-          ref={this.setLinkTextReference}
-          className="rdw-link-modal-input"
-          onChange={this.updateLinkTarget}
-          onBlur={this.updateLinkTarget}
-          value={linkTarget}
-        />
-        <span className="rdw-link-modal-buttonsection">
-          <button
-            className="rdw-link-modal-btn"
-            onClick={this.addLink}
-            disabled={!linkTarget || !linkTitle}
-          >
-            <FormattedMessage id="generic.add" />
-          </button>
-          <button
-            className="rdw-link-modal-btn"
-            onClick={this.hideLinkModal}
-          >
-            <FormattedMessage id="generic.cancel" />
-          </button>
-        </span>
-      </div>
-    );
-  }
-
-  renderInFlatList(showModal: bool, currentEntity: Object, config: Object): Object {
-    const { options, link, unlink, className } = config;
-    const { editorState } = this.props;
-    const contentState = editorState.getCurrentContent();
-    const linkEntityCurrently = currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK');
-    return (
-      <div className={classNames('rdw-link-wrapper', className)} aria-label="rdw-link-control">
-        {options.indexOf('link') >= 0 && <Option
-          value="unordered-list-item"
-          className={classNames(link.className)}
-          onClick={this.onOptionClick}
-          aria-haspopup="true"
-          aria-expanded={showModal}
-        >
-          <img
-            src={link.icon}
-            alt=""
-          />
-        </Option>}
-        {options.indexOf('unlink') >= 0 && <Option
-          disabled={!linkEntityCurrently}
-          value="ordered-list-item"
-          className={classNames(unlink.className)}
-          onClick={this.removeLink}
-        >
-          <img
-            src={unlink.icon}
-            alt=""
-          />
-        </Option>}
-        {showModal ? this.renderAddLinkModal() : undefined}
-      </div>
-    );
-  }
-
-  renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
-    const { options, link, unlink, className } = config;
-    const { modalHandler } = this.props;
-    return (
-      <div
-        className="rdw-link-wrapper"
-        aria-haspopup="true"
-        aria-label="rdw-link-control"
-        aria-expanded={showModal}
-      >
-        <Dropdown
-          className={classNames('rdw-link-dropdown', className)}
-          onChange={this.toggleInlineStyle}
-          modalHandler={modalHandler}
-        >
-          <img
-            src={getFirstIcon(config)}
-            alt=""
-          />
-          {options.indexOf('link') >= 0 && <DropdownOption
-            onClick={this.onOptionClick}
-            className={classNames('rdw-link-dropdownoption', link.className)}
-          >
-            <img
-              src={link.icon}
-              alt=""
-            />
-          </DropdownOption>}
-          {options.indexOf('unlink') >= 0 && <DropdownOption
-            onClick={this.removeLink}
-            disabled={!currentEntity}
-            className={classNames('rdw-link-dropdownoption', unlink.className)}
-          >
-            <img
-              src={unlink.icon}
-              alt=""
-            />
-          </DropdownOption>}
-        </Dropdown>
-        {showModal ? this.renderAddLinkModal() : undefined}
-      </div>
-    );
-  }
 
   render(): Object {
     const { config } = this.props;
-    const { showModal, currentEntity } = this.state;
-    if (config.inDropdown) {
-      return this.renderInDropDown(showModal, currentEntity, config);
-    }
-    return this.renderInFlatList(showModal, currentEntity, config);
+    const { expanded, currentEntity } = this.state
+    const LinkComponent = config.component || LayoutComponent;
+    return (
+      <LinkComponent
+        config={config}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+        currentValue={currentEntity}
+        onChange={this.onChange}
+      />
+    );
   }
 }
 
 export default Link;
+
+
+// todo refct
+// 1. better action names here
+// 2. align update signatue
+// 3. align current value signature
+
+
+
+        // if (newState.showModal) {
+    //   const { editorState } = this.props;
+    //   const { currentEntity } = this.state;
+    //   const contentState = editorState.getCurrentContent();
+    //   newState.linkTarget = undefined;
+    //   newState.linkTitle = undefined;
+    //   if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
+    //     newState.entity = currentEntity;
+    //     const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
+    //     newState.linkTarget = currentEntity && contentState.getEntity(currentEntity).get('data').url;
+    //     newState.linkTitle = (entityRange && entityRange.text) ||
+    //       getSelectionText(editorState);
+    //   } else {
+    //     newState.linkTitle = getSelectionText(editorState);
+    //   }
+    // }
+
