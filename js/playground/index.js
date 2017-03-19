@@ -111,6 +111,7 @@ class Playground extends Component {
               toolbar={{
                 history: { inDropdown: true },
                 inline: { inDropdown: true },
+                list: { inDropdown: true },
                 textAlign: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
                 link: { showOpenOptionOnHover: false },
