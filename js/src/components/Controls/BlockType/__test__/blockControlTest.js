@@ -25,6 +25,7 @@ describe('Block test suite', () => {
           onChange={() => {}}
           editorState={editorState}
           config={{...defaultToolbar.blockType, inDropdown: false}}
+          modalHandler={new ModalHandler()}
         />
       </IntlProvider>
     ).html().startsWith('<div')).to.be.true;
@@ -51,6 +52,7 @@ describe('Block test suite', () => {
           onChange={() => {}}
           editorState={editorState}
           config={{...defaultToolbar.blockType, inDropdown: false}}
+          modalHandler={new ModalHandler()}
         />
       </IntlProvider>
     );
