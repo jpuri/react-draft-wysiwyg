@@ -46,7 +46,6 @@ describe('ColorPicker test suite', () => {
     const colorPicker = control.find('ColorPicker');
     const state = colorPicker.node.state;
     assert.isNotTrue(state.showModal);
-    assert.equal(state.currentStyle, 'color');
     assert.isUndefined(state.currentColor);
     assert.isUndefined(state.currentBgColor);
   });
