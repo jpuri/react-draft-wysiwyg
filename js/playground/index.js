@@ -109,6 +109,7 @@ class Playground extends Component {
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               toolbar={{
+                history: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
                 link: { showOpenOptionOnHover: false },
               }}
