@@ -110,6 +110,8 @@ class Playground extends Component {
               editorClassName="playground-editor"
               toolbar={{
                 history: { inDropdown: true },
+                inline: { inDropdown: true },
+                textAlign: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
                 link: { showOpenOptionOnHover: false },
               }}
