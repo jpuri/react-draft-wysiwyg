@@ -13,6 +13,8 @@ class LayoutComponent extends Component {
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
+    doExpand: PropTypes.func,
+    doCollapse: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
     currentValue: PropTypes.string,

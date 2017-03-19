@@ -5,11 +5,8 @@ import {
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
-import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 
-import { Dropdown, DropdownOption } from '../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import LayoutComponent from './Component';
 
 export default class FontFamily extends Component {
 
@@ -22,27 +19,16 @@ export default class FontFamily extends Component {
 
   state: Object = {
     currentFontFamily: undefined,
-    defaultFontFamily: undefined,
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
         currentFontFamily: getSelectionCustomInlineStyle(editorState, ['FONTFAMILY']).FONTFAMILY,
       });
     }
-  }
-
-  componentDidMount(): void {
-    const editorElm = document.getElementsByClassName('DraftEditor-root');
-    if (editorElm && editorElm.length > 0) {
-      const styles = window.getComputedStyle(editorElm[0]);
-      const defaultFontFamily = styles.getPropertyValue('font-family');
-      this.setState({
-        defaultFontFamily,
-      });
-    }
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -54,6 +40,34 @@ export default class FontFamily extends Component {
       });
     }
   }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.expandCollapse);
+  }
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
 
   toggleFontFamily: Function = (fontFamily: string) => {
     const { editorState, onChange } = this.props;
@@ -67,39 +81,20 @@ export default class FontFamily extends Component {
     }
   };
 
-  render() {
-    let { currentFontFamily, defaultFontFamily } = this.state;
-    const { config: { className, dropdownClassName }, modalHandler } = this.props;
-    let { config: { options } } = this.props;
-    if (defaultFontFamily && options && options.indexOf(defaultFontFamily) < 0) {
-      options.push(defaultFontFamily);
-      options.sort();
-    }
-    currentFontFamily =
-      currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length) || defaultFontFamily;
+  render(): Object {
+    const { config } = this.props;
+    const { undoDisabled, redoDisabled, expanded, currentFontFamily } = this.state
+    const BlockTypeComponent = config.component || LayoutComponent;
     return (
-      <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
-        <Dropdown
-          className={classNames('rdw-fontfamily-dropdown', className)}
-          onChange={this.toggleFontFamily}
-          modalHandler={modalHandler}
-          optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
-        >
-          <span className="rdw-fontfamily-placeholder">
-            {currentFontFamily || <FormattedMessage id="components.controls.fontfamily.fontfamily" />}
-          </span>
-          {
-            options.map((family, index) =>
-              <DropdownOption
-                active={currentFontFamily === family}
-                value={`fontfamily-${family}`}
-                key={index}
-              >
-                {family}
-              </DropdownOption>)
-          }
-        </Dropdown>
-      </div>
+      <BlockTypeComponent
+        config={config}
+        currentValue={currentFontFamily}
+        onChange={this.toggleFontFamily}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+      />
     );
   }
 }
