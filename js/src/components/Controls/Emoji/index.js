@@ -41,10 +41,10 @@ export default class Emoji extends Component {
       editorState.getCurrentInlineStyle(),
     );
     onChange(EditorState.push(editorState, contentState, 'insert-characters'));
-    this.hideModal();
+    this.closeModal();
   };
 
-  hideModal: Function = (): void => {
+  closeModal: Function = (): void => {
     this.setState({
       showModal: false,
     });

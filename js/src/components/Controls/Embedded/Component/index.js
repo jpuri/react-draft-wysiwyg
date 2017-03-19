@@ -24,6 +24,16 @@ class LayoutComponent extends Component {
     width: '100%',
   };
 
+  componentWillReceiveProps(props) {
+    if (this.props.expanded && !props.expanded) {
+      this.setState({
+        embeddedLink: '',
+        height: 'auto',
+        width: '100%',
+      });
+    }
+  }
+
   updateValue: Function = (event: Object): void => {
     this.setState({
       [`${event.target.name}`]: event.target.value,

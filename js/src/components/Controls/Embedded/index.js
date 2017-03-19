@@ -50,7 +50,6 @@ class Embedded extends Component {
   showHideModal: Function = (): void => {
     this.setState({
       showModal: this.signalShowModal,
-      embeddedLink: undefined,
     });
     this.signalShowModal = false;
   }
