@@ -18,6 +18,7 @@ export default class FontFamily extends Component {
   };
 
   state: Object = {
+    expanded: undefined,
     currentFontFamily: undefined,
   };
 
@@ -84,9 +85,9 @@ export default class FontFamily extends Component {
   render(): Object {
     const { config } = this.props;
     const { undoDisabled, redoDisabled, expanded, currentFontFamily } = this.state
-    const BlockTypeComponent = config.component || LayoutComponent;
+    const FontFamilyComponent = config.component || LayoutComponent;
     return (
-      <BlockTypeComponent
+      <FontFamilyComponent
         config={config}
         currentValue={currentFontFamily}
         onChange={this.toggleFontFamily}

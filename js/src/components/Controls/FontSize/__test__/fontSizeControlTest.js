@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
-import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
+import { mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   EditorState,
   convertFromHTML,
@@ -19,14 +19,14 @@ describe('FontSizeControl test suite', () => {
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div when rendered', () => {
-    expect(shallow(
+    expect(mount(
       <FontSizeControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.fontSize}
         modalHandler={new ModalHandler()}
       />
-    ).node.type).to.equal('div');
+    ).html().startsWith('<div')).to.be.true;
   });
 
   it('should have a dropdown child component well defined', () => {
