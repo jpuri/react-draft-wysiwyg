@@ -2,9 +2,8 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Modifier, EditorState } from 'draft-js';
-import classNames from 'classnames';
-import Option from '../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+
+import LayoutComponent from './Component';
 
 export default class Emoji extends Component {
 
@@ -33,12 +32,12 @@ export default class Emoji extends Component {
     this.signalShowModal = !this.state.showModal;
   };
 
-  addEmoji: Function = (event: Object): void => {
+  addEmoji: Function = (emoji: string): void => {
     const { editorState, onChange } = this.props;
     const contentState = Modifier.insertText(
       editorState.getCurrentContent(),
       editorState.getSelection(),
-      `${event.target.innerHTML} `,
+      emoji,
       editorState.getCurrentInlineStyle(),
     );
     onChange(EditorState.push(editorState, contentState, 'insert-characters'));
@@ -58,52 +57,18 @@ export default class Emoji extends Component {
     this.signalShowModal = false;
   }
 
-  stopPropagation: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  renderEmojiModal(): Object {
-    const { config: { popupClassName, emojis } } = this.props;
-    return (
-      <div
-        className={classNames('rdw-emoji-modal', popupClassName)}
-        onClick={this.stopPropagation}
-      >
-        {
-          emojis.map((emoji, index) => (<span
-            key={index}
-            className="rdw-emoji-icon"
-            alt=""
-            onClick={this.addEmoji}
-          >{emoji}</span>))
-        }
-      </div>
-    );
-  }
-
   render(): Object {
-    const { config: { icon, className } } = this.props;
-    const { showModal } = this.state;
+    const { config } = this.props;
+    const { showModal } = this.state
+    const EmojiComponent = config.component || LayoutComponent;
     return (
-      <div
-        className="rdw-emoji-wrapper"
-        aria-haspopup="true"
-        aria-label="rdw-emoji-control"
-        aria-expanded={showModal}
-      >
-        <Option
-          className={classNames(className)}
-          value="unordered-list-item"
-          onClick={this.onOptionClick}
-        >
-          <img
-            src={icon}
-            alt=""
-          />
-        </Option>
-        {showModal ? this.renderEmojiModal() : undefined}
-      </div>
+      <EmojiComponent
+        config={config}
+        onChange={this.addEmoji}
+        expanded={showModal}
+        onExpand={this.onOptionClick}
+        onCollpase={this.closeModal}
+      />
     );
   }
 }

@@ -71,6 +71,7 @@ class Embedded extends Component {
         onChange={this.addEmbeddedLink}
         expanded={showModal}
         onExpand={this.onOptionClick}
+        onCollpase={this.closeModal}
       />
     );
   }

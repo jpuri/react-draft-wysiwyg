@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
+import { stopPropagation } from '../../../../utils/common';
 import Option from '../../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -40,11 +41,6 @@ class LayoutComponent extends Component {
     onChange(currentStyle, color);
   }
 
-  stopPropagation: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
   renderModal: Function = (): Object => {
     const { config: { popupClassName, colors }, currentColor, currentBgColor } = this.props;
     const { currentStyle } = this.state;
@@ -52,7 +48,7 @@ class LayoutComponent extends Component {
     return (
       <div
         className={classNames('rdw-colorpicker-modal', popupClassName)}
-        onClick={this.stopPropagation}
+        onClick={stopPropagation}
       >
         <span className="rdw-colorpicker-modal-header">
           <span

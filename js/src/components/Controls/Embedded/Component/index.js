@@ -4,6 +4,7 @@ import React, { Component, PropTypes } from 'react';
 import { FormattedMessage, injectIntl } from 'react-intl';
 import classNames from 'classnames';
 
+import { stopPropagation } from '../../../../utils/common';
 import Option from '../../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
@@ -12,24 +13,16 @@ class LayoutComponent extends Component {
   static propTypes: Object = {
     expanded: PropTypes.bool,
     onExpand: PropTypes.func,
+    onCollpase: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
   };
 
   state: Object = {
-    isExpanded: false,
     embeddedLink: '',
     height: 'auto',
     width: '100%',
   };
-
-  componentWillReceiveProps(props) {
-    if (!this.props.expanded && props.expanded) {
-      this.setState({
-        isExpanded: true,
-      });
-    }
-  }
 
   updateValue: Function = (event: Object): void => {
     this.setState({
@@ -43,24 +36,13 @@ class LayoutComponent extends Component {
     onChange(embeddedLink, height, width);
   };
 
-  collapseModal: Function = (): void => {
-    this.setState({
-      isExpanded: false,
-    });
-  };
-
-  stopPropagation: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
   rendeEmbeddedLinkModal(): Object {
     const { embeddedLink, height, width } = this.state;
-    const { config: { popupClassName }, intl: { formatMessage } } = this.props;
+    const { config: { popupClassName }, intl: { formatMessage }, onCollpase } = this.props;
     return (
       <div
         className={classNames('rdw-embedded-modal', popupClassName)}
-        onClick={this.stopPropagation}
+        onClick={stopPropagation}
       >
         <div className="rdw-embedded-modal-header">
           <span className="rdw-embedded-modal-header-option">
@@ -106,7 +88,7 @@ class LayoutComponent extends Component {
           </button>
           <button
             className="rdw-embedded-modal-btn"
-            onClick={this.collapseModal}
+            onClick={onCollpase}
           >
             <FormattedMessage id="generic.cancel" />
           </button>
@@ -117,12 +99,11 @@ class LayoutComponent extends Component {
 
   render(): Object {
     const { config: { icon, className }, expanded, onExpand } = this.props;
-    const { isExpanded } = this.state;
     return (
       <div
         className="rdw-embedded-wrapper"
         aria-haspopup="true"
-        aria-expanded={expanded && isExpanded}
+        aria-expanded={expanded}
         aria-label="rdw-embedded-control"
       >
         <Option
@@ -135,7 +116,7 @@ class LayoutComponent extends Component {
             alt=""
           />
         </Option>
-        {expanded && isExpanded ? this.rendeEmbeddedLinkModal() : undefined}
+        {expanded ? this.rendeEmbeddedLinkModal() : undefined}
       </div>
     );
   }
