@@ -13,7 +13,12 @@ export default class Home extends Component {
           toolbarClassName="home-toolbar"
           wrapperClassName="home-wrapper"
           editorClassName="home-editor"
-          toolbar={{image: { uploadCallback: uploadImageCallBack }}}
+          toolbar={{
+            image: { uploadCallback: uploadImageCallBack },
+            fontFamily: {
+              options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Roboto', 'Times New Roman', 'Verdana'],
+            }
+          }}
           placeholder="Begin typing..."
           hashtag={{}}
         />

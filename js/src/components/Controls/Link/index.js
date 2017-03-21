@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Entity, RichUtils, EditorState, Modifier } from 'draft-js';
 import {
   getSelectionText,
@@ -21,6 +20,7 @@ class Link extends Component {
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -169,14 +169,14 @@ class Link extends Component {
   };
 
   renderAddLinkModal() {
-    const { config: { popupClassName } } = this.props;
+    const { config: { popupClassName }, translations } = this.props;
     const { linkTitle, linkTarget } = this.state;
     return (
       <div
         className={classNames('rdw-link-modal', popupClassName)}
         onClick={this.stopPropagation}
       >
-        <span className="rdw-link-modal-label"><FormattedMessage id="components.controls.link.linkTitle" /></span>
+        <span className="rdw-link-modal-label">{translations['components.controls.link.linkTitle']}</span>
         <input
           ref={this.setLinkTitleReference}
           className="rdw-link-modal-input"
@@ -184,7 +184,7 @@ class Link extends Component {
           onBlur={this.updateLinkTitle}
           value={linkTitle}
         />
-        <span className="rdw-link-modal-label"><FormattedMessage id="components.controls.link.linkTarget" /></span>
+        <span className="rdw-link-modal-label">{translations['components.controls.link.linkTarget']}</span>
         <input
           ref={this.setLinkTextReference}
           className="rdw-link-modal-input"
@@ -198,13 +198,13 @@ class Link extends Component {
             onClick={this.addLink}
             disabled={!linkTarget || !linkTitle}
           >
-            <FormattedMessage id="generic.add" />
+            {translations['generic.add']}
           </button>
           <button
             className="rdw-link-modal-btn"
             onClick={this.hideLinkModal}
           >
-            <FormattedMessage id="generic.cancel" />
+            {translations['generic.cancel']}
           </button>
         </span>
       </div>

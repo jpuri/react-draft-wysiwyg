@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 import {
   toggleCustomInlineStyle,
@@ -17,6 +16,7 @@ class ColorPicker extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -112,7 +112,7 @@ class ColorPicker extends Component {
             )}
             onClick={this.setCurrentStyleColor}
           >
-            <FormattedMessage id="components.controls.colorpicker.text" />
+            {translations['components.controls.colorpicker.text']}
           </span>
           <span
             className={classNames(
@@ -121,7 +121,7 @@ class ColorPicker extends Component {
             )}
             onClick={this.setCurrentStyleBgcolor}
           >
-            <FormattedMessage id="components.controls.colorpicker.background" />
+            {translations['components.controls.colorpicker.background']}
           </span>
         </span>
         <span className="rdw-colorpicker-modal-options">

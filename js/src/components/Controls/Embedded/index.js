@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage, injectIntl } from 'react-intl';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../Option';
@@ -14,6 +13,7 @@ class Embedded extends Component {
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -105,8 +105,7 @@ class Embedded extends Component {
 
   rendeEmbeddedLinkModal(): Object {
     const { embeddedLink, height, width } = this.state;
-    const { config: { popupClassName } } = this.props;
-    const { formatMessage } = this.props.intl;
+    const { config: { popupClassName }, translations } = this.props;
     return (
       <div
         className={classNames('rdw-embedded-modal', popupClassName)}
@@ -114,7 +113,7 @@ class Embedded extends Component {
       >
         <div className="rdw-embedded-modal-header">
           <span className="rdw-embedded-modal-header-option">
-            <FormattedMessage id="components.controls.embedded.embeddedlink" />
+            {translations['components.controls.embedded.embeddedlink']}
             <span className="rdw-embedded-modal-header-label" />
           </span>
         </div>
@@ -122,7 +121,7 @@ class Embedded extends Component {
           <input
             ref={this.setURLInputReference}
             className="rdw-embedded-modal-link-input"
-            placeholder={formatMessage({ id: 'components.controls.embedded.enterlink' })}
+            placeholder={translations['components.controls.embedded.enterlink']}
             onChange={this.updateEmbeddedLink}
             onBlur={this.updateEmbeddedLink}
             value={embeddedLink}
@@ -152,13 +151,13 @@ class Embedded extends Component {
             onClick={this.addEmbeddedLink}
             disabled={!embeddedLink || !height || !width}
           >
-            <FormattedMessage id="generic.add" />
+            {translations['generic.add']}
           </button>
           <button
             className="rdw-embedded-modal-btn"
             onClick={this.closeModal}
           >
-            <FormattedMessage id="generic.cancel" />
+            {translations['generic.cancel']}
           </button>
         </span>
       </div>
@@ -191,4 +190,4 @@ class Embedded extends Component {
   }
 }
 
-export default injectIntl(Embedded);
+export default Embedded;

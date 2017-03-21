@@ -1288,6 +1288,7 @@ textarea {
   background: #f1f1f1;
   border: 1px solid #f1f1f1;
   margin-top: 5px;
+  padding: 15px;
 }
 .rdw-image-modal-header-label-highlighted {
   background: #6EB8D4;

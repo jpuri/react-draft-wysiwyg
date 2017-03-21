@@ -6,7 +6,6 @@ import {
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 
 import { Dropdown, DropdownOption } from '../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -18,6 +17,7 @@ export default class FontFamily extends Component {
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -38,7 +38,12 @@ export default class FontFamily extends Component {
     const editorElm = document.getElementsByClassName('DraftEditor-root');
     if (editorElm && editorElm.length > 0) {
       const styles = window.getComputedStyle(editorElm[0]);
-      const defaultFontFamily = styles.getPropertyValue('font-family');
+      let defaultFontFamily = styles.getPropertyValue('font-family');
+      const comma = defaultFontFamily.indexOf(',');
+      if (comma >= 0) {
+        defaultFontFamily = defaultFontFamily.substring(0, comma);
+        defaultFontFamily = defaultFontFamily.trim();
+      }
       this.setState({
         defaultFontFamily,
       });
@@ -68,15 +73,13 @@ export default class FontFamily extends Component {
   };
 
   render() {
-    let { currentFontFamily, defaultFontFamily } = this.state;
-    const { config: { className, dropdownClassName }, modalHandler } = this.props;
+    const { defaultFontFamily } = this.state;
+    let { currentFontFamily } = this.state;
+    const { config: { className, dropdownClassName }, modalHandler, translations } = this.props;
     let { config: { options } } = this.props;
-    if (defaultFontFamily && options && options.indexOf(defaultFontFamily) < 0) {
-      options.push(defaultFontFamily);
-      options.sort();
-    }
     currentFontFamily =
-      currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length) || defaultFontFamily;
+      currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length) ||
+      (options && defaultFontFamily && options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) && defaultFontFamily);
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
         <Dropdown
@@ -86,7 +89,7 @@ export default class FontFamily extends Component {
           optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
         >
           <span className="rdw-fontfamily-placeholder">
-            {currentFontFamily || <FormattedMessage id="components.controls.fontfamily.fontfamily" />}
+            {currentFontFamily || translations['components.controls.fontfamily.fontfamily']}
           </span>
           {
             options.map((family, index) =>

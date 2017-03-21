@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { injectIntl, FormattedMessage, formatMessage } from 'react-intl';
 import { getSelectedBlocksType } from 'draftjs-utils';
 import { RichUtils } from 'draft-js';
 import classNames from 'classnames';
@@ -16,6 +15,7 @@ class BlockType extends Component {
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -41,14 +41,14 @@ class BlockType extends Component {
   }
 
   blocksTypes: Array<Object> = [
-    { label: 'Normal', displayName: this.props.intl.formatMessage({ id:'components.controls.blocktype.normal'}), style: 'unstyled' },
-    { label: 'H1', displayName: this.props.intl.formatMessage({ id:'components.controls.blocktype.h1'}), style: 'header-one' },
-    { label: 'H2', displayName: this.props.intl.formatMessage({ id:'components.controls.blocktype.h2'}), style: 'header-two' },
-    { label: 'H3', displayName: this.props.intl.formatMessage({ id:'components.controls.blocktype.h3'}), style: 'header-three' },
-    { label: 'H4', displayName: this.props.intl.formatMessage({ id:'components.controls.blocktype.h4'}), style: 'header-four' },
-    { label: 'H5', displayName: this.props.intl.formatMessage({ id:'components.controls.blocktype.h5'}), style: 'header-five' },
-    { label: 'H6', displayName: this.props.intl.formatMessage({ id:'components.controls.blocktype.h6'}), style: 'header-six' },
-    { label: 'Blockquote', displayName: this.props.intl.formatMessage({ id:'components.controls.blocktype.blockquote'}), style: 'blockquote' },
+    { label: 'Normal', displayName: this.props.translations['components.controls.blocktype.normal'], style: 'unstyled' },
+    { label: 'H1', displayName: this.props.translations['components.controls.blocktype.h1'], style: 'header-one' },
+    { label: 'H2', displayName: this.props.translations['components.controls.blocktype.h2'], style: 'header-two' },
+    { label: 'H3', displayName: this.props.translations['components.controls.blocktype.h3'], style: 'header-three' },
+    { label: 'H4', displayName: this.props.translations['components.controls.blocktype.h4'], style: 'header-four' },
+    { label: 'H5', displayName: this.props.translations['components.controls.blocktype.h5'], style: 'header-five' },
+    { label: 'H6', displayName: this.props.translations['components.controls.blocktype.h6'], style: 'header-six' },
+    { label: 'Blockquote', displayName: this.props.translations['components.controls.blocktype.blockquote'], style: 'blockquote' },
   ];
 
   toggleBlockType: Function = (blockType: string) => {
@@ -85,11 +85,10 @@ class BlockType extends Component {
   }
 
   renderInDropdown(blocks: Array<Object>): void {
-    const { formatMessage } = this.props.intl;
     const { currentBlockType } = this.state;
     const currentBlockData = blocks.filter(blk => blk.style === currentBlockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].displayName;
-    const { config: { className, dropdownClassName }, modalHandler } = this.props;
+    const { config: { className, dropdownClassName }, modalHandler, translations } = this.props;
     return (
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">
         <Dropdown
@@ -98,7 +97,7 @@ class BlockType extends Component {
           onChange={this.toggleBlockType}
           modalHandler={modalHandler}
         >
-          <span>{currentLabel || <FormattedMessage id="components.controls.blocktype.blocktype" />}</span>
+          <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
           {
             blocks.map((block, index) =>
               <DropdownOption
@@ -122,4 +121,4 @@ class BlockType extends Component {
   }
 }
 
-export default injectIntl(BlockType);
+export default BlockType;

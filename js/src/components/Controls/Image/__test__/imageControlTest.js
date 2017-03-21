@@ -8,7 +8,6 @@ import {
 } from 'draft-js';
 import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
 import { mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
-import { IntlProvider } from 'react-intl';
 
 import ImageControl from '..';
 import defaultToolbar from '../../../../config/defaultToolbar';
@@ -21,41 +20,35 @@ describe('ImageControl test suite', () => {
 
   it('should have a div when rendered', () => {
     expect(mount(
-      <IntlProvider locale="en">
-        <ImageControl
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.image}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <ImageControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.image}
+        modalHandler={new ModalHandler()}
+      />
     ).html().startsWith('<div')).to.be.true;
   });
 
   it('should have 1 child element by default', () => {
     const control = mount(
-      <IntlProvider locale="en">
-        <ImageControl
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.image}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <ImageControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.image}
+        modalHandler={new ModalHandler()}
+      />
     );
     expect(control.children().length).to.equal(1);
   });
 
   it('should set signalShowModal to true when option is clicked', () => {
     const control = mount(
-      <IntlProvider locale="en">
-        <ImageControl
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.image}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <ImageControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.image}
+        modalHandler={new ModalHandler()}
+      />
     );
     const imageControl = control.find('ImageControl');
     assert.isNotTrue(imageControl.node.signalShowModal);

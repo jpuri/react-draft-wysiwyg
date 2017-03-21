@@ -8,7 +8,6 @@ import {
 } from 'draft-js';
 import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
 import { mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
-import { IntlProvider } from 'react-intl';
 
 import ColorPicker from '..';
 import defaultToolbar from '../../../../config/defaultToolbar';
@@ -21,27 +20,23 @@ describe('ColorPicker test suite', () => {
 
   it('should have a div when rendered', () => {
     expect(mount(
-      <IntlProvider locale="en">
-        <ColorPicker
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.colorPicker}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <ColorPicker
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.colorPicker}
+        modalHandler={new ModalHandler()}
+      />
     ).html().startsWith('<div')).to.be.true;
   });
 
   it('should correctly set default state values', () => {
     const control = mount(
-      <IntlProvider locale="en">
-        <ColorPicker
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.colorPicker}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <ColorPicker
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.colorPicker}
+        modalHandler={new ModalHandler()}
+      />
     );
     const colorPicker = control.find('ColorPicker');
     const state = colorPicker.node.state;
@@ -53,14 +48,12 @@ describe('ColorPicker test suite', () => {
 
   it('should set variable signalShowModal to true when first child is clicked', () => {
     const control = mount(
-      <IntlProvider locale="en">
-        <ColorPicker
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.colorPicker}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <ColorPicker
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.colorPicker}
+        modalHandler={new ModalHandler()}
+      />
     );
     const colorPicker = control.find('ColorPicker');
     assert.isNotTrue(colorPicker.node.signalShowModal);
