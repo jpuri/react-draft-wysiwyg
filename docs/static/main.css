@@ -1288,7 +1288,6 @@ textarea {
   background: #f1f1f1;
   border: 1px solid #f1f1f1;
   margin-top: 5px;
-  padding: 15px;
 }
 .rdw-image-modal-header-label-highlighted {
   background: #6EB8D4;
@@ -1331,6 +1330,7 @@ textarea {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 15px;
 }
 .rdw-image-modal-upload-option-label span{
   padding: 0 20px;
