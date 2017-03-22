@@ -96,7 +96,7 @@ class ColorPicker extends Component {
   };
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName, colors } } = this.props;
+    const { config: { popupClassName, colors }, translations } = this.props;
     const { currentColor, currentBgColor, currentStyle } = this.state;
     const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
     return (
