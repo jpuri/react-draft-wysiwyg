@@ -59,11 +59,12 @@ export default class History extends Component {
   };
 
   renderInDropDown(undoDisabled: bool, redoDisabled: bool, config: Object): Object {
-    const { options, undo, redo, className } = config;
+    const { options, undo, redo, className, dropdownClassName } = config;
     const { modalHandler } = this.props;
     return (
       <Dropdown
         className={classNames('rdw-history-dropdown', className)}
+        optionWrapperClassName={dropdownClassName}
         onChange={this.toggleInlineStyle}
         modalHandler={modalHandler}
         aria-label="rdw-history-control"

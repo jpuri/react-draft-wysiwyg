@@ -33,6 +33,7 @@ export default {
   inline: {
     inDropdown: false,
     className: undefined,
+    dropdownClassName: undefined,
     options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace', 'superscript', 'subscript'],
     bold: { icon: bold, className: undefined },
     italic: { icon: italic, className: undefined },
@@ -62,6 +63,7 @@ export default {
   list: {
     inDropdown: false,
     className: undefined,
+    dropdownClassName: undefined,
     options: ['unordered', 'ordered', 'indent', 'outdent'],
     unordered: { icon: unordered, className: undefined },
     ordered: { icon: ordered, className: undefined },
@@ -71,6 +73,7 @@ export default {
   textAlign: {
     inDropdown: false,
     className: undefined,
+    dropdownClassName: undefined,
     options: ['left', 'center', 'right', 'justify'],
     left: { icon: left, className: undefined },
     center: { icon: center, className: undefined },
@@ -92,6 +95,7 @@ export default {
     inDropdown: false,
     className: undefined,
     popupClassName: undefined,
+    dropdownClassName: undefined,
     showOpenOptionOnHover: true,
     options: ['link', 'unlink'],
     link: { icon: link, className: undefined },
@@ -101,15 +105,17 @@ export default {
     icon: emoji,
     className: undefined,
     popupClassName: undefined,
-    emojis: ['😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌',
-      '🤓', '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉', '🙊',
-      '👼', '👮', '🕵', '💂', '👳', '🎅', '👸', '👰', '👲', '🙍', '🙇', '🚶', '🏃', '💃',
-      '⛷', '🏂', '🏌', '🏄', '🚣', '🏊', '⛹', '🏋', '🚴', '👫', '💪', '👈', '👉', '👉', '👆', '🖕', '👇',
-      '🖖', '🤘', '🖐', '👌', '👍', '👎', '✊', '👊', '👏', '🙌', '🙏', '🐵', '🐶',
-      '🐇', '🐥', '🐸', '🐌', '🐛', '🐜', '🐝', '🍉', '🍄', '🍔', '🍤', '🍨', '🍪', '🎂', '🍰', '🍾', '🍷', '🍸',
-      '🍺', '🌍', '🚑', '⏰', '🌙', '🌝', '🌞', '⭐', '🌟', '🌠', '🌨', '🌩', '⛄', '🔥', '🎄', '🎈', '🎉',
-      '🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷',
-      '💰', '🖊', '📅', '✅', '❎', '💯'],
+    emojis: [
+      '😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌', '🤓',
+      '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈',
+      '🙉', '🙊', '👼', '👮', '🕵', '💂', '👳', '🎅', '👸', '👰', '👲', '🙍', '🙇', '🚶', '🏃', '💃',
+      '⛷', '🏂', '🏌', '🏄', '🚣', '🏊', '⛹', '🏋', '🚴', '👫', '💪', '👈', '👉', '👉', '👆', '🖕',
+      '👇', '🖖', '🤘', '🖐', '👌', '👍', '👎', '✊', '👊', '👏', '🙌', '🙏', '🐵', '🐶', '🐇', '🐥',
+      '🐸', '🐌', '🐛', '🐜', '🐝', '🍉', '🍄', '🍔', '🍤', '🍨', '🍪', '🎂', '🍰', '🍾', '🍷', '🍸',
+      '🍺', '🌍', '🚑', '⏰', '🌙', '🌝', '🌞', '⭐', '🌟', '🌠', '🌨', '🌩', '⛄', '🔥', '🎄', '🎈', 
+      '🎉', '🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷', '💰', '🖊', '📅',
+      '✅', '❎', '💯'
+    ],
   },
   embedded: {
     icon: embedded,
@@ -133,6 +139,7 @@ export default {
   history: {
     inDropdown: false,
     className: undefined,
+    dropdownClassName: undefined,
     options: ['undo', 'redo'],
     undo: { icon: undo, className: undefined },
     redo: { icon: redo, className: undefined },

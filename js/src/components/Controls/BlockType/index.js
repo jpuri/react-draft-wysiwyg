@@ -93,7 +93,7 @@ class BlockType extends Component {
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">
         <Dropdown
           className={classNames('rdw-block-dropdown', className)}
-          optionWrapperClassName={classNames(dropdownClassName)}
+          optionWrapperClassName={dropdownClassName}
           onChange={this.toggleBlockType}
           modalHandler={modalHandler}
         >

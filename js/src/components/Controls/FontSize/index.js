@@ -70,7 +70,7 @@ export default class FontSize extends Component {
   };
 
   render() {
-    const { config: { icon, className }, modalHandler } = this.props;
+    const { config: { icon, className, dropdownClassName }, modalHandler } = this.props;
     let { config: { options } } = this.props;
     let { currentFontSize, defaultFontSize } = this.state;
     defaultFontSize = Number(defaultFontSize);
@@ -81,6 +81,7 @@ export default class FontSize extends Component {
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         <Dropdown
           className={classNames('rdw-fontsize-dropdown', className)}
+          optionWrapperClassName={classNames(dropdownClassName)}
           onChange={this.toggleFontSize}
           modalHandler={modalHandler}
         >

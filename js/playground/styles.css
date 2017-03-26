@@ -39,3 +39,10 @@
 .no-focus:focus {
   outline: none;
 }
+.dropdownClassName {
+  background-color: red;
+  max-height: 100px;
+}
+.className {
+  background-color: green;
+}

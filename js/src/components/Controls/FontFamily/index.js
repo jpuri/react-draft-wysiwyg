@@ -84,9 +84,9 @@ export default class FontFamily extends Component {
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
         <Dropdown
           className={classNames('rdw-fontfamily-dropdown', className)}
+          optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
           onChange={this.toggleFontFamily}
           modalHandler={modalHandler}
-          optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
         >
           <span className="rdw-fontfamily-placeholder">
             {currentFontFamily || translations['components.controls.fontfamily.fontfamily']}

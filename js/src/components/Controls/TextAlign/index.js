@@ -94,11 +94,12 @@ export default class TextAlign extends Component {
 
   renderInDropDown(config: Object): Object {
     const { currentTextAlignment } = this.state;
-    const { options, left, center, right, justify, className } = config;
+    const { options, left, center, right, justify, className, dropdownClassName } = config;
     const { modalHandler } = this.props;
     return (
       <Dropdown
         className={classNames('rdw-text-align-dropdown', className)}
+        optionWrapperClassName={dropdownClassName}
         onChange={this.addBlockAlignmentData}
         modalHandler={modalHandler}
         aria-label="rdw-textalign-control"

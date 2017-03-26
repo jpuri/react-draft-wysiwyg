@@ -247,7 +247,7 @@ class Link extends Component {
   }
 
   renderInDropDown(showModal: bool, currentEntity: Object, config: Object): Object {
-    const { options, link, unlink, className } = config;
+    const { options, link, unlink, className, dropdownClassName } = config;
     const { modalHandler } = this.props;
     return (
       <div
@@ -258,6 +258,7 @@ class Link extends Component {
       >
         <Dropdown
           className={classNames('rdw-link-dropdown', className)}
+          optionWrapperClassName={dropdownClassName}
           onChange={this.toggleInlineStyle}
           modalHandler={modalHandler}
         >

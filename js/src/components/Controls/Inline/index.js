@@ -91,9 +91,11 @@ export default class Inline extends Component {
 
   renderInDropDown(currentStyles: string, config: Object): Object {
     const { modalHandler } = this.props;
+    const { className, dropdownClassName } = config;
     return (
       <Dropdown
-        className={classNames('rdw-inline-dropdown', config.className)}
+        className={classNames('rdw-inline-dropdown', className)}
+        optionWrapperClassName={dropdownClassName}
         onChange={this.toggleInlineStyle}
         modalHandler={modalHandler}
         aria-label="rdw-inline-control"

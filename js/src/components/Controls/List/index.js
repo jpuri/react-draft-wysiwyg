@@ -137,11 +137,12 @@ export default class List extends Component {
   }
 
   renderInDropDown(currentBlockType: string, config: Object): Object {
-    const { options, className } = config;
+    const { options, className, dropdownClassName } = config;
     const { modalHandler } = this.props;
     return (
       <Dropdown
         className={classNames('rdw-list-dropdown', className)}
+        optionWrapperClassName={dropdownClassName}
         onChange={this.onDropdownChange}
         modalHandler={modalHandler}
         aria-label="rdw-list-control"
