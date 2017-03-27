@@ -17,11 +17,11 @@ export default class TextAlign extends Component {
     onExpandEvent: PropTypes.func,
     config: PropTypes.object,
     onChange: PropTypes.func,
-    currentState: PropTypes.string,
+    currentState: PropTypes.object,
   };
 
   renderInFlatList(): Object {
-    const { config: { options, left, center, right, justify, className, currentState: { textAlignment } }, onChange} = this.props;
+    const { config: { options, left, center, right, justify, className }, onChange, currentState: { textAlignment }} = this.props;
     return (
       <div className={classNames('rdw-text-align-wrapper', className)} aria-label="rdw-textalign-control">
         {options.indexOf('left') >= 0 && <Option
