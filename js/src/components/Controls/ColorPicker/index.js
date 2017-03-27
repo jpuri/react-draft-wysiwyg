@@ -100,7 +100,7 @@ class ColorPicker extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentValue={{ color: currentColor, bgColor: currentBgColor }}
+        currentState={{ color: currentColor, bgColor: currentBgColor }}
       />
     );
   }

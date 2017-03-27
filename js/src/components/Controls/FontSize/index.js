@@ -106,7 +106,7 @@ export default class FontSize extends Component {
       <FontSizeComponent
         config={config}
         translations={translations}
-        currentValue={currentFontSize}
+        currentState={{ fontSize: currentFontSize }}
         onChange={this.toggleFontSize}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

@@ -15,7 +15,7 @@ export default class LayoutComponent extends Component {
     doCollapse: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
-    currentValue: PropTypes.string,
+    currentState: PropTypes.object,
   };
 
   state: Object = {
@@ -44,11 +44,11 @@ export default class LayoutComponent extends Component {
       onExpandEvent,
       doExpand,
     } = this.props;
-    let { currentValue } = this.props;
+    let { currentState: { fontSize : currentFontSize} } = this.props;
     let { defaultFontSize } = this.state;
     defaultFontSize = Number(defaultFontSize);
-    currentValue = (currentValue
-      && Number(currentValue.substring(9, currentValue.length))) ||
+    currentFontSize = (currentFontSize
+      && Number(currentFontSize.substring(9, currentFontSize.length))) ||
       (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
@@ -61,8 +61,8 @@ export default class LayoutComponent extends Component {
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
         >
-          {currentValue ?
-            <span>{currentValue}</span>
+          {currentFontSize ?
+            <span>{currentFontSize}</span>
           :
             <img
               src={icon}
@@ -73,7 +73,7 @@ export default class LayoutComponent extends Component {
             options.map((size, index) =>
               <DropdownOption
                 className="rdw-fontsize-option"
-                active={currentValue === size}
+                active={currentFontSize === size}
                 value={`fontsize-${size}`}
                 key={index}
               >

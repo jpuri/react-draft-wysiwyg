@@ -14,7 +14,7 @@ class LayoutComponent extends Component {
     onExpandEvent: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
-    currentValue: PropTypes.object,
+    currentState: PropTypes.object,
     translations: PropTypes.object,
   };
 
@@ -41,7 +41,7 @@ class LayoutComponent extends Component {
   }
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName, colors }, currentValue: { color, bgColor }, translations } = this.props;
+    const { config: { popupClassName, colors }, currentState: { color, bgColor }, translations } = this.props;
     const { currentStyle } = this.state;
     const currentSelectedColor = (currentStyle === 'color') ? color : bgColor;
     return (

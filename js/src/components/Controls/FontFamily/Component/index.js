@@ -15,7 +15,7 @@ class LayoutComponent extends Component {
     doCollapse: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
-    currentValue: PropTypes.string,
+    currentState: PropTypes.object,
     translations: PropTypes.object,
   };
 
@@ -45,9 +45,9 @@ class LayoutComponent extends Component {
       onExpandEvent,
       doExpand,
     } = this.props;
-    let { currentValue } = this.props;
-    currentValue =
-      currentValue && currentValue.substring(11, currentValue.length) ||
+    let { currentState: { fontFamily : currentFontFamily } } = this.props;
+    currentFontFamily =
+      currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length) ||
       (options && defaultFontFamily && options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) && defaultFontFamily);
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
@@ -61,12 +61,12 @@ class LayoutComponent extends Component {
           onExpandEvent={onExpandEvent}
         >
           <span className="rdw-fontfamily-placeholder">
-            {currentValue || translations['components.controls.fontfamily.fontfamily']}
+            {currentFontFamily || translations['components.controls.fontfamily.fontfamily']}
           </span>
           {
             options.map((family, index) =>
               <DropdownOption
-                active={currentValue === family}
+                active={currentFontFamily === family}
                 value={`fontfamily-${family}`}
                 key={index}
               >

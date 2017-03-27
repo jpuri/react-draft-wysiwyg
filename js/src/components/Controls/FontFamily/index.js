@@ -91,7 +91,7 @@ export default class FontFamily extends Component {
       <FontFamilyComponent
         translations={translations}
         config={config}
-        currentValue={currentFontFamily}
+        currentState={{ fontFamily: currentFontFamily }}
         onChange={this.toggleFontFamily}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

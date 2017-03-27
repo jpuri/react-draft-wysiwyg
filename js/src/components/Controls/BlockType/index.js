@@ -87,7 +87,7 @@ class BlockType extends Component {
       <BlockTypeComponent
         config={config}
         translations={translations}
-        currentValue={currentBlockType}
+        currentState={{ blockType : currentBlockType }}
         onChange={this.toggleBlockType}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

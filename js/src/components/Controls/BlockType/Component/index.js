@@ -16,7 +16,7 @@ class LayoutComponent extends Component {
     doCollapse: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
-    currentValue: PropTypes.string,
+    currentState: PropTypes.object,
     translations: PropTypes.object,
   };
 
@@ -32,7 +32,7 @@ class LayoutComponent extends Component {
   ];
 
   renderFlat(blocks: Array<Object>): void {
-    const { config: { className }, onChange, currentValue } = this.props;
+    const { config: { className }, onChange, currentState: { blockType } } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
         {
@@ -40,7 +40,7 @@ class LayoutComponent extends Component {
           <Option
             key={index}
             value={block.style}
-            active={currentValue === block.style}
+            active={blockType === block.style}
             onClick={onChange}
           >
             {block.displayName}
@@ -54,7 +54,7 @@ class LayoutComponent extends Component {
   renderInDropdown(blocks: Array<Object>): void {
     const {
       config: { className, dropdownClassName },
-      currentValue,
+      currentState: { blockType },
       expanded,
       doExpand,
       onExpandEvent,
@@ -62,7 +62,7 @@ class LayoutComponent extends Component {
       onChange,
       translations,
     } = this.props;
-    const currentBlockData = blocks.filter(blk => blk.style === currentValue);
+    const currentBlockData = blocks.filter(blk => blk.style === blockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].displayName;
     return (
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">
@@ -79,7 +79,7 @@ class LayoutComponent extends Component {
           {
             blocks.map((block, index) =>
               <DropdownOption
-                active={currentValue === block.style}
+                active={blockType === block.style}
                 value={block.style}
                 key={index}
               >
