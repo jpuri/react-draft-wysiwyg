@@ -80,7 +80,7 @@ export default class TextAlign extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentValue={currentTextAlignment}
+        currentState={{ textAlignment: currentTextAlignment }}
         onChange={this.addBlockAlignmentData}
       />
     );

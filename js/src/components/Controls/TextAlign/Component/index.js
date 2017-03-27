@@ -17,17 +17,17 @@ export default class TextAlign extends Component {
     onExpandEvent: PropTypes.func,
     config: PropTypes.object,
     onChange: PropTypes.func,
-    currentValue: PropTypes.string,
+    currentState: PropTypes.string,
   };
 
   renderInFlatList(): Object {
-    const { config: { options, left, center, right, justify, className, currentValue }, onChange} = this.props;
+    const { config: { options, left, center, right, justify, className, currentState: { textAlignment } }, onChange} = this.props;
     return (
       <div className={classNames('rdw-text-align-wrapper', className)} aria-label="rdw-textalign-control">
         {options.indexOf('left') >= 0 && <Option
           value="left"
           className={classNames(left.className)}
-          active={currentValue === 'left'}
+          active={textAlignment === 'left'}
           onClick={onChange}
         >
           <img
@@ -38,7 +38,7 @@ export default class TextAlign extends Component {
         {options.indexOf('center') >= 0 && <Option
           value="center"
           className={classNames(center.className)}
-          active={currentValue === 'center'}
+          active={textAlignment === 'center'}
           onClick={onChange}
         >
           <img
@@ -49,7 +49,7 @@ export default class TextAlign extends Component {
         {options.indexOf('right') >= 0 && <Option
           value="right"
           className={classNames(right.className)}
-          active={currentValue === 'right'}
+          active={textAlignment === 'right'}
           onClick={onChange}
         >
           <img
@@ -60,7 +60,7 @@ export default class TextAlign extends Component {
         {options.indexOf('justify') >= 0 && <Option
           value="justify"
           className={classNames(justify.className)}
-          active={currentValue === 'justify'}
+          active={textAlignment === 'justify'}
           onClick={onChange}
         >
           <img
@@ -79,7 +79,7 @@ export default class TextAlign extends Component {
       doExpand,
       onExpandEvent,
       doCollapse,
-      currentValue,
+      currentState: { textAlignment },
       onChange,
     } = this.props;
     const { options, left, center, right, justify, className, dropdownClassName } = config;
@@ -100,7 +100,7 @@ export default class TextAlign extends Component {
         />
         {options.indexOf('left') >= 0 && <DropdownOption
           value="left"
-          active={currentValue === 'left'}
+          active={textAlignment === 'left'}
           className={classNames('rdw-text-align-dropdownOption', left.className)}
         >
           <img
@@ -110,7 +110,7 @@ export default class TextAlign extends Component {
         </DropdownOption>}
         {options.indexOf('center') >= 0 && <DropdownOption
           value="center"
-          active={currentValue === 'center'}
+          active={textAlignment === 'center'}
           className={classNames('rdw-text-align-dropdownOption', center.className)}
         >
           <img
@@ -120,7 +120,7 @@ export default class TextAlign extends Component {
         </DropdownOption>}
         {options.indexOf('right') >= 0 && <DropdownOption
           value="right"
-          active={currentValue === 'right'}
+          active={textAlignment === 'right'}
           className={classNames('rdw-text-align-dropdownOption', right.className)}
         >
           <img
@@ -130,7 +130,7 @@ export default class TextAlign extends Component {
         </DropdownOption>}
         {options.indexOf('justify') >= 0 && <DropdownOption
           value="justify"
-          active={currentValue === 'justify'}
+          active={textAlignment === 'justify'}
           className={classNames('rdw-text-align-dropdownOption', justify.className)}
         >
           <img

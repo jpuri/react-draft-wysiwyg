@@ -18,7 +18,7 @@ class LayoutComponent extends Component {
     onExpandEvent: PropTypes.func,
     config: PropTypes.object,
     onChange: PropTypes.func,
-    currentValue: PropTypes.object,
+    currentState: PropTypes.object,
     translations: PropTypes.object,
   };
 
@@ -62,7 +62,7 @@ class LayoutComponent extends Component {
   };
 
   signalExpandShowModal = () => {
-    const { onExpandEvent, currentValue: { link, selectionText } } = this.props;
+    const { onExpandEvent, currentState: { link, selectionText } } = this.props;
     onExpandEvent();
     this.setState({
       showModal: true,
@@ -72,7 +72,7 @@ class LayoutComponent extends Component {
   }
 
   forceExpandAndShowModal: Function = (): void => {
-    const { doExpand } = this.props;
+    const { doExpand, currentState: { link, selectionText } } = this.props;
     doExpand();
     this.setState({
       showModal: true,
@@ -133,7 +133,7 @@ class LayoutComponent extends Component {
   renderInFlatList(): Object {
     const {
       config: { options, link, unlink, className },
-      currentValue,
+      currentState,
       expanded,
     } = this.props;
     const { showModal } = this.state;
@@ -152,7 +152,7 @@ class LayoutComponent extends Component {
           />
         </Option>}
         {options.indexOf('unlink') >= 0 && <Option
-          disabled={!currentValue.link}
+          disabled={!currentState.link}
           value="ordered-list-item"
           className={classNames(unlink.className)}
           onClick={this.removeLink}
@@ -175,7 +175,7 @@ class LayoutComponent extends Component {
       doExpand,
       onChange,
       config,
-      currentValue,
+      currentState,
     } = this.props;
     const { options, link, unlink, className, dropdownClassName } = config;
     const { showModal } = this.state;
@@ -210,7 +210,7 @@ class LayoutComponent extends Component {
           </DropdownOption>}
           {options.indexOf('unlink') >= 0 && <DropdownOption
             onClick={this.removeLink}
-            disabled={!currentValue.link}
+            disabled={!currentState.link}
             className={classNames('rdw-link-dropdownoption', unlink.className)}
           >
             <img

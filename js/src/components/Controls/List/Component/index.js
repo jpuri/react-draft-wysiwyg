@@ -17,7 +17,7 @@ export default class LayoutComponent extends Component {
     onExpandEvent: PropTypes.func,
     config: PropTypes.object,
     onChange: PropTypes.func,
-    currentValue: PropTypes.string,
+    currentState: PropTypes.object,
   };
 
   options: Array = [{ type: 'unordered', value: 'unordered-list-item' },
@@ -43,7 +43,7 @@ export default class LayoutComponent extends Component {
   // todo: evaluate refactoring this code to put a loop there and in other places also in code
   // hint: it will require moving click handlers
   renderInFlatList(): Object {
-    const { config, currentValue } = this.props;
+    const { config, currentState: { linkType } } = this.props;
     const { options, unordered, ordered, indent, outdent, className } = config;
     return (
       <div className={classNames('rdw-list-wrapper', className)} aria-label="rdw-list-control">
@@ -51,7 +51,7 @@ export default class LayoutComponent extends Component {
           value="unordered-list-item"
           onClick={this.toggleBlockType}
           className={classNames(unordered.className)}
-          active={currentValue === 'unordered-list-item'}
+          active={linkType === 'unordered-list-item'}
         >
           <img
             src={unordered.icon}
@@ -62,7 +62,7 @@ export default class LayoutComponent extends Component {
           value="ordered-list-item"
           onClick={this.toggleBlockType}
           className={classNames(ordered.className)}
-          active={currentValue === 'ordered-list-item'}
+          active={linkType === 'ordered-list-item'}
         >
           <img
             src={ordered.icon}
@@ -92,7 +92,7 @@ export default class LayoutComponent extends Component {
   }
 
   renderInDropDown(): Object {
-    const { config, expanded, doCollapse, doExpand, onExpandEvent, onChange, currentValue } = this.props;
+    const { config, expanded, doCollapse, doExpand, onExpandEvent, onChange, currentState: { linkType } } = this.props;
     const { options, className, dropdownClassName } = config;
     return (
       <Dropdown
@@ -115,7 +115,7 @@ export default class LayoutComponent extends Component {
             key={index}
             value={option.value}
             className={classNames('rdw-list-dropdownOption', config[option.type].className)}
-            active={currentValue === option.value}
+            active={linkType === option.value}
           >
             <img
               src={config[option.type].icon}

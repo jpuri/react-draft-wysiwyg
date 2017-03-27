@@ -162,16 +162,16 @@ class Link extends Component {
     return (
       <LinkComponent
         config={config}
+        translations={translations}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentValue={{
+        currentState={{
           link,
           selectionText,
         }}
         onChange={this.onChange}
-        translations={translations}
       />
     );
   }

@@ -11,6 +11,7 @@ export default class Remove extends Component {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state = {
@@ -80,12 +81,13 @@ export default class Remove extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { expanded } = this.state;
     const RemoveComponent = config.component || LayoutComponent;
     return (
       <RemoveComponent
         config={config}
+        translations={translations}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}

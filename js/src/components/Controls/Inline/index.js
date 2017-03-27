@@ -92,7 +92,6 @@ export default class Inline extends Component {
     const { config, translations } = this.props;
     const { expanded, currentStyles } = this.state
     const InlineComponent = config.component || LayoutComponent;
-    console.log('currentStyles', currentStyles)
     return (
       <InlineComponent
         config={config}

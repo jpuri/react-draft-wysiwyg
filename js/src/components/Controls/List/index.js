@@ -13,6 +13,7 @@ export default class List extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -101,17 +102,18 @@ export default class List extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { expanded, currentBlockType } = this.state
     const ListComponent = config.component || LayoutComponent;
     return (
       <ListComponent
         config={config}
+        translations={translations}
+        currentState={{ linkType: currentBlockType }}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentValue={currentBlockType}
         onChange={this.onChange}
       />
     );
