@@ -89,6 +89,7 @@ export default class FontFamily extends Component {
     const FontFamilyComponent = config.component || LayoutComponent;
     return (
       <FontFamilyComponent
+        translations={translations}
         config={config}
         currentValue={currentFontFamily}
         onChange={this.toggleFontFamily}
@@ -96,7 +97,6 @@ export default class FontFamily extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        translations={translations}
       />
     );
   }

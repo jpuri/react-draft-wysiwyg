@@ -14,8 +14,7 @@ class LayoutComponent extends Component {
     onExpandEvent: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
-    currentColor: PropTypes.string,
-    currentBgColor: PropTypes.string,
+    currentValue: PropTypes.object,
     translations: PropTypes.object,
   };
 
@@ -42,9 +41,9 @@ class LayoutComponent extends Component {
   }
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName, colors }, currentColor, currentBgColor, translations } = this.props;
+    const { config: { popupClassName, colors }, currentValue: { color, bgColor }, translations } = this.props;
     const { currentStyle } = this.state;
-    const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
+    const currentSelectedColor = (currentStyle === 'color') ? color : bgColor;
     return (
       <div
         className={classNames('rdw-colorpicker-modal', popupClassName)}

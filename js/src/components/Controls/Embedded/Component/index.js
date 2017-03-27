@@ -48,7 +48,7 @@ class LayoutComponent extends Component {
 
   rendeEmbeddedLinkModal(): Object {
     const { embeddedLink, height, width } = this.state;
-    const { config: { popupClassName }, doCollpase, translations } = this.props;
+    const { config: { popupClassName }, doCollapse, translations } = this.props;
     return (
       <div
         className={classNames('rdw-embedded-modal', popupClassName)}
@@ -98,7 +98,7 @@ class LayoutComponent extends Component {
           </button>
           <button
             className="rdw-embedded-modal-btn"
-            onClick={doCollpase}
+            onClick={doCollapse}
           >
             {translations['generic.cancel']}
           </button>

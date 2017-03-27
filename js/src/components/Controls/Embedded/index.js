@@ -64,7 +64,7 @@ class Embedded extends Component {
       ' '
     );
     onChange(newEditorState);
-    this.closeModal();
+    this.doCollapse();
   };
 
   render(): Object {
@@ -74,13 +74,12 @@ class Embedded extends Component {
     return (
       <EmbeddedComponent
         config={config}
+        translations={translations}
         onChange={this.addEmbeddedLink}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        onCollpase={this.closeModal}
-        translations={translations}
       />
     );
   }

@@ -16,6 +16,7 @@ export default class FontSize extends Component {
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -98,12 +99,13 @@ export default class FontSize extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded, currentFontSize } = this.state
     const FontSizeComponent = config.component || LayoutComponent;
     return (
       <FontSizeComponent
         config={config}
+        translations={translations}
         currentValue={currentFontSize}
         onChange={this.toggleFontSize}
         expanded={expanded}

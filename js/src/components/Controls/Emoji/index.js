@@ -12,6 +12,7 @@ export default class Emoji extends Component {
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -60,16 +61,17 @@ export default class Emoji extends Component {
       editorState.getCurrentInlineStyle(),
     );
     onChange(EditorState.push(editorState, contentState, 'insert-characters'));
-    this.closeModal();
+    this.doCollapse();
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { expanded } = this.state
     const EmojiComponent = config.component || LayoutComponent;
     return (
       <EmojiComponent
         config={config}
+        translations={translations}
         onChange={this.addEmoji}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

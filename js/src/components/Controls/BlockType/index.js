@@ -86,13 +86,13 @@ class BlockType extends Component {
     return (
       <BlockTypeComponent
         config={config}
+        translations={translations}
         currentValue={currentBlockType}
         onChange={this.toggleBlockType}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        translations={translations}
       />
     );
   }

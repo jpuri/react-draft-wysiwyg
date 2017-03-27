@@ -75,12 +75,12 @@ class ColorPicker extends Component {
     });
   };
 
-  toggleColor: Function = (currentStyle: string, color: string): void => {
+  toggleColor: Function = (style: string, color: string): void => {
     const { editorState, onChange } = this.props;
     const newState = toggleCustomInlineStyle(
       editorState,
-      currentStyle,
-      `${currentStyle}-${color}`
+      style,
+      `${style}-${color}`
     );
     if (newState) {
       onChange(newState);
@@ -94,14 +94,13 @@ class ColorPicker extends Component {
     return (
       <ColorPickerComponent
         config={config}
+        translations={translations}
         onChange={this.toggleColor}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentColor={currentColor}
-        currentBgColor={currentBgColor}
-        translations={translations}
+        currentValue={{ color: currentColor, bgColor: currentBgColor }}
       />
     );
   }
