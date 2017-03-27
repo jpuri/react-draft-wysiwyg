@@ -100,8 +100,6 @@ export default class List extends Component {
     }
   };
 
-  // todo: evaluate refactoring this code to put a loop there and in other places also in code
-  // hint: it will require moving click handlers
   render(): Object {
     const { config } = this.props;
     const { expanded, currentBlockType } = this.state

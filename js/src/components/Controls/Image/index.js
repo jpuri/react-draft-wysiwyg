@@ -12,6 +12,7 @@ class ImageControl extends Component {
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -67,7 +68,7 @@ class ImageControl extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { expanded } = this.state
     const ImageComponent = config.component || LayoutComponent;
     return (
@@ -78,6 +79,7 @@ class ImageControl extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollpase={this.doCollpase}
+        translations={translations}
       />
     );
   }

@@ -8,12 +8,12 @@ import {
   convertFromHTML,
   ContentState,
 } from 'draft-js';
-import { IntlProvider } from 'react-intl';
 
 import FontFamilyControl from '..';
 import { Dropdown } from '../../../Dropdown';
 import defaultToolbar from '../../../../config/defaultToolbar';
 import ModalHandler from '../../../../event-handler/modals';
+import localeTranslations from '../../../../i18n';
 
 describe('FontFamilyControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -22,27 +22,25 @@ describe('FontFamilyControl test suite', () => {
 
   it('should have a div when rendered', () => {
     expect(mount(
-      <IntlProvider locale="en">
-        <FontFamilyControl
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.fontFamily}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <FontFamilyControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.fontFamily}
+        modalHandler={new ModalHandler()}
+        translations={localeTranslations['en']}
+      />
     ).html().startsWith('<div')).to.be.true;
   });
 
   it('should have a dropdown child component well defined', () => {
     const control = mount(
-      <IntlProvider locale="en">
-        <FontFamilyControl
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.fontFamily}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <FontFamilyControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.fontFamily}
+        modalHandler={new ModalHandler()}
+        translations={localeTranslations['en']}
+      />
     );
     assert.equal(control.childAt(0).props().children.length, 2);
     assert.isDefined(control.childAt(0).props().onChange);

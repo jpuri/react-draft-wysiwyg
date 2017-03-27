@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
@@ -17,6 +16,7 @@ class LayoutComponent extends Component {
     config: PropTypes.object,
     currentColor: PropTypes.string,
     currentBgColor: PropTypes.string,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -42,7 +42,7 @@ class LayoutComponent extends Component {
   }
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName, colors }, currentColor, currentBgColor } = this.props;
+    const { config: { popupClassName, colors }, currentColor, currentBgColor, translations } = this.props;
     const { currentStyle } = this.state;
     const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
     return (
@@ -58,7 +58,7 @@ class LayoutComponent extends Component {
             )}
             onClick={this.setCurrentStyleColor}
           >
-            <FormattedMessage id="components.controls.colorpicker.text" />
+            {translations['components.controls.colorpicker.text']}
           </span>
           <span
             className={classNames(
@@ -67,7 +67,7 @@ class LayoutComponent extends Component {
             )}
             onClick={this.setCurrentStyleBgcolor}
           >
-            <FormattedMessage id="components.controls.colorpicker.background" />
+            {translations['components.controls.colorpicker.background']}
           </span>
         </span>
         <span className="rdw-colorpicker-modal-options">

@@ -82,10 +82,11 @@ export default class TextAlign extends Component {
       currentValue,
       onChange,
     } = this.props;
-    const { options, left, center, right, justify, className } = config;
+    const { options, left, center, right, justify, className, dropdownClassName } = config;
     return (
       <Dropdown
         className={classNames('rdw-text-align-dropdown', className)}
+        optionWrapperClassName={classNames(dropdownClassName)}
         onChange={onChange}
         expanded={expanded}
         doExpand={doExpand}

@@ -59,9 +59,11 @@ export default class Inline extends Component {
       currentValue,
       onChange,
     } = this.props;
+    const { className, dropdownClassName } = config;
     return (
       <Dropdown
-        className={classNames('rdw-inline-dropdown', config.className)}
+        className={classNames('rdw-inline-dropdown', className)}
+        optionWrapperClassName={classNames(dropdownClassName)}
         onChange={onChange}
         expanded={expanded}
         doExpand={doExpand}

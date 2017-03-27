@@ -12,6 +12,7 @@ class Embedded extends Component {
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -67,7 +68,7 @@ class Embedded extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { expanded } = this.state
     const EmbeddedComponent = config.component || LayoutComponent;
     return (
@@ -79,6 +80,7 @@ class Embedded extends Component {
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
         onCollpase={this.closeModal}
+        translations={translations}
       />
     );
   }

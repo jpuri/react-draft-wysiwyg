@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
@@ -20,6 +19,7 @@ class LayoutComponent extends Component {
     config: PropTypes.object,
     onChange: PropTypes.func,
     currentValue: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -82,7 +82,7 @@ class LayoutComponent extends Component {
   }
 
   renderAddLinkModal() {
-    const { config: { popupClassName }, doCollapse } = this.props;
+    const { config: { popupClassName }, doCollapse, translations } = this.props;
     const { linkTitle, linkTarget } = this.state;
     return (
       <div
@@ -90,7 +90,7 @@ class LayoutComponent extends Component {
         onClick={stopPropagation}
       >
         <span className="rdw-link-modal-label">
-          <FormattedMessage id="components.controls.link.linkTitle" />
+          {translations['components.controls.link.linkTitle']}
         </span>
         <input
           ref={this.setLinkTitleReference}
@@ -101,7 +101,7 @@ class LayoutComponent extends Component {
           value={linkTitle}
         />
         <span className="rdw-link-modal-label">
-          <FormattedMessage id="components.controls.link.linkTarget" />
+          {translations['components.controls.link.linkTarget']}
         </span>
         <input
           ref={this.setLinkTextReference}
@@ -117,13 +117,13 @@ class LayoutComponent extends Component {
             onClick={this.addLink}
             disabled={!linkTarget || !linkTitle}
           >
-            <FormattedMessage id="generic.add" />
+            {translations['generic.add']}
           </button>
           <button
             className="rdw-link-modal-btn"
             onClick={doCollapse}
           >
-            <FormattedMessage id="generic.cancel" />
+            {translations['generic.cancel']}
           </button>
         </span>
       </div>
@@ -177,7 +177,7 @@ class LayoutComponent extends Component {
       config,
       currentValue,
     } = this.props;
-    const { options, link, unlink, className } = config;
+    const { options, link, unlink, className, dropdownClassName } = config;
     const { showModal } = this.state;
     return (
       <div
@@ -188,6 +188,7 @@ class LayoutComponent extends Component {
       >
         <Dropdown
           className={classNames('rdw-link-dropdown', className)}
+          optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
           expanded={expanded && !showModal}
           doExpand={doExpand}

@@ -8,7 +8,6 @@ import {
   convertFromHTML,
   ContentState,
 } from 'draft-js';
-import { IntlProvider } from 'react-intl';
 
 import LinkControl from '..';
 import defaultToolbar from '../../../../config/defaultToolbar';
@@ -21,41 +20,35 @@ describe('LinkControl test suite', () => {
 
   it('should have a div when rendered', () => {
     expect(mount(
-      <IntlProvider locale="en">
-        <LinkControl
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.link}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <LinkControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.link}
+        modalHandler={new ModalHandler()}
+      />
     ).html().startsWith('<div')).to.be.true;
   });
 
   it('should have 2 child elements by default', () => {
     const control = mount(
-      <IntlProvider locale="en">
-        <LinkControl
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.link}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <LinkControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.link}
+        modalHandler={new ModalHandler()}
+      />
     );
     expect(control.children().length).to.equal(2);
   });
 
   it('should have no value for state variables linkTitle and linkTarget by default', () => {
     const control = mount(
-      <IntlProvider locale="en">
-        <LinkControl
-          onChange={() => {}}
-          editorState={editorState}
-          config={defaultToolbar.link}
-          modalHandler={new ModalHandler()}
-        />
-      </IntlProvider>
+      <LinkControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={defaultToolbar.link}
+        modalHandler={new ModalHandler()}
+      />
     );
     const linkControl = control.find('Link');
     assert.isNotTrue(linkControl.node.state.expanded);

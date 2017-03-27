@@ -36,26 +36,25 @@ export default class LayoutComponent extends Component {
 
   render() {
     const {
-      config: { icon, className },
-      modalHandler,
+      config: { icon, className, dropdownClassName, options },
+      translations,
       onChange,
       expanded,
       doCollapse,
-      doExpand,
       onExpandEvent,
+      doExpand,
     } = this.props;
-    let { config: { options }, currentValue } = this.props;
+    let { currentValue } = this.props;
     let { defaultFontSize } = this.state;
-    if (defaultFontSize && options && options.indexOf(defaultFontSize) < 0) {
-      options.push(Number(defaultFontSize));
-      options.sort();
-    }
-    currentValue = currentValue
-      && Number(currentValue.substring(9, currentValue.length)) || defaultFontSize;
+    defaultFontSize = Number(defaultFontSize);
+    currentValue = (currentValue
+      && Number(currentValue.substring(9, currentValue.length))) ||
+      (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         <Dropdown
           className={classNames('rdw-fontsize-dropdown', className)}
+          optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
           expanded={expanded}
           doExpand={doExpand}

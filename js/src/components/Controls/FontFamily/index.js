@@ -15,6 +15,7 @@ export default class FontFamily extends Component {
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -83,7 +84,7 @@ export default class FontFamily extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded, currentFontFamily } = this.state
     const FontFamilyComponent = config.component || LayoutComponent;
     return (
@@ -95,6 +96,7 @@ export default class FontFamily extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
+        translations={translations}
       />
     );
   }

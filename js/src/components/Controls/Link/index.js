@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage } from 'react-intl';
 import { Entity, RichUtils, EditorState, Modifier } from 'draft-js';
 import {
   getSelectionText,
@@ -18,6 +17,7 @@ class Link extends Component {
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -155,7 +155,7 @@ class Link extends Component {
 
   render(): Object {
 
-    const { editorState, config } = this.props;
+    const { config, translations } = this.props;
     const { expanded } = this.state;
     const { link, selectionText } = this.getCurrentValues();
     const LinkComponent = config.component || LayoutComponent;
@@ -171,6 +171,7 @@ class Link extends Component {
           selectionText,
         }}
         onChange={this.onChange}
+        translations={translations}
       />
     );
   }

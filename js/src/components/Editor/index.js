@@ -22,22 +22,18 @@ import ModalHandler from '../../event-handler/modals';
 import FocusHandler from '../../event-handler/focus';
 import KeyDownHandler from '../../event-handler/keyDown';
 import SuggestionHandler from '../../event-handler/suggestions';
-import blockStyleFn from '../../utils/BlockStyle';
+import blockStyleFn from '../../Utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import { hasProperty, filter } from '../../utils/common';
 import Controls from '../Controls';
-import LinkDecorator from '../../decorators/Link';
+import LinkDecorator from '../../Decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
-import getHashtagDecorator from '../../decorators/Hashtag';
+import getHashtagDecorator from '../../decorators/HashTag';
 import getBlockRenderFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
+import localeTranslations from '../../i18n';
 import './styles.css';
 import '../../../../css/Draft.css';
-import { IntlProvider, addLocaleData} from 'react-intl';
-import en from 'react-intl/locale-data/en';
-import fr from 'react-intl/locale-data/fr';
-import zh from 'react-intl/locale-data/zh';
-import translations from '../../i18n';
 
 export default class WysiwygEditor extends Component {
 
@@ -111,7 +107,6 @@ export default class WysiwygEditor extends Component {
     }, props.customBlockRenderFunc, this.getEditorState);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
-    addLocaleData([...en, ...fr, ...zh]);
   }
 
   componentWillMount(): void {
@@ -389,69 +384,68 @@ export default class WysiwygEditor extends Component {
       modalHandler: this.modalHandler,
       editorState,
       onChange: this.onChange,
+      translations: localeTranslations[locale],
     }
 
     return (
-      <IntlProvider locale={locale} messages={translations[locale]}>
-        <div
-          id={this.wrapperId}
-          className={classNames('rdw-editor-wrapper', wrapperClassName)}
-          style={wrapperStyle}
-          onClick={this.modalHandler.onEditorClick}
-          onBlur={this.onWrapperBlur}
-          aria-label="rdw-wrapper"
-        >
-          {
-            !toolbarHidden &&
-            (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
-            <div
-              className={classNames('rdw-editor-toolbar', toolbarClassName)}
-              style={toolbarStyle}
-              onMouseDown={this.preventDefault}
-              aria-label="rdw-toolbar"
-              aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-              onFocus={this.onToolbarFocus}
-            >
-              {toolbar.options.map((opt,index) => {
-                const Control = Controls[opt];
-                const config = toolbar[opt];
-                if (opt === 'image' && uploadCallback) {
-                  config.uploadCallback = uploadCallback;
-                }
-                return <Control key={index} {...controlProps} config={config} />;
-              })}
-              {toolbarCustomButtons && toolbarCustomButtons.map((button, index) =>
-                React.cloneElement(button, { key: index, ...controlProps }))}
-            </div>
-          }
+      <div
+        id={this.wrapperId}
+        className={classNames('rdw-editor-wrapper', wrapperClassName)}
+        style={wrapperStyle}
+        onClick={this.modalHandler.onEditorClick}
+        onBlur={this.onWrapperBlur}
+        aria-label="rdw-wrapper"
+      >
+        {
+          !toolbarHidden &&
+          (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
           <div
-            ref={this.setWrapperReference}
-            className={classNames('rdw-editor-main', editorClassName)}
-            style={editorStyle}
-            onClick={this.focusEditor}
-            onFocus={this.onEditorFocus}
-            onBlur={this.onEditorBlur}
-            onKeyDown={KeyDownHandler.onKeyDown}
-            onMouseDown={this.onEditorMouseDown}
+            className={classNames('rdw-editor-toolbar', toolbarClassName)}
+            style={toolbarStyle}
+            onMouseDown={this.preventDefault}
+            aria-label="rdw-toolbar"
+            aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+            onFocus={this.onToolbarFocus}
           >
-            <Editor
-              ref={this.setEditorReference}
-              onTab={this.onTab}
-              onUpArrow={this.onUpDownArrow}
-              onDownArrow={this.onUpDownArrow}
-              editorState={editorState}
-              onChange={this.onChange}
-              blockStyleFn={blockStyleFn}
-              customStyleMap={this.customStyleMap}
-              handleReturn={this.handleReturn}
-              blockRendererFn={this.blockRendererFn}
-              handleKeyCommand={this.handleKeyCommand}
-              ariaLabel={ariaLabel || 'rdw-editor'}
-              {...this.editorProps}
-            />
+            {toolbar.options.map((opt,index) => {
+              const Control = Controls[opt];
+              const config = toolbar[opt];
+              if (opt === 'image' && uploadCallback) {
+                config.uploadCallback = uploadCallback;
+              }
+              return <Control key={index} {...controlProps} config={config} />;
+            })}
+            {toolbarCustomButtons && toolbarCustomButtons.map((button, index) =>
+              React.cloneElement(button, { key: index, ...controlProps }))}
           </div>
+        }
+        <div
+          ref={this.setWrapperReference}
+          className={classNames('rdw-editor-main', editorClassName)}
+          style={editorStyle}
+          onClick={this.focusEditor}
+          onFocus={this.onEditorFocus}
+          onBlur={this.onEditorBlur}
+          onKeyDown={KeyDownHandler.onKeyDown}
+          onMouseDown={this.onEditorMouseDown}
+        >
+          <Editor
+            ref={this.setEditorReference}
+            onTab={this.onTab}
+            onUpArrow={this.onUpDownArrow}
+            onDownArrow={this.onUpDownArrow}
+            editorState={editorState}
+            onChange={this.onChange}
+            blockStyleFn={blockStyleFn}
+            customStyleMap={this.customStyleMap}
+            handleReturn={this.handleReturn}
+            blockRendererFn={this.blockRendererFn}
+            handleKeyCommand={this.handleKeyCommand}
+            ariaLabel={ariaLabel || 'rdw-editor'}
+            {...this.editorProps}
+          />
         </div>
-      </IntlProvider>
+      </div>
     );
   }
 }

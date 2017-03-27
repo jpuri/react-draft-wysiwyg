@@ -15,6 +15,7 @@ class ColorPicker extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -87,7 +88,7 @@ class ColorPicker extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { currentColor, currentBgColor, expanded } = this.state
     const ColorPickerComponent = config.component || LayoutComponent;
     return (
@@ -100,6 +101,7 @@ class ColorPicker extends Component {
         doCollapse={this.doCollapse}
         currentColor={currentColor}
         currentBgColor={currentBgColor}
+        translations={translations}
       />
     );
   }

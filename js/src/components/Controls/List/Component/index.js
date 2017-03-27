@@ -93,10 +93,11 @@ export default class LayoutComponent extends Component {
 
   renderInDropDown(): Object {
     const { config, expanded, doCollapse, doExpand, onExpandEvent, onChange, currentValue } = this.props;
-    const { options, className } = config;
+    const { options, className, dropdownClassName } = config;
     return (
       <Dropdown
         className={classNames('rdw-list-dropdown', className)}
+        optionWrapperClassName={classNames(dropdownClassName)}
         onChange={onChange}
         expanded={expanded}
         doExpand={doExpand}

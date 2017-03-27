@@ -87,7 +87,6 @@ export default class Inline extends Component {
     });
   };
 
-
   render(): Object {
     const { config } = this.props;
     const { expanded, currentStyles } = this.state

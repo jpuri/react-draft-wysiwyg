@@ -1,5 +1,5 @@
 import Embedded from './Embedded';
-import getImageComponent from './Image';
+import getImageComponent from '../Renderer/Image';
 
 const getBlockRenderFunc = (config, customBlockRenderer, getEditorState) => {
   return (block) => {

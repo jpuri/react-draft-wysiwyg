@@ -13,6 +13,7 @@ class BlockType extends Component {
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -79,7 +80,7 @@ class BlockType extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded, currentBlockType } = this.state
     const BlockTypeComponent = config.component || LayoutComponent;
     return (
@@ -91,6 +92,7 @@ class BlockType extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
+        translations={translations}
       />
     );
   }

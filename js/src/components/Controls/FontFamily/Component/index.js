@@ -2,7 +2,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 
 import { Dropdown, DropdownOption } from '../../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -17,6 +16,7 @@ class LayoutComponent extends Component {
     onChange: PropTypes.func,
     config: PropTypes.object,
     currentValue: PropTypes.string,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -35,35 +35,33 @@ class LayoutComponent extends Component {
   }
 
   render() {
+    const { defaultFontFamily } = this.state;
     const {
-      config: { className, dropdownClassName },
+      config: { icon, className, dropdownClassName, options },
+      translations,
       onChange,
       expanded,
-      doExpand,
       doCollapse,
       onExpandEvent,
+      doExpand,
     } = this.props;
-    let { config: { options }, currentValue } = this.props;
-    let { defaultFontFamily } = this.state;
-    if (defaultFontFamily && options && options.indexOf(defaultFontFamily) < 0) {
-      options.push(defaultFontFamily);
-      options.sort();
-    }
+    let { currentValue } = this.props;
     currentValue =
-      currentValue && currentValue.substring(11, currentValue.length) || defaultFontFamily;
+      currentValue && currentValue.substring(11, currentValue.length) ||
+      (options && defaultFontFamily && options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) && defaultFontFamily);
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
         <Dropdown
           className={classNames('rdw-fontfamily-dropdown', className)}
+          optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
           onChange={onChange}
           expanded={expanded}
           doExpand={doExpand}
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
-          optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
         >
           <span className="rdw-fontfamily-placeholder">
-            {currentValue || <FormattedMessage id="components.controls.fontfamily.fontfamily" />}
+            {currentValue || translations['components.controls.fontfamily.fontfamily']}
           </span>
           {
             options.map((family, index) =>

@@ -34,10 +34,11 @@ export default class History extends Component {
       onUndo,
       onRedo,
     } = this.props;
-    const {options, undo, redo, className} = config;
+    const {options, undo, redo, className, dropdownClassName} = config;
     return (
       <Dropdown
         className={classNames('rdw-history-dropdown', className)}
+        optionWrapperClassName={classNames(dropdownClassName)}
         expanded={expanded}
         doExpand={doExpand}
         doCollapse={doCollapse}

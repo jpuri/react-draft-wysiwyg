@@ -1,7 +1,6 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage } from 'react-intl';
 import classNames from 'classnames';
 
 import Option from '../../../Option';
@@ -16,6 +15,7 @@ class LayoutComponent extends Component {
     doCollapse: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -133,7 +133,7 @@ class LayoutComponent extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled }, doCollapse } = this.props;
+    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled }, doCollapse, translations } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
@@ -145,7 +145,7 @@ class LayoutComponent extends Component {
               onClick={this.showImageUploadOption}
               className="rdw-image-modal-header-option"
             >
-              <FormattedMessage id="components.controls.image.fileUpload" />
+              {translations['components.controls.image.fileUpload']}
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
@@ -158,7 +158,7 @@ class LayoutComponent extends Component {
               onClick={this.showImageURLOption}
               className="rdw-image-modal-header-option"
             >
-              <FormattedMessage id="components.controls.image.byURL" />
+              {translations['components.controls.image.byURL']}
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
@@ -182,7 +182,7 @@ class LayoutComponent extends Component {
                   htmlFor="file"
                   className="rdw-image-modal-upload-option-label"
                 >
-                  <FormattedMessage id="components.controls.image.dropFileText" />
+                   {translations['components.controls.image.dropFileText']}
                 </label>
               </div>
               <input
@@ -229,13 +229,13 @@ class LayoutComponent extends Component {
             onClick={this.addImageFromState}
             disabled={!imgSrc || !height || !width}
           >
-            <FormattedMessage id="generic.add" />
+            {translations['generic.add']}
           </button>
           <button
             className="rdw-image-modal-btn"
             onClick={doCollapse}
           >
-            <FormattedMessage id="generic.cancel" />
+            {translations['generic.cancel']}
           </button>
         </span>
         {showImageLoading ?
