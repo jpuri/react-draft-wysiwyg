@@ -18,11 +18,11 @@ export default class Inline extends Component {
     onExpandEvent: PropTypes.func,
     config: PropTypes.object,
     onChange: PropTypes.func,
-    currentValue: PropTypes.object,
+    currentState: PropTypes.object,
   };
 
   renderInFlatList(): Object {
-    const { config, currentValue, onChange } = this.props;
+    const { config, currentState, onChange } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', config.className)} aria-label="rdw-inline-control">
         {
@@ -34,8 +34,8 @@ export default class Inline extends Component {
               onClick={onChange}
               className={classNames(config[style].className)}
               active={
-                currentValue[style.toUpperCase()] === true ||
-                (style.toUpperCase() === 'MONOSPACE' && currentValue['CODE'])
+                currentState[style.toUpperCase()] === true ||
+                (style.toUpperCase() === 'MONOSPACE' && currentState['CODE'])
               }
             >
               <img
@@ -56,7 +56,7 @@ export default class Inline extends Component {
       doExpand,
       onExpandEvent,
       doCollapse,
-      currentValue,
+      currentState,
       onChange,
     } = this.props;
     const { className, dropdownClassName } = config;
@@ -83,8 +83,8 @@ export default class Inline extends Component {
               value={style.toUpperCase()}
               className={classNames('rdw-inline-dropdownoption', config[style].className)}
               active={
-                currentValue[style.toUpperCase()] === true ||
-                (style.toUpperCase() === 'MONOSPACE' && currentValue['CODE'])
+                currentState[style.toUpperCase()] === true ||
+                (style.toUpperCase() === 'MONOSPACE' && currentState['CODE'])
               }
             >
               <img

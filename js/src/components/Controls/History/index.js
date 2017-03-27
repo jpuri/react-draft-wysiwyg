@@ -69,21 +69,13 @@ export default class History extends Component {
     });
   };
 
-  undo: Function = () => {
+  onChange: Function = (action) => {
     const { editorState, onChange } = this.props;
-    const newState = EditorState.undo(editorState);
+    const newState = EditorState[action](editorState);
     if (newState) {
       onChange(newState);
     }
-  };
-
-  redo: Function = () => {
-    const { editorState, onChange } = this.props;
-    const newState = EditorState.redo(editorState);
-    if (newState) {
-      onChange(newState);
-    }
-  };
+  }
 
   render(): Object {
     const { config } = this.props;
@@ -92,14 +84,12 @@ export default class History extends Component {
     return (
       <HistoryComponent
         config={config}
-        undoDisabled={undoDisabled}
-        redoDisabled={redoDisabled}
+        currentState={{ undoDisabled, redoDisabled}}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        onUndo={this.undo}
-        onRedo={this.redo}
+        onChange={this.onChange}
       />
     );
   }

@@ -16,11 +16,14 @@ export default class History extends Component {
     doCollapse: PropTypes.func,
     onExpandEvent: PropTypes.func,
     config: PropTypes.object,
-    onUndo: PropTypes.func,
-    onRedo: PropTypes.func,
-    undoDisabled: PropTypes.bool,
-    redoDisabled: PropTypes.bool,
+    onChange: PropTypes.func,
+    currentState: PropTypes.object,
   };
+
+  onChange = (obj) => {
+    const { onChange } = this.props;
+    onChange(obj);
+  }
 
   renderInDropDown(): Object {
     const {
@@ -29,10 +32,7 @@ export default class History extends Component {
       doExpand,
       onExpandEvent,
       doCollapse,
-      undoDisabled,
-      redoDisabled,
-      onUndo,
-      onRedo,
+      currentState : { undoDisabled, redoDisabled },
     } = this.props;
     const {options, undo, redo, className, dropdownClassName} = config;
     return (
@@ -50,7 +50,8 @@ export default class History extends Component {
           alt=""
         />
         {options.indexOf('undo') >= 0 && <DropdownOption
-          onClick={onUndo}
+          value="undo"
+          onClick={this.onChange}
           disabled={undoDisabled}
           className={classNames('rdw-history-dropdownoption', undo.className)}
         >
@@ -60,7 +61,8 @@ export default class History extends Component {
           />
         </DropdownOption>}
         {options.indexOf('redo') >= 0 && <DropdownOption
-          onClick={onRedo}
+          value="redo"
+          onClick={this.onChange}
           disabled={redoDisabled}
           className={classNames('rdw-history-dropdownoption', redo.className)}
         >
@@ -75,17 +77,14 @@ export default class History extends Component {
 
   renderInFlatList(): Object {
     const {
-        config: { options, undo, redo, className },
-        undoDisabled,
-        redoDisabled,
-        onUndo,
-        onRedo,
+      config: { options, undo, redo, className },
+      currentState: { undoDisabled, redoDisabled },
     } = this.props;
     return (
       <div className={classNames('rdw-history-wrapper', className)} aria-label="rdw-history-control">
         {options.indexOf('undo') >= 0 && <Option
-          value="unordered-list-item"
-          onClick={onUndo}
+          value="undo"
+          onClick={this.onChange}
           className={classNames(undo.className)}
           disabled={undoDisabled}
         >
@@ -95,8 +94,8 @@ export default class History extends Component {
           />
         </Option>}
         {options.indexOf('redo') >= 0 && <Option
-          value="ordered-list-item"
-          onClick={onRedo}
+          value="redo"
+          onClick={this.onChange}
           className={classNames(redo.className)}
           disabled={redoDisabled}
         >

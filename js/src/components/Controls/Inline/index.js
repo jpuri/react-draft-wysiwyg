@@ -13,6 +13,7 @@ export default class Inline extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -88,17 +89,19 @@ export default class Inline extends Component {
   };
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { expanded, currentStyles } = this.state
     const InlineComponent = config.component || LayoutComponent;
+    console.log('currentStyles', currentStyles)
     return (
       <InlineComponent
         config={config}
+        translations={translations}
+        currentState={currentStyles}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentValue={currentStyles}
         onChange={this.toggleInlineStyle}
       />
     );

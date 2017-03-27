@@ -74,12 +74,12 @@ class ImageControl extends Component {
     return (
       <ImageComponent
         config={config}
+        translations={translations}
         onChange={this.addImage}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollpase={this.doCollpase}
-        translations={translations}
       />
     );
   }
