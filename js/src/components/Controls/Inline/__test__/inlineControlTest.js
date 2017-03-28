@@ -19,13 +19,14 @@ describe('InlineControl test suite', () => {
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div when rendered', () => {
-    expect(shallow(
+    expect(mount(
       <InlineControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.inline}
+        modalHandler={new ModalHandler()}
       />
-    ).node.type).to.equal('div');
+    ).html().startsWith('<div')).to.be.true;
   });
 
   it('should have 5 child elements by default', () => {
@@ -34,6 +35,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.inline}
+        modalHandler={new ModalHandler()}
       />
     );
     expect(control.children().length).to.equal(7);
@@ -59,6 +61,7 @@ describe('InlineControl test suite', () => {
         onChange={onChange}
         editorState={editorState}
         config={defaultToolbar.inline}
+        modalHandler={new ModalHandler()}
       />
     );
     control.childAt(0).simulate('click');
@@ -79,6 +82,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.inline}
+        modalHandler={new ModalHandler()}
       />
     );
     assert.isNotTrue(control.state().currentStyles.BOLD);

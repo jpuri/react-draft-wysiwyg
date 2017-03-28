@@ -25,6 +25,7 @@ describe('Block test suite', () => {
         editorState={editorState}
         config={{...defaultToolbar.blockType, inDropdown: false}}
         translations={localeTranslations['en']}
+        modalHandler={new ModalHandler()}
       />
     ).html().startsWith('<div')).to.be.true;
   });
@@ -49,6 +50,7 @@ describe('Block test suite', () => {
         editorState={editorState}
         config={{...defaultToolbar.blockType, inDropdown: false}}
         translations={localeTranslations['en']}
+        modalHandler={new ModalHandler()}
       />
     );
     expect(block.find('Option').length).to.equal(8);

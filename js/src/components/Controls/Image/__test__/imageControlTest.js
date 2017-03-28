@@ -41,7 +41,7 @@ describe('ImageControl test suite', () => {
     expect(control.children().length).to.equal(1);
   });
 
-  it('should set signalShowModal to true when option is clicked', () => {
+  it('should set signalExpanded to true when option is clicked', () => {
     const control = mount(
       <ImageControl
         onChange={() => {}}
@@ -51,8 +51,8 @@ describe('ImageControl test suite', () => {
       />
     );
     const imageControl = control.find('ImageControl');
-    assert.isNotTrue(imageControl.node.signalShowModal);
+    assert.isNotTrue(imageControl.node.signalExpanded);
     control.find('Option').simulate('click');
-    assert.isTrue(imageControl.node.signalShowModal);
+    assert.isTrue(imageControl.node.signalExpanded);
   });
 });

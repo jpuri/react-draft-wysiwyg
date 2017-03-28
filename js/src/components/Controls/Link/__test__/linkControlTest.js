@@ -41,7 +41,7 @@ describe('LinkControl test suite', () => {
     expect(control.children().length).to.equal(2);
   });
 
-  it('should have no value for state variables linkTitle and linkTarget by default', () => {
+  it('should have no value for state variable link default', () => {
     const control = mount(
       <LinkControl
         onChange={() => {}}
@@ -51,8 +51,7 @@ describe('LinkControl test suite', () => {
       />
     );
     const linkControl = control.find('Link');
-    assert.isNotTrue(linkControl.node.state.showModal);
-    assert.equal(linkControl.node.state.linkTarget, '');
-    assert.equal(linkControl.node.state.linkTitle, '');
+    assert.isNotTrue(linkControl.node.state.expanded);
+    assert.equal(linkControl.node.state.link, undefined);
   });
 });

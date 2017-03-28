@@ -33,6 +33,7 @@ export default {
   inline: {
     inDropdown: false,
     className: undefined,
+    component: undefined,
     dropdownClassName: undefined,
     options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace', 'superscript', 'subscript'],
     bold: { icon: bold, className: undefined },
@@ -47,22 +48,26 @@ export default {
     inDropdown: true,
     options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],
     className: undefined,
+    component: undefined,
     dropdownClassName: undefined,
   },
   fontSize: {
     icon: fontSize,
     options: [8, 9, 10, 11, 12, 14, 16, 18, 24, 30, 36, 48, 60, 72, 96],
     className: undefined,
+    component: undefined,
     dropdownClassName: undefined,
   },
   fontFamily: {
     options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],
     className: undefined,
+    component: undefined,
     dropdownClassName: undefined,
   },
   list: {
     inDropdown: false,
     className: undefined,
+    component: undefined,
     dropdownClassName: undefined,
     options: ['unordered', 'ordered', 'indent', 'outdent'],
     unordered: { icon: unordered, className: undefined },
@@ -73,6 +78,7 @@ export default {
   textAlign: {
     inDropdown: false,
     className: undefined,
+    component: undefined,
     dropdownClassName: undefined,
     options: ['left', 'center', 'right', 'justify'],
     left: { icon: left, className: undefined },
@@ -83,6 +89,7 @@ export default {
   colorPicker: {
     icon: color,
     className: undefined,
+    component: undefined,
     popupClassName: undefined,
     colors: ['rgb(97,189,109)', 'rgb(26,188,156)', 'rgb(84,172,210)', 'rgb(44,130,201)',
       'rgb(147,101,184)', 'rgb(71,85,119)', 'rgb(204,204,204)', 'rgb(65,168,95)', 'rgb(0,168,133)',
@@ -94,6 +101,7 @@ export default {
   link: {
     inDropdown: false,
     className: undefined,
+    component: undefined,
     popupClassName: undefined,
     dropdownClassName: undefined,
     showOpenOptionOnHover: true,
@@ -104,6 +112,7 @@ export default {
   emoji: {
     icon: emoji,
     className: undefined,
+    component: undefined,
     popupClassName: undefined,
     emojis: [
       '😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌', '🤓',
@@ -120,11 +129,13 @@ export default {
   embedded: {
     icon: embedded,
     className: undefined,
+    component: undefined,
     popupClassName: undefined,
   },
   image: {
     icon: image,
     className: undefined,
+    component: undefined,
     popupClassName: undefined,
     urlEnabled: true,
     uploadEnabled: true,
@@ -135,10 +146,11 @@ export default {
       width: '100%',
     },
   },
-  remove: { icon: eraser, className: undefined },
+  remove: { icon: eraser, className: undefined, component: undefined },
   history: {
     inDropdown: false,
     className: undefined,
+    component: undefined,
     dropdownClassName: undefined,
     options: ['undo', 'redo'],
     undo: { icon: undo, className: undefined },

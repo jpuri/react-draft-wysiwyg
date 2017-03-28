@@ -3,7 +3,7 @@
 import React from 'react';
 import { expect, assert } from 'chai';// eslint-disable-line import/no-extraneous-dependencies
 import { spy } from 'sinon';// eslint-disable-line import/no-extraneous-dependencies
-import { shallow, mount } from 'enzyme';// eslint-disable-line import/no-extraneous-dependencies
+import { mount } from 'enzyme';// eslint-disable-line import/no-extraneous-dependencies
 import {
   EditorState,
   convertFromHTML,
@@ -19,13 +19,14 @@ describe('TextAlignControl test suite', () => {
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div when rendered', () => {
-    expect(shallow(
+    expect(mount(
       <TextAlignControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.textAlign}
+        modalHandler={new ModalHandler()}
       />
-    ).node.type).to.equal('div');
+    ).html().startsWith('<div')).to.be.true;
   });
 
   it('should have 4 child elements by default', () => {
@@ -34,6 +35,7 @@ describe('TextAlignControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.textAlign}
+        modalHandler={new ModalHandler()}
       />
     );
     expect(control.children().length).to.equal(4);
@@ -59,6 +61,7 @@ describe('TextAlignControl test suite', () => {
         onChange={onChange}
         editorState={editorState}
         config={defaultToolbar.textAlign}
+        modalHandler={new ModalHandler()}
       />
     );
     control.childAt(0).simulate('click');

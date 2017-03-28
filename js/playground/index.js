@@ -103,27 +103,18 @@ class Playground extends Component {
           <input tabIndex={0} />
           <div className="playground-editorWrapper">
             <Editor
-              locale="fr"
               tabIndex={0}
               editorState={editorState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               toolbar={{
-                image: { popupClassName : 'dropdownClassName', className : 'className', uploadCallback: this.imageUploadCallBack },
+                history: { inDropdown: true },
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                image: { uploadCallback: this.imageUploadCallBack },
                 link: { showOpenOptionOnHover: false },
-                remove: {dropdownClassName : 'dropdownClassName', className : 'className'},
-                fontSize: {dropdownClassName : 'dropdownClassName', className : 'className'},
-                fontFamily: {dropdownClassName : 'dropdownClassName', className : 'className'},
-                colorPicker: {popupClassName : 'dropdownClassName', className : 'className'},
-                embedded: {popupClassName : 'dropdownClassName', className : 'className'},
-                emoji: {popupClassName : 'dropdownClassName', className : 'className'},
-                list: {inDropdown: true, dropdownClassName : 'dropdownClassName', className : 'className'},
-                link: {inDropdown: true, dropdownClassName : 'dropdownClassName', className : 'className'},
-                history: {inDropdown: true, dropdownClassName : 'dropdownClassName', className : 'className'},
-                textAlign: {inDropdown: true, dropdownClassName : 'dropdownClassName', className : 'className'},
-                inline: {inDropdown: true, dropdownClassName : 'dropdownClassName', className : 'className'},
-                blockType: {inDropdown: true, dropdownClassName : 'dropdownClassName', className : 'className'}
               }}
               onEditorStateChange={this.onEditorStateChange}
               onContentStateChange={this.onEditorChange}
