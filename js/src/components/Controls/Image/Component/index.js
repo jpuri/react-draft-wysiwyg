@@ -114,6 +114,11 @@ class LayoutComponent extends Component {
           dragEnter: false,
         });
         this.addImageFromSrcLink(data.link);
+      }).catch(() => {
+        this.setState({
+          showImageLoading: false,
+          dragEnter: false,
+        });
       });
   };
 
