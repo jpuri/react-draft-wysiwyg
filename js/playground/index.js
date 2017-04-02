@@ -111,10 +111,10 @@ class Playground extends Component {
               toolbar={{
                 history: { inDropdown: true },
                 inline: { inDropdown: true },
-                list: { inDropdown: true },
+                list: { inDropdown: false },
                 textAlign: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
-                link: { showOpenOptionOnHover: false },
+                link: { showOpenOptionOnHover: false, component: () => <div>text</div> },
               }}
               onEditorStateChange={this.onEditorStateChange}
               onContentStateChange={this.onEditorChange}
