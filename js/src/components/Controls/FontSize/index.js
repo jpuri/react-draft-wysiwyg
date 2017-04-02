@@ -87,11 +87,10 @@ export default class FontSize extends Component {
 
   toggleFontSize: Function = (fontSize: number) => {
     const { editorState, onChange } = this.props;
-    const fontSizeStr = fontSize && (fontSize.toString() || '');
     const newState = toggleCustomInlineStyle(
       editorState,
       'fontSize',
-      fontSizeStr,
+      fontSize,
     );
     if (newState) {
       onChange(newState);

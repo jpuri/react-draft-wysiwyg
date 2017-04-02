@@ -67,7 +67,7 @@ class LayoutComponent extends Component {
             options.map((family, index) =>
               <DropdownOption
                 active={currentFontFamily === family}
-                value={`fontfamily-${family}`}
+                value={family}
                 key={index}
               >
                 {family}

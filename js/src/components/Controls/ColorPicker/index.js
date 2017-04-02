@@ -80,7 +80,7 @@ class ColorPicker extends Component {
     const newState = toggleCustomInlineStyle(
       editorState,
       style,
-      `${style}-${color}`
+      color,
     );
     if (newState) {
       onChange(newState);

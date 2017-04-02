@@ -74,7 +74,7 @@ export default class LayoutComponent extends Component {
               <DropdownOption
                 className="rdw-fontsize-option"
                 active={currentFontSize === size}
-                value={`fontsize-${size}`}
+                value={size}
                 key={index}
               >
                 {size}

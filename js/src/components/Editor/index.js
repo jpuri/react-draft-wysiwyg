@@ -11,10 +11,7 @@ import {
 } from 'draft-js';
 import {
   changeDepth,
-  setColors,
-  setFontSizes,
   handleNewLine,
-  setFontFamilies,
   getCustomStyleMap,
 } from 'draftjs-utils';
 import classNames from 'classnames';
@@ -90,9 +87,6 @@ export default class WysiwygEditor extends Component {
   constructor(props) {
     super(props);
     const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
-    setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
-    setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
-    setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
     this.state = {
       editorState: undefined,
       editorFocused: false,
@@ -126,9 +120,6 @@ export default class WysiwygEditor extends Component {
     const newState = {};
     if (this.props.toolbar !== props.toolbar) {
       const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
-      setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
-      setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
-      setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
       newState.toolbar = toolbar;
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
@@ -437,7 +428,7 @@ export default class WysiwygEditor extends Component {
             editorState={editorState}
             onChange={this.onChange}
             blockStyleFn={blockStyleFn}
-            customStyleMap={this.customStyleMap}
+            customStyleMap={getCustomStyleMap()}
             handleReturn={this.handleReturn}
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
