@@ -85,6 +85,7 @@ class ColorPicker extends Component {
     if (newState) {
       onChange(newState);
     }
+    this.doCollapse();
   };
 
   render(): Object {

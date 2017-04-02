@@ -22,6 +22,14 @@ class LayoutComponent extends Component {
     currentStyle: 'color',
   };
 
+  componentWillReceiveProps(props) {
+    if (!this.props.expanded && props.expanded) {
+      this.setState({
+        currentStyle: 'color',
+      });
+    }
+  }
+
   setCurrentStyleBgcolor: Function = (): void => {
     this.setState({
       currentStyle: 'bgcolor',

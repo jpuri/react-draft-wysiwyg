@@ -64,7 +64,7 @@ class ImageControl extends Component {
       ' '
     );
     onChange(newEditorState);
-    this.closeModal();
+    this.doCollapse();
   };
 
   render(): Object {
