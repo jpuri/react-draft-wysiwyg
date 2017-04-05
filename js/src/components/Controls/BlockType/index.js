@@ -95,11 +95,12 @@ class BlockType extends Component {
     const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded, currentBlockType } = this.state
     const BlockTypeComponent = config.component || LayoutComponent;
+    const blockType = this.blocksTypes.find(bt => bt.style === currentBlockType);
     return (
       <BlockTypeComponent
         config={config}
         translations={translations}
-        currentState={{ blockType : this.blocksTypes.find(bt => bt.style === currentBlockType).label }}
+        currentState={{ blockType: blockType && blockType.label }}
         onChange={this.toggleBlockType}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

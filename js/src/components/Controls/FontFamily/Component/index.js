@@ -46,8 +46,7 @@ class LayoutComponent extends Component {
       doExpand,
     } = this.props;
     let { currentState: { fontFamily : currentFontFamily } } = this.props;
-    currentFontFamily =
-      currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length) ||
+    currentFontFamily = currentFontFamily ||
       (options && defaultFontFamily && options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) && defaultFontFamily);
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">

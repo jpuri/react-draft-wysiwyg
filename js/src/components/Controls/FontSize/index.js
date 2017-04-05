@@ -101,12 +101,12 @@ export default class FontSize extends Component {
     const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded, currentFontSize } = this.state
     const FontSizeComponent = config.component || LayoutComponent;
-    const fontSizeValue = currentFontSize && Number(currentFontSize.substring(9));
+    const fontSize = currentFontSize && Number(currentFontSize.substring(9));
     return (
       <FontSizeComponent
         config={config}
         translations={translations}
-        currentState={{ fontSize: fontSizeValue }}
+        currentState={{ fontSize }}
         onChange={this.toggleFontSize}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
