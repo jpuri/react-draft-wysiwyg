@@ -110,12 +110,12 @@ export default class LayoutComponent extends Component {
           .filter(option => options.indexOf(option) >= 0)
           .map((option, index) => (<DropdownOption
             key={index}
-            value={option.value}
-            className={classNames('rdw-list-dropdownOption', config[option.type].className)}
-            active={listType === option.value}
+            value={option}
+            className={classNames('rdw-list-dropdownOption', config[option].className)}
+            active={listType === option}
           >
             <img
-              src={config[option.type].icon}
+              src={config[option].icon}
               alt=""
             />
           </DropdownOption>))

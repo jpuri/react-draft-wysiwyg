@@ -62,8 +62,8 @@ export default class Inline extends Component {
       editorState,
       newStyle
     );
-    if (newStyle === 'subscript' || newStyle === 'superscript') {
-      const removeStyle = newStyle === 'subscript' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
+    if (style === 'subscript' || style === 'superscript') {
+      const removeStyle = style === 'subscript' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
       const contentState = Modifier.removeInlineStyle(
         newState.getCurrentContent(),
         newState.getSelection(),
