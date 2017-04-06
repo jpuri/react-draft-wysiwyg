@@ -89,7 +89,7 @@ class Link extends Component {
   };
 
   onChange = (action, title, target) => {
-    if (action === 'add') {
+    if (action === 'link') {
       this.addLink(title, target);
     } else {
       this.removeLink();

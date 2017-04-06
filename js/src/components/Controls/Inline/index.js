@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
 import { RichUtils, EditorState, Modifier } from 'draft-js';
+import { forEach } from '../../../utils/common';
 
 import LayoutComponent from './Component';
 
@@ -24,7 +25,7 @@ export default class Inline extends Component {
     const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
-        currentStyles: getSelectionInlineStyle(editorState),
+        currentStyles: this.changeKeys(getSelectionInlineStyle(editorState)),
       });
     }
     modalHandler.registerCallBack(this.expandCollapse);
@@ -34,7 +35,7 @@ export default class Inline extends Component {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       this.setState({
-        currentStyles: getSelectionInlineStyle(properties.editorState),
+        currentStyles: this.changeKeys(getSelectionInlineStyle(properties.editorState)),
       });
     }
   }
@@ -44,15 +45,25 @@ export default class Inline extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
+  changeKeys = (style) => {
+    if (style) {
+      const st = {};
+      forEach(style, (key, value) => {
+        st[key === 'CODE' ? 'monospace' : key.toLowerCase()] = value;
+      });
+      return st;
+    }
+  }
+
   toggleInlineStyle: Function = (style: string): void => {
-    const newStyle = style === 'MONOSPACE' ? 'CODE' : style;
+    const newStyle = style === 'monospace' ? 'CODE' : style.toUpperCase();
     const { editorState, onChange } = this.props;
     let newState = RichUtils.toggleInlineStyle(
       editorState,
       newStyle
     );
-    if (newStyle === 'SUBSCRIPT' || newStyle === 'SUPERSCRIPT') {
-      const removeStyle = newStyle === 'SUBSCRIPT' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
+    if (newStyle === 'subscript' || newStyle === 'superscript') {
+      const removeStyle = newStyle === 'subscript' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
       const contentState = Modifier.removeInlineStyle(
         newState.getCurrentContent(),
         newState.getSelection(),

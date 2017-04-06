@@ -114,7 +114,6 @@ class Playground extends Component {
                 list: { inDropdown: false },
                 textAlign: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
-                link: { showOpenOptionOnHover: false, component: () => <div>text</div> },
               }}
               onEditorStateChange={this.onEditorStateChange}
               onContentStateChange={this.onEditorChange}
