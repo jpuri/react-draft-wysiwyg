@@ -32,6 +32,6 @@ module.exports = {
   'components.controls.image.dropFileText': 'Переместите в эту область файлы или кликните для загрузки',
 
   // Link
-  'components.controls.link.linkTitle': 'Подсказка',
-  'components.controls.link.linkTarget': 'Цель',
+  'components.controls.link.linkTitle': 'Текст',
+  'components.controls.link.linkTarget': 'Адрес ссылки',
 }
