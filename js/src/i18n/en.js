@@ -31,7 +31,10 @@ module.exports = {
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Drop the file or click to upload',
 
-  //Link
+  // Link
   'components.controls.link.linkTitle': 'Link Title',
   'components.controls.link.linkTarget': 'Link Target',
-}
+  'components.controls.link.linkTargetOption': 'Target',
+  'components.controls.link.linkTargetOption.MainWindow': 'Main window',
+  'components.controls.link.linkTargetOption.NewWindow': 'New window',
+};

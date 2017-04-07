@@ -64,7 +64,7 @@ class Link extends Component {
   doExpand: Function = (): void => {
     this.setState({
       expanded: true,
-    })
+    });
   };
 
   getCurrentValues = () => {
@@ -76,6 +76,7 @@ class Link extends Component {
       currentValues.link = {};
       const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
       currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get('data').url;
+      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get('data').target;
       currentValues.link.title = (entityRange && entityRange.text);
     }
     currentValues.selectionText = getSelectionText(editorState);
@@ -88,9 +89,9 @@ class Link extends Component {
     });
   };
 
-  onChange = (action, title, target) => {
+  onChange = (action, title, target, targetOption) => {
     if (action === 'add') {
-      this.addLink(title, target);
+      this.addLink(title, target, targetOption);
     } else {
       this.removeLink();
     }
@@ -110,7 +111,7 @@ class Link extends Component {
     }
   };
 
-  addLink: Function = (linkTitle, linkTarget): void => {
+  addLink: Function = (linkTitle, linkTarget, linkTargetOption): void => {
     const { editorState, onChange } = this.props;
     const { currentEntity } = this.state;
     let selection = editorState.getSelection();
@@ -124,7 +125,7 @@ class Link extends Component {
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', { url: linkTarget })
+      .createEntity('LINK', 'MUTABLE', { url: linkTarget, target: linkTargetOption })
       .getLastCreatedEntityKey();
 
     let contentState = Modifier.replaceText(
@@ -147,14 +148,13 @@ class Link extends Component {
       selection,
       ' ',
       newEditorState.getCurrentInlineStyle(),
-      undefined
+      undefined,
     );
     onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
     this.doCollapse();
   };
 
   render(): Object {
-
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const { link, selectionText } = this.getCurrentValues();
