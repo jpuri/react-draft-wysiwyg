@@ -26,7 +26,7 @@ class LayoutComponent extends Component {
     showModal: false,
     linkTarget: '',
     linkTitle: '',
-    linkTargetOption: '_self',
+    linkTargetOption: this.props.config.defaultTargetOption,
   };
 
   componentWillReceiveProps(props) {
@@ -35,7 +35,7 @@ class LayoutComponent extends Component {
         showModal: false,
         linkTarget: '',
         linkTitle: '',
-        linkTargetOption: '_self',
+        linkTargetOption: this.props.config.defaultTargetOption,
       });
     }
   }
