@@ -98,7 +98,7 @@ const getImageComponent = (config) => {
           <span className="rdw-image-imagewrapper">
             <img
               src={src}
-              role="presentation"
+              alt=""
               style={{
                 height,
                 width,

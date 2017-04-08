@@ -230,116 +230,30 @@ export default class Demo2 extends Component {
               <li>Using custom icons in the toolbar.</li>
               <li>Applying custom styles to the toolbar options using CSS classes.</li>
             </ol>
-            Below is the complete toolbar property object, user can provide any or all of these properties.
+            <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/js/src/config/defaultToolbar.js">Here</a> is the complete toolbar property object, user can provide any or all of these properties.
             For editor to reflect the changes in this object you need to make sure that you do not mutate it but rather create a new copy.
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            Using custom react component for toolbar options.
+          </div>
+          <div className="docs-desc">
+            Custom react components can be used for exiting toolbar options. For an example check <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/docs/src/components/Demo/ColorPic/index.js">here</a>.
+            Custom components are passed following 5 properties:
           </div>
           <div>
             <code>
-              {'{'} <br />
-              &nbsp;&nbsp;options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;'link', 'embedded', 'emoji', 'image', 'remove', 'history'], <br />
-              &nbsp;&nbsp;inline: {'{'} <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: ['bold', 'italic', 'underline', 'strikethrough', 'monospace', 'superscript', 'subscript'], <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;bold: {'{ icon: bold, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;italic: {'{ icon: italic, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;underline: {'{ icon: underline, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;strikethrough: {'{ icon: strikethrough, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;monospace: {'{ icon: monospace, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;superscript: {'{ icon: superscript, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;subscript: {'{ icon: subscript, className: undefined }'}, <br />
-              &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;blockType: {'{'}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: true,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: [ 'Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote'],<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
-              &nbsp;&nbsp;{'},'}<br />
-              &nbsp;&nbsp;fontSize: {'{'} <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;icon: fontSize<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: [8, 9, 10, 11, 12, 14, 18, 24, 30, 36, 48, 60, 72, 96],<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
-              &nbsp;&nbsp;{'},'}<br />
-              &nbsp;&nbsp;fontFamily: {'{'}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;dropdownClassName: undefined,<br />
-              &nbsp;&nbsp;{'},'}<br />
-              &nbsp;&nbsp;list: {'{'} <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: {"['unordered', 'ordered', 'indent', 'outdent']"}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;unordered: {'{ icon: unordered, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;ordered: {'{ icon: ordered, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;indent: {'{ icon: indent, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;outdent: {'{ icon: outdent, className: undefined }'}, <br />
-              &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;textAlign: {'{'} <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: {"['left', 'center', 'right', 'justify']"}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;left: {'{ icon: left, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;center: {'{ icon: center, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;right: {'{ icon: right, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;justify: {'{ icon: justify, className: undefined }'}, <br />
-              &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;colorPicker: {'{'}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;icon: color, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;popClassName: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;colors: [{"'rgb(97,189,109)', 'rgb(26,188,156)', 'rgb(84,172,210)', 'rgb(44,130,201)',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(147,101,184)', 'rgb(71,85,119)', 'rgb(204,204,204)', 'rgb(65,168,95)', 'rgb(0,168,133)',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(61,142,185)', 'rgb(41,105,176)', 'rgb(85,57,130)', 'rgb(40,50,78)', 'rgb(0,0,0)',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(247,218,100)', 'rgb(251,160,38)', 'rgb(235,107,86)', 'rgb(226,80,65)', 'rgb(163,143,132)',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(239,239,239)', 'rgb(255,255,255)', 'rgb(250,197,28)', 'rgb(243,121,52)', 'rgb(209,72,65)',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'rgb(184,49,47)', 'rgb(124,112,107)', 'rgb(209,213,216)']"}<br />
-              &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;link: {'{'} <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;popClassName: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: {"['link', 'unlink']"}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;link: {'{ icon: link, className: undefined }'},<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;unlink: {'{ icon: unlink, className: undefined }'}, <br />
-              &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;embedded: {'{ icon: image, className: undefined, popClassName: undefined }'}, <br />
-              &nbsp;&nbsp;emoji: {'{'}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;icon: emoji,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;popClassName: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;emojis: [{"'😀', '😁', '😂', '😃', '😉', '😋', '😎', '😍', '😗', '🤗', '🤔', '😣', '😫', '😴', '😌',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🤓', '😛', '😜', '😠', '😇', '😷', '😈', '👻', '😺', '😸', '😹', '😻', '😼', '😽', '🙀', '🙈', '🙉', '🙊',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'👼', '👮', '🕵', '💂', '👳', '🎅', '👸', '👰', '👲', '🙍', '🙇', '🚶', '🏃', '💃',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'⛷', '🏂', '🏌', '🏄', '🚣', '🏊', '⛹', '🏋', '🚴', '👫', '💪', '👈', '👉', '👉', '👆', '🖕', '👇',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🖖', '🤘', '🖐', '👌', '👍', '👎', '✊', '👊', '👏', '🙌', '🙏', '🐵', '🐶',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🐇', '🐥', '🐸', '🐌', '🐛', '🐜', '🐝', '🍉', '🍄', '🍔', '🍤', '🍨', '🍪', '🎂', '🍰', '🍾', '🍷', '🍸',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🍺', '🌍', '🚑', '⏰', '🌙', '🌝', '🌞', '⭐', '🌟', '🌠', '🌨', '🌩', '⛄', '🔥', '🎄', '🎈', '🎉',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'🎊', '🎁', '🎗', '🏀', '🏈', '🎲', '🔇', '🔈', '📣', '🔔', '🎵', '🎷',"}<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{"'💰', '🖊', '📅', '✅', '❎', '💯'],"}<br />
-              &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;image: {'{'} <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;icon: image,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;popupClassName: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;urlEnabled: true,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;uploadEnabled: true,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;alignmentEnabled: false,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;uploadCallback: undefined,<br />
-              &nbsp;&nbsp;&nbsp;&nbsp;defaultSize: {"{ height: 'auto',  width: '100%' }"}, <br />
-              &nbsp;&nbsp;{'}'}, <br />
-              &nbsp;&nbsp;remove: {'{ icon: eraser, className: undefined }'}, <br />
-              &nbsp;&nbsp;history: {'{'} <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;inDropdown: false, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;className: undefined, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;options: {"['undo', 'redo']"}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;undo: {'{ icon: undo, className: undefined }'}, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;redo: {'{ icon: redo, className: undefined }'}, <br />
-              &nbsp;&nbsp;{'}'}, <br />
-              {'}'} <br />
-              <br />
-              {'<Editor toolbar={toolbar} />'}
+              {'<ColorPickerComponent'}<br />
+              &nbsp;&nbsp;{'config={config}'}<br />
+              &nbsp;&nbsp;{'translations={translations}'}<br />
+              &nbsp;&nbsp;{'onChange={this.toggleColor}'}<br />
+              &nbsp;&nbsp;{'expanded={expanded}'}<br />
+              &nbsp;&nbsp;{'onExpandEvent={this.onExpandEvent}'}<br />
+              &nbsp;&nbsp;{'doExpand={this.doExpand}'}<br />
+              &nbsp;&nbsp;{'doCollapse={this.doCollapse}'}<br />
+              &nbsp;&nbsp;{'currentState={{ color: currentColor, bgColor: currentBgColor }}'}<br />
+              {'/>'}<br />
             </code>
           </div>
         </div>
@@ -354,21 +268,20 @@ export default class Demo2 extends Component {
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            Custom block rendering.
+            Internationalizing toolbar.
           </div>
           <div className="docs-desc">
-            Property customBlockRenderFunc can be used to pass function for custom rendering of blocks, <a  target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/advanced-topics-block-components.html#custom-block-components">ref.</a>
+            Toolbar labels can be internationalized using property localization. Localization has 2 parameters: locale and translations. <br/>
+            User can either provide locale or a JavaScript object for translations. Currently supported locales are: English('en'), French('fr'), Chinese('zh') and Russian('ru').<br/>
+            For an example of translations check <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/js/src/i18n/en.js">here</a>.
           </div>
         </div>
         <div className="docs-section">
           <div className="docs-label">
-            BlockType label
+            Custom block rendering.
           </div>
           <div className="docs-desc">
-            To add custom labels to the blockTypeslit, in the blockType configs :
-            <code>
-              displayNames: {H1: "Title", H2: "Subtitle", ...}
-            </code>
+            Property customBlockRenderFunc can be used to pass function for custom rendering of blocks, <a  target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/advanced-topics-block-components.html#custom-block-components">ref.</a>
           </div>
         </div>
         <div className="docs-section">

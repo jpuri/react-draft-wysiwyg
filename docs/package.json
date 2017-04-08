@@ -42,7 +42,9 @@
     "url-loader": "^0.5.8",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.10.1",
-    "webpack-hot-middleware": "^2.17.1"
+    "webpack-hot-middleware": "^2.17.1",
+    "lodash": "^4.17.4",
+    "babel-plugin-lodash": "^3.2.11"
   },
   "repository": {
     "type": "git",
@@ -57,10 +59,12 @@
   "author": "Jyoti Puri",
   "license": "MIT",
   "dependencies": {
+    "babel-plugin-lodash": "^3.2.11",
     "classnames": "^2.2.5",
     "draft-js": "^0.10.0",
     "immutable": "^4.0.0-rc.1",
     "react": "^15.4.2",
+    "react-color": "^2.11.4",
     "react-dom": "^15.4.2",
     "react-draft-wysiwyg": "file:../",
     "react-router": "^3.0.2"

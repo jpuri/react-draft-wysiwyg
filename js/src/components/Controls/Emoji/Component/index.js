@@ -1,0 +1,70 @@
+/* @flow */
+
+import React, { Component, PropTypes } from 'react';
+import classNames from 'classnames';
+
+import { stopPropagation } from '../../../../utils/common';
+import Option from '../../../Option';
+import styles from './styles.css'; // eslint-disable-line no-unused-vars
+
+class LayoutComponent extends Component {
+
+  static propTypes: Object = {
+    expanded: PropTypes.bool,
+    onExpandEvent: PropTypes.func,
+    onChange: PropTypes.func,
+    config: PropTypes.object,
+  };
+
+  onChange: Function = (event: Object): void => {
+    const { onChange } = this.props;
+    onChange(event.target.innerHTML);
+  };
+
+  renderEmojiModal(): Object {
+    const { config: { popupClassName, emojis } } = this.props;
+    return (
+      <div
+        className={classNames('rdw-emoji-modal', popupClassName)}
+        onClick={stopPropagation}
+      >
+        {
+          emojis.map((emoji, index) => (<span
+            key={index}
+            className="rdw-emoji-icon"
+            alt=""
+            onClick={this.onChange}
+          >{emoji}</span>))
+        }
+      </div>
+    );
+  }
+
+  render(): Object {
+    const { config: { icon, className }, expanded, onExpandEvent } = this.props;
+    return (
+      <div
+        className="rdw-emoji-wrapper"
+        aria-haspopup="true"
+        aria-label="rdw-emoji-control"
+        aria-expanded={expanded}
+      >
+        <Option
+          className={classNames(className)}
+          value="unordered-list-item"
+          onClick={onExpandEvent}
+        >
+          <img
+            src={icon}
+            alt=""
+          />
+        </Option>
+        {expanded ? this.renderEmojiModal() : undefined}
+      </div>
+    );
+  }
+}
+
+export default LayoutComponent;
+
+// todo: unit test cases

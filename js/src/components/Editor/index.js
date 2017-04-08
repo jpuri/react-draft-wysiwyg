@@ -11,10 +11,7 @@ import {
 } from 'draft-js';
 import {
   changeDepth,
-  setColors,
-  setFontSizes,
   handleNewLine,
-  setFontFamilies,
   getCustomStyleMap,
 } from 'draftjs-utils';
 import classNames from 'classnames';
@@ -22,28 +19,18 @@ import ModalHandler from '../../event-handler/modals';
 import FocusHandler from '../../event-handler/focus';
 import KeyDownHandler from '../../event-handler/keyDown';
 import SuggestionHandler from '../../event-handler/suggestions';
-import blockStyleFn from '../../utils/BlockStyle';
+import blockStyleFn from '../../Utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import { hasProperty, filter } from '../../utils/common';
 import Controls from '../Controls';
-import LinkDecorator from '../../decorators/Link';
+import LinkDecorator from '../../Decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
-import getHashtagDecorator from '../../decorators/Hashtag';
+import getHashtagDecorator from '../../decorators/HashTag';
 import getBlockRenderFunc from '../../renderer';
 import defaultToolbar from '../../config/defaultToolbar';
+import localeTranslations from '../../i18n';
 import './styles.css';
 import '../../../../css/Draft.css';
-// Translations
-import { IntlProvider, addLocaleData} from 'react-intl';
-import en from 'react-intl/locale-data/en';
-import fr from 'react-intl/locale-data/fr';
-addLocaleData([...en, ...fr]);
-import draftWysiwygTranslationsEN from '../../i18n/en';
-import draftWysiwygTranslationsFR from '../../i18n/fr';
-const translations = {
-  "en": draftWysiwygTranslationsEN,
-  "fr": draftWysiwygTranslationsFR,
-}
 
 export default class WysiwygEditor extends Component {
 
@@ -64,6 +51,8 @@ export default class WysiwygEditor extends Component {
     toolbarCustomButtons: PropTypes.array,
     toolbarClassName: PropTypes.string,
     toolbarHidden: PropTypes.bool,
+    locale: PropTypes.string,
+    localization: PropTypes.object,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     toolbarStyle: PropTypes.object,
@@ -87,20 +76,19 @@ export default class WysiwygEditor extends Component {
     ariaExpanded: PropTypes.string,
     ariaHasPopup: PropTypes.string,
     customBlockRenderFunc: PropTypes.func,
+    decorators: PropTypes.array,
   };
 
   static defaultProps = {
     toolbarOnFocus: false,
     toolbarHidden: false,
     stripPastedStyles: false,
+    localization: { locale: 'en', translations: {} },
   }
 
   constructor(props) {
     super(props);
     const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
-    setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
-    setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
-    setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
     this.state = {
       editorState: undefined,
       editorFocused: false,
@@ -134,9 +122,6 @@ export default class WysiwygEditor extends Component {
     const newState = {};
     if (this.props.toolbar !== props.toolbar) {
       const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
-      setFontFamilies(toolbar.fontFamily && toolbar.fontFamily.options);
-      setFontSizes(toolbar.fontSize && toolbar.fontSize.options);
-      setColors(toolbar.colorPicker && toolbar.colorPicker.colors);
       newState.toolbar = toolbar;
     }
     if (hasProperty(props, 'editorState') && this.props.editorState !== props.editorState) {
@@ -249,7 +234,10 @@ export default class WysiwygEditor extends Component {
   };
 
   getCompositeDecorator = ():void => {
-    const decorators = [LinkDecorator];
+    let decorators = [LinkDecorator];
+    if (this.props.decorators) {
+      decorators = [...this.props.decorators, ...decorators];
+    }
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
         ...this.props.mention,
@@ -373,6 +361,8 @@ export default class WysiwygEditor extends Component {
       toolbar,
      } = this.state;
     const {
+      locale,
+      localization: { locale: newLocale, translations },
       toolbarCustomButtons,
       toolbarOnFocus,
       toolbarClassName,
@@ -391,6 +381,7 @@ export default class WysiwygEditor extends Component {
       modalHandler: this.modalHandler,
       editorState,
       onChange: this.onChange,
+      translations: { ...localeTranslations[locale || newLocale], ...translations },
     }
 
     return (
@@ -443,7 +434,7 @@ export default class WysiwygEditor extends Component {
             editorState={editorState}
             onChange={this.onChange}
             blockStyleFn={blockStyleFn}
-            customStyleMap={this.customStyleMap}
+            customStyleMap={getCustomStyleMap()}
             handleReturn={this.handleReturn}
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}

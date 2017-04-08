@@ -3,12 +3,9 @@
 import React, { Component, PropTypes } from 'react';
 import { getSelectionInlineStyle } from 'draftjs-utils';
 import { RichUtils, EditorState, Modifier } from 'draft-js';
-import classNames from 'classnames';
-import { getFirstIcon } from '../../../utils/toolbar';
-import Option from '../../Option';
-import { Dropdown, DropdownOption } from '../../Dropdown';
+import { forEach } from '../../../utils/common';
 
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import LayoutComponent from './Component';
 
 export default class Inline extends Component {
 
@@ -17,6 +14,7 @@ export default class Inline extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -24,32 +22,48 @@ export default class Inline extends Component {
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
-        currentStyles: getSelectionInlineStyle(editorState),
+        currentStyles: this.changeKeys(getSelectionInlineStyle(editorState)),
       });
     }
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       this.setState({
-        currentStyles: getSelectionInlineStyle(properties.editorState),
+        currentStyles: this.changeKeys(getSelectionInlineStyle(properties.editorState)),
       });
     }
   }
 
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.expandCollapse);
+  }
+
+  changeKeys = (style) => {
+    if (style) {
+      const st = {};
+      forEach(style, (key, value) => {
+        st[key === 'CODE' ? 'monospace' : key.toLowerCase()] = value;
+      });
+      return st;
+    }
+  }
+
   toggleInlineStyle: Function = (style: string): void => {
-    const newStyle = style === 'MONOSPACE' ? 'CODE' : style;
+    const newStyle = style === 'monospace' ? 'CODE' : style.toUpperCase();
     const { editorState, onChange } = this.props;
     let newState = RichUtils.toggleInlineStyle(
       editorState,
       newStyle
     );
-    if (newStyle === 'SUBSCRIPT' || newStyle === 'SUPERSCRIPT') {
-      const removeStyle = newStyle === 'SUBSCRIPT' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
+    if (style === 'subscript' || style === 'superscript') {
+      const removeStyle = style === 'subscript' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
       const contentState = Modifier.removeInlineStyle(
         newState.getCurrentContent(),
         newState.getSelection(),
@@ -62,75 +76,45 @@ export default class Inline extends Component {
     }
   };
 
-  renderInFlatList(currentStyles: string, config: Object): Object {
-    return (
-      <div className={classNames('rdw-inline-wrapper', config.className)} aria-label="rdw-inline-control">
-        {
-          config.options
-          .map((style, index) =>
-            <Option
-              key={index}
-              value={style.toUpperCase()}
-              onClick={this.toggleInlineStyle}
-              className={classNames(config[style].className)}
-              active={
-                currentStyles[style.toUpperCase()] === true ||
-                (style.toUpperCase() === 'MONOSPACE' && currentStyles['CODE'])
-              }
-            >
-              <img
-                role="presentation"
-                src={config[style].icon}
-              />
-            </Option>
-          )
-        }
-      </div>
-    );
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
   }
 
-  renderInDropDown(currentStyles: string, config: Object): Object {
-    const { modalHandler } = this.props;
-    return (
-      <Dropdown
-        className={classNames('rdw-inline-dropdown', config.className)}
-        onChange={this.toggleInlineStyle}
-        modalHandler={modalHandler}
-        aria-label="rdw-inline-control"
-      >
-        <img
-          src={getFirstIcon(config)}
-          role="presentation"
-        />
-        {
-          config.options
-          .map((style, index) =>
-            <DropdownOption
-              key={index}
-              value={style.toUpperCase()}
-              className={classNames('rdw-inline-dropdownoption', config[style].className)}
-              active={
-                currentStyles[style.toUpperCase()] === true ||
-                (style.toUpperCase() === 'MONOSPACE' && currentStyles['CODE'])
-              }
-            >
-              <img
-                src={config[style].icon}
-                role="presentation"
-              />
-            </DropdownOption>)
-          }
-      </Dropdown>
-    );
-  }
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
 
   render(): Object {
-    const { config } = this.props;
-    const { currentStyles } = this.state;
-    if (config.inDropdown) {
-      return this.renderInDropDown(currentStyles, config);
-    }
-    return this.renderInFlatList(currentStyles, config);
+    const { config, translations } = this.props;
+    const { expanded, currentStyles } = this.state
+    const InlineComponent = config.component || LayoutComponent;
+    return (
+      <InlineComponent
+        config={config}
+        translations={translations}
+        currentState={currentStyles}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+        onChange={this.toggleInlineStyle}
+      />
+    );
   }
 }
 

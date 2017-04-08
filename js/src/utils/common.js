@@ -57,3 +57,7 @@ export function filter(obj, keys) {
   }
   return filteredObject;
 }
+
+export function stopPropagation(event) {
+  event.stopPropagation();
+};

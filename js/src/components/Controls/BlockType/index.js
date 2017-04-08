@@ -1,13 +1,10 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { injectIntl } from 'react-intl';
 import { getSelectedBlocksType } from 'draftjs-utils';
 import { RichUtils } from 'draft-js';
-import classNames from 'classnames';
-import Option from '../../Option';
-import { Dropdown, DropdownOption } from '../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+
+import LayoutComponent from './Component';
 
 class BlockType extends Component {
 
@@ -16,19 +13,22 @@ class BlockType extends Component {
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
+    expanded: false,
     currentBlockType: 'unstyled',
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
         currentBlockType: getSelectedBlocksType(editorState),
       });
     }
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -40,89 +40,75 @@ class BlockType extends Component {
     }
   }
 
-  blocksTypes: Function = () => {
-    const {formatMessage} = this.props.intl;
-    return [
-      { label: 'Normal', displayName: formatMessage({ id:"components.controls.blocktype.normal"}), style: 'unstyled' },
-      { label: 'H1', displayName: formatMessage({ id:"components.controls.blocktype.h1"}), style: 'header-one' },
-      { label: 'H2', displayName: formatMessage({ id:"components.controls.blocktype.h2"}), style: 'header-two' },
-      { label: 'H3', displayName: formatMessage({ id:"components.controls.blocktype.h3"}), style: 'header-three' },
-      { label: 'H4', displayName: formatMessage({ id:"components.controls.blocktype.h4"}), style: 'header-four' },
-      { label: 'H5', displayName: formatMessage({ id:"components.controls.blocktype.h5"}), style: 'header-five' },
-      { label: 'H6', displayName: formatMessage({ id:"components.controls.blocktype.h6"}), style: 'header-six' },
-      { label: 'Blockquote', displayName: formatMessage({ id:"components.controls.blocktype.blockquote"}), style: 'blockquote' },
-    ]
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.expandCollapse);
+  }
+
+  blocksTypes: Array<Object> = [
+    { label: 'Normal', style: 'unstyled' },
+    { label: 'H1', style: 'header-one' },
+    { label: 'H2', style: 'header-two' },
+    { label: 'H3', style: 'header-three' },
+    { label: 'H4', style: 'header-four' },
+    { label: 'H5', style: 'header-five' },
+    { label: 'H6', style: 'header-six' },
+    { label: 'Blockquote', style: 'blockquote' },
+  ];
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
   };
 
   toggleBlockType: Function = (blockType: string) => {
+    const blockTypeValue = this.blocksTypes.find(bt => bt.label === blockType).style;
     const { editorState, onChange } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
-      blockType
+      blockTypeValue,
     );
     if (newState) {
       onChange(newState);
     }
   };
 
-  renderFlat(blocks: Array<Object>): void {
-    const { config: { className } } = this.props;
-    const { currentBlockType } = this.state;
-
+  render(): Object {
+    const { config, translations } = this.props;
+    const { undoDisabled, redoDisabled, expanded, currentBlockType } = this.state
+    const BlockTypeComponent = config.component || LayoutComponent;
+    const blockType = this.blocksTypes.find(bt => bt.style === currentBlockType);
     return (
-      <div className={classNames('rdw-inline-wrapper', className)}>
-        {
-        blocks.map((block, index) =>
-          <Option
-            key={index}
-            value={block.style}
-            active={currentBlockType === block.style}
-            onClick={this.toggleBlockType}
-          >
-            {block.displayName}
-          </Option>
-        )
-      }
-      </div>
+      <BlockTypeComponent
+        config={config}
+        translations={translations}
+        currentState={{ blockType: blockType && blockType.label }}
+        onChange={this.toggleBlockType}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+      />
     );
-  }
-
-  renderInDropdown(blocks: Array<Object>): void {
-    const {formatMessage} = this.props.intl;
-    const { currentBlockType } = this.state;
-    const currentBlockData = blocks.filter(blk => blk.style === currentBlockType);
-    const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].displayName;
-    const { config: { className, dropdownClassName }, modalHandler } = this.props;
-    return (
-      <div className="rdw-block-wrapper" aria-label="rdw-block-control">
-        <Dropdown
-          className={classNames('rdw-block-dropdown', className)}
-          optionWrapperClassName={classNames(dropdownClassName)}
-          onChange={this.toggleBlockType}
-          modalHandler={modalHandler}
-        >
-          <span>{currentLabel || formatMessage({ id:"components.controls.blocktype.blocktype"})}</span>
-          {
-            blocks.map((block, index) =>
-              <DropdownOption
-                active={currentBlockType === block.style}
-                value={block.style}
-                key={index}
-              >
-                {block.displayName}
-              </DropdownOption>)
-          }
-        </Dropdown>
-      </div>
-    );
-  }
-
-  render(): void {
-    const { config } = this.props;
-    const { inDropdown } = config;
-    const blocks = this.blocksTypes().filter(({ label }) => config.options.includes(label));
-    return inDropdown ? this.renderInDropdown(blocks) : this.renderFlat(blocks);
   }
 }
 
-export default injectIntl(BlockType);
+export default BlockType;

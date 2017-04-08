@@ -1,14 +1,12 @@
 /* @flow */
 
 import React, { Component, PropTypes } from 'react';
-import { FormattedMessage, injectIntl } from 'react-intl';
-import classNames from 'classnames';
 import {
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
-import Option from '../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+
+import LayoutComponent from './Component';
 
 class ColorPicker extends Component {
 
@@ -17,13 +15,13 @@ class ColorPicker extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
+    expanded: false,
     currentColor: undefined,
     currentBgColor: undefined,
-    showModal: false,
-    currentStyle: 'color',
   };
 
   componentWillMount(): void {
@@ -34,7 +32,7 @@ class ColorPicker extends Component {
         currentBgColor: getSelectionCustomInlineStyle(editorState, ['BGCOLOR']).BGCOLOR,
       });
     }
-    modalHandler.registerCallBack(this.showHideModal);
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -51,124 +49,64 @@ class ColorPicker extends Component {
 
   componentWillUnmount(): void {
     const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.showHideModal);
+    modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onOptionClick: Function = (): void => {
-    this.signalShowModal = !this.state.showModal;
-  };
-
-  setCurrentStyleBgcolor: Function = (): void => {
+  expandCollapse: Function = (): void => {
     this.setState({
-      currentStyle: 'bgcolor',
+      expanded: this.signalExpanded,
     });
-  };
-
-  setCurrentStyleColor: Function = (): void => {
-    this.setState({
-      currentStyle: 'color',
-    });
-  };
-
-  showHideModal: Function = (): void => {
-    this.setState({
-      showModal: this.signalShowModal,
-    });
-    this.signalShowModal = false;
+    this.signalExpanded = false;
   }
 
-  toggleColor: Function = (color: string): void => {
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
+
+  toggleColor: Function = (style: string, color: string): void => {
     const { editorState, onChange } = this.props;
-    const { currentStyle } = this.state;
     const newState = toggleCustomInlineStyle(
       editorState,
-      currentStyle,
-      `${currentStyle}-${color}`
+      style,
+      color,
     );
     if (newState) {
       onChange(newState);
     }
-  };
-
-  stopPropagation: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  renderModal: Function = (): Object => {
-    const { config: { popupClassName, colors } } = this.props;
-    const { currentColor, currentBgColor, currentStyle } = this.state;
-    const currentSelectedColor = (currentStyle === 'color') ? currentColor : currentBgColor;
-    return (
-      <div
-        className={classNames('rdw-colorpicker-modal', popupClassName)}
-        onClick={this.stopPropagation}
-      >
-        <span className="rdw-colorpicker-modal-header">
-          <span
-            className={classNames(
-              'rdw-colorpicker-modal-style-label',
-              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'color' }
-            )}
-            onClick={this.setCurrentStyleColor}
-          >
-            <FormattedMessage id="components.controls.colorpicker.text" />
-          </span>
-          <span
-            className={classNames(
-              'rdw-colorpicker-modal-style-label',
-              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'bgcolor' }
-            )}
-            onClick={this.setCurrentStyleBgcolor}
-          >
-            <FormattedMessage id="components.controls.colorpicker.background" />
-          </span>
-        </span>
-        <span className="rdw-colorpicker-modal-options">
-          {
-            colors.map((color, index) =>
-              <Option
-                value={color}
-                key={index}
-                className="rdw-colorpicker-option"
-                activeClassName="rdw-colorpicker-option-active"
-                active={currentSelectedColor === `${currentStyle}-${color}`}
-                onClick={this.toggleColor}
-              >
-                <span
-                  style={{ backgroundColor: color }}
-                  className="rdw-colorpicker-cube"
-                />
-              </Option>)
-          }
-        </span>
-      </div>
-    );
+    this.doCollapse();
   };
 
   render(): Object {
-    const { config: { icon, className } } = this.props;
-    const { showModal } = this.state;
+    const { config, translations } = this.props;
+    const { currentColor, currentBgColor, expanded } = this.state
+    const ColorPickerComponent = config.component || LayoutComponent;
+    const color = currentColor && currentColor.substring(6);
+    const bgColor = currentBgColor && currentBgColor.substring(8);
     return (
-      <div
-        className="rdw-colorpicker-wrapper"
-        aria-haspopup="true"
-        aria-expanded={showModal}
-        aria-label="rdw-color-picker"
-      >
-        <Option
-          onClick={this.onOptionClick}
-          className={classNames(className)}
-        >
-          <img
-            src={icon}
-            role="presentation"
-          />
-        </Option>
-        {showModal ? this.renderModal() : undefined}
-      </div>
+      <ColorPickerComponent
+        config={config}
+        translations={translations}
+        onChange={this.toggleColor}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+        currentState={{ color, bgColor }}
+      />
     );
   }
 }
 
-export default injectIntl(ColorPicker);
+export default ColorPicker;

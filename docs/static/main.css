@@ -664,7 +664,7 @@ textarea {
   margin: 0;
   padding: 0;
   max-height: 250px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .rdw-dropdown-optionwrapper:hover {
   box-shadow: 1px 1px 0px #BFBDBD;
@@ -1330,6 +1330,10 @@ textarea {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 15px;
+}
+.rdw-image-modal-upload-option-label span{
+  padding: 0 20px;
 }
 .rdw-image-modal-upload-option-input {
 	width: 0.1px;
@@ -1340,14 +1344,12 @@ textarea {
 	z-index: -1;
 }
 .rdw-image-modal-url-section {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+  display: block;
 }
 .rdw-image-modal-url-input {
   width: 95%;
   height: 35px;
-  margin: 25px 0 5px;
+  margin: 30px 0 20px;
   border: 1px solid #F1F1F1;
   border-radius: 2px;
   font-size: 15px;
@@ -1753,7 +1755,29 @@ textarea {
 .discussion {
   margin-top: 15px;
 }
-.demo-root {
+.demo-color-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
+.demo-icon-wrapper {
+  border: 1px solid #F1F1F1;
+  padding: 3px 5px;
+}
+.demo-icon {
+  width: 20px;
+}
+.demo-color-modal {
+  position: absolute;
+  right: -70px;
+  top: 135%;
+  z-index: 10;
+}.demo-root {
   width: 100%;
   display: -webkit-box;
   display: -ms-flexbox;

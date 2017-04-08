@@ -109,8 +109,11 @@ class Playground extends Component {
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
               toolbar={{
+                history: { inDropdown: true },
+                inline: { inDropdown: false },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
-                link: { showOpenOptionOnHover: false },
               }}
               onEditorStateChange={this.onEditorStateChange}
               onContentStateChange={this.onEditorChange}
@@ -120,6 +123,7 @@ class Playground extends Component {
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
               onTab={() => {console.log('tab'); return true;}}
+              localization={{ locale: 'zh', translations: {'generic.add': 'Test-Add'} }}
               mention={{
                 separator: ' ',
                 trigger: '@',
@@ -139,11 +143,11 @@ class Playground extends Component {
           <input tabIndex={0} />
           <textarea
             className="playground-content no-focus"
-            value={draftToHtml(editorContent, {})}
+            value={draftToHtml(editorContent)}
           />
           <textarea
             className="playground-content no-focus"
-            value={draftToMarkdown(editorContent, {})}
+            value={draftToMarkdown(editorContent)}
           />
           <textarea
             className="playground-content no-focus"

@@ -56,7 +56,7 @@ class Link extends Component {
         {showPopOver ?
           <img
             src={openlink}
-            role="presentation"
+            alt=""
             onClick={this.openLink}
             className="rdw-link-decorator-icon"
           />

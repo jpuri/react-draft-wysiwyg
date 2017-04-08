@@ -27,6 +27,7 @@ import unlink from '../../../images/demo/unlink.gif';
 import image from '../../../images/demo/image.gif';
 import undo from '../../../images/demo/undo.gif';
 import redo from '../../../images/demo/redo.gif';
+import ColorPic from './ColorPic';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Demo extends Component {
@@ -210,11 +211,12 @@ export default class Demo extends Component {
           />
         </div>
         <div className="demo-label">
-          Editor with mentions.
+          Editor with mentions and Chinese labels.
         </div>
         <div className="demo-subLabel">Try out by entering @ and hashtag by entering #.</div>
         <div className="demo-editorSection">
           <Editor
+            localization={{ locale: 'zh' }}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
@@ -233,6 +235,20 @@ export default class Demo extends Component {
               ],
             }}
             hashtag={{}}
+          />
+        </div>
+        <div className="demo-label">
+          Editor toolbar with custom <a href="https://casesandberg.github.io/react-color/">react-color</a> used for color-picker.
+          <image src={bold} height="20px" width="20px" />
+        </div>
+        <div className="demo-editorSection">
+          <Editor
+            toolbarClassName="demo-toolbar"
+            wrapperClassName="demo-wrapper"
+            editorClassName="demo-editor"
+            toolbar={{
+              colorPicker: { component: ColorPic },
+            }}
           />
         </div>
         <div className="demo-label">
