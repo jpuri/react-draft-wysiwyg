@@ -216,7 +216,7 @@ export default class Demo extends Component {
         <div className="demo-subLabel">Try out by entering @ and hashtag by entering #.</div>
         <div className="demo-editorSection">
           <Editor
-            locale="zh"
+            localization={{ locale: 'zh' }}
             toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"

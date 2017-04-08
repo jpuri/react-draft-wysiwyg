@@ -271,8 +271,9 @@ export default class Demo2 extends Component {
             Internationalizing toolbar.
           </div>
           <div className="docs-desc">
-            Toolbar labels can be internationalized using property locale. Default value for locale is 'en'.
-            Currently French('fr') and Chinese('zh') locales are also support. Its planned to add flexibility in editor for users to be able to pass in new locales and translations.
+            Toolbar labels can be internationalized using property localization. Localization has 2 parameters: locale and translations. <br/>
+            User can either provide locale or a JavaScript object for translations. Currently supported locales are: English('en'), French('fr'), Chinese('zh') and Russian('ru').<br/>
+            For an example of translations check <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/js/src/i18n/en.js">here</a>.
           </div>
         </div>
         <div className="docs-section">
