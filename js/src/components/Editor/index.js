@@ -76,6 +76,7 @@ export default class WysiwygEditor extends Component {
     ariaExpanded: PropTypes.string,
     ariaHasPopup: PropTypes.string,
     customBlockRenderFunc: PropTypes.func,
+    decorators: PropTypes.array,
   };
 
   static defaultProps = {
@@ -233,7 +234,10 @@ export default class WysiwygEditor extends Component {
   };
 
   getCompositeDecorator = ():void => {
-    const decorators = [LinkDecorator];
+    let decorators = [LinkDecorator];
+    if (this.props.decorators) {
+      decorators = [...this.props.decorators, ...decorators];
+    }
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
         ...this.props.mention,
