@@ -84,6 +84,7 @@ export default class WysiwygEditor extends Component {
     toolbarHidden: false,
     stripPastedStyles: false,
     localization: { locale: 'en', translations: {} },
+    decorators: [],
   }
 
   constructor(props) {
@@ -233,11 +234,8 @@ export default class WysiwygEditor extends Component {
     this.editor = ref;
   };
 
-  getCompositeDecorator = ():void => {
-    let decorators = [LinkDecorator];
-    if (this.props.decorators) {
-      decorators = [...this.props.decorators, ...decorators];
-    }
+  getCompositeDecorator = (): void => {
+    let decorators = [...this.props.decorators, LinkDecorator];
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
         ...this.props.mention,
