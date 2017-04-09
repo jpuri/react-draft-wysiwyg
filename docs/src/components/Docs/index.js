@@ -227,8 +227,10 @@ export default class Demo2 extends Component {
               <li>Overriding available options for font-sizes, again make sure font size is available in the browser.</li>
               <li>Overriding available options for colors, any valid color value string can be used.</li>
               <li>Overriding available options for emojis, unicode emojis can be used.</li>
+              <li>Setting default size property for image and embeds.</li>
               <li>Using custom icons in the toolbar.</li>
               <li>Applying custom styles to the toolbar options using CSS classes.</li>
+              <li>Using a custom react component for a toolbar button / popup.</li>
             </ol>
             <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/js/src/config/defaultToolbar.js">Here</a> is the complete toolbar property object, user can provide any or all of these properties.
             For editor to reflect the changes in this object you need to make sure that you do not mutate it but rather create a new copy.
@@ -282,6 +284,14 @@ export default class Demo2 extends Component {
           </div>
           <div className="docs-desc">
             Property customBlockRenderFunc can be used to pass function for custom rendering of blocks, <a  target="_blank" rel="noopener noreferrer" href="https://facebook.github.io/draft-js/docs/advanced-topics-block-components.html#custom-block-components">ref.</a>
+          </div>
+        </div>
+        <div className="docs-section">
+          <div className="docs-label">
+            Custom decorators.
+          </div>
+          <div className="docs-desc">
+            Property customDecorators can be used to pass an array of custom decorators.
           </div>
         </div>
         <div className="docs-section">

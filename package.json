@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.9.1",
+  "version": "1.9.2",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -22,7 +22,7 @@
     "cross-env": "^3.2.3",
     "css-loader": "^0.27.1",
     "draft-js": "^0.10.0",
-    "draftjs-to-html": "^0.7.0",
+    "draftjs-to-html": "^0.7.1",
     "draftjs-to-markdown": "^0.4.0",
     "enzyme": "^2.7.1",
     "eslint": "^3.17.1",

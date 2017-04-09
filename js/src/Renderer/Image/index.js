@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import { Entity } from 'draft-js';
+import { Entity, EditorState } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../components/Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -36,6 +36,7 @@ const getImageComponent = (config) => {
         entityKey,
         { alignment }
       );
+      config.onChange(EditorState.push(config.getEditorState(), contentState, 'change-block-data'))
       this.setState({
         dummy: true,
       });

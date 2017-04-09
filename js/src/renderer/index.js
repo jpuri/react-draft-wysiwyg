@@ -1,14 +1,14 @@
 import Embedded from './Embedded';
 import getImageComponent from '../Renderer/Image';
 
-const getBlockRenderFunc = (config, customBlockRenderer, getEditorState) => {
+const getBlockRenderFunc = (config, customBlockRenderer) => {
   return (block) => {
     if (typeof customBlockRenderer === 'function') {
-      const renderedComponent = customBlockRenderer(block, config, getEditorState);
+      const renderedComponent = customBlockRenderer(block, config, config.getEditorState);
       if (renderedComponent) return renderedComponent;
     }
     if (block.getType() === 'atomic') {
-      const contentState = getEditorState().getCurrentContent();
+      const contentState = config.getEditorState().getCurrentContent();
       const entity = contentState.getEntity(block.getEntityAt(0));
       if (entity && entity.type === 'IMAGE') {
         return {

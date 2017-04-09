@@ -76,7 +76,7 @@ export default class WysiwygEditor extends Component {
     ariaExpanded: PropTypes.string,
     ariaHasPopup: PropTypes.string,
     customBlockRenderFunc: PropTypes.func,
-    decorators: PropTypes.array,
+    customDecorators: PropTypes.array,
   };
 
   static defaultProps = {
@@ -101,7 +101,9 @@ export default class WysiwygEditor extends Component {
     this.blockRendererFn = getBlockRenderFunc({
       isReadOnly: this.isReadOnly,
       isImageAlignmentEnabled: this.isImageAlignmentEnabled,
-    }, props.customBlockRenderFunc, this.getEditorState);
+      getEditorState: this.getEditorState,
+      onChange: this.onChange,
+    }, props.customBlockRenderFunc);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
   }
@@ -235,7 +237,7 @@ export default class WysiwygEditor extends Component {
   };
 
   getCompositeDecorator = (): void => {
-    let decorators = [...this.props.decorators, LinkDecorator];
+    let decorators = [...this.props.customDecorators, LinkDecorator];
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
         ...this.props.mention,
