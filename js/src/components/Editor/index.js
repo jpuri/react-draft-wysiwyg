@@ -84,7 +84,7 @@ export default class WysiwygEditor extends Component {
     toolbarHidden: false,
     stripPastedStyles: false,
     localization: { locale: 'en', translations: {} },
-    decorators: [],
+    customDecorators: [],
   }
 
   constructor(props) {
