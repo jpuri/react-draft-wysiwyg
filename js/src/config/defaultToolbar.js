@@ -131,6 +131,10 @@ export default {
     className: undefined,
     component: undefined,
     popupClassName: undefined,
+    defaultSize: {
+      height: 'auto',
+      width: 'auto',
+    },
   },
   image: {
     icon: image,
@@ -143,7 +147,7 @@ export default {
     uploadCallback: undefined,
     defaultSize: {
       height: 'auto',
-      width: '100%',
+      width: 'auto',
     },
   },
   remove: { icon: eraser, className: undefined, component: undefined },
