@@ -42,13 +42,13 @@ class LayoutComponent extends Component {
 
   removeLink: Function = (): void => {
     const { onChange } = this.props;
-    onChange('remove');
+    onChange('unlink');
   };
 
   addLink: Function = (): void => {
     const { onChange } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
-    onChange('add', linkTitle, linkTarget, linkTargetOption);
+    onChange('link', linkTitle, linkTarget, linkTargetOption);
   };
 
   updateValue: Function = (event: Object): void => {

@@ -55,7 +55,7 @@
   margin: 0;
   padding: 0;
   max-height: 250px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 .rdw-dropdown-optionwrapper:hover {
   box-shadow: 1px 1px 0px #BFBDBD;

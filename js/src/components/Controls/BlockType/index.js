@@ -45,6 +45,17 @@ class BlockType extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
+  blocksTypes: Array<Object> = [
+    { label: 'Normal', style: 'unstyled' },
+    { label: 'H1', style: 'header-one' },
+    { label: 'H2', style: 'header-two' },
+    { label: 'H3', style: 'header-three' },
+    { label: 'H4', style: 'header-four' },
+    { label: 'H5', style: 'header-five' },
+    { label: 'H6', style: 'header-six' },
+    { label: 'Blockquote', style: 'blockquote' },
+  ];
+
   expandCollapse: Function = (): void => {
     this.setState({
       expanded: this.signalExpanded,
@@ -69,10 +80,11 @@ class BlockType extends Component {
   };
 
   toggleBlockType: Function = (blockType: string) => {
+    const blockTypeValue = this.blocksTypes.find(bt => bt.label === blockType).style;
     const { editorState, onChange } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
-      blockType
+      blockTypeValue,
     );
     if (newState) {
       onChange(newState);
@@ -83,11 +95,12 @@ class BlockType extends Component {
     const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded, currentBlockType } = this.state
     const BlockTypeComponent = config.component || LayoutComponent;
+    const blockType = this.blocksTypes.find(bt => bt.style === currentBlockType);
     return (
       <BlockTypeComponent
         config={config}
         translations={translations}
-        currentState={{ blockType : currentBlockType }}
+        currentState={{ blockType: blockType && blockType.label }}
         onChange={this.toggleBlockType}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

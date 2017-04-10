@@ -92,6 +92,8 @@ class ColorPicker extends Component {
     const { config, translations } = this.props;
     const { currentColor, currentBgColor, expanded } = this.state
     const ColorPickerComponent = config.component || LayoutComponent;
+    const color = currentColor && currentColor.substring(6);
+    const bgColor = currentBgColor && currentBgColor.substring(8);
     return (
       <ColorPickerComponent
         config={config}
@@ -101,7 +103,7 @@ class ColorPicker extends Component {
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentState={{ color: currentColor, bgColor: currentBgColor }}
+        currentState={{ color, bgColor }}
       />
     );
   }

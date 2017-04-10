@@ -47,8 +47,7 @@ export default class LayoutComponent extends Component {
     let { currentState: { fontSize : currentFontSize} } = this.props;
     let { defaultFontSize } = this.state;
     defaultFontSize = Number(defaultFontSize);
-    currentFontSize = (currentFontSize
-      && Number(currentFontSize.substring(9, currentFontSize.length))) ||
+    currentFontSize = currentFontSize ||
       (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">

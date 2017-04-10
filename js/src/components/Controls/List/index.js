@@ -69,8 +69,10 @@ export default class List extends Component {
   };
 
   onChange: Function = (value: string): void => {
-    if (value === 'unordered-list-item' || value === 'ordered-list-item') {
-      this.toggleBlockType(value);
+    if (value === 'unordered') {
+      this.toggleBlockType('unordered-list-item');
+    } else if (value === 'ordered') {
+      this.toggleBlockType('ordered-list-item');
     } else if (value === 'indent') {
       this.adjustDepth(1);
     } else {
@@ -105,11 +107,17 @@ export default class List extends Component {
     const { config, translations } = this.props;
     const { expanded, currentBlockType } = this.state
     const ListComponent = config.component || LayoutComponent;
+    let listType;
+    if (currentBlockType === 'unordered-list-item') {
+      listType = 'unordered';
+    } else if (currentBlockType === 'ordered-list-item') {
+      listType = 'ordered';
+    }
     return (
       <ListComponent
         config={config}
         translations={translations}
-        currentState={{ linkType: currentBlockType }}
+        currentState={{ listType }}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}

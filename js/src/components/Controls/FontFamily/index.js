@@ -87,11 +87,12 @@ export default class FontFamily extends Component {
     const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded, currentFontFamily } = this.state
     const FontFamilyComponent = config.component || LayoutComponent;
+    const fontFamily = currentFontFamily && currentFontFamily.substring(11);
     return (
       <FontFamilyComponent
         translations={translations}
         config={config}
-        currentState={{ fontFamily: currentFontFamily }}
+        currentState={{ fontFamily }}
         onChange={this.toggleFontFamily}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

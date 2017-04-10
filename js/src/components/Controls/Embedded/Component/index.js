@@ -20,16 +20,17 @@ class LayoutComponent extends Component {
 
   state: Object = {
     embeddedLink: '',
-    height: 'auto',
-    width: '100%',
+    height: this.props.config.defaultSize.height,
+    width: this.props.config.defaultSize.width,
   };
 
   componentWillReceiveProps(props) {
     if (this.props.expanded && !props.expanded) {
+      const { height, width } = this.props.config.defaultSize;
       this.setState({
         embeddedLink: '',
-        height: 'auto',
-        width: '100%',
+        height: height,
+        width: width,
       });
     }
   }
