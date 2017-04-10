@@ -85,7 +85,7 @@ class LayoutComponent extends Component {
                 key={index}
                 className="rdw-colorpicker-option"
                 activeClassName="rdw-colorpicker-option-active"
-                active={currentSelectedColor === `${currentStyle}-${color}`}
+                active={currentSelectedColor === color}
                 onClick={this.onChange}
               >
                 <span

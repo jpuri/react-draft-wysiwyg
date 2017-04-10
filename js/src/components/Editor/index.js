@@ -52,6 +52,7 @@ export default class WysiwygEditor extends Component {
     toolbarClassName: PropTypes.string,
     toolbarHidden: PropTypes.bool,
     locale: PropTypes.string,
+    localization: PropTypes.object,
     editorClassName: PropTypes.string,
     wrapperClassName: PropTypes.string,
     toolbarStyle: PropTypes.object,
@@ -75,14 +76,15 @@ export default class WysiwygEditor extends Component {
     ariaExpanded: PropTypes.string,
     ariaHasPopup: PropTypes.string,
     customBlockRenderFunc: PropTypes.func,
-    decorators: PropTypes.array,
+    customDecorators: PropTypes.array,
   };
 
   static defaultProps = {
     toolbarOnFocus: false,
     toolbarHidden: false,
     stripPastedStyles: false,
-    locale: 'en',
+    localization: { locale: 'en', translations: {} },
+    customDecorators: [],
   }
 
   constructor(props) {
@@ -99,7 +101,9 @@ export default class WysiwygEditor extends Component {
     this.blockRendererFn = getBlockRenderFunc({
       isReadOnly: this.isReadOnly,
       isImageAlignmentEnabled: this.isImageAlignmentEnabled,
-    }, props.customBlockRenderFunc, this.getEditorState);
+      getEditorState: this.getEditorState,
+      onChange: this.onChange,
+    }, props.customBlockRenderFunc);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = getCustomStyleMap();
   }
@@ -232,11 +236,8 @@ export default class WysiwygEditor extends Component {
     this.editor = ref;
   };
 
-  getCompositeDecorator = ():void => {
-    let decorators = [LinkDecorator];
-    if (this.props.decorators) {
-      decorators = [...this.props.decorators, ...decorators];
-    }
+  getCompositeDecorator = (): void => {
+    let decorators = [...this.props.customDecorators, LinkDecorator];
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
         ...this.props.mention,
@@ -361,6 +362,7 @@ export default class WysiwygEditor extends Component {
      } = this.state;
     const {
       locale,
+      localization: { locale: newLocale, translations },
       toolbarCustomButtons,
       toolbarOnFocus,
       toolbarClassName,
@@ -379,7 +381,7 @@ export default class WysiwygEditor extends Component {
       modalHandler: this.modalHandler,
       editorState,
       onChange: this.onChange,
-      translations: localeTranslations[locale],
+      translations: { ...localeTranslations[locale || newLocale], ...translations },
     }
 
     return (

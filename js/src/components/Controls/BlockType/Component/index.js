@@ -21,26 +21,26 @@ class LayoutComponent extends Component {
   };
 
   blocksTypes: Array<Object> = [
-    { label: 'Normal', displayName: this.props.translations['components.controls.blocktype.normal'], style: 'unstyled' },
-    { label: 'H1', displayName: this.props.translations['components.controls.blocktype.h1'], style: 'header-one' },
-    { label: 'H2', displayName: this.props.translations['components.controls.blocktype.h2'], style: 'header-two' },
-    { label: 'H3', displayName: this.props.translations['components.controls.blocktype.h3'], style: 'header-three' },
-    { label: 'H4', displayName: this.props.translations['components.controls.blocktype.h4'], style: 'header-four' },
-    { label: 'H5', displayName: this.props.translations['components.controls.blocktype.h5'], style: 'header-five' },
-    { label: 'H6', displayName: this.props.translations['components.controls.blocktype.h6'], style: 'header-six' },
-    { label: 'Blockquote', displayName: this.props.translations['components.controls.blocktype.blockquote'], style: 'blockquote' },
+    { label: 'Normal', displayName: this.props.translations['components.controls.blocktype.normal'] },
+    { label: 'H1', displayName: this.props.translations['components.controls.blocktype.h1'] },
+    { label: 'H2', displayName: this.props.translations['components.controls.blocktype.h2'] },
+    { label: 'H3', displayName: this.props.translations['components.controls.blocktype.h3'] },
+    { label: 'H4', displayName: this.props.translations['components.controls.blocktype.h4'] },
+    { label: 'H5', displayName: this.props.translations['components.controls.blocktype.h5'] },
+    { label: 'H6', displayName: this.props.translations['components.controls.blocktype.h6'] },
+    { label: 'Blockquote', displayName: this.props.translations['components.controls.blocktype.blockquote'] },
   ];
 
-  renderFlat(blocks: Array<Object>): void {
+  renderFlat(): void {
     const { config: { className }, onChange, currentState: { blockType } } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
         {
-        blocks.map((block, index) =>
+        this.blocksTypes.map((block, index) =>
           <Option
             key={index}
-            value={block.style}
-            active={blockType === block.style}
+            value={block.label}
+            active={blockType === block.label}
             onClick={onChange}
           >
             {block.displayName}
@@ -51,7 +51,7 @@ class LayoutComponent extends Component {
     );
   }
 
-  renderInDropdown(blocks: Array<Object>): void {
+  renderInDropdown(): void {
     const {
       config: { className, dropdownClassName },
       currentState: { blockType },
@@ -62,7 +62,7 @@ class LayoutComponent extends Component {
       onChange,
       translations,
     } = this.props;
-    const currentBlockData = blocks.filter(blk => blk.style === blockType);
+    const currentBlockData = this.blocksTypes.filter(blk => blk.label === blockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].displayName;
     return (
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">
@@ -77,10 +77,10 @@ class LayoutComponent extends Component {
         >
           <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
           {
-            blocks.map((block, index) =>
+            this.blocksTypes.map((block, index) =>
               <DropdownOption
-                active={blockType === block.style}
-                value={block.style}
+                active={blockType === block.label}
+                value={block.label}
                 key={index}
               >
                 {block.displayName}

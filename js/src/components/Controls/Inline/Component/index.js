@@ -30,12 +30,12 @@ export default class Inline extends Component {
           .map((style, index) =>
             <Option
               key={index}
-              value={style.toUpperCase()}
+              value={style}
               onClick={onChange}
               className={classNames(config[style].className)}
               active={
-                currentState[style.toUpperCase()] === true ||
-                (style.toUpperCase() === 'MONOSPACE' && currentState['CODE'])
+                currentState[style] === true ||
+                (style === 'MONOSPACE' && currentState['CODE'])
               }
             >
               <img
@@ -80,11 +80,11 @@ export default class Inline extends Component {
           .map((style, index) =>
             <DropdownOption
               key={index}
-              value={style.toUpperCase()}
+              value={style}
               className={classNames('rdw-inline-dropdownoption', config[style].className)}
               active={
-                currentState[style.toUpperCase()] === true ||
-                (style.toUpperCase() === 'MONOSPACE' && currentState['CODE'])
+                currentState[style] === true ||
+                (style === 'MONOSPACE' && currentState['CODE'])
               }
             >
               <img

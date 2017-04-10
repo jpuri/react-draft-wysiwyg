@@ -110,11 +110,10 @@ class Playground extends Component {
               editorClassName="playground-editor"
               toolbar={{
                 history: { inDropdown: true },
-                inline: { inDropdown: true },
-                list: { inDropdown: false },
+                inline: { inDropdown: false },
+                list: { inDropdown: true },
                 textAlign: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
-                link: { showOpenOptionOnHover: false, component: () => <div>text</div> },
               }}
               onEditorStateChange={this.onEditorStateChange}
               onContentStateChange={this.onEditorChange}
@@ -124,6 +123,7 @@ class Playground extends Component {
               onFocus={() => {console.log('focus')}}
               onBlur={() => {console.log('blur')}}
               onTab={() => {console.log('tab'); return true;}}
+              localization={{ locale: 'zh', translations: {'generic.add': 'Test-Add'} }}
               mention={{
                 separator: ' ',
                 trigger: '@',

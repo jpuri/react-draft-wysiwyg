@@ -2,7 +2,9 @@
 
 import React, { Component, PropTypes } from 'react';
 import { EditorState, Modifier } from 'draft-js';
+import { getSelectionCustomInlineStyle } from 'draftjs-utils';
 
+import { forEach } from '../../../utils/common';
 import LayoutComponent from './Component';
 
 export default class Remove extends Component {
@@ -36,10 +38,6 @@ export default class Remove extends Component {
       'UNDERLINE',
       'STRIKETHROUGH',
       'MONOSPACE',
-      'FONTFAMILY',
-      'COLOR',
-      'BGCOLOR',
-      'FONTSIZE',
       'SUPERSCRIPT',
       'SUBSCRIPT',
     ].forEach((style) => {
@@ -49,6 +47,17 @@ export default class Remove extends Component {
         style
       );
     });
+    const customStyles = getSelectionCustomInlineStyle(editorState, ['FONTSIZE', 'FONTFAMILY', 'COLOR', 'BGCOLOR']);
+    forEach(customStyles, (key, value) => {
+      if (value) {
+        contentState = Modifier.removeInlineStyle(
+          contentState,
+          editorState.getSelection(),
+          value
+        );
+      }
+    })
+
     return EditorState.push(editorState, contentState, 'change-inline-style');
   };
 

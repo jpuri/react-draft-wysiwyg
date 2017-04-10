@@ -20,10 +20,7 @@ export default class LayoutComponent extends Component {
     currentState: PropTypes.object,
   };
 
-  options: Array = [{ type: 'unordered', value: 'unordered-list-item' },
-    { type: 'ordered', value: 'ordered-list-item' },
-    { type: 'indent', value: 'indent' },
-    { type: 'outdent', value: 'outdent' }];
+  options: Array = ['unordered', 'ordered', 'indent', 'outdent'];
 
   toggleBlockType: Function = (blockType: String): void => {
     const { onChange } = this.props;
@@ -43,15 +40,15 @@ export default class LayoutComponent extends Component {
   // todo: evaluate refactoring this code to put a loop there and in other places also in code
   // hint: it will require moving click handlers
   renderInFlatList(): Object {
-    const { config, currentState: { linkType } } = this.props;
+    const { config, currentState: { listType } } = this.props;
     const { options, unordered, ordered, indent, outdent, className } = config;
     return (
       <div className={classNames('rdw-list-wrapper', className)} aria-label="rdw-list-control">
         {options.indexOf('unordered') >= 0 && <Option
-          value="unordered-list-item"
+          value="unordered"
           onClick={this.toggleBlockType}
           className={classNames(unordered.className)}
-          active={linkType === 'unordered-list-item'}
+          active={listType === 'unordered'}
         >
           <img
             src={unordered.icon}
@@ -59,10 +56,10 @@ export default class LayoutComponent extends Component {
           />
         </Option>}
         {options.indexOf('ordered') >= 0 && <Option
-          value="ordered-list-item"
+          value="ordered"
           onClick={this.toggleBlockType}
           className={classNames(ordered.className)}
-          active={linkType === 'ordered-list-item'}
+          active={listType === 'ordered'}
         >
           <img
             src={ordered.icon}
@@ -92,7 +89,7 @@ export default class LayoutComponent extends Component {
   }
 
   renderInDropDown(): Object {
-    const { config, expanded, doCollapse, doExpand, onExpandEvent, onChange, currentState: { linkType } } = this.props;
+    const { config, expanded, doCollapse, doExpand, onExpandEvent, onChange, currentState: { listType } } = this.props;
     const { options, className, dropdownClassName } = config;
     return (
       <Dropdown
@@ -110,15 +107,15 @@ export default class LayoutComponent extends Component {
           alt=""
         />
         { this.options
-          .filter(option => options.indexOf(option.type) >= 0)
+          .filter(option => options.indexOf(option) >= 0)
           .map((option, index) => (<DropdownOption
             key={index}
-            value={option.value}
-            className={classNames('rdw-list-dropdownOption', config[option.type].className)}
-            active={linkType === option.value}
+            value={option}
+            className={classNames('rdw-list-dropdownOption', config[option].className)}
+            active={listType === option}
           >
             <img
-              src={config[option.type].icon}
+              src={config[option].icon}
               alt=""
             />
           </DropdownOption>))
