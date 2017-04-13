@@ -14,7 +14,7 @@
     "import/no-unresolved": 2,
     "linebreak-style": [
       "error",
-      "windows"
+      "unix"
     ]
   }
 }
