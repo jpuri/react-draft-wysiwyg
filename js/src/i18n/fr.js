@@ -34,5 +34,5 @@ module.exports = {
   //Link
   'components.controls.link.linkTitle': 'Titre du lien',
   'components.controls.link.linkTarget': 'Cible du lien',
-  'components.controls.link.linkTargetOption': 'Target blank',
+  'components.controls.link.linkTargetOption': 'Ouvrir le lien dans une nouvelle fenêtre',
 }
