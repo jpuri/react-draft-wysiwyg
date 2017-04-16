@@ -945,7 +945,7 @@ textarea {
       -ms-flex-direction: column;
           flex-direction: column;
   width: 235px;
-  height: 180px;
+  height: 205px;
   border: 1px solid #F1F1F1;
   padding: 15px;
   border-radius: 2px;
@@ -969,6 +969,12 @@ textarea {
 }
 .rdw-link-modal-buttonsection {
   margin: 0 auto;
+}
+.rdw-link-modal-target-option {
+  margin-bottom: 20px;
+}
+.rdw-link-modal-target-option > span {
+  margin-left: 5px;
 }
 .rdw-link-modal-btn {
   margin-left: 10px;

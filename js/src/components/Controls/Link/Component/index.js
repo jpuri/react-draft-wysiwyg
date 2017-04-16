@@ -57,6 +57,12 @@ class LayoutComponent extends Component {
     });
   };
 
+  updateTarget: Function = (event: Object): void => {
+    this.setState({
+      linkTargetOption: event.target.checked ? '_blank' : '_self',
+    });
+  };
+
   hideModal: Function = (): void => {
     this.setState({
       showModal: false,
@@ -99,7 +105,6 @@ class LayoutComponent extends Component {
           {translations['components.controls.link.linkTitle']}
         </span>
         <input
-          ref={this.setLinkTitleReference}
           className="rdw-link-modal-input"
           onChange={this.updateValue}
           onBlur={this.updateValue}
@@ -110,18 +115,21 @@ class LayoutComponent extends Component {
           {translations['components.controls.link.linkTarget']}
         </span>
         <input
-          ref={this.setLinkTextReference}
           className="rdw-link-modal-input"
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTarget"
           value={linkTarget}
         />
-        <span className="rdw-link-modal-label">
-          {translations['components.controls.link.linkTargetOption']}
+        <span className="rdw-link-modal-target-option">
+          <input
+            type="checkbox"
+            defaultChecked={linkTargetOption === '_blank'}
+            value="_blank"
+            onChange={this.updateTarget}
+          />
+          <span>{translations['components.controls.link.linkTargetOption']}</span>
         </span>
-        <label htmlFor="radioSelf"><input id="radioSelf" type="radio" defaultChecked={linkTargetOption === '_self'} name="linkTargetOption" value="_self" onChange={this.updateValue} />{translations['components.controls.link.linkTargetOption.MainWindow']}</label>
-        <label htmlFor="radioBlank"><input id="radioBlank" type="radio" defaultChecked={linkTargetOption === '_blank'} name="linkTargetOption" value="_blank" onChange={this.updateValue} />{translations['components.controls.link.linkTargetOption.NewWindow']}</label>
         <span className="rdw-link-modal-buttonsection">
           <button
             className="rdw-link-modal-btn"
