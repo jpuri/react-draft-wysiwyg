@@ -26,6 +26,7 @@ class LayoutComponent extends Component {
     showModal: false,
     linkTarget: '',
     linkTitle: '',
+    linkTargetOption: this.props.config.defaultTargetOption,
   };
 
   componentWillReceiveProps(props) {
@@ -34,6 +35,7 @@ class LayoutComponent extends Component {
         showModal: false,
         linkTarget: '',
         linkTitle: '',
+        linkTargetOption: this.props.config.defaultTargetOption,
       });
     }
   }
@@ -45,8 +47,8 @@ class LayoutComponent extends Component {
 
   addLink: Function = (): void => {
     const { onChange } = this.props;
-    const { linkTitle, linkTarget } = this.state;
-    onChange('link', linkTitle, linkTarget);
+    const { linkTitle, linkTarget, linkTargetOption } = this.state;
+    onChange('link', linkTitle, linkTarget, linkTargetOption);
   };
 
   updateValue: Function = (event: Object): void => {
@@ -63,27 +65,31 @@ class LayoutComponent extends Component {
 
   signalExpandShowModal = () => {
     const { onExpandEvent, currentState: { link, selectionText } } = this.props;
+    const { linkTargetOption } = this.state;
     onExpandEvent();
     this.setState({
       showModal: true,
       linkTarget: link && link.target,
+      linkTargetOption: (link && link.targetOption) || linkTargetOption,
       linkTitle: (link && link.title) || selectionText,
     });
   }
 
   forceExpandAndShowModal: Function = (): void => {
     const { doExpand, currentState: { link, selectionText } } = this.props;
+    const { linkTargetOption } = this.state;
     doExpand();
     this.setState({
       showModal: true,
       linkTarget: link && link.target,
+      linkTargetOption: (link && link.targetOption) || linkTargetOption,
       linkTitle: (link && link.title) || selectionText,
     });
   }
 
   renderAddLinkModal() {
     const { config: { popupClassName }, doCollapse, translations } = this.props;
-    const { linkTitle, linkTarget } = this.state;
+    const { linkTitle, linkTarget, linkTargetOption } = this.state;
     return (
       <div
         className={classNames('rdw-link-modal', popupClassName)}
@@ -111,6 +117,11 @@ class LayoutComponent extends Component {
           name="linkTarget"
           value={linkTarget}
         />
+        <span className="rdw-link-modal-label">
+          {translations['components.controls.link.linkTargetOption']}
+        </span>
+        <label htmlFor="radioSelf"><input id="radioSelf" type="radio" defaultChecked={linkTargetOption === '_self'} name="linkTargetOption" value="_self" onChange={this.updateValue} />{translations['components.controls.link.linkTargetOption.MainWindow']}</label>
+        <label htmlFor="radioBlank"><input id="radioBlank" type="radio" defaultChecked={linkTargetOption === '_blank'} name="linkTargetOption" value="_blank" onChange={this.updateValue} />{translations['components.controls.link.linkTargetOption.NewWindow']}</label>
         <span className="rdw-link-modal-buttonsection">
           <button
             className="rdw-link-modal-btn"

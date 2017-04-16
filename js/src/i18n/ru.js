@@ -34,4 +34,7 @@ module.exports = {
   // Link
   'components.controls.link.linkTitle': 'Текст',
   'components.controls.link.linkTarget': 'Адрес ссылки',
+  'components.controls.link.linkTargetOption': 'Target',
+  'components.controls.link.linkTargetOption.MainWindow': 'Main window',
+  'components.controls.link.linkTargetOption.NewWindow': 'New window',
 }
