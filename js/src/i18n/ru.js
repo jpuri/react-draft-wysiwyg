@@ -17,22 +17,22 @@ module.exports = {
 
   // Color Picker
   'components.controls.colorpicker.text': 'Текст',
-  'components.controls.colorpicker.background': 'Фон текста',
+  'components.controls.colorpicker.background': 'Фон',
 
   // Embedded
   'components.controls.embedded.embeddedlink': 'Ссылка в iFrame',
-  'components.controls.embedded.enterlink': 'Ссылка',
+  'components.controls.embedded.enterlink': 'Вставьте ссылку',
 
   // FontFamily
   'components.controls.fontfamily.fontfamily': 'Шрифт',
 
   // Image
-  'components.controls.image.fileUpload': 'Загрузка файлов',
+  'components.controls.image.fileUpload': 'Файлы',
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Переместите в эту область файлы или кликните для загрузки',
 
   // Link
   'components.controls.link.linkTitle': 'Текст',
   'components.controls.link.linkTarget': 'Адрес ссылки',
-  'components.controls.link.linkTargetOption': 'Target blank',
+  'components.controls.link.linkTargetOption': 'Открывать в новом окне',
 }
