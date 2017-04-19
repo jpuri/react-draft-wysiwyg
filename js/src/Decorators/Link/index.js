@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Entity } from 'draft-js';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import openlink from '../../../../images/openlink.svg';

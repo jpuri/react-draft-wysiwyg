@@ -54,8 +54,9 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "draftjs-utils": "^0.7.3",
     "immutable": "^4.0.0-rc.1",
-    "draftjs-utils": "^0.7.3"
+    "prop-types": "^15.5.8"
   },
   "peerDependencies": {
     "draft-js": "^0.10.x",
