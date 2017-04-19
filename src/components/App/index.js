@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Menu from '../Menu';
 import github from '../../../images/github.png';
 import paperPen from '../../../images/paper_pen.svg';
