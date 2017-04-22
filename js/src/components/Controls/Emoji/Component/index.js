@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
@@ -8,7 +9,6 @@ import Option from '../../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class LayoutComponent extends Component {
-
   static propTypes: Object = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -24,18 +24,10 @@ class LayoutComponent extends Component {
   renderEmojiModal(): Object {
     const { config: { popupClassName, emojis } } = this.props;
     return (
-      <div
-        className={classNames('rdw-emoji-modal', popupClassName)}
-        onClick={stopPropagation}
-      >
-        {
-          emojis.map((emoji, index) => (<span
-            key={index}
-            className="rdw-emoji-icon"
-            alt=""
-            onClick={this.onChange}
-          >{emoji}</span>))
-        }
+      <div className={classNames('rdw-emoji-modal', popupClassName)} onClick={stopPropagation}>
+        {emojis.map((emoji, index) => (
+          <span key={index} className="rdw-emoji-icon" alt="" onClick={this.onChange}>{emoji}</span>
+        ))}
       </div>
     );
   }
@@ -54,10 +46,7 @@ class LayoutComponent extends Component {
           value="unordered-list-item"
           onClick={onExpandEvent}
         >
-          <img
-            src={icon}
-            alt=""
-          />
+          <img src={icon} alt="" />
         </Option>
         {expanded ? this.renderEmojiModal() : undefined}
       </div>

@@ -1,11 +1,11 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class Option extends Component {
-
   static propTypes = {
     onClick: PropTypes.func.isRequired,
     children: PropTypes.any,
@@ -27,14 +27,10 @@ export default class Option extends Component {
     const { children, className, activeClassName, active, disabled } = this.props;
     return (
       <div
-        className={classNames(
-          'rdw-option-wrapper',
-          className,
-          {
-            [`rdw-option-active ${activeClassName}`]: active,
-            'rdw-option-disabled': disabled,
-          }
-        )}
+        className={classNames('rdw-option-wrapper', className, {
+          [`rdw-option-active ${activeClassName}`]: active,
+          'rdw-option-disabled': disabled,
+        })}
         onClick={this.onClick}
         aria-selected={active}
       >

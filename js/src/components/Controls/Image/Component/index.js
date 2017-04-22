@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Option from '../../../Option';
@@ -8,7 +9,6 @@ import Spinner from '../../../Spinner';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class LayoutComponent extends Component {
-
   static propTypes: Object = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -36,9 +36,11 @@ class LayoutComponent extends Component {
         showImageLoading: false,
         height: this.props.config.defaultSize.height,
         width: this.props.config.defaultSize.width,
-      })
-    } else if (props.config.uploadCallback !== this.props.config.uploadCallback ||
-      props.config.uploadEnabled !== this.props.config.uploadEnabled) {
+      });
+    } else if (
+      props.config.uploadCallback !== this.props.config.uploadCallback ||
+      props.config.uploadEnabled !== this.props.config.uploadEnabled
+    ) {
       this.setState({
         uploadHighlighted: props.config.uploadEnabled && !!props.config.uploadCallback,
       });
@@ -114,7 +116,8 @@ class LayoutComponent extends Component {
           dragEnter: false,
         });
         this.addImageFromSrcLink(data.link);
-      }).catch(() => {
+      })
+      .catch(() => {
         this.setState({
           showImageLoading: false,
           dragEnter: false,
@@ -125,7 +128,7 @@ class LayoutComponent extends Component {
   fileUploadClick = (event) => {
     this.fileUpload = true;
     event.stopPropagation();
-  }
+  };
 
   stopPropagation: Function = (event: Object): void => {
     if (!this.fileUpload) {
@@ -138,79 +141,68 @@ class LayoutComponent extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled }, doCollapse, translations } = this.props;
+    const {
+      config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled },
+      doCollapse,
+      translations,
+    } = this.props;
     return (
-      <div
-        className={classNames('rdw-image-modal', popupClassName)}
-        onClick={this.stopPropagation}
-      >
+      <div className={classNames('rdw-image-modal', popupClassName)} onClick={this.stopPropagation}>
         <div className="rdw-image-modal-header">
-          {uploadEnabled && uploadCallback &&
-            <span
-              onClick={this.showImageUploadOption}
-              className="rdw-image-modal-header-option"
-            >
+          {uploadEnabled &&
+            uploadCallback &&
+            <span onClick={this.showImageUploadOption} className="rdw-image-modal-header-option">
               {translations['components.controls.image.fileUpload']}
               <span
-                className={classNames(
-                  'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': uploadHighlighted }
-                )}
+                className={classNames('rdw-image-modal-header-label', {
+                  'rdw-image-modal-header-label-highlighted': uploadHighlighted,
+                })}
               />
             </span>}
-          { urlEnabled &&
-            <span
-              onClick={this.showImageURLOption}
-              className="rdw-image-modal-header-option"
-            >
+          {urlEnabled &&
+            <span onClick={this.showImageURLOption} className="rdw-image-modal-header-option">
               {translations['components.controls.image.byURL']}
               <span
-                className={classNames(
-                  'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': !uploadHighlighted }
-                )}
+                className={classNames('rdw-image-modal-header-label', {
+                  'rdw-image-modal-header-label-highlighted': !uploadHighlighted,
+                })}
               />
             </span>}
         </div>
-        {
-          uploadHighlighted ?
-            <div onClick={this.fileUploadClick}>
-              <div
-                onDragEnter={this.onDragEnter}
-                onDragOver={this.stopPropagation}
-                onDrop={this.onImageDrop}
-                className={classNames(
-                'rdw-image-modal-upload-option',
-                { 'rdw-image-modal-upload-option-highlighted': dragEnter })}
-              >
-                <label
-                  htmlFor="file"
-                  className="rdw-image-modal-upload-option-label"
-                >
-                   {translations['components.controls.image.dropFileText']}
-                </label>
-              </div>
-              <input
-                type="file"
-                id="file"
-                accept="image/*"
-                onChange={this.selectImage}
-                className="rdw-image-modal-upload-option-input"
-              />
-            </div> :
-              <div className="rdw-image-modal-url-section">
-                <input
-                  className="rdw-image-modal-url-input"
-                  placeholder="Enter url"
-                  name="imgSrc"
-                  onChange={this.updateValue}
-                  onBlur={this.updateValue}
-                  value={imgSrc}
-                />
-              </div>
-        }
+        {uploadHighlighted
+          ? <div onClick={this.fileUploadClick}>
+            <div
+              onDragEnter={this.onDragEnter}
+              onDragOver={this.stopPropagation}
+              onDrop={this.onImageDrop}
+              className={classNames('rdw-image-modal-upload-option', {
+                'rdw-image-modal-upload-option-highlighted': dragEnter,
+              })}
+            >
+              <label htmlFor="file" className="rdw-image-modal-upload-option-label">
+                {translations['components.controls.image.dropFileText']}
+              </label>
+            </div>
+            <input
+              type="file"
+              id="file"
+              accept="image/*"
+              onChange={this.selectImage}
+              className="rdw-image-modal-upload-option-input"
+            />
+          </div>
+          : <div className="rdw-image-modal-url-section">
+            <input
+              className="rdw-image-modal-url-input"
+              placeholder="Enter url"
+              name="imgSrc"
+              onChange={this.updateValue}
+              onBlur={this.updateValue}
+              value={imgSrc}
+            />
+          </div>}
         <div className="rdw-embedded-modal-size">
-          &#8597;&nbsp;
+          ↕&nbsp;
           <input
             onChange={this.updateValue}
             onBlur={this.updateValue}
@@ -219,7 +211,7 @@ class LayoutComponent extends Component {
             className="rdw-embedded-modal-size-input"
             placeholder="Height"
           />
-          &nbsp;&#8596;&nbsp;
+          &nbsp;↔&nbsp;
           <input
             onChange={this.updateValue}
             onBlur={this.updateValue}
@@ -237,18 +229,15 @@ class LayoutComponent extends Component {
           >
             {translations['generic.add']}
           </button>
-          <button
-            className="rdw-image-modal-btn"
-            onClick={doCollapse}
-          >
+          <button className="rdw-image-modal-btn" onClick={doCollapse}>
             {translations['generic.cancel']}
           </button>
         </span>
-        {showImageLoading ?
-          <div className="rdw-image-modal-spinner">
+        {showImageLoading
+          ? <div className="rdw-image-modal-spinner">
             <Spinner />
-          </div> :
-          undefined}
+          </div>
+          : undefined}
       </div>
     );
   }
@@ -267,10 +256,7 @@ class LayoutComponent extends Component {
           value="unordered-list-item"
           onClick={onExpandEvent}
         >
-          <img
-            src={icon}
-            alt=""
-          />
+          <img src={icon} alt="" />
         </Option>
         {expanded ? this.renderAddImageModal() : undefined}
       </div>

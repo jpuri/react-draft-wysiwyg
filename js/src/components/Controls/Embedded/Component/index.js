@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
@@ -8,7 +9,6 @@ import Option from '../../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class LayoutComponent extends Component {
-
   static propTypes: Object = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -29,8 +29,8 @@ class LayoutComponent extends Component {
       const { height, width } = this.props.config.defaultSize;
       this.setState({
         embeddedLink: '',
-        height: height,
-        width: width,
+        height,
+        width,
       });
     }
   }
@@ -51,10 +51,7 @@ class LayoutComponent extends Component {
     const { embeddedLink, height, width } = this.state;
     const { config: { popupClassName }, doCollapse, translations } = this.props;
     return (
-      <div
-        className={classNames('rdw-embedded-modal', popupClassName)}
-        onClick={stopPropagation}
-      >
+      <div className={classNames('rdw-embedded-modal', popupClassName)} onClick={stopPropagation}>
         <div className="rdw-embedded-modal-header">
           <span className="rdw-embedded-modal-header-option">
             {translations['components.controls.embedded.embeddedlink']}
@@ -97,10 +94,7 @@ class LayoutComponent extends Component {
           >
             {translations['generic.add']}
           </button>
-          <button
-            className="rdw-embedded-modal-btn"
-            onClick={doCollapse}
-          >
+          <button className="rdw-embedded-modal-btn" onClick={doCollapse}>
             {translations['generic.cancel']}
           </button>
         </span>
@@ -122,10 +116,7 @@ class LayoutComponent extends Component {
           value="unordered-list-item"
           onClick={onExpandEvent}
         >
-          <img
-            src={icon}
-            alt=""
-          />
+          <img src={icon} alt="" />
         </Option>
         {expanded ? this.rendeEmbeddedLinkModal() : undefined}
       </div>

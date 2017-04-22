@@ -1,23 +1,17 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Entity } from 'draft-js';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import openlink from '../../../../images/openlink.svg';
 
 function findLinkEntities(contentBlock, callback, contentState) {
-  contentBlock.findEntityRanges(
-    (character) => {
-      const entityKey = character.getEntity();
-      return (
-        entityKey !== null &&
-        contentState.getEntity(entityKey).getType() === 'LINK'
-      );
-    },
-    callback
-  );
+  contentBlock.findEntityRanges((character) => {
+    const entityKey = character.getEntity();
+    return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
+  }, callback);
 }
 
 class Link extends Component {
-
   static propTypes = {
     entityKey: PropTypes.string.isRequired,
     children: PropTypes.array,
@@ -53,15 +47,14 @@ class Link extends Component {
         onMouseLeave={this.toggleShowPopOver}
       >
         <a href={url} target={targetOption}>{children}</a>
-        {showPopOver ?
-          <img
+        {showPopOver
+          ? <img
             src={openlink}
             alt=""
             onClick={this.openLink}
             className="rdw-link-decorator-icon"
           />
-          : undefined
-        }
+          : undefined}
       </span>
     );
   }

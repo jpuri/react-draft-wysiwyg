@@ -1,15 +1,12 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
-import {
-  toggleCustomInlineStyle,
-  getSelectionCustomInlineStyle,
-} from 'draftjs-utils';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { toggleCustomInlineStyle, getSelectionCustomInlineStyle } from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 
 class ColorPicker extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
@@ -37,12 +34,13 @@ class ColorPicker extends Component {
 
   componentWillReceiveProps(properties: Object): void {
     const newState = {};
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
-      newState.currentColor
-        = getSelectionCustomInlineStyle(properties.editorState, ['COLOR']).COLOR;
-      newState.currentBgColor
-        = getSelectionCustomInlineStyle(properties.editorState, ['BGCOLOR']).BGCOLOR;
+    if (properties.editorState && this.props.editorState !== properties.editorState) {
+      newState.currentColor = getSelectionCustomInlineStyle(properties.editorState, [
+        'COLOR',
+      ]).COLOR;
+      newState.currentBgColor = getSelectionCustomInlineStyle(properties.editorState, [
+        'BGCOLOR',
+      ]).BGCOLOR;
     }
     this.setState(newState);
   }
@@ -57,7 +55,7 @@ class ColorPicker extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -77,11 +75,7 @@ class ColorPicker extends Component {
 
   toggleColor: Function = (style: string, color: string): void => {
     const { editorState, onChange } = this.props;
-    const newState = toggleCustomInlineStyle(
-      editorState,
-      style,
-      color,
-    );
+    const newState = toggleCustomInlineStyle(editorState, style, color);
     if (newState) {
       onChange(newState);
     }
@@ -90,7 +84,7 @@ class ColorPicker extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { currentColor, currentBgColor, expanded } = this.state
+    const { currentColor, currentBgColor, expanded } = this.state;
     const ColorPickerComponent = config.component || LayoutComponent;
     const color = currentColor && currentColor.substring(6);
     const bgColor = currentBgColor && currentBgColor.substring(8);

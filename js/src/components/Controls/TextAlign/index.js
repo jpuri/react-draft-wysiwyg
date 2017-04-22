@@ -1,12 +1,12 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 
 export default class TextAlign extends Component {
-
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -16,7 +16,7 @@ export default class TextAlign extends Component {
 
   state = {
     currentTextAlignment: undefined,
-  }
+  };
 
   componentWillMount(): void {
     const { modalHandler } = this.props;
@@ -41,7 +41,7 @@ export default class TextAlign extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -59,7 +59,7 @@ export default class TextAlign extends Component {
     });
   };
 
-  addBlockAlignmentData:Function = (value: string) => {
+  addBlockAlignmentData: Function = (value: string) => {
     const { editorState, onChange } = this.props;
     const { currentTextAlignment } = this.state;
     if (currentTextAlignment !== value) {
@@ -67,11 +67,11 @@ export default class TextAlign extends Component {
     } else {
       onChange(setBlockData(editorState, { 'text-align': undefined }));
     }
-  }
+  };
 
   render(): Object {
     const { config } = this.props;
-    const { expanded, currentTextAlignment } = this.state
+    const { expanded, currentTextAlignment } = this.state;
     const TextAlignmentComponent = config.component || LayoutComponent;
     return (
       <TextAlignmentComponent

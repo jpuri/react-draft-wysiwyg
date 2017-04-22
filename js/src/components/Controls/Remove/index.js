@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { EditorState, Modifier } from 'draft-js';
 import { getSelectionCustomInlineStyle } from 'draftjs-utils';
 
@@ -8,7 +9,6 @@ import { forEach } from '../../../utils/common';
 import LayoutComponent from './Component';
 
 export default class Remove extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
@@ -18,7 +18,7 @@ export default class Remove extends Component {
 
   state = {
     expanded: false,
-  }
+  };
 
   componentWillMount(): void {
     const { modalHandler } = this.props;
@@ -41,22 +41,19 @@ export default class Remove extends Component {
       'SUPERSCRIPT',
       'SUBSCRIPT',
     ].forEach((style) => {
-      contentState = Modifier.removeInlineStyle(
-        contentState,
-        editorState.getSelection(),
-        style
-      );
+      contentState = Modifier.removeInlineStyle(contentState, editorState.getSelection(), style);
     });
-    const customStyles = getSelectionCustomInlineStyle(editorState, ['FONTSIZE', 'FONTFAMILY', 'COLOR', 'BGCOLOR']);
+    const customStyles = getSelectionCustomInlineStyle(editorState, [
+      'FONTSIZE',
+      'FONTFAMILY',
+      'COLOR',
+      'BGCOLOR',
+    ]);
     forEach(customStyles, (key, value) => {
       if (value) {
-        contentState = Modifier.removeInlineStyle(
-          contentState,
-          editorState.getSelection(),
-          value
-        );
+        contentState = Modifier.removeInlineStyle(contentState, editorState.getSelection(), value);
       }
-    })
+    });
 
     return EditorState.push(editorState, contentState, 'change-inline-style');
   };
@@ -71,7 +68,7 @@ export default class Remove extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;

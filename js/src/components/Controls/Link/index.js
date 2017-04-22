@@ -1,17 +1,13 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Entity, RichUtils, EditorState, Modifier } from 'draft-js';
-import {
-  getSelectionText,
-  getEntityRange,
-  getSelectionEntity,
-} from 'draftjs-utils';
+import { getSelectionText, getEntityRange, getSelectionEntity } from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 
 class Link extends Component {
-
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -38,8 +34,7 @@ class Link extends Component {
 
   componentWillReceiveProps(properties: Object): void {
     const newState = {};
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
+    if (properties.editorState && this.props.editorState !== properties.editorState) {
       newState.currentEntity = getSelectionEntity(properties.editorState);
     }
     this.setState(newState);
@@ -55,7 +50,7 @@ class Link extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -72,16 +67,18 @@ class Link extends Component {
     const { currentEntity } = this.state;
     const contentState = editorState.getCurrentContent();
     const currentValues = {};
-    if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
+    if (currentEntity && contentState.getEntity(currentEntity).get('type') === 'LINK') {
       currentValues.link = {};
       const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-      currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get('data').url;
-      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get('data').target;
-      currentValues.link.title = (entityRange && entityRange.text);
+      currentValues.link.target =
+        currentEntity && contentState.getEntity(currentEntity).get('data').url;
+      currentValues.link.targetOption =
+        currentEntity && contentState.getEntity(currentEntity).get('data').target;
+      currentValues.link.title = entityRange && entityRange.text;
     }
     currentValues.selectionText = getSelectionText(editorState);
     return currentValues;
-  }
+  };
 
   doCollapse: Function = (): void => {
     this.setState({
@@ -95,7 +92,7 @@ class Link extends Component {
     } else {
       this.removeLink();
     }
-  }
+  };
 
   removeLink: Function = (): void => {
     const { editorState, onChange } = this.props;

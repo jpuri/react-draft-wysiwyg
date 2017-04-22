@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
@@ -10,7 +11,6 @@ import { Dropdown, DropdownOption } from '../../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     doExpand: PropTypes.func,
@@ -79,7 +79,7 @@ class LayoutComponent extends Component {
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
       linkTitle: (link && link.title) || selectionText,
     });
-  }
+  };
 
   forceExpandAndShowModal: Function = (): void => {
     const { doExpand, currentState: { link, selectionText } } = this.props;
@@ -91,16 +91,13 @@ class LayoutComponent extends Component {
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
       linkTitle: (link && link.title) || selectionText,
     });
-  }
+  };
 
   renderAddLinkModal() {
     const { config: { popupClassName }, doCollapse, translations } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
     return (
-      <div
-        className={classNames('rdw-link-modal', popupClassName)}
-        onClick={stopPropagation}
-      >
+      <div className={classNames('rdw-link-modal', popupClassName)} onClick={stopPropagation}>
         <span className="rdw-link-modal-label">
           {translations['components.controls.link.linkTitle']}
         </span>
@@ -138,10 +135,7 @@ class LayoutComponent extends Component {
           >
             {translations['generic.add']}
           </button>
-          <button
-            className="rdw-link-modal-btn"
-            onClick={doCollapse}
-          >
+          <button className="rdw-link-modal-btn" onClick={doCollapse}>
             {translations['generic.cancel']}
           </button>
         </span>
@@ -150,37 +144,29 @@ class LayoutComponent extends Component {
   }
 
   renderInFlatList(): Object {
-    const {
-      config: { options, link, unlink, className },
-      currentState,
-      expanded,
-    } = this.props;
+    const { config: { options, link, unlink, className }, currentState, expanded } = this.props;
     const { showModal } = this.state;
     return (
       <div className={classNames('rdw-link-wrapper', className)} aria-label="rdw-link-control">
-        {options.indexOf('link') >= 0 && <Option
-          value="unordered-list-item"
-          className={classNames(link.className)}
-          onClick={this.signalExpandShowModal}
-          aria-haspopup="true"
-          aria-expanded={showModal}
-        >
-          <img
-            src={link.icon}
-            alt=""
-          />
-        </Option>}
-        {options.indexOf('unlink') >= 0 && <Option
-          disabled={!currentState.link}
-          value="ordered-list-item"
-          className={classNames(unlink.className)}
-          onClick={this.removeLink}
-        >
-          <img
-            src={unlink.icon}
-            alt=""
-          />
-        </Option>}
+        {options.indexOf('link') >= 0 &&
+          <Option
+            value="unordered-list-item"
+            className={classNames(link.className)}
+            onClick={this.signalExpandShowModal}
+            aria-haspopup="true"
+            aria-expanded={showModal}
+          >
+            <img src={link.icon} alt="" />
+          </Option>}
+        {options.indexOf('unlink') >= 0 &&
+          <Option
+            disabled={!currentState.link}
+            value="ordered-list-item"
+            className={classNames(unlink.className)}
+            onClick={this.removeLink}
+          >
+            <img src={unlink.icon} alt="" />
+          </Option>}
         {expanded && showModal ? this.renderAddLinkModal() : undefined}
       </div>
     );
@@ -214,29 +200,22 @@ class LayoutComponent extends Component {
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
         >
-          <img
-            src={getFirstIcon(config)}
-            alt=""
-          />
-          {options.indexOf('link') >= 0 && <DropdownOption
-            onClick={this.forceExpandAndShowModal}
-            className={classNames('rdw-link-dropdownoption', link.className)}
-          >
-            <img
-              src={link.icon}
-              alt=""
-            />
-          </DropdownOption>}
-          {options.indexOf('unlink') >= 0 && <DropdownOption
-            onClick={this.removeLink}
-            disabled={!currentState.link}
-            className={classNames('rdw-link-dropdownoption', unlink.className)}
-          >
-            <img
-              src={unlink.icon}
-              alt=""
-            />
-          </DropdownOption>}
+          <img src={getFirstIcon(config)} alt="" />
+          {options.indexOf('link') >= 0 &&
+            <DropdownOption
+              onClick={this.forceExpandAndShowModal}
+              className={classNames('rdw-link-dropdownoption', link.className)}
+            >
+              <img src={link.icon} alt="" />
+            </DropdownOption>}
+          {options.indexOf('unlink') >= 0 &&
+            <DropdownOption
+              onClick={this.removeLink}
+              disabled={!currentState.link}
+              className={classNames('rdw-link-dropdownoption', unlink.className)}
+            >
+              <img src={unlink.icon} alt="" />
+            </DropdownOption>}
         </Dropdown>
         {expanded && showModal ? this.renderAddLinkModal() : undefined}
       </div>

@@ -1,13 +1,13 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Dropdown, DropdownOption } from '../../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -44,11 +44,11 @@ export default class LayoutComponent extends Component {
       onExpandEvent,
       doExpand,
     } = this.props;
-    let { currentState: { fontSize : currentFontSize} } = this.props;
+    let { currentState: { fontSize: currentFontSize } } = this.props;
     let { defaultFontSize } = this.state;
     defaultFontSize = Number(defaultFontSize);
-    currentFontSize = currentFontSize ||
-      (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
+    currentFontSize =
+      currentFontSize || (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         <Dropdown
@@ -60,26 +60,17 @@ export default class LayoutComponent extends Component {
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
         >
-          {currentFontSize ?
-            <span>{currentFontSize}</span>
-          :
-            <img
-              src={icon}
-              alt=""
-            />
-          }
-          {
-            options.map((size, index) =>
-              <DropdownOption
-                className="rdw-fontsize-option"
-                active={currentFontSize === size}
-                value={size}
-                key={index}
-              >
-                {size}
-              </DropdownOption>
-            )
-          }
+          {currentFontSize ? <span>{currentFontSize}</span> : <img src={icon} alt="" />}
+          {options.map((size, index) => (
+            <DropdownOption
+              className="rdw-fontsize-option"
+              active={currentFontSize === size}
+              value={size}
+              key={index}
+            >
+              {size}
+            </DropdownOption>
+          ))}
         </Dropdown>
       </div>
     );

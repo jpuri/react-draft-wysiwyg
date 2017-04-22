@@ -1,12 +1,12 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Modifier, EditorState } from 'draft-js';
 
 import LayoutComponent from './Component';
 
 export default class Emoji extends Component {
-
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -34,7 +34,7 @@ export default class Emoji extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -66,7 +66,7 @@ export default class Emoji extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { expanded } = this.state
+    const { expanded } = this.state;
     const EmojiComponent = config.component || LayoutComponent;
     return (
       <EmojiComponent

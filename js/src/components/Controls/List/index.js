@@ -1,13 +1,13 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { RichUtils } from 'draft-js';
 import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 
 export default class List extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
@@ -32,8 +32,7 @@ export default class List extends Component {
   }
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
+    if (properties.editorState && this.props.editorState !== properties.editorState) {
       this.setState({
         currentBlockType: getSelectedBlocksType(properties.editorState),
       });
@@ -50,7 +49,7 @@ export default class List extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -82,10 +81,7 @@ export default class List extends Component {
 
   toggleBlockType: Function = (blockType: String): void => {
     const { onChange, editorState } = this.props;
-    const newState = RichUtils.toggleBlockType(
-      editorState,
-      blockType
-    );
+    const newState = RichUtils.toggleBlockType(editorState, blockType);
     if (newState) {
       onChange(newState);
     }
@@ -93,11 +89,7 @@ export default class List extends Component {
 
   adjustDepth: Function = (adjustment): void => {
     const { onChange, editorState } = this.props;
-    const newState = changeDepth(
-      editorState,
-      adjustment,
-      4,
-    );
+    const newState = changeDepth(editorState, adjustment, 4);
     if (newState) {
       onChange(newState);
     }
@@ -105,7 +97,7 @@ export default class List extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { expanded, currentBlockType } = this.state
+    const { expanded, currentBlockType } = this.state;
     const ListComponent = config.component || LayoutComponent;
     let listType;
     if (currentBlockType === 'unordered-list-item') {
