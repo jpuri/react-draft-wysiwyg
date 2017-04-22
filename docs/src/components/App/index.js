@@ -1,13 +1,13 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Menu from '../Menu';
 import github from '../../../images/github.png';
 import paperPen from '../../../images/paper_pen.svg';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class App extends Component {
-
   static propTypes = {
     children: PropTypes.object.isRequired,
     location: PropTypes.object,
@@ -23,11 +23,17 @@ export default class App extends Component {
             </a>
             <span className="header-text">
               <span className="header-title">
-                <a href="https://jpuri.github.io/react-draft-wysiwyg/" className="header-label">React Draft Wysiwyg</a>
+                <a href="https://jpuri.github.io/react-draft-wysiwyg/" className="header-label">
+                  React Draft Wysiwyg
+                </a>
               </span>
               <span className="header-subtitle">A Wysiwyg Built on ReactJS and DraftJS</span>
             </span>
-            <a target="_blank" href="https://github.com/jpuri/react-draft-wysiwyg" rel="noopener noreferrer">
+            <a
+              target="_blank"
+              href="https://github.com/jpuri/react-draft-wysiwyg"
+              rel="noopener noreferrer"
+            >
               <img className="github" src={github} alt="Fork me on GitHub" />
             </a>
           </span>
@@ -37,7 +43,16 @@ export default class App extends Component {
           {this.props.children}
         </div>
         <span className="footer">
-          Made with ❤ by <a target="_blank" href="https://twitter.com/jyopur" className="author-link" rel="noopener noreferrer"> Jyoti</a>
+          Made with ❤ by
+          {' '}
+          <a
+            target="_blank"
+            href="https://twitter.com/jyopur"
+            className="author-link"
+            rel="noopener noreferrer"
+          >
+            {' '}Jyoti
+          </a>
         </span>
       </div>
     );

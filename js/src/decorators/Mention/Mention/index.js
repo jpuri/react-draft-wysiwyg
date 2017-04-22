@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Entity } from 'draft-js';
 import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
@@ -14,7 +15,7 @@ class Mention {
         entityKey: PropTypes.number,
         children: PropTypes.object,
         contentState: PropTypes.object,
-      }
+      };
       render() {
         const { entityKey, children, contentState } = this.props;
         const { url, value } = contentState.getEntity(entityKey).getData();
@@ -26,25 +27,17 @@ class Mention {
       }
     };
   };
-  getMentionDecorator = () => {
-    return {
-      strategy: this.findMentionEntities,
-      component: this.getMentionComponent(),
-    }
-  };
+  getMentionDecorator = () => ({
+    strategy: this.findMentionEntities,
+    component: this.getMentionComponent(),
+  });
 }
 
 Mention.prototype.findMentionEntities = (contentBlock, callback, contentState) => {
-  contentBlock.findEntityRanges(
-    (character) => {
-      const entityKey = character.getEntity();
-      return (
-        entityKey !== null &&
-        contentState.getEntity(entityKey).getType() === 'MENTION'
-      );
-    },
-    callback,
-  );
+  contentBlock.findEntityRanges((character) => {
+    const entityKey = character.getEntity();
+    return entityKey !== null && contentState.getEntity(entityKey).getType() === 'MENTION';
+  }, callback);
 };
 
 module.exports = Mention;

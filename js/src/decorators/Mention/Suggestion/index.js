@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import addMention from '../addMention';
 import KeyDownHandler from '../../../event-handler/keyDown';
@@ -37,14 +38,16 @@ class Suggestion {
     if (this.config.getEditorState()) {
       const { separator, trigger, getSuggestions, getEditorState } = this.config;
       const selection = getEditorState().getSelection();
-      if (selection.get('anchorKey') === contentBlock.get('key') &&
-        selection.get('anchorKey') === selection.get('focusKey')) {
+      if (
+        selection.get('anchorKey') === contentBlock.get('key') &&
+        selection.get('anchorKey') === selection.get('focusKey')
+      ) {
         let text = contentBlock.getText();
         text = text.substr(
           0,
           selection.get('focusOffset') === text.length - 1
-          ? text.length
-          : selection.get('focusOffset') + 1
+            ? text.length
+            : selection.get('focusOffset') + 1,
         );
         let index = text.lastIndexOf(separator + trigger);
         let preText = separator + trigger;
@@ -54,14 +57,16 @@ class Suggestion {
         }
         if (index >= 0) {
           const mentionText = text.substr(index + preText.length, text.length);
-          const suggestionPresent =
-          getSuggestions().some((suggestion) => {
+          const suggestionPresent = getSuggestions().some((suggestion) => {
             if (suggestion.value) {
               if (this.config.caseSensitive) {
                 return suggestion.value.indexOf(mentionText) >= 0;
-              } else {
-                return suggestion.value.toLowerCase().indexOf(mentionText && mentionText.toLowerCase()) >= 0;
               }
+              return (
+                  suggestion.value
+                    .toLowerCase()
+                    .indexOf(mentionText && mentionText.toLowerCase()) >= 0
+              );
             }
           });
           if (suggestionPresent) {
@@ -70,22 +75,19 @@ class Suggestion {
         }
       }
     }
-  }
+  };
 
   getSuggestionComponent = getSuggestionComponent.bind(this);
 
-  getSuggestionDecorator = () => {
-    return {
-      strategy: this.findSuggestionEntities,
-      component: this.getSuggestionComponent(),
-    }
-  };
+  getSuggestionDecorator = () => ({
+    strategy: this.findSuggestionEntities,
+    component: this.getSuggestionComponent(),
+  });
 }
 
 function getSuggestionComponent() {
   const { config } = this;
   return class SuggestionComponent extends Component {
-
     static propTypes = {
       children: PropTypes.array,
     };
@@ -103,7 +105,7 @@ function getSuggestionComponent() {
       let left;
       let right;
       let bottom;
-      if (editorRect.width < (suggestionRect.left - editorRect.left) + dropdownRect.width) {
+      if (editorRect.width < suggestionRect.left - editorRect.left + dropdownRect.width) {
         right = 15;
       } else {
         left = 15;
@@ -111,7 +113,8 @@ function getSuggestionComponent() {
       if (editorRect.bottom < dropdownRect.bottom) {
         bottom = 0;
       }
-      this.setState({ // eslint-disable-line react/no-did-mount-set-state
+      this.setState({
+        // eslint-disable-line react/no-did-mount-set-state
         style: { left, right, bottom },
       });
       KeyDownHandler.registerCallBack(this.onEditorKeyDown);
@@ -158,19 +161,19 @@ function getSuggestionComponent() {
         this.addMention();
       }
       this.setState(newState);
-    }
+    };
 
     onOptionMouseEnter = (index) => {
       this.setState({
         activeOption: index,
       });
-    }
+    };
 
     onOptionMouseLeave = () => {
       this.setState({
         activeOption: -1,
       });
-    }
+    };
 
     setSuggestionReference: Function = (ref: Object): void => {
       this.suggestion = ref;
@@ -184,7 +187,7 @@ function getSuggestionComponent() {
       this.setState({
         showSuggestions: false,
       });
-    }
+    };
 
     filteredSuggestions = [];
 
@@ -192,24 +195,26 @@ function getSuggestionComponent() {
       const mentionText = props.children[0].props.text.substr(1);
       const suggestions = config.getSuggestions();
       this.filteredSuggestions =
-        suggestions && suggestions.filter((suggestion) => {
+        suggestions &&
+        suggestions.filter((suggestion) => {
           if (!mentionText || mentionText.length === 0) {
             return true;
           }
           if (config.caseSensitive) {
             return suggestion.value.indexOf(mentionText) >= 0;
-          } else {
-            return suggestion.value.toLowerCase().indexOf(mentionText && mentionText.toLowerCase()) >= 0;
           }
+          return (
+              suggestion.value.toLowerCase().indexOf(mentionText && mentionText.toLowerCase()) >= 0
+          );
         });
-    }
+    };
 
     addMention = () => {
       const { activeOption } = this.state;
       const editorState = config.getEditorState();
       const { onChange, separator, trigger } = config;
       addMention(editorState, onChange, separator, trigger, this.filteredSuggestions[activeOption]);
-    }
+    };
 
     render() {
       const { children } = this.props;
@@ -231,26 +236,25 @@ function getSuggestionComponent() {
               style={this.state.style}
               ref={this.setDropdownReference}
             >
-              {this.filteredSuggestions.map((suggestion, index) =>
+              {this.filteredSuggestions.map((suggestion, index) => (
                 <span
                   key={index}
                   spellCheck={false}
                   onClick={this.addMention}
                   onMouseEnter={this.onOptionMouseEnter.bind(this, index)}
                   onMouseLeave={this.onOptionMouseLeave}
-                  className={classNames(
-                    'rdw-suggestion-option',
-                    optionClassName,
-                    { 'rdw-suggestion-option-active': (index === activeOption) }
-                  )}
+                  className={classNames('rdw-suggestion-option', optionClassName, {
+                    'rdw-suggestion-option-active': index === activeOption,
+                  })}
                 >
                   {suggestion.text}
-                </span>)}
+                </span>
+              ))}
             </span>}
         </span>
       );
     }
-  }
+  };
 }
 
 module.exports = Suggestion;

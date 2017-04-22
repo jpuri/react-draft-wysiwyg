@@ -1,12 +1,12 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
 
 class Embedded extends Component {
-
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -34,7 +34,7 @@ class Embedded extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -58,18 +58,14 @@ class Embedded extends Component {
       .getCurrentContent()
       .createEntity('EMBEDDED_LINK', 'MUTABLE', { src: embeddedLink, height, width })
       .getLastCreatedEntityKey();
-    const newEditorState = AtomicBlockUtils.insertAtomicBlock(
-      editorState,
-      entityKey,
-      ' '
-    );
+    const newEditorState = AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
     onChange(newEditorState);
     this.doCollapse();
   };
 
   render(): Object {
     const { config, translations } = this.props;
-    const { expanded } = this.state
+    const { expanded } = this.state;
     const EmbeddedComponent = config.component || LayoutComponent;
     return (
       <EmbeddedComponent

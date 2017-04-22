@@ -1,13 +1,13 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getSelectedBlocksType } from 'draftjs-utils';
 import { RichUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
 
 class BlockType extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
@@ -32,8 +32,7 @@ class BlockType extends Component {
   }
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
+    if (properties.editorState && this.props.editorState !== properties.editorState) {
       this.setState({
         currentBlockType: getSelectedBlocksType(properties.editorState),
       });
@@ -61,7 +60,7 @@ class BlockType extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -82,10 +81,7 @@ class BlockType extends Component {
   toggleBlockType: Function = (blockType: string) => {
     const blockTypeValue = this.blocksTypes.find(bt => bt.label === blockType).style;
     const { editorState, onChange } = this.props;
-    const newState = RichUtils.toggleBlockType(
-      editorState,
-      blockTypeValue,
-    );
+    const newState = RichUtils.toggleBlockType(editorState, blockTypeValue);
     if (newState) {
       onChange(newState);
     }
@@ -93,7 +89,7 @@ class BlockType extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { undoDisabled, redoDisabled, expanded, currentBlockType } = this.state
+    const { undoDisabled, redoDisabled, expanded, currentBlockType } = this.state;
     const BlockTypeComponent = config.component || LayoutComponent;
     const blockType = this.blocksTypes.find(bt => bt.style === currentBlockType);
     return (

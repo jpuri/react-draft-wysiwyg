@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
@@ -8,7 +9,6 @@ import Option from '../../../Option';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -46,12 +46,16 @@ class LayoutComponent extends Component {
     const { onChange } = this.props;
     const { currentStyle } = this.state;
     onChange(currentStyle, color);
-  }
+  };
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName, colors }, currentState: { color, bgColor }, translations } = this.props;
+    const {
+      config: { popupClassName, colors },
+      currentState: { color, bgColor },
+      translations,
+    } = this.props;
     const { currentStyle } = this.state;
-    const currentSelectedColor = (currentStyle === 'color') ? color : bgColor;
+    const currentSelectedColor = currentStyle === 'color' ? color : bgColor;
     return (
       <div
         className={classNames('rdw-colorpicker-modal', popupClassName)}
@@ -59,41 +63,35 @@ class LayoutComponent extends Component {
       >
         <span className="rdw-colorpicker-modal-header">
           <span
-            className={classNames(
-              'rdw-colorpicker-modal-style-label',
-              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'color' }
-            )}
+            className={classNames('rdw-colorpicker-modal-style-label', {
+              'rdw-colorpicker-modal-style-label-active': currentStyle === 'color',
+            })}
             onClick={this.setCurrentStyleColor}
           >
             {translations['components.controls.colorpicker.text']}
           </span>
           <span
-            className={classNames(
-              'rdw-colorpicker-modal-style-label',
-              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'bgcolor' }
-            )}
+            className={classNames('rdw-colorpicker-modal-style-label', {
+              'rdw-colorpicker-modal-style-label-active': currentStyle === 'bgcolor',
+            })}
             onClick={this.setCurrentStyleBgcolor}
           >
             {translations['components.controls.colorpicker.background']}
           </span>
         </span>
         <span className="rdw-colorpicker-modal-options">
-          {
-            colors.map((color, index) =>
-              <Option
-                value={color}
-                key={index}
-                className="rdw-colorpicker-option"
-                activeClassName="rdw-colorpicker-option-active"
-                active={currentSelectedColor === color}
-                onClick={this.onChange}
-              >
-                <span
-                  style={{ backgroundColor: color }}
-                  className="rdw-colorpicker-cube"
-                />
-              </Option>)
-          }
+          {colors.map((color, index) => (
+            <Option
+              value={color}
+              key={index}
+              className="rdw-colorpicker-option"
+              activeClassName="rdw-colorpicker-option-active"
+              active={currentSelectedColor === color}
+              onClick={this.onChange}
+            >
+              <span style={{ backgroundColor: color }} className="rdw-colorpicker-cube" />
+            </Option>
+          ))}
         </span>
       </div>
     );
@@ -108,14 +106,8 @@ class LayoutComponent extends Component {
         aria-expanded={expanded}
         aria-label="rdw-color-picker"
       >
-        <Option
-          onClick={onExpandEvent}
-          className={classNames(className)}
-        >
-          <img
-            src={icon}
-            alt=""
-          />
+        <Option onClick={onExpandEvent} className={classNames(className)}>
+          <img src={icon} alt="" />
         </Option>
         {expanded ? this.renderModal() : undefined}
       </div>

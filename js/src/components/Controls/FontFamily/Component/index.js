@@ -1,13 +1,13 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Dropdown, DropdownOption } from '../../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -45,9 +45,13 @@ class LayoutComponent extends Component {
       onExpandEvent,
       doExpand,
     } = this.props;
-    let { currentState: { fontFamily : currentFontFamily } } = this.props;
-    currentFontFamily = currentFontFamily ||
-      (options && defaultFontFamily && options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) && defaultFontFamily);
+    let { currentState: { fontFamily: currentFontFamily } } = this.props;
+    currentFontFamily =
+      currentFontFamily ||
+      (options &&
+        defaultFontFamily &&
+        options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) &&
+        defaultFontFamily);
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
         <Dropdown
@@ -62,16 +66,11 @@ class LayoutComponent extends Component {
           <span className="rdw-fontfamily-placeholder">
             {currentFontFamily || translations['components.controls.fontfamily.fontfamily']}
           </span>
-          {
-            options.map((family, index) =>
-              <DropdownOption
-                active={currentFontFamily === family}
-                value={family}
-                key={index}
-              >
-                {family}
-              </DropdownOption>)
-          }
+          {options.map((family, index) => (
+            <DropdownOption active={currentFontFamily === family} value={family} key={index}>
+              {family}
+            </DropdownOption>
+          ))}
         </Dropdown>
       </div>
     );

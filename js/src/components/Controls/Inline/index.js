@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getSelectionInlineStyle } from 'draftjs-utils';
 import { RichUtils, EditorState, Modifier } from 'draft-js';
 import { forEach } from '../../../utils/common';
@@ -8,7 +9,6 @@ import { forEach } from '../../../utils/common';
 import LayoutComponent from './Component';
 
 export default class Inline extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,
@@ -32,8 +32,7 @@ export default class Inline extends Component {
   }
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
+    if (properties.editorState && this.props.editorState !== properties.editorState) {
       this.setState({
         currentStyles: this.changeKeys(getSelectionInlineStyle(properties.editorState)),
       });
@@ -53,21 +52,18 @@ export default class Inline extends Component {
       });
       return st;
     }
-  }
+  };
 
   toggleInlineStyle: Function = (style: string): void => {
     const newStyle = style === 'monospace' ? 'CODE' : style.toUpperCase();
     const { editorState, onChange } = this.props;
-    let newState = RichUtils.toggleInlineStyle(
-      editorState,
-      newStyle
-    );
+    let newState = RichUtils.toggleInlineStyle(editorState, newStyle);
     if (style === 'subscript' || style === 'superscript') {
       const removeStyle = style === 'subscript' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
       const contentState = Modifier.removeInlineStyle(
         newState.getCurrentContent(),
         newState.getSelection(),
-        removeStyle
+        removeStyle,
       );
       newState = EditorState.push(newState, contentState, 'change-inline-style');
     }
@@ -81,7 +77,7 @@ export default class Inline extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -101,7 +97,7 @@ export default class Inline extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { expanded, currentStyles } = this.state
+    const { expanded, currentStyles } = this.state;
     const InlineComponent = config.component || LayoutComponent;
     return (
       <InlineComponent

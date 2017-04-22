@@ -1,11 +1,11 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 export default class DropDownOption extends Component {
-
   static propTypes = {
     children: PropTypes.any,
     value: PropTypes.any,
@@ -55,17 +55,14 @@ export default class DropDownOption extends Component {
       activeClassName,
       disabledClassName,
       highlightedClassName,
-     } = this.props;
+    } = this.props;
     return (
       <li
-        className={classNames(
-            'rdw-dropdownoption-default',
-            className,
-            { [`rdw-dropdownoption-active ${activeClassName}`]: active,
-              [`rdw-dropdownoption-highlighted ${highlightedClassName}`]: highlighted,
-              [`rdw-dropdownoption-disabled ${disabledClassName}`]: disabled,
-            })
-        }
+        className={classNames('rdw-dropdownoption-default', className, {
+          [`rdw-dropdownoption-active ${activeClassName}`]: active,
+          [`rdw-dropdownoption-highlighted ${highlightedClassName}`]: highlighted,
+          [`rdw-dropdownoption-disabled ${disabledClassName}`]: disabled,
+        })}
         onMouseEnter={this.setHighlighted}
         onMouseLeave={this.resetHighlighted}
         onClick={this.onClick}

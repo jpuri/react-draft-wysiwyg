@@ -1,12 +1,12 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 
 import LayoutComponent from './Component';
 
 export default class History extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
@@ -32,8 +32,7 @@ export default class History extends Component {
   }
 
   componentWillReceiveProps(properties: Object): void {
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
+    if (properties.editorState && this.props.editorState !== properties.editorState) {
       this.setState({
         undoDisabled: properties.editorState.getUndoStack().size === 0,
         redoDisabled: properties.editorState.getRedoStack().size === 0,
@@ -51,7 +50,7 @@ export default class History extends Component {
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
@@ -75,16 +74,16 @@ export default class History extends Component {
     if (newState) {
       onChange(newState);
     }
-  }
+  };
 
   render(): Object {
     const { config } = this.props;
-    const { undoDisabled, redoDisabled, expanded } = this.state
+    const { undoDisabled, redoDisabled, expanded } = this.state;
     const HistoryComponent = config.component || LayoutComponent;
     return (
       <HistoryComponent
         config={config}
-        currentState={{ undoDisabled, redoDisabled}}
+        currentState={{ undoDisabled, redoDisabled }}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}

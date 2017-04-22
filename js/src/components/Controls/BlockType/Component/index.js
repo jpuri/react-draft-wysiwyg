@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Option from '../../../Option';
@@ -8,7 +9,6 @@ import { Dropdown, DropdownOption } from '../../../Dropdown';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
 class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -21,22 +21,27 @@ class LayoutComponent extends Component {
   };
 
   blocksTypes: Array<Object> = [
-    { label: 'Normal', displayName: this.props.translations['components.controls.blocktype.normal'] },
+    {
+      label: 'Normal',
+      displayName: this.props.translations['components.controls.blocktype.normal'],
+    },
     { label: 'H1', displayName: this.props.translations['components.controls.blocktype.h1'] },
     { label: 'H2', displayName: this.props.translations['components.controls.blocktype.h2'] },
     { label: 'H3', displayName: this.props.translations['components.controls.blocktype.h3'] },
     { label: 'H4', displayName: this.props.translations['components.controls.blocktype.h4'] },
     { label: 'H5', displayName: this.props.translations['components.controls.blocktype.h5'] },
     { label: 'H6', displayName: this.props.translations['components.controls.blocktype.h6'] },
-    { label: 'Blockquote', displayName: this.props.translations['components.controls.blocktype.blockquote'] },
+    {
+      label: 'Blockquote',
+      displayName: this.props.translations['components.controls.blocktype.blockquote'],
+    },
   ];
 
   renderFlat(): void {
     const { config: { className }, onChange, currentState: { blockType } } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
-        {
-        this.blocksTypes.map((block, index) =>
+        {this.blocksTypes.map((block, index) => (
           <Option
             key={index}
             value={block.label}
@@ -45,8 +50,7 @@ class LayoutComponent extends Component {
           >
             {block.displayName}
           </Option>
-        )
-      }
+        ))}
       </div>
     );
   }
@@ -76,16 +80,11 @@ class LayoutComponent extends Component {
           onExpandEvent={onExpandEvent}
         >
           <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
-          {
-            this.blocksTypes.map((block, index) =>
-              <DropdownOption
-                active={blockType === block.label}
-                value={block.label}
-                key={index}
-              >
-                {block.displayName}
-              </DropdownOption>)
-          }
+          {this.blocksTypes.map((block, index) => (
+            <DropdownOption active={blockType === block.label} value={block.label} key={index}>
+              {block.displayName}
+            </DropdownOption>
+          ))}
         </Dropdown>
       </div>
     );
