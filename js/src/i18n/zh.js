@@ -34,5 +34,5 @@ module.exports = {
   //Link
   'components.controls.link.linkTitle': '超链接',
   'components.controls.link.linkTarget': '输入链接地址',
-  'components.controls.link.linkTargetOption': 'Target blank',
+  'components.controls.link.linkTargetOption': 'Open link in a new window',
 }

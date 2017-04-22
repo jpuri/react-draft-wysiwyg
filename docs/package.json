@@ -67,6 +67,7 @@
     "react-color": "^2.11.4",
     "react-dom": "^15.4.2",
     "react-draft-wysiwyg": "file:../",
-    "react-router": "^3.0.2"
+    "react-router": "^3.0.2",
+    "authored-editor": "git://github.com/authored/authored-editor.git#52c2d62da780ef312d8afbab31f4dde8d02038cc"
   }
 }

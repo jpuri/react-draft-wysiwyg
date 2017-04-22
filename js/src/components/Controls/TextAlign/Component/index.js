@@ -96,7 +96,7 @@ export default class TextAlign extends Component {
         aria-label="rdw-textalign-control"
       >
         <img
-          src={getFirstIcon(config)}
+          src={(textAlignment && config[textAlignment].icon) || getFirstIcon(config)}
           alt=""
         />
         {options.indexOf('left') >= 0 && <DropdownOption
