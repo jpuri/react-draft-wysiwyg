@@ -1,6 +1,7 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Entity, AtomicBlockUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
