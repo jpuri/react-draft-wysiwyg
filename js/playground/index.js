@@ -88,7 +88,7 @@ class Playground extends Component {
           const error = JSON.parse(xhr.responseText);
           reject(error);
         });
-      }
+      },
     );
 
   render() {
@@ -96,7 +96,7 @@ class Playground extends Component {
     return (
       <div className="playground-root">
         <div className="playground-label">
-          Toolbar is alwasy <sup>visible</sup>
+          Toolbar is always <sup>visible</sup>
         </div>
         <button onClick={this.clearContent} tabIndex={0}>Force Editor State</button>
         <div className="playground-editorSection">
@@ -120,14 +120,15 @@ class Playground extends Component {
               placeholder="testing"
               spellCheck
               toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
-              onFocus={() => {console.log('focus')}}
-              onBlur={() => {console.log('blur')}}
-              onTab={() => {console.log('tab'); return true;}}
-              localization={{ locale: 'zh', translations: {'generic.add': 'Test-Add'} }}
+              onFocus={() => { console.log('focus'); }}
+              onBlur={() => { console.log('blur'); }}
+              onTab={() => { console.log('tab'); return true; }}
+              localization={{ locale: 'zh', translations: { 'generic.add': 'Test-Add' } }}
               mention={{
                 separator: ' ',
                 trigger: '@',
                 caseSensitive: true,
+                onChangeMention: (partMention) => { console.log('Changed mention: ' + partMention); },
                 suggestions: [
                   { text: 'A', value: 'AB', url: 'href-a' },
                   { text: 'AB', value: 'ABC', url: 'href-ab' },
