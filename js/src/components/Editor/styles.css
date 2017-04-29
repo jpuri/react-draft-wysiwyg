@@ -2,7 +2,7 @@
   height: 100%;
   width: 100%;
   overflow: auto;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 .rdw-editor-toolbar {
   padding: 6px 5px 0;
