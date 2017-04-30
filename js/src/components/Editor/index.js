@@ -25,7 +25,7 @@ import { blockStyleFn } from '../../Utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import { hasProperty, filter } from '../../utils/common';
 import Controls from '../Controls';
-import LinkDecorator from '../../Decorators/Link';
+import getLinkDecorator from '../../Decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
 import getHashtagDecorator from '../../decorators/HashTag';
 import getBlockRenderFunc from '../../renderer';
@@ -245,7 +245,9 @@ export default class WysiwygEditor extends Component {
   };
 
   getCompositeDecorator = (): void => {
-    let decorators = [...this.props.customDecorators, LinkDecorator];
+    let decorators = [...this.props.customDecorators, getLinkDecorator({
+      showOpenOptionOnHover: this.state.toolbar.link.showOpenOptionOnHover,
+    })];
     if (this.props.mention) {
       decorators.push(...getMentionDecorators({
         ...this.props.mention,
@@ -271,8 +273,6 @@ export default class WysiwygEditor extends Component {
   isReadOnly = () => this.props.readOnly;
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
-
-  getShowOpenOptionOnHover = () => this.state.toolbar.link.showOpenOptionOnHover;
 
   createEditorState = (compositeDecorator) => {
     let editorState;

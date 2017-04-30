@@ -8,7 +8,6 @@ const webpack = require('webpack');
 const devConfigs = {
   devtool: 'source-map',
   entry: [
-    'webpack-hot-middleware/client',
     './js/playground/index',
   ],
   output: {

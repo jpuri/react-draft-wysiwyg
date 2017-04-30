@@ -17,58 +17,63 @@ function findLinkEntities(contentBlock, callback, contentState) {
   );
 }
 
-class Link extends Component {
+function getLinkComponent(config) {
+  const showOpenOptionOnHover = config.showOpenOptionOnHover;
+  return class Link extends Component {
 
-  static propTypes = {
-    entityKey: PropTypes.string.isRequired,
-    children: PropTypes.array,
-    contentState: PropTypes.object,
-  };
+    static propTypes = {
+      entityKey: PropTypes.string.isRequired,
+      children: PropTypes.array,
+      contentState: PropTypes.object,
+    };
 
-  state: Object = {
-    showPopOver: false,
-  };
+    state: Object = {
+      showPopOver: false,
+    };
 
-  openLink: Function = () => {
-    const { entityKey, contentState } = this.props;
-    const { url } = contentState.getEntity(entityKey).getData();
-    const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
-    linkTab.focus();
-  };
+    openLink: Function = () => {
+      const { entityKey, contentState } = this.props;
+      const { url } = contentState.getEntity(entityKey).getData();
+      const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
+      linkTab.focus();
+    };
 
-  toggleShowPopOver: Function = () => {
-    const showPopOver = !this.state.showPopOver;
-    this.setState({
-      showPopOver,
-    });
-  };
+    toggleShowPopOver: Function = () => {
+      const showPopOver = !this.state.showPopOver;
+      this.setState({
+        showPopOver,
+      });
+    };
 
-  render() {
-    const { children, entityKey, contentState } = this.props;
-    const { url, title, targetOption } = contentState.getEntity(entityKey).getData();
-    const { showPopOver } = this.state;
-    return (
-      <span
-        className="rdw-link-decorator-wrapper"
-        onMouseEnter={this.toggleShowPopOver}
-        onMouseLeave={this.toggleShowPopOver}
-      >
-        <a href={url} target={targetOption}>{children}</a>
-        {showPopOver ?
-          <img
-            src={openlink}
-            alt=""
-            onClick={this.openLink}
-            className="rdw-link-decorator-icon"
-          />
-          : undefined
-        }
-      </span>
-    );
+    render() {
+      const { children, entityKey, contentState } = this.props;
+      const { url, title, targetOption } = contentState.getEntity(entityKey).getData();
+      const { showPopOver } = this.state;
+      return (
+        <span
+          className="rdw-link-decorator-wrapper"
+          onMouseEnter={this.toggleShowPopOver}
+          onMouseLeave={this.toggleShowPopOver}
+        >
+          <a href={url} target={targetOption}>{children}</a>
+          {showPopOver && showOpenOptionOnHover ?
+            <img
+              src={openlink}
+              alt=""
+              onClick={this.openLink}
+              className="rdw-link-decorator-icon"
+            />
+            : undefined
+          }
+        </span>
+      );
+    }
   }
 }
 
-export default {
-  strategy: findLinkEntities,
-  component: Link,
+export default (config) => {
+  return {
+    strategy: findLinkEntities,
+    component: getLinkComponent(config),
+  }
 };
