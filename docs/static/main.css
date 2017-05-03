@@ -880,9 +880,11 @@ textarea {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  width: 170px;
+  width: 100%;
+  height: 100%;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
+  overflow: scroll;
 }
 .rdw-colorpicker-cube {
   width: 22px;
@@ -1508,7 +1510,6 @@ textarea {
   position: relative;
 }
 .rdw-image-center {
-  float: none;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -1517,16 +1518,26 @@ textarea {
           justify-content: center;
 }
 .rdw-image-left {
-  float: left;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 .rdw-image-right {
-  float: right;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+}
+.rdw-image-alignment-options-popup-right {
+  right: 0;
 }
 .rdw-editor-main {
   height: 100%;
   width: 100%;
   overflow: auto;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 .rdw-editor-toolbar {
   padding: 6px 5px 0;

@@ -50,10 +50,15 @@ const getImageComponent = (config) => {
       });
     };
 
-    renderAlignmentOptions(): Object {
+    renderAlignmentOptions(alignment): Object {
       return (
         <div
-          className="rdw-image-alignment-options-popup"
+          className={classNames(
+            'rdw-image-alignment-options-popup',
+            {
+              'rdw-image-alignment-options-popup-right': alignment === 'right',
+            }
+          )}
         >
           <Option
             onClick={this.setEntityAlignmentLeft}
@@ -108,7 +113,7 @@ const getImageComponent = (config) => {
             />
             {
               !isReadOnly() && hovered && isImageAlignmentEnabled() ?
-                this.renderAlignmentOptions()
+                this.renderAlignmentOptions(alignment)
                 :
                 undefined
             }

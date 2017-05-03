@@ -40,7 +40,8 @@ const contentState = ContentState.createFromBlockArray(contentBlocks);
 
 // const rawContentState = convertToRaw(contentState);
 
-const rawContentState = {"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"http://i.imgur.com/aMtBIep.png","height":"auto","width":"100%"}}},"blocks":[{"key":"9unl6","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"95kn","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"7rjes","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
+const rawContentState = {"entityMap":{},"blocks":[{"key":"3q6ro","text":"testing","type":"header-six","depth":0,"inlineStyleRanges":[{"offset":0,"length":7,"style":"fontsize-24"},{"offset":0,"length":7,"style":"fontfamily-Times New Roman"},{"offset":0,"length":7,"style":"color-rgb(209,72,65)"}],"entityRanges":[],"data":{}}]};
+// {"entityMap":{"0":{"type":"IMAGE","mutability":"MUTABLE","data":{"src":"http://i.imgur.com/aMtBIep.png","height":"auto","width":"100%"}}},"blocks":[{"key":"9unl6","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"95kn","text":" ","type":"atomic","depth":0,"inlineStyleRanges":[],"entityRanges":[{"offset":0,"length":1,"key":0}],"data":{}},{"key":"7rjes","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 
 class Playground extends Component {
 
@@ -104,7 +105,7 @@ class Playground extends Component {
           <div className="playground-editorWrapper">
             <Editor
               tabIndex={0}
-              editorState={editorState}
+              initialContentState={rawContentState}
               toolbarClassName="playground-toolbar"
               wrapperClassName="playground-wrapper"
               editorClassName="playground-editor"
@@ -112,6 +113,7 @@ class Playground extends Component {
                 history: { inDropdown: true },
                 inline: { inDropdown: false },
                 list: { inDropdown: true },
+                link: { showOpenOptionOnHover: false },
                 textAlign: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
               }}
@@ -187,3 +189,7 @@ toolbar={{
     inDropdown: true,
   },
 }}*/
+// {"entityMap":{},"blocks":
+// [{"key":"3q6ro","text":"testing iehfciwehcwjvbjhsvsvv","type":"header-six","depth":0,"inlineStyleRanges":
+// [{"offset":0,"length":29,"style":"fontsize-24"},{"offset":0,"length":29,"style":"fontfamily-Times New Roman"},{"offset":0,"length":29,"style":"color-rgb(209,72,65)"}],"entityRanges":[],"data":{}},{"key":"6789c","text":"","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}},{"key":"b2fnq","text":"testing","type":"unstyled","depth":0,"inlineStyleRanges":
+// [{"offset":0,"length":7 ,"style":"fontsize-24"},{"offset":0,"length":7, "style":"fontfamily-Times New Roman"},{"offset":0,"length":7,"style":"color-rgb(209,72,65)"}],"entityRanges":[],"data":{}}]}

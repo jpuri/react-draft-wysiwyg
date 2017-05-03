@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const Embed = ({ block, contentState }) => {
   const entity = contentState.getEntity(block.getEntityAt(0));

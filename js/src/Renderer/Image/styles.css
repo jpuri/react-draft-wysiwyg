@@ -24,13 +24,16 @@
   position: relative;
 }
 .rdw-image-center {
-  float: none;
   display: flex;
   justify-content: center;
 }
 .rdw-image-left {
-  float: left;
+  display: flex;
 }
 .rdw-image-right {
-  float: right;
+  display: flex;
+  justify-content: flex-end;
+}
+.rdw-image-alignment-options-popup-right {
+  right: 0;
 }
