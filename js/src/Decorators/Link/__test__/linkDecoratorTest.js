@@ -4,10 +4,11 @@ import React from 'react';
 import { Entity } from 'draft-js';
 import { expect, assert } from 'chai';
 import { shallow, mount } from 'enzyme';
-import LinkDecorator from '..';
+import getLinkDecorator from '..';
 import { convertFromHTML, AtomicBlockUtils, ContentState, EditorState } from 'draft-js';
 
 describe('LinkDecorator test suite', () => {
+  const LinkDecorator = getLinkDecorator({ showOpenOptionOnHover: true });
   const contentBlocks = convertFromHTML('<div>test</div>');
   const contentState = ContentState.createFromBlockArray(contentBlocks);
   const entityKey = contentState
