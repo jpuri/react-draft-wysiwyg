@@ -74,12 +74,14 @@ export default class WysiwygEditor extends Component {
     ariaExpanded: PropTypes.string,
     ariaHasPopup: PropTypes.string,
     customBlockRenderFunc: PropTypes.func,
+    wrapperId: PropTypes.string,
   };
 
   static defaultProps = {
     toolbarOnFocus: false,
     stripPastedStyles: false,
-  }
+    wrapperId: Math.floor(Math.random() * 10000),
+  };
 
   constructor(props) {
     super(props);
@@ -92,7 +94,7 @@ export default class WysiwygEditor extends Component {
       editorFocused: false,
       toolbar,
     };
-    this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
+    this.wrapperId = `rdw-wrapper-${props.wrapperId}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
     this.blockRendererFn = getBlockRenderFunc({ isReadOnly: this.isReadOnly }, props.customBlockRenderFunc);
@@ -201,7 +203,7 @@ export default class WysiwygEditor extends Component {
     const { readOnly, onEditorStateChange } = this.props;
     if (!readOnly) {
       if (onEditorStateChange) {
-        onEditorStateChange(editorState);
+        onEditorStateChange(editorState, this.props.wrapperId);
       }
       if (!hasProperty(this.props, 'editorState')) {
         this.setState({ editorState }, this.afterChange(editorState));
