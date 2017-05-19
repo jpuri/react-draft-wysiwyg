@@ -54,7 +54,7 @@ class LayoutComponent extends Component {
 
   renderInDropdown(blocks: Array<Object>): void {
     const {
-      config: { className, dropdownClassName },
+      config: { className, dropdownClassName, title },
       currentState: { blockType },
       expanded,
       doExpand,
@@ -75,6 +75,7 @@ class LayoutComponent extends Component {
           doExpand={doExpand}
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
+          title={title}
         >
           <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
           {

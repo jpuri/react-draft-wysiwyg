@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
@@ -42,13 +42,14 @@ class LayoutComponent extends Component {
   }
 
   render(): Object {
-    const { config: { icon, className }, expanded, onExpandEvent } = this.props;
+    const { config: { icon, className, title }, expanded, onExpandEvent } = this.props;
     return (
       <div
         className="rdw-emoji-wrapper"
         aria-haspopup="true"
         aria-label="rdw-emoji-control"
         aria-expanded={expanded}
+        title={title}
       >
         <Option
           className={classNames(className)}

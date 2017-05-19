@@ -38,7 +38,7 @@ class LayoutComponent extends Component {
   render() {
     const { defaultFontFamily } = this.state;
     const {
-      config: { icon, className, dropdownClassName, options },
+      config: { icon, className, dropdownClassName, options, title },
       translations,
       onChange,
       expanded,
@@ -59,6 +59,7 @@ class LayoutComponent extends Component {
           doExpand={doExpand}
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
+          title={title}
         >
           <span className="rdw-fontfamily-placeholder">
             {currentFontFamily || translations['components.controls.fontfamily.fontfamily']}

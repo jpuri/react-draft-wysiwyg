@@ -50,6 +50,7 @@ export default class LayoutComponent extends Component {
           onClick={this.toggleBlockType}
           className={classNames(unordered.className)}
           active={listType === 'unordered'}
+          title={unordered.title}
         >
           <img
             src={unordered.icon}
@@ -61,6 +62,7 @@ export default class LayoutComponent extends Component {
           onClick={this.toggleBlockType}
           className={classNames(ordered.className)}
           active={listType === 'ordered'}
+          title={ordered.title}
         >
           <img
             src={ordered.icon}
@@ -70,6 +72,7 @@ export default class LayoutComponent extends Component {
         {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
           className={classNames(indent.className)}
+          title={indent.title}
         >
           <img
             src={indent.icon}
@@ -79,6 +82,7 @@ export default class LayoutComponent extends Component {
         {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
           className={classNames(outdent.className)}
+          title={outdent.title}
         >
           <img
             src={outdent.icon}
@@ -91,7 +95,7 @@ export default class LayoutComponent extends Component {
 
   renderInDropDown(): Object {
     const { config, expanded, doCollapse, doExpand, onExpandEvent, onChange, currentState: { listType } } = this.props;
-    const { options, className, dropdownClassName } = config;
+    const { options, className, dropdownClassName, title } = config;
     return (
       <Dropdown
         className={classNames('rdw-list-dropdown', className)}
@@ -102,6 +106,7 @@ export default class LayoutComponent extends Component {
         doCollapse={doCollapse}
         onExpandEvent={onExpandEvent}
         aria-label="rdw-list-control"
+        title={title}
       >
         <img
           src={getFirstIcon(config)}
@@ -114,6 +119,7 @@ export default class LayoutComponent extends Component {
             value={option}
             className={classNames('rdw-list-dropdownOption', config[option].className)}
             active={listType === option}
+            title={config[option].title}
           >
             <img
               src={config[option].icon}
