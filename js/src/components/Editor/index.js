@@ -15,6 +15,7 @@ import {
   handleNewLine,
   getCustomStyleMap,
   extractInlineStyle,
+  getSelectedBlocksType,
 } from 'draftjs-utils';
 import classNames from 'classnames';
 import ModalHandler from '../../event-handler/modals';
@@ -212,7 +213,9 @@ export default class WysiwygEditor extends Component {
 
   onChange: Function = (editorState: Object): void => {
     const { readOnly, onEditorStateChange } = this.props;
-    if (!readOnly) {
+    if (!readOnly &&
+      !(getSelectedBlocksType(editorState) === 'atomic' &&
+      editorState.getSelection().isCollapsed)) {
       if (onEditorStateChange) {
         onEditorStateChange(editorState);
       }
