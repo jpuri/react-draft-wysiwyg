@@ -139,7 +139,7 @@ class LayoutComponent extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled }, doCollapse, translations } = this.props;
+    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled, inputAccept }, doCollapse, translations } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
@@ -194,7 +194,7 @@ class LayoutComponent extends Component {
               <input
                 type="file"
                 id="file"
-                accept="image/gif,image/jpeg,image/jpg,image/png,image/svg"
+                accept={inputAccept}
                 onChange={this.selectImage}
                 className="rdw-image-modal-upload-option-input"
               />

@@ -154,6 +154,7 @@ export default {
     uploadEnabled: true,
     alignmentEnabled: true,
     uploadCallback: undefined,
+    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
     defaultSize: {
       height: 'auto',
       width: 'auto',
