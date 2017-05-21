@@ -38,6 +38,7 @@ export default class Inline extends Component {
                 currentState[style] === true ||
                 (style === 'MONOSPACE' && currentState['CODE'])
               }
+              title={config[style].title}
             >
               <img
                 alt=""
@@ -60,7 +61,7 @@ export default class Inline extends Component {
       currentState,
       onChange,
     } = this.props;
-    const { className, dropdownClassName } = config;
+    const { className, dropdownClassName, title } = config;
     return (
       <Dropdown
         className={classNames('rdw-inline-dropdown', className)}
@@ -71,6 +72,7 @@ export default class Inline extends Component {
         doCollapse={doCollapse}
         onExpandEvent={onExpandEvent}
         aria-label="rdw-inline-control"
+        title={title}
       >
         <img
           src={getFirstIcon(config)}
@@ -87,6 +89,7 @@ export default class Inline extends Component {
                 currentState[style] === true ||
                 (style === 'MONOSPACE' && currentState['CODE'])
               }
+              title={config[style].title}
             >
               <img
                 src={config[style].icon}

@@ -165,6 +165,7 @@ class LayoutComponent extends Component {
           onClick={this.signalExpandShowModal}
           aria-haspopup="true"
           aria-expanded={showModal}
+          title={link.title}
         >
           <img
             src={link.icon}
@@ -176,6 +177,7 @@ class LayoutComponent extends Component {
           value="ordered-list-item"
           className={classNames(unlink.className)}
           onClick={this.removeLink}
+          title={unlink.title}
         >
           <img
             src={unlink.icon}
@@ -197,7 +199,7 @@ class LayoutComponent extends Component {
       config,
       currentState,
     } = this.props;
-    const { options, link, unlink, className, dropdownClassName } = config;
+    const { options, link, unlink, className, dropdownClassName, title } = config;
     const { showModal } = this.state;
     return (
       <div
@@ -205,6 +207,7 @@ class LayoutComponent extends Component {
         aria-haspopup="true"
         aria-label="rdw-link-control"
         aria-expanded={expanded}
+        title={title}
       >
         <Dropdown
           className={classNames('rdw-link-dropdown', className)}
@@ -222,6 +225,7 @@ class LayoutComponent extends Component {
           {options.indexOf('link') >= 0 && <DropdownOption
             onClick={this.forceExpandAndShowModal}
             className={classNames('rdw-link-dropdownoption', link.className)}
+            title={link.title}
           >
             <img
               src={link.icon}
@@ -232,6 +236,7 @@ class LayoutComponent extends Component {
             onClick={this.removeLink}
             disabled={!currentState.link}
             className={classNames('rdw-link-dropdownoption', unlink.className)}
+            title={unlink.title}
           >
             <img
               src={unlink.icon}

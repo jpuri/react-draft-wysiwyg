@@ -255,7 +255,7 @@ class LayoutComponent extends Component {
   }
 
   render(): Object {
-    const { config: { icon, className }, expanded, onExpandEvent } = this.props;
+    const { config: { icon, className, title }, expanded, onExpandEvent } = this.props;
     return (
       <div
         className="rdw-image-wrapper"
@@ -267,6 +267,7 @@ class LayoutComponent extends Component {
           className={classNames(className)}
           value="unordered-list-item"
           onClick={onExpandEvent}
+          title={title}
         >
           <img
             src={icon}
