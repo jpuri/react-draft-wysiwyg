@@ -31,8 +31,8 @@ module.exports = {
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Glisser une image ou cliquer pour télécharger',
 
-  //Link
+  // Link
   'components.controls.link.linkTitle': 'Titre du lien',
   'components.controls.link.linkTarget': 'Cible du lien',
   'components.controls.link.linkTargetOption': 'Ouvrir le lien dans une nouvelle fenêtre',
-}
+};

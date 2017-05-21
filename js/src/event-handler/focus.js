@@ -38,7 +38,5 @@ export default class FocusHandler {
     return false;
   }
 
-  isInputFocused = ():void => {
-    return this.inputFocused;
-  }
+  isInputFocused = ():void => this.inputFocused;
 }

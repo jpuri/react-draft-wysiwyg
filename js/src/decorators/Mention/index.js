@@ -1,4 +1,3 @@
-import React from 'react';
 import Mention from './Mention';
 import Suggestion from './Suggestion';
 

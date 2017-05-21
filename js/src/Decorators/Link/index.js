@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Entity } from 'draft-js';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import openlink from '../../../../images/openlink.svg';
 
@@ -13,7 +12,7 @@ function findLinkEntities(contentBlock, callback, contentState) {
         contentState.getEntity(entityKey).getType() === 'LINK'
       );
     },
-    callback
+    callback,
   );
 }
 
@@ -47,7 +46,7 @@ function getLinkComponent(config) {
 
     render() {
       const { children, entityKey, contentState } = this.props;
-      const { url, title, targetOption } = contentState.getEntity(entityKey).getData();
+      const { url, targetOption } = contentState.getEntity(entityKey).getData();
       const { showPopOver } = this.state;
       return (
         <span
@@ -68,12 +67,12 @@ function getLinkComponent(config) {
         </span>
       );
     }
-  }
+  };
 }
 
 export default (config) => {
   return {
     strategy: findLinkEntities,
     component: getLinkComponent(config),
-  }
+  };
 };

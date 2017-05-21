@@ -34,5 +34,5 @@ module.exports = {
   // Link
   'components.controls.link.linkTitle': 'Link Title',
   'components.controls.link.linkTarget': 'Link Target',
-  'components.controls.link.linkTargetOption': 'Open link in new window'
+  'components.controls.link.linkTargetOption': 'Open link in new window',
 };

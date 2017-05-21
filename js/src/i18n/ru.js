@@ -35,4 +35,4 @@ module.exports = {
   'components.controls.link.linkTitle': 'Текст',
   'components.controls.link.linkTarget': 'Адрес ссылки',
   'components.controls.link.linkTargetOption': 'Открывать в новом окне',
-}
+};
