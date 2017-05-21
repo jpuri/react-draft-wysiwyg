@@ -332,9 +332,7 @@ export default class Demo2 extends Component {
             Enabling mentions
           </div>
           <div className="docs-desc">
-            Mentions can be enabled by passing mention property to the editor.<br />
-            You can get modifiable text mention by defining a function (example, <em>onChangeMentionHandler(partMention)</em>) and passing it
-            into <em>onChangeMention</em> in the props.
+            Mentions can be enabled by passing mention property to the editor.
           </div>
           <div>
             <code>
@@ -346,7 +344,6 @@ export default class Demo2 extends Component {
               &nbsp;&nbsp;&nbsp;&nbsp;separator: {"' '"}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;trigger: {"'@'"}, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;caseSensitive: false, <br />
-              &nbsp;&nbsp;&nbsp;&nbsp;onChangeMention: onChangeMentionHandler, <br />
               &nbsp;&nbsp;&nbsp;&nbsp;{"mentionClassName: 'mention-className'"},<br />
               &nbsp;&nbsp;&nbsp;&nbsp;{"dropdownClassName: 'dropdown-className'"},<br />
               &nbsp;&nbsp;&nbsp;&nbsp;{"optionClassName: 'option-className'"},<br />
