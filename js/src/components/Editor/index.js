@@ -134,7 +134,7 @@ export default class WysiwygEditor extends Component {
       if (props.editorState) {
         newState.editorState = EditorState.set(
           props.editorState,
-          { decorator: this.compositeDecorator }
+          { decorator: this.compositeDecorator },
         );
       } else {
         newState.editorState = EditorState.createEmpty(this.compositeDecorator);
@@ -284,7 +284,7 @@ export default class WysiwygEditor extends Component {
       if (this.props.defaultEditorState) {
         editorState = EditorState.set(
           this.props.defaultEditorState,
-          { decorator: compositeDecorator }
+          { decorator: compositeDecorator },
         );
       }
     } else if (hasProperty(this.props, 'contentState')) {
@@ -391,7 +391,7 @@ export default class WysiwygEditor extends Component {
       editorState,
       onChange: this.onChange,
       translations: { ...localeTranslations[locale || newLocale], ...translations },
-    }
+    };
 
     return (
       <div
@@ -413,7 +413,7 @@ export default class WysiwygEditor extends Component {
             aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
             onFocus={this.onToolbarFocus}
           >
-            {toolbar.options.map((opt,index) => {
+            {toolbar.options.map((opt, index) => {
               const Control = Controls[opt];
               const config = toolbar[opt];
               if (opt === 'image' && uploadCallback) {
