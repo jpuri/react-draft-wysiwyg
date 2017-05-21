@@ -12,7 +12,6 @@ class Suggestion {
       separator,
       trigger,
       getSuggestions,
-      onChangeMention,
       onChange,
       getEditorState,
       getWrapperRef,
@@ -25,7 +24,6 @@ class Suggestion {
       separator,
       trigger,
       getSuggestions,
-      onChangeMention,
       onChange,
       getEditorState,
       getWrapperRef,
@@ -70,8 +68,6 @@ class Suggestion {
           if (suggestionPresent) {
             callback(index === 0 ? 0 : index + 1, text.length);
           }
-
-          this.config.onChangeMention(mentionText);
         }
       }
     }
@@ -83,7 +79,7 @@ class Suggestion {
     return {
       strategy: this.findSuggestionEntities,
       component: this.getSuggestionComponent(),
-    };
+    }
   };
 }
 
@@ -246,7 +242,7 @@ function getSuggestionComponent() {
                   className={classNames(
                     'rdw-suggestion-option',
                     optionClassName,
-                    { 'rdw-suggestion-option-active': (index === activeOption) },
+                    { 'rdw-suggestion-option-active': (index === activeOption) }
                   )}
                 >
                   {suggestion.text}
