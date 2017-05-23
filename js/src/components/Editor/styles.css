@@ -1,6 +1,5 @@
 .rdw-editor-main {
   height: 100%;
-  width: 100%;
   overflow: auto;
   box-sizing: border-box;
 }
@@ -10,7 +9,6 @@
   border: 1px solid #F1F1F1;
   display: flex;
   justify-content: flex-start;
-  width: 100%;
   background: white;
   flex-wrap: wrap;
   font-size: 15px;
