@@ -202,7 +202,7 @@ class LayoutComponent extends Component {
               <div className="rdw-image-modal-url-section">
                 <input
                   className="rdw-image-modal-url-input"
-                  placeholder="Enter url"
+                  placeholder={translations['components.controls.image.enterlink']}
                   name="imgSrc"
                   onChange={this.updateValue}
                   onBlur={this.updateValue}
