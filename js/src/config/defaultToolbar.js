@@ -139,6 +139,7 @@ export default {
     className: undefined,
     component: undefined,
     popupClassName: undefined,
+    embeddedLinkParser: undefined,
     defaultSize: {
       height: 'auto',
       width: 'auto',
