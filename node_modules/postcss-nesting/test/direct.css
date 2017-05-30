@@ -1,0 +1,87 @@
+a, b {
+	color: blue;
+
+	& c, & d {
+		color: blue;
+	}
+}
+
+a, b {
+	color: blue;
+
+	& c, & d {
+		color: blue;
+
+		& e, & f {
+			color: blue;
+		}
+	}
+}
+
+a, b {
+	color: blue;
+
+	& & {
+		color: blue;
+	}
+
+	c & {
+		color: red;
+	}
+
+	& c, c & {
+		color: red;
+	}
+}
+
+a {
+	color: blue;
+
+	@media {
+		color: blue;
+	}
+}
+
+a {
+	color: blue;
+
+	& b {
+		color: blue;
+
+		@media {
+			color: blue;
+		}
+	}
+
+	@media {
+		color: blue;
+
+		& c {
+			color: blue;
+		}
+	}
+}
+
+a {
+	color: blue;
+
+	@unknown test {
+		color: red;
+	}
+}
+
+b {
+	color: blue;
+
+	@phone {
+		color: red;
+	}
+
+	@media {
+		color: blue;
+
+		& c {
+			color: blue;
+		}
+	}
+}

@@ -1,0 +1,18 @@
+{
+  "name": "url-loader",
+  "version": "0.5.8",
+  "author": "Tobias Koppers @sokra",
+  "description": "url loader module for webpack",
+  "dependencies": {
+    "loader-utils": "^1.0.2",
+    "mime": "1.3.x"
+  },
+  "peerDependencies": {
+    "file-loader": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:webpack/url-loader.git"
+  },
+  "license": "MIT"
+}

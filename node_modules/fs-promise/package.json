@@ -1,0 +1,35 @@
+{
+  "name": "fs-promise",
+  "version": "0.3.1",
+  "description": "Filesystem methods as promises, with optional fs-extra and fs-graceful dependencies",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevinbeaty/fs-promise.git"
+  },
+  "keywords": [
+    "promise",
+    "fs",
+    "file",
+    "file system"
+  ],
+  "author": "Kevin Beaty",
+  "license": "MIT",
+  "dependencies": {
+    "any-promise": "~0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "~2.1.0",
+    "fs-extra": "~0.13.0",
+    "promise": "~6.0.1",
+    "es6-promise": "~2.0.1",
+    "rsvp": "~3.0.16",
+    "bluebird": "~2.5.3",
+    "when": "~3.6.4",
+    "q": "~1.1.2",
+    "native-promise-only": "~0.7.6-a"
+  }
+}

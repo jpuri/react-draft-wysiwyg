@@ -1,0 +1,35 @@
+{
+  "name": "file-loader",
+  "version": "0.10.1",
+  "author": "Tobias Koppers @sokra",
+  "description": "file loader module for webpack",
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "loader-utils": "^1.0.2"
+  },
+  "devDependencies": {
+    "should": "~4.0.4",
+    "standard-version": "^4.0.0",
+    "mocha": "~1.21.3"
+  },
+  "scripts": {
+    "test": "mocha -R spec",
+    "travis:test": "npm run test",
+    "release": "standard-version"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/webpack/file-loader.git"
+  },
+  "bugs": {
+    "url": "https://github.com/webpack/file-loader/issues"
+  },
+  "homepage": "https://github.com/webpack/file-loader",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "license": "MIT"
+}

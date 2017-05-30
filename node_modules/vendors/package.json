@@ -1,0 +1,72 @@
+{
+  "name": "vendors",
+  "version": "1.0.1",
+  "description": "List of vendor prefixes known to the web platform",
+  "license": "MIT",
+  "keywords": [
+    "css",
+    "html",
+    "dom",
+    "web",
+    "platform",
+    "vendor",
+    "prefix",
+    "prefixes"
+  ],
+  "dependencies": {},
+  "repository": "https://github.com/wooorm/vendors",
+  "bugs": "https://github.com/wooorm/vendors/issues",
+  "author": "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)",
+  "contributors": [
+    "Titus Wormer <tituswormer@gmail.com> (http://wooorm.com)"
+  ],
+  "engines": {
+    "node": ">=0.11.0"
+  },
+  "main": "index.json",
+  "files": [
+    "index.json"
+  ],
+  "devDependencies": {
+    "browserify": "^13.0.0",
+    "esmangle": "^1.0.0",
+    "remark-cli": "^1.0.0",
+    "remark-comment-config": "^4.0.0",
+    "remark-github": "^5.0.0",
+    "remark-lint": "^4.0.0",
+    "remark-validate-links": "^4.0.0",
+    "tape": "^4.4.0",
+    "xo": "^0.16.0"
+  },
+  "scripts": {
+    "build-md": "remark . --quiet --frail",
+    "build-bundle": "browserify index.json -s vendors > vendors.js",
+    "build-mangle": "esmangle vendors.js > vendors.min.js",
+    "build": "npm run build-md && npm run build-bundle && npm run build-mangle",
+    "lint": "xo",
+    "test-api": "node test",
+    "test": "npm run build && npm run lint && npm run test-api"
+  },
+  "xo": {
+    "space": true,
+    "rules": {},
+    "ignores": [
+      "vendors.js",
+      "vendors.min.js"
+    ]
+  },
+  "remarkConfig": {
+    "output": true,
+    "plugins": {
+      "comment-config": null,
+      "lint": {
+        "no-html": false
+      },
+      "github": null,
+      "validate-links": null
+    },
+    "settings": {
+      "bullet": "*"
+    }
+  }
+}

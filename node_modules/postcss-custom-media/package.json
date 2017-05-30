@@ -1,0 +1,39 @@
+{
+  "name": "postcss-custom-media",
+  "version": "5.0.1",
+  "description": "PostCSS plugin to transform W3C CSS Custom Media Queries to more compatible CSS",
+  "keywords": [
+    "css",
+    "postcss",
+    "postcss-plugin",
+    "media queries",
+    "custom-media"
+  ],
+  "author": "Maxime Thirouin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/postcss/postcss-custom-media.git"
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "postcss": "^5.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.10.3",
+    "eslint-config-i-am-meticulous": "^2.0.0",
+    "npmpub": "^3.0.1",
+    "tape": "^4.0.0"
+  },
+  "scripts": {
+    "lint": "eslint --fix .",
+    "tests": "tape test",
+    "test": "npm run lint && npm run tests",
+    "release": "npmpub"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-i-am-meticulous/es5"
+  }
+}

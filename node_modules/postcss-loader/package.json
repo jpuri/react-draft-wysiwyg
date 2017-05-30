@@ -1,0 +1,57 @@
+{
+  "name": "postcss-loader",
+  "version": "1.3.3",
+  "description": "PostCSS loader for webpack",
+  "engines": {
+    "node": ">=0.12"
+  },
+  "keywords": [
+    "webpack",
+    "loader",
+    "css",
+    "postcss",
+    "postcss-runner"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": "postcss/postcss-loader",
+  "dependencies": {
+    "loader-utils": "^1.0.2",
+    "object-assign": "^4.1.1",
+    "postcss": "^5.2.15",
+    "postcss-load-config": "^1.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-postcss": "^2.0.2",
+    "fs-extra": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^3.0.1",
+    "gulp-jest": "^1.0.0",
+    "jest-cli": "^19.0.2",
+    "json-loader": "^0.5.4",
+    "lint-staged": "^3.3.1",
+    "postcss-js": "^0.3.0",
+    "postcss-safe-parser": "^2.0.0",
+    "pre-commit": "^1.2.2",
+    "raw-loader": "^0.5.1",
+    "sugarss": "^0.2.0",
+    "webpack-stream": "^3.2.0"
+  },
+  "scripts": {
+    "lint-staged": "lint-staged",
+    "test": "gulp"
+  },
+  "eslintConfig": {
+    "extends": "eslint-config-postcss/es5",
+    "env": {
+      "jest": true
+    }
+  },
+  "lint-staged": {
+    "*.js": "eslint"
+  },
+  "pre-commit": [
+    "lint-staged"
+  ]
+}

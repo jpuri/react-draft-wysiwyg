@@ -1,0 +1,29 @@
+{
+  "name": "postcss-simple-vars",
+  "version": "1.2.0",
+  "description": "PostCSS plugin for Sass-like variables",
+  "keywords": [
+    "postcss",
+    "css",
+    "postcss-plugin",
+    "sass",
+    "variables",
+    "vars"
+  ],
+  "author": "Andrey Sitnik <andrey@sitnik.ru>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url":  "https://github.com/postcss/postcss-simple-vars.git"
+  },
+  "dependencies": {
+    "postcss": "^5.0.13"
+  },
+  "devDependencies": {
+    "eslint": "1.10.3",
+    "ava":    "0.8.0"
+  },
+  "scripts": {
+    "test": "ava && eslint *.js"
+  }
+}

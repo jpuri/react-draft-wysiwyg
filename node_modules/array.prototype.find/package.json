@@ -1,0 +1,45 @@
+{
+	"name": "array.prototype.find",
+	"version": "2.0.4",
+	"description": "Array.prototype.find ES6 polyfill.",
+	"keywords": [
+		"Array.prototype.find",
+		"find",
+		"es6",
+		"ecmascript 6",
+		"polyfill"
+	],
+	"main": "index.js",
+	"scripts": {
+		"lint": "eslint .",
+		"pretest": "npm run lint",
+		"tests-only": "es-shim-api --bound && mocha tests/*.js",
+		"test": "npm run tests-only"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/paulmillr/Array.prototype.find.git"
+	},
+	"author": "Paul Miller <http://paulmillr.com>",
+	"contributors": [
+		{
+			"name": "Duncan Hall",
+			"email": "himself@duncanhall.net"
+		}
+	],
+	"license": "MIT",
+	"bugs": {
+		"url": "https://github.com/paulmillr/Array.prototype.find/issues"
+	},
+	"devDependencies": {
+		"@es-shims/api": "^1.2.0",
+		"chai": "^3.5.0",
+		"mocha": "^3.2.0",
+		"eslint": "^3.14.0",
+		"@ljharb/eslint-config": "^10.0.0"
+	},
+	"dependencies": {
+		"define-properties": "^1.1.2",
+		"es-abstract": "^1.7.0"
+	}
+}

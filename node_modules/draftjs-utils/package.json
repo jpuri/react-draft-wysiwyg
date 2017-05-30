@@ -1,0 +1,54 @@
+{
+  "name": "draftjs-utils",
+  "version": "0.7.5",
+  "description": "Collection of utility function for use with Draftjs.",
+  "main": "lib/draftjs-utils.js",
+  "dependencies": {
+    "immutable": "^3.x.x"
+  },
+  "peerDependencies": {
+    "draft-js": "^0.10.x"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.4.0",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
+    "babel-register": "^6.23.0",
+    "chai": "^3.5.0",
+    "draft-js": "^0.10.0",
+    "enzyme": "^2.7.1",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-mocha": "^4.8.0",
+    "eslint-plugin-react": "^6.10.0",
+    "flow-bin": "^0.41.0",
+    "immutable": "^3.x.x",
+    "jsdom": "^9.11.0",
+    "mocha": "^3.2.0",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "rimraf": "^2.6.1",
+    "sinon": "^1.17.7",
+    "webpack": "^2.2.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jpuri/draftjs-utils.git"
+  },
+  "scripts": {
+    "clean": "rimraf lib",
+    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config.js",
+    "build": "npm run clean && npm run build:webpack",
+    "test": "mocha --compilers js:config/test-compiler.js config/test-setup.js js/**/*Test.js",
+    "lint": "eslint js",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "check": "npm run lint && npm run flow"
+  },
+  "author": "Jyoti Puri",
+  "license": "MIT"
+}

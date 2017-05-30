@@ -1,0 +1,19 @@
+a, b {
+	color: white;
+
+	c, d {
+		color: blue;
+	}
+}
+
+a, b {
+	color: white;
+
+	@nest c, d {
+		color: blue;
+	}
+}
+
+& a {
+	color: white;
+}

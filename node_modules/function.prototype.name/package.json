@@ -1,0 +1,70 @@
+{
+	"name": "function.prototype.name",
+	"version": "1.0.0",
+	"author": "Jordan Harband",
+	"description": "An ES6 spec-compliant `Function.prototype.name` shim",
+	"license": "MIT",
+	"main": "index.js",
+	"scripts": {
+		"test": "npm run lint && npm run tests-only && npm run security",
+		"tests-only": "es-shim-api --bound && node test/index.js",
+		"coverage": "covert test/*.js",
+		"coverage-quiet": "covert test/*.js --quiet",
+		"lint": "npm run jscs && npm run eslint",
+		"eslint": "eslint test/*.js *.js",
+		"jscs": "jscs test/*.js *.js",
+		"eccheck": "editorconfig-tools check *.js **/*.js > /dev/null",
+		"security": "nsp check"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/ljharb/function.prototype.name.git"
+	},
+	"keywords": [
+		"Function.prototype.name",
+		"name",
+		"ES6",
+		"shim",
+		"polyfill",
+		"es-shim API"
+	],
+	"dependencies": {
+		"define-properties": "^1.1.2",
+		"function-bind": "^1.1.0",
+		"is-callable": "^1.1.2"
+	},
+	"devDependencies": {
+		"tape": "^4.4.0",
+		"covert": "^1.1.0",
+		"jscs": "^2.10.1",
+		"editorconfig-tools": "^0.1.1",
+		"nsp": "^2.2.0",
+		"eslint": "^2.2.0",
+		"@ljharb/eslint-config": "^2.1.1",
+		"@es-shims/api": "^1.1.0",
+		"make-arrow-function": "^1.1.0",
+		"make-generator-function": "^1.1.0"
+	},
+	"testling": {
+		"files": "test/index.js",
+		"browsers": [
+			"iexplore/9.0..latest",
+			"firefox/4.0..6.0",
+			"firefox/15.0..latest",
+			"firefox/nightly",
+			"chrome/4.0..10.0",
+			"chrome/20.0..latest",
+			"chrome/canary",
+			"opera/11.6..latest",
+			"opera/next",
+			"safari/5.0..latest",
+			"ipad/6.0..latest",
+			"iphone/6.0..latest",
+			"android-browser/4.2"
+		]
+	},
+	"engines": {
+		"node": ">= 0.4"
+	}
+}
+

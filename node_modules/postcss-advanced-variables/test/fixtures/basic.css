@@ -1,0 +1,160 @@
+$pass: green !default;
+$fail: red;
+$width: 600px;
+$number: 5;
+
+.color {
+	color: $pass;
+}
+
+$orientation: landscape;
+
+@media (min-width: $width), handheld and (orientation: $orientation) {
+	$pass: white !default;
+
+	.color {
+		color: $pass;
+	}
+}
+
+@if 1 == 1 {
+	.is-1-equal-to-1 {
+		color: $pass;
+	}
+} @else {
+	.not-is-1-equal-to-1 {
+		color: $fail;
+	}
+}
+
+@if 1 == 2 {
+	.is-1-equal-to-2 {
+		color: $fail;
+	}
+} @else {
+	.not-is-1-equal-to-2 {
+		color: $pass;
+	}
+}
+
+@if $number == 1 {
+	.is-number-equal-to-1 {
+		color: $fail;
+	}
+} @else {
+	.not-number-equal-to-1 {
+		color: $pass;
+	}
+}
+
+@if $number == 5 {
+	.is-number-equal-to-5 {
+		color: $pass;
+	}
+} @else {
+	.not-number-equal-to-5 {
+		color: $fail;
+	}
+}
+
+@if 1 != 1 {
+	.is-1-not-equal-to-1 {
+		color: $fail;
+	}
+}
+
+@if 1 != 2 {
+	.is-1-not-equal-to-2 {
+		color: $pass;
+	}
+}
+
+@if 1 < 0 {
+	.is-1-less-than-0 {
+		color: $fail;
+	}
+}
+
+@if 1 < 1 {
+	.is-1-less-than-1 {
+		color: $fail;
+	}
+}
+
+@if 1 < 2 {
+	.is-1-less-than-2 {
+		color: $pass;
+	}
+}
+
+@if 1 > 0 {
+	.is-1-greater-than-0 {
+		color: $pass;
+	}
+}
+
+@if 1 > 1 {
+	.is-1-greater-than-1 {
+		color: $fail;
+	}
+}
+
+@if 1 > 2 {
+	.is-1-greater-than-2 {
+		color: $fail;
+	}
+}
+
+@if 1 <= 0 {
+	.is-1-less-than-or-equal-to-0 {
+		color: $fail;
+	}
+}
+
+@if 1 <= 1 {
+	.is-1-less-than-or-equal-to-1 {
+		color: $pass;
+	}
+}
+
+@if 1 <= 2 {
+	.is-1-less-than-or-equal-to-2 {
+		color: $pass;
+	}
+}
+
+@if 1 >= 0 {
+	.is-1-less-than-or-equal-to-0 {
+		color: $pass;
+	}
+}
+
+@if 1 >= 1 {
+	.is-1-less-than-or-equal-to-1 {
+		color: $pass;
+	}
+}
+
+@if 1 >= 2 {
+	.is-1-less-than-or-equal-to-2 {
+		color: $fail;
+	}
+}
+
+@for $i from 1 to 5 by 2 {
+	.for-$i {
+		width: $(i)px;
+	}
+}
+
+@for $i from 6 to 1 by 2 {
+	.for-$i {
+		height: $(i)px;
+	}
+}
+
+@each $i in (foo, bar, baz) {
+	.test-$i {
+		color: $pass;
+	}
+}

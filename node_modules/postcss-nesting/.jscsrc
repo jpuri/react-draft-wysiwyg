@@ -1,0 +1,102 @@
+{
+	"disallowKeywords": [
+		"with"
+	],
+	"disallowKeywordsOnNewLine": [
+		"else"
+	],
+	"disallowMultipleSpaces": false,
+	"disallowMixedSpacesAndTabs": true,
+	"disallowMultipleLineBreaks": true,
+	"disallowMultipleLineStrings": true,
+	"disallowMultipleVarDecl": true,
+	"disallowNewlineBeforeBlockStatements": true,
+	"disallowSpaceAfterObjectKeys": true,
+	"disallowSpaceAfterPrefixUnaryOperators": true,
+	"disallowSpacesInCallExpression": true,
+	"disallowSpacesInFunctionDeclaration": {
+		"beforeOpeningRoundBrace": true
+	},
+	"disallowSpacesInsideArrayBrackets": "all",
+	"disallowSpacesInsideObjectBrackets": "all",
+	"disallowSpacesInsideParentheses": true,
+	"disallowTrailingWhitespace": true,
+	"maximumLineLength": null,
+	"requireCamelCaseOrUpperCaseIdentifiers": true,
+	"requireCapitalizedConstructors": true,
+	"requireCurlyBraces": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"try",
+		"catch"
+	],
+	"requireDotNotation": true,
+	"requireLineFeedAtFileEnd": true,
+	"requireOperatorBeforeLineBreak": true,
+	"requireSemicolons": true,
+	"requireSpaceAfterBinaryOperators": true,
+	"requireSpaceAfterKeywords": [
+		"if",
+		"else",
+		"for",
+		"while",
+		"do",
+		"switch",
+		"return",
+		"try",
+		"catch"
+	],
+	"requireSpaceBeforeBinaryOperators": [
+		"=",
+		"+=",
+		"-=",
+		"*=",
+		"/=",
+		"%=",
+		"<<=",
+		">>=",
+		">>>=",
+		"&=",
+		"|=",
+		"^=",
+		"+=",
+		"+",
+		"-",
+		"*",
+		"/",
+		"%",
+		"<<",
+		">>",
+		">>>",
+		"&",
+		"|",
+		"^",
+		"&&",
+		"||",
+		"===",
+		"==",
+		">=",
+		"<=",
+		"<",
+		">",
+		"!=",
+		"!=="
+	],
+	"requireSpaceBeforeBlockStatements": true,
+	"requireSpaceBeforeObjectValues": true,
+	"requireSpacesInAnonymousFunctionExpression": {
+		"beforeOpeningCurlyBrace": true,
+		"beforeOpeningRoundBrace": true
+	},
+	"requireSpacesInConditionalExpression": true,
+	"requireSpacesInForStatement": true,
+	"requireSpacesInFunctionDeclaration": {
+		"beforeOpeningCurlyBrace": true
+	},
+	"validateIndentation": "\t",
+	"validateParameterSeparator": ", ",
+	"validateQuoteMarks": "'"
+}

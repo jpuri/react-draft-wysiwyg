@@ -1,0 +1,9 @@
+.gitignore
+
+node_modules/
+
+lib/
+test/
+.travis.yml
+
+gulpfile.babel.js

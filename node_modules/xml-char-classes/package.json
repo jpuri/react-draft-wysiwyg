@@ -1,0 +1,39 @@
+{
+  "name": "xml-char-classes",
+  "version": "1.0.0",
+  "description": "Regular expressions for matching against the XML Character Classes",
+  "license": "MIT",
+  "repository": "sindresorhus/xml-char-classes",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "prepublish": "node generate.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "xml",
+    "re",
+    "regex",
+    "name",
+    "element",
+    "tag",
+    "match",
+    "unicode",
+    "char",
+    "character",
+    "classes"
+  ],
+  "devDependencies": {
+    "mocha": "*",
+    "regenerate": "^0.6.2"
+  }
+}

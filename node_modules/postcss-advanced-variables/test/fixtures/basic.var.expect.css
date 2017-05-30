@@ -1,0 +1,90 @@
+.color {
+	color: blue;
+}
+
+@media (min-width: 600px), handheld and (orientation: landscape) {
+
+	.color {
+		color: blue;
+	}
+}
+
+.is-1-equal-to-1 {
+	color: blue;
+}
+
+.not-is-1-equal-to-2 {
+	color: blue;
+}
+
+.not-number-equal-to-1 {
+	color: blue;
+}
+
+.is-number-equal-to-5 {
+	color: blue;
+}
+
+.is-1-not-equal-to-2 {
+	color: blue;
+}
+
+.is-1-less-than-2 {
+	color: blue;
+}
+
+.is-1-greater-than-0 {
+	color: blue;
+}
+
+.is-1-less-than-or-equal-to-1 {
+	color: blue;
+}
+
+.is-1-less-than-or-equal-to-2 {
+	color: blue;
+}
+
+.is-1-less-than-or-equal-to-0 {
+	color: blue;
+}
+
+.is-1-less-than-or-equal-to-1 {
+	color: blue;
+}
+
+.for-1 {
+	width: 1px;
+}
+
+.for-3 {
+	width: 3px;
+}
+
+.for-5 {
+	width: 5px;
+}
+
+.for-6 {
+	height: 6px;
+}
+
+.for-4 {
+	height: 4px;
+}
+
+.for-2 {
+	height: 2px;
+}
+
+.test-foo {
+	color: blue;
+}
+
+.test-bar {
+	color: blue;
+}
+
+.test-baz {
+	color: blue;
+}

@@ -1,0 +1,25 @@
+.main {
+	color: blue;
+
+	@media (min-width: 100px) {
+		color: white;
+
+		@media (max-width: 200px) {
+			color: red;
+		}
+
+		& .child {
+			@media (max-width: 200px) {
+				color: green;
+			}
+		}
+	}
+}
+
+.main {
+	@media screen, print and speech {
+		@media (max-width: 300px), (min-aspect-ratio: 16/9) {
+			color: black;
+		}
+	}
+}
