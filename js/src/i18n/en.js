@@ -5,12 +5,12 @@ module.exports = {
   'generic.cancel': 'Cancel',
 
   // BlockType
-  'components.controls.blocktype.h1': 'H1',
-  'components.controls.blocktype.h2': 'H2',
-  'components.controls.blocktype.h3': 'H3',
-  'components.controls.blocktype.h4': 'H4',
-  'components.controls.blocktype.h5': 'H5',
-  'components.controls.blocktype.h6': 'H6',
+  'components.controls.blocktype.h1': 'Heading 1',
+  'components.controls.blocktype.h2': 'Heading 2',
+  'components.controls.blocktype.h3': 'Heading 3',
+  'components.controls.blocktype.h4': 'Heading 4',
+  'components.controls.blocktype.h5': 'Heading 5',
+  'components.controls.blocktype.h6': 'Heading 6',
   'components.controls.blocktype.blockquote': 'Blockquote',
   'components.controls.blocktype.blocktype': 'Block Type',
   'components.controls.blocktype.normal': 'Normal',

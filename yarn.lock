@@ -1775,9 +1775,9 @@ draftjs-to-markdown@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.4.0.tgz#678206cbdf4c661b01f768863a6daebd3f6e1f5f"
 
-draftjs-utils@^0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.7.3.tgz#6f3512df0f1e534fe1af438c7f37e09ca7a501c8"
+draftjs-utils@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.7.5.tgz#982b671bf9b8296c89b05683e63257817d30de55"
   dependencies:
     immutable "^3.x.x"
 
