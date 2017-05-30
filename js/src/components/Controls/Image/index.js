@@ -80,7 +80,7 @@ class ImageControl extends Component {
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
-        doCollpase={this.doCollpase}
+        doCollpase={this.doCollapse}
       />
     );
   }
