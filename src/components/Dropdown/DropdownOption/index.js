@@ -57,16 +57,17 @@ export default class DropDownOption extends Component {
       disabledClassName,
       highlightedClassName,
       title,
-    } = this.props;
+     } = this.props;
+    const childrenClassName = children.replace(' ', '-').toLowerCase();
     return (
       <li
         className={classNames(
-          'rdw-dropdownoption-default',
-          className,
-          { [`rdw-dropdownoption-active ${activeClassName}`]: active,
-            [`rdw-dropdownoption-highlighted ${highlightedClassName}`]: highlighted,
-            [`rdw-dropdownoption-disabled ${disabledClassName}`]: disabled,
-          })
+            'rdw-dropdownoption-default', childrenClassName,
+            className,
+            { [`rdw-dropdownoption-active ${activeClassName}`]: active,
+              [`rdw-dropdownoption-highlighted ${highlightedClassName}`]: highlighted,
+              [`rdw-dropdownoption-disabled ${disabledClassName}`]: disabled,
+            })
         }
         onMouseEnter={this.setHighlighted}
         onMouseLeave={this.resetHighlighted}
