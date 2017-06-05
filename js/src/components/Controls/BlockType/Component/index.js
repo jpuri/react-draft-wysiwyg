@@ -22,14 +22,14 @@ class LayoutComponent extends Component {
   };
 
   blocksTypes: Array<Object> = [
-    { label: 'Normal', displayName: this.props.translations['components.controls.blocktype.normal'] },
-    { label: 'H1', displayName: this.props.translations['components.controls.blocktype.h1'] },
-    { label: 'H2', displayName: this.props.translations['components.controls.blocktype.h2'] },
-    { label: 'H3', displayName: this.props.translations['components.controls.blocktype.h3'] },
-    { label: 'H4', displayName: this.props.translations['components.controls.blocktype.h4'] },
-    { label: 'H5', displayName: this.props.translations['components.controls.blocktype.h5'] },
-    { label: 'H6', displayName: this.props.translations['components.controls.blocktype.h6'] },
-    { label: 'Blockquote', displayName: this.props.translations['components.controls.blocktype.blockquote'] },
+    { label: 'Normal', className: 'heading-normal', displayName: this.props.translations['components.controls.blocktype.normal'] },
+    { label: 'H1', className: 'heading-h1', displayName: this.props.translations['components.controls.blocktype.h1'] },
+    { label: 'H2', className: 'heading-h2', displayName: this.props.translations['components.controls.blocktype.h2'] },
+    { label: 'H3', className: 'heading-h3', displayName: this.props.translations['components.controls.blocktype.h3'] },
+    { label: 'H4', className: 'heading-h4', displayName: this.props.translations['components.controls.blocktype.h4'] },
+    { label: 'H5', className: 'heading-h5', displayName: this.props.translations['components.controls.blocktype.h5'] },
+    { label: 'H6', className: 'heading-h6', displayName: this.props.translations['components.controls.blocktype.h6'] },
+    { label: 'Blockquote', className: 'heading-blockquote', displayName: this.props.translations['components.controls.blocktype.blockquote'] },
   ];
 
   renderFlat(): void {
@@ -81,6 +81,7 @@ class LayoutComponent extends Component {
             this.blocksTypes.map((block, index) =>
               <DropdownOption
                 active={blockType === block.label}
+                className={block.className}
                 value={block.label}
                 key={index}
               >
