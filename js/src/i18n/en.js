@@ -27,8 +27,8 @@ module.exports = {
   'components.controls.fontfamily.fontfamily': 'Font Family',
 
   // Image
-  'components.controls.image.fileUpload': 'File Upload',
-  'components.controls.image.byURL': 'URL',
+  'components.controls.image.fileUpload': 'Upload via File',
+  'components.controls.image.byURL': 'Upload via URL',
   'components.controls.image.dropFileText': 'Drop the file or click to upload',
 
   // Link
