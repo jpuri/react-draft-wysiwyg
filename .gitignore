@@ -3,3 +3,4 @@ npm-debug.log
 sandbox
 *.tgz
 node_modules/
+.vscode
