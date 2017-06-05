@@ -1,4 +1,0 @@
---no-colors
---ui bdd
---reporter spec
-test/basic.js
