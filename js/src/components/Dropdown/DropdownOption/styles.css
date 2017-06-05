@@ -14,27 +14,3 @@
   opacity: 0.3;
   cursor: default;
 }
-.heading-1 {
-  font-weight: 700 !important;
-  font-size: 30px !important;
-}
-.heading-2 {
-  font-weight: 700 !important;
-  font-size: 24px !important;
-}
-.heading-3 {
-  font-weight: 700 !important;
-  font-size: 18px !important;
-}
-.heading-4 {
-  font-weight: 700 !important;
-  font-size: 16px !important;
-}
-.heading-5 {
-  font-weight: 700 !important;
-  font-size: 12px !important;
-}
-.heading-6 {
-  font-weight: 700 !important;
-  font-size: 11px !important;
-}
