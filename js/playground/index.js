@@ -95,15 +95,13 @@ class Playground extends Component {
     );
   onChangeMention = (partMention)=>{
     var that = this
-    //axios.get('http://new.api.internal.iref.com/api/v0/fetch-users-by-username?query='+partMention)
-    axios.get(`https://www.makaan.com/columbus/app/v6/typeahead?query=${partMention}&typeAheadType=&city=&usercity=Gurgaon&rows=5&enhance=gp&category=buy&view=buyer&sourceDomain=Makaan&format=json`)
+    axios.get('http://new.api.internal.iref.com/api/v0/fetch-users-by-username?query='+partMention)
     .then(function (response) {
-      let payload = response.data.data
+      let payload = response.data
       console.log(payload)
       let suggestions = []
       for(var i=0;i<payload.length; i++){
-        //suggestions.push({ text: payload[i].username, value: payload[i].username, url: 'href-a' })
-        suggestions.push({ text: payload[i].displayText, value: payload[i].displayText, url: 'href-a' })
+        suggestions.push({ text: payload[i].username, value: payload[i].username, url: 'href-a' })        
       }
       that.setState({suggestions: suggestions})
     })
