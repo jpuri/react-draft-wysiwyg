@@ -19,6 +19,7 @@ class Suggestion {
       dropdownClassName,
       optionClassName,
       modalHandler,
+      onChangeMention,
     } = config;
     this.config = {
       separator,
@@ -31,6 +32,7 @@ class Suggestion {
       dropdownClassName,
       optionClassName,
       modalHandler,
+      onChangeMention,
     };
   }
 
@@ -69,6 +71,7 @@ class Suggestion {
           if (suggestionPresent) {
             callback(index === 0 ? 0 : index + 1, text.length);
           }
+          this.config.onChangeMention(mentionText);
         }
       }
     }
