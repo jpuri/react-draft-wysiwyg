@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { getFirstIcon } from '../../../../utils/toolbar';
 import Option from '../../../Option';
 import { Dropdown, DropdownOption } from '../../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class History extends Component {
 
@@ -33,9 +33,9 @@ export default class History extends Component {
       doExpand,
       onExpandEvent,
       doCollapse,
-      currentState : { undoDisabled, redoDisabled },
+      currentState: { undoDisabled, redoDisabled },
     } = this.props;
-    const {options, undo, redo, className, dropdownClassName, title} = config;
+    const { options, undo, redo, className, dropdownClassName, title } = config;
     return (
       <Dropdown
         className={classNames('rdw-history-dropdown', className)}

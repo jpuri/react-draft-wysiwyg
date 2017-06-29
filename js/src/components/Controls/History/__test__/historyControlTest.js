@@ -24,8 +24,8 @@ describe('HistoryControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.history}
         modalHandler={new ModalHandler()}
-      />
-    ).html().startsWith('<div')).to.be.true;
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have 2 child elements', () => {
@@ -35,7 +35,7 @@ describe('HistoryControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.history}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     expect(control.children().length).to.equal(2);
   });

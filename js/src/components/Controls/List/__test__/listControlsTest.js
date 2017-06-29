@@ -25,8 +25,8 @@ describe('ListControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.list}
         modalHandler={new ModalHandler()}
-      />
-    ).html().startsWith('<div')).to.be.true;
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have 4 child elements by default', () => {
@@ -36,7 +36,7 @@ describe('ListControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.list}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     expect(control.children().length).to.equal(4);
   });
@@ -48,7 +48,7 @@ describe('ListControl test suite', () => {
         editorState={editorState}
         config={{ ...defaultToolbar.list, inDropdown: true }}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     expect(control.children().length).to.equal(1);
     expect(control.childAt(0).children().length).to.equal(2);
@@ -62,7 +62,7 @@ describe('ListControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.list}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     control.childAt(0).simulate('click');
     assert.isTrue(onChange.calledOnce);

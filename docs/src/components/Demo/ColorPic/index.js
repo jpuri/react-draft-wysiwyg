@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { BlockPicker } from 'react-color';
 
 import icon from '../../../icons/palette.svg';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class ColorPic extends Component {
 

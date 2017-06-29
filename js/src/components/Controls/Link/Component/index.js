@@ -8,7 +8,7 @@ import { stopPropagation } from '../../../../utils/common';
 import { getFirstIcon } from '../../../../utils/toolbar';
 import Option from '../../../Option';
 import { Dropdown, DropdownOption } from '../../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class LayoutComponent extends Component {
 

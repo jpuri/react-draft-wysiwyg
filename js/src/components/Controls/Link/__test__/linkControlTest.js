@@ -25,8 +25,8 @@ describe('LinkControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.link}
         modalHandler={new ModalHandler()}
-      />
-    ).html().startsWith('<div')).to.be.true;
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have 2 child elements by default', () => {
@@ -36,7 +36,7 @@ describe('LinkControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.link}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     expect(control.children().length).to.equal(2);
   });
@@ -48,7 +48,7 @@ describe('LinkControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.link}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     const linkControl = control.find('Link');
     assert.isNotTrue(linkControl.node.state.expanded);
