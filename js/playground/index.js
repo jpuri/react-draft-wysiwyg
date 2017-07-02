@@ -12,7 +12,7 @@ import {
 } from 'draft-js';
 import { Editor } from '../src';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
-
+import axios from 'axios'
 class TestOption extends Component {
   render() {
     return <div>testing</div>;
@@ -24,6 +24,7 @@ class TestOption2 extends Component {
     return <div>resting</div>;
   }
 }
+
 
 const contentBlocks = convertFromHTML('<p><p>Lorem ipsum ' +
       'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet ' +
@@ -49,6 +50,7 @@ class Playground extends Component {
     editorContent: undefined,
     contentState: rawContentState,
     editorState: EditorState.createEmpty(),
+    suggestions: []
   };
 
   onEditorChange: Function = (editorContent) => {
@@ -64,7 +66,7 @@ class Playground extends Component {
   };
 
   onContentStateChange: Function = (contentState) => {
-    console.log('contentState', contentState);
+    //console.log('contentState', contentState);
   };
 
   onEditorStateChange: Function = (editorState) => {
@@ -91,7 +93,22 @@ class Playground extends Component {
         });
       }
     );
-
+  onChangeMention = (partMention)=>{
+    var that = this
+    axios.get('http://new.api.internal.iref.com/api/v0/fetch-users-by-username?query='+partMention)
+    .then(function (response) {
+      let payload = response.data
+      console.log(payload)
+      let suggestions = []
+      for(var i=0;i<payload.length; i++){
+        suggestions.push({ text: payload[i].username, value: payload[i].username, url: 'href-a' })        
+      }
+      that.setState({suggestions: suggestions})
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
   render() {
     const { editorContent, contentState, editorState } = this.state;
     return (
@@ -123,23 +140,16 @@ class Playground extends Component {
               placeholder="testing"
               spellCheck
               toolbarCustomButtons={[<TestOption />, <TestOption2 />]}
-              onFocus={() => {console.log('focus')}}
-              onBlur={() => {console.log('blur')}}
-              onTab={() => {console.log('tab'); return true;}}
+              onFocus={() => {}}
+              onBlur={() => {}}
+              onTab={() => {return true;}}
               localization={{ locale: 'zh', translations: {'generic.add': 'Test-Add'} }}
               mention={{
                 separator: ' ',
                 trigger: '@',
-                caseSensitive: true,
-                suggestions: [
-                  { text: 'A', value: 'AB', url: 'href-a' },
-                  { text: 'AB', value: 'ABC', url: 'href-ab' },
-                  { text: 'ABC', value: 'ABCD', url: 'href-abc' },
-                  { text: 'ABCD', value: 'ABCDDDD', url: 'href-abcd' },
-                  { text: 'ABCDE', value: 'ABCDE', url: 'href-abcde' },
-                  { text: 'ABCDEF', value: 'ABCDEF', url: 'href-abcdef' },
-                  { text: 'ABCDEFG', value: 'ABCDEFG', url: 'href-abcdefg' },
-                ],
+                caseSensitive: false,
+                 onChangeMention: this.onChangeMention,
+                suggestions: this.state.suggestions,
               }}
             />
           </div>
