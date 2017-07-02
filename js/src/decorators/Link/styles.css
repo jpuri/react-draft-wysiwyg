@@ -1,0 +1,10 @@
+.rdw-link-decorator-wrapper {
+  position: relative;
+}
+.rdw-link-decorator-icon {
+  position: absolute;
+  left: 40%;
+  top: 0;
+  cursor: pointer;
+  background-color: white;
+}
