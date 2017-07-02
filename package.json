@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.10.0",
+  "version": "1.10.1",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -38,7 +38,6 @@
     "html-webpack-plugin": "^2.28.0",
     "immutable": "^4.0.0-rc.1",
     "jsdom": "^9.12.0",
-    "mocha": "^3.4.1",
     "postcss-loader": "^2.0.5",
     "precss": "^1.4.0",
     "react": "^15.5.4",
