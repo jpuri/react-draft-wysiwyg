@@ -3,7 +3,8 @@
 import React, { Component } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import uploadImageCallBack from '../../util/uploadImageCallBack';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
+
 export default class Home extends Component {
 
   render() {
