@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../components/Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
-const getImageComponent = (config) => class Image extends Component {
+const getImageComponent = config => class Image extends Component {
   static propTypes: Object = {
     block: PropTypes.object,
     contentState: PropTypes.object,

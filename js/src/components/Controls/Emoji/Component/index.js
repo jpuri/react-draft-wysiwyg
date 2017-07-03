@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
 import Option from '../../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class LayoutComponent extends Component {
 

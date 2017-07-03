@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Entity, RichUtils, EditorState, Modifier } from 'draft-js';
+import { RichUtils, EditorState, Modifier } from 'draft-js';
 import {
   getSelectionText,
   getEntityRange,
@@ -51,22 +51,17 @@ class Link extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  }
-
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  doExpand: Function = (): void => {
-    this.setState({
-      expanded: true,
-    });
-  };
+  onChange = (action, title, target, targetOption) => {
+    if (action === 'link') {
+      this.addLink(title, target, targetOption);
+    } else {
+      this.removeLink();
+    }
+  }
 
   getCurrentValues = () => {
     const { editorState } = this.props;
@@ -84,19 +79,24 @@ class Link extends Component {
     return currentValues;
   }
 
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
   doCollapse: Function = (): void => {
     this.setState({
       expanded: false,
     });
   };
-
-  onChange = (action, title, target, targetOption) => {
-    if (action === 'link') {
-      this.addLink(title, target, targetOption);
-    } else {
-      this.removeLink();
-    }
-  }
 
   removeLink: Function = (): void => {
     const { editorState, onChange } = this.props;

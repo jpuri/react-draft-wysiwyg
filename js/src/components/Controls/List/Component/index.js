@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import { getFirstIcon } from '../../../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../../../Dropdown';
 import Option from '../../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class LayoutComponent extends Component {
 
@@ -94,7 +94,15 @@ export default class LayoutComponent extends Component {
   }
 
   renderInDropDown(): Object {
-    const { config, expanded, doCollapse, doExpand, onExpandEvent, onChange, currentState: { listType } } = this.props;
+    const {
+      config,
+      expanded,
+      doCollapse,
+      doExpand,
+      onExpandEvent,
+      onChange,
+      currentState: { listType },
+    } = this.props;
     const { options, className, dropdownClassName, title } = config;
     return (
       <Dropdown

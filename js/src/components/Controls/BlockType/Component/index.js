@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import Option from '../../../Option';
 import { Dropdown, DropdownOption } from '../../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class LayoutComponent extends Component {
 
@@ -38,14 +38,14 @@ class LayoutComponent extends Component {
       <div className={classNames('rdw-inline-wrapper', className)}>
         {
         blocks.map((block, index) =>
-          <Option
+          (<Option
             key={index}
             value={block.label}
             active={blockType === block.label}
             onClick={onChange}
           >
             {block.displayName}
-          </Option>
+          </Option>),
         )
       }
       </div>
@@ -80,13 +80,13 @@ class LayoutComponent extends Component {
           <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
           {
             blocks.map((block, index) =>
-              <DropdownOption
+              (<DropdownOption
                 active={blockType === block.label}
                 value={block.label}
                 key={index}
               >
                 {block.displayName}
-              </DropdownOption>)
+              </DropdownOption>))
           }
         </Dropdown>
       </div>

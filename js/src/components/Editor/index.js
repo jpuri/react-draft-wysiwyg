@@ -22,11 +22,11 @@ import ModalHandler from '../../event-handler/modals';
 import FocusHandler from '../../event-handler/focus';
 import KeyDownHandler from '../../event-handler/keyDown';
 import SuggestionHandler from '../../event-handler/suggestions';
-import blockStyleFn from '../../Utils/BlockStyle';
+import blockStyleFn from '../../utils/BlockStyle';
 import { mergeRecursive } from '../../utils/toolbar';
 import { hasProperty, filter } from '../../utils/common';
 import Controls from '../Controls';
-import getLinkDecorator from '../../Decorators/Link';
+import getLinkDecorator from '../../decorators/Link';
 import getMentionDecorators from '../../decorators/Mention';
 import getHashtagDecorator from '../../decorators/HashTag';
 import getBlockRenderFunc from '../../renderer';
@@ -48,8 +48,8 @@ export default class WysiwygEditor extends Component {
     editorState: PropTypes.object,
     defaultEditorState: PropTypes.object,
     toolbarOnFocus: PropTypes.bool,
-    spellCheck: PropTypes.bool,
-    stripPastedStyles: PropTypes.bool,
+    spellCheck: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
+    stripPastedStyles: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
     toolbar: PropTypes.object,
     toolbarCustomButtons: PropTypes.array,
     toolbarClassName: PropTypes.string,
@@ -67,17 +67,17 @@ export default class WysiwygEditor extends Component {
     onTab: PropTypes.func,
     mention: PropTypes.object,
     hashtag: PropTypes.object,
-    textAlignment: PropTypes.string,
+    textAlignment: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     readOnly: PropTypes.bool,
-    tabIndex: PropTypes.number,
-    placeholder: PropTypes.string,
+    tabIndex: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
+    placeholder: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     ariaLabel: PropTypes.string,
-    ariaOwneeID: PropTypes.string,
-    ariaActiveDescendantID: PropTypes.string,
-    ariaAutoComplete: PropTypes.string,
-    ariaDescribedBy: PropTypes.string,
-    ariaExpanded: PropTypes.string,
-    ariaHasPopup: PropTypes.string,
+    ariaOwneeID: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    ariaActiveDescendantID: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    ariaAutoComplete: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    ariaDescribedBy: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    ariaExpanded: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+    ariaHasPopup: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     customBlockRenderFunc: PropTypes.func,
     customDecorators: PropTypes.array,
   };
@@ -135,7 +135,7 @@ export default class WysiwygEditor extends Component {
       if (props.editorState) {
         newState.editorState = EditorState.set(
           props.editorState,
-          { decorator: this.compositeDecorator }
+          { decorator: this.compositeDecorator },
         );
       } else {
         newState.editorState = EditorState.createEmpty(this.compositeDecorator);
@@ -227,18 +227,6 @@ export default class WysiwygEditor extends Component {
     }
   };
 
-  afterChange: Function = (editorState): void => {
-    setTimeout(() => {
-      const { onChange, onContentStateChange } = this.props;
-      if (onChange) {
-        onChange(convertToRaw(editorState.getCurrentContent()));
-      }
-      if (onContentStateChange) {
-        onContentStateChange(convertToRaw(editorState.getCurrentContent()));
-      }
-    });
-  };
-
   setWrapperReference: Function = (ref: Object): void => {
     this.wrapper = ref;
   };
@@ -248,7 +236,7 @@ export default class WysiwygEditor extends Component {
   };
 
   getCompositeDecorator = (): void => {
-    let decorators = [...this.props.customDecorators, getLinkDecorator({
+    const decorators = [...this.props.customDecorators, getLinkDecorator({
       showOpenOptionOnHover: this.state.toolbar.link.showOpenOptionOnHover,
     })];
     if (this.props.mention) {
@@ -273,6 +261,18 @@ export default class WysiwygEditor extends Component {
 
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
+  afterChange: Function = (editorState): void => {
+    setTimeout(() => {
+      const { onChange, onContentStateChange } = this.props;
+      if (onChange) {
+        onChange(convertToRaw(editorState.getCurrentContent()));
+      }
+      if (onContentStateChange) {
+        onContentStateChange(convertToRaw(editorState.getCurrentContent()));
+      }
+    });
+  };
+
   isReadOnly = () => this.props.readOnly;
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
@@ -287,7 +287,7 @@ export default class WysiwygEditor extends Component {
       if (this.props.defaultEditorState) {
         editorState = EditorState.set(
           this.props.defaultEditorState,
-          { decorator: compositeDecorator }
+          { decorator: compositeDecorator },
         );
       }
     } else if (hasProperty(this.props, 'contentState')) {
@@ -311,16 +311,14 @@ export default class WysiwygEditor extends Component {
     return editorState;
   }
 
-  filterEditorProps = (props) => {
-    return filter(props, [
-      'onChange', 'onEditorStateChange', 'onContentStateChange', 'initialContentState',
-      'defaultContentState', 'contentState', 'editorState', 'defaultEditorState', 'locale',
-      'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
-      'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
-      'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag',
-      'ariaLabel', 'customBlockRenderFunc', 'customDecorators',
-    ]);
-  }
+  filterEditorProps = props => filter(props, [
+    'onChange', 'onEditorStateChange', 'onContentStateChange', 'initialContentState',
+    'defaultContentState', 'contentState', 'editorState', 'defaultEditorState', 'locale',
+    'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
+    'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
+    'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag',
+    'ariaLabel', 'customBlockRenderFunc', 'customDecorators',
+  ]);
 
   changeEditorState = (contentState) => {
     const newContentState = convertFromRaw(contentState);
@@ -386,7 +384,6 @@ export default class WysiwygEditor extends Component {
       wrapperStyle,
       uploadCallback,
       ariaLabel,
-      ...props,
     } = this.props;
 
     const controlProps = {
@@ -394,7 +391,7 @@ export default class WysiwygEditor extends Component {
       editorState,
       onChange: this.onChange,
       translations: { ...localeTranslations[locale || newLocale], ...translations },
-    }
+    };
 
     return (
       <div
@@ -416,7 +413,7 @@ export default class WysiwygEditor extends Component {
             aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
             onFocus={this.onToolbarFocus}
           >
-            {toolbar.options.map((opt,index) => {
+            {toolbar.options.map((opt, index) => {
               const Control = Controls[opt];
               const config = toolbar[opt];
               if (opt === 'image' && uploadCallback) {

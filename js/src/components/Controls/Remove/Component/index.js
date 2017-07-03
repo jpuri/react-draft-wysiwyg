@@ -1,10 +1,11 @@
 /* @flow */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Option from '../../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 const RemoveComponent = ({ config, onChange }) => {
   const { icon, className, title } = config;
@@ -22,6 +23,11 @@ const RemoveComponent = ({ config, onChange }) => {
       </Option>
     </div>
   );
+};
+
+RemoveComponent.propTypes = {
+  onChange: PropTypes.func,
+  config: PropTypes.object,
 };
 
 export default RemoveComponent;

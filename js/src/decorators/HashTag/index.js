@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Entity } from 'draft-js';
 import classNames from 'classnames';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class Hashtag {
 
@@ -14,20 +13,19 @@ class Hashtag {
 
   getHashtagComponent = () => {
     const className = this.className;
-    return class HashtagComponent extends Component {
-      static PropTypes = {
-        children: PropTypes.object,
-      }
-      render() {
-        const { children } = this.props;
-        const text = children[0].props.text;
-        return (
-          <a href={text} className={classNames('rdw-hashtag-link', className)}>
-            {children}
-          </a>
-        );
-      }
+
+    const HashtagComponent = ({ children }) => {
+      const text = children[0].props.text;
+      return (
+        <a href={text} className={classNames('rdw-hashtag-link', className)}>
+          {children}
+        </a>
+      );
     };
+    HashtagComponent.propTypes = {
+      children: PropTypes.object,
+    };
+    return HashtagComponent;
   };
 
   findHashtagEntities = (contentBlock, callback) => {
@@ -59,14 +57,12 @@ class Hashtag {
     }
   };
 
-  getHashtagDecorator = () => {
-    return {
-      strategy: this.findHashtagEntities,
-      component: this.getHashtagComponent(),
-    }
-  };
+  getHashtagDecorator = () => ({
+    strategy: this.findHashtagEntities,
+    component: this.getHashtagComponent(),
+  });
 }
 
-const getDecorator = (config) => (new Hashtag(config)).getHashtagDecorator();
+const getDecorator = config => (new Hashtag(config)).getHashtagDecorator();
 
 module.exports = getDecorator;

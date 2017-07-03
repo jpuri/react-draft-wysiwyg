@@ -1,13 +1,13 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow, mount } from 'enzyme';
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import Editor from '..';
 
 describe('Editor test suite', () => {
   it('should have a div when rendered', () => {
-    expect(shallow(<Editor />).html().startsWith('<div')).to.be.true;
+    expect(shallow(<Editor />).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have an editorState object in state', () => {

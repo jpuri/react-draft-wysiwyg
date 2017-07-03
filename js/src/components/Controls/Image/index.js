@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Entity, AtomicBlockUtils } from 'draft-js';
+import { AtomicBlockUtils } from 'draft-js';
 
 import LayoutComponent from './Component';
 
@@ -30,13 +30,6 @@ class ImageControl extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  }
-
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
   };
@@ -53,6 +46,13 @@ class ImageControl extends Component {
     });
   };
 
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
   addImage: Function = (src: string, height: string, width: string): void => {
     const { editorState, onChange } = this.props;
     const entityKey = editorState
@@ -62,7 +62,7 @@ class ImageControl extends Component {
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
-      ' '
+      ' ',
     );
     onChange(newEditorState);
     this.doCollapse();
@@ -70,7 +70,7 @@ class ImageControl extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { expanded } = this.state
+    const { expanded } = this.state;
     const ImageComponent = config.component || LayoutComponent;
     return (
       <ImageComponent

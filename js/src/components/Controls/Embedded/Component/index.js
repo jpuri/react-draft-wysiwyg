@@ -6,17 +6,17 @@ import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
 import Option from '../../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class LayoutComponent extends Component {
 
   static propTypes: Object = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
-    doCollpase: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
     translations: PropTypes.object,
+    doCollapse: PropTypes.func,
   };
 
   state: Object = {
@@ -30,22 +30,22 @@ class LayoutComponent extends Component {
       const { height, width } = this.props.config.defaultSize;
       this.setState({
         embeddedLink: '',
-        height: height,
-        width: width,
+        height,
+        width,
       });
     }
   }
+
+  onChange: Function = (): void => {
+    const { onChange } = this.props;
+    const { embeddedLink, height, width } = this.state;
+    onChange(embeddedLink, height, width);
+  };
 
   updateValue: Function = (event: Object): void => {
     this.setState({
       [`${event.target.name}`]: event.target.value,
     });
-  };
-
-  onChange: Function = (event: Object): void => {
-    const { onChange } = this.props;
-    const { embeddedLink, height, width } = this.state;
-    onChange(embeddedLink, height, width);
   };
 
   rendeEmbeddedLinkModal(): Object {

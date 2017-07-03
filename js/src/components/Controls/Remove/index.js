@@ -15,6 +15,7 @@ export default class Remove extends Component {
     editorState: PropTypes.object.isRequired,
     config: PropTypes.object,
     translations: PropTypes.object,
+    modalHandler: PropTypes.object,
   };
 
   state = {
@@ -31,6 +32,22 @@ export default class Remove extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  removeInlineStyles: Function = (): void => {
+    const { editorState, onChange } = this.props;
+    onChange(this.removeAllInlineStyles(editorState));
+  };
+
   removeAllInlineStyles: Function = (editorState: EditorState): void => {
     let contentState = editorState.getCurrentContent();
     [
@@ -45,7 +62,7 @@ export default class Remove extends Component {
       contentState = Modifier.removeInlineStyle(
         contentState,
         editorState.getSelection(),
-        style
+        style,
       );
     });
     const customStyles = getSelectionCustomInlineStyle(editorState, ['FONTSIZE', 'FONTFAMILY', 'COLOR', 'BGCOLOR']);
@@ -54,28 +71,12 @@ export default class Remove extends Component {
         contentState = Modifier.removeInlineStyle(
           contentState,
           editorState.getSelection(),
-          value
+          value,
         );
       }
-    })
+    });
 
     return EditorState.push(editorState, contentState, 'change-inline-style');
-  };
-
-  removeInlineStyles: Function = (): void => {
-    const { editorState, onChange } = this.props;
-    onChange(this.removeAllInlineStyles(editorState));
-  };
-
-  expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  }
-
-  onExpandEvent: Function = (): void => {
-    this.signalExpanded = !this.state.expanded;
   };
 
   doExpand: Function = (): void => {

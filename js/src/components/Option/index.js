@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class Option extends Component {
 
@@ -35,7 +35,7 @@ export default class Option extends Component {
           {
             [`rdw-option-active ${activeClassName}`]: active,
             'rdw-option-disabled': disabled,
-          }
+          },
         )}
         onClick={this.onClick}
         aria-selected={active}
