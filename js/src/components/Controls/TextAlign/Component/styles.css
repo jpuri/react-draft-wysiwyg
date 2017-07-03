@@ -25,14 +25,14 @@
   text-align: justify;
 }
 .rdw-right-aligned-block > div {
-  display: inline;
+  display: inline-block;
 }
 .rdw-left-aligned-block > div {
-  display: inline;
+  display: inline-block;
 }
 .rdw-center-aligned-block > div {
-  display: inline;
+  display: inline-block;
 }
 .rdw-justify-aligned-block > div {
-  display: inline;
+  display: inline-block;
 }
