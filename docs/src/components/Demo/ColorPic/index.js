@@ -33,7 +33,7 @@ class ColorPic extends Component {
         className="demo-color-modal"
         onClick={this.stopPropagation}
       >
-        <BlockPicker value={color} onChangeComplete={this.onChange} />
+        <BlockPicker color={color} onChangeComplete={this.onChange} />
       </div>
     );
   };
