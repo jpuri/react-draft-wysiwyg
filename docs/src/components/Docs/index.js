@@ -437,7 +437,7 @@ export default class Demo2 extends Component {
             Generating HTML / Markdown
           </div>
           <div className="docs-desc">
-            Two add-on libraries have been made for this purpose: draftjs-to-html, draftjs-tomarkdown. These are also available for download from npm. <br />
+            Two add-on libraries have been made for this purpose: draftjs-to-html, draftjs-to-markdown. These are also available for download from npm. <br />
             Raw editor content can be converted to HTML or markdown simply by calling methods draftToHtml, draftToMarkdown respectively.
           </div>
         </div>
