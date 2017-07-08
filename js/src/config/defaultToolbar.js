@@ -115,6 +115,7 @@ export default {
     options: ['link', 'unlink'],
     link: { icon: link, className: undefined, title: 'Link' },
     unlink: { icon: unlink, className: undefined, title: 'Unlink' },
+    allowRelative: true,
   },
   emoji: {
     icon: emoji,

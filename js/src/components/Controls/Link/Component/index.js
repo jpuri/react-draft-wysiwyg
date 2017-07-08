@@ -10,6 +10,8 @@ import Option from '../../../Option';
 import { Dropdown, DropdownOption } from '../../../Dropdown';
 import './styles.css';
 
+const validLinkPattern = new RegExp(/(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i);
+
 class LayoutComponent extends Component {
 
   static propTypes = {
@@ -28,6 +30,7 @@ class LayoutComponent extends Component {
     linkTarget: '',
     linkTitle: '',
     linkTargetOption: this.props.config.defaultTargetOption,
+    validations: { linkTitleValid: false, linkTargetValid: false },
   };
 
   componentWillReceiveProps(props) {
@@ -37,7 +40,24 @@ class LayoutComponent extends Component {
         linkTarget: '',
         linkTitle: '',
         linkTargetOption: this.props.config.defaultTargetOption,
+        validations: { linkTitleValid: false, linkTargetValid: false },
       });
+    }
+  }
+
+  validateLink: Function = (linkProp, value): void => {
+    const { config: { allowRelative } } = this.props;
+    switch (linkProp) {
+      case "linkTitle":
+        return !!value
+      case "linkTarget":
+        if (!allowRelative) {
+          return (!!value && validLinkPattern.test(value));
+        } else {
+          return !!value;
+        }
+      default:
+        return true;
     }
   }
 
@@ -47,15 +67,29 @@ class LayoutComponent extends Component {
   };
 
   addLink: Function = (): void => {
-    const { onChange } = this.props;
+    const { config: { allowRelative }, onChange } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
-    onChange('link', linkTitle, linkTarget, linkTargetOption);
+
+    if (!allowRelative && !/^https?:\/\//i.test(linkTarget)) {
+      onChange('link', linkTitle, `https://${linkTarget}`, linkTargetOption);
+    } else {
+      onChange('link', linkTitle, linkTarget, linkTargetOption);
+    }
   };
 
   updateValue: Function = (event: Object): void => {
+    const { linkTitle, linkTarget } = this.state;
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
     this.setState({
-      [`${event.target.name}`]: event.target.value,
-    });
+      [`${name}`]: value,
+      validations: {
+        ...this.state.validations,
+        [`${name}Valid`]: this.validateLink(name, value),
+      }
+    })
   };
 
   updateTarget: Function = (event: Object): void => {
@@ -73,30 +107,44 @@ class LayoutComponent extends Component {
   signalExpandShowModal = () => {
     const { onExpandEvent, currentState: { link, selectionText } } = this.props;
     const { linkTargetOption } = this.state;
+    const linkTitle = (link && link.title) || selectionText;
+    const linkTarget = link && link.target;
     onExpandEvent();
     this.setState({
       showModal: true,
-      linkTarget: link && link.target,
+      linkTarget: linkTarget,
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
-      linkTitle: (link && link.title) || selectionText,
+      linkTitle: linkTitle,
+      validations: {
+        linkTitleValid: this.validateLink("linkTitle", linkTitle),
+        linkTargetValid: this.validateLink("linkTarget", linkTarget),
+      },
     });
   }
 
   forceExpandAndShowModal: Function = (): void => {
     const { doExpand, currentState: { link, selectionText } } = this.props;
     const { linkTargetOption } = this.state;
+    const linkTitle = (link && link.title) || selectionText;
+    const linkTarget = link && link.target;
     doExpand();
     this.setState({
       showModal: true,
-      linkTarget: link && link.target,
+      linkTarget: linkTarget,
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
-      linkTitle: (link && link.title) || selectionText,
+      linkTitle: linkTitle,
+      validations: {
+        linkTitleValid: this.validateLink("linkTitle", linkTitle),
+        linkTargetValid: this.validateLink("linkTarget", linkTarget),
+      },
     });
   }
 
   renderAddLinkModal() {
     const { config: { popupClassName }, doCollapse, translations } = this.props;
-    const { linkTitle, linkTarget, linkTargetOption } = this.state;
+    const { linkTitle, linkTarget, linkTargetOption, validations: { linkTitleValid, linkTargetValid }  } = this.state;
+    const linkIsValid = (linkTitleValid && linkTargetValid);
+
     return (
       <div
         className={classNames('rdw-link-modal', popupClassName)}
@@ -107,6 +155,7 @@ class LayoutComponent extends Component {
         </span>
         <input
           className="rdw-link-modal-input"
+          className={classNames({'rdw-link-modal-input': true, valid: linkTitleValid, invalid: !linkTitleValid})}
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTitle"
@@ -116,7 +165,7 @@ class LayoutComponent extends Component {
           {translations['components.controls.link.linkTarget']}
         </span>
         <input
-          className="rdw-link-modal-input"
+          className={classNames({'rdw-link-modal-input': true, valid: linkTargetValid, invalid: !linkTargetValid})}
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTarget"
@@ -135,7 +184,7 @@ class LayoutComponent extends Component {
           <button
             className="rdw-link-modal-btn"
             onClick={this.addLink}
-            disabled={!linkTarget || !linkTitle}
+            disabled={!linkIsValid}
           >
             {translations['generic.add']}
           </button>

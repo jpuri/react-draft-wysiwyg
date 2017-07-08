@@ -80,7 +80,7 @@ class Playground extends Component {
                 history: { inDropdown: true },
                 inline: { inDropdown: false },
                 list: { inDropdown: true },
-                link: { showOpenOptionOnHover: true },
+                link: { showOpenOptionOnHover: true, allowRelative: false },
                 textAlign: { inDropdown: true },
                 image: { uploadCallback: this.imageUploadCallBack },
               }}
