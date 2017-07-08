@@ -72,7 +72,7 @@
     "lint": "eslint js",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "check": "npm run lint && npm run flow",
-    "start": "node config/server.dev.js"
+    "storybook": "start-storybook -p 9001"
   },
   "license": "MIT"
 }
