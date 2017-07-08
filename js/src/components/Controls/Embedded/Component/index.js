@@ -92,6 +92,7 @@ class LayoutComponent extends Component {
         </div>
         <span className="rdw-embedded-modal-btn-section">
           <button
+            type="button"
             className="rdw-embedded-modal-btn"
             onClick={this.onChange}
             disabled={!embeddedLink || !height || !width}
@@ -99,6 +100,7 @@ class LayoutComponent extends Component {
             {translations['generic.add']}
           </button>
           <button
+            type="button"
             className="rdw-embedded-modal-btn"
             onClick={doCollapse}
           >
