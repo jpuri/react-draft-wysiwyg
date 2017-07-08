@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Entity } from 'draft-js';
 import classNames from 'classnames';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class Mention {
   constructor(className) {
@@ -10,29 +9,24 @@ class Mention {
   }
   getMentionComponent = () => {
     const className = this.className;
-    return class MentionComponent extends Component {
-      static PropTypes = {
-        entityKey: PropTypes.number,
-        children: PropTypes.object,
-        contentState: PropTypes.object,
-      }
-      render() {
-        const { entityKey, children, contentState } = this.props;
-        const { url, value } = contentState.getEntity(entityKey).getData();
-        return (
-          <a href={url || value} className={classNames('rdw-mention-link', className)}>
-            {children}
-          </a>
-        );
-      }
+    const MentionComponent = ({ entityKey, children, contentState }) => {
+      const { url, value } = contentState.getEntity(entityKey).getData();
+      return (
+        <a href={url || value} className={classNames('rdw-mention-link', className)}>
+          {children}
+        </a>
+      );
+    };
+    MentionComponent.propTypes = {
+      entityKey: PropTypes.number,
+      children: PropTypes.object,
+      contentState: PropTypes.object,
     };
   };
-  getMentionDecorator = () => {
-    return {
-      strategy: this.findMentionEntities,
-      component: this.getMentionComponent(),
-    }
-  };
+  getMentionDecorator = () => ({
+    strategy: this.findMentionEntities,
+    component: this.getMentionComponent(),
+  });
 }
 
 Mention.prototype.findMentionEntities = (contentBlock, callback, contentState) => {

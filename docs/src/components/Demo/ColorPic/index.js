@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import { BlockPicker } from 'react-color';
 
 import icon from '../../../icons/palette.svg';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class ColorPic extends Component {
 
@@ -33,7 +33,7 @@ class ColorPic extends Component {
         className="demo-color-modal"
         onClick={this.stopPropagation}
       >
-        <BlockPicker value={color} onChangeComplete={this.onChange} />
+        <BlockPicker color={color} onChangeComplete={this.onChange} />
       </div>
     );
   };

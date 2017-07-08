@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import { stopPropagation } from '../../../../utils/common';
 import Option from '../../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class LayoutComponent extends Component {
 
@@ -31,11 +31,11 @@ class LayoutComponent extends Component {
     }
   }
 
-  setCurrentStyleBgcolor: Function = (): void => {
-    this.setState({
-      currentStyle: 'bgcolor',
-    });
-  };
+  onChange: Function = (color: string): void => {
+    const { onChange } = this.props;
+    const { currentStyle } = this.state;
+    onChange(currentStyle, color);
+  }
 
   setCurrentStyleColor: Function = (): void => {
     this.setState({
@@ -43,14 +43,18 @@ class LayoutComponent extends Component {
     });
   };
 
-  onChange: Function = (color: string): void => {
-    const { onChange } = this.props;
-    const { currentStyle } = this.state;
-    onChange(currentStyle, color);
-  }
+  setCurrentStyleBgcolor: Function = (): void => {
+    this.setState({
+      currentStyle: 'bgcolor',
+    });
+  };
 
   renderModal: Function = (): Object => {
-    const { config: { popupClassName, colors }, currentState: { color, bgColor }, translations } = this.props;
+    const {
+      config: { popupClassName, colors },
+      currentState: { color, bgColor },
+      translations,
+    } = this.props;
     const { currentStyle } = this.state;
     const currentSelectedColor = (currentStyle === 'color') ? color : bgColor;
     return (
@@ -62,7 +66,7 @@ class LayoutComponent extends Component {
           <span
             className={classNames(
               'rdw-colorpicker-modal-style-label',
-              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'color' }
+              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'color' },
             )}
             onClick={this.setCurrentStyleColor}
           >
@@ -71,7 +75,7 @@ class LayoutComponent extends Component {
           <span
             className={classNames(
               'rdw-colorpicker-modal-style-label',
-              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'bgcolor' }
+              { 'rdw-colorpicker-modal-style-label-active': currentStyle === 'bgcolor' },
             )}
             onClick={this.setCurrentStyleBgcolor}
           >
@@ -80,20 +84,20 @@ class LayoutComponent extends Component {
         </span>
         <span className="rdw-colorpicker-modal-options">
           {
-            colors.map((color, index) =>
-              <Option
-                value={color}
+            colors.map((c, index) =>
+              (<Option
+                value={c}
                 key={index}
                 className="rdw-colorpicker-option"
                 activeClassName="rdw-colorpicker-option-active"
-                active={currentSelectedColor === color}
+                active={currentSelectedColor === c}
                 onClick={this.onChange}
               >
                 <span
-                  style={{ backgroundColor: color }}
+                  style={{ backgroundColor: c }}
                   className="rdw-colorpicker-cube"
                 />
-              </Option>)
+              </Option>))
           }
         </span>
       </div>

@@ -25,8 +25,8 @@ describe('FontSizeControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.fontSize}
         modalHandler={new ModalHandler()}
-      />
-    ).html().startsWith('<div')).to.be.true;
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have a dropdown child component well defined', () => {
@@ -36,7 +36,7 @@ describe('FontSizeControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.fontSize}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     assert.equal(control.childAt(0).props().children.length, 2);
     assert.isDefined(control.childAt(0).props().onChange);

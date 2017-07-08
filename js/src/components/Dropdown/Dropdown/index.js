@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 import { stopPropagation } from '../../../utils/common';
 

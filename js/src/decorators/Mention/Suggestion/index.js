@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import addMention from '../addMention';
 import KeyDownHandler from '../../../event-handler/keyDown';
 import SuggestionHandler from '../../../event-handler/suggestions';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class Suggestion {
   constructor(config) {
@@ -76,12 +76,10 @@ class Suggestion {
 
   getSuggestionComponent = getSuggestionComponent.bind(this);
 
-  getSuggestionDecorator = () => {
-    return {
-      strategy: this.findSuggestionEntities,
-      component: this.getSuggestionComponent(),
-    };
-  };
+  getSuggestionDecorator = () => ({
+    strategy: this.findSuggestionEntities,
+    component: this.getSuggestionComponent(),
+  });
 }
 
 function getSuggestionComponent() {
@@ -162,7 +160,8 @@ function getSuggestionComponent() {
       this.setState(newState);
     }
 
-    onOptionMouseEnter = (index) => {
+    onOptionMouseEnter = (event) => {
+      const index = event.target.getAttribute('data-index');
       this.setState({
         activeOption: index,
       });
@@ -200,9 +199,9 @@ function getSuggestionComponent() {
           }
           if (config.caseSensitive) {
             return suggestion.value.indexOf(mentionText) >= 0;
-          } else {
-            return suggestion.value.toLowerCase().indexOf(mentionText && mentionText.toLowerCase()) >= 0;
           }
+          return suggestion.value.toLowerCase()
+            .indexOf(mentionText && mentionText.toLowerCase()) >= 0;
         });
     }
 
@@ -234,25 +233,26 @@ function getSuggestionComponent() {
               ref={this.setDropdownReference}
             >
               {this.filteredSuggestions.map((suggestion, index) =>
-                <span
+                (<span
                   key={index}
                   spellCheck={false}
                   onClick={this.addMention}
-                  onMouseEnter={this.onOptionMouseEnter.bind(this, index)}
+                  data-index={index}
+                  onMouseEnter={this.onOptionMouseEnter}
                   onMouseLeave={this.onOptionMouseLeave}
                   className={classNames(
                     'rdw-suggestion-option',
                     optionClassName,
-                    { 'rdw-suggestion-option-active': (index === activeOption) }
+                    { 'rdw-suggestion-option-active': (index === activeOption) },
                   )}
                 >
                   {suggestion.text}
-                </span>)}
+                </span>))}
             </span>}
         </span>
       );
     }
-  }
+  };
 }
 
 module.exports = Suggestion;

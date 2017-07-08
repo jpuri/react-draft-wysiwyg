@@ -8,7 +8,7 @@ import { getFirstIcon } from '../../../../utils/toolbar';
 import Option from '../../../Option';
 import { Dropdown, DropdownOption } from '../../../Dropdown';
 
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class Inline extends Component {
 
@@ -29,14 +29,14 @@ export default class Inline extends Component {
         {
           config.options
           .map((style, index) =>
-            <Option
+            (<Option
               key={index}
               value={style}
               onClick={onChange}
               className={classNames(config[style].className)}
               active={
                 currentState[style] === true ||
-                (style === 'MONOSPACE' && currentState['CODE'])
+                (style === 'MONOSPACE' && currentState.CODE)
               }
               title={config[style].title}
             >
@@ -44,7 +44,7 @@ export default class Inline extends Component {
                 alt=""
                 src={config[style].icon}
               />
-            </Option>
+            </Option>),
           )
         }
       </div>
@@ -81,13 +81,13 @@ export default class Inline extends Component {
         {
           config.options
           .map((style, index) =>
-            <DropdownOption
+            (<DropdownOption
               key={index}
               value={style}
               className={classNames('rdw-inline-dropdownoption', config[style].className)}
               active={
                 currentState[style] === true ||
-                (style === 'MONOSPACE' && currentState['CODE'])
+                (style === 'MONOSPACE' && currentState.CODE)
               }
               title={config[style].title}
             >
@@ -95,7 +95,7 @@ export default class Inline extends Component {
                 src={config[style].icon}
                 alt=""
               />
-            </DropdownOption>)
+            </DropdownOption>))
           }
       </Dropdown>
     );

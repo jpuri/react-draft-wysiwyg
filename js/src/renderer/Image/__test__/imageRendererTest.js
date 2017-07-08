@@ -1,8 +1,8 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { shallow } from 'enzyme';
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { shallow } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import { getAllBlocks } from 'draftjs-utils';
 import { convertFromHTML, AtomicBlockUtils, ContentState, EditorState } from 'draft-js';
 
