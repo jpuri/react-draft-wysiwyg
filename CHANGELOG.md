@@ -56,5 +56,5 @@ Initial stable release
 ## 25/01/2017
 - #176: image upload issue: drag and drop
 
-## 10/02/2017
+## 10/02/2017 (1.10.2)
 - #127: Support for hashtags.

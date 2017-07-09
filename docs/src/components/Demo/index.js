@@ -56,7 +56,6 @@ export default class Demo extends Component {
           <Editor
             hashtag={{}}
             editorState={editorContents[0]}
-            toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 0)}
@@ -75,7 +74,6 @@ export default class Demo extends Component {
           <Editor
             hashtag={{}}
             editorState={editorContents[1]}
-            toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 1)}
@@ -94,7 +92,6 @@ export default class Demo extends Component {
           <Editor
             hashtag={{}}
             editorState={editorContents[2]}
-            toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             onEditorStateChange={this.onEditorStateChange.bind(this, 2)}
@@ -111,7 +108,6 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
-            toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
             toolbar={{
@@ -129,7 +125,6 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
-            toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-wide"
             editorClassName="demo-editor"
             toolbar={{
@@ -148,7 +143,6 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
-            toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper-medium"
             editorClassName="demo-editor"
             toolbar={{
@@ -217,7 +211,6 @@ export default class Demo extends Component {
         <div className="demo-editorSection">
           <Editor
             localization={{ locale: 'zh' }}
-            toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             mention={{
@@ -243,7 +236,6 @@ export default class Demo extends Component {
         </div>
         <div className="demo-editorSection">
           <Editor
-            toolbarClassName="demo-toolbar"
             wrapperClassName="demo-wrapper"
             editorClassName="demo-editor"
             toolbar={{
