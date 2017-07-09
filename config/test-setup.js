@@ -1,4 +1,4 @@
-require('babel-register')(); // eslint-disable-line import/no-extraneous-dependencies
+require('babel-register')();
 
 const jsdom = require('jsdom').jsdom;
 
