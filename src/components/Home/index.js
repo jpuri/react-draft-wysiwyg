@@ -11,7 +11,6 @@ export default class Home extends Component {
     return (
       <div className="root">
         <Editor
-          toolbarClassName="home-toolbar"
           wrapperClassName="home-wrapper"
           editorClassName="home-editor"
           toolbar={{
