@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.10.1",
+  "version": "1.10.2",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -23,7 +23,6 @@
     "css-loader": "^0.28.4",
     "draft-js": "^0.10.1",
     "draftjs-to-html": "^0.7.2",
-    "html-to-draftjs": "^0.1.0-beta7",
     "draftjs-to-markdown": "^0.4.2",
     "enzyme": "^2.9.1",
     "eslint": "^3.7.1",
@@ -36,6 +35,7 @@
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "flow-bin": "^0.49.1",
+    "html-to-draftjs": "^0.1.0-beta7",
     "html-webpack-plugin": "^2.29.0",
     "immutable": "^4.0.0-rc.1",
     "jsdom": "^9.12.0",
@@ -50,17 +50,18 @@
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.0.0",
+    "webpack-bundle-analyzer": "^2.8.2",
     "webpack-dev-middleware": "^1.11.0",
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-utils": "^0.7.5",
-    "immutable": "^4.0.0-rc.1",
+    "draftjs-utils": "file:../draftjs-utils",
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {
     "draft-js": "^0.10.x",
+    "immutable": "^4.0.0-rc.1",
     "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x",
     "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x"
   },
