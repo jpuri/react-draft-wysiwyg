@@ -19,15 +19,16 @@ describe('Block test suite', () => {
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div at root when rendered', () => {
-    expect(mount(
+    const block = mount(
       <Block
         onChange={() => {}}
         editorState={editorState}
-        config={{...defaultToolbar.blockType, inDropdown: false}}
-        translations={localeTranslations['en']}
+        config={{ ...defaultToolbar.blockType, inDropdown: false }}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
-      />
-    ).html().startsWith('<div')).to.be.true;
+      />,
+    );
+    expect(block.html().startsWith('<div')).to.equal(true);
   });
 
   it('should have a dropdown child component defined', () => {
@@ -37,8 +38,8 @@ describe('Block test suite', () => {
         editorState={editorState}
         config={defaultToolbar.blockType}
         modalHandler={new ModalHandler()}
-        translations={localeTranslations['en']}
-      />
+        translations={localeTranslations.en}
+      />,
     );
     expect(block.find('Dropdown').length).to.equal(1);
   });
@@ -48,10 +49,10 @@ describe('Block test suite', () => {
       <Block
         onChange={() => {}}
         editorState={editorState}
-        config={{...defaultToolbar.blockType, inDropdown: false}}
-        translations={localeTranslations['en']}
+        config={{ ...defaultToolbar.blockType, inDropdown: false }}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     expect(block.find('Option').length).to.equal(8);
   });

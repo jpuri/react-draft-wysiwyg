@@ -25,8 +25,8 @@ describe('ImageControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.image}
         modalHandler={new ModalHandler()}
-      />
-    ).html().startsWith('<div')).to.be.true;
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have 1 child element by default', () => {
@@ -36,7 +36,7 @@ describe('ImageControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.image}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     expect(control.children().length).to.equal(1);
   });
@@ -48,7 +48,7 @@ describe('ImageControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.image}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     const imageControl = control.find('ImageControl');
     assert.isNotTrue(imageControl.node.signalExpanded);

@@ -6,7 +6,7 @@ import classNames from 'classnames';
 
 import Option from '../../../Option';
 import Spinner from '../../../Spinner';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class LayoutComponent extends Component {
 
@@ -37,7 +37,7 @@ class LayoutComponent extends Component {
         showImageLoading: false,
         height: this.props.config.defaultSize.height,
         width: this.props.config.defaultSize.width,
-      })
+      });
     } else if (props.config.uploadCallback !== this.props.config.uploadCallback ||
       props.config.uploadEnabled !== this.props.config.uploadEnabled) {
       this.setState({
@@ -46,23 +46,20 @@ class LayoutComponent extends Component {
     }
   }
 
-  updateValue: Function = (event: Object): void => {
+  onDragEnter: Function = (event: Object): void => {
+    this.stopPropagation(event);
     this.setState({
-      [`${event.target.name}`]: event.target.value,
+      dragEnter: true,
     });
   };
 
-  toggleShowImageLoading: Function = (): void => {
-    const showImageLoading = !this.state.showImageLoading;
+  onImageDrop: Function = (event: Object): void => {
+    event.preventDefault();
+    event.stopPropagation();
     this.setState({
-      showImageLoading,
+      dragEnter: false,
     });
-  };
-
-  showImageURLOption: Function = (): void => {
-    this.setState({
-      uploadHighlighted: false,
-    });
+    this.uploadImage(event.dataTransfer.files[0]);
   };
 
   showImageUploadOption: Function = (): void => {
@@ -83,19 +80,22 @@ class LayoutComponent extends Component {
     onChange(imgSrc, height, width);
   };
 
-  onImageDrop: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
+  showImageURLOption: Function = (): void => {
     this.setState({
-      dragEnter: false,
+      uploadHighlighted: false,
     });
-    this.uploadImage(event.dataTransfer.files[0]);
   };
 
-  onDragEnter: Function = (event: Object): void => {
-    this.stopPropagation(event);
+  toggleShowImageLoading: Function = (): void => {
+    const showImageLoading = !this.state.showImageLoading;
     this.setState({
-      dragEnter: true,
+      showImageLoading,
+    });
+  };
+
+  updateValue: Function = (event: Object): void => {
+    this.setState({
+      [`${event.target.name}`]: event.target.value,
     });
   };
 
@@ -139,7 +139,11 @@ class LayoutComponent extends Component {
 
   renderAddImageModal(): Object {
     const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled, inputAccept }, doCollapse, translations } = this.props;
+    const {
+      config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled, inputAccept },
+      doCollapse,
+      translations,
+    } = this.props;
     return (
       <div
         className={classNames('rdw-image-modal', popupClassName)}
@@ -155,7 +159,7 @@ class LayoutComponent extends Component {
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': uploadHighlighted }
+                  { 'rdw-image-modal-header-label-highlighted': uploadHighlighted },
                 )}
               />
             </span>}
@@ -168,7 +172,7 @@ class LayoutComponent extends Component {
               <span
                 className={classNames(
                   'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': !uploadHighlighted }
+                  { 'rdw-image-modal-header-label-highlighted': !uploadHighlighted },
                 )}
               />
             </span>}
@@ -188,7 +192,7 @@ class LayoutComponent extends Component {
                   htmlFor="file"
                   className="rdw-image-modal-upload-option-label"
                 >
-                   {translations['components.controls.image.dropFileText']}
+                  {translations['components.controls.image.dropFileText']}
                 </label>
               </div>
               <input

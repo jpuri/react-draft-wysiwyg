@@ -47,16 +47,17 @@ export default class History extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  }
-
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
   };
+
+  onChange: Function = (action) => {
+    const { editorState, onChange } = this.props;
+    const newState = EditorState[action](editorState);
+    if (newState) {
+      onChange(newState);
+    }
+  }
 
   doExpand: Function = (): void => {
     this.setState({
@@ -70,22 +71,21 @@ export default class History extends Component {
     });
   };
 
-  onChange: Function = (action) => {
-    const { editorState, onChange } = this.props;
-    const newState = EditorState[action](editorState);
-    if (newState) {
-      onChange(newState);
-    }
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
   }
 
   render(): Object {
     const { config } = this.props;
-    const { undoDisabled, redoDisabled, expanded } = this.state
+    const { undoDisabled, redoDisabled, expanded } = this.state;
     const HistoryComponent = config.component || LayoutComponent;
     return (
       <HistoryComponent
         config={config}
-        currentState={{ undoDisabled, redoDisabled}}
+        currentState={{ undoDisabled, redoDisabled }}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}

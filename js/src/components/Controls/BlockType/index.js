@@ -46,6 +46,17 @@ class BlockType extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
   blocksTypes: Array<Object> = [
     { label: 'Normal', style: 'unstyled' },
     { label: 'H1', style: 'header-one' },
@@ -56,17 +67,6 @@ class BlockType extends Component {
     { label: 'H6', style: 'header-six' },
     { label: 'Blockquote', style: 'blockquote' },
   ];
-
-  expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  }
-
-  onExpandEvent: Function = (): void => {
-    this.signalExpanded = !this.state.expanded;
-  };
 
   doExpand: Function = (): void => {
     this.setState({
@@ -94,7 +94,7 @@ class BlockType extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { undoDisabled, redoDisabled, expanded, currentBlockType } = this.state
+    const { expanded, currentBlockType } = this.state;
     const BlockTypeComponent = config.component || LayoutComponent;
     const blockType = this.blocksTypes.find(bt => bt.style === currentBlockType);
     return (

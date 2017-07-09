@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Dropdown, DropdownOption } from '../../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class LayoutComponent extends Component {
 
@@ -27,9 +27,9 @@ class LayoutComponent extends Component {
   componentDidMount(): void {
     const editorElm = document.getElementsByClassName('DraftEditor-root');
     if (editorElm && editorElm.length > 0) {
-      const styles = window.getComputedStyle(editorElm[0]);
-      const defaultFontFamily = styles.getPropertyValue('font-family');
-      this.setState({
+      const editorStyles = window.getComputedStyle(editorElm[0]);
+      const defaultFontFamily = editorStyles.getPropertyValue('font-family');
+      this.setState({ // eslint-disable-line react/no-did-mount-set-state
         defaultFontFamily,
       });
     }
@@ -38,7 +38,7 @@ class LayoutComponent extends Component {
   render() {
     const { defaultFontFamily } = this.state;
     const {
-      config: { icon, className, dropdownClassName, options, title },
+      config: { className, dropdownClassName, options, title },
       translations,
       onChange,
       expanded,
@@ -46,9 +46,12 @@ class LayoutComponent extends Component {
       onExpandEvent,
       doExpand,
     } = this.props;
-    let { currentState: { fontFamily : currentFontFamily } } = this.props;
+    let { currentState: { fontFamily: currentFontFamily } } = this.props;
     currentFontFamily = currentFontFamily ||
-      (options && defaultFontFamily && options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) && defaultFontFamily);
+      (options &&
+        defaultFontFamily &&
+        options.some(opt => opt.toLowerCase() === defaultFontFamily.toLowerCase()) &&
+        defaultFontFamily);
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
         <Dropdown
@@ -66,13 +69,13 @@ class LayoutComponent extends Component {
           </span>
           {
             options.map((family, index) =>
-              <DropdownOption
+              (<DropdownOption
                 active={currentFontFamily === family}
                 value={family}
                 key={index}
               >
                 {family}
-              </DropdownOption>)
+              </DropdownOption>))
           }
         </Dropdown>
       </div>

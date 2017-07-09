@@ -7,7 +7,7 @@ import classNames from 'classnames';
 import Option from '../../../Option';
 import { Dropdown, DropdownOption } from '../../../Dropdown';
 import { getFirstIcon } from '../../../../utils/toolbar';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class TextAlign extends Component {
 
@@ -22,7 +22,11 @@ export default class TextAlign extends Component {
   };
 
   renderInFlatList(): Object {
-    const { config: { options, left, center, right, justify, className }, onChange, currentState: { textAlignment }} = this.props;
+    const {
+      config: { options, left, center, right, justify, className },
+      onChange,
+      currentState: { textAlignment },
+    } = this.props;
     return (
       <div className={classNames('rdw-text-align-wrapper', className)} aria-label="rdw-textalign-control">
         {options.indexOf('left') >= 0 && <Option
