@@ -79,7 +79,7 @@ export default class WysiwygEditor extends Component {
     ariaExpanded: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     ariaHasPopup: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     customBlockRenderFunc: PropTypes.func,
-    wrapperId: PropTypes.string,
+    wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
   };
 
