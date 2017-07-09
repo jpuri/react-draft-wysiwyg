@@ -21,3 +21,6 @@
 .rdw-editor-wrapper:focus {
   outline: none;
 }
+.rdw-editor-wrapper {
+  box-sizing: content-box;
+}
