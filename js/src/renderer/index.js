@@ -1,5 +1,5 @@
 import Embedded from './Embedded';
-import getImageComponent from '../renderer/Image';
+import getImageComponent from '../Renderer/Image';
 
 const getBlockRenderFunc = (config, customBlockRenderer) => (block) => {
   if (typeof customBlockRenderer === 'function') {
