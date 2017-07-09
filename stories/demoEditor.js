@@ -1,18 +1,17 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 import draftToHtml from 'draftjs-to-html'; // eslint-disable-line import/no-extraneous-dependencies
 import draftToMarkdown from 'draftjs-to-markdown'; // eslint-disable-line import/no-extraneous-dependencies
 import { convertToRaw, ContentState, EditorState } from 'draft-js';
-import { Editor } from '../src';
+import { Editor } from '../js/src';
 import './styles.css';
 
 const TestOption = () => <div>testing</div>;
 
 const TestOption2 = () => <div>resting</div>;
 
-class Playground extends Component {
+class DemoEditor extends Component {
 
   state: any = {
     editorContent: undefined,
@@ -128,4 +127,4 @@ class Playground extends Component {
   }
 }
 
-ReactDOM.render(<Playground />, document.getElementById('app')); // eslint-disable-line no-undef
+export default DemoEditor; // eslint-disable-line no-undef
