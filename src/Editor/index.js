@@ -398,7 +398,7 @@ export default class WysiwygEditor extends Component {
     return (
       <div
         id={this.wrapperId}
-        className={classNames('rdw-editor-wrapper', wrapperClassName)}
+        className={classNames(wrapperClassName, 'rdw-editor-wrapper')}
         style={wrapperStyle}
         onClick={this.modalHandler.onEditorClick}
         onBlur={this.onWrapperBlur}
@@ -408,7 +408,7 @@ export default class WysiwygEditor extends Component {
           !toolbarHidden &&
           (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
           <div
-            className={classNames('rdw-editor-toolbar', toolbarClassName)}
+            className={classNames(toolbarClassName, 'rdw-editor-toolbar')}
             style={toolbarStyle}
             onMouseDown={this.preventDefault}
             aria-label="rdw-toolbar"
@@ -429,7 +429,7 @@ export default class WysiwygEditor extends Component {
         }
         <div
           ref={this.setWrapperReference}
-          className={classNames('rdw-editor-main', editorClassName)}
+          className={classNames(editorClassName, 'rdw-editor-main')}
           style={editorStyle}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
