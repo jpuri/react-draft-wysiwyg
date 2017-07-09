@@ -119,6 +119,4 @@ export default class Inline extends Component {
     );
   }
 }
-
-// todo: move all controls to separate folder controls
 // make subscript less low
