@@ -232,7 +232,7 @@ export default class Demo2 extends Component {
               <li>Applying custom styles to the toolbar options using CSS classes.</li>
               <li>Using a custom react component for a toolbar button / popup.</li>
             </ol>
-            <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/js/src/config/defaultToolbar.js">Here</a> is the complete toolbar property object, user can provide any or all of these properties.
+            <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/src/config/defaultToolbar.js">Here</a> is the complete toolbar property object, user can provide any or all of these properties.
             For editor to reflect the changes in this object you need to make sure that you do not mutate it but rather create a new copy.
           </div>
         </div>
@@ -275,7 +275,7 @@ export default class Demo2 extends Component {
           <div className="docs-desc">
             Toolbar labels can be internationalized using property localization. Localization has 2 parameters: locale and translations. <br/>
             User can either provide locale or a JavaScript object for translations. Currently supported locales are: English('en'), French('fr'), Chinese('zh'), Russian('ru'), Portuguese('pt') and Korean('ko').<br/>
-            For an example of translations check <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/js/src/i18n/en.js">here</a>.
+            For an example of translations check <a href="https://github.com/jpuri/react-draft-wysiwyg/blob/master/src/i18n/en.js">here</a>.
           </div>
         </div>
         <div className="docs-section">

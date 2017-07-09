@@ -56,5 +56,13 @@ Initial stable release
 ## 25/01/2017
 - #176: image upload issue: drag and drop
 
+<<<<<<< HEAD
 ## 10/02/2017 (1.10.2)
 - #127: Support for hashtags.
+=======
+## 10/02/2017
+- #127: Support for hashtags.
+
+## 09/07/2017
+- #348: Reduce bindle size by making ImmutableJS external dependency.
+>>>>>>> 439e09586d02bec8d48dd0d7fe26f7b95cd74d84

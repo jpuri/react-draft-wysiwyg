@@ -1,5 +1,6 @@
 import React from 'react';
-import { storiesOf } from '@storybook/react'; // eslint-disable-line import/no-extraneous-dependencies
-import DemoEditor from './demoEditor';
+import { storiesOf } from '@storybook/react';
+import DemoEditor from './DemoEditor';
+import './styles.css';
 
-storiesOf('Editor', module).add('Simple', () => <DemoEditor />);
+storiesOf('DemoEditor', module).add('story', () => <DemoEditor />);

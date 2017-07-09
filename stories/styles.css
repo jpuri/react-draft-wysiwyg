@@ -1,34 +1,34 @@
-.playground-root {
+.rdw-storybook-root {
   margin: 50px;
   width: 90%;
 }
-.playground-label {
+.rdw-storybook-label {
   font-size: 20px;
   font-weight: 500;
   margin-bottom: 20px;
 }
-.playground-editorSection {
+.rdw-storybook-editorSection {
   display: flex;
   margin-top: 150px;
   justify-content: space-between;
 }
-.playground-wrapper {
+.rdw-storybook-wrapper {
   height: 400px;
   width: 600px;
 }
-.playground-editor {
+.rdw-storybook-editor {
   border: 1px solid #F1F1F1;
   padding: 5px;
   border-radius: 2px;
-  height: 95%;
+  height: 50%;
 }
-.playground-editorWrapper {
+.rdw-storybook-editorWrapper {
 }
-.playground-toolbar {
-  width: 100%;
+.rdw-storybook-toolbar {
+  width: 96%;
   top: -130px;
 }
-.playground-content {
+.rdw-storybook-content {
   border: 1px solid #F1F1F1;
   padding: 5px;
   border-radius: 5px;

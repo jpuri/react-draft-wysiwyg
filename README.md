@@ -46,11 +46,10 @@ import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 <Editor
   editorState={editorState}
-  toolbarClassName="home-toolbar"
-  wrapperClassName="home-wrapper"
-  editorClassName="home-editor"
+  toolbarClassName="toolbarClassName"
+  wrapperClassName="wrapperClassName"
+  editorClassName="editorClassName"
   onEditorStateChange={this.onEditorStateChange}
-  uploadCallback={uploadImageCallBack}
 />
 ```
 

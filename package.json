@@ -31,12 +31,10 @@
     "eslint-plugin-jsx-a11y": "^5.0.3",
     "eslint-plugin-mocha": "^4.11.0",
     "eslint-plugin-react": "^7.1.0",
-    "express": "^4.15.3",
     "extract-text-webpack-plugin": "^2.1.2",
     "file-loader": "^0.11.2",
     "flow-bin": "^0.49.1",
     "html-to-draftjs": "^0.1.0-beta7",
-    "html-webpack-plugin": "^2.29.0",
     "immutable": "^4.0.0-rc.1",
     "jsdom": "^9.12.0",
     "mocha": "^3.4.2",
@@ -50,13 +48,11 @@
     "style-loader": "^0.18.2",
     "url-loader": "^0.5.9",
     "webpack": "^3.0.0",
-    "webpack-bundle-analyzer": "^2.8.2",
-    "webpack-dev-middleware": "^1.11.0",
-    "webpack-hot-middleware": "^2.18.0"
+    "@storybook/react": "^3.1.8"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-utils": "file:../draftjs-utils",
+    "draftjs-utils": "^0.8.0",
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {
@@ -67,13 +63,14 @@
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack.prod.config.js",
+    "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
     "build": "npm run clean && npm run build:webpack",
-    "test": "cross-env BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js js/**/*Test.js",
-    "lint": "eslint js",
+    "test": "cross-env BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js src/**/*Test.js",
+    "lint": "eslint src",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "check": "npm run lint && npm run flow",
-    "storybook": "start-storybook -p 9001"
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "license": "MIT"
 }
