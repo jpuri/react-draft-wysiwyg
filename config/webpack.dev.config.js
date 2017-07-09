@@ -4,11 +4,11 @@ const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = {
+const devConfigs = {
   devtool: 'source-map',
   entry: [
-    'webpack-hot-middleware/client',
     './js/playground/index',
   ],
   output: {
@@ -25,30 +25,32 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract(
-          'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader'
-        ),
+        loader: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: "css-loader?modules&importLoaders=1&localIdentName=[local]!postcss-loader"
+        }),
       },
       { test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' },
       {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=10000&mimetype=image/svg+xml',
+        loader: 'url-loader?limit=10000&mimetype=image/svg+xml',
       },
     ],
   },
   plugins: [
-    new ExtractTextPlugin('main.css', {
-      allChunks: true,
-    }),
+    new ExtractTextPlugin("main.css"),
     new HtmlWebpackPlugin({
       template: './js/playground/index.html',
       inject: true,
     }),
     new webpack.HotModuleReplacementPlugin(),
-  ],
-  postcss: () => [autoprefixer, precss],
-  resolve: {
-    extensions: ['', '.js', '.json'],
-  },
-};
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        postcss: [autoprefixer, precss],
+      }
+    }),
+    new BundleAnalyzerPlugin()
+  ]
+}
+
+module.exports = devConfigs;

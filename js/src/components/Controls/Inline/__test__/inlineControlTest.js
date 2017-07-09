@@ -10,8 +10,8 @@ import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneo
 import { spy } from 'sinon'; // eslint-disable-line import/no-extraneous-dependencies
 import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import InlineControl from '..';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
+import defaultToolbar from '../../../../config/defaultToolbar';
+import ModalHandler from '../../../../event-handler/modals';
 
 describe('InlineControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -19,13 +19,14 @@ describe('InlineControl test suite', () => {
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div when rendered', () => {
-    expect(shallow(
+    expect(mount(
       <InlineControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.inline}
-      />
-    ).node.type).to.equal('div');
+        modalHandler={new ModalHandler()}
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have 5 child elements by default', () => {
@@ -34,7 +35,8 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.inline}
-      />
+        modalHandler={new ModalHandler()}
+      />,
     );
     expect(control.children().length).to.equal(7);
   });
@@ -46,7 +48,7 @@ describe('InlineControl test suite', () => {
         editorState={editorState}
         config={{ ...defaultToolbar.inline, inDropdown: true }}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     expect(control.children().length).to.equal(1);
     expect(control.childAt(0).children().length).to.equal(2);
@@ -59,7 +61,8 @@ describe('InlineControl test suite', () => {
         onChange={onChange}
         editorState={editorState}
         config={defaultToolbar.inline}
-      />
+        modalHandler={new ModalHandler()}
+      />,
     );
     control.childAt(0).simulate('click');
     assert.isTrue(onChange.calledOnce);
@@ -79,7 +82,8 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.inline}
-      />
+        modalHandler={new ModalHandler()}
+      />,
     );
     assert.isNotTrue(control.state().currentStyles.BOLD);
     assert.isNotTrue(control.state().currentStyles.ITALIC);

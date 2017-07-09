@@ -49,10 +49,12 @@ Initial stable release
 - #142: Selection state broken when using contentState and onContentStateChange props.
 - #140: Request: customizable blockTypes.
 
-## 22/01/2016
+## 22/01/2017
 - #181: Ability to add custom block renderer.
 - #183: Default toolbar order by config.
 
-
-## 25/01/2016
+## 25/01/2017
 - #176: image upload issue: drag and drop
+
+## 10/02/2017
+- #127: Support for hashtags.

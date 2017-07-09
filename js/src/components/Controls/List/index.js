@@ -1,13 +1,11 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { RichUtils } from 'draft-js';
 import { changeDepth, getSelectedBlocksType } from 'draftjs-utils';
-import classNames from 'classnames';
-import { getFirstIcon } from '../../../utils/toolbar';
-import { Dropdown, DropdownOption } from '../../Dropdown';
-import Option from '../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+
+import LayoutComponent from './Component';
 
 export default class List extends Component {
 
@@ -16,19 +14,22 @@ export default class List extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
+    expanded: false,
     currentBlockType: 'unstyled',
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
         currentBlockType: getSelectedBlocksType(editorState),
       });
     }
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -40,26 +41,51 @@ export default class List extends Component {
     }
   }
 
-  onDropdownChange: Function = (value: string): void => {
-    if (value === 'unordered-list-item' || value === 'ordered-list-item') {
-      this.toggleBlockType(value);
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.expandCollapse);
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  onChange: Function = (value: string): void => {
+    if (value === 'unordered') {
+      this.toggleBlockType('unordered-list-item');
+    } else if (value === 'ordered') {
+      this.toggleBlockType('ordered-list-item');
     } else if (value === 'indent') {
-      this.indent();
+      this.adjustDepth(1);
     } else {
-      this.outdent();
+      this.adjustDepth(-1);
     }
   };
 
-  options: Array = [{ type: 'unordered', value: 'unordered-list-item' },
-    { type: 'ordered', value: 'ordered-list-item' },
-    { type: 'indent', value: 'indent' },
-    { type: 'outdent', value: 'outdent' }];
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
 
   toggleBlockType: Function = (blockType: String): void => {
     const { onChange, editorState } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
-      blockType
+      blockType,
     );
     if (newState) {
       onChange(newState);
@@ -78,102 +104,27 @@ export default class List extends Component {
     }
   };
 
-  indent: Function = (): void => {
-    this.adjustDepth(1);
-  };
-
-  outdent: Function = (): void => {
-    this.adjustDepth(-1);
-  };
-
-  // todo: evaluate refactoring this code to put a loop there and in other places also in code
-  // hint: it will require moving click handlers
-  renderInFlatList(currentBlockType: string, config: Object): Object {
-    const { options, unordered, ordered, indent, outdent, className } = config;
-    return (
-      <div className={classNames('rdw-list-wrapper', className)} aria-label="rdw-list-control">
-        {options.indexOf('unordered') >= 0 && <Option
-          value="unordered-list-item"
-          onClick={this.toggleBlockType}
-          className={classNames(unordered.className)}
-          active={currentBlockType === 'unordered-list-item'}
-        >
-          <img
-            src={unordered.icon}
-            role="presentation"
-          />
-        </Option>}
-        {options.indexOf('ordered') >= 0 && <Option
-          value="ordered-list-item"
-          onClick={this.toggleBlockType}
-          className={classNames(ordered.className)}
-          active={currentBlockType === 'ordered-list-item'}
-        >
-          <img
-            src={ordered.icon}
-            role="presentation"
-          />
-        </Option>}
-        {options.indexOf('indent') >= 0 && <Option
-          onClick={this.indent}
-          className={classNames(indent.className)}
-        >
-          <img
-            src={indent.icon}
-            role="presentation"
-          />
-        </Option>}
-        {options.indexOf('outdent') >= 0 && <Option
-          onClick={this.outdent}
-          className={classNames(outdent.className)}
-        >
-          <img
-            src={outdent.icon}
-            role="presentation"
-          />
-        </Option>}
-      </div>
-    );
-  }
-
-  renderInDropDown(currentBlockType: string, config: Object): Object {
-    const { options, className } = config;
-    const { modalHandler } = this.props;
-    return (
-      <Dropdown
-        className={classNames('rdw-list-dropdown', className)}
-        onChange={this.onDropdownChange}
-        modalHandler={modalHandler}
-        aria-label="rdw-list-control"
-      >
-        <img
-          src={getFirstIcon(config)}
-          role="presentation"
-        />
-        { this.options
-          .filter(option => options.indexOf(option.type) >= 0)
-          .map((option, index) => (<DropdownOption
-            key={index}
-            value={option.value}
-            className={classNames('rdw-list-dropdownOption', config[option.type].className)}
-            active={currentBlockType === option.value}
-          >
-            <img
-              src={config[option.type].icon}
-              role="presentation"
-            />
-          </DropdownOption>))
-        }
-      </Dropdown>
-    );
-  }
-
   render(): Object {
-    const { config } = this.props;
-    const { currentBlockType } = this.state;
-    if (config.inDropdown) {
-      return this.renderInDropDown(currentBlockType, config);
+    const { config, translations } = this.props;
+    const { expanded, currentBlockType } = this.state;
+    const ListComponent = config.component || LayoutComponent;
+    let listType;
+    if (currentBlockType === 'unordered-list-item') {
+      listType = 'unordered';
+    } else if (currentBlockType === 'ordered-list-item') {
+      listType = 'ordered';
     }
-    return this.renderInFlatList(currentBlockType, config);
+    return (
+      <ListComponent
+        config={config}
+        translations={translations}
+        currentState={{ listType }}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+        onChange={this.onChange}
+      />
+    );
   }
 }

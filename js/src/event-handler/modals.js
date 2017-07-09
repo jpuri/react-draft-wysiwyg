@@ -27,7 +27,7 @@ export default class ModalHandler {
       }
     });
     document.addEventListener('keydown', (event) => { // eslint-disable-line no-undef
-      if(event.key === 'Escape') {
+      if (event.key === 'Escape') {
         this.closeAllModals();
       }
     });

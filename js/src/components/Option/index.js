@@ -1,8 +1,9 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class Option extends Component {
 
@@ -14,6 +15,7 @@ export default class Option extends Component {
     activeClassName: PropTypes.string,
     active: PropTypes.bool,
     disabled: PropTypes.bool,
+    title: PropTypes.string,
   };
 
   onClick: Function = () => {
@@ -24,7 +26,7 @@ export default class Option extends Component {
   };
 
   render() {
-    const { children, className, activeClassName, active, disabled } = this.props;
+    const { children, className, activeClassName, active, disabled, title } = this.props;
     return (
       <div
         className={classNames(
@@ -33,10 +35,11 @@ export default class Option extends Component {
           {
             [`rdw-option-active ${activeClassName}`]: active,
             'rdw-option-disabled': disabled,
-          }
+          },
         )}
         onClick={this.onClick}
         aria-selected={active}
+        title={title}
       >
         {children}
       </div>

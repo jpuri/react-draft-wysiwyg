@@ -1,7 +1,7 @@
-import React, { PropTypes, Component } from 'react';
-import { Entity } from 'draft-js';
+import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 class Mention {
   constructor(className) {
@@ -9,41 +9,37 @@ class Mention {
   }
   getMentionComponent = () => {
     const className = this.className;
-    return class MentionComponent extends Component {
-      static PropTypes = {
-        entityKey: PropTypes.number,
-        children: PropTypes.object,
-      }
-      render() {
-        const { entityKey, children } = this.props;
-        const { url, value } = Entity.get(entityKey).getData();
-        return (
-          <a href={url || value} className="rdw-mention-link">
-            <span className={classNames('rdw-mention', className)}>{children}</span>
-          </a>
-        );
-      }
+    const MentionComponent = ({ entityKey, children, contentState }) => {
+      const { url, value } = contentState.getEntity(entityKey).getData();
+      return (
+        <a href={url || value} className={classNames('rdw-mention-link', className)}>
+          {children}
+        </a>
+      );
+    };
+    MentionComponent.propTypes = {
+      entityKey: PropTypes.number,
+      children: PropTypes.object,
+      contentState: PropTypes.object,
     };
   };
-  getMentionDecorator = () => {
-    return {
-      strategy: this.findMentionEntities,
-      component: this.getMentionComponent(),
-    }
-  };
+  getMentionDecorator = () => ({
+    strategy: this.findMentionEntities,
+    component: this.getMentionComponent(),
+  });
 }
 
-Mention.prototype.findMentionEntities = (contentBlock, callback) => {
+Mention.prototype.findMentionEntities = (contentBlock, callback, contentState) => {
   contentBlock.findEntityRanges(
     (character) => {
       const entityKey = character.getEntity();
       return (
         entityKey !== null &&
-        Entity.get(entityKey).getType() === 'MENTION'
+        contentState.getEntity(entityKey).getType() === 'MENTION'
       );
     },
-    callback
+    callback,
   );
-}
+};
 
 module.exports = Mention;

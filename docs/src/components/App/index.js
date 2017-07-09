@@ -1,10 +1,11 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Menu from '../Menu';
 import github from '../../../images/github.png';
 import paperPen from '../../../images/paper_pen.svg';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class App extends Component {
 
@@ -19,7 +20,7 @@ export default class App extends Component {
         <div>
           <span className="header">
             <a href="https://jpuri.github.io/react-draft-wysiwyg/" rel="noopener noreferrer">
-              <img src={paperPen} className="header-logo" role="presentation" />
+              <img src={paperPen} className="header-logo" alt="" />
             </a>
             <span className="header-text">
               <span className="header-title">

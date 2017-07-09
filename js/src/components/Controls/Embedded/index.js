@@ -1,187 +1,91 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
-import { Entity, AtomicBlockUtils } from 'draft-js';
-import classNames from 'classnames';
-import Option from '../../Option';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { AtomicBlockUtils } from 'draft-js';
 
-export default class Embedded extends Component {
+import LayoutComponent from './Component';
+
+class Embedded extends Component {
 
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
-    embeddedLink: '',
-    showModal: false,
-    height: 'auto',
-    width: '100%',
+    expanded: false,
   };
 
   componentWillMount(): void {
     const { modalHandler } = this.props;
-    modalHandler.registerCallBack(this.showHideModal);
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillUnmount(): void {
     const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.showHideModal);
+    modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onOptionClick: Function = (): void => {
-    this.signalShowModal = !this.state.showModal;
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
   }
 
-  setURLInputReference: Function = (ref: Object): void => {
-    this.urlInput = ref;
-  };
-
-  setHeightInputReference: Function = (ref: Object): void => {
-    this.heightInput = ref;
-  };
-
-  setWidthInputReference: Function = (ref: Object): void => {
-    this.widthInput = ref;
-  };
-
-  updateEmbeddedLink: Function = (event: Object): void => {
+  doExpand: Function = (): void => {
     this.setState({
-      embeddedLink: event.target.value,
+      expanded: true,
     });
   };
 
-  updateHeight: Function = (event: Object): void => {
+  doCollapse: Function = (): void => {
     this.setState({
-      height: event.target.value,
+      expanded: false,
     });
   };
 
-  updateWidth: Function = (event: Object): void => {
-    this.setState({
-      width: event.target.value,
-    });
-  };
-
-  addEmbeddedLink: Function = (): void => {
+  addEmbeddedLink: Function = (embeddedLink, height, width): void => {
     const { editorState, onChange } = this.props;
-    const { embeddedLink, height, width } = this.state;
-    const entityKey = Entity.create('EMBEDDED_LINK', 'MUTABLE', { src: embeddedLink, height, width });
+    const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('EMBEDDED_LINK', 'MUTABLE', { src: embeddedLink, height, width })
+      .getLastCreatedEntityKey();
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
-      ' '
+      ' ',
     );
     onChange(newEditorState);
-    this.closeModal();
+    this.doCollapse();
   };
-
-  showHideModal: Function = (): void => {
-    this.setState({
-      showModal: this.signalShowModal,
-      embeddedLink: undefined,
-    });
-    this.signalShowModal = false;
-  }
-
-  closeModal: Function = (): void => {
-    this.setState({
-      showModal: false,
-      embeddedLink: undefined,
-    });
-  };
-
-  stopPropagation: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-  };
-
-  rendeEmbeddedLinkModal(): Object {
-    const { embeddedLink, height, width } = this.state;
-    const { config: { popupClassName } } = this.props;
-    return (
-      <div
-        className={classNames('rdw-embedded-modal', popupClassName)}
-        onClick={this.stopPropagation}
-      >
-        <div className="rdw-embedded-modal-header">
-          <span className="rdw-embedded-modal-header-option">
-            <span>Embedded Link</span>
-            <span className="rdw-embedded-modal-header-label" />
-          </span>
-        </div>
-        <div className="rdw-embedded-modal-link-section">
-          <input
-            ref={this.setURLInputReference}
-            className="rdw-embedded-modal-link-input"
-            placeholder="Enter link"
-            onChange={this.updateEmbeddedLink}
-            onBlur={this.updateEmbeddedLink}
-            value={embeddedLink}
-          />
-          <div className="rdw-embedded-modal-size">
-            <input
-              ref={this.setHeightInputReference}
-              onChange={this.updateHeight}
-              onBlur={this.updateHeight}
-              value={height}
-              className="rdw-embedded-modal-size-input"
-              placeholder="Height"
-            />
-            <input
-              ref={this.setWidthInputReference}
-              onChange={this.updateWidth}
-              onBlur={this.updateWidth}
-              value={width}
-              className="rdw-embedded-modal-size-input"
-              placeholder="Width"
-            />
-          </div>
-        </div>
-        <span className="rdw-embedded-modal-btn-section">
-          <button
-            className="rdw-embedded-modal-btn"
-            onClick={this.addEmbeddedLink}
-            disabled={!embeddedLink || !height || !width}
-          >
-            Add
-          </button>
-          <button
-            className="rdw-embedded-modal-btn"
-            onClick={this.closeModal}
-          >
-            Cancel
-          </button>
-        </span>
-      </div>
-    );
-  }
 
   render(): Object {
-    const { config: { icon, className } } = this.props;
-    const { showModal } = this.state;
+    const { config, translations } = this.props;
+    const { expanded } = this.state;
+    const EmbeddedComponent = config.component || LayoutComponent;
     return (
-      <div
-        className="rdw-embedded-wrapper"
-        aria-haspopup="true"
-        aria-expanded={showModal}
-        aria-label="rdw-embedded-control"
-      >
-        <Option
-          className={classNames(className)}
-          value="unordered-list-item"
-          onClick={this.onOptionClick}
-        >
-          <img
-            src={icon}
-            role="presentation"
-          />
-        </Option>
-        {showModal ? this.rendeEmbeddedLinkModal() : undefined}
-      </div>
+      <EmbeddedComponent
+        config={config}
+        translations={translations}
+        onChange={this.addEmbeddedLink}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+      />
     );
   }
 }
+
+export default Embedded;
+
+// todo: make default heights configurable

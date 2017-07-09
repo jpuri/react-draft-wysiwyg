@@ -6,11 +6,12 @@ import {
   convertFromHTML,
   ContentState,
 } from 'draft-js';
-import { expect } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
-import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
+
 import ImageControl from '..';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
+import defaultToolbar from '../../../../config/defaultToolbar';
+import ModalHandler from '../../../../event-handler/modals';
 
 describe('ImageControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -18,38 +19,40 @@ describe('ImageControl test suite', () => {
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div when rendered', () => {
-    expect(shallow(
+    expect(mount(
       <ImageControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.image}
         modalHandler={new ModalHandler()}
-      />
-    ).node.type).to.equal('div');
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
-  it('should have 1 child elements by default', () => {
+  it('should have 1 child element by default', () => {
     const control = mount(
       <ImageControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.image}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     expect(control.children().length).to.equal(1);
   });
 
-  it('should open image modal when option is clicked', () => {
+  it('should set signalExpanded to true when option is clicked', () => {
     const control = mount(
       <ImageControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.image}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
-    control.childAt(0).simulate('click');
-    expect(control.nodes[0].signalShowModal).to.equal(true);
+    const imageControl = control.find('ImageControl');
+    assert.isNotTrue(imageControl.node.signalExpanded);
+    control.find('Option').simulate('click');
+    assert.isTrue(imageControl.node.signalExpanded);
   });
 });

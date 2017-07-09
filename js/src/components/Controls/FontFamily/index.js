@@ -1,13 +1,13 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
-import classNames from 'classnames';
-import { Dropdown, DropdownOption } from '../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+
+import LayoutComponent from './Component';
 
 export default class FontFamily extends Component {
 
@@ -16,19 +16,22 @@ export default class FontFamily extends Component {
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
+    expanded: undefined,
     currentFontFamily: undefined,
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
         currentFontFamily: getSelectionCustomInlineStyle(editorState, ['FONTFAMILY']).FONTFAMILY,
       });
     }
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -40,6 +43,34 @@ export default class FontFamily extends Component {
       });
     }
   }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.expandCollapse);
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
 
   toggleFontFamily: Function = (fontFamily: string) => {
     const { editorState, onChange } = this.props;
@@ -53,34 +84,22 @@ export default class FontFamily extends Component {
     }
   };
 
-  render() {
-    let { currentFontFamily } = this.state;
-    const { config: { className, dropdownClassName, options }, modalHandler } = this.props;
-    currentFontFamily =
-      currentFontFamily && currentFontFamily.substring(11, currentFontFamily.length);
+  render(): Object {
+    const { config, translations } = this.props;
+    const { expanded, currentFontFamily } = this.state;
+    const FontFamilyComponent = config.component || LayoutComponent;
+    const fontFamily = currentFontFamily && currentFontFamily.substring(11);
     return (
-      <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
-        <Dropdown
-          className={classNames('rdw-fontfamily-dropdown', className)}
-          onChange={this.toggleFontFamily}
-          modalHandler={modalHandler}
-          optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
-        >
-          <span className="rdw-fontfamily-placeholder">
-            {currentFontFamily || 'Font Family'}
-          </span>
-          {
-            options.map((family, index) =>
-              <DropdownOption
-                active={currentFontFamily === family}
-                value={`fontfamily-${family}`}
-                key={index}
-              >
-                {family}
-              </DropdownOption>)
-          }
-        </Dropdown>
-      </div>
+      <FontFamilyComponent
+        translations={translations}
+        config={config}
+        currentState={{ fontFamily }}
+        onChange={this.toggleFontFamily}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+      />
     );
   }
 }

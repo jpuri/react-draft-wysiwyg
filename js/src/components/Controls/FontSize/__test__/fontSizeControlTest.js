@@ -2,16 +2,16 @@
 
 import React from 'react';
 import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
-import { shallow, mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
+import { mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   EditorState,
   convertFromHTML,
   ContentState,
 } from 'draft-js';
 import FontSizeControl from '..';
-import { Dropdown } from '../../Dropdown';
-import defaultToolbar from '../../../config/defaultToolbar';
-import ModalHandler from '../../../event-handler/modals';
+import { Dropdown } from '../../../Dropdown';
+import defaultToolbar from '../../../../config/defaultToolbar';
+import ModalHandler from '../../../../event-handler/modals';
 
 describe('FontSizeControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -19,14 +19,14 @@ describe('FontSizeControl test suite', () => {
   const editorState = EditorState.createWithContent(contentState);
 
   it('should have a div when rendered', () => {
-    expect(shallow(
+    expect(mount(
       <FontSizeControl
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.fontSize}
         modalHandler={new ModalHandler()}
-      />
-    ).node.type).to.equal('div');
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have a dropdown child component well defined', () => {
@@ -36,7 +36,7 @@ describe('FontSizeControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.fontSize}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     assert.equal(control.childAt(0).props().children.length, 2);
     assert.isDefined(control.childAt(0).props().onChange);

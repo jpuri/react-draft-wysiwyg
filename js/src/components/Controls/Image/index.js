@@ -1,328 +1,89 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
-import { Entity, AtomicBlockUtils } from 'draft-js';
-import classNames from 'classnames';
-import Option from '../../Option';
-import Spinner from '../../Spinner';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { AtomicBlockUtils } from 'draft-js';
 
-export default class ImageControl extends Component {
+import LayoutComponent from './Component';
+
+class ImageControl extends Component {
 
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
-    imgSrc: '',
-    showModal: false,
-    dragEnter: false,
-    showImageUpload: !!this.props.config.uploadCallback,
-    showImageLoading: false,
-    height: 'auto',
-    width: '100%',
+    expanded: false,
   };
 
   componentWillMount(): void {
     const { modalHandler } = this.props;
-    modalHandler.registerCallBack(this.showHideModal);
-  }
-
-  componentWillReceiveProps(properties: Object): void {
-    if (properties.config.uploadCallback !== this.props.config.uploadCallback) {
-      this.setState({
-        showImageUpload: !!this.props.config.uploadCallback,
-      });
-    }
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillUnmount(): void {
     const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.showHideModal);
+    modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onImageDrop: Function = (event: Object): void => {
-    event.preventDefault();
-    event.stopPropagation();
-    this.setState({
-      dragEnter: false,
-    });
-    this.uploadImage(event.dataTransfer.files[0]);
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
   };
 
-  onDragEnter: Function = (event: Object): void => {
-    this.stopPropagation(event);
+  doExpand: Function = (): void => {
     this.setState({
-      dragEnter: true,
+      expanded: true,
     });
   };
 
-  onOptionClick: Function = (): void => {
-    this.signalShowModal = !this.state.showModal;
-  };
-
-  setImageURLInputReference: Function = (ref: Object): void => {
-    this.imageURLInput = ref;
-  };
-
-  setHeightInputReference: Function = (ref: Object): void => {
-    this.heightInput = ref;
-  };
-
-  setWidthInputReference: Function = (ref: Object): void => {
-    this.widthInput = ref;
-  };
-
-  updateImageSrc: Function = (event: Object): void => {
+  doCollapse: Function = (): void => {
     this.setState({
-      imgSrc: event.target.value,
+      expanded: false,
     });
   };
 
-  updateHeight: Function = (event: Object): void => {
+  expandCollapse: Function = (): void => {
     this.setState({
-      height: event.target.value,
+      expanded: this.signalExpanded,
     });
-  };
-
-  updateWidth: Function = (event: Object): void => {
-    this.setState({
-      width: event.target.value,
-    });
-  };
-
-  toggleShowImageLoading: Function = (): void => {
-    const showImageLoading = !this.state.showImageLoading;
-    this.setState({
-      showImageLoading,
-    });
-  };
-
-  showImageURLOption: Function = (): void => {
-    this.setState({
-      showImageUpload: false,
-    });
-  };
-
-  showImageUploadOption: Function = (): void => {
-    this.setState({
-      showImageUpload: true,
-    });
-  };
-
-  hideModal: Function = (): void => {
-    this.setState({
-      showModal: false,
-      imgSrc: undefined,
-      showImageUpload: !!this.props.config.uploadCallback,
-    });
-  };
-
-  showHideModal: Function = (): void => {
-    this.setState({
-      showModal: this.signalShowModal,
-      imgSrc: undefined,
-      showImageUpload: !!this.props.config.uploadCallback,
-    });
-    this.signalShowModal = false;
+    this.signalExpanded = false;
   }
 
-  selectImage: Function = (event: Object): void => {
-    if (event.target.files && event.target.files.length > 0) {
-      this.uploadImage(event.target.files[0]);
-    }
-  };
-
-  uploadImage: Function = (file: Object): void => {
-    this.toggleShowImageLoading();
-    const { uploadCallback } = this.props.config;
-    uploadCallback(file)
-      .then(({ data }) => {
-        this.setState({
-          showImageLoading: false,
-          dragEnter: false,
-        });
-        this.addImageFromSrcLink(data.link);
-      });
-  };
-
-  addImageFromState: Function = (): void => {
-    this.addImage(this.state.imgSrc);
-  };
-
-  addImageFromSrcLink: Function = (src: string): void => {
-    this.addImage(src);
-  };
-
-  addImage: Function = (imgSrc: string): void => {
+  addImage: Function = (src: string, height: string, width: string): void => {
     const { editorState, onChange } = this.props;
-    const src = imgSrc || this.state.imgSrc;
-    const { height, width } = this.state;
-    const entityKey = Entity.create('IMAGE', 'MUTABLE', { src, height, width });
+    const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('IMAGE', 'MUTABLE', { src, height, width })
+      .getLastCreatedEntityKey();
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
-      ' '
+      ' ',
     );
     onChange(newEditorState);
-    this.hideModal();
+    this.doCollapse();
   };
-
-  fileUploadClick = () => {
-    this.fileUpload = true;
-    this.signalShowModal = true;
-  }
-
-  stopPropagation: Function = (event: Object): void => {
-    if (!this.fileUpload) {
-      event.preventDefault();
-      event.stopPropagation();
-    } else {
-      this.fileUpload = false;
-    }
-  };
-
-  renderAddImageModal(): Object {
-    const { imgSrc, showImageUpload, showImageLoading, dragEnter, height, width } = this.state;
-    const { config: { popupClassName, uploadCallback } } = this.props;
-    return (
-      <div
-        className={classNames('rdw-image-modal', popupClassName)}
-        onClick={this.stopPropagation}
-      >
-        <div className="rdw-image-modal-header">
-          {uploadCallback ?
-            <span
-              onClick={this.showImageUploadOption}
-              className="rdw-image-modal-header-option"
-            >
-              <span>File Upload</span>
-              <span
-                className={classNames(
-                  'rdw-image-modal-header-label',
-                  { 'rdw-image-modal-header-label-highlighted': showImageUpload }
-                )}
-              />
-            </span>
-            :
-            undefined
-          }
-          <span
-            onClick={this.showImageURLOption}
-            className="rdw-image-modal-header-option"
-          >
-            <span>URL</span>
-            <span
-              className={classNames(
-                'rdw-image-modal-header-label',
-                { 'rdw-image-modal-header-label-highlighted': !showImageUpload }
-              )}
-            />
-          </span>
-        </div>
-        {
-          showImageUpload && uploadCallback ?
-            <div onClick={this.fileUploadClick}>
-              <div
-                onDragEnter={this.onDragEnter}
-                onDragOver={this.stopPropagation}
-                onDrop={this.onImageDrop}
-                className={classNames(
-                'rdw-image-modal-upload-option',
-                { 'rdw-image-modal-upload-option-highlighted': dragEnter })}
-              >
-                <label
-                  htmlFor="file"
-                  className="rdw-image-modal-upload-option-label"
-                >
-                  Drop the file or click to upload
-                </label>
-              </div>
-              <input
-                type="file"
-                id="file"
-                onChange={this.selectImage}
-                className="rdw-image-modal-upload-option-input"
-              />
-            </div> :
-              <div className="rdw-image-modal-url-section">
-                <input
-                  ref={this.setImageURLInputReference}
-                  className="rdw-image-modal-url-input"
-                  placeholder="Enter url"
-                  onChange={this.updateImageSrc}
-                  onBlur={this.updateImageSrc}
-                  value={imgSrc}
-                />
-              </div>
-        }
-        <div className="rdw-embedded-modal-size">
-          <input
-            ref={this.setHeightInputReference}
-            onChange={this.updateHeight}
-            onBlur={this.updateHeight}
-            value={height}
-            className="rdw-embedded-modal-size-input"
-            placeholder="Height"
-          />
-          <input
-            ref={this.setWidthInputReference}
-            onChange={this.updateWidth}
-            onBlur={this.updateWidth}
-            value={width}
-            className="rdw-embedded-modal-size-input"
-            placeholder="Width"
-          />
-        </div>
-        <span className="rdw-image-modal-btn-section">
-          <button
-            className="rdw-image-modal-btn"
-            onClick={this.addImageFromState}
-            disabled={!imgSrc || !height || !width}
-          >
-            Add
-          </button>
-          <button
-            className="rdw-image-modal-btn"
-            onClick={this.hideModal}
-          >
-            Cancel
-          </button>
-        </span>
-        {showImageLoading ?
-          <div className="rdw-image-modal-spinner">
-            <Spinner />
-          </div> :
-          undefined}
-      </div>
-    );
-  }
 
   render(): Object {
-    const { config: { icon, className } } = this.props;
-    const { showModal } = this.state;
+    const { config, translations } = this.props;
+    const { expanded } = this.state;
+    const ImageComponent = config.component || LayoutComponent;
     return (
-      <div
-        className="rdw-image-wrapper"
-        aria-haspopup="true"
-        aria-expanded={showModal}
-        aria-label="rdw-image-control"
-      >
-        <Option
-          className={classNames(className)}
-          value="unordered-list-item"
-          onClick={this.onOptionClick}
-        >
-          <img
-            src={icon}
-            role="presentation"
-          />
-        </Option>
-        {showModal ? this.renderAddImageModal() : undefined}
-      </div>
+      <ImageComponent
+        config={config}
+        translations={translations}
+        onChange={this.addImage}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollpase={this.doCollpase}
+      />
     );
   }
 }
+
+export default ImageControl;

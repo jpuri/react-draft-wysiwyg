@@ -1,33 +1,35 @@
 /* @flow */
 
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { getSelectedBlocksType } from 'draftjs-utils';
 import { RichUtils } from 'draft-js';
-import classNames from 'classnames';
-import Option from '../../Option';
-import { Dropdown, DropdownOption } from '../../Dropdown';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
 
-export default class BlockType extends Component {
+import LayoutComponent from './Component';
+
+class BlockType extends Component {
 
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
+    expanded: false,
     currentBlockType: 'unstyled',
   };
 
   componentWillMount(): void {
-    const { editorState } = this.props;
+    const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
         currentBlockType: getSelectedBlocksType(editorState),
       });
     }
+    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillReceiveProps(properties: Object): void {
@@ -37,6 +39,22 @@ export default class BlockType extends Component {
         currentBlockType: getSelectedBlocksType(properties.editorState),
       });
     }
+  }
+
+  componentWillUnmount(): void {
+    const { modalHandler } = this.props;
+    modalHandler.deregisterCallBack(this.expandCollapse);
+  }
+
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
   }
 
   blocksTypes: Array<Object> = [
@@ -50,72 +68,48 @@ export default class BlockType extends Component {
     { label: 'Blockquote', style: 'blockquote' },
   ];
 
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
+
   toggleBlockType: Function = (blockType: string) => {
+    const blockTypeValue = this.blocksTypes.find(bt => bt.label === blockType).style;
     const { editorState, onChange } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
-      blockType
+      blockTypeValue,
     );
     if (newState) {
       onChange(newState);
     }
   };
 
-  renderFlat(blocks: Array<Object>): void {
-    const { config: { className } } = this.props;
-    const { currentBlockType } = this.state;
-
+  render(): Object {
+    const { config, translations } = this.props;
+    const { expanded, currentBlockType } = this.state;
+    const BlockTypeComponent = config.component || LayoutComponent;
+    const blockType = this.blocksTypes.find(bt => bt.style === currentBlockType);
     return (
-      <div className={classNames('rdw-inline-wrapper', className)}>
-        {
-        blocks.map((block, index) =>
-          <Option
-            key={index}
-            value={block.style}
-            active={currentBlockType === block.style}
-            onClick={this.toggleBlockType}
-          >
-            {block.label}
-          </Option>
-        )
-      }
-      </div>
+      <BlockTypeComponent
+        config={config}
+        translations={translations}
+        currentState={{ blockType: blockType && blockType.label }}
+        onChange={this.toggleBlockType}
+        expanded={expanded}
+        onExpandEvent={this.onExpandEvent}
+        doExpand={this.doExpand}
+        doCollapse={this.doCollapse}
+      />
     );
-  }
-
-  renderInDropdown(blocks: Array<Object>): void {
-    const { currentBlockType } = this.state;
-    const currentBlockData = blocks.filter(blk => blk.style === currentBlockType);
-    const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].label;
-    const { config: { className, dropdownClassName }, modalHandler } = this.props;
-    return (
-      <div className="rdw-block-wrapper" aria-label="rdw-block-control">
-        <Dropdown
-          className={classNames('rdw-block-dropdown', className)}
-          optionWrapperClassName={classNames(dropdownClassName)}
-          onChange={this.toggleBlockType}
-          modalHandler={modalHandler}
-        >
-          <span>{currentLabel || 'Block Type'}</span>
-          {
-            blocks.map((block, index) =>
-              <DropdownOption
-                active={currentBlockType === block.style}
-                value={block.style}
-                key={index}
-              >
-                {block.label}
-              </DropdownOption>)
-          }
-        </Dropdown>
-      </div>
-    );
-  }
-
-  render(): void {
-    const { config } = this.props;
-    const { inDropdown } = config;
-    const blocks = this.blocksTypes.filter(({ label }) => config.options.includes(label));
-    return inDropdown ? this.renderInDropdown(blocks) : this.renderFlat(blocks);
   }
 }
+
+export default BlockType;
