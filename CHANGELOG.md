@@ -58,3 +58,6 @@ Initial stable release
 
 ## 10/02/2017
 - #127: Support for hashtags.
+
+## 09/07/2017
+- #348: Reduce bindle size by making ImmutableJS external dependency.
