@@ -203,16 +203,16 @@ class LayoutComponent extends Component {
                 className="rdw-image-modal-upload-option-input"
               />
             </div> :
-            <div className="rdw-image-modal-url-section">
-              <input
-                className="rdw-image-modal-url-input"
-                placeholder="Enter url"
-                name="imgSrc"
-                onChange={this.updateValue}
-                onBlur={this.updateValue}
-                value={imgSrc}
-              />
-            </div>
+              <div className="rdw-image-modal-url-section">
+                <input
+                  className="rdw-image-modal-url-input"
+                  placeholder={translations['components.controls.image.enterlink']}
+                  name="imgSrc"
+                  onChange={this.updateValue}
+                  onBlur={this.updateValue}
+                  value={imgSrc}
+                />
+              </div>
         }
         <div className="rdw-embedded-modal-size">
           &#8597;&nbsp;
