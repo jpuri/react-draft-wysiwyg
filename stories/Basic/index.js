@@ -3,7 +3,7 @@
 import React from 'react';
 import { Editor } from '../../src';
 
-const DemoEditor = () =>
+const Basic = () =>
   (<div className="rdw-storybook-root">
     <Editor
       toolbarClassName="rdw-storybook--toolbar"
@@ -12,4 +12,4 @@ const DemoEditor = () =>
     />
   </div>);
 
-export default DemoEditor;
+export default Basic;

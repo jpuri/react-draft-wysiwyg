@@ -79,7 +79,7 @@ export default class WysiwygEditor extends Component {
     ariaExpanded: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     ariaHasPopup: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     customBlockRenderFunc: PropTypes.func,
-    wrapperId: PropTypes.string,
+    wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
   };
 
@@ -408,7 +408,7 @@ export default class WysiwygEditor extends Component {
           !toolbarHidden &&
           (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus) &&
           <div
-            className={classNames(toolbarClassName, 'rdw-editor-toolbar')}
+            className={classNames('rdw-editor-toolbar', toolbarClassName)}
             style={toolbarStyle}
             onMouseDown={this.preventDefault}
             aria-label="rdw-toolbar"

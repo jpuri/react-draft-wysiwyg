@@ -18,16 +18,16 @@
   margin-bottom: 10px;
 }
 .home-wrapper {
-  margin-top: 50px;
-  width: 775px;
-  display: block;
-  height: 500px;
+  margin-top: 50px !important;
+  width: 775px !important;
+  display: block !important;
+  height: 500px !important;
 }
 .home-editor {
-  border: 1px solid #F1F1F1;
-  padding: 5px;
-  border-radius: 2px;
-  height: 80%;
+  border: 1px solid #F1F1F1 !important;
+  padding: 5px !important;
+  border-radius: 2px !important;
+  height: 80% !important;
 }
 .quote-section {
   margin: 50px 0 20px;
