@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  fontSizes,
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
 } from 'draftjs-utils';
@@ -36,18 +35,6 @@ export default class FontSize extends Component {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentDidMount(): void {
-    const editorElm = document.getElementsByClassName('DraftEditor-root');
-    if (editorElm && editorElm.length > 0) {
-      const styles = window.getComputedStyle(editorElm[0]);
-      let defaultFontSize = styles.getPropertyValue('font-size');
-      defaultFontSize = defaultFontSize.substring(0, defaultFontSize.length - 2);
-      this.setState({
-        defaultFontSize,
-      });
-    }
-  }
-
   componentWillReceiveProps(properties: Object): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
@@ -63,16 +50,16 @@ export default class FontSize extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
+  };
+
   expandCollapse: Function = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
   }
-
-  onExpandEvent: Function = (): void => {
-    this.signalExpanded = !this.state.expanded;
-  };
 
   doExpand: Function = (): void => {
     this.setState({
@@ -100,7 +87,7 @@ export default class FontSize extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { undoDisabled, redoDisabled, expanded, currentFontSize } = this.state
+    const { expanded, currentFontSize } = this.state;
     const FontSizeComponent = config.component || LayoutComponent;
     const fontSize = currentFontSize && Number(currentFontSize.substring(9));
     return (

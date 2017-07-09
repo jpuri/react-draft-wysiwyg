@@ -46,27 +46,8 @@ export default class List extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  }
-
   onExpandEvent: Function = (): void => {
     this.signalExpanded = !this.state.expanded;
-  };
-
-  doExpand: Function = (): void => {
-    this.setState({
-      expanded: true,
-    });
-  };
-
-  doCollapse: Function = (): void => {
-    this.setState({
-      expanded: false,
-    });
   };
 
   onChange: Function = (value: string): void => {
@@ -81,11 +62,30 @@ export default class List extends Component {
     }
   };
 
+  expandCollapse: Function = (): void => {
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+    this.signalExpanded = false;
+  }
+
+  doExpand: Function = (): void => {
+    this.setState({
+      expanded: true,
+    });
+  };
+
+  doCollapse: Function = (): void => {
+    this.setState({
+      expanded: false,
+    });
+  };
+
   toggleBlockType: Function = (blockType: String): void => {
     const { onChange, editorState } = this.props;
     const newState = RichUtils.toggleBlockType(
       editorState,
-      blockType
+      blockType,
     );
     if (newState) {
       onChange(newState);
@@ -106,7 +106,7 @@ export default class List extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { expanded, currentBlockType } = this.state
+    const { expanded, currentBlockType } = this.state;
     const ListComponent = config.component || LayoutComponent;
     let listType;
     if (currentBlockType === 'unordered-list-item') {

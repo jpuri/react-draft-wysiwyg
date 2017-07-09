@@ -25,8 +25,8 @@ describe('ColorPicker test suite', () => {
         editorState={editorState}
         config={defaultToolbar.colorPicker}
         modalHandler={new ModalHandler()}
-      />
-    ).html().startsWith('<div')).to.be.true;
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should correctly set default state values', () => {
@@ -36,7 +36,7 @@ describe('ColorPicker test suite', () => {
         editorState={editorState}
         config={defaultToolbar.colorPicker}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     const colorPicker = control.find('ColorPicker');
     const state = colorPicker.node.state;
@@ -52,7 +52,7 @@ describe('ColorPicker test suite', () => {
         editorState={editorState}
         config={defaultToolbar.colorPicker}
         modalHandler={new ModalHandler()}
-      />
+      />,
     );
     const colorPicker = control.find('ColorPicker');
     assert.isNotTrue(colorPicker.node.signalExpanded);

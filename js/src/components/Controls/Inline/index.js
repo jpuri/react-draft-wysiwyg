@@ -46,35 +46,8 @@ export default class Inline extends Component {
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  changeKeys = (style) => {
-    if (style) {
-      const st = {};
-      forEach(style, (key, value) => {
-        st[key === 'CODE' ? 'monospace' : key.toLowerCase()] = value;
-      });
-      return st;
-    }
-  }
-
-  toggleInlineStyle: Function = (style: string): void => {
-    const newStyle = style === 'monospace' ? 'CODE' : style.toUpperCase();
-    const { editorState, onChange } = this.props;
-    let newState = RichUtils.toggleInlineStyle(
-      editorState,
-      newStyle
-    );
-    if (style === 'subscript' || style === 'superscript') {
-      const removeStyle = style === 'subscript' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
-      const contentState = Modifier.removeInlineStyle(
-        newState.getCurrentContent(),
-        newState.getSelection(),
-        removeStyle
-      );
-      newState = EditorState.push(newState, contentState, 'change-inline-style');
-    }
-    if (newState) {
-      onChange(newState);
-    }
+  onExpandEvent: Function = (): void => {
+    this.signalExpanded = !this.state.expanded;
   };
 
   expandCollapse: Function = (): void => {
@@ -84,9 +57,37 @@ export default class Inline extends Component {
     this.signalExpanded = false;
   }
 
-  onExpandEvent: Function = (): void => {
-    this.signalExpanded = !this.state.expanded;
+  toggleInlineStyle: Function = (style: string): void => {
+    const newStyle = style === 'monospace' ? 'CODE' : style.toUpperCase();
+    const { editorState, onChange } = this.props;
+    let newState = RichUtils.toggleInlineStyle(
+      editorState,
+      newStyle,
+    );
+    if (style === 'subscript' || style === 'superscript') {
+      const removeStyle = style === 'subscript' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
+      const contentState = Modifier.removeInlineStyle(
+        newState.getCurrentContent(),
+        newState.getSelection(),
+        removeStyle,
+      );
+      newState = EditorState.push(newState, contentState, 'change-inline-style');
+    }
+    if (newState) {
+      onChange(newState);
+    }
   };
+
+  changeKeys = (style) => {
+    if (style) {
+      const st = {};
+      forEach(style, (key, value) => {
+        st[key === 'CODE' ? 'monospace' : key.toLowerCase()] = value;
+      });
+      return st;
+    }
+    return undefined;
+  }
 
   doExpand: Function = (): void => {
     this.setState({
@@ -102,7 +103,7 @@ export default class Inline extends Component {
 
   render(): Object {
     const { config, translations } = this.props;
-    const { expanded, currentStyles } = this.state
+    const { expanded, currentStyles } = this.state;
     const InlineComponent = config.component || LayoutComponent;
     return (
       <InlineComponent

@@ -4,6 +4,7 @@ const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 const devConfigs = {
   devtool: 'source-map',
@@ -47,7 +48,8 @@ const devConfigs = {
       options: {
         postcss: [autoprefixer, precss],
       }
-    })
+    }),
+    new BundleAnalyzerPlugin()
   ]
 }
 

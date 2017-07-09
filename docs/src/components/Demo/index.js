@@ -28,7 +28,7 @@ import image from '../../../images/demo/image.gif';
 import undo from '../../../images/demo/undo.gif';
 import redo from '../../../images/demo/redo.gif';
 import ColorPic from './ColorPic';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class Demo extends Component {
 

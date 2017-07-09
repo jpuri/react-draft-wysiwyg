@@ -1,8 +1,8 @@
 /* @flow */
 
 import React from 'react';
-import { expect, assert } from 'chai';
-import { mount } from 'enzyme';
+import { expect, assert } from 'chai'; // eslint-disable-line import/no-extraneous-dependencies
+import { mount } from 'enzyme'; // eslint-disable-line import/no-extraneous-dependencies
 import {
   EditorState,
   convertFromHTML,
@@ -27,9 +27,9 @@ describe('FontFamilyControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.fontFamily}
         modalHandler={new ModalHandler()}
-        translations={localeTranslations['en']}
-      />
-    ).html().startsWith('<div')).to.be.true;
+        translations={localeTranslations.en}
+      />,
+    ).html().startsWith('<div')).to.equal(true);
   });
 
   it('should have a dropdown child component well defined', () => {
@@ -39,8 +39,8 @@ describe('FontFamilyControl test suite', () => {
         editorState={editorState}
         config={defaultToolbar.fontFamily}
         modalHandler={new ModalHandler()}
-        translations={localeTranslations['en']}
-      />
+        translations={localeTranslations.en}
+      />,
     );
     assert.equal(control.childAt(0).props().children.length, 2);
     assert.isDefined(control.childAt(0).props().onChange);

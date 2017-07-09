@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import openlink from '../../../../images/openlink.svg';
+import './styles.css';
 
 function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
@@ -70,9 +70,7 @@ function getLinkComponent(config) {
   };
 }
 
-export default (config) => {
-  return {
-    strategy: findLinkEntities,
-    component: getLinkComponent(config),
-  };
-};
+export default config => ({
+  strategy: findLinkEntities,
+  component: getLinkComponent(config),
+});

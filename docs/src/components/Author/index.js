@@ -1,7 +1,7 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import styles from './styles.css'; // eslint-disable-line no-unused-vars
+import './styles.css';
 
 export default class Demo1 extends Component {
 

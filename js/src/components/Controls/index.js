@@ -26,4 +26,4 @@ module.exports = {
   image,
   remove,
   history,
-}
+};
