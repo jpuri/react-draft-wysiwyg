@@ -21,18 +21,19 @@ module.exports = {
 
   // Embedded
   'components.controls.embedded.embeddedlink': '内嵌网页',
-  'components.controls.embedded.enterlink': '输入网页地址',
+  'components.controls.embedded.enterlink': '请输入内嵌网页链接',
 
   // FontFamily
   'components.controls.fontfamily.fontfamily': '字体',
 
   // Image
-  'components.controls.image.fileUpload': '来自文件',
-  'components.controls.image.byURL': '在线图片',
+  'components.controls.image.fileUpload': '上传图片',
+  'components.controls.image.byURL': '输入链接',
   'components.controls.image.dropFileText': '点击或者拖拽文件上传',
+  'components.controls.image.enterlink': '请输入图片链接',
 
   // Link
-  'components.controls.link.linkTitle': '超链接',
-  'components.controls.link.linkTarget': '输入链接地址',
-  'components.controls.link.linkTargetOption': '在新窗口中打开链接',
+  'components.controls.link.linkTitle': '超链接名称',
+  'components.controls.link.linkTarget': '超链接地址',
+  'components.controls.link.linkTargetOption': '在新窗口中打开超链接',
 };
