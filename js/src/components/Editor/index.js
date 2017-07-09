@@ -79,6 +79,7 @@ export default class WysiwygEditor extends Component {
     ariaExpanded: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     ariaHasPopup: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     customBlockRenderFunc: PropTypes.func,
+    wrapperId: PropTypes.string,
     customDecorators: PropTypes.array,
   };
 
@@ -86,6 +87,7 @@ export default class WysiwygEditor extends Component {
     toolbarOnFocus: false,
     toolbarHidden: false,
     stripPastedStyles: false,
+    wrapperId: Math.floor(Math.random() * 10000),
     localization: { locale: 'en', translations: {} },
     customDecorators: [],
   }
@@ -98,7 +100,7 @@ export default class WysiwygEditor extends Component {
       editorFocused: false,
       toolbar,
     };
-    this.wrapperId = `rdw-wrapper${Math.floor(Math.random() * 10000)}`;
+    this.wrapperId = `rdw-wrapper-${props.wrapperId}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
     this.blockRendererFn = getBlockRenderFunc({
@@ -217,7 +219,7 @@ export default class WysiwygEditor extends Component {
       !(getSelectedBlocksType(editorState) === 'atomic' &&
       editorState.getSelection().isCollapsed)) {
       if (onEditorStateChange) {
-        onEditorStateChange(editorState);
+        onEditorStateChange(editorState, this.props.wrapperId);
       }
       if (!hasProperty(this.props, 'editorState')) {
         this.setState({ editorState }, this.afterChange(editorState));
