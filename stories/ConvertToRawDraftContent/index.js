@@ -28,7 +28,7 @@ class ConvertToRawDraftContent extends Component {
       <textarea
         readOnly
         className="rdw-storybook-textarea"
-        value={convertToRaw(editorState.getCurrentContent())}
+        value={JSON.stringify(convertToRaw(editorState.getCurrentContent()))}
       />
     </div>);
   }
