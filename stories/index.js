@@ -1,6 +1,8 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Basic from './Basic';
+import BasicControlled from './BasicControlled';
+import BasicContentState from './BasicContentState';
 import ReadOnly from './ReadOnly';
 import SpellCheck from './SpellCheck';
 import HashTag from './HashTag';
@@ -19,7 +21,9 @@ import ConvertToRawDraftContent from './ConvertToRawDraftContent';
 
 import './styles.css';
 
-storiesOf('Basic', module).add('story', () => <Basic />);
+storiesOf('Basic - uncontrolled', module).add('story', () => <Basic />);
+storiesOf('Basic - controlled', module).add('story', () => <BasicControlled />);
+storiesOf('Basic - content state', module).add('story', () => <BasicContentState />);
 storiesOf('ReadOnly', module).add('story', () => <ReadOnly />);
 storiesOf('SpellCheck', module).add('story', () => <SpellCheck />);
 storiesOf('I18n', module).add('story', () => <I18n />);
@@ -36,7 +40,5 @@ storiesOf('ConvertToHTML', module).add('story', () => <ConvertToHTML />);
 storiesOf('ConvertFromHTML', module).add('story', () => <ConvertFromHTML />);
 storiesOf('ConvertToMarkdown', module).add('story', () => <ConvertToMarkdown />);
 
-/**
-- cosutom decorators
-- custom block renderer
-*/
+// controlled
+// un-controlled

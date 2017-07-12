@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { EditorState } from 'draft-js';
 import { Editor } from '../../src';
 
-class BasicContentState extends Component {
+class BasicControlled extends Component {
   state = {
     editorState: EditorState.createEmpty(),
   }
@@ -29,4 +29,4 @@ class BasicContentState extends Component {
   }
 }
 
-export default BasicContentState;
+export default BasicControlled;
