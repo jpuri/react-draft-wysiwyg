@@ -61,3 +61,6 @@ Initial stable release
 
 ## 09/07/2017 (1.10.2)
 - #348: Reduce bindle size by making ImmutableJS external dependency.
+
+## 14/07/2012 (1.10.5)
+- #393: Lots of toolbar icons not working when multiple editors are rendered.

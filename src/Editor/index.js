@@ -87,7 +87,6 @@ export default class WysiwygEditor extends Component {
     toolbarOnFocus: false,
     toolbarHidden: false,
     stripPastedStyles: false,
-    wrapperId: Math.floor(Math.random() * 10000),
     localization: { locale: 'en', translations: {} },
     customDecorators: [],
   }
@@ -100,7 +99,8 @@ export default class WysiwygEditor extends Component {
       editorFocused: false,
       toolbar,
     };
-    this.wrapperId = `rdw-wrapper-${props.wrapperId}`;
+    const wrapperId = props.wrapperId ? props.wrapperId : Math.floor(Math.random() * 10000);
+    this.wrapperId = `rdw-wrapper-${wrapperId}`;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
     this.blockRendererFn = getBlockRenderFunc({
