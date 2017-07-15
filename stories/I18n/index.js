@@ -5,7 +5,7 @@ import { Editor } from '../../src';
 
 import './styles.css';
 
-class I18nEditor extends Component {
+class I18n extends Component {
 
   state: any = {
     locale: 'en',
@@ -45,4 +45,4 @@ class I18nEditor extends Component {
   }
 }
 
-export default I18nEditor;
+export default I18n;
