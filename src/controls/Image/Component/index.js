@@ -61,27 +61,18 @@ class LayoutComponent extends Component {
     });
 
     // Check if property name is files or items
-    let data = event.dataTransfer.items;
-    let dataIsItems = true;
-
     // IE uses 'files' instead of 'items'
-    if (!data) {
+    let data;
+    let dataIsItems;
+    if (event.dataTransfer.items) {
+      data = event.dataTransfer.items;
+      dataIsItems = true;
+    } else {
       data = event.dataTransfer.files;
       dataIsItems = false;
     }
-
     for (let i = 0; i < data.length; i += 1) {
-      if (data[i].kind === 'string' && data[i].type.match('^text/plain')) {
-        // This item is the target node
-        continue;
-      } else if (data[i].kind === 'string' && data[i].type.match('^text/html')) {
-        // Drag data item is HTML
-        continue;
-      } else if (data[i].kind === 'string' && data[i].type.match('^text/uri-list')) {
-        // Drag data item is URI
-        continue;
-      } else if ((!dataIsItems || data[i].kind === 'file') && data[i].type.match('^image/')) {
-        // Drag data item is an image file
+      if ((!dataIsItems || data[i].kind === 'file') && data[i].type.match('^image/')) {
         const file = dataIsItems ? data[i].getAsFile() : data[i];
         this.uploadImage(file);
       }
