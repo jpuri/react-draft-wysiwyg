@@ -20,9 +20,4 @@ describe('Editor test suite', () => {
     const editor = shallow(<Editor />);
     expect(editor.find('.rdw-editor-toolbar')).to.have.length(1);
   });
-
-  it('should not have toolbar if toolbarHidden is set to true', () => {
-    const editor = shallow(<Editor toolbarHidden />);
-    expect(editor.find('.rdw-editor-toolbar')).to.have.length(0);
-  });
 });

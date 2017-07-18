@@ -19,9 +19,10 @@ class Mention {
     };
     MentionComponent.propTypes = {
       entityKey: PropTypes.number,
-      children: PropTypes.object,
+      children: PropTypes.array,
       contentState: PropTypes.object,
     };
+    return MentionComponent;
   };
   getMentionDecorator = () => ({
     strategy: this.findMentionEntities,

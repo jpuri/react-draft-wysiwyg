@@ -64,3 +64,7 @@ Initial stable release
 
 ## 14/07/2012 (1.10.5)
 - #393: Lots of toolbar icons not working when multiple editors are rendered.
+
+TO BE RELEASED
+- #247: When you drag and drop an image in the image uploader from another browser it crashes.
+- #389: Hiding toolbar should not destroy the component.
