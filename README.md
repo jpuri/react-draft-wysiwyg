@@ -42,7 +42,7 @@ The package can be installed from npm `react-draft-wysiwyg`
 ## Getting started
 Editor can be used as simple React Component:
 ```js
-import { Editor } from 'react-draft-wysiwyg';
+import { Editor, editorState } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 <Editor
   editorState={editorState}
