@@ -13,6 +13,7 @@ export default class TextAlign extends Component {
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state = {
@@ -71,12 +72,13 @@ export default class TextAlign extends Component {
   }
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { expanded, currentTextAlignment } = this.state;
     const TextAlignmentComponent = config.component || LayoutComponent;
     return (
       <TextAlignmentComponent
         config={config}
+        translations={translations}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}

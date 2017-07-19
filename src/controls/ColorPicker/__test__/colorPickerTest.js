@@ -12,6 +12,7 @@ import { mount } from 'enzyme';
 import ColorPicker from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
+import localeTranslations from '../../../i18n';
 
 describe('ColorPicker test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -24,6 +25,7 @@ describe('ColorPicker test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.colorPicker}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     ).html().startsWith('<div')).to.equal(true);
@@ -35,6 +37,7 @@ describe('ColorPicker test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.colorPicker}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );
@@ -51,6 +54,7 @@ describe('ColorPicker test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.colorPicker}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );

@@ -91,7 +91,7 @@ class LayoutComponent extends Component {
           doExpand={doExpand}
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
-          title={title}
+          title={title || translations['components.controls.blocktype.blocktype']}
         >
           <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
           {

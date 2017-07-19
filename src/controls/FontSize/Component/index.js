@@ -17,6 +17,7 @@ export default class LayoutComponent extends Component {
     onChange: PropTypes.func,
     config: PropTypes.object,
     currentState: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -43,6 +44,7 @@ export default class LayoutComponent extends Component {
       doCollapse,
       onExpandEvent,
       doExpand,
+      translations,
     } = this.props;
     let { currentState: { fontSize: currentFontSize } } = this.props;
     let { defaultFontSize } = this.state;
@@ -59,7 +61,7 @@ export default class LayoutComponent extends Component {
           doExpand={doExpand}
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
-          title={title}
+          title={title || translations['components.controls.fontsize.fontsize']}
         >
           {currentFontSize ?
             <span>{currentFontSize}</span>

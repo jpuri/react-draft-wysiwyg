@@ -105,14 +105,19 @@ class LayoutComponent extends Component {
   };
 
   render(): Object {
-    const { config: { icon, className, title }, expanded, onExpandEvent } = this.props;
+    const {
+      config: { icon, className, title },
+      expanded,
+      onExpandEvent,
+      translations,
+    } = this.props;
     return (
       <div
         className="rdw-colorpicker-wrapper"
         aria-haspopup="true"
         aria-expanded={expanded}
         aria-label="rdw-color-picker"
-        title={title}
+        title={title || translations['components.controls.colorpicker.colorpicker']}
       >
         <Option
           onClick={onExpandEvent}
