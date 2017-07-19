@@ -63,31 +63,40 @@ class LayoutComponent extends Component {
           </span>
         </div>
         <div className="rdw-embedded-modal-link-section">
-          <input
-            className="rdw-embedded-modal-link-input"
-            placeholder={translations['components.controls.embedded.enterlink']}
-            onChange={this.updateValue}
-            onBlur={this.updateValue}
-            value={embeddedLink}
-            name="embeddedLink"
-          />
+          <span className="rdw-embedded-modal-link-input-wrapper">
+            <input
+              className="rdw-embedded-modal-link-input"
+              placeholder={translations['components.controls.embedded.enterlink']}
+              onChange={this.updateValue}
+              onBlur={this.updateValue}
+              value={embeddedLink}
+              name="embeddedLink"
+            />
+            <span className="rdw-image-mandatory-sign">*</span>
+          </span>
           <div className="rdw-embedded-modal-size">
-            <input
-              onChange={this.updateValue}
-              onBlur={this.updateValue}
-              value={height}
-              name="height"
-              className="rdw-embedded-modal-size-input"
-              placeholder="Height"
-            />
-            <input
-              onChange={this.updateValue}
-              onBlur={this.updateValue}
-              value={width}
-              name="width"
-              className="rdw-embedded-modal-size-input"
-              placeholder="Width"
-            />
+            <span>
+              <input
+                onChange={this.updateValue}
+                onBlur={this.updateValue}
+                value={height}
+                name="height"
+                className="rdw-embedded-modal-size-input"
+                placeholder="Height"
+              />
+              <span className="rdw-image-mandatory-sign">*</span>
+            </span>
+            <span>
+              <input
+                onChange={this.updateValue}
+                onBlur={this.updateValue}
+                value={width}
+                name="width"
+                className="rdw-embedded-modal-size-input"
+                placeholder="Width"
+              />
+              <span className="rdw-image-mandatory-sign">*</span>
+            </span>
           </div>
         </div>
         <span className="rdw-embedded-modal-btn-section">

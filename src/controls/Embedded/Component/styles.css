@@ -44,13 +44,17 @@
   flex-direction: column;
 }
 .rdw-embedded-modal-link-input {
-  width: 95%;
+  width: 88%;
   height: 35px;
   margin: 10px 0;
   border: 1px solid #F1F1F1;
   border-radius: 2px;
   font-size: 15px;
   padding: 0 5px;
+}
+.rdw-embedded-modal-link-input-wrapper {
+  display: flex;
+  align-items: center;
 }
 .rdw-embedded-modal-link-input:focus {
   outline: none;
@@ -88,7 +92,7 @@
   justify-content: space-between;
 }
 .rdw-embedded-modal-size-input {
-  width: 45%;
+  width: 80%;
   height: 20px;
   border: 1px solid #F1F1F1;
   border-radius: 2px;
