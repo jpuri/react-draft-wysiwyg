@@ -70,5 +70,6 @@ Initial stable release
 - #389: Hiding toolbar should not destroy the component.
 - Fixing broken mentions.
 
-## Next release
+## 20/07/2017 (1.10.7)
 - #380: add support for alt field.
+- #325: internalization of titles.
