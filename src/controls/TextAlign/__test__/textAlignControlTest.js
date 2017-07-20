@@ -12,6 +12,7 @@ import {
 import TextAlignControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
+import localeTranslations from '../../../i18n';
 
 describe('TextAlignControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -24,6 +25,7 @@ describe('TextAlignControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.textAlign}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     ).html().startsWith('<div')).to.equal(true);
@@ -35,6 +37,7 @@ describe('TextAlignControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.textAlign}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );
@@ -47,6 +50,7 @@ describe('TextAlignControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={{ ...defaultToolbar.textAlign, inDropdown: true }}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );
@@ -61,6 +65,7 @@ describe('TextAlignControl test suite', () => {
         onChange={onChange}
         editorState={editorState}
         config={defaultToolbar.textAlign}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );

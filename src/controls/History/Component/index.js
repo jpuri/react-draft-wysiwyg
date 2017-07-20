@@ -19,6 +19,7 @@ export default class History extends Component {
     config: PropTypes.object,
     onChange: PropTypes.func,
     currentState: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   onChange = (obj) => {
@@ -34,6 +35,7 @@ export default class History extends Component {
       onExpandEvent,
       doCollapse,
       currentState: { undoDisabled, redoDisabled },
+      translations,
     } = this.props;
     const { options, undo, redo, className, dropdownClassName, title } = config;
     return (
@@ -45,7 +47,7 @@ export default class History extends Component {
         doCollapse={doCollapse}
         onExpandEvent={onExpandEvent}
         aria-label="rdw-history-control"
-        title={title}
+        title={title || translations['components.controls.history.history']}
       >
         <img
           src={getFirstIcon(config)}
@@ -56,7 +58,7 @@ export default class History extends Component {
           onClick={this.onChange}
           disabled={undoDisabled}
           className={classNames('rdw-history-dropdownoption', undo.className)}
-          title={undo.title}
+          title={undo.title || translations['components.controls.history.undo']}
         >
           <img
             src={undo.icon}
@@ -68,7 +70,7 @@ export default class History extends Component {
           onClick={this.onChange}
           disabled={redoDisabled}
           className={classNames('rdw-history-dropdownoption', redo.className)}
-          title={redo.title}
+          title={redo.title || translations['components.controls.history.redo']}
         >
           <img
             src={redo.icon}
@@ -83,6 +85,7 @@ export default class History extends Component {
     const {
       config: { options, undo, redo, className },
       currentState: { undoDisabled, redoDisabled },
+      translations,
     } = this.props;
     return (
       <div className={classNames('rdw-history-wrapper', className)} aria-label="rdw-history-control">
@@ -91,7 +94,7 @@ export default class History extends Component {
           onClick={this.onChange}
           className={classNames(undo.className)}
           disabled={undoDisabled}
-          title={undo.title}
+          title={undo.title || translations['components.controls.history.undo']}
         >
           <img
             src={undo.icon}
@@ -103,7 +106,7 @@ export default class History extends Component {
           onClick={this.onChange}
           className={classNames(redo.className)}
           disabled={redoDisabled}
-          title={redo.title}
+          title={redo.title || translations['components.controls.history.redo']}
         >
           <img
             src={redo.icon}

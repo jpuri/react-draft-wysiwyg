@@ -12,6 +12,7 @@ import FontSizeControl from '..';
 import { Dropdown } from '../../../components/Dropdown';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
+import localeTranslations from '../../../i18n';
 
 describe('FontSizeControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -24,6 +25,7 @@ describe('FontSizeControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.fontSize}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     ).html().startsWith('<div')).to.equal(true);
@@ -35,6 +37,7 @@ describe('FontSizeControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.fontSize}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );

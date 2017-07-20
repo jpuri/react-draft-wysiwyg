@@ -13,6 +13,7 @@ export default class History extends Component {
     editorState: PropTypes.object,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   state: Object = {
@@ -79,12 +80,13 @@ export default class History extends Component {
   }
 
   render(): Object {
-    const { config } = this.props;
+    const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded } = this.state;
     const HistoryComponent = config.component || LayoutComponent;
     return (
       <HistoryComponent
         config={config}
+        translations={translations}
         currentState={{ undoDisabled, redoDisabled }}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

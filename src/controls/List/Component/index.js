@@ -19,6 +19,7 @@ export default class LayoutComponent extends Component {
     config: PropTypes.object,
     onChange: PropTypes.func,
     currentState: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   options: Array = ['unordered', 'ordered', 'indent', 'outdent'];
@@ -41,7 +42,7 @@ export default class LayoutComponent extends Component {
   // todo: evaluate refactoring this code to put a loop there and in other places also in code
   // hint: it will require moving click handlers
   renderInFlatList(): Object {
-    const { config, currentState: { listType } } = this.props;
+    const { config, currentState: { listType }, translations } = this.props;
     const { options, unordered, ordered, indent, outdent, className } = config;
     return (
       <div className={classNames('rdw-list-wrapper', className)} aria-label="rdw-list-control">
@@ -50,7 +51,7 @@ export default class LayoutComponent extends Component {
           onClick={this.toggleBlockType}
           className={classNames(unordered.className)}
           active={listType === 'unordered'}
-          title={unordered.title}
+          title={unordered.title || translations['components.controls.list.unordered']}
         >
           <img
             src={unordered.icon}
@@ -62,7 +63,7 @@ export default class LayoutComponent extends Component {
           onClick={this.toggleBlockType}
           className={classNames(ordered.className)}
           active={listType === 'ordered'}
-          title={ordered.title}
+          title={ordered.title || translations['components.controls.list.ordered']}
         >
           <img
             src={ordered.icon}
@@ -72,7 +73,7 @@ export default class LayoutComponent extends Component {
         {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
           className={classNames(indent.className)}
-          title={indent.title}
+          title={indent.title || translations['components.controls.list.indent']}
         >
           <img
             src={indent.icon}
@@ -82,7 +83,7 @@ export default class LayoutComponent extends Component {
         {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
           className={classNames(outdent.className)}
-          title={outdent.title}
+          title={outdent.title || translations['components.controls.list.outdent']}
         >
           <img
             src={outdent.icon}
@@ -102,6 +103,7 @@ export default class LayoutComponent extends Component {
       onExpandEvent,
       onChange,
       currentState: { listType },
+      translations,
     } = this.props;
     const { options, className, dropdownClassName, title } = config;
     return (
@@ -114,7 +116,7 @@ export default class LayoutComponent extends Component {
         doCollapse={doCollapse}
         onExpandEvent={onExpandEvent}
         aria-label="rdw-list-control"
-        title={title}
+        title={title || translations['components.controls.list.list']}
       >
         <img
           src={getFirstIcon(config)}
@@ -127,7 +129,7 @@ export default class LayoutComponent extends Component {
             value={option}
             className={classNames('rdw-list-dropdownOption', config[option].className)}
             active={listType === option}
-            title={config[option].title}
+            title={config[option].title || translations[`components.controls.list.${option}`]}
           >
             <img
               src={config[option].icon}

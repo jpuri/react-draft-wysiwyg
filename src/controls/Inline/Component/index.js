@@ -20,10 +20,11 @@ export default class Inline extends Component {
     config: PropTypes.object,
     onChange: PropTypes.func,
     currentState: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   renderInFlatList(): Object {
-    const { config, currentState, onChange } = this.props;
+    const { config, currentState, onChange, translations } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', config.className)} aria-label="rdw-inline-control">
         {
@@ -38,7 +39,7 @@ export default class Inline extends Component {
                 currentState[style] === true ||
                 (style === 'MONOSPACE' && currentState.CODE)
               }
-              title={config[style].title}
+              title={config[style].title || translations[`components.controls.inline.${style}`]}
             >
               <img
                 alt=""
@@ -60,6 +61,7 @@ export default class Inline extends Component {
       doCollapse,
       currentState,
       onChange,
+      translations,
     } = this.props;
     const { className, dropdownClassName, title } = config;
     return (
@@ -89,7 +91,7 @@ export default class Inline extends Component {
                 currentState[style] === true ||
                 (style === 'MONOSPACE' && currentState.CODE)
               }
-              title={config[style].title}
+              title={config[style].title || translations[`components.controls.inline.${style}`]}
             >
               <img
                 src={config[style].icon}

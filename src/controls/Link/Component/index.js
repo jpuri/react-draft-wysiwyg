@@ -155,6 +155,7 @@ class LayoutComponent extends Component {
       config: { options, link, unlink, className },
       currentState,
       expanded,
+      translations,
     } = this.props;
     const { showModal } = this.state;
     return (
@@ -165,7 +166,7 @@ class LayoutComponent extends Component {
           onClick={this.signalExpandShowModal}
           aria-haspopup="true"
           aria-expanded={showModal}
-          title={link.title}
+          title={link.title || translations['components.controls.link.link']}
         >
           <img
             src={link.icon}
@@ -177,7 +178,7 @@ class LayoutComponent extends Component {
           value="ordered-list-item"
           className={classNames(unlink.className)}
           onClick={this.removeLink}
-          title={unlink.title}
+          title={unlink.title || translations['components.controls.link.unlink']}
         >
           <img
             src={unlink.icon}
@@ -198,6 +199,7 @@ class LayoutComponent extends Component {
       onChange,
       config,
       currentState,
+      translations,
     } = this.props;
     const { options, link, unlink, className, dropdownClassName, title } = config;
     const { showModal } = this.state;
@@ -225,7 +227,7 @@ class LayoutComponent extends Component {
           {options.indexOf('link') >= 0 && <DropdownOption
             onClick={this.forceExpandAndShowModal}
             className={classNames('rdw-link-dropdownoption', link.className)}
-            title={link.title}
+            title={link.title || translations['components.controls.link.link']}
           >
             <img
               src={link.icon}
@@ -236,7 +238,7 @@ class LayoutComponent extends Component {
             onClick={this.removeLink}
             disabled={!currentState.link}
             className={classNames('rdw-link-dropdownoption', unlink.className)}
-            title={unlink.title}
+            title={unlink.title || translations['components.controls.link.unlink']}
           >
             <img
               src={unlink.icon}

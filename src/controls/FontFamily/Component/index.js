@@ -62,7 +62,7 @@ class LayoutComponent extends Component {
           doExpand={doExpand}
           doCollapse={doCollapse}
           onExpandEvent={onExpandEvent}
-          title={title}
+          title={title || translations['components.controls.fontfamily.fontfamily']}
         >
           <span className="rdw-fontfamily-placeholder">
             {currentFontFamily || translations['components.controls.fontfamily.fontfamily']}

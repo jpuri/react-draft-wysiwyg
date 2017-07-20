@@ -11,6 +11,7 @@ import { mount } from 'enzyme';
 import HistoryControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
+import localeTranslations from '../../../i18n';
 
 describe('HistoryControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -23,6 +24,7 @@ describe('HistoryControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.history}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     ).html().startsWith('<div')).to.equal(true);
@@ -34,6 +36,7 @@ describe('HistoryControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.history}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );

@@ -12,6 +12,7 @@ import { shallow, mount } from 'enzyme';
 import InlineControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
+import localeTranslations from '../../../i18n';
 
 describe('InlineControl test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
@@ -24,6 +25,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.inline}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     ).html().startsWith('<div')).to.equal(true);
@@ -35,6 +37,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={defaultToolbar.inline}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );
@@ -47,6 +50,7 @@ describe('InlineControl test suite', () => {
         onChange={() => {}}
         editorState={editorState}
         config={{ ...defaultToolbar.inline, inDropdown: true }}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );
@@ -61,6 +65,7 @@ describe('InlineControl test suite', () => {
         onChange={onChange}
         editorState={editorState}
         config={defaultToolbar.inline}
+        translations={localeTranslations.en}
         modalHandler={new ModalHandler()}
       />,
     );

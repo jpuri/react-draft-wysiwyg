@@ -15,6 +15,7 @@ class LayoutComponent extends Component {
     onExpandEvent: PropTypes.func,
     onChange: PropTypes.func,
     config: PropTypes.object,
+    translations: PropTypes.object,
   };
 
   onChange: Function = (event: Object): void => {
@@ -42,14 +43,19 @@ class LayoutComponent extends Component {
   }
 
   render(): Object {
-    const { config: { icon, className, title }, expanded, onExpandEvent } = this.props;
+    const {
+      config: { icon, className, title },
+      expanded,
+      onExpandEvent,
+      translations,
+    } = this.props;
     return (
       <div
         className="rdw-emoji-wrapper"
         aria-haspopup="true"
         aria-label="rdw-emoji-control"
         aria-expanded={expanded}
-        title={title}
+        title={title || translations['components.controls.emoji.emoji']}
       >
         <Option
           className={classNames(className)}
