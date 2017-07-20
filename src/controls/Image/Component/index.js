@@ -26,6 +26,7 @@ class LayoutComponent extends Component {
     showImageLoading: false,
     height: this.props.config.defaultSize.height,
     width: this.props.config.defaultSize.width,
+    alt: '',
   };
 
   componentWillReceiveProps(props: Object): void {
@@ -37,6 +38,7 @@ class LayoutComponent extends Component {
         showImageLoading: false,
         height: this.props.config.defaultSize.height,
         width: this.props.config.defaultSize.width,
+        alt: '',
       });
     } else if (props.config.uploadCallback !== this.props.config.uploadCallback ||
       props.config.uploadEnabled !== this.props.config.uploadEnabled) {
@@ -86,15 +88,9 @@ class LayoutComponent extends Component {
   };
 
   addImageFromState: Function = (): void => {
-    const { imgSrc, height, width } = this.state;
+    const { imgSrc, height, width, alt } = this.state;
     const { onChange } = this.props;
-    onChange(imgSrc, height, width);
-  };
-
-  addImageFromSrcLink: Function = (imgSrc: string): void => {
-    const { height, width } = this.state;
-    const { onChange } = this.props;
-    onChange(imgSrc, height, width);
+    onChange(imgSrc, height, width, alt);
   };
 
   showImageURLOption: Function = (): void => {
@@ -130,8 +126,9 @@ class LayoutComponent extends Component {
         this.setState({
           showImageLoading: false,
           dragEnter: false,
+          imgSrc: data.link,
         });
-        this.addImageFromSrcLink(data.link);
+        this.fileUpload = false;
       }).catch(() => {
         this.setState({
           showImageLoading: false,
@@ -155,9 +152,24 @@ class LayoutComponent extends Component {
   };
 
   renderAddImageModal(): Object {
-    const { imgSrc, uploadHighlighted, showImageLoading, dragEnter, height, width } = this.state;
     const {
-      config: { popupClassName, uploadCallback, uploadEnabled, urlEnabled, inputAccept },
+      imgSrc,
+      uploadHighlighted,
+      showImageLoading,
+      dragEnter,
+      height,
+      width,
+      alt,
+    } = this.state;
+    const {
+      config: {
+        popupClassName,
+        uploadCallback,
+        uploadEnabled,
+        urlEnabled,
+        inputAccept,
+        alt: altConf,
+      },
       doCollapse,
       translations,
     } = this.props;
@@ -209,7 +221,7 @@ class LayoutComponent extends Component {
                   htmlFor="file"
                   className="rdw-image-modal-upload-option-label"
                 >
-                  {translations['components.controls.image.dropFileText']}
+                  {imgSrc || translations['components.controls.image.dropFileText']}
                 </label>
               </div>
               <input
@@ -229,33 +241,49 @@ class LayoutComponent extends Component {
                 onBlur={this.updateValue}
                 value={imgSrc}
               />
+              <span className="rdw-image-mandatory-sign">*</span>
             </div>
         }
-        <div className="rdw-embedded-modal-size">
+        {altConf.present &&
+        <div className="rdw-image-modal-size">
+          <span className="rdw-image-modal-alt-lbl">Alt Text</span>
+          <input
+            onChange={this.updateValue}
+            onBlur={this.updateValue}
+            value={alt}
+            name="alt"
+            className="rdw-image-modal-alt-input"
+            placeholder="alt"
+          />
+          <span className="rdw-image-mandatory-sign">{altConf.mandatory && '*'}</span>
+        </div>}
+        <div className="rdw-image-modal-size">
           &#8597;&nbsp;
           <input
             onChange={this.updateValue}
             onBlur={this.updateValue}
             value={height}
             name="height"
-            className="rdw-embedded-modal-size-input"
+            className="rdw-image-modal-size-input"
             placeholder="Height"
           />
+          <span className="rdw-image-mandatory-sign">*</span>
           &nbsp;&#8596;&nbsp;
           <input
             onChange={this.updateValue}
             onBlur={this.updateValue}
             value={width}
             name="width"
-            className="rdw-embedded-modal-size-input"
+            className="rdw-image-modal-size-input"
             placeholder="Width"
           />
+          <span className="rdw-image-mandatory-sign">*</span>
         </div>
         <span className="rdw-image-modal-btn-section">
           <button
             className="rdw-image-modal-btn"
             onClick={this.addImageFromState}
-            disabled={!imgSrc || !height || !width}
+            disabled={!imgSrc || !height || !width || (altConf.mandatory && !alt)}
           >
             {translations['generic.add']}
           </button>

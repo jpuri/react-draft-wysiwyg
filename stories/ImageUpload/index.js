@@ -32,7 +32,10 @@ const ImageUpload = () =>
       wrapperClassName="rdw-storybook-wrapper"
       editorClassName="rdw-storybook-editor"
       toolbar={{
-        image: { uploadCallback: uploadImageCallBack },
+        image: {
+          uploadCallback: uploadImageCallBack,
+          alt: { present: true, mandatory: false },
+        },
       }}
     />
   </div>);

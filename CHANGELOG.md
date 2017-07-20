@@ -69,3 +69,6 @@ Initial stable release
 - #247: When you drag and drop an image in the image uploader from another browser it crashes.
 - #389: Hiding toolbar should not destroy the component.
 - Fixing broken mentions.
+
+## Next release
+- #380: add support for alt field.

@@ -155,6 +155,7 @@ export default {
     alignmentEnabled: true,
     uploadCallback: undefined,
     inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+    alt: { present: false, mandatory: false },
     defaultSize: {
       height: 'auto',
       width: 'auto',
