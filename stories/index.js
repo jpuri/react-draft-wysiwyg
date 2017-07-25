@@ -17,6 +17,7 @@ import ConvertToHTML from './ConvertToHTML';
 import ConvertFromHTML from './ConvertFromHTML';
 import ConvertToMarkdown from './ConvertToMarkdown';
 import FocusBlurCallbacks from './FocusBlurCallbacks';
+import ConvertFromRawDraftContent from './ConvertFromRawDraftContent';
 import ConvertToRawDraftContent from './ConvertToRawDraftContent';
 
 import './styles.css';
@@ -35,6 +36,7 @@ storiesOf('SelectedOptions', module).add('story', () => <SelectedOptions />);
 storiesOf('CustomToolbar', module).add('story', () => <CustomToolbar />);
 storiesOf('FloatingToolbar', module).add('story', () => <FloatingToolbar />);
 storiesOf('ImageUpload and Alt attribute', module).add('story', () => <ImageUpload />);
+storiesOf('ConvertFromRawDraftContent', module).add('story', () => <ConvertFromRawDraftContent />);
 storiesOf('ConvertToRawDraftContent', module).add('story', () => <ConvertToRawDraftContent />);
 storiesOf('ConvertToHTML', module).add('story', () => <ConvertToHTML />);
 storiesOf('ConvertFromHTML', module).add('story', () => <ConvertFromHTML />);
