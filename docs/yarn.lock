@@ -210,15 +210,6 @@ asynckit@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
 
-"authored-editor@git://github.com/authored/authored-editor.git#52c2d62da780ef312d8afbab31f4dde8d02038cc":
-  version "0.1.0"
-  resolved "git://github.com/authored/authored-editor.git#52c2d62da780ef312d8afbab31f4dde8d02038cc"
-  dependencies:
-    axios "^0.15.3"
-    classnames "^2.2.5"
-    immutable "^3.8.1"
-    react-sortable-hoc "^0.6.1"
-
 autoprefixer@^6.3.1:
   version "6.7.7"
   resolved "https://registry.yarnpkg.com/autoprefixer/-/autoprefixer-6.7.7.tgz#1dbd1c835658e35ce3f9984099db00585c782014"
@@ -248,12 +239,6 @@ aws-sign2@~0.6.0:
 aws4@^1.2.1:
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.6.0.tgz#83ef5ca860b2b32e4a0deedee8c771b9db57471e"
-
-axios@^0.15.3:
-  version "0.15.3"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.15.3.tgz#2c9d638b2e191a08ea1d6cc988eadd6ba5bdc053"
-  dependencies:
-    follow-redirects "1.0.0"
 
 axobject-query@^0.1.0:
   version "0.1.0"
@@ -918,7 +903,7 @@ babel-register@^6.24.1:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-runtime@^6.11.6, babel-runtime@^6.18.0, babel-runtime@^6.22.0:
+babel-runtime@^6.18.0, babel-runtime@^6.22.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
@@ -1218,7 +1203,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.2.5:
+classnames@^2.2.3, classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -1271,6 +1256,10 @@ coa@~1.0.1:
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
+
+codemirror@^5.13.4, codemirror@^5.15.2:
+  version "5.28.0"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.28.0.tgz#2978d9280d671351a4f5737d06bbd681a0fd6f83"
 
 color-convert@^1.3.0:
   version "1.9.0"
@@ -1734,16 +1723,14 @@ draft-js@^0.10.1:
     object-assign "^4.1.0"
 
 "draftjs-to-html@file:../../draftjs-to-html":
-  version "0.7.2"
+  version "0.7.4"
 
 "draftjs-to-markdown@file:../../draftjs-to-markdown":
-  version "0.4.2"
+  version "0.4.3"
 
-draftjs-utils@^0.7.5:
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.7.5.tgz#982b671bf9b8296c89b05683e63257817d30de55"
-  dependencies:
-    immutable "^3.x.x"
+draftjs-utils@^0.8.03:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.8.4.tgz#b8d6500d71a7b33fcc690c67afa8f3f8c12ff503"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
@@ -2256,12 +2243,6 @@ flow-bin@^0.49.1:
   version "0.49.1"
   resolved "https://registry.yarnpkg.com/flow-bin/-/flow-bin-0.49.1.tgz#c9e456b3173a7535a4ffaf28956352c63bb8e3e9"
 
-follow-redirects@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.0.0.tgz#8e34298cbd2e176f254effec75a1c78cc849fd37"
-  dependencies:
-    debug "^2.2.0"
-
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -2606,17 +2587,13 @@ ignore@^3.3.3:
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-3.3.3.tgz#432352e57accd87ab3110e82d3fea0e47812156d"
 
-immutable@^3.8.1:
-  version "3.8.1"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.1.tgz#200807f11ab0f72710ea485542de088075f68cd2"
-
-immutable@^3.x.x, immutable@~3.7.4:
-  version "3.7.6"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
-
 immutable@^4.0.0-rc.1:
   version "4.0.0-rc.2"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.0.0-rc.2.tgz#fdd0948aae728fda2306a02f72bb73e1773432d1"
+
+immutable@~3.7.4:
+  version "3.7.6"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
 
 imurmurhash@^0.1.4:
   version "0.1.4"
@@ -3047,6 +3024,10 @@ lodash.cond@^4.3.0:
   version "4.5.2"
   resolved "https://registry.yarnpkg.com/lodash.cond/-/lodash.cond-4.5.2.tgz#f471a1da486be60f6ab955d17115523dd1d255d5"
 
+lodash.debounce@^4.0.4:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
+
 lodash.memoize@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
@@ -3055,7 +3036,7 @@ lodash.uniq@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
 
-lodash@^4.0.0, lodash@^4.0.1, lodash@^4.12.0, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.0.0, lodash@^4.0.1, lodash@^4.14.0, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
@@ -4011,7 +3992,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6:
   version "15.5.10"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.5.10.tgz#2797dfc3126182e3a95e3dfbb2e893ddd7456154"
   dependencies:
@@ -4100,6 +4081,14 @@ rc@^1.1.7:
     minimist "^1.2.0"
     strip-json-comments "~2.0.1"
 
+react-codemirror@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/react-codemirror/-/react-codemirror-0.2.6.tgz#e71e35717ce6effae68df1dbf2b5a75b84a44f84"
+  dependencies:
+    classnames "^2.2.3"
+    codemirror "^5.13.4"
+    lodash.debounce "^4.0.4"
+
 react-color@^2.13.0:
   version "2.13.0"
   resolved "https://registry.yarnpkg.com/react-color/-/react-color-2.13.0.tgz#d9c17e70a02023be9e0278a8dc9987fee11052b3"
@@ -4124,11 +4113,10 @@ react-dom@^15.6.1:
     prop-types "^15.5.10"
 
 "react-draft-wysiwyg@file:../":
-  version "1.10.0"
+  version "1.10.7"
   dependencies:
     classnames "^2.2.5"
-    draftjs-utils "^0.7.5"
-    immutable "^4.0.0-rc.1"
+    draftjs-utils "^0.8.03"
     prop-types "^15.5.10"
 
 react-proxy@^1.1.7:
@@ -4149,15 +4137,6 @@ react-router@^3.0.2:
     loose-envify "^1.2.0"
     prop-types "^15.5.6"
     warning "^3.0.0"
-
-react-sortable-hoc@^0.6.1:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/react-sortable-hoc/-/react-sortable-hoc-0.6.3.tgz#ab9fa699607c5f5871d00889222fb52559242947"
-  dependencies:
-    babel-runtime "^6.11.6"
-    invariant "^2.2.1"
-    lodash "^4.12.0"
-    prop-types "^15.5.7"
 
 react-transform-catch-errors@^1.0.2:
   version "1.0.2"

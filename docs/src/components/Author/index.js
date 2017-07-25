@@ -13,7 +13,7 @@ export default class Demo1 extends Component {
         Original motivation and sponsorship for this work came from <a target="_blank" href="http://www.ipaoo.com/" rel="noopener noreferrer">iPaoo</a>.
         I am thankful to them for allowing the Editor to be open-sourced.
         I am also thankful to the developers using this Editor, their feedbacks are always so motivating. And to the awesome contributors for their great work 👍<br /><br />
-        I am freelancer. You can reach me for consulting work related to react-draft-wysiwyg at jyotipuri@gmail.com.
+        I am freelancer. You can reach me for consulting work at jyotipuri@gmail.com.
       </div>
     );
   }
