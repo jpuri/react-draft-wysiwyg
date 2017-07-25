@@ -14,7 +14,7 @@ export default class Home extends Component {
           wrapperClassName="home-wrapper"
           editorClassName="home-editor"
           toolbar={{
-            image: { uploadCallback: uploadImageCallBack },
+            image: { uploadCallback: uploadImageCallBack, alt: { present: true } },
             fontFamily: {
               options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Roboto', 'Times New Roman', 'Verdana'],
             }
@@ -43,7 +43,7 @@ export default class Home extends Component {
           <li className="home-listItem">Option to change the order of the controls in the toolbar.</li>
           <li className="home-listItem">Option to add custom controls to the toolbar.</li>
           <li className="home-listItem">Option to change styles and icons in the toolbar.</li>
-          <li className="home-listItem">Option to show toolbar only when editor is focused.</li>
+          <li className="home-listItem">Option to conditionally show hide toolbar.</li>
           <li className="home-listItem">Support for inline styles: Bold, Italic, Underline, StrikeThrough, Code, Subscript, Superscript.</li>
           <li className="home-listItem">Support for block types: Paragraph, H1 - H6, Blockquote.</li>
           <li className="home-listItem">Support for setting font-size and font-family and option to add custom types.</li>
