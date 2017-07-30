@@ -74,5 +74,3 @@ class LayoutComponent extends Component {
 }
 
 export default LayoutComponent;
-
-// todo: unit test cases
