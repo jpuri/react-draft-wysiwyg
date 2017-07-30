@@ -1,24 +1,17 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
 import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
+import draftToMarkdown from 'draftjs-to-markdown';
 
-class EditorConvertToHTML extends Component {
-  constructor(props) {
-    super(props);
-    const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
-    const contentBlock = htmlToDraft(html);
-    if (contentBlock) {
-      const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
-      const editorState = EditorState.createWithContent(contentState);
-      this.state = {
-        editorState,
-      };
-    }
+const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
+
+class EditorConvertToMarkdown extends Component {
+  state = {
+    editorState: undefined,
   }
 
   onEditorStateChange: Function = (editorState) => {
@@ -31,11 +24,10 @@ class EditorConvertToHTML extends Component {
     const { editorState } = this.state;
     return (
       <div className="demo-section">
-        <h3>1. Controlled editor component with conversion of content from and to HTML</h3>
+        <h3>3. Uncontrolled editor component with conversion of content to Markdown</h3>
         <div className="demo-section-wrapper">
           <div className="demo-editor-wrapper">
             <Editor
-              editorState={editorState}
               wrapperClassName="demo-wrapper"
               editorClassName="demo-editor"
               onEditorStateChange={this.onEditorStateChange}
@@ -43,14 +35,14 @@ class EditorConvertToHTML extends Component {
             <textarea
               disabled
               className="demo-content no-focus"
-              value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+              value={editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent()))}
             />
           </div>
           <Codemirror
             value={
-              'class EditorConvertToHTML extends Component {\n' +
+              'class EditorConvertToMarkdown extends Component {\n' +
               '  state = {\n' +
-              '    editorState: EditorState.createEmpty(),\n' +
+              '    editorState: undefined,\n' +
               '  }\n' +
               '\n' +
               '  onEditorStateChange: Function = (editorState) => {\n' +
@@ -64,14 +56,13 @@ class EditorConvertToHTML extends Component {
               '    return (\n' +
               '      <div>\n' +
               '        <Editor\n' +
-              '          editorState={editorState}\n' +
               '          wrapperClassName="demo-wrapper"\n' +
               '          editorClassName="demo-editor"\n' +
               '          onEditorStateChange={this.onEditorStateChange}\n' +
               '        />\n' +
               '        <textarea\n' +
               '          disabled\n' +
-              '          value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}\n' +
+              '           value={editorState && draftToMarkdown(convertToRaw(editorState.getCurrentContent()))}\n' +
               '        />\n' +
               '      </div>\n' +
               '    );\n' +
@@ -90,4 +81,4 @@ class EditorConvertToHTML extends Component {
   }
 }
 
-export default EditorConvertToHTML;
+export default EditorConvertToMarkdown;
