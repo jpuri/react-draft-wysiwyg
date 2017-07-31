@@ -1,8 +1,7 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
+import { convertFromRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 
@@ -44,6 +43,10 @@ class EditorConvertToJSON extends Component {
           </div>
           <Codemirror
             value={
+              'import React, { Component } from \'react\';\n' +
+              'import { convertFromRaw } from \'draft-js\';\n' +
+              'import { Editor } from \'react-draft-wysiwyg\';\n' +
+              '\n\n' +
               'const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};\n' +
               '\n' +
               'class EditorConvertToJSON extends Component {\n' +

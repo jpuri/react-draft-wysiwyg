@@ -2,9 +2,9 @@
 
 import React, { Component } from 'react';
 import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { Editor } from 'react-draft-wysiwyg';
 import draftToHtml from 'draftjs-to-html';
 import htmlToDraft from 'html-to-draftjs';
-import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 
 class EditorConvertToHTML extends Component {
@@ -48,6 +48,12 @@ class EditorConvertToHTML extends Component {
           </div>
           <Codemirror
             value={
+              'import React, { Component } from \'react\';\n' +
+              'import { EditorState, convertToRaw, ContentState } from \'draft-js\';\n' +
+              'import { Editor } from \'react-draft-wysiwyg\';\n' +
+              'import draftToHtml from \'draftjs-to-html\';\n' +
+              'import htmlToDraft from \'html-to-draftjs\';\n' +
+              '\n\n' +
               'class EditorConvertToHTML extends Component {\n' +
               '  state = {\n' +
               '    editorState: EditorState.createEmpty(),\n' +
