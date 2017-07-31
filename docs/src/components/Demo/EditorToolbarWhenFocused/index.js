@@ -1,10 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { EditorState, convertToRaw, ContentState, Modifier } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 import sampleEditorContent from '../../../util/sampleEditorContent';
@@ -45,6 +41,9 @@ const EditorToolbarWhenFocused = () => (
       </div>
       <Codemirror
         value={
+          'import React from \'react\';\n' +
+          'import { Editor } from \'react-draft-wysiwyg\';\n' +
+          '\n\n' +
           'const contentBlocks = convertFromHTML(\'<p>Lorem ipsum \' +\n'+
           '  \'dolor sit amet, consectetur adipiscing elit. Mauris tortor felis, volutpat sit amet \' +\n'+
           '  \'maximus nec, tempus auctor diam. Nunc odio elit,  \' +\n'+

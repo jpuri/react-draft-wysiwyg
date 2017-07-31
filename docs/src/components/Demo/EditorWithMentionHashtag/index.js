@@ -1,10 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { EditorState, convertToRaw, ContentState, Modifier } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 import sampleEditorContent from '../../../util/sampleEditorContent';
@@ -36,27 +32,29 @@ const EditorWithMentionHashtag = () => (
       </div>
       <Codemirror
         value={
+          'import React from \'react\';\n' +
+          'import { Editor } from \'react-draft-wysiwyg\';\n' +
+          '\n\n' +
           'const EditorWithMentionHashtag = () => (\n' +
-          '  <div>\n' +
-          '    <Editor\n' +
-          '      wrapperClassName="demo-wrapper"\n' +
-          '      editorClassName="demo-editor"\n' +
-          '      mention={{\n' +
-          '        separator: \' \',\n' +
-          '        trigger: \'@\',\n' +
-          '        suggestions: [\n' +
-          '          { text: \'APPLE\', value: \'apple\', url: \'apple\' },\n' +
-          '          { text: \'BANANA\', value: \'banana\', url: \'banana\' },\n' +
-          '          { text: \'CHERRY\', value: \'cherry\', url: \'cherry\' },\n' +
-          '          { text: \'DURIAN\', value: \'durian\', url: \'durian\' },\n' +
-          '          { text: \'EGGFRUIT\', value: \'eggfruit\', url: \'eggfruit\' },\n' +
-          '          { text: \'FIG\', value: \'fig\', url: \'fig\' },\n' +
-          '          { text: \'GRAPEFRUIT\', value: \'grapefruit\', url: \'grapefruit\' },\n' +
-          '          { text: \'HONEYDEW\', value: \'honeydew\', url: \'honeydew\' },\n' +
-          '        ],\n' +
-          '      }}\n' +
-          '      hashtag={{}}\n' +
-          '    />\n' +
+          '  <Editor\n' +
+          '    wrapperClassName="demo-wrapper"\n' +
+          '    editorClassName="demo-editor"\n' +
+          '    mention={{\n' +
+          '      separator: \' \',\n' +
+          '      trigger: \'@\',\n' +
+          '      suggestions: [\n' +
+          '        { text: \'APPLE\', value: \'apple\', url: \'apple\' },\n' +
+          '        { text: \'BANANA\', value: \'banana\', url: \'banana\' },\n' +
+          '        { text: \'CHERRY\', value: \'cherry\', url: \'cherry\' },\n' +
+          '        { text: \'DURIAN\', value: \'durian\', url: \'durian\' },\n' +
+          '        { text: \'EGGFRUIT\', value: \'eggfruit\', url: \'eggfruit\' },\n' +
+          '        { text: \'FIG\', value: \'fig\', url: \'fig\' },\n' +
+          '        { text: \'GRAPEFRUIT\', value: \'grapefruit\', url: \'grapefruit\' },\n' +
+          '        { text: \'HONEYDEW\', value: \'honeydew\', url: \'honeydew\' },\n' +
+          '      ],\n' +
+          '    }}\n' +
+          '    hashtag={{}}\n' +
+          '  />\n' +
           ')'
         }
         options={{

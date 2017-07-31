@@ -2,7 +2,6 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { BlockPicker } from 'react-color';
 
 import icon from '../../../../icons/palette.svg';

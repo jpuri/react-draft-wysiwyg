@@ -2,9 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { EditorState, convertToRaw, ContentState, Modifier } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import { EditorState, Modifier } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 
@@ -45,6 +43,11 @@ const EditorCustomToolbarOption = () => (
       </div>
       <Codemirror
         value={
+          'import React, { Component } from \'react\';\n' +
+          'import PropTypes from \'prop-types\';\n' +
+          'import { EditorState, Modifier } from \'draft-js\';\n' +
+          'import { Editor } from \'react-draft-wysiwyg\';\n' +
+          '\n\n' +
           'class CustomOption extends Component {\n' +
           '  static propTypes = {\n' +
           '    onChange: PropTypes.func,\n' +
