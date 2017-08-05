@@ -12,7 +12,6 @@ import {
 import LayoutComponent from './Component';
 
 class Link extends Component {
-
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,

@@ -8,7 +8,6 @@ import './styles.css';
 import { stopPropagation } from '../../../utils/common';
 
 export default class Dropdown extends Component {
-
   static propTypes = {
     children: PropTypes.any,
     onChange: PropTypes.func,
@@ -110,36 +109,3 @@ export default class Dropdown extends Component {
     );
   }
 }
-
-
-  // onKeyDown: Function = (event: Object): void => {
-  //   const { expanded, children, doCollapse } = this.props;
-  //   const { highlighted } = this.state;
-  //   let actioned = false;
-  //   if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
-  //     if (!expanded) {
-  //       this.toggleExpansion();
-  //       actioned = true;
-  //     } else {
-  //       this.setHighlighted((highlighted === children[1].length - 1) ? 0 : highlighted + 1);
-  //       actioned = true;
-  //     }
-  //   } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
-  //     this.setHighlighted(highlighted <= 0 ? children[1].length - 1 : highlighted - 1);
-  //     actioned = true;
-  //   } else if (event.key === 'Enter') {
-  //     if (highlighted > -1) {
-  //       this.onChange(this.props.children[1][highlighted].props.value);
-  //       actioned = true;
-  //     } else {
-  //       this.toggleExpansion();
-  //       actioned = true;
-  //     }
-  //   } else if (event.key === 'Escape') {
-  //     doCollapse();
-  //     actioned = true;
-  //   }
-  //   if (actioned) {
-  //     event.preventDefault();
-  //   }
-  // };

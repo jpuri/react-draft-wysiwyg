@@ -9,7 +9,6 @@ import Option from '../../../components/Option';
 import './styles.css';
 
 class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,

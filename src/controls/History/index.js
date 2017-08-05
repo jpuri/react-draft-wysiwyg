@@ -7,7 +7,6 @@ import { EditorState } from 'draft-js';
 import LayoutComponent from './Component';
 
 export default class History extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,

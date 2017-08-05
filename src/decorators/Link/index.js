@@ -19,7 +19,6 @@ function findLinkEntities(contentBlock, callback, contentState) {
 function getLinkComponent(config) {
   const showOpenOptionOnHover = config.showOpenOptionOnHover;
   return class Link extends Component {
-
     static propTypes = {
       entityKey: PropTypes.string.isRequired,
       children: PropTypes.array,

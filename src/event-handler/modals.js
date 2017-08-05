@@ -1,5 +1,4 @@
 export default class ModalHandler {
-
   callBacks = [];
   suggestionCallback = undefined;
   editorFlag = false;

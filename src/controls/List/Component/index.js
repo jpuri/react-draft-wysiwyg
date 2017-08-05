@@ -10,7 +10,6 @@ import Option from '../../../components/Option';
 import './styles.css';
 
 export default class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     doExpand: PropTypes.func,

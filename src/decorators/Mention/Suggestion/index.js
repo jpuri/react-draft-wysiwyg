@@ -44,8 +44,8 @@ class Suggestion {
         text = text.substr(
           0,
           selection.get('focusOffset') === text.length - 1
-          ? text.length
-          : selection.get('focusOffset') + 1,
+            ? text.length
+            : selection.get('focusOffset') + 1,
         );
         let index = text.lastIndexOf(separator + trigger);
         let preText = separator + trigger;
@@ -85,7 +85,6 @@ class Suggestion {
 function getSuggestionComponent() {
   const { config } = this;
   return class SuggestionComponent extends Component {
-
     static propTypes = {
       children: PropTypes.array,
     };

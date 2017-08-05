@@ -4,7 +4,6 @@ import classNames from 'classnames';
 import './styles.css';
 
 class Hashtag {
-
   constructor(config) {
     this.className = config.className;
     this.hashCharacter = config.hashCharacter || '#';

@@ -30,7 +30,8 @@ describe('ImageRenderer test suite', () => {
       shallow(
         <Image block={getAllBlocks(newEditorState).get(1)} contentState={contentState} />,
       )
-      .node.type)
+        .node.type,
+    )
       .to.equal('span');
   });
 

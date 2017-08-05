@@ -9,7 +9,6 @@ import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
 
 class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -52,17 +51,17 @@ class LayoutComponent extends Component {
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
         {
-        blocks.map((block, index) =>
-          (<Option
-            key={index}
-            value={block.label}
-            active={blockType === block.label}
-            onClick={onChange}
-          >
-            {block.displayName}
-          </Option>),
-        )
-      }
+          blocks.map((block, index) =>
+            (<Option
+              key={index}
+              value={block.label}
+              active={blockType === block.label}
+              onClick={onChange}
+            >
+              {block.displayName}
+            </Option>),
+          )
+        }
       </div>
     );
   }

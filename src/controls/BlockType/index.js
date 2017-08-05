@@ -8,7 +8,6 @@ import { RichUtils } from 'draft-js';
 import LayoutComponent from './Component';
 
 class BlockType extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object,

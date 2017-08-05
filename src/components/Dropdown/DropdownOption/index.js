@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import './styles.css';
 
 export default class DropDownOption extends Component {
-
   static propTypes = {
     children: PropTypes.any,
     value: PropTypes.any,
@@ -58,7 +57,7 @@ export default class DropDownOption extends Component {
       disabledClassName,
       highlightedClassName,
       title,
-     } = this.props;
+    } = this.props;
     return (
       <li
         className={classNames(

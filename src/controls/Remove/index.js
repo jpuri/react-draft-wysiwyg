@@ -9,7 +9,6 @@ import { forEach } from '../../utils/common';
 import LayoutComponent from './Component';
 
 export default class Remove extends Component {
-
   static propTypes = {
     onChange: PropTypes.func.isRequired,
     editorState: PropTypes.object.isRequired,

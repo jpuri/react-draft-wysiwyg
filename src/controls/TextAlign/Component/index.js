@@ -10,7 +10,6 @@ import { getFirstIcon } from '../../../utils/toolbar';
 import './styles.css';
 
 export default class TextAlign extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     doExpand: PropTypes.func,

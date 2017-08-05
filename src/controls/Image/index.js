@@ -7,7 +7,6 @@ import { AtomicBlockUtils } from 'draft-js';
 import LayoutComponent from './Component';
 
 class ImageControl extends Component {
-
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
