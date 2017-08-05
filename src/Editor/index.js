@@ -36,7 +36,6 @@ import './styles.css';
 import '../../css/Draft.css';
 
 export default class WysiwygEditor extends Component {
-
   static propTypes = {
     onChange: PropTypes.func,
     onEditorStateChange: PropTypes.func,
@@ -371,7 +370,7 @@ export default class WysiwygEditor extends Component {
       editorState,
       editorFocused,
       toolbar,
-     } = this.state;
+    } = this.state;
     const {
       locale,
       localization: { locale: newLocale, translations },

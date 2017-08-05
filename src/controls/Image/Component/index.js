@@ -9,7 +9,6 @@ import Spinner from '../../../components/Spinner';
 import './styles.css';
 
 class LayoutComponent extends Component {
-
   static propTypes: Object = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -214,8 +213,8 @@ class LayoutComponent extends Component {
                 onDragOver={this.stopPropagation}
                 onDrop={this.onImageDrop}
                 className={classNames(
-                'rdw-image-modal-upload-option',
-                { 'rdw-image-modal-upload-option-highlighted': dragEnter })}
+                  'rdw-image-modal-upload-option',
+                  { 'rdw-image-modal-upload-option-highlighted': dragEnter })}
               >
                 <label
                   htmlFor="file"

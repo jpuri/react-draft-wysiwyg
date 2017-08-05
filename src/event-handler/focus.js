@@ -1,5 +1,4 @@
 export default class FocusHandler {
-
   inputFocused = false;
   editorMouseDown = false;
 

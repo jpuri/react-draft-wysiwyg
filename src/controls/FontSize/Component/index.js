@@ -8,7 +8,6 @@ import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
 
 export default class LayoutComponent extends Component {
-
   static propTypes = {
     expanded: PropTypes.bool,
     onExpandEvent: PropTypes.func,
@@ -64,12 +63,8 @@ export default class LayoutComponent extends Component {
           title={title || translations['components.controls.fontsize.fontsize']}
         >
           {currentFontSize ?
-            <span>{currentFontSize}</span>
-          :
-            <img
-              src={icon}
-              alt=""
-            />
+            <span>{currentFontSize}</span> :
+            <img src={icon} alt="" />
           }
           {
             options.map((size, index) =>
