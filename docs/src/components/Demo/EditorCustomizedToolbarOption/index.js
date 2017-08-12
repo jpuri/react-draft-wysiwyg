@@ -1,10 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { EditorState, convertToRaw, ContentState, Modifier } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 import ColorPic from './ColorPic';
@@ -24,6 +20,10 @@ const EditorCustomizedToolbarOption = () => (
       </div>
       <Codemirror
         value={
+          'import React from \'react\';\n' +
+          'import PropTypes from \'prop-types\';\n' +
+          'import { BlockPicker } from \'react-color\';\n' +
+          '\n\n' +
           'class ColorPic extends Component {\n' +
           '  static propTypes = {\n' +
           '    expanded: PropTypes.bool,\n' +
@@ -73,7 +73,10 @@ const EditorCustomizedToolbarOption = () => (
           '    );\n' +
           '  }\n' +
           '}\n' +
-          '\n' +
+          '\n\n' +
+          'import React, { Component } from \'react\';\n' +
+          'import { Editor } from \'react-draft-wysiwyg\';\n' +
+          '\n\n' +
           'const EditorCustomizedToolbarOption = () => (\n' +
           '  <Editor\n' +
           '    wrapperClassName="demo-wrapper"\n' +

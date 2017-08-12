@@ -1,7 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 
@@ -79,6 +78,10 @@ const EditorStyledToolbar = () => (
       </div>
       <Codemirror
         value={
+          'import React from \'react\';\n' +
+          'import { Editor } from \'react-draft-wysiwyg\';\n' +
+          'import * as Icons from \'images/icons\';\n' +
+          '\n\n' +
           'const EditorStyledToolbar = () => (\n' +
           '  <Editor\n' +
           '    toolbarClassName="demo-toolbar-custom"\n' +
@@ -86,42 +89,42 @@ const EditorStyledToolbar = () => (
           '    editorClassName="demo-editor-custom"\n' +
           '    toolbar={{\n' +
           '      inline: {\n' +
-          '        bold: { icon: bold, className: \'demo-option-custom\' },\n' +
-          '        italic: { icon: italic, className: \'demo-option-custom\' },\n' +
-          '        underline: { icon: underline, className: \'demo-option-custom\' },\n' +
-          '        strikethrough: { icon: strikethrough, className: \'demo-option-custom\' },\n' +
+          '        bold: { icon: Icons.bold, className: \'demo-option-custom\' },\n' +
+          '        italic: { icon: Icons.italic, className: \'demo-option-custom\' },\n' +
+          '        underline: { icon: Icons.underline, className: \'demo-option-custom\' },\n' +
+          '        strikethrough: { icon: Icons.strikethrough, className: \'demo-option-custom\' },\n' +
           '        monospace: { className: \'demo-option-custom\' },\n' +
-          '        superscript: { icon: superscript, className: \'demo-option-custom\' },\n' +
-          '        subscript: { icon: subscript, className: \'demo-option-custom\' },\n' +
+          '        superscript: { icon: Icons.superscript, className: \'demo-option-custom\' },\n' +
+          '        subscript: { icon: Icons.subscript, className: \'demo-option-custom\' },\n' +
           '      },\n' +
           '      blockType: { className: \'demo-option-custom-wide\', dropdownClassName: \'demo-dropdown-custom\' },\n' +
           '      fontSize: { className: \'demo-option-custom-medium\' },\n' +
           '      list: {\n' +
-          '        unordered: { icon: unordered, className: \'demo-option-custom\' },\n' +
-          '        ordered: { icon: ordered, className: \'demo-option-custom\' },\n' +
-          '        indent: { icon: indent, className: \'demo-option-custom\' },\n' +
-          '        outdent: { icon: outdent, className: \'demo-option-custom\' },\n' +
+          '        unordered: { icon: Icons.unordered, className: \'demo-option-custom\' },\n' +
+          '        ordered: { icon: Icons.ordered, className: \'demo-option-custom\' },\n' +
+          '        indent: { icon: Icons.indent, className: \'demo-option-custom\' },\n' +
+          '        outdent: { icon: Icons.outdent, className: \'demo-option-custom\' },\n' +
           '      },\n' +
           '      textAlign: {\n' +
-          '        left: { icon: left, className: \'demo-option-custom\' },\n' +
-          '        center: { icon: center, className: \'demo-option-custom\' },\n' +
-          '        right: { icon: right, className: \'demo-option-custom\' },\n' +
-          '        justify: { icon: justify, className: \'demo-option-custom\' },\n' +
+          '        left: { icon: Icons.left, className: \'demo-option-custom\' },\n' +
+          '        center: { icon: Icons.center, className: \'demo-option-custom\' },\n' +
+          '        right: { icon: Icons.right, className: \'demo-option-custom\' },\n' +
+          '        justify: { icon: Icons.justify, className: \'demo-option-custom\' },\n' +
           '      },\n' +
           '      fontFamily: { className: \'demo-option-custom-wide\', dropdownClassName: \'demo-dropdown-custom\' },\n' +
           '      colorPicker: { className: \'demo-option-custom\', popupClassName: \'demo-popup-custom\' },\n' +
           '      link: {\n' +
           '        popupClassName: \'demo-popup-custom\n' +
-          '        link: { icon: link, className: \'demo-option-custom\' },\n' +
-          '        unlink: { icon: unlink, className: \'demo-option-custom\' },\n' +
+          '        link: { icon: Icons.link, className: \'demo-option-custom\' },\n' +
+          '        unlink: { icon: Icons.unlink, className: \'demo-option-custom\' },\n' +
           '      },\n' +
           '      emoji: { className: \'demo-option-custom\', popupClassName: \'demo-popup-custom\' },\n' +
           '      embedded: { className: \'demo-option-custom\', popupClassName: \'demo-popup-custom\' },\n' +
-          '      image: { icon: image, className: \'demo-option-custom\', popupClassName: \'demo-popup-custom\' },\n' +
-          '      remove: { icon: eraser, className: \'demo-option-custom\' },\n' +
+          '      image: { icon: Icons.image, className: \'demo-option-custom\', popupClassName: \'demo-popup-custom\' },\n' +
+          '      remove: { icon: Icons.eraser, className: \'demo-option-custom\' },\n' +
           '      history: {\n' +
-          '        undo: { icon: undo, className: \'demo-option-custom\' },\n' +
-          '        redo: { icon: redo, className: \'demo-option-custom\' },\n' +
+          '        undo: { icon: Icons.undo, className: \'demo-option-custom\' },\n' +
+          '        redo: { icon: Icons.redo, className: \'demo-option-custom\' },\n' +
           '      },\n' +
           '    }}\n' +
           '  />\n' +

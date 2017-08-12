@@ -1,7 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import Codemirror from 'react-codemirror';
 
@@ -20,6 +19,9 @@ const EditorI18n = () => (
       </div>
       <Codemirror
         value={
+          'import React from \'react\';\n' +
+          'import { Editor } from \'react-draft-wysiwyg\';\n' +
+          '\n\n' +
           'const EditorI18n = () => (\n' +
           '  <Editor\n' +
           '    wrapperClassName="demo-wrapper"\n' +

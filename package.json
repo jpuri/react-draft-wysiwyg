@@ -67,7 +67,7 @@
     "build": "npm run clean && npm run build:webpack",
     "test": "cross-env BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js src/**/*Test.js",
     "lint": "eslint src",
-    "lintdocs": "eslint docs",
+    "lintdocs": "eslint docs/src",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "check": "npm run lint && npm run flow",
     "storybook": "start-storybook -p 6006",

@@ -50,6 +50,9 @@ export default class Demo extends Component {
         <EditorWithMentionHashtag />
         <EditorStyledToolbar />
         <EditorImage />
+        <div className="demo-section">
+          Some more examples can be found <a href="https://github.com/jpuri/react-draft-wysiwyg/tree/master/stories">here</a>.
+        </div>
       </div>
     );
   }

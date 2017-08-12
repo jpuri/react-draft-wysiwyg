@@ -15,7 +15,18 @@
   margin: 10px 0;
 }
 .docs-section {
-  margin: 20px 0 40px;
+  margin: 20px 0 50px;
+}
+.docs-section .ReactCodeMirror {
+  max-height: 500px;
+  overflow: scroll;
+  width: 75%;
+  margin-top: 25px;
+  margin-left: 0;
+  height: auto !important;
+}
+.docs-section .CodeMirror {
+  height: auto !important;
 }
 code {
   padding: 20px;
@@ -29,11 +40,20 @@ code {
   font-size: 15px;
   margin-bottom: 10px;
 }
+.docs-root li {
+  margin-bottom: 5px;
+}
 .docs-text {
   width: 75%;
   font-size: 17px;
   margin: 15px 0;
 }
 .top-margined {
-  margin-top: 10px;
+  margin-top: 20px;
+}
+ol {
+  font-size: 15px;
+}
+.docs-property {
+  display: flex;
 }

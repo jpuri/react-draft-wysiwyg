@@ -1,11 +1,10 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { EditorState, convertToRaw, convertFromRaw } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
+import { convertToRaw } from 'draft-js';
 import { Editor } from 'react-draft-wysiwyg';
-import Codemirror from 'react-codemirror';
 import draftToMarkdown from 'draftjs-to-markdown';
+import Codemirror from 'react-codemirror';
 
 const content = {"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]};
 
@@ -40,6 +39,11 @@ class EditorConvertToMarkdown extends Component {
           </div>
           <Codemirror
             value={
+              'import React, { Component } from \'react\';\n' +
+              'import { convertToRaw } from \'draft-js\';\n' +
+              'import { Editor } from \'react-draft-wysiwyg\';\n' +
+              'import draftToMarkdown from \'draftjs-to-markdown\';\n' +
+              '\n\n' +
               'class EditorConvertToMarkdown extends Component {\n' +
               '  state = {\n' +
               '    editorState: undefined,\n' +
