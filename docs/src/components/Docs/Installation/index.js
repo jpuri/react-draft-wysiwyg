@@ -23,6 +23,15 @@ const Installation = () => (
         readOnly: true,
       }}
     />
+    <div className="docs-desc top-margined">
+      <div>Peer dependencies and the required versions.</div>
+      <ol>
+        <li>draft-js: 0.10.x</li>
+        <li>immutable: 3.x, 4.x</li>
+        <li>react: 0.13.x, 0.14.x, ^15.0.0-0, 15.x.x</li>
+        <li>react-dom: 0.13.x, 0.14.x, ^15.0.0-0, 15.x.x</li>
+      </ol>
+    </div>
   </div>
 );
 
