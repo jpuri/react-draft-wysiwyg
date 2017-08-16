@@ -1,5 +1,4 @@
 module.exports = {
-
   // Generic
   'generic.add': 'Ok',
   'generic.cancel': 'Annuler',
@@ -16,7 +15,7 @@ module.exports = {
   'components.controls.blocktype.normal': 'Normal',
 
   // Color Picker
-  'components.controls.colorpicker.colorpicker': 'Color Picker',
+  'components.controls.colorpicker.colorpicker': 'Palette de couleur',
   'components.controls.colorpicker.text': 'Texte',
   'components.controls.colorpicker.background': 'Fond',
 
@@ -32,12 +31,12 @@ module.exports = {
   'components.controls.fontfamily.fontfamily': 'Police',
 
   // FontSize
-  'components.controls.fontsize.fontsize': 'Font Size',
+  'components.controls.fontsize.fontsize': 'Taille de police',
 
   // History
-  'components.controls.history.history': 'History',
-  'components.controls.history.undo': 'Undo',
-  'components.controls.history.redo': 'Redo',
+  'components.controls.history.history': 'Historique',
+  'components.controls.history.undo': 'Précédent',
+  'components.controls.history.redo': 'Suivant',
 
   // Image
   'components.controls.image.image': 'Image',
@@ -46,35 +45,35 @@ module.exports = {
   'components.controls.image.dropFileText': 'Glisser une image ou cliquer pour télécharger',
 
   // Inline
-  'components.controls.inline.bold': 'Bold',
-  'components.controls.inline.italic': 'Italic',
-  'components.controls.inline.underline': 'Underline',
-  'components.controls.inline.strikethrough': 'Strikethrough',
+  'components.controls.inline.bold': 'Gras',
+  'components.controls.inline.italic': 'Italique',
+  'components.controls.inline.underline': 'Souligner',
+  'components.controls.inline.strikethrough': 'Barrer',
   'components.controls.inline.monospace': 'Monospace',
-  'components.controls.inline.superscript': 'Superscript',
-  'components.controls.inline.subscript': 'Subscript',
+  'components.controls.inline.superscript': 'Exposant',
+  'components.controls.inline.subscript': 'Indice',
 
   // Link
   'components.controls.link.linkTitle': 'Titre du lien',
   'components.controls.link.linkTarget': 'Cible du lien',
   'components.controls.link.linkTargetOption': 'Ouvrir le lien dans une nouvelle fenêtre',
-  'components.controls.link.link': 'Link',
-  'components.controls.link.unlink': 'Unlink',
+  'components.controls.link.link': 'Lier',
+  'components.controls.link.unlink': 'Délier',
 
   // List
-  'components.controls.list.list': 'List',
-  'components.controls.list.unordered': 'Unordered',
-  'components.controls.list.ordered': 'Ordered',
-  'components.controls.list.indent': 'Indent',
-  'components.controls.list.outdent': 'Outdent',
+  'components.controls.list.list': 'Liste',
+  'components.controls.list.unordered': 'Désordonnée',
+  'components.controls.list.ordered': 'Ordonnée',
+  'components.controls.list.indent': 'Augmenter le retrait',
+  'components.controls.list.outdent': 'Diminuer le retrat',
 
   // Remove
-  'components.controls.remove.remove': 'Remove',
+  'components.controls.remove.remove': 'Supprimer',
 
   // TextAlign
-  'components.controls.textalign.textalign': 'Text Align',
-  'components.controls.textalign.left': 'Left',
-  'components.controls.textalign.center': 'Center',
-  'components.controls.textalign.right': 'Right',
-  'components.controls.textalign.justify': 'Justify',
+  'components.controls.textalign.textalign': 'Alignement du texte',
+  'components.controls.textalign.left': 'Gauche',
+  'components.controls.textalign.center': 'Centre',
+  'components.controls.textalign.right': 'Droite',
+  'components.controls.textalign.justify': 'Justifier',
 };
