@@ -44,7 +44,7 @@ describe('Block test suite', () => {
     expect(block.find('Dropdown').length).to.equal(1);
   });
 
-  it('should have 8 child elements when inDropdown is false', () => {
+  it('should have 9 child elements when inDropdown is false', () => {
     const block = mount(
       <Block
         onChange={() => {}}
@@ -54,6 +54,6 @@ describe('Block test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    expect(block.find('Option').length).to.equal(8);
+    expect(block.find('Option').length).to.equal(9);
   });
 });
