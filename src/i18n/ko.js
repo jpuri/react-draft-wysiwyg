@@ -12,6 +12,7 @@ module.exports = {
   'components.controls.blocktype.h5': '제목5',
   'components.controls.blocktype.h6': '제목6',
   'components.controls.blocktype.blockquote': '인용',
+  'components.controls.blocktype.code': 'Code',
   'components.controls.blocktype.blocktype': '블록',
   'components.controls.blocktype.normal': '표준',
 

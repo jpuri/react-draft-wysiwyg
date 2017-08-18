@@ -12,6 +12,7 @@ module.exports = {
   'components.controls.blocktype.h5': 'H5',
   'components.controls.blocktype.h6': 'H6',
   'components.controls.blocktype.blockquote': 'Blockquote',
+  'components.controls.blocktype.code': 'Code',
   'components.controls.blocktype.blocktype': 'Block Type',
   'components.controls.blocktype.normal': 'Normal',
 

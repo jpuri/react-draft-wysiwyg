@@ -44,6 +44,7 @@ class LayoutComponent extends Component {
     { label: 'H5', displayName: translations['components.controls.blocktype.h5'] },
     { label: 'H6', displayName: translations['components.controls.blocktype.h6'] },
     { label: 'Blockquote', displayName: translations['components.controls.blocktype.blockquote'] },
+    { label: 'Code', displayName: translations['components.controls.blocktype.code'] },
   ];
 
   renderFlat(blocks: Array<Object>): void {

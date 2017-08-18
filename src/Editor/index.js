@@ -13,6 +13,7 @@ import {
 import {
   changeDepth,
   handleNewLine,
+  blockRenderMap,
   getCustomStyleMap,
   extractInlineStyle,
   getSelectedBlocksType,
@@ -446,6 +447,7 @@ export default class WysiwygEditor extends Component {
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
+            blockRenderMap={blockRenderMap}
             {...this.editorProps}
           />
         </div>

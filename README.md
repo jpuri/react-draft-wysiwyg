@@ -14,7 +14,7 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 - Option to change styles and icons in the toolbar.
 - Option to show toolbar only when editor is focused.
 - Support for inline styles: Bold, Italic, Underline, StrikeThrough, Code, Subscript, Superscript.
-- Support for block types: Paragraph, H1 - H6, Blockquote.
+- Support for block types: Paragraph, H1 - H6, Blockquote, Code.
 - Support for setting font-size and font-family.
 - Support for ordered / unordered lists and indenting.
 - Support for text-alignment.

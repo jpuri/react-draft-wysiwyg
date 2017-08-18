@@ -24,3 +24,12 @@
 .rdw-editor-wrapper {
   box-sizing: content-box;
 }
+blockquote {
+  border-left: 5px solid #f1f1f1;
+  padding-left: 5px;
+}
+pre {
+  background: #f1f1f1;
+  border-radius: 3px;
+  padding: 1px 10px;
+}
