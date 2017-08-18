@@ -73,3 +73,6 @@ Initial stable release
 ## 20/07/2017 (1.10.7)
 - #380: add support for alt field.
 - #325: internalization of titles.
+
+## 18/08/2017 (1.10.8)
+- Support for code block.
