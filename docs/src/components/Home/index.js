@@ -45,7 +45,7 @@ export default class Home extends Component {
           <li className="home-listItem">Option to change styles and icons in the toolbar.</li>
           <li className="home-listItem">Option to conditionally show hide toolbar.</li>
           <li className="home-listItem">Support for inline styles: Bold, Italic, Underline, StrikeThrough, Code, Subscript, Superscript.</li>
-          <li className="home-listItem">Support for block types: Paragraph, H1 - H6, Blockquote, Code.</li>
+          <li className="home-listItem">Support for block types: Paragraph, H1 - H6, Blockquote, Code, Address.</li>
           <li className="home-listItem">Support for setting font-size and font-family and option to add custom types.</li>
           <li className="home-listItem">Support for ordered / unordered lists and indenting.</li>
           <li className="home-listItem">Support for text-alignment.</li>

@@ -13,6 +13,7 @@ module.exports = {
   'components.controls.blocktype.h6': 'Заголовок 6',
   'components.controls.blocktype.blockquote': 'Цитата',
   'components.controls.blocktype.code': 'Code',
+  'components.controls.blocktype.address': 'Address',
   'components.controls.blocktype.blocktype': 'Форматирование',
   'components.controls.blocktype.normal': 'Обычный',
 

@@ -46,7 +46,7 @@ export default {
   },
   blockType: {
     inDropdown: true,
-    options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code'],
+    options: ['Normal', 'H1', 'H2', 'H3', 'H4', 'H5', 'H6', 'Blockquote', 'Code', 'Address'],
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
