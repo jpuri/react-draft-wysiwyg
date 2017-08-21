@@ -13,6 +13,7 @@ module.exports = {
   'components.controls.blocktype.h6': '标题6',
   'components.controls.blocktype.blockquote': '引用',
   'components.controls.blocktype.code': 'Code',
+  'components.controls.blocktype.address': 'Address',
   'components.controls.blocktype.blocktype': '样式',
   'components.controls.blocktype.normal': '正文',
 

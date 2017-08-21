@@ -66,6 +66,7 @@ class BlockType extends Component {
     { label: 'H6', style: 'header-six' },
     { label: 'Blockquote', style: 'blockquote' },
     { label: 'Code', style: 'code' },
+    { label: 'Address', style: 'address' },
   ];
 
   doExpand: Function = (): void => {

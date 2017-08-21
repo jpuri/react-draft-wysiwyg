@@ -13,6 +13,7 @@ module.exports = {
   'components.controls.blocktype.h6': 'Título 6',
   'components.controls.blocktype.blockquote': 'Citação',
   'components.controls.blocktype.code': 'Code',
+  'components.controls.blocktype.address': 'Address',
   'components.controls.blocktype.blocktype': 'Estilo',
   'components.controls.blocktype.normal': 'Normal',
 

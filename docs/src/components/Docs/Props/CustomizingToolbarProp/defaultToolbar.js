@@ -16,7 +16,7 @@ export default '{\n' +
   '  },\n' +
   '  blockType: {\n' +
   '    inDropdown: true,\n' +
-  '    options: [\'Normal\', \'H1\', \'H2\', \'H3\', \'H4\', \'H5\', \'H6\', \'Blockquote\', \'Code\'],\n' +
+  '    options: [\'Normal\', \'H1\', \'H2\', \'H3\', \'H4\', \'H5\', \'H6\', \'Blockquote\', \'Code\', \'Address\'],\n' +
   '    className: undefined,\n' +
   '    component: undefined,\n' +
   '    dropdownClassName: undefined,\n' +
