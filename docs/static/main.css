@@ -617,65 +617,7 @@ textarea {
   height: 150px;
   width: auto;
 }
-.docs-root {
-  width: 100%;
-  margin: 30px;
-}
-.docs-label {
-  display: block;
-  font-size: 20px;
-  font-weight: 500;
-  margin: 20px 0;
-}
-.docs-sub-label {
-  display: block;
-  font-size: 18px;
-  font-weight: 500;
-  margin: 10px 0;
-}
-.docs-section {
-  margin: 20px 0 50px;
-}
-.docs-section .ReactCodeMirror {
-  max-height: 500px;
-  overflow: scroll;
-  width: 75%;
-  margin-top: 25px;
-  margin-left: 0;
-  height: auto !important;
-}
-.docs-section .CodeMirror {
-  height: auto !important;
-}
-code {
-  padding: 20px;
-  font-size: 13px;
-  display: inline-flex;
-  flex-direction: column;
-  background-color: #f1f1f1;
-}
-.docs-desc {
-  width: 75%;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-.docs-root li {
-  margin-bottom: 5px;
-}
-.docs-text {
-  width: 75%;
-  font-size: 17px;
-  margin: 15px 0;
-}
-.top-margined {
-  margin-top: 20px;
-}
-ol {
-  font-size: 15px;
-}
-.docs-property {
-  display: flex;
-}.demo-root {
+.demo-root {
   width: 90%;
   display: flex;
   font-family: Roboto;
@@ -848,7 +790,65 @@ ol {
   padding-bottom: 2px;
   cursor: pointer;
 }
-.root {
+.docs-root {
+  width: 100%;
+  margin: 30px;
+}
+.docs-label {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 20px 0;
+}
+.docs-sub-label {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+.docs-section {
+  margin: 20px 0 50px;
+}
+.docs-section .ReactCodeMirror {
+  max-height: 500px;
+  overflow: scroll;
+  width: 75%;
+  margin-top: 25px;
+  margin-left: 0;
+  height: auto !important;
+}
+.docs-section .CodeMirror {
+  height: auto !important;
+}
+code {
+  padding: 20px;
+  font-size: 13px;
+  display: inline-flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+}
+.docs-desc {
+  width: 75%;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.docs-root li {
+  margin-bottom: 5px;
+}
+.docs-text {
+  width: 75%;
+  font-size: 17px;
+  margin: 15px 0;
+}
+.top-margined {
+  margin-top: 20px;
+}
+ol {
+  font-size: 15px;
+}
+.docs-property {
+  display: flex;
+}.root {
   width: 100%;
   display: flex;
   font-family: Roboto;
