@@ -4,6 +4,7 @@ import zh from './zh';
 import ru from './ru';
 import pt from './pt';
 import ko from './ko';
+import it from './it';
 
 module.exports = {
   en,
@@ -12,4 +13,5 @@ module.exports = {
   ru,
   pt,
   ko,
+  it,
 };
