@@ -76,3 +76,8 @@ Initial stable release
 
 ## 18/08/2017 (1.10.8)
 - Support for code block.
+
+## 10/09/2017 (1.10.8)
+- #429: Copy paste issue in code block.
+- #440: Limit pre and blockquote styles to only within the wysiwyg.
+- Translations for Italian locale.

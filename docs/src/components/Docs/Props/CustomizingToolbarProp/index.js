@@ -145,7 +145,8 @@ export default () => (
         <b>image: uploadCallback</b>
         <span>
           : This is image upload callBack. It should return a promise that resolves to give image src. Default value is true.<br />
-          Both above options of uploadEnabled and uploadCallback should be present for upload to be enabled.
+          Both above options of uploadEnabled and uploadCallback should be present for upload to be enabled.<br />
+          Promise should resolve to return an object <code className="code_sm">{'{ data: { link: <THE_URL>}}'}</code>.
         </span>
       </li>
       <li>

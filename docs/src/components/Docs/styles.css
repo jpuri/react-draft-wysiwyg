@@ -35,6 +35,9 @@ code {
   flex-direction: column;
   background-color: #f1f1f1;
 }
+.code_sm {
+  padding: 2px;
+}
 .docs-desc {
   width: 75%;
   font-size: 15px;
