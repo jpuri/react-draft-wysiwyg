@@ -26,6 +26,7 @@ import SuggestionHandler from '../event-handler/suggestions';
 import blockStyleFn from '../utils/BlockStyle';
 import { mergeRecursive } from '../utils/toolbar';
 import { hasProperty, filter } from '../utils/common';
+import { handlePastedText } from '../utils/handlePaste';
 import Controls from '../controls';
 import getLinkDecorator from '../decorators/Link';
 import getMentionDecorators from '../decorators/Mention';
@@ -358,6 +359,11 @@ export default class WysiwygEditor extends Component {
     return false;
   };
 
+  handlePastedText = (text, html) => {
+    const { editorState } = this.state;    
+    return handlePastedText(text, html, editorState, this.onChange);
+  }
+
   preventDefault: Function = (event: Object) => {
     if (event.target.tagName === 'INPUT') {
       this.focusHandler.onInputMouseDown();
@@ -444,6 +450,7 @@ export default class WysiwygEditor extends Component {
             blockStyleFn={blockStyleFn}
             customStyleMap={getCustomStyleMap()}
             handleReturn={this.handleReturn}
+            handlePastedText={this.handlePastedText}
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
