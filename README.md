@@ -1,4 +1,4 @@
-# React Draft Wysiwyg
+# Dixa Rich text input field (React Draft Wysiwyg)
 
 A Wysiwyg editor built using ReactJS and DraftJS libraries.
 [Demo Page](https://jpuri.github.io/react-draft-wysiwyg).
@@ -6,6 +6,10 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 [![Build Status](https://travis-ci.org/jpuri/react-draft-wysiwyg.svg?branch=master)](https://travis-ci.org/jpuri/react-draft-wysiwyg)
 
 ![](http://i.imgur.com/tU7kJ6i.gif)
+
+## This is a fork repo
+
+This is a fork of [react-draft-wysiwyg]https://github.com/jpuri/react-draft-wysiwyg
 
 ## Features
 - Configurable toolbar with option to add/remove controls.
