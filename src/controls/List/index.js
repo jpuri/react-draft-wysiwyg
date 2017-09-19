@@ -33,7 +33,7 @@ export default class List extends Component {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       const currentBlock = getSelectedBlock(properties.editorState);
-      this.setState({ currentBlock: getSelectedBlock(editorState) });
+      this.setState({ currentBlock: getSelectedBlock(properties.editorState) });
     }
   }
 

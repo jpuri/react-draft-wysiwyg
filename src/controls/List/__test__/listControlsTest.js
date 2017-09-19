@@ -58,7 +58,7 @@ describe('ListControl test suite', () => {
     expect(control.childAt(0).children().length).to.equal(2);
   });
 
-  it('should execute onChange when any of first any child elements is clicked', () => {
+  it('should execute onChange when create list buttons are clicked', () => {
     const onChange = spy();
     const control = mount(
       <ListControl
@@ -73,9 +73,5 @@ describe('ListControl test suite', () => {
     assert.isTrue(onChange.calledOnce);
     control.childAt(1).simulate('click');
     assert.equal(onChange.callCount, 2);
-    control.childAt(2).simulate('click');
-    assert.equal(onChange.callCount, 3);
-    control.childAt(3).simulate('click');
-    assert.equal(onChange.callCount, 4);
   });
 });
