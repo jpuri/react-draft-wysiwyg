@@ -609,7 +609,76 @@ textarea {
   src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpYgp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
-.demo-root {
+.author-root {
+  margin: 30px;
+  width: 50%;
+}
+.photo {
+  height: 150px;
+  width: auto;
+}
+.docs-root {
+  width: 100%;
+  margin: 30px;
+}
+.docs-label {
+  display: block;
+  font-size: 20px;
+  font-weight: 500;
+  margin: 20px 0;
+}
+.docs-sub-label {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+.docs-section {
+  margin: 20px 0 50px;
+}
+.docs-section .ReactCodeMirror {
+  max-height: 500px;
+  overflow: scroll;
+  width: 75%;
+  margin-top: 25px;
+  margin-left: 0;
+  height: auto !important;
+}
+.docs-section .CodeMirror {
+  height: auto !important;
+}
+code {
+  padding: 20px;
+  font-size: 13px;
+  display: inline-flex;
+  flex-direction: column;
+  background-color: #f1f1f1;
+}
+.code_sm {
+  padding: 2px;
+}
+.docs-desc {
+  width: 75%;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+.docs-root li {
+  margin-bottom: 5px;
+}
+.docs-text {
+  width: 75%;
+  font-size: 17px;
+  margin: 15px 0;
+}
+.top-margined {
+  margin-top: 20px;
+}
+ol {
+  font-size: 15px;
+}
+.docs-property {
+  display: flex;
+}.demo-root {
   width: 90%;
   display: flex;
   font-family: Roboto;
@@ -782,77 +851,6 @@ textarea {
   padding-bottom: 2px;
   cursor: pointer;
 }
-.app-root {
-  width: 100%;
-}
-.header {
-  height: 125px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: Roboto;
-  color: white;
-  background: #a21717;
-}
-.header-label {
-  color: white;
-  text-decoration: none;
-}
-.flex-layout {
-  display: flex;
-  min-height: 600px;
-}
-.github {
-  position: absolute;
-  top: 0;
-  right: 0;
-  border: 0;
-  height: 140px;
-}
-.footer {
-  height: 100px;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #a21717;
-  color: white;
-  font-size: 18px;
-  font-family: Roboto;
-  font-weight: 300;
-}
-.author-link {
-  color: white;
-  text-decoration: none;
-  margin-left: 5px;
-}
-.header-text {
-  display: flex;
-  flex-direction: column;
-}
-.header-title {
-  font-size: 50px;
-}
-.header-subtitle {
-  text-align: right;
-  font-style: italic;
-  font-size: 18px;
-  font-weight: 300;
-}
-.header-logo {
-  width: 70px;
-  margin-left: 50px;
-  cursor: pointer;
-}
-.author-root {
-  margin: 30px;
-  width: 50%;
-}
-.photo {
-  height: 150px;
-  width: auto;
-}
 .root {
   width: 100%;
   display: flex;
@@ -916,6 +914,69 @@ textarea {
 .discussion {
   margin-top: 15px;
 }
+.app-root {
+  width: 100%;
+}
+.header {
+  height: 125px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: Roboto;
+  color: white;
+  background: #a21717;
+}
+.header-label {
+  color: white;
+  text-decoration: none;
+}
+.flex-layout {
+  display: flex;
+  min-height: 600px;
+}
+.github {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: 0;
+  height: 140px;
+}
+.footer {
+  height: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #a21717;
+  color: white;
+  font-size: 18px;
+  font-family: Roboto;
+  font-weight: 300;
+}
+.author-link {
+  color: white;
+  text-decoration: none;
+  margin-left: 5px;
+}
+.header-text {
+  display: flex;
+  flex-direction: column;
+}
+.header-title {
+  font-size: 50px;
+}
+.header-subtitle {
+  text-align: right;
+  font-style: italic;
+  font-size: 18px;
+  font-weight: 300;
+}
+.header-logo {
+  width: 70px;
+  margin-left: 50px;
+  cursor: pointer;
+}
 .menu-root {
   width: 120px;
   display: flex;
@@ -937,7 +998,25 @@ textarea {
 .menu-option-active {
   color: #a21717;
 }
-/* BASICS */
+.demo-color-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
+.demo-icon-wrapper {
+  border: 1px solid #F1F1F1;
+  padding: 3px 5px;
+}
+.demo-icon {
+  width: 20px;
+}
+.demo-color-modal {
+  position: absolute;
+  right: -70px;
+  top: 135%;
+  z-index: 10;
+}/* BASICS */
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
@@ -1277,86 +1356,7 @@ div.CodeMirror-dragcursors {
 
 /* Help users use markselection to safely style text background */
 span.CodeMirror-selectedtext { background: none; }
-.docs-root {
-  width: 100%;
-  margin: 30px;
-}
-.docs-label {
-  display: block;
-  font-size: 20px;
-  font-weight: 500;
-  margin: 20px 0;
-}
-.docs-sub-label {
-  display: block;
-  font-size: 18px;
-  font-weight: 500;
-  margin: 10px 0;
-}
-.docs-section {
-  margin: 20px 0 50px;
-}
-.docs-section .ReactCodeMirror {
-  max-height: 500px;
-  overflow: scroll;
-  width: 75%;
-  margin-top: 25px;
-  margin-left: 0;
-  height: auto !important;
-}
-.docs-section .CodeMirror {
-  height: auto !important;
-}
-code {
-  padding: 20px;
-  font-size: 13px;
-  display: inline-flex;
-  flex-direction: column;
-  background-color: #f1f1f1;
-}
-.code_sm {
-  padding: 2px;
-}
-.docs-desc {
-  width: 75%;
-  font-size: 15px;
-  margin-bottom: 10px;
-}
-.docs-root li {
-  margin-bottom: 5px;
-}
-.docs-text {
-  width: 75%;
-  font-size: 17px;
-  margin: 15px 0;
-}
-.top-margined {
-  margin-top: 20px;
-}
-ol {
-  font-size: 15px;
-}
-.docs-property {
-  display: flex;
-}.demo-color-wrapper {
-  display: flex;
-  align-items: center;
-  margin-bottom: 6px;
-  position: relative;
-}
-.demo-icon-wrapper {
-  border: 1px solid #F1F1F1;
-  padding: 3px 5px;
-}
-.demo-icon {
-  width: 20px;
-}
-.demo-color-modal {
-  position: absolute;
-  right: -70px;
-  top: 135%;
-  z-index: 10;
-}.rdw-option-wrapper {
+.rdw-option-wrapper {
   border: 1px solid #F1F1F1;
   padding: 5px;
   min-width: 25px;

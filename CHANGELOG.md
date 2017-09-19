@@ -81,3 +81,6 @@ Initial stable release
 - #429: Copy paste issue in code block.
 - #440: Limit pre and blockquote styles to only within the wysiwyg.
 - Translations for Italian locale.
+
+##19/09/2017 (1.10.10)
+- #451: Indent, outdent enabled only for lists.
