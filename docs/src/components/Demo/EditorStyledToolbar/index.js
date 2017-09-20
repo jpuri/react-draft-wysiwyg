@@ -36,6 +36,7 @@ const EditorStyledToolbar = () => (
           editorClassName="demo-editor-custom"
           toolbar={{
             inline: {
+              options: ['italic'],
               bold: { icon: bold, className: 'demo-option-custom' },
               italic: { icon: italic, className: 'demo-option-custom' },
               underline: { icon: underline, className: 'demo-option-custom' },
