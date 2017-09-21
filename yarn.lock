@@ -2101,8 +2101,9 @@ draftjs-to-markdown@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.4.4.tgz#cff9cbdf6999c2c70005f6b641aae794ef7d396e"
 
-"draftjs-utils@file:../draftjs-utils":
+draftjs-utils@^0.8.07:
   version "0.8.7"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.8.7.tgz#0cb51f37af9f7b377d948012f0e31ee8d736f7d1"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
