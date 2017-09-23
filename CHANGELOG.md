@@ -87,3 +87,7 @@ Initial stable release
 
 ## 20/09/2017 (1.10.11)
 - #437: Disabling the toolbar buttons is not disabling the corresponding keyboard shortcut
+
+## 23/09/2017 (1.10.12)
+- #444: Images not copied when copying content from microsoft word.
+- Translations for de and nl locales.
