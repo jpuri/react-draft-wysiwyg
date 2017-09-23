@@ -8,7 +8,6 @@ const Basic = () => (<div className="rdw-storybook-root">
     toolbarClassName="rdw-storybook-toolbar"
     wrapperClassName="rdw-storybook-wrapper"
     editorClassName="rdw-storybook-editor"
-    handlePastedText={() => { console.log('testing...!') }}
   />
 </div>);
 
