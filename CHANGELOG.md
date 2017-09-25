@@ -81,3 +81,13 @@ Initial stable release
 - #429: Copy paste issue in code block.
 - #440: Limit pre and blockquote styles to only within the wysiwyg.
 - Translations for Italian locale.
+
+## 19/09/2017 (1.10.10)
+- #451: Indent, outdent enabled only for lists.
+
+## 20/09/2017 (1.10.11)
+- #437: Disabling the toolbar buttons is not disabling the corresponding keyboard shortcut
+
+## 23/09/2017 (1.10.12)
+- #444: Images not copied when copying content from microsoft word.
+- Translations for de and nl locales.

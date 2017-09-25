@@ -2093,17 +2093,16 @@ draft-js@^0.10.1:
     immutable "~3.7.4"
     object-assign "^4.1.0"
 
-draftjs-to-html@^0.7.4:
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.7.4.tgz#6932b2ebae5c74bd70bc996f2b51d04f4688a48b"
+draftjs-to-html@^0.7.5:
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.7.5.tgz#50b2d1d813fb499966de8106fbeea9ea52c76951"
 
-draftjs-to-markdown@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.4.3.tgz#c0ecc188db1e9ad9f3d54785c80954e86fbfe62b"
+draftjs-to-markdown@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.4.4.tgz#cff9cbdf6999c2c70005f6b641aae794ef7d396e"
 
-draftjs-utils@^0.8.03:
-  version "0.8.4"
-  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.8.4.tgz#b8d6500d71a7b33fcc690c67afa8f3f8c12ff503"
+"draftjs-utils@file:../draftjs-utils":
+  version "0.8.7"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
@@ -2983,9 +2982,9 @@ html-tag-names@^1.1.1:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/html-tag-names/-/html-tag-names-1.1.2.tgz#f65168964c5a9c82675efda882875dcb2a875c22"
 
-html-to-draftjs@^0.1.0-beta7:
-  version "0.1.0-beta7"
-  resolved "https://registry.yarnpkg.com/html-to-draftjs/-/html-to-draftjs-0.1.0-beta7.tgz#bc307356cca36298fe4b5a93dfb0869cdf477a9b"
+html-to-draftjs@^0.1.0-beta15:
+  version "0.1.0-beta9"
+  resolved "https://registry.yarnpkg.com/html-to-draftjs/-/html-to-draftjs-0.1.0-beta9.tgz#6e61455d9afb4b71f1fc0ea79fa033fa83e934e0"
 
 htmlparser2@^3.9.1:
   version "3.9.2"

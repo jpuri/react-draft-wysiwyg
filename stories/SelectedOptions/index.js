@@ -10,7 +10,7 @@ const SelectedOptions = () =>
     toolbar={{
       options: ['inline', 'blockType', 'fontSize', 'fontFamily'],
       inline: {
-        options: ['bold', 'italic', 'underline'],
+        options: ['italic', 'underline'],
       },
     }}
     toolbarClassName="rdw-storybook-toolbar"

@@ -9,7 +9,7 @@ class ConvertToRawDraftContent extends Component {
 
   constructor(props) {
     super(props);
-    const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
+    const html = '<p>Hey this <a href="test">editor</a> rocks 😀</p>';
     const contentBlock = htmlToDraft(html);
     if (contentBlock) {
       const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
