@@ -1,0 +1,21 @@
+.rdw-suggestion-wrapper {
+  position: relative;
+}
+.rdw-suggestion-dropdown {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #F1F1F1;
+  min-width: 100px;
+  max-height: 150px;
+  overflow: auto;
+  background: white;
+  z-index: 100;
+}
+.rdw-suggestion-option {
+  padding: 7px 5px;
+  border-bottom: 1px solid #f1f1f1;
+}
+.rdw-suggestion-option-active {
+  background-color: #F1F1F1;
+}
