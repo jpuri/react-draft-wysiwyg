@@ -768,7 +768,7 @@
   display: flex;
   flex-direction: column;
   border: 1px solid #F1F1F1;
-  min-width: 100px;
+  min-width: 250px;
   max-height: 150px;
   overflow: auto;
   background: white;
@@ -777,9 +777,16 @@
 .rdw-suggestion-option {
   padding: 7px 5px;
   border-bottom: 1px solid #f1f1f1;
+  cursor: pointer;
+}
+.rdw-suggestion-option:hover,
+.rdw-suggestion-option:focus {
+  text-decoration: underline;
+  background-color: #F1F1F1;
 }
 .rdw-suggestion-option-active {
   background-color: #F1F1F1;
+  text-decoration: underline;
 }
 .rdw-hashtag-link {
   text-decoration: none;

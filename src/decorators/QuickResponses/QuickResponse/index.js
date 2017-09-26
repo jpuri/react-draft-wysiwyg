@@ -12,9 +12,9 @@ class QuickResponse {
     const QuickResponseComponent = ({ entityKey, children, contentState }) => {
       const { url, value } = contentState.getEntity(entityKey).getData();
       return (
-        <a href={url || value} className={classNames('rdw-quick-reponse-link', className)}>
+        <span className={classNames('rdw-quick-reponse-link', className)}>
           {children}
-        </a>
+        </span>
       );
     };
     QuickResponseComponent.propTypes = {

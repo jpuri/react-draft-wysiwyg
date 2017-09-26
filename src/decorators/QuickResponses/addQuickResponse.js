@@ -11,14 +11,14 @@ export default function addQuickResponse(
   trigger: string,
   suggestion: Object,
 ): void {
-  const { value, url } = suggestion;
+  const { value } = suggestion;
   const entityKey = editorState
     .getCurrentContent()
-    .createEntity('QUICK_RESPONSE', 'IMMUTABLE', { text: `${trigger}${value}`, value, url })
+    .createEntity('QUICK_RESPONSE', 'IMMUTABLE', { text: `${value}`, value })
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
-  const index = (selectedBlockText.lastIndexOf(separator + trigger) || 0) + 1;
+  const index = (selectedBlockText.lastIndexOf(separator) || 0) + 1;
   let focusOffset;
   let spaceAlreadyPresent = false;
   if (selectedBlockText.length === index + 1) {
@@ -37,7 +37,7 @@ export default function addQuickResponse(
   let contentState = Modifier.replaceText(
     newEditorState.getCurrentContent(),
     updatedSelection,
-    `${trigger}${value}`,
+    `${value}`,
     newEditorState.getCurrentInlineStyle(),
     entityKey,
   );
@@ -46,8 +46,8 @@ export default function addQuickResponse(
   if (!spaceAlreadyPresent) {
     // insert a blank space after Quick Response
     updatedSelection = newEditorState.getSelection().merge({
-      anchorOffset: index + value.length + trigger.length,
-      focusOffset: index + value.length + trigger.length,
+      anchorOffset: index + value.length,
+      focusOffset: index + value.length,
     });
     newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
     contentState = Modifier.insertText(

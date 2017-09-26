@@ -155,6 +155,7 @@ function getSuggestionComponent() {
         SuggestionHandler.close();
       } else if (event.key === 'Enter') {
         this.addQuickResponse();
+        // @TODO can we catch enter key press and stop it here?
       }
       this.setState(newState);
     }

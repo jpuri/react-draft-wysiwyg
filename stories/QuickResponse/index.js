@@ -9,11 +9,11 @@ import { Editor } from '../../src';
 */
 const QuickResponse = () =>
 (<div className="rdw-storybook-root">
-  <span>Type @ to see suggestions</span>
+  <span>Type = to see suggestions</span>
   <Editor
     quickResponse={{
       separator: ' ',
-      trigger: '@',
+      trigger: '=',
       suggestions: [
         { text: 'APPLE', value: 'apple', url: 'apple' },
         { text: 'BANANA', value: 'banana', url: 'banana' },
