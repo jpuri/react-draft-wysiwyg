@@ -92,5 +92,5 @@ Initial stable release
 - #444: Images not copied when copying content from microsoft word.
 - Translations for de and nl locales.
 
-## 26/09/2017 (1.10.13-beta3)
+## 26/09/2017 (1.10.13-beta4)
 - Add quick Response
