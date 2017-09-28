@@ -354,7 +354,7 @@ export default class WysiwygEditor extends Component {
 
   handleKeyCommand: Function = (command: Object): boolean => {
     const { editorState, toolbar: { inline } } = this.state;
-    if(inline && inline.options.indexOf(command) >= 0) {
+    if (inline && inline.options.indexOf(command) >= 0) {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
         this.onChange(newState);
@@ -365,15 +365,19 @@ export default class WysiwygEditor extends Component {
   };
 
   handleReturn: Function = (event: Object): boolean => {
+    let returnValue = 'not-handled';
     if (SuggestionHandler.isOpen()) {
-      return true;
+      returnValue = 'handled';
     }
     const editorState = handleNewLine(this.state.editorState, event);
     if (editorState) {
       this.onChange(editorState);
-      return true;
+      returnValue = 'handled';
     }
-    return false;
+    if (this.editorProps.handleReturn && typeof this.editorProps.handleReturn === 'function') {
+      this.editorProps.handleReturn(event);
+    }
+    return returnValue;
   };
 
   handlePastedText = (text, html) => {
@@ -466,13 +470,13 @@ export default class WysiwygEditor extends Component {
             onChange={this.onChange}
             blockStyleFn={blockStyleFn}
             customStyleMap={getCustomStyleMap()}
-            handleReturn={this.handleReturn}
             handlePastedText={this.handlePastedText}
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
             blockRenderMap={blockRenderMap}
             {...this.editorProps}
+            handleReturn={this.handleReturn}
           />
         </div>
       </div>

@@ -18,7 +18,7 @@ class QuickResponse {
       );
     };
     QuickResponseComponent.propTypes = {
-      entityKey: PropTypes.number,
+      entityKey: PropTypes.string,
       children: PropTypes.array,
       contentState: PropTypes.object,
     };

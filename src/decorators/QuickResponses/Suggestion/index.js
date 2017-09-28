@@ -155,7 +155,6 @@ function getSuggestionComponent() {
         SuggestionHandler.close();
       } else if (event.key === 'Enter') {
         this.addQuickResponse();
-        // @TODO can we catch enter key press and stop it here?
       }
       this.setState(newState);
     }
@@ -241,7 +240,7 @@ function getSuggestionComponent() {
                   onMouseEnter={this.onOptionMouseEnter}
                   onMouseLeave={this.onOptionMouseLeave}
                   className={classNames(
-                    'rdw-suggestion-option',
+                    'rdw-suggestion-option btn',
                     optionClassName,
                     { 'rdw-suggestion-option-active': (index === activeOption) },
                   )}
