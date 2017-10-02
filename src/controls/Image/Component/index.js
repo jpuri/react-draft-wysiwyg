@@ -87,8 +87,15 @@ class LayoutComponent extends Component {
   };
 
   addImageFromState: Function = (): void => {
-    const { imgSrc, height, width, alt } = this.state;
+    const { imgSrc, alt } = this.state;
+    let { height, width } = this.state;
     const { onChange } = this.props;
+    if (!isNaN(height)) {
+      height += 'px';
+    }
+    if (!isNaN(width)) {
+      width += 'px';
+    }
     onChange(imgSrc, height, width, alt);
   };
 
