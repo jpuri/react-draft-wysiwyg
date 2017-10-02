@@ -763,10 +763,8 @@
 .rdw-suggestion-wrapper {
   position: relative;
 }
-.rdw-suggestion-dropdown {
+.rdw-quick-response-suggestion-dropdown {
   position: absolute;
-  display: flex;
-  flex-direction: column;
   border: 1px solid #F1F1F1;
   min-width: 250px;
   max-height: 150px;
@@ -778,6 +776,9 @@
   padding: 7px 5px;
   border-bottom: 1px solid #f1f1f1;
   cursor: pointer;
+  background-color: #fff;
+  height: 31px;
+  width: 100%;
 }
 .rdw-suggestion-option:hover,
 .rdw-suggestion-option:focus {

@@ -3,26 +3,32 @@
 import React from 'react';
 import { Editor } from '../../src';
 
+
+function submitButtonHandler(event) {
+  console.warn('submitButtonHandler === ', event);
+}
+
 /**
- * Default trigger is '@' and default separator between words is ' '.
+ * Default trigger is '=' and default separator between words is ' '.
  * thus there fields are optional.
 */
 const QuickResponse = () => {
-  const handleReturnKey = null;
+  const handleReturnKey = submitButtonHandler;
   return (
     <div className="rdw-storybook-root">
       <span>Type = to see suggestions</span>
-      <form onSubmit={e => console.warn('Submited', e)}>
+      <form onSubmit={() => { submitButtonHandler('ONSUBMIT CALLED'); }}>
         <Editor
           handleReturn={(e) => {
-            console.warn('Outer QuickResponse wrapper handlerReturn');
+            console.info('Outer QuickResponse wrapper handlerReturn', handleReturnKey);
             // By returning 'handled' from your handler, you indicate that the
             // event is handled and the Draft core should do nothing more with it.
             // By returning 'not-handled', you defer to Draft to handle the event.
             if (handleReturnKey && typeof handleReturnKey === 'function') {
-              handleReturnKey(e);
+              handleReturnKey('HANDLE RETURN');
               return 'handled';
             }
+            return 'not-handled';
           }}
           quickResponse={{
             separator: ' ',

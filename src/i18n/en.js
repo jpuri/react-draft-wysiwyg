@@ -62,6 +62,10 @@ module.exports = {
   'components.controls.link.link': 'Link',
   'components.controls.link.unlink': 'Unlink',
 
+  // Quick Responses
+  'components.controls.quickresponse.title': 'Quick Response',
+  'components.controls.quickresponse.empty': 'You do not have any quick response templates yet',
+
   // List
   'components.controls.list.list': 'List',
   'components.controls.list.unordered': 'Unordered',

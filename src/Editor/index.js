@@ -367,16 +367,25 @@ export default class WysiwygEditor extends Component {
   handleReturn: Function = (event: Object): boolean => {
     let returnValue = 'not-handled';
     if (SuggestionHandler.isOpen()) {
+      console.info('Editor handleReturn SuggestionHandler.isOpen()', SuggestionHandler.isOpen());
       returnValue = 'handled';
     }
     const editorState = handleNewLine(this.state.editorState, event);
     if (editorState) {
+      console.info('Editor handleReturn editorState');
       this.onChange(editorState);
       returnValue = 'handled';
     }
-    if (this.editorProps.handleReturn && typeof this.editorProps.handleReturn === 'function') {
-      this.editorProps.handleReturn(event);
+    if (returnValue !== 'handled' && this.editorProps.handleReturn && typeof this.editorProps.handleReturn === 'function') {
+
+      const handleReturnValue = this.editorProps.handleReturn(event);
+      console.info('Editor handleReturn this.editorProps.handleReturn()', handleReturnValue);
+      if (handleReturnValue === 'handled') {
+        returnValue = handleReturnValue
+      }
     }
+
+    console.info('Editor handleReturn returnValue ', returnValue)
     return returnValue;
   };
 
@@ -412,6 +421,7 @@ export default class WysiwygEditor extends Component {
       editorStyle,
       wrapperStyle,
       uploadCallback,
+      quickResponse,
       ariaLabel,
     } = this.props;
 
@@ -443,8 +453,12 @@ export default class WysiwygEditor extends Component {
           {toolbar.options.map((opt, index) => {
             const Control = Controls[opt];
             const config = toolbar[opt];
+
             if (opt === 'image' && uploadCallback) {
               config.uploadCallback = uploadCallback;
+            }
+            if (opt === 'quickResponse' && quickResponse) {
+              config.quickResponse = quickResponse;
             }
             return <Control key={index} {...controlProps} config={config} />;
           })}
@@ -475,6 +489,7 @@ export default class WysiwygEditor extends Component {
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
             blockRenderMap={blockRenderMap}
+
             {...this.editorProps}
             handleReturn={this.handleReturn}
           />

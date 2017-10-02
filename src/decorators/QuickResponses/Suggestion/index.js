@@ -150,11 +150,12 @@ function getSuggestionComponent() {
         } else {
           newState.activeOption = activeOption - 1;
         }
+
       } else if (event.key === 'Escape') {
         newState.showSuggestions = false;
         SuggestionHandler.close();
       } else if (event.key === 'Enter') {
-        this.addQuickResponse();
+        this.addQuickResponse(event.target.value);
       }
       this.setState(newState);
     }
@@ -204,11 +205,13 @@ function getSuggestionComponent() {
         });
     }
 
-    addQuickResponse = () => {
-      const { activeOption } = this.state;
+    addQuickResponse = (index = null) => {
+      const activeIndex = (index && typeof index === 'string' ? index : this.state.activeOption);
+
       const editorState = config.getEditorState();
       const { onChange, separator, trigger } = config;
-      addQuickResponse(editorState, onChange, separator, trigger, this.filteredSuggestions[activeOption]);
+      addQuickResponse(editorState, onChange, separator, trigger,
+        this.filteredSuggestions[activeIndex]);
     }
 
     render() {
@@ -226,17 +229,19 @@ function getSuggestionComponent() {
           <span>{children}</span>
           {showSuggestions &&
             <span
-              className={classNames('rdw-suggestion-dropdown', dropdownClassName)}
+              className={classNames('rdw-quick-response-suggestion-dropdown', dropdownClassName)}
               contentEditable="false"
               style={this.state.style}
               ref={this.setDropdownReference}
             >
               {this.filteredSuggestions.map((suggestion, index) =>
-                (<span
+                (<button
                   key={index}
+                  type="button"
                   spellCheck={false}
                   onClick={this.addQuickResponse}
                   data-index={index}
+                  value={index}
                   onMouseEnter={this.onOptionMouseEnter}
                   onMouseLeave={this.onOptionMouseLeave}
                   className={classNames(
@@ -246,7 +251,7 @@ function getSuggestionComponent() {
                   )}
                 >
                   {suggestion.text}
-                </span>))}
+                </button>))}
             </span>}
         </span>
       );

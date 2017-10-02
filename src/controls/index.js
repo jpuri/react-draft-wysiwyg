@@ -6,6 +6,7 @@ import list from './List';
 import textAlign from './TextAlign';
 import colorPicker from './ColorPicker';
 import link from './Link';
+import quickResponse from './QuickResponse';
 import embedded from './Embedded';
 import emoji from './Emoji';
 import image from './Image';
@@ -21,6 +22,7 @@ module.exports = {
   textAlign,
   colorPicker,
   link,
+  quickResponse,
   embedded,
   emoji,
   image,
