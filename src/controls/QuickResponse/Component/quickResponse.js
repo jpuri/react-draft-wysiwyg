@@ -94,33 +94,35 @@ class QuickResponseComponent extends Component {
 
     return (
       <div
-        className={classNames('rdw-link-modal', popupClassName)}
+        className={classNames('rdw-quick-response-modal', popupClassName)}
         onClick={stopPropagation}
       >
-        <span className="rdw-link-modal-label">
+        <span className="rdw-quick-response-modal-label">
           {translations['components.controls.quickresponse.title']}
         </span>
-        {quickResponse && quickResponse.suggestions.length > 0 ?
-          quickResponse.suggestions.map((suggestion, index) => (
-            <button
-              key={index}
-              type="button"
-              spellCheck={false}
-              onClick={this.addQuickResponse}
-              data-index={index}
-              value={index}
-              onMouseEnter={this.onOptionMouseEnter}
-              onMouseLeave={this.onOptionMouseLeave}
-              className={classNames(
-                'rdw-suggestion-option btn',
-                { 'rdw-suggestion-option-active': (index === 0) },
-              )}
-            >
-              {suggestion.text}
-            </button>))
-          :
-          translations['components.controls.quickresponse.empty']
-        }
+        <div className="rdw-quick-response-modal-suggestions">
+          {quickResponse && quickResponse.suggestions.length > 0 ?
+            quickResponse.suggestions.map((suggestion, index) => (
+              <button
+                key={index}
+                type="button"
+                spellCheck={false}
+                onClick={this.addQuickResponse}
+                data-index={index}
+                value={index}
+                onMouseEnter={this.onOptionMouseEnter}
+                onMouseLeave={this.onOptionMouseLeave}
+                className={classNames(
+                  'rdw-suggestion-option btn',
+                  { 'rdw-suggestion-option-active': (index === 0) },
+                )}
+              >
+                {suggestion.text}
+              </button>))
+            :
+            translations['components.controls.quickresponse.empty']
+          }
+        </div>
       </div>
     );
   }
@@ -133,14 +135,14 @@ class QuickResponseComponent extends Component {
     } = this.props;
     const { showModal } = this.state;
     return (
-      <div className={classNames('rdw-link-wrapper', className)} aria-label="rdw-link-control">
+      <div className={classNames('rdw-quick-response-wrapper', className)} aria-label="rdw-quick-response-control">
         <Option
           value="unordered-list-item"
           className={classNames(quickResponses.className)}
           onClick={this.signalExpandShowModal}
           aria-haspopup="true"
           aria-expanded={showModal}
-          title={quickResponses.title || translations['components.controls.link.link']}
+          title={quickResponses.title || translations['components.controls.quickresponse.title']}
         >
           <img
             src={quickResponses.icon}
@@ -166,14 +168,14 @@ class QuickResponseComponent extends Component {
     const { showModal } = this.state;
     return (
       <div
-        className="rdw-link-wrapper"
+        className="rdw-quick-response-wrapper"
         aria-haspopup="true"
-        aria-label="rdw-link-control"
+        aria-label="rdw-quick-response-control"
         aria-expanded={expanded}
         title={title}
       >
         <Dropdown
-          className={classNames('rdw-link-dropdown', className)}
+          className={classNames('rdw-quick-response-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
           expanded={expanded && !showModal}
