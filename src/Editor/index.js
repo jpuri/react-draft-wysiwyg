@@ -367,25 +367,19 @@ export default class WysiwygEditor extends Component {
   handleReturn: Function = (event: Object): boolean => {
     let returnValue = 'not-handled';
     if (SuggestionHandler.isOpen()) {
-      console.info('Editor handleReturn SuggestionHandler.isOpen()', SuggestionHandler.isOpen());
       returnValue = 'handled';
     }
     const editorState = handleNewLine(this.state.editorState, event);
     if (editorState) {
-      console.info('Editor handleReturn editorState');
       this.onChange(editorState);
       returnValue = 'handled';
     }
     if (returnValue !== 'handled' && this.editorProps.handleReturn && typeof this.editorProps.handleReturn === 'function') {
-
       const handleReturnValue = this.editorProps.handleReturn(event);
-      console.info('Editor handleReturn this.editorProps.handleReturn()', handleReturnValue);
       if (handleReturnValue === 'handled') {
         returnValue = handleReturnValue
       }
     }
-
-    console.info('Editor handleReturn returnValue ', returnValue)
     return returnValue;
   };
 

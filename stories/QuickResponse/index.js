@@ -20,7 +20,6 @@ const QuickResponse = () => {
       <form onSubmit={() => { submitButtonHandler('ONSUBMIT CALLED'); }}>
         <Editor
           handleReturn={(e) => {
-            console.info('Outer QuickResponse wrapper handlerReturn', handleReturnKey);
             // By returning 'handled' from your handler, you indicate that the
             // event is handled and the Draft core should do nothing more with it.
             // By returning 'not-handled', you defer to Draft to handle the event.
@@ -34,14 +33,14 @@ const QuickResponse = () => {
             separator: ' ',
             trigger: '=',
             suggestions: [
-              { text: 'APPLE', value: 'Hi!\n\nThank your for contacting us.\n\nPlease wait for 24 hours before you contact us again.\n\nHave a nice day.\n\n', url: 'apple' },
-              { text: 'BANANA', value: 'Hi!\n\nThank your for contacting us.\n\nPlease wait for 24 hours before you contact us again.\n\nHave a nice day.\n\n', url: 'banana' },
-              { text: 'CHERRY', value: 'cherry', url: 'cherry' },
-              { text: 'DURIAN', value: 'durian', url: 'durian' },
-              { text: 'EGGFRUIT', value: 'eggfruit', url: 'eggfruit' },
-              { text: 'FIG', value: 'fig', url: 'fig' },
-              { text: 'GRAPEFRUIT', value: 'grapefruit', url: 'grapefruit' },
-              { text: 'HONEYDEW', value: 'honeydew', url: 'honeydew' },
+              { text: 'Apple one', value: 'Hi!\n\nThank your for contacting us.\n\nPlease wait for 24 hours before you contact us again.\n\nHave a nice day.\n\n', url: 'apple' },
+              { text: 'Apple Two', value: 'Hi!\n\nThank your for contacting us.\n\nPlease wait for 24 hours before you contact us again.\n\nHave a nice day.\n\n', url: 'banana' },
+              { text: 'Cherry cherry', value: 'cherry', url: 'cherry' },
+              { text: 'Durian', value: 'durian', url: 'durian' },
+              { text: 'EGG egg EGG', value: 'eggfruit', url: 'eggfruit' },
+              { text: 'fFFFiiggg', value: 'fig', url: 'fig' },
+              { text: 'Grapefruit', value: 'grapefruit', url: 'grapefruit' },
+              { text: 'Honeydew', value: 'honeydew', url: 'honeydew' },
             ],
           }}
           toolbarClassName="rdw-storybook-toolbar"

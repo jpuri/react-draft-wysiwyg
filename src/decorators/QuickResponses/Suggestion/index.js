@@ -150,7 +150,6 @@ function getSuggestionComponent() {
         } else {
           newState.activeOption = activeOption - 1;
         }
-
       } else if (event.key === 'Escape') {
         newState.showSuggestions = false;
         SuggestionHandler.close();
@@ -192,16 +191,14 @@ function getSuggestionComponent() {
     filterSuggestions = (props) => {
       const quickResponseText = props.children[0].props.text.substr(1);
       const suggestions = config.getSuggestions();
+
       this.filteredSuggestions =
         suggestions && suggestions.filter((suggestion) => {
-          if (!quickResponseText || quickResponseText.length === 0) {
+          if (!quickResponseText) {
             return true;
           }
-          if (config.caseSensitive) {
-            return suggestion.value.indexOf(quickResponseText) >= 0;
-          }
-          return suggestion.value.toLowerCase()
-            .indexOf(quickResponseText && quickResponseText.toLowerCase()) >= 0;
+          return suggestion.text.toLowerCase()
+            .indexOf(quickResponseText && quickResponseText.toLowerCase()) !== -1;
         });
     }
 
