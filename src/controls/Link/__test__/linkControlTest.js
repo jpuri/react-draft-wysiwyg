@@ -10,6 +10,7 @@ import {
 } from 'draft-js';
 
 import LinkControl from '..';
+import Option from '../../../components/Option';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
 import localeTranslations from '../../../i18n';
@@ -41,7 +42,7 @@ describe('LinkControl test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    expect(control.children().length).to.equal(2);
+    expect(control.find(Option).length).to.equal(2);
   });
 
   it('should have no value for state variable link default', () => {
@@ -54,8 +55,8 @@ describe('LinkControl test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    const linkControl = control.find('Link');
-    assert.isNotTrue(linkControl.node.state.expanded);
-    assert.equal(linkControl.node.state.link, undefined);
+    const state = control.state();
+    assert.isNotTrue(state.expanded);
+    assert.equal(state.link, undefined);
   });
 });

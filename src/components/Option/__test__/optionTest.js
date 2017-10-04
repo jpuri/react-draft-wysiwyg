@@ -3,19 +3,19 @@
 import React from 'react';
 import { expect } from 'chai';
 import { spy } from 'sinon';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Option from '..';
 
 describe('Option test suite', () => {
-  it('should have a div when rendered', () => {
-    expect(shallow(
+  it('should have a span when rendered', () => {
+    expect(mount(
       <Option
         value="b"
         onClick={() => {}}
       >
         <span>testing</span>
       </Option>,
-    ).node.type).to.equal('div');
+    ).childAt(0).type()).to.equal('div');
   });
 
   it('should have child element passed after mount', () => {
@@ -28,7 +28,7 @@ describe('Option test suite', () => {
       </Option>,
     );
     expect(option.children().length).to.equal(1);
-    expect(option.children().type()).to.equal('span');
+    expect(option.children().type()).to.equal('div');
   });
 
   it('should execute funcion passed in onClick props when clicked', () => {
