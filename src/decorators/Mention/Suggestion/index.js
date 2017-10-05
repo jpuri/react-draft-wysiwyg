@@ -209,7 +209,7 @@ function getSuggestionComponent() {
       const editorState = config.getEditorState();
       const { onChange, separator, trigger } = config;
       const selectedMention = this.filteredSuggestions[activeOption];
-      if(selectedMention) {
+      if (selectedMention) {
         addMention(editorState, onChange, separator, trigger, selectedMention);
       }
     }
