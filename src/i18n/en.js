@@ -19,7 +19,7 @@ module.exports = {
   // Color Picker
   'components.controls.colorpicker.colorpicker': 'Color Picker',
   'components.controls.colorpicker.text': 'Text',
-  'components.controls.colorpicker.background': 'Background',
+  'components.controls.colorpicker.background': 'Highlight',
 
   // Embedded
   'components.controls.embedded.embedded': 'Embedded',
