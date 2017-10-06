@@ -943,6 +943,11 @@
   margin-bottom: 5px;
   user-select: none;
 }
+.rdw-storybook-wrapper.rdw-editor-wrapper .rdw-editor-toolbar.rdw-storybook-toolbar img{
+  width: 20px;
+  height: 20px;
+}
+
 .public-DraftStyleDefault-block {
   margin: 1em 0;
 }
@@ -960,7 +965,8 @@
   background: #f1f1f1;
   border-radius: 3px;
   padding: 1px 10px;
-}/**
+}
+/**
  * Draft v0.9.1
  *
  * Copyright (c) 2013-present, Facebook, Inc.
