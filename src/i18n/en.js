@@ -30,7 +30,7 @@ module.exports = {
   'components.controls.emoji.emoji': 'Emoji',
 
   // FontFamily
-  'components.controls.fontfamily.fontfamily': 'Font Family',
+  'components.controls.fontfamily.fontfamily': 'Font',
 
   // FontSize
   'components.controls.fontsize.fontsize': 'Font Size',
