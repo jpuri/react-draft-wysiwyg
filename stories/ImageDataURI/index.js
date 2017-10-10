@@ -23,6 +23,7 @@ const ImageUpload = () =>
       toolbar={{
         image: {
           uploadCallback: uploadImageCallBack,
+          previewImage: true,
         },
       }}
     />
