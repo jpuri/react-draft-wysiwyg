@@ -40,13 +40,6 @@ const getImageComponent = config => class Image extends Component {
     });
   };
 
-  toggleHovered: Function = (): void => {
-    const hovered = !this.state.hovered;
-    this.setState({
-      hovered,
-    });
-  };
-
   renderAlignmentOptions(alignment): Object {
     return (
       <div
@@ -88,8 +81,8 @@ const getImageComponent = config => class Image extends Component {
 
     return (
       <span
-        onMouseEnter={this.toggleHovered}
-        onMouseLeave={this.toggleHovered}
+        onMouseEnter={() => this.setState({ hovered: true })}
+        onMouseLeave={() => this.setState({ hovered: false })}
         className={classNames(
           'rdw-image-alignment',
           {
