@@ -36,3 +36,31 @@
 .rdw-justify-aligned-block > div {
   display: inline-block;
 }
+
+.rdw-indent-0 {
+  margin-left: 0;
+}
+.rdw-indent-1 {
+  margin-left: 2em;
+}
+.rdw-indent-2 {
+  margin-left: 4em;
+}
+.rdw-indent-3 {
+  margin-left: 6em;
+}
+.rdw-indent-4 {
+  margin-left: 8em;
+}
+.rdw-indent-5 {
+  margin-left: 10em;
+}
+.rdw-indent-6 {
+  margin-left: 12em;
+}
+.rdw-indent-7 {
+  margin-left: 14em;
+}
+.rdw-indent-8 {
+  margin-left: 16em;
+}

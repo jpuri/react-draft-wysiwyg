@@ -63,7 +63,12 @@ export default class TextAlign extends Component {
   addBlockAlignmentData:Function = (value: string) => {
     const { editorState, onChange } = this.props;
     const { currentTextAlignment } = this.state;
-    if (currentTextAlignment !== value) {
+    const currentIndent = getSelectedBlocksMetadata(editorState).get('indent');
+    if (value === 'indent') {
+      onChange(setBlockData(editorState, { 'indent': currentIndent ? Math.min(8, currentIndent + 1) : 1 }));
+    } else if (value === 'outdent') {
+      onChange(setBlockData(editorState, { 'indent': currentIndent ? Math.max(0, currentIndent - 1) : 0 }));
+    } else if (currentTextAlignment !== value) {
       onChange(setBlockData(editorState, { 'text-align': value }));
     } else {
       onChange(setBlockData(editorState, { 'text-align': undefined }));
