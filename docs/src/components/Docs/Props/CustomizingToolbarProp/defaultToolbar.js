@@ -50,11 +50,13 @@ export default '{\n' +
   '    className: undefined,\n' +
   '    component: undefined,\n' +
   '    dropdownClassName: undefined,\n' +
-  '    options: [\'left\', \'center\', \'right\', \'justify\'],\n' +
+  '    options: [\'left\', \'center\', \'right\', \'justify\', \'indent\', \'outdent\'],\n' +
   '    left: { icon: left, className: undefined },\n' +
   '    center: { icon: center, className: undefined },\n' +
   '    right: { icon: right, className: undefined },\n' +
   '    justify: { icon: justify, className: undefined },\n' +
+  '    indent: { icon: indent, className: undefined },\n' +
+  '    outdent: { icon: outdent, className: undefined },\n' +
   '  },\n' +
   '  colorPicker: {\n' +
   '    icon: color,\n' +
