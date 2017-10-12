@@ -33,7 +33,7 @@ describe('TextAlignControl test suite', () => {
     ).html().startsWith('<div')).to.equal(true);
   });
 
-  it('should have 4 child elements by default', () => {
+  it('should have 6 child elements by default', () => {
     const control = mount(
       <TextAlignControl
         onChange={() => {}}
@@ -43,10 +43,10 @@ describe('TextAlignControl test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    expect(control.find(Option).length).to.equal(4);
+    expect(control.find(Option).length).to.equal(6);
   });
 
-  it('should have 5 child options of dropdown child elements if inDropdown is true', () => {
+  it('should have 7 child options of dropdown child elements if inDropdown is true', () => {
     const control = mount(
       <TextAlignControl
         onChange={() => {}}
@@ -56,7 +56,7 @@ describe('TextAlignControl test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    expect(control.childAt(0).childAt(0).prop('children').length).to.equal(5);
+    expect(control.childAt(0).childAt(0).prop('children').length).to.equal(7);
   });
 
   it('should execute onChange when any of first any child elements is clicked', () => {
