@@ -153,9 +153,7 @@ export default class WysiwygEditor extends Component {
         newState.editorState = EditorState.createEmpty(this.compositeDecorator);
       }
     }
-    if (newState.editorState &&
-      (this.props.editorState && this.props.editorState.getCurrentContent().getBlockMap().size) !==
-      (newState.editorState && newState.editorState.getCurrentContent().getBlockMap().size)) {
+    if (props.editorState !== this.props.editorState || props.contentState !== this.props.contentState) {
       extractInlineStyle(newState.editorState);
     }
     this.setState(newState);
