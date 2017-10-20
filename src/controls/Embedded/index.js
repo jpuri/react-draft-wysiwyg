@@ -53,6 +53,13 @@ class Embedded extends Component {
   };
 
   addEmbeddedLink: Function = (embeddedLink, height, width): void => {
+    
+    if (embeddedLink.indexOf("youtube") >= 0){
+      embeddedLink = embeddedLink.replace("watch?v=","embed/");
+      embeddedLink = embeddedLink.replace("/watch/", "/embed/");
+      embeddedLink = embeddedLink.replace("youtu.be/","youtube.com/embed/");
+    }
+    
     const { editorState, onChange } = this.props;
     const entityKey = editorState
       .getCurrentContent()
