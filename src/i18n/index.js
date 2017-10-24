@@ -8,6 +8,7 @@ import it from './it';
 import nl from './nl';
 import de from './de';
 import da from './da';
+import pl from './pl';
 
 module.exports = {
   en,
@@ -19,5 +20,6 @@ module.exports = {
   it,
   nl,
   de,
-  da
+  da,
+  pl
 };
