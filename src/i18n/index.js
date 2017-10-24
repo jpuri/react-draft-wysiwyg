@@ -8,7 +8,7 @@ import it from './it';
 import nl from './nl';
 import de from './de';
 import da from './da';
-import zh_tw from './zh-tw';
+import zh_tw from './zh_tw';
 
 module.exports = {
   en,
