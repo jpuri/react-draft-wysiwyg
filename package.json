@@ -1,6 +1,6 @@
 {
   "name": "@dixa/react-draft-wysiwyg",
-  "version": "1.10.13-beta24",
+  "version": "1.10.13-beta25",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
