@@ -137,8 +137,8 @@ class QuickResponseComponent extends Component {
           {translations['components.controls.quickresponse.title']}
         </span>
         <div className="rdw-quick-response-modal-suggestions">
-          {this.state.renderTemplateAsyncStatus === 'loading' ? <span classNames="quick-response-loading">Loading...</span> : null}
-          {this.state.renderTemplateAsyncStatus === 'failed' ? <span classNames="quick-response-failed">Failed...</span> : null}
+          {this.state.renderTemplateAsyncStatus === 'loading' ? <span className="quick-response-loading">Loading...</span> : null}
+          {this.state.renderTemplateAsyncStatus === 'failed' ? <span className="quick-response-failed">Failed...</span> : null}
           {this.state.renderTemplateAsyncStatus !== 'loading' && quickResponse && quickResponse.suggestions.length > 0 ?
             quickResponse.suggestions.map((suggestion, index) => (
               <button
