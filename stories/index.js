@@ -8,6 +8,8 @@ import SpellCheck from './SpellCheck';
 import HashTag from './HashTag';
 import Mention from './Mention';
 import QuickResponse from './QuickResponse';
+import QuickResponseWithCount from './QuickResponseWithCount';
+import QuickResponseWithRender from './QuickResponseWithRender';
 import I18n from './I18n';
 import ToolbarHidden from './ToolbarHidden';
 import ImageUpload from './ImageUpload';
@@ -34,6 +36,8 @@ storiesOf('FocusBlurCallbacks', module).add('story', () => <FocusBlurCallbacks /
 storiesOf('HashTag', module).add('story', () => <HashTag />);
 storiesOf('Mention', module).add('story', () => <Mention />);
 storiesOf('QuickResponse', module).add('story', () => <QuickResponse />);
+storiesOf('QuickResponseWithCount', module).add('story', () => <QuickResponseWithCount />);
+storiesOf('QuickResponseWithRender', module).add('story', () => <QuickResponseWithRender />);
 storiesOf('SelectedOptions', module).add('story', () => <SelectedOptions />);
 storiesOf('CustomToolbar', module).add('story', () => <CustomToolbar />);
 storiesOf('FloatingToolbar', module).add('story', () => <FloatingToolbar />);

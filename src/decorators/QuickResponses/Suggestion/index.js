@@ -19,6 +19,8 @@ class Suggestion {
       dropdownClassName,
       optionClassName,
       modalHandler,
+      renderTemplate,
+      templateUsageCount,
     } = config;
     this.config = {
       separator,
@@ -31,6 +33,8 @@ class Suggestion {
       dropdownClassName,
       optionClassName,
       modalHandler,
+      renderTemplate,
+      templateUsageCount,
     };
   }
 
@@ -204,11 +208,43 @@ function getSuggestionComponent() {
 
     addQuickResponse = (index = null) => {
       const activeIndex = (index && typeof index === 'string' ? index : this.state.activeOption);
+      const suggestion = this.filteredSuggestions[activeIndex];
+      const { renderTemplate } = config;
 
+      // Quick response render.
+      if (renderTemplate && typeof renderTemplate === 'function') {
+        this.renderTemplate({ suggestion, index: activeIndex });
+      } else {
+        this.addSuggestion({ suggestion, index: activeIndex });
+      }
+    }
+
+    addSuggestion: Function = (payload: {suggestion: *, index: number}): void => {
+      const { suggestion } = payload;
       const editorState = config.getEditorState();
-      const { onChange, separator, trigger } = config;
-      addQuickResponse(editorState, onChange, separator, trigger,
-        this.filteredSuggestions[activeIndex]);
+      const { onChange, separator, trigger, templateUsageCount } = config;
+
+      addQuickResponse(editorState, onChange, separator, trigger, suggestion);
+
+      if (templateUsageCount && typeof templateUsageCount === 'function') {
+        templateUsageCount();
+      }
+    }
+
+    renderTemplate: Function = (payload: {suggestion: *, index: number}): void => {
+      const { index, suggestion } = payload;
+      const { renderTemplate } = config;
+      const suggestionCopy = Object.assign({}, suggestion);
+      renderTemplate({ content: suggestion.value, subject: suggestion.subject })
+        .then((response) => {
+          console.warn('response', response);
+          suggestionCopy.value = response.data.rendered_content;
+          this.addSuggestion({ suggestion: suggestionCopy, index });
+        })
+        .catch((exception) => {
+          console.warn('renderTemplate exception', exception);
+          this.addSuggestion({ suggestion, index });
+        });
     }
 
     render() {

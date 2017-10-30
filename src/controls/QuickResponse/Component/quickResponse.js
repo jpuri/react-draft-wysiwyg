@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Modifier, EditorState } from 'draft-js';
-import addQuickResponse from '../../../decorators/QuickResponses/addQuickResponse';
 import { stopPropagation } from '../../../utils/common';
 import { getFirstIcon } from '../../../utils/toolbar';
 import Option from '../../../components/Option';
@@ -27,6 +26,8 @@ class QuickResponseComponent extends Component {
   state: Object = {
     showModal: false,
     activeOption: -1,
+    renderTemplateAsyncStatus: 'succeeded',
+    countTemplateAsyncStatus: 'succeeded',
   };
 
   componentWillReceiveProps(props) {
@@ -34,6 +35,8 @@ class QuickResponseComponent extends Component {
       this.setState({
         showModal: false,
         activeOption: -1,
+        renderTemplateAsyncStatus: 'succeeded',
+        countTemplateAsyncStatus: 'succeeded',
       });
     }
   }
@@ -51,11 +54,10 @@ class QuickResponseComponent extends Component {
     });
   }
 
-  addQuickResponse: Function = (index: number = null): void => {
-    const activeIndex = (index && typeof index === 'string' ? index : this.state.activeOption);
-    const quickResponse = this.props.config.quickResponse;
+  addValue: Function = (payload: {value: string, index: number}): void => {
+    const { index, value } = payload;
     const { editorState, onChange } = this.props;
-    const value = quickResponse.suggestions[activeIndex].value;
+    const { templateUsageCount } = this.props.config;
     const entityKey = editorState
       .getCurrentContent()
       .createEntity('QUICK_RESPONSE', 'IMMUTABLE', { text: `${value}`, value })
@@ -63,12 +65,29 @@ class QuickResponseComponent extends Component {
     const contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
       editorState.getSelection(),
-      quickResponse.suggestions[activeIndex].value,
+      value,
       editorState.getCurrentInlineStyle(),
       entityKey,
     );
     onChange(EditorState.push(editorState, contentState, 'insert-characters'));
     this.props.doCollapse();
+    if (templateUsageCount) {
+      templateUsageCount({ index, value });
+    }
+  }
+
+  addQuickResponse: Function = (index: number = null): void => {
+    const activeIndex = (index && typeof index === 'string' ? index : this.state.activeOption);
+    const { quickResponse, renderTemplate } = this.props.config;
+
+    const value = quickResponse.suggestions[activeIndex].value;
+    const subject = quickResponse.suggestions[activeIndex].subject;
+
+    if (renderTemplate) {
+      this.renderTemplate({ value, index: activeIndex, subject });
+    } else {
+      this.addValue({ value, index: activeIndex });
+    }
   };
 
   forceExpandAndShowModal: Function = (): void => {
@@ -89,6 +108,23 @@ class QuickResponseComponent extends Component {
     });
   }
 
+  renderTemplate: Function = (payload: {value: string, index: number}): void => {
+    const { index, value } = payload;
+    const { renderTemplate } = this.props.config;
+    this.setState({ renderTemplateAsyncStatus: 'loading' });
+    renderTemplate({ content: value })
+      .then((response) => {
+        console.warn('response', response);
+        this.setState({ renderTemplateAsyncStatus: 'succeeded' });
+        this.addValue({ value: response.data.rendered_content, index });
+      })
+      .catch((exception) => {
+        console.warn('renderTemplate exception', exception);
+        this.setState({ renderTemplateAsyncStatus: 'failed' });
+        this.addValue({ value, index });
+      });
+  }
+
   renderAddQuickResponseModal() {
     const { config: { popupClassName, quickResponse }, translations } = this.props;
 
@@ -101,6 +137,8 @@ class QuickResponseComponent extends Component {
           {translations['components.controls.quickresponse.title']}
         </span>
         <div className="rdw-quick-response-modal-suggestions">
+          {this.state.renderTemplateAsyncStatus === 'loading' ? 'Loading...' : null}
+          {this.state.renderTemplateAsyncStatus === 'failed' ? 'Failed' : null}
           {quickResponse && quickResponse.suggestions.length > 0 ?
             quickResponse.suggestions.map((suggestion, index) => (
               <button

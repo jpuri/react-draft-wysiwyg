@@ -69,6 +69,8 @@ export default class WysiwygEditor extends Component {
     onTab: PropTypes.func,
     mention: PropTypes.object,
     quickResponse: PropTypes.object,
+    templateUsageCount: PropTypes.func,
+    renderTemplate: PropTypes.func,
     hashtag: PropTypes.object,
     textAlignment: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
     readOnly: PropTypes.bool,
@@ -259,6 +261,8 @@ export default class WysiwygEditor extends Component {
         ...this.props.quickResponse,
         onChange: this.onChange,
         getEditorState: this.getEditorState,
+        renderTemplate: this.props.renderTemplate,
+        templateUsageCount: this.props.templateUsageCount,
         getSuggestions: this.getQuickResponseSuggestions,
         getWrapperRef: this.getWrapperRef,
         modalHandler: this.modalHandler,
@@ -334,7 +338,8 @@ export default class WysiwygEditor extends Component {
     'defaultContentState', 'contentState', 'editorState', 'defaultEditorState', 'locale',
     'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
-    'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'quickResponse', 'hashtag',
+    'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention',
+    'quickResponse', 'templateUsageCount', 'renderTemplate', 'hashtag',
     'ariaLabel', 'customBlockRenderFunc', 'customDecorators',
   ]);
 
@@ -416,6 +421,8 @@ export default class WysiwygEditor extends Component {
       wrapperStyle,
       uploadCallback,
       quickResponse,
+      templateUsageCount,
+      renderTemplate,
       ariaLabel,
     } = this.props;
 
@@ -453,6 +460,12 @@ export default class WysiwygEditor extends Component {
             }
             if (opt === 'quickResponse' && quickResponse) {
               config.quickResponse = quickResponse;
+              if (templateUsageCount && typeof templateUsageCount === 'function') {
+                config.templateUsageCount = templateUsageCount;
+              }
+              if (renderTemplate && typeof renderTemplate === 'function') {
+                config.renderTemplate = renderTemplate;
+              }
             }
             return <Control key={index} {...controlProps} config={config} />;
           })}

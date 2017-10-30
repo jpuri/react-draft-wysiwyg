@@ -23,7 +23,7 @@ import undo from '../../images/undo.svg';
 import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
 import superscript from '../../images/superscript.svg';
-
+import fastMessage from '../../images/fast-message.svg';
 /**
 * This is default toolbar configuration,
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
@@ -124,7 +124,7 @@ export default {
     dropdownClassName: undefined,
     showOpenOptionOnHover: true,
     defaultTargetOption: '_self',
-    quickResponses: { icon: justify, className: undefined, title: undefined },
+    quickResponses: { icon: fastMessage, className: undefined, title: undefined },
   },
   emoji: {
     icon: emoji,
