@@ -53,6 +53,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "draftjs-utils": "^0.8.07",
+    "linkify-it": "^2.0.3",
     "prop-types": "^15.5.10"
   },
   "peerDependencies": {

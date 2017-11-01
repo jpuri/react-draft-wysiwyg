@@ -3,6 +3,7 @@
 import React from 'react';
 import { expect, assert } from 'chai';
 import { mount } from 'enzyme';
+import { spy } from 'sinon';
 import {
   EditorState,
   convertFromHTML,
@@ -57,5 +58,28 @@ describe('LinkControl test suite', () => {
     const linkControl = control.find('Link');
     assert.isNotTrue(linkControl.node.state.expanded);
     assert.equal(linkControl.node.state.link, undefined);
+  });
+
+  it('should convert links starting with www to start with http://', () => {
+    const onChange = spy();
+    const control = mount(
+      <LinkControl
+        config={defaultToolbar.link}
+        onChange={onChange}
+        editorState={editorState}
+        translations={localeTranslations.en}
+        modalHandler={new ModalHandler()}
+      />,
+    );
+    control.setState({ expanded: true });
+    const buttons = control.find('.rdw-option-wrapper');
+    buttons.first().simulate('click');
+    const inputs = control.find('.rdw-link-modal-input');
+    inputs.last().simulate('change', { target: { name: 'linkTitle', value: 'the google' } });
+    inputs.first().simulate('change', { target: { name: 'linkTarget', value: 'www.google.com' } });
+    const addButton = control.find('.rdw-link-modal-btn').first();
+    addButton.simulate('click');
+    const lastCall = contentState.getLastCreatedEntityKey();
+    assert.equal(contentState.getEntity(lastCall).getData().url, 'http://www.google.com');
   });
 });

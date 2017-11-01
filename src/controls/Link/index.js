@@ -8,8 +8,11 @@ import {
   getEntityRange,
   getSelectionEntity,
 } from 'draftjs-utils';
+import linkifyIt from 'linkify-it';
 
 import LayoutComponent from './Component';
+
+const linkify = linkifyIt();
 
 class Link extends Component {
   static propTypes = {
@@ -56,7 +59,9 @@ class Link extends Component {
 
   onChange = (action, title, target, targetOption) => {
     if (action === 'link') {
-      this.addLink(title, target, targetOption);
+      const links = linkify.match(target);
+      const linkifiedTarget = links && links[0] ? links[0].url : '';
+      this.addLink(title, linkifiedTarget, targetOption);
     } else {
       this.removeLink();
     }

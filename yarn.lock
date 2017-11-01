@@ -2101,8 +2101,9 @@ draftjs-to-markdown@^0.4.4:
   version "0.4.4"
   resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.4.4.tgz#cff9cbdf6999c2c70005f6b641aae794ef7d396e"
 
-"draftjs-utils@file:../draftjs-utils":
-  version "0.8.7"
+draftjs-utils@^0.8.07:
+  version "0.8.8"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.8.8.tgz#5835daed95f59d3ee1f96fdcbbb9809772c86490"
 
 ecc-jsbn@~0.1.1:
   version "0.1.1"
@@ -3465,6 +3466,12 @@ levn@^0.3.0, levn@~0.3.0:
   dependencies:
     prelude-ls "~1.1.2"
     type-check "~0.3.2"
+
+linkify-it@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-2.0.3.tgz#d94a4648f9b1c179d64fa97291268bdb6ce9434f"
+  dependencies:
+    uc.micro "^1.0.1"
 
 load-json-file@^1.0.0:
   version "1.1.0"
@@ -5625,6 +5632,10 @@ typedarray@^0.0.6:
 ua-parser-js@^0.7.9:
   version "0.7.12"
   resolved "https://registry.yarnpkg.com/ua-parser-js/-/ua-parser-js-0.7.12.tgz#04c81a99bdd5dc52263ea29d24c6bf8d4818a4bb"
+
+uc.micro@^1.0.1:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/uc.micro/-/uc.micro-1.0.3.tgz#7ed50d5e0f9a9fb0a573379259f2a77458d50192"
 
 uglify-js@^2.8.29:
   version "2.8.29"
