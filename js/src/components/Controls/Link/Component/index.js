@@ -49,6 +49,7 @@ class LayoutComponent extends Component {
   addLink: Function = (): void => {
     const { onChange } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
+    console.log('linkTarget', linkTarget)
     onChange('link', linkTitle, linkTarget, linkTargetOption);
   };
 

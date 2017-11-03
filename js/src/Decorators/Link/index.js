@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Entity } from 'draft-js';
 import styles from './styles.css'; // eslint-disable-line no-unused-vars
 import openlink from '../../../../images/openlink.svg';
 
@@ -13,8 +12,14 @@ function findLinkEntities(contentBlock, callback, contentState) {
         contentState.getEntity(entityKey).getType() === 'LINK'
       );
     },
-    callback
+    callback,
   );
+}
+
+function addMissingHttp(url) {
+  return /^http(s?):\/\//.test(url)
+    ? url
+    : `http://${url}`;
 }
 
 class Link extends Component {
@@ -45,15 +50,16 @@ class Link extends Component {
 
   render() {
     const { children, entityKey, contentState } = this.props;
-    const { url, title, targetOption } = contentState.getEntity(entityKey).getData();
+    const { url, targetOption } = contentState.getEntity(entityKey).getData();
     const { showPopOver } = this.state;
+    const href = targetOption === '_blank' ? addMissingHttp(url) : url;
     return (
       <span
         className="rdw-link-decorator-wrapper"
         onMouseEnter={this.toggleShowPopOver}
         onMouseLeave={this.toggleShowPopOver}
       >
-        <a href={url} target={targetOption}>{children}</a>
+        <a href={href} target={targetOption}>{children}</a>
         {showPopOver ?
           <img
             src={openlink}
