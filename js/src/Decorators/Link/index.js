@@ -53,6 +53,7 @@ class Link extends Component {
     const { url, targetOption } = contentState.getEntity(entityKey).getData();
     const { showPopOver } = this.state;
     const href = targetOption === '_blank' ? addMissingHttp(url) : url;
+    console.log('super cool href', href)
     return (
       <span
         className="rdw-link-decorator-wrapper"
