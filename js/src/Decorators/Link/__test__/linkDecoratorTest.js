@@ -11,7 +11,7 @@ describe('LinkDecorator test suite', () => {
   const contentBlocks = convertFromHTML('<div>test</div>');
   const contentState = ContentState.createFromBlockArray(contentBlocks);
   const entityKey = contentState
-    .createEntity('LINK', 'MUTABLE', { title: 'title', url: 'url' })
+    .createEntity('LINK', 'MUTABLE', { title: 'title', url: 'url.com', targetOption: '_blank' })
     .getLastCreatedEntityKey();
 
   it('should have a div when rendered', () => {
@@ -36,5 +36,12 @@ describe('LinkDecorator test suite', () => {
     const control = mount(<Link entityKey={entityKey} contentState={contentState}>Link</Link>);
     control.setState({ showPopOver: true });
     expect(control.children().length).to.equal(2);
+  });
+
+  it('should add protocol when missing for _blank targets', () => {
+    const Link = LinkDecorator.component;
+    const wrapper = shallow(<Link entityKey={entityKey} contentState={contentState}>Link</Link>);
+    const a = wrapper.find('a');
+    expect(a.prop('href')).to.equal('http://url.com');
   });
 });
