@@ -29,10 +29,17 @@ function getLinkComponent(config) {
       showPopOver: false,
     };
 
+    prependProtocol: Function = (url) => {
+      const regex = /^http(s)?:\/\//;
+      const urlWithProtocol = regex.test(url) ? url : `http://${url}`;
+      return urlWithProtocol;
+    }
+
     openLink: Function = () => {
       const { entityKey, contentState } = this.props;
       const { url } = contentState.getEntity(entityKey).getData();
-      const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
+      const href = this.prependProtocol(url);
+      const linkTab = window.open(href, 'blank'); // eslint-disable-line no-undef
       linkTab.focus();
     };
 
