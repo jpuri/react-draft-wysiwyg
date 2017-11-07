@@ -17,11 +17,10 @@ function findLinkEntities(contentBlock, callback, contentState) {
 }
 
 function addMissingHttp(url) {
-  return /^http(s?):\/\//.test(url)
-    ? url
-    : `http://${url}`;
+  const regex = /^http(s)?:\/\//;
+  const urlWithProtocol = regex.test(url) ? url : `http://${url}`;
+  return urlWithProtocol;
 }
-
 class Link extends Component {
 
   static propTypes = {
@@ -52,7 +51,7 @@ class Link extends Component {
     const { children, entityKey, contentState } = this.props;
     const { url, targetOption } = contentState.getEntity(entityKey).getData();
     const { showPopOver } = this.state;
-    const href = targetOption === '_blank' ? addMissingHttp(url) : url;
+    const href = addMissingHttp(url)
     console.log('super cool href', href)
     return (
       <span
