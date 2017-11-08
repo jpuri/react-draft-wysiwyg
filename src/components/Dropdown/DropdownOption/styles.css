@@ -14,3 +14,27 @@
   opacity: 0.3;
   cursor: default;
 }
+.heading-h1 {
+  font-weight: 700;
+  font-size: 30px;
+}
+.heading-h2 {
+  font-weight: 700;
+  font-size: 24px;
+}
+.heading-h3 {
+  font-weight: 700;
+  font-size: 18px;
+}
+.heading-h4 {
+  font-weight: 700;
+  font-size: 16px;
+}
+.heading-h5 {
+  font-weight: 700;
+  font-size: 12px;
+}
+.heading-h6 { 
+  font-weight: 700;
+  font-size: 11px;
+}
