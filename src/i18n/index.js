@@ -8,6 +8,7 @@ import it from './it';
 import nl from './nl';
 import de from './de';
 import da from './da';
+import zh_tw from './zh_tw';
 import pl from './pl';
 
 module.exports = {
@@ -21,5 +22,6 @@ module.exports = {
   nl,
   de,
   da,
+  zh_tw,
   pl
 };
