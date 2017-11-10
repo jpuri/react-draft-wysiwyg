@@ -19,7 +19,7 @@ module.exports = {
   // Color Picker
   'components.controls.colorpicker.colorpicker': 'Color Picker',
   'components.controls.colorpicker.text': 'Text',
-  'components.controls.colorpicker.background': 'Background',
+  'components.controls.colorpicker.background': 'Highlight',
 
   // Embedded
   'components.controls.embedded.embedded': 'Embedded',
@@ -30,7 +30,7 @@ module.exports = {
   'components.controls.emoji.emoji': 'Emoji',
 
   // FontFamily
-  'components.controls.fontfamily.fontfamily': 'Font Family',
+  'components.controls.fontfamily.fontfamily': 'Font',
 
   // FontSize
   'components.controls.fontsize.fontsize': 'Font Size',

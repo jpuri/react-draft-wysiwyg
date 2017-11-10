@@ -18,13 +18,11 @@ export default function addMention(
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
-  const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger) || 0) + 1;
-  let focusOffset;
+  let focusOffset = editorState.getSelection().focusOffset;
+  const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger, focusOffset) || 0) + 1;
   let spaceAlreadyPresent = false;
   if (selectedBlockText.length === mentionIndex + 1) {
     focusOffset = selectedBlockText.length;
-  } else {
-    focusOffset = editorState.getSelection().focusOffset;
   }
   if (selectedBlockText[focusOffset] === ' ') {
     spaceAlreadyPresent = true;
