@@ -26,14 +26,13 @@ function uploadImageCallBack(file) {
 
 const ImageUpload = () =>
   (<div className="rdw-storybook-root">
-    <h3>Imge option supports image upload also.</h3>
+    <h3>File option supports file upload also.</h3>
     <Editor
       toolbarClassName="rdw-storybook-toolbar"
       wrapperClassName="rdw-storybook-wrapper"
       editorClassName="rdw-storybook-editor"
-      uploadCallback={uploadImageCallBack}
       toolbar={{
-        image: {
+        file: {
           uploadCallback: uploadImageCallBack,
           uploadEnabled: true,
           alt: { present: true, mandatory: false },

@@ -9,6 +9,8 @@ import {
   convertToRaw,
   convertFromRaw,
   CompositeDecorator,
+  AtomicBlockUtils,
+  Modifier
 } from 'draft-js';
 import {
   changeDepth,
@@ -17,7 +19,11 @@ import {
   getCustomStyleMap,
   extractInlineStyle,
   getSelectedBlocksType,
+  getSelectionText,
+  getEntityRange,
+  getSelectionEntity,
 } from 'draftjs-utils';
+
 import classNames from 'classnames';
 import ModalHandler from '../event-handler/modals';
 import FocusHandler from '../event-handler/focus';
@@ -35,6 +41,7 @@ import getHashtagDecorator from '../decorators/HashTag';
 import getBlockRenderFunc from '../renderer';
 import defaultToolbar from '../config/defaultToolbar';
 import localeTranslations from '../i18n';
+
 import './styles.css';
 import '../../css/Draft.css';
 
@@ -401,6 +408,102 @@ export default class WysiwygEditor extends Component {
     }
   };
 
+  handleDroppedFiles = (selection: *, files: Array<Blob>) =>  {
+    const { uploadCallback } = this.props;
+
+    if(this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.uploadCallback) {
+      for(const file of files) {
+        this.props.toolbar.file.uploadCallback(file)
+          .then(({ data }) => {
+            this.addFile(data.link, file.height, file.width, file.name, file.type)
+          })
+          .catch((exception: *) => {
+            console.warn("exception", exception)
+          })
+      }
+    }
+  }
+
+  handlePastedFiles = (files: Array<Blob>) => {
+    const { uploadCallback } = this.props;
+
+    if(this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.uploadCallback) {
+      for(const file of files) {
+        this.props.toolbar.file.uploadCallback(file)
+          .then(({ data }) => {
+            this.addFile(data.link, file.height, file.width, file.name, file.type)
+          })
+          .catch((exception: *) => {
+            console.warn("exception", exception)
+          })
+      }
+    }
+  }
+
+  addFile: Function = (src: string, height: string, width: string, alt: string, fileType: string): void => {
+    console.warn("addFile", src, height, width, alt, fileType);
+    const { onChange, config } = this.props;
+    const { editorState } = this.state;
+
+    // Add an image
+    if(fileType.indexOf("image/") > -1) {
+      const entityData = { src, height, width, alt };
+      const entityKey = editorState
+        .getCurrentContent()
+        .createEntity('IMAGE', 'MUTABLE', entityData)
+        .getLastCreatedEntityKey();
+        const newEditorState = AtomicBlockUtils.insertAtomicBlock(
+          editorState,
+          entityKey,
+          ' ',
+        );
+        this.onChange(newEditorState);
+    } else { // Add a file as link
+      this.addLink(alt, src, "_blank");
+    }
+  };
+
+  addLink: Function = (linkTitle, linkTarget, linkTargetOption): void => {
+    const { currentEntity, editorState } = this.state;
+    let selection = editorState.getSelection();
+
+    if (currentEntity) {
+      const entityRange = getEntityRange(editorState, currentEntity);
+      selection = selection.merge({
+        anchorOffset: entityRange.start,
+        focusOffset: entityRange.end,
+      });
+    }
+    const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('LINK', 'MUTABLE', { url: linkTarget, target: linkTargetOption })
+      .getLastCreatedEntityKey();
+
+    let contentState = Modifier.replaceText(
+      editorState.getCurrentContent(),
+      selection,
+      `${linkTitle}`,
+      editorState.getCurrentInlineStyle(),
+      entityKey,
+    );
+    let newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
+
+    // insert a blank space after link
+    selection = newEditorState.getSelection().merge({
+      anchorOffset: selection.get('anchorOffset') + linkTitle.length,
+      focusOffset: selection.get('anchorOffset') + linkTitle.length,
+    });
+    newEditorState = EditorState.acceptSelection(newEditorState, selection);
+    contentState = Modifier.insertText(
+      newEditorState.getCurrentContent(),
+      selection,
+      ' ',
+      newEditorState.getCurrentInlineStyle(),
+      undefined,
+    );
+    this.onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
+  };
+
   render() {
     const {
       editorState,
@@ -455,9 +558,10 @@ export default class WysiwygEditor extends Component {
             const Control = Controls[opt];
             const config = toolbar[opt];
 
-            if (opt === 'image' && uploadCallback) {
+            if ((opt === 'image' || opt === 'file') && uploadCallback) {
               config.uploadCallback = uploadCallback;
             }
+
             if (opt === 'quickResponse' && quickResponse) {
               config.quickResponse = quickResponse;
               if (templateUsageCount && typeof templateUsageCount === 'function') {
@@ -496,7 +600,11 @@ export default class WysiwygEditor extends Component {
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
             blockRenderMap={blockRenderMap}
-
+            handlePastedFiles={this.handlePastedFiles}
+            handleDroppedFiles={this.handleDroppedFiles}
+            handleDrop={(selection: *, dataTransfer: *, isInternal: *) => {
+              console.warn("handleDrop", selection, dataTransfer, isInternal)
+            }}
             {...this.editorProps}
             handleReturn={this.handleReturn}
           />

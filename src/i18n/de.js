@@ -46,6 +46,12 @@ module.exports = {
   'components.controls.image.byURL': 'URL',
   'components.controls.image.dropFileText': 'Drop die Datei oder klicken Sie zum Hochladen',
 
+  // Image
+  'components.controls.file.file': 'File',
+  'components.controls.file.fileUpload': 'File Upload',
+  'components.controls.file.byURL': 'URL',
+  'components.controls.file.dropFileText': 'Drop the file or click to upload',
+
   // Inline
   'components.controls.inline.bold': 'Fett gedruckt',
   'components.controls.inline.italic': 'Kursiv gedruckt',

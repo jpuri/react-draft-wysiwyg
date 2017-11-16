@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { RichUtils, EditorState, Modifier } from 'draft-js';
+import { AtomicBlockUtils, Modifier } from 'draft-js';
 import {
   getSelectionText,
   getEntityRange,
@@ -11,8 +11,8 @@ import {
 
 import LayoutComponent from './Component';
 
-class Link extends Component {
-  static propTypes = {
+class FileControl extends Component {
+  static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
@@ -155,32 +155,50 @@ class Link extends Component {
     this.doCollapse();
   };
 
+  addFile: Function = (src: string, height: string, width: string, alt: string, fileType: string): void => {
+    console.warn("addFile", src, height, width, alt, fileType);
+    const { editorState, onChange, config } = this.props;
+    const entityData = { src, height, width };
+
+    // Add an image
+    if(fileType.indexOf("image/") > -1) {
+      if (config.alt.present) {
+        entityData.alt = alt;
+      }
+      const entityKey = editorState
+        .getCurrentContent()
+        .createEntity('IMAGE', 'MUTABLE', entityData)
+        .getLastCreatedEntityKey();
+        const newEditorState = AtomicBlockUtils.insertAtomicBlock(
+          editorState,
+          entityKey,
+          ' ',
+        );
+        onChange(newEditorState);
+    } else { // Add a file as link
+      this.addLink(alt, src, "_blank");
+    }
+
+
+    this.doCollapse();
+  };
+
   render(): Object {
     const { config, translations } = this.props;
     const { expanded } = this.state;
-    const { link, selectionText } = this.getCurrentValues();
-    const LinkComponent = config.component || LayoutComponent;
+    const FileComponent = config.component || LayoutComponent;
     return (
-      <LinkComponent
+      <FileComponent
         config={config}
         translations={translations}
+        onChange={this.addFile}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
-        currentState={{
-          link,
-          selectionText,
-        }}
-        onChange={this.onChange}
       />
     );
   }
 }
 
-export default Link;
-
-// todo refct
-// 1. better action names here
-// 2. align update signatue
-// 3. align current value signature
+export default FileControl;

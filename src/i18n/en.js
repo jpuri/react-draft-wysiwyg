@@ -42,9 +42,15 @@ module.exports = {
 
   // Image
   'components.controls.image.image': 'Image',
-  'components.controls.image.fileUpload': 'File Upload',
+  'components.controls.image.fileUpload': 'Image Upload',
   'components.controls.image.byURL': 'URL',
-  'components.controls.image.dropFileText': 'Drop the file or click to upload',
+  'components.controls.image.dropFileText': 'Drop the image or click to upload',
+
+  // Image
+  'components.controls.file.file': 'File',
+  'components.controls.file.fileUpload': 'File Upload',
+  'components.controls.file.byURL': 'URL',
+  'components.controls.file.dropFileText': 'Drop the file or click to upload',
 
   // Inline
   'components.controls.inline.bold': 'Bold',

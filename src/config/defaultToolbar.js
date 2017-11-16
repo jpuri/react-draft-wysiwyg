@@ -24,12 +24,13 @@ import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
 import superscript from '../../images/superscript.svg';
 import fastMessage from '../../images/fast-message.svg';
+import upload from '../../images/upload.svg';
 /**
 * This is default toolbar configuration,
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'quickResponse', 'embedded', 'emoji', 'image', 'remove', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'quickResponse', 'embedded', 'emoji', 'file', 'image', 'remove', 'history'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -165,6 +166,23 @@ export default {
     alignmentEnabled: true,
     uploadCallback: undefined,
     inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
+    alt: { present: false, mandatory: false },
+    defaultSize: {
+      height: 'auto',
+      width: 'auto',
+    },
+    title: undefined,
+  },
+  file: {
+    icon: upload,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    urlEnabled: true,
+    uploadEnabled: true,
+    alignmentEnabled: true,
+    uploadCallback: undefined,
+    inputAccept: '',
     alt: { present: false, mandatory: false },
     defaultSize: {
       height: 'auto',

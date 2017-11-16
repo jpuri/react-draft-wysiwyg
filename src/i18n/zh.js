@@ -46,6 +46,12 @@ module.exports = {
   'components.controls.image.byURL': '在线图片',
   'components.controls.image.dropFileText': '点击或者拖拽文件上传',
 
+  // File
+  'components.controls.file.file': 'File',
+  'components.controls.file.fileUpload': 'File Upload',
+  'components.controls.file.byURL': 'URL',
+  'components.controls.file.dropFileText': 'Drop the file or click to upload',
+
   // Inline
   'components.controls.inline.bold': '粗体',
   'components.controls.inline.italic': '斜体',

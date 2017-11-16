@@ -10,6 +10,7 @@ import quickResponse from './QuickResponse';
 import embedded from './Embedded';
 import emoji from './Emoji';
 import image from './Image';
+import file from './File';
 import remove from './Remove';
 import history from './History';
 
@@ -28,4 +29,5 @@ module.exports = {
   image,
   remove,
   history,
+  file
 };

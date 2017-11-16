@@ -46,6 +46,12 @@ module.exports = {
   'components.controls.image.byURL': '주소',
   'components.controls.image.dropFileText': '클릭하거나 파일을 드롭하여 업로드하세요',
 
+  // File
+  'components.controls.file.file': 'File',
+  'components.controls.file.fileUpload': 'File Upload',
+  'components.controls.file.byURL': 'URL',
+  'components.controls.file.dropFileText': 'Drop the file or click to upload',
+
   // Inline
   'components.controls.inline.bold': '굵게',
   'components.controls.inline.italic': '기울임꼴',
