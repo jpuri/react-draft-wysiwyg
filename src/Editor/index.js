@@ -45,6 +45,8 @@ import localeTranslations from '../i18n';
 import './styles.css';
 import '../../css/Draft.css';
 
+const MAX_FILE_SIZE = 20097152; //20097152 ~20mb.
+
 export default class WysiwygEditor extends Component {
   static propTypes = {
     onChange: PropTypes.func,
@@ -109,6 +111,7 @@ export default class WysiwygEditor extends Component {
     this.state = {
       editorState: undefined,
       editorFocused: false,
+      fieldClass: "",
       toolbar,
     };
     const wrapperId = props.wrapperId ? props.wrapperId : Math.floor(Math.random() * 10000);
@@ -136,7 +139,17 @@ export default class WysiwygEditor extends Component {
 
   componentDidMount(): void {
     this.modalHandler.init(this.wrapperId);
+    document.addEventListener("dragover", this._fileDragEnter, false);
+    document.addEventListener("dragleave", this._fileDragLeave, false);
+    document.addEventListener('drop', this._fileDragDrop, false);
   }
+
+  componentWillUnmount() {
+    document.removeEventListener("dragover", this._fileDragEnter, false);
+    document.removeEventListener("dragleave", this._fileDragLeave, false);
+    document.removeEventListener("drop", this._fileDragDrop, false);
+  }
+
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
   componentWillReceiveProps(props) {
@@ -248,6 +261,55 @@ export default class WysiwygEditor extends Component {
   setEditorReference: Function = (ref: Object): void => {
     this.editor = ref;
   };
+
+  _fileDragEnter = (e: EventT) => {
+    if(e.dataTransfer) {
+      if(e.dataTransfer.items) {
+        for(const item of e.dataTransfer.items) {
+          if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !item.type.match(this.props.toolbar.file.inputAccept.split(","))) {
+            this.setState({fieldClass: "file-drag-enter-not-allowed"});
+          } else {
+            if(this.state.fieldClass === "") {
+              this.setState({fieldClass: "file-drag-enter"});
+            }
+          }
+        }
+        if(this.state.fieldClass === "") {
+          this.setState({fieldClass: "file-drag-enter"});
+        }
+      } else {
+        for(const file of e.dataTransfer.files) {
+          if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(","))) {
+            this.setState({fieldClass: "file-drag-enter-not-allowed"});
+          } else {
+            if(this.state.fieldClass === "") {
+              this.setState({fieldClass: "file-drag-enter"});
+            }
+          }
+        }
+      }
+    }
+
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  _fileDragLeave = (e: EventT) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if(this.state.fieldClass !== "") {
+      this.setState({fieldClass: ""})
+    }
+  }
+
+  _fileDragDrop = (e: EventT) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    if(this.state.fieldClass !== "") {
+      this.setState({fieldClass: ""})
+    }
+  }
 
   getCompositeDecorator = (): void => {
     const decorators = [...this.props.customDecorators, getLinkDecorator({
@@ -412,7 +474,13 @@ export default class WysiwygEditor extends Component {
     const { uploadCallback } = this.props;
 
     if(this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.uploadCallback) {
+
       for(const file of files) {
+        if(this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(","))) {
+          console.warn("Error file type not allowed", file.type);
+          return;
+        }
+        console.warn("handleDroppedFiles", file)
         this.props.toolbar.file.uploadCallback(file)
           .then(({ data }) => {
             this.addFile(data.link, file.height, file.width, file.name, file.type)
@@ -429,6 +497,10 @@ export default class WysiwygEditor extends Component {
 
     if(this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.uploadCallback) {
       for(const file of files) {
+        if(this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(","))) {
+          console.warn("Error file type not allowed", file.type);
+          return;
+        }
         this.props.toolbar.file.uploadCallback(file)
           .then(({ data }) => {
             this.addFile(data.link, file.height, file.width, file.name, file.type)
@@ -486,6 +558,7 @@ export default class WysiwygEditor extends Component {
       editorState.getCurrentInlineStyle(),
       entityKey,
     );
+
     let newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
 
     // insert a blank space after link
@@ -504,11 +577,61 @@ export default class WysiwygEditor extends Component {
     this.onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
   };
 
+  _fileDragEnter = (e: EventT) => {
+    if(e.dataTransfer) {
+      if(e.dataTransfer.items) {
+        for(const item of e.dataTransfer.items) {
+          if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !item.type.match(this.props.toolbar.file.inputAccept.split(","))) {
+            this.setState({fieldClass: "file-drag-enter-not-allowed"});
+          } else {
+            if(this.state.fieldClass === "") {
+              this.setState({fieldClass: "file-drag-enter"});
+            }
+          }
+        }
+        if(this.state.fieldClass === "") {
+          this.setState({fieldClass: "file-drag-enter"});
+        }
+      } else {
+        for(const file of e.dataTransfer.files) {
+          if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(","))) {
+            this.setState({fieldClass: "file-drag-enter-not-allowed"});
+          } else {
+            if(this.state.fieldClass === "") {
+              this.setState({fieldClass: "file-drag-enter"});
+            }
+          }
+        }
+      }
+    }
+
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  _fileDragLeave = (e: EventT) => {
+    e.stopPropagation();
+    e.preventDefault();
+    if(this.state.fieldClass !== "") {
+      this.setState({fieldClass: ""})
+    }
+  }
+
+  _fileDragDrop = (e: EventT) => {
+    e.stopPropagation();
+    e.preventDefault();
+
+    if(this.state.fieldClass !== "") {
+      this.setState({fieldClass: ""})
+    }
+  }
+
   render() {
     const {
       editorState,
       editorFocused,
       toolbar,
+      fieldClass,
     } = this.state;
     const {
       locale,
@@ -578,7 +701,7 @@ export default class WysiwygEditor extends Component {
         </div>
         <div
           ref={this.setWrapperReference}
-          className={classNames(editorClassName, 'rdw-editor-main')}
+          className={classNames(editorClassName, 'rdw-editor-main') + " " + fieldClass }
           style={editorStyle}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
@@ -602,9 +725,6 @@ export default class WysiwygEditor extends Component {
             blockRenderMap={blockRenderMap}
             handlePastedFiles={this.handlePastedFiles}
             handleDroppedFiles={this.handleDroppedFiles}
-            handleDrop={(selection: *, dataTransfer: *, isInternal: *) => {
-              console.warn("handleDrop", selection, dataTransfer, isInternal)
-            }}
             {...this.editorProps}
             handleReturn={this.handleReturn}
           />

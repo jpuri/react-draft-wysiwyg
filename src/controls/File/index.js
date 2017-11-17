@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { AtomicBlockUtils, Modifier } from 'draft-js';
+import { AtomicBlockUtils, Modifier, EditorState } from 'draft-js';
 import {
   getSelectionText,
   getEntityRange,

@@ -1113,6 +1113,81 @@
   height: 20px;
 }
 
+/* */
+
+.rdw-editor-wrapper {
+  position: relative;
+}
+
+.rdw-editor-wrapper .file-drag-enter {
+  background-color: rgba(70, 85, 148, 0.3) !important;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTYwcHgiIGhlaWdodD0iNTYwcHgiIHZpZXdCb3g9IjAgMCA1NjAgNTYwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA0Ny4xICg0NTQyMikgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+dUEwNDktdXBsb2FkQDF4PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9InVBMDQ5LXVwbG9hZCIgZmlsbD0iIzk1OURBQyI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0xOTguNDcwNTg4LDQwMi41Mjk0MTIgTDM2MS4xNzY0NzEsNDAyLjUyOTQxMiBMMzYxLjE3NjQ3MSwyMzkuODIzNTI5IEw0NjkuNjQ3MDU5LDIzOS44MjM1MjkgTDI3OS44MjM1MjksNTAgTDkwLDIzOS44MjM1MjkgTDE5OC40NzA1ODgsMjM5LjgyMzUyOSBMMTk4LjQ3MDU4OCw0MDIuNTI5NDEyIFogTTkwLDQ1Ni43NjQ3MDYgTDQ2OS42NDcwNTksNDU2Ljc2NDcwNiBMNDY5LjY0NzA1OSw1MTEgTDkwLDUxMSBMOTAsNDU2Ljc2NDcwNiBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==);
+  background-position: center;
+  background-size: 80px 60px;
+  background-repeat: no-repeat;
+  z-index: 2060;
+}
+.rdw-editor-wrapper .file-drag-enter:before{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: text-bottom;
+  text-align: center;
+  width: 240px; /* Need a specific value to work */
+  color: #959dac;
+  font-size: 18px;
+  font-weight: 500;
+  content: "Drop to upload file";
+}
+.rdw-editor-wrapper .file-drag-enter-not-allowed {
+  background-color: rgba(255, 172, 162, 0.4) !important;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTYwcHgiIGhlaWdodD0iNTYwcHgiIHZpZXdCb3g9IjAgMCA1NjAgNTYwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA0Ny4xICg0NTQyMikgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+dUEwNDktdXBsb2FkQDF4PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9InVBMDQ5LXVwbG9hZCIgZmlsbD0iIzk1OURBQyI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0xOTguNDcwNTg4LDQwMi41Mjk0MTIgTDM2MS4xNzY0NzEsNDAyLjUyOTQxMiBMMzYxLjE3NjQ3MSwyMzkuODIzNTI5IEw0NjkuNjQ3MDU5LDIzOS44MjM1MjkgTDI3OS44MjM1MjksNTAgTDkwLDIzOS44MjM1MjkgTDE5OC40NzA1ODgsMjM5LjgyMzUyOSBMMTk4LjQ3MDU4OCw0MDIuNTI5NDEyIFogTTkwLDQ1Ni43NjQ3MDYgTDQ2OS42NDcwNTksNDU2Ljc2NDcwNiBMNDY5LjY0NzA1OSw1MTEgTDkwLDUxMSBMOTAsNDU2Ljc2NDcwNiBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==);
+  background-position: center;
+  background-size: 80px 60px;
+  background-repeat: no-repeat;
+  z-index: 2060;
+}
+.rdw-editor-wrapper .file-drag-enter-not-allowed:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: text-bottom;
+  text-align: center;
+  width: 350px; /* Need a specific value to work */
+  color: #959dac;
+  font-size: 18px;
+  font-weight: 500;
+  content: "Can not upload - file type not allowd";
+}
+.rdw-editor-wrapper .file-drag-enter-size-too-big {
+  background-color: rgba(255, 172, 162, 0.4) !important;
+  background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNTYwcHgiIGhlaWdodD0iNTYwcHgiIHZpZXdCb3g9IjAgMCA1NjAgNTYwIiB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPgogICAgPCEtLSBHZW5lcmF0b3I6IFNrZXRjaCA0Ny4xICg0NTQyMikgLSBodHRwOi8vd3d3LmJvaGVtaWFuY29kaW5nLmNvbS9za2V0Y2ggLS0+CiAgICA8dGl0bGU+dUEwNDktdXBsb2FkQDF4PC90aXRsZT4KICAgIDxkZXNjPkNyZWF0ZWQgd2l0aCBTa2V0Y2guPC9kZXNjPgogICAgPGRlZnM+PC9kZWZzPgogICAgPGcgaWQ9IlBhZ2UtMSIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9InVBMDQ5LXVwbG9hZCIgZmlsbD0iIzk1OURBQyI+CiAgICAgICAgICAgIDxwYXRoIGQ9Ik0xOTguNDcwNTg4LDQwMi41Mjk0MTIgTDM2MS4xNzY0NzEsNDAyLjUyOTQxMiBMMzYxLjE3NjQ3MSwyMzkuODIzNTI5IEw0NjkuNjQ3MDU5LDIzOS44MjM1MjkgTDI3OS44MjM1MjksNTAgTDkwLDIzOS44MjM1MjkgTDE5OC40NzA1ODgsMjM5LjgyMzUyOSBMMTk4LjQ3MDU4OCw0MDIuNTI5NDEyIFogTTkwLDQ1Ni43NjQ3MDYgTDQ2OS42NDcwNTksNDU2Ljc2NDcwNiBMNDY5LjY0NzA1OSw1MTEgTDkwLDUxMSBMOTAsNDU2Ljc2NDcwNiBaIiBpZD0iU2hhcGUiPjwvcGF0aD4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPg==);
+  background-position: center;
+  background-size: 80px 60px;
+  background-repeat: no-repeat;
+  z-index: 2060;
+}
+.rdw-editor-wrapper .file-drag-enter-size-too-big:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: text-bottom;
+  text-align: center;
+  width: 350px; /* Need a specific value to work */
+  color: #959dac;
+  font-size: 18px;
+  font-weight: 500;
+  content: "Can not upload - file size is too big";
+}
 .public-DraftStyleDefault-block {
   margin: 1em 0;
 }

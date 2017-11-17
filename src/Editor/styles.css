@@ -20,6 +20,81 @@
   height: 20px;
 }
 
+/* */
+
+.rdw-editor-wrapper {
+  position: relative;
+}
+
+.rdw-editor-wrapper .file-drag-enter {
+  background-color: rgba(70, 85, 148, 0.3) !important;
+  background-image: url("../../images/upload.svg");
+  background-position: center;
+  background-size: 80px 60px;
+  background-repeat: no-repeat;
+  z-index: 2060;
+}
+.rdw-editor-wrapper .file-drag-enter:before{
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: text-bottom;
+  text-align: center;
+  width: 240px; /* Need a specific value to work */
+  color: #959dac;
+  font-size: 18px;
+  font-weight: 500;
+  content: "Drop to upload file";
+}
+.rdw-editor-wrapper .file-drag-enter-not-allowed {
+  background-color: rgba(255, 172, 162, 0.4) !important;
+  background-image: url("../../images/upload.svg");
+  background-position: center;
+  background-size: 80px 60px;
+  background-repeat: no-repeat;
+  z-index: 2060;
+}
+.rdw-editor-wrapper .file-drag-enter-not-allowed:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: text-bottom;
+  text-align: center;
+  width: 350px; /* Need a specific value to work */
+  color: #959dac;
+  font-size: 18px;
+  font-weight: 500;
+  content: "Can not upload - file type not allowd";
+}
+.rdw-editor-wrapper .file-drag-enter-size-too-big {
+  background-color: rgba(255, 172, 162, 0.4) !important;
+  background-image: url("../../images/upload.svg");
+  background-position: center;
+  background-size: 80px 60px;
+  background-repeat: no-repeat;
+  z-index: 2060;
+}
+.rdw-editor-wrapper .file-drag-enter-size-too-big:before {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  vertical-align: text-bottom;
+  text-align: center;
+  width: 350px; /* Need a specific value to work */
+  color: #959dac;
+  font-size: 18px;
+  font-weight: 500;
+  content: "Can not upload - file size is too big";
+}
 .public-DraftStyleDefault-block {
   margin: 1em 0;
 }
