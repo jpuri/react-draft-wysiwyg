@@ -136,7 +136,8 @@ class LayoutComponent extends Component {
           showLoading: false,
           dragEnter: false,
           fileURL: data.link,
-          fileType: file.type
+          fileType: file.type,
+          alt: file.name
         });
         this.fileUpload = false;
       }).catch(() => {

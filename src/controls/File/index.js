@@ -163,7 +163,7 @@ class FileControl extends Component {
     // Add an image
     if(fileType.indexOf("image/") > -1) {
       if (config.alt.present) {
-        entityData.alt = alt;
+        entityData.alt = (alt && alt !== "" ? alt : src);
       }
       const entityKey = editorState
         .getCurrentContent()
