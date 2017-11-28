@@ -16,6 +16,12 @@ const HashTag = () => (
       hashtag={{
         hashCharacter: '#',
         separator: ' ',
+        component: () => {
+          return ({ children }) => {
+            const text = children[0].props.text
+            return <span className="rdw-hashtag-link">{children}</span>
+          }
+        },
       }}
       toolbarClassName="rdw-storybook-toolbar"
       wrapperClassName="rdw-storybook-wrapper"

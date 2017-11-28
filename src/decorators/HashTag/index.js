@@ -8,6 +8,7 @@ class Hashtag {
     this.className = config.className;
     this.hashCharacter = config.hashCharacter || '#';
     this.separator = config.separator || ' ';
+    this.component = config.component;
   }
 
   getHashtagComponent = () => {
@@ -58,7 +59,7 @@ class Hashtag {
 
   getHashtagDecorator = () => ({
     strategy: this.findHashtagEntities,
-    component: this.getHashtagComponent(),
+    component: this.component ? this.component() : this.getHashtagComponent(),
   });
 }
 
