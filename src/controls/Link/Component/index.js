@@ -24,18 +24,20 @@ class LayoutComponent extends Component {
 
   state: Object = {
     showModal: false,
-    linkTarget: '',
+    linkUrl: '',
     linkTitle: '',
     linkTargetOption: this.props.config.defaultTargetOption,
+    linkRelOption: '',
   };
 
   componentWillReceiveProps(props) {
     if (this.props.expanded && !props.expanded) {
       this.setState({
         showModal: false,
-        linkTarget: '',
+        linkUrl: '',
         linkTitle: '',
         linkTargetOption: this.props.config.defaultTargetOption,
+        linkRelOption: '',
       });
     }
   }
@@ -47,8 +49,12 @@ class LayoutComponent extends Component {
 
   addLink: Function = (): void => {
     const { onChange } = this.props;
-    const { linkTitle, linkTarget, linkTargetOption } = this.state;
-    onChange('link', linkTitle, linkTarget, linkTargetOption);
+    const { linkTitle, linkUrl, linkTargetOption, linkRelOption } = this.state;
+    const linkAttributes = { target: linkTargetOption };
+    if (linkRelOption) {
+      linkAttributes.rel = linkRelOption;
+    }
+    onChange('link', linkTitle, linkUrl, linkAttributes);
   };
 
   updateValue: Function = (event: Object): void => {
@@ -63,6 +69,12 @@ class LayoutComponent extends Component {
     });
   };
 
+  updateRel: Function = (event: Object): void => {
+    this.setState({
+      linkRelOption: event.target.checked ? 'nofollow' : '',
+    });
+  };
+
   hideModal: Function = (): void => {
     this.setState({
       showModal: false,
@@ -71,31 +83,33 @@ class LayoutComponent extends Component {
 
   signalExpandShowModal = () => {
     const { onExpandEvent, currentState: { link, selectionText } } = this.props;
-    const { linkTargetOption } = this.state;
+    const { linkTargetOption, linkRelOption } = this.state;
     onExpandEvent();
     this.setState({
       showModal: true,
-      linkTarget: link && link.target,
-      linkTargetOption: (link && link.targetOption) || linkTargetOption,
+      linkRelOption: (link && link.rel) || linkRelOption,
+      linkUrl: link && link.url,
+      linkTargetOption: (link && link.target) || linkTargetOption,
       linkTitle: (link && link.title) || selectionText,
     });
   }
 
   forceExpandAndShowModal: Function = (): void => {
     const { doExpand, currentState: { link, selectionText } } = this.props;
-    const { linkTargetOption } = this.state;
+    const { linkTargetOption, linkRelOption } = this.state;
     doExpand();
     this.setState({
       showModal: true,
-      linkTarget: link && link.target,
-      linkTargetOption: (link && link.targetOption) || linkTargetOption,
+      linkRelOption: (link && link.rel) || linkRelOption,
+      linkUrl: link && link.url,
+      linkTargetOption: (link && link.target) || linkTargetOption,
       linkTitle: (link && link.title) || selectionText,
     });
   }
 
   renderAddLinkModal() {
     const { config: { popupClassName }, doCollapse, translations } = this.props;
-    const { linkTitle, linkTarget, linkTargetOption } = this.state;
+    const { linkTitle, linkUrl, linkTargetOption, linkRelOption } = this.state;
     return (
       <div
         className={classNames('rdw-link-modal', popupClassName)}
@@ -118,23 +132,38 @@ class LayoutComponent extends Component {
           className="rdw-link-modal-input"
           onChange={this.updateValue}
           onBlur={this.updateValue}
-          name="linkTarget"
-          value={linkTarget}
+          name="linkUrl"
+          value={linkUrl}
         />
         <span className="rdw-link-modal-target-option">
           <input
+            id="link-target-option"
             type="checkbox"
             defaultChecked={linkTargetOption === '_blank'}
             value="_blank"
             onChange={this.updateTarget}
           />
-          <span>{translations['components.controls.link.linkTargetOption']}</span>
+          <label
+            htmlFor="link-target-option"
+          >{translations['components.controls.link.linkTargetOption']}</label>
+        </span>
+        <span className="rdw-link-modal-rel-option">
+          <input
+            id="link-rel-option"
+            type="checkbox"
+            defaultChecked={linkRelOption === 'nofollow'}
+            value="nofollow"
+            onChange={this.updateRel}
+          />
+          <label
+              htmlFor="link-rel-option"
+          >{translations['components.controls.link.linkRelOption']}</label>
         </span>
         <span className="rdw-link-modal-buttonsection">
           <button
             className="rdw-link-modal-btn"
             onClick={this.addLink}
-            disabled={!linkTarget || !linkTitle}
+            disabled={!linkUrl || !linkTitle}
           >
             {translations['generic.add']}
           </button>

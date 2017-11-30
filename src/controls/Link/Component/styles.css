@@ -48,6 +48,9 @@
   margin: 0 auto;
 }
 .rdw-link-modal-target-option {
+  margin-bottom: 10px;
+}
+.rdw-link-modal-rel-option {
   margin-bottom: 20px;
 }
 .rdw-link-modal-target-option > span {

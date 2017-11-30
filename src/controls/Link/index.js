@@ -54,9 +54,9 @@ class Link extends Component {
     this.signalExpanded = !this.state.expanded;
   };
 
-  onChange = (action, title, target, targetOption) => {
+  onChange = (action, title, url, attributes) => {
     if (action === 'link') {
-      this.addLink(title, target, targetOption);
+      this.addLink(title, url, attributes);
     } else {
       this.removeLink();
     }
@@ -70,8 +70,9 @@ class Link extends Component {
     if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
       currentValues.link = {};
       const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-      currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get('data').url;
-      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get('data').target;
+      currentValues.link.url = currentEntity && contentState.getEntity(currentEntity).get('data').url;
+      currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get('data').target;
+      currentValues.link.rel = currentEntity && contentState.getEntity(currentEntity).get('data').rel;
       currentValues.link.title = (entityRange && entityRange.text);
     }
     currentValues.selectionText = getSelectionText(editorState);
@@ -111,7 +112,7 @@ class Link extends Component {
     }
   };
 
-  addLink: Function = (linkTitle, linkTarget, linkTargetOption): void => {
+  addLink: Function = (linkTitle, linkUrl, linkAttributes): void => {
     const { editorState, onChange } = this.props;
     const { currentEntity } = this.state;
     let selection = editorState.getSelection();
@@ -125,7 +126,7 @@ class Link extends Component {
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', { url: linkTarget, target: linkTargetOption })
+      .createEntity('LINK', 'MUTABLE', { ...linkAttributes, url: linkUrl })
       .getLastCreatedEntityKey();
 
     let contentState = Modifier.replaceText(
