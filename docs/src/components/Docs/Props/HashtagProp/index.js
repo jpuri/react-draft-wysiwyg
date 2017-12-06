@@ -22,6 +22,10 @@ export default () => (
         '      separator: \' \',\n' +
         '      trigger: \'#\',\n' +
         '    }}\n' +
+        '    component: ({ children }) => {\n' +
+        '      const text = children[0].props.text;\n' +
+        '      return (<span className="rdw-hashtag-link">{children}</span>);\n' +
+        '    }\n' +
         '  />\n' +
         ')'
       }
