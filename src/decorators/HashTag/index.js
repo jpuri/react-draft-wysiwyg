@@ -12,6 +12,9 @@ class Hashtag {
   }
 
   getHashtagComponent = () => {
+    if (this.component) {
+      return this.component;
+    }
     const className = this.className;
 
     const HashtagComponent = ({ children }) => {
@@ -59,7 +62,7 @@ class Hashtag {
 
   getHashtagDecorator = () => ({
     strategy: this.findHashtagEntities,
-    component: this.component ? this.component() : this.getHashtagComponent(),
+    component: this.getHashtagComponent(),
   });
 }
 

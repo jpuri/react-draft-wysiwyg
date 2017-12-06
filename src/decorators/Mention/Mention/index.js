@@ -9,6 +9,9 @@ class Mention {
     this.component = config.component;
   }
   getMentionComponent = () => {
+    if (this.component) {
+      return this.component;
+    }
     const className = this.className;
     const MentionComponent = ({ entityKey, children, contentState }) => {
       const { url, value } = contentState.getEntity(entityKey).getData();
@@ -27,7 +30,7 @@ class Mention {
   };
   getMentionDecorator = () => ({
     strategy: this.findMentionEntities,
-    component: this.component ? this.component() : this.getMentionComponent(),
+    component: this.getMentionComponent(),
   });
 }
 

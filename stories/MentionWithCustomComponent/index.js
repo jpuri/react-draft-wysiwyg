@@ -24,15 +24,13 @@ const Mention = () =>
         { text: 'GRAPEFRUIT', value: 'grapefruit', url: 'grapefruit' },
         { text: 'HONEYDEW', value: 'honeydew', url: 'honeydew' },
       ],
-      component: () => {
-        return ({ entityKey, children, contentState }) => {
-          const { url, value } = contentState.getEntity(entityKey).getData();
-          return (
-            <a href={url || value} className="rdw-mention-link">
-              {children}
-            </a>
-          );
-        };
+      component: ({ entityKey, children, contentState }) => {
+        const { url, value } = contentState.getEntity(entityKey).getData();
+        return (
+          <a href={url || value} className="rdw-mention-link">
+            {children}
+          </a>
+        );
       }
     }}
     toolbarClassName="rdw-storybook-toolbar"
