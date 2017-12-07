@@ -125,7 +125,7 @@ class Link extends Component {
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', { url: linkTarget, target: linkTargetOption })
+      .createEntity('LINK', 'MUTABLE', { url: linkTarget, targetOption: linkTargetOption })
       .getLastCreatedEntityKey();
 
     let contentState = Modifier.replaceText(

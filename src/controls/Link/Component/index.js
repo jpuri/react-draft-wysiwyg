@@ -101,35 +101,38 @@ class LayoutComponent extends Component {
         className={classNames('rdw-link-modal', popupClassName)}
         onClick={stopPropagation}
       >
-        <span className="rdw-link-modal-label">
+        <label className="rdw-link-modal-label" htmlFor="linkTitle">
           {translations['components.controls.link.linkTitle']}
-        </span>
+        </label>
         <input
+          id="linkTitle"
           className="rdw-link-modal-input"
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTitle"
           value={linkTitle}
         />
-        <span className="rdw-link-modal-label">
+        <label className="rdw-link-modal-label" htmlFor="linkTarget">
           {translations['components.controls.link.linkTarget']}
-        </span>
+        </label>
         <input
+          id="linkTarget"
           className="rdw-link-modal-input"
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTarget"
           value={linkTarget}
         />
-        <span className="rdw-link-modal-target-option">
+        <label className="rdw-link-modal-target-option" htmlFor="openLinkInNewWindow">
           <input
+            id="openLinkInNewWindow"
             type="checkbox"
             defaultChecked={linkTargetOption === '_blank'}
             value="_blank"
             onChange={this.updateTarget}
           />
           <span>{translations['components.controls.link.linkTargetOption']}</span>
-        </span>
+        </label>
         <span className="rdw-link-modal-buttonsection">
           <button
             className="rdw-link-modal-btn"
