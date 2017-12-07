@@ -71,7 +71,7 @@ class Link extends Component {
       currentValues.link = {};
       const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
       currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get('data').url;
-      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get('data').target;
+      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get('data').targetOption;
       currentValues.link.title = (entityRange && entityRange.text);
     }
     currentValues.selectionText = getSelectionText(editorState);

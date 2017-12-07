@@ -57,7 +57,7 @@ class LayoutComponent extends Component {
     });
   };
 
-  updateTarget: Function = (event: Object): void => {
+  updateTargetOption: Function = (event: Object): void => {
     this.setState({
       linkTargetOption: event.target.checked ? '_blank' : '_self',
     });
@@ -129,7 +129,7 @@ class LayoutComponent extends Component {
             type="checkbox"
             defaultChecked={linkTargetOption === '_blank'}
             value="_blank"
-            onChange={this.updateTarget}
+            onChange={this.updateTargetOption}
           />
           <span>{translations['components.controls.link.linkTargetOption']}</span>
         </label>
