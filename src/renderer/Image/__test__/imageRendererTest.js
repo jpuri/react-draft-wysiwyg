@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { expect, assert } from 'chai';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { getAllBlocks } from 'draftjs-utils';
 import { convertFromHTML, AtomicBlockUtils, ContentState, EditorState } from 'draft-js';
 
@@ -27,10 +27,9 @@ describe('ImageRenderer test suite', () => {
       isImageAlignmentEnabled: () => true,
     });
     expect(
-      shallow(
+      mount(
         <Image block={getAllBlocks(newEditorState).get(1)} contentState={contentState} />,
-      )
-        .node.type,
+      ).childAt(0).type(),
     )
       .to.equal('span');
   });

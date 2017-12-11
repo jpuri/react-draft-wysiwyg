@@ -7,7 +7,7 @@ import Editor from '..';
 
 describe('Editor test suite', () => {
   it('should have a div when rendered', () => {
-    expect(shallow(<Editor />).html().startsWith('<div')).to.equal(true);
+    expect(shallow(<Editor />).childAt(0).type()).to.equal('div');
   });
 
   it('should have an editorState object in state', () => {

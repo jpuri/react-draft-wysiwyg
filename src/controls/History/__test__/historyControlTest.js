@@ -8,7 +8,9 @@ import {
 } from 'draft-js';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
+
 import HistoryControl from '..';
+import Option from '../../../components/Option';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
 import localeTranslations from '../../../i18n';
@@ -40,6 +42,6 @@ describe('HistoryControl test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    expect(control.children().length).to.equal(2);
+    expect(control.find(Option).length).to.equal(2);
   });
 });

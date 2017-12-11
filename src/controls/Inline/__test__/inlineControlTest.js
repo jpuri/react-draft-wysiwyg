@@ -9,6 +9,8 @@ import {
 import { expect, assert } from 'chai';
 import { spy } from 'sinon';
 import { shallow, mount } from 'enzyme';
+
+import Option from '../../../components/Option';
 import InlineControl from '..';
 import defaultToolbar from '../../../config/defaultToolbar';
 import ModalHandler from '../../../event-handler/modals';
@@ -41,7 +43,7 @@ describe('InlineControl test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    expect(control.children().length).to.equal(7);
+    expect(control.find(Option).length).to.equal(7);
   });
 
   it('should have 1 child elements if inDropdown is true', () => {
@@ -55,7 +57,7 @@ describe('InlineControl test suite', () => {
       />,
     );
     expect(control.children().length).to.equal(1);
-    expect(control.childAt(0).children().length).to.equal(2);
+    expect(control.childAt(0).childAt(0).prop('children').length).to.equal(2);
   });
 
   it('should execute onChange when child elements are clicked', () => {
@@ -69,15 +71,15 @@ describe('InlineControl test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    control.childAt(0).simulate('click');
+    control.find(Option).at(0).simulate('click');
     assert.isTrue(onChange.calledOnce);
-    control.childAt(1).simulate('click');
+    control.find(Option).at(1).simulate('click');
     assert.equal(onChange.callCount, 2);
-    control.childAt(2).simulate('click');
+    control.find(Option).at(2).simulate('click');
     assert.equal(onChange.callCount, 3);
-    control.childAt(3).simulate('click');
+    control.find(Option).at(3).simulate('click');
     assert.equal(onChange.callCount, 4);
-    control.childAt(4).simulate('click');
+    control.find(Option).at(4).simulate('click');
     assert.equal(onChange.callCount, 5);
   });
 

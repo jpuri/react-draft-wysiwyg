@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { expect } from 'chai';
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import Spinner from '..';
 
 describe('Option test suite', () => {
-  it('should have a div when rendered', () => {
-    expect(shallow(
+  it('should have a span when rendered', () => {
+    expect(mount(
       <Spinner />,
-    ).node.type).to.equal('div');
+    ).childAt(0).type()).to.equal('div');
   });
 });
