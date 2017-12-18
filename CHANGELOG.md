@@ -95,3 +95,7 @@ Initial stable release
 ## 7/12/2017 (1.12.0)
 - Adding custom component for rendering of mentions and hashtags.
 - Using targetOption property to save target of link.
+
+## 18/12/2017 (1.12.1)
+- Changes in German Translations.
+- Using linkify-it to linkify link targets.
