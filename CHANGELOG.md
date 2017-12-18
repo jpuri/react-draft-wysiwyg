@@ -91,3 +91,7 @@ Initial stable release
 ## 23/09/2017 (1.10.12)
 - #444: Images not copied when copying content from microsoft word.
 - Translations for de and nl locales.
+
+## 7/12/2017 (1.12.0)
+- Adding custom component for rendering of mentions and hashtags.
+- Using targetOption property to save target of link.
