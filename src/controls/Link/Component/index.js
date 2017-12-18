@@ -75,7 +75,7 @@ class LayoutComponent extends Component {
     onExpandEvent();
     this.setState({
       showModal: true,
-      linkTarget: link && link.target,
+      linkTarget: (link && link.target) || '',
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
       linkTitle: (link && link.title) || selectionText,
     });
