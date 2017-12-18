@@ -320,7 +320,7 @@ export default class WysiwygEditor extends Component {
     'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
     'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag',
-    'ariaLabel', 'customBlockRenderFunc', 'customDecorators',
+    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'handlePastedText'
   ]);
 
   changeEditorState = (contentState) => {
@@ -362,6 +362,10 @@ export default class WysiwygEditor extends Component {
   };
 
   handlePastedText = (text, html) => {
+    if (this.props.handlePastedText &&
+      this.props.handlePastedText(text, html, editorState, this.onChange)) {
+        return true;
+    }
     const { editorState } = this.state;    
     return handlePastedText(text, html, editorState, this.onChange);
   }
