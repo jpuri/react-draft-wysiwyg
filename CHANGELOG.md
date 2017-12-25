@@ -99,3 +99,6 @@ Initial stable release
 ## 18/12/2017 (1.12.1)
 - Changes in German Translations.
 - Using linkify-it to linkify link targets.
+
+## 25/12/2017 (1.12.2)
+- #502, In some scenario, editor does not extract inline style when editorState is changed 
