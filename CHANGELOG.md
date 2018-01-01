@@ -102,3 +102,6 @@ Initial stable release
 
 ## 25/12/2017 (1.12.2)
 - #502, In some scenario, editor does not extract inline style when editorState is changed 
+
+## 1/1/2018 (1.12.3)
+# Adding UMD module bundling.
