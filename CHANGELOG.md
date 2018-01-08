@@ -104,4 +104,8 @@ Initial stable release
 - #502, In some scenario, editor does not extract inline style when editorState is changed 
 
 ## 1/1/2018 (1.12.3)
-# Adding UMD module bundling.
+- # Adding UMD module bundling.
+
+## 8/1/2018 (1.12.3)
+- #514, Avoid error when an alignment is not defined. 
+- #555, Image preview option.
