@@ -63,7 +63,38 @@ export default class TextAlign extends Component {
   addBlockAlignmentData:Function = (value: string) => {
     const { editorState, onChange } = this.props;
     const { currentTextAlignment } = this.state;
-    if (currentTextAlignment !== value) {
+    const currentIndent = getSelectedBlocksMetadata(editorState).get('margin-left');
+    const indentStep = {
+      '0': '2em',
+      '2em': '4em',
+      '4em': '6em',
+      '6em': '8em',
+      '8em': '10em',
+      '10em': '12em',
+      '12em': '14em',
+      '14em': '16em',
+      '16em': '16em',
+    };
+    const outdentStep = {
+      '16em': '14em',
+      '14em': '12em',
+      '12em': '10em',
+      '10em': '8em',
+      '8em': '6em',
+      '6em': '4em',
+      '4em': '2em',
+      '2em': '0',
+      '0': '0',
+    };
+    if (value === 'indent') {
+      const nextStep = indentStep[currentIndent];
+      const nextIndent = nextStep || '2em';
+      onChange(setBlockData(editorState, { 'margin-left': nextIndent }));
+    } else if (value === 'outdent') {
+      const nextStep = outdentStep[currentIndent];
+      const nextIndent = nextStep || '0';
+      onChange(setBlockData(editorState, { 'margin-left': nextIndent }));
+    } else if (currentTextAlignment !== value) {
       onChange(setBlockData(editorState, { 'text-align': value }));
     } else {
       onChange(setBlockData(editorState, { 'text-align': undefined }));

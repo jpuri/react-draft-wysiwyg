@@ -23,7 +23,7 @@ export default class TextAlign extends Component {
 
   renderInFlatList(): Object {
     const {
-      config: { options, left, center, right, justify, className },
+      config: { options, left, center, right, justify, indent, outdent, className },
       onChange,
       currentState: { textAlignment },
       translations,
@@ -78,6 +78,28 @@ export default class TextAlign extends Component {
             alt=""
           />
         </Option>}
+        {options.indexOf('indent') >= 0 && <Option
+          value="indent"
+          className={classNames(indent.className)}
+          onClick={onChange}
+          title={indent.title || translations['components.controls.textalign.indent']}
+        >
+          <img
+            src={indent.icon}
+            alt=""
+          />
+        </Option>}
+	{options.indexOf('outdent') >= 0 && <Option
+          value="outdent"
+          className={classNames(outdent.className)}
+          onClick={onChange}
+          title={outdent.title || translations['components.controls.textalign.outdent']}
+        >
+          <img
+            src={outdent.icon}
+            alt=""
+          />
+        </Option>}
       </div>
     );
   }
@@ -93,7 +115,7 @@ export default class TextAlign extends Component {
       onChange,
       translations,
     } = this.props;
-    const { options, left, center, right, justify, className, dropdownClassName, title } = config;
+    const { options, left, center, right, justify, className, dropdownClassName, title, indent, outdent } = config;
     return (
       <Dropdown
         className={classNames('rdw-text-align-dropdown', className)}
@@ -154,6 +176,28 @@ export default class TextAlign extends Component {
             alt=""
           />
         </DropdownOption>}
+	{options.indexOf('indent') >= 0 && <DropdownOption
+	  value="indent"
+	  className={classNames(indent.className)}
+          onClick={onChange}
+          title={indent.title || translations['components.controls.textalign.indent']}
+        >
+          <img
+            src={indent.icon}
+            alt=""
+          />
+        </DropdownOption>}
+	{options.indexOf('outdent') >= 0 && <Option
+          value="outdent"
+          className={classNames(outdent.className)}
+          onClick={onChange}
+          title={outdent.title || translations['components.controls.textalign.outdent']}
+        >
+          <img
+            src={outdent.icon}
+            alt=""
+          />
+        </Option>}
       </Dropdown>
     );
   }
