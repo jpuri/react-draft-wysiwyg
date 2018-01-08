@@ -98,6 +98,7 @@ export default class WysiwygEditor extends Component {
     this.state = {
       editorState: undefined,
       editorFocused: false,
+      toolbarExpanded: false,
       toolbar,
     };
     const wrapperId = props.wrapperId ? props.wrapperId : Math.floor(Math.random() * 10000);
@@ -153,9 +154,7 @@ export default class WysiwygEditor extends Component {
         newState.editorState = EditorState.createEmpty(this.compositeDecorator);
       }
     }
-    if (newState.editorState &&
-      (this.props.editorState && this.props.editorState.getCurrentContent().getBlockMap().size) !==
-      (newState.editorState && newState.editorState.getCurrentContent().getBlockMap().size)) {
+    if (props.editorState !== this.props.editorState || props.contentState !== this.props.contentState) {
       extractInlineStyle(newState.editorState);
     }
     this.setState(newState);
@@ -164,9 +163,11 @@ export default class WysiwygEditor extends Component {
   }
 
   onEditorBlur: Function = (): void => {
-    this.setState({
-      editorFocused: false,
-    });
+    if (!this.state.toolbarExpanded) {
+      this.setState({
+        editorFocused: false,
+      });
+    }
   };
 
   onEditorFocus: Function = (event): void => {
@@ -228,6 +229,10 @@ export default class WysiwygEditor extends Component {
         this.afterChange(editorState);
       }
     }
+  };
+
+  onToolbarExpanded: Function = (toolbarExpanded: boolean): void => {
+    this.setState({ toolbarExpanded });
   };
 
   setWrapperReference: Function = (ref: Object): void => {
@@ -320,7 +325,7 @@ export default class WysiwygEditor extends Component {
     'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
     'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag',
-    'ariaLabel', 'customBlockRenderFunc', 'customDecorators',
+    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'handlePastedText'
   ]);
 
   changeEditorState = (contentState) => {
@@ -362,6 +367,10 @@ export default class WysiwygEditor extends Component {
   };
 
   handlePastedText = (text, html) => {
+    if (this.props.handlePastedText &&
+      this.props.handlePastedText(text, html, editorState, this.onChange)) {
+        return true;
+    }
     const { editorState } = this.state;    
     return handlePastedText(text, html, editorState, this.onChange);
   }
@@ -427,7 +436,7 @@ export default class WysiwygEditor extends Component {
             if (opt === 'image' && uploadCallback) {
               config.uploadCallback = uploadCallback;
             }
-            return <Control key={index} {...controlProps} config={config} />;
+            return <Control key={index} {...controlProps} config={config} onToolbarExpanded={this.onToolbarExpanded} />;
           })}
           {toolbarCustomButtons && toolbarCustomButtons.map((button, index) =>
             React.cloneElement(button, { key: index, ...controlProps }))}

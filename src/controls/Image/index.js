@@ -10,6 +10,7 @@ class ImageControl extends Component {
   static propTypes: Object = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    onToolbarExpanded: PropTypes.func,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
     translations: PropTypes.object,
@@ -37,18 +38,21 @@ class ImageControl extends Component {
     this.setState({
       expanded: true,
     });
+    this.props.onToolbarExpanded(true);
   };
 
   doCollapse: Function = (): void => {
     this.setState({
       expanded: false,
     });
+    this.props.onToolbarExpanded(false);
   };
 
   expandCollapse: Function = (): void => {
     this.setState({
       expanded: this.signalExpanded,
     });
+    this.props.onToolbarExpanded(this.signalExpanded);
     this.signalExpanded = false;
   }
 

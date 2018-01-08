@@ -91,3 +91,17 @@ Initial stable release
 ## 23/09/2017 (1.10.12)
 - #444: Images not copied when copying content from microsoft word.
 - Translations for de and nl locales.
+
+## 7/12/2017 (1.12.0)
+- Adding custom component for rendering of mentions and hashtags.
+- Using targetOption property to save target of link.
+
+## 18/12/2017 (1.12.1)
+- Changes in German Translations.
+- Using linkify-it to linkify link targets.
+
+## 25/12/2017 (1.12.2)
+- #502, In some scenario, editor does not extract inline style when editorState is changed 
+
+## 1/1/2018 (1.12.3)
+# Adding UMD module bundling.
