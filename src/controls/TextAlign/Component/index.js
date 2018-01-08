@@ -107,7 +107,7 @@ export default class TextAlign extends Component {
         title={title || translations['components.controls.textalign.textalign']}
       >
         <img
-          src={(textAlignment && config[textAlignment].icon) || getFirstIcon(config)}
+          src={(textAlignment && config[textAlignment] && config[textAlignment].icon) || getFirstIcon(config)}
           alt=""
         />
         {options.indexOf('left') >= 0 && <DropdownOption
