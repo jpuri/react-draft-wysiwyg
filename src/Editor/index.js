@@ -98,6 +98,7 @@ export default class WysiwygEditor extends Component {
     this.state = {
       editorState: undefined,
       editorFocused: false,
+      toolbarExpanded: false,
       toolbar,
     };
     const wrapperId = props.wrapperId ? props.wrapperId : Math.floor(Math.random() * 10000);
@@ -162,9 +163,11 @@ export default class WysiwygEditor extends Component {
   }
 
   onEditorBlur: Function = (): void => {
-    this.setState({
-      editorFocused: false,
-    });
+    if (!this.state.toolbarExpanded) {
+      this.setState({
+        editorFocused: false,
+      });
+    }
   };
 
   onEditorFocus: Function = (event): void => {
@@ -226,6 +229,10 @@ export default class WysiwygEditor extends Component {
         this.afterChange(editorState);
       }
     }
+  };
+
+  onToolbarExpanded: Function = (toolbarExpanded: boolean): void => {
+    this.setState({ toolbarExpanded });
   };
 
   setWrapperReference: Function = (ref: Object): void => {
@@ -429,7 +436,7 @@ export default class WysiwygEditor extends Component {
             if (opt === 'image' && uploadCallback) {
               config.uploadCallback = uploadCallback;
             }
-            return <Control key={index} {...controlProps} config={config} />;
+            return <Control key={index} {...controlProps} config={config} onToolbarExpanded={this.onToolbarExpanded} />;
           })}
           {toolbarCustomButtons && toolbarCustomButtons.map((button, index) =>
             React.cloneElement(button, { key: index, ...controlProps }))}
