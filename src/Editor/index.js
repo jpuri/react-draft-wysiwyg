@@ -172,7 +172,8 @@ export default class WysiwygEditor extends Component {
     this.setState({
       editorFocused: true,
     });
-    if (onFocus && this.focusHandler.isEditorFocused()) {
+    const editFocused = this.focusHandler.isEditorFocused();
+    if (onFocus && editFocused) {
       onFocus(event);
     }
   };
@@ -369,7 +370,7 @@ export default class WysiwygEditor extends Component {
   }
 
   preventDefault: Function = (event: Object) => {
-    if (event.target.tagName === 'INPUT') {
+    if (event.target.tagName === 'INPUT' || event.target.tagName === 'LABEL') {
       this.focusHandler.onInputMouseDown();
     } else {
       event.preventDefault();
