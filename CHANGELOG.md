@@ -109,3 +109,6 @@ Initial stable release
 ## 8/1/2018 (1.12.3)
 - #514, Avoid error when an alignment is not defined. 
 - #555, Image preview option.
+
+## 15/1/2017
+- #549, stripPastedStyles not working.
