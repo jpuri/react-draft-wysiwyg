@@ -10,7 +10,7 @@ import de from './de';
 import da from './da';
 import zh_tw from './zh_tw';
 import pl from './pl';
-import pl from './es';
+import es from './es';
 
 module.exports = {
   en,
