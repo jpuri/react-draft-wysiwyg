@@ -2,7 +2,7 @@ module.exports = {
 
   // Generic
   'generic.add': '追加',
-  'generic.cancel': '取り消し',
+  'generic.cancel': 'キャンセル',
 
   // BlockType
   'components.controls.blocktype.h1': '見出し1',
