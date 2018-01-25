@@ -234,6 +234,9 @@ export default class WysiwygEditor extends Component {
   };
 
   setEditorReference: Function = (ref: Object): void => {
+    if (this.props.ref) {
+      this.props.ref(ref);
+    }
     this.editor = ref;
   };
 
@@ -314,7 +317,7 @@ export default class WysiwygEditor extends Component {
   }
 
   filterEditorProps = props => filter(props, [
-    'onChange', 'onEditorStateChange', 'onContentStateChange', 'initialContentState',
+    'ref', 'onChange', 'onEditorStateChange', 'onContentStateChange', 'initialContentState',
     'defaultContentState', 'contentState', 'editorState', 'defaultEditorState', 'locale',
     'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
