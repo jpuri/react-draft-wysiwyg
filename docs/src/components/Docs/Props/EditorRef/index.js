@@ -5,7 +5,7 @@ export default () => (
   <div>
     <h3>Editor ref</h3>
     <div className="docs-desc">
-      Reference of underlying DraftJS editor can be obtained using ref property.
+      Reference of underlying DraftJS editor can be obtained using editorRef property.
       This can be used to raise events on editor like focus editor.
     </div>
     <Codemirror
@@ -17,7 +17,7 @@ export default () => (
         '\n\n' +
         'const EditorWithRef = () => (\n' +
         '  <Editor\n' +
-        '    ref={setEditorReference}\n' +
+        '    editorRef={setEditorReference}\n' +
         '  />\n' +
         ')'
       }

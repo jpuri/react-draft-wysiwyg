@@ -115,3 +115,6 @@ Initial stable release
 
 ## 25/1/2018
 - Adding ref property to editor to get teference of underlying DraftJS editor.
+
+## 26/1/2018
+- #581, onBlur not firing.
