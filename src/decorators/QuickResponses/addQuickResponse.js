@@ -14,7 +14,7 @@ export default function addQuickResponse(
   const { value } = suggestion;
   const entityKey = editorState
     .getCurrentContent()
-    .createEntity('QUICK_RESPONSE', 'IMMUTABLE', { text: `${value}`, value })
+    .createEntity('QUICK_RESPONSE', 'MUTABLE', { text: `${value}`, value })
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();

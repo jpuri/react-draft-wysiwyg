@@ -60,7 +60,7 @@ class QuickResponseComponent extends Component {
     const { templateUsageCount } = this.props.config;
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('QUICK_RESPONSE', 'IMMUTABLE', { text: `${value}`, value })
+      .createEntity('QUICK_RESPONSE', 'MUTABLE', { text: `${value}`, value })
       .getLastCreatedEntityKey();
     const contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
@@ -108,6 +108,11 @@ class QuickResponseComponent extends Component {
     });
   }
 
+  handleKeyPress = () => {
+    //handle arrow keys
+    console.log("handleKeyPress triggered")
+  }
+
   renderTemplate: Function = (payload: {value: string, index: number, subject: ?string}): void => {
     const { index, value, subject } = payload;
     const { renderTemplate } = this.props.config;
@@ -144,6 +149,7 @@ class QuickResponseComponent extends Component {
               <button
                 key={index}
                 type="button"
+                onKeyPress={this.handleKeyPress}
                 spellCheck={false}
                 onClick={this.addQuickResponse}
                 data-index={index}
