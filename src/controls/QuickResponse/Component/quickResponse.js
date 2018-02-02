@@ -108,9 +108,12 @@ class QuickResponseComponent extends Component {
     });
   }
 
-  handleKeyPress = () => {
-    //handle arrow keys
-    console.log("handleKeyPress triggered")
+  handleKeyPress = (e: *) => {
+    if (e.which === 40) {
+      console.log("down arrow triggered");
+    } else if (e.which === 38) {
+      console.log("up arrow triggered");
+    }
   }
 
   renderTemplate: Function = (payload: {value: string, index: number, subject: ?string}): void => {
@@ -149,8 +152,8 @@ class QuickResponseComponent extends Component {
               <button
                 key={index}
                 type="button"
-                onKeyPress={this.handleKeyPress}
                 spellCheck={false}
+                onKeyDown={this.handleKeyPress}
                 onClick={this.addQuickResponse}
                 data-index={index}
                 value={index}
