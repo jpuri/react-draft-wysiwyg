@@ -110,9 +110,13 @@ class QuickResponseComponent extends Component {
 
   handleKeyPress = (e: *) => {
     if (e.which === 40) {
+      e.preventDefault();
       console.log("down arrow triggered");
+   
     } else if (e.which === 38) {
+      e.preventDefault();
       console.log("up arrow triggered");
+     
     }
   }
 
