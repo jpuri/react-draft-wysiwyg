@@ -68,3 +68,10 @@ Original motivation and sponsorship for this work came from [iPaoo](http://www.i
 
 ## License
 MIT.
+
+## Publishing
+ - After doing the desired changes the developer needs to run the already implemented tests by executing npm run test.
+ - After that one should bump the version of the package.json.
+ - The following step is to run the command to build the project, npm run build.
+ - Finally you will need to run npm publish to publish the changes to npm.
+
