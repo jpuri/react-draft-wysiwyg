@@ -106,19 +106,7 @@ class QuickResponseComponent extends Component {
       showModal: true,
       activeOption: -1,
     });
-  }
-
-  handleKeyPress = (e: *) => {
-    if (e.which === 40) {
-      e.preventDefault();
-      console.log("down arrow triggered");
-   
-    } else if (e.which === 38) {
-      e.preventDefault();
-      console.log("up arrow triggered");
-     
-    }
-  }
+  }   
 
   renderTemplate: Function = (payload: {value: string, index: number, subject: ?string}): void => {
     const { index, value, subject } = payload;
@@ -126,7 +114,6 @@ class QuickResponseComponent extends Component {
     this.setState({ renderTemplateAsyncStatus: 'loading' });
     renderTemplate({ content: value, subject })
       .then((response) => {
-        console.warn('response', response);
         this.setState({ renderTemplateAsyncStatus: 'succeeded' });
         this.addValue({ value: response.data.rendered_content, index });
       })
@@ -157,7 +144,6 @@ class QuickResponseComponent extends Component {
                 key={index}
                 type="button"
                 spellCheck={false}
-                onKeyDown={this.handleKeyPress}
                 onClick={this.addQuickResponse}
                 data-index={index}
                 value={index}
@@ -185,6 +171,7 @@ class QuickResponseComponent extends Component {
       translations,
     } = this.props;
     const { showModal } = this.state;
+
     return (
       <div className={classNames('rdw-quick-response-wrapper', className)} aria-label="rdw-quick-response-control">
         <Option
