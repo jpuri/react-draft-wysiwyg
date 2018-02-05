@@ -60,7 +60,7 @@ class QuickResponseComponent extends Component {
     const { templateUsageCount } = this.props.config;
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('QUICK_RESPONSE', 'IMMUTABLE', { text: `${value}`, value })
+      .createEntity('QUICK_RESPONSE', 'MUTABLE', { text: `${value}`, value })
       .getLastCreatedEntityKey();
     const contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
@@ -106,7 +106,7 @@ class QuickResponseComponent extends Component {
       showModal: true,
       activeOption: -1,
     });
-  }
+  }   
 
   renderTemplate: Function = (payload: {value: string, index: number, subject: ?string}): void => {
     const { index, value, subject } = payload;
@@ -114,7 +114,6 @@ class QuickResponseComponent extends Component {
     this.setState({ renderTemplateAsyncStatus: 'loading' });
     renderTemplate({ content: value, subject })
       .then((response) => {
-        console.warn('response', response);
         this.setState({ renderTemplateAsyncStatus: 'succeeded' });
         this.addValue({ value: response.data.rendered_content, index });
       })
@@ -172,6 +171,7 @@ class QuickResponseComponent extends Component {
       translations,
     } = this.props;
     const { showModal } = this.state;
+
     return (
       <div className={classNames('rdw-quick-response-wrapper', className)} aria-label="rdw-quick-response-control">
         <Option

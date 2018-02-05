@@ -56,16 +56,16 @@ class Suggestion {
         if ((index === undefined || index < 0) && text[0] === trigger) {
           index = 0;
           preText = trigger;
-        }
+        }    
         if (index >= 0) {
           const quickResponseText = text.substr(index + preText.length, text.length);
           const suggestionPresent =
           getSuggestions().some((suggestion) => {
-            if (suggestion.value) {
+            if (suggestion.text) {
               if (this.config.caseSensitive) {
-                return suggestion.value.indexOf(quickResponseText) >= 0;
+                return suggestion.text.indexOf(quickResponseText) >= 0;
               }
-              return suggestion.value.toLowerCase()
+              return suggestion.text.toLowerCase()
                 .indexOf(quickResponseText && quickResponseText.toLowerCase()) >= 0;
             }
             return false;
@@ -195,14 +195,12 @@ function getSuggestionComponent() {
     filterSuggestions = (props) => {
       const quickResponseText = props.children[0].props.text.substr(1);
       const suggestions = config.getSuggestions();
-
       this.filteredSuggestions =
         suggestions && suggestions.filter((suggestion) => {
           if (!quickResponseText) {
             return true;
-          }
-          return suggestion.text.toLowerCase()
-            .indexOf(quickResponseText && quickResponseText.toLowerCase()) !== -1;
+          }   
+          return suggestion.text.toLowerCase().indexOf(quickResponseText && quickResponseText.toLowerCase()) !== -1;
         });
     }
 
@@ -237,7 +235,6 @@ function getSuggestionComponent() {
       const suggestionCopy = Object.assign({}, suggestion);
       renderTemplate({ content: suggestion.value, subject: suggestion.subject })
         .then((response) => {
-          console.warn('response', response);
           suggestionCopy.value = response.data.rendered_content;
           this.addSuggestion({ suggestion: suggestionCopy, index });
         })
@@ -263,6 +260,7 @@ function getSuggestionComponent() {
           {showSuggestions &&
             <span
               className={classNames('rdw-quick-response-suggestion-dropdown', dropdownClassName)}
+              suppressContentEditableWarning
               contentEditable="false"
               style={this.state.style}
               ref={this.setDropdownReference}
