@@ -325,7 +325,7 @@ export default class WysiwygEditor extends Component {
     'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
     'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag',
-    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'handlePastedText'
+    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'handlePastedText', 'stripPastedStyles'
   ]);
 
   changeEditorState = (contentState) => {
