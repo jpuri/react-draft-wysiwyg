@@ -20,15 +20,16 @@ export default class LayoutComponent extends Component {
   };
 
   state: Object = {
-    defaultFontSize: undefined,
+    defaultFontSize: 'fontsize-12',
   };
 
   componentDidMount(): void {
     const editorElm = document.getElementsByClassName('DraftEditor-root');
     if (editorElm && editorElm.length > 0) {
       const editorStyles = window.getComputedStyle(editorElm[0]);
-      let defaultFontSize = editorStyles.getPropertyValue('font-size');
+      let defaultFontSize = editorStyles.getPropertyValue('font-size'); 
       defaultFontSize = defaultFontSize.substring(0, defaultFontSize.length - 2);
+      
       this.setState({ // eslint-disable-line react/no-did-mount-set-state
         defaultFontSize,
       });
@@ -50,6 +51,7 @@ export default class LayoutComponent extends Component {
     defaultFontSize = Number(defaultFontSize);
     currentFontSize = currentFontSize ||
       (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
+
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         <Dropdown
