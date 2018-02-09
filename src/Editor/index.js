@@ -325,7 +325,7 @@ export default class WysiwygEditor extends Component {
     'localization', 'toolbarOnFocus', 'toolbar', 'toolbarCustomButtons', 'toolbarClassName',
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
     'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention', 'hashtag',
-    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'handlePastedText', 'stripPastedStyles'
+    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'handlePastedText'
   ]);
 
   changeEditorState = (contentState) => {
@@ -367,9 +367,8 @@ export default class WysiwygEditor extends Component {
   };
 
   handlePastedText = (text, html) => {
-    if (this.props.handlePastedText &&
-      this.props.handlePastedText(text, html, editorState, this.onChange)) {
-        return true;
+    if (this.props.handlePastedText){
+      return this.props.handlePastedText(text, html, editorState, this.onChange);
     }
     const { editorState } = this.state;    
     return handlePastedText(text, html, editorState, this.onChange);
