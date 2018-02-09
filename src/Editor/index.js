@@ -367,9 +367,11 @@ export default class WysiwygEditor extends Component {
   };
 
   handlePastedText = (text, html) => {
-    if (this.props.handlePastedText &&
-      this.props.handlePastedText(text, html, editorState, this.onChange)) {
-        return true;
+    if (this.props.handlePastedText){
+      const isHandled = this.props.handlePastedText(text, html, editorState, this.onChange);
+      if(this.props.stripPastedStyles || isHandled){
+        return isHandled;
+      }
     }
     const { editorState } = this.state;    
     return handlePastedText(text, html, editorState, this.onChange);
