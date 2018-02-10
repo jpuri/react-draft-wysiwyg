@@ -33,13 +33,8 @@ export default class FontSize extends Component {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
-      this.setState({
-        currentFontSize: getSelectionCustomInlineStyle(properties.editorState, ['FONTSIZE']).FONTSIZE,
-      });
-    }
+  componentDidMount() {
+    this.toggleFontSize(12);
   }
 
   componentWillUnmount(): void {
@@ -71,7 +66,6 @@ export default class FontSize extends Component {
   };
 
   toggleFontSize: Function = (fontSize: number) => {
-
     const { editorState, onChange } = this.props;
     const newState = toggleCustomInlineStyle(
       editorState,
@@ -81,6 +75,7 @@ export default class FontSize extends Component {
     if (newState) {
       onChange(newState);
     }
+    this.setState({ currentFontSize: `fontsize-${fontSize}` });
   };
 
   render(): Object {
