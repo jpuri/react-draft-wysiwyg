@@ -37,6 +37,17 @@ export default class FontSize extends Component {
     this.toggleFontSize(12);
   }
 
+  componentWillReceiveProps(newProps: *) {
+
+    const contentState = newProps.editorState.getCurrentContent();
+
+    if (contentState && contentState !== this.props.editorState) {
+      if (!contentState.hasText()) {
+        this.setState({ currentFontSize: `fontsize-12` });
+      }
+    }
+  }
+
   componentWillUnmount(): void {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
@@ -78,22 +89,12 @@ export default class FontSize extends Component {
     this.setState({ currentFontSize: `fontsize-${fontSize}` });
   };
 
-  setToDefault = () => {
-    this.setState({ currentFontSize: `fontsize-12` })
-  }
-
   render(): Object {
     const { config, translations, editorState } = this.props;
     const { expanded, currentFontSize } = this.state;
     const FontSizeComponent = config.component || LayoutComponent;
-    let fontSize = currentFontSize && Number(currentFontSize.substring(9));
-    if (editorState && editorState.getCurrentContent()) {
-      const contentState = editorState.getCurrentContent();
-      if (contentState && !contentState.hasText() && fontSize !== 12) {
-        fontSize = 12;
-        this.setToDefault();
-      }
-    }
+    const fontSize = currentFontSize && Number(currentFontSize.substring(9));
+
     return (
       <FontSizeComponent
         config={config}
