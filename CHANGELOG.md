@@ -118,3 +118,8 @@ Initial stable release
 
 ## 26/1/2018
 - #581, onBlur not firing.
+
+## 14/2/2018 (1.12.9)
+- #425, text alignment broken for multiple text.
+- #549, Prop stripPastedStyles is ignored.
+- Support for Japanese locale.
