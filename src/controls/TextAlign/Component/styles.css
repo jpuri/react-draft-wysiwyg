@@ -16,13 +16,13 @@
   text-align: right;
 }
 .rdw-left-aligned-block {
-  text-align: left;
+  text-align: left !important;
 }
 .rdw-center-aligned-block {
-  text-align: center;
+  text-align: center !important;
 }
 .rdw-justify-aligned-block {
-  text-align: justify;
+  text-align: justify !important;
 }
 .rdw-right-aligned-block > div {
   display: inline-block;
