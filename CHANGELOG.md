@@ -110,5 +110,11 @@ Initial stable release
 - #514, Avoid error when an alignment is not defined. 
 - #555, Image preview option.
 
-## 15/1/2017
+## 15/1/2018
 - #549, stripPastedStyles not working.
+
+## 25/1/2018
+- Adding ref property to editor to get teference of underlying DraftJS editor.
+
+## 26/1/2018
+- #581, onBlur not firing.

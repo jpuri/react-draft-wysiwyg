@@ -15,7 +15,7 @@ export default class FocusHandler {
       && !this.editorFocused) {
       this.inputFocused = false;
       return true;
-    } else if ((event.target.tagName === 'INPUT' || event.target.tagName === 'LABEL')
+    } else if ((event.target.tagName !== 'INPUT' || event.target.tagName !== 'LABEL')
       && !this.inputFocused) {
       this.editorFocused = false;
       return true;

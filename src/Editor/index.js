@@ -82,6 +82,7 @@ export default class WysiwygEditor extends Component {
     customBlockRenderFunc: PropTypes.func,
     wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
+    editorRef: PropTypes.func,
   };
 
   static defaultProps = {
@@ -234,6 +235,9 @@ export default class WysiwygEditor extends Component {
   };
 
   setEditorReference: Function = (ref: Object): void => {
+    if (this.props.editorRef) {
+      this.props.editorRef(ref);
+    }
     this.editor = ref;
   };
 

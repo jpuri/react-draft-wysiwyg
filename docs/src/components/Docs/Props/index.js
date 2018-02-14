@@ -13,6 +13,7 @@ import EditorStateProp from './EditorStateProp';
 import CustomizingToolbarProp from './CustomizingToolbarProp';
 import MentionProp from './MentionProp';
 import HashtagProp from './HashtagProp';
+import EditorRef from './EditorRef';
 import EventCallbackProp from './EventCallbackProp';
 import DraftjsProp from './DraftjsProp';
 import TextAlignmentProp from './TextAlignmentProp';
@@ -29,6 +30,7 @@ const Props = () => (
     <CustomizingToolbarProp />
     <MentionProp />
     <HashtagProp />
+    <EditorRef />
     <EventCallbackProp />
     <DraftjsProp />
     <TextAlignmentProp />
