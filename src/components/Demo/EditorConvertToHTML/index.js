@@ -49,7 +49,7 @@ class EditorConvertToHTML extends Component {
           <Codemirror
             value={
               'import React, { Component } from \'react\';\n' +
-              'import { EditorState, convertToRaw, ContentState } from \'draft-js\';\n' +
+              'import { EditorState, convertToRaw } from \'draft-js\';\n' +
               'import { Editor } from \'react-draft-wysiwyg\';\n' +
               'import draftToHtml from \'draftjs-to-html\';\n' +
               'import htmlToDraft from \'html-to-draftjs\';\n' +
