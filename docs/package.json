@@ -46,8 +46,7 @@
   },
   "scripts": {
     "clean": "rimraf static",
-    "build:webpack":
-      "NODE_ENV=production webpack --config config/webpack.prod.config.js",
+    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config.js",
     "build": "npm run clean && npm run build:webpack",
     "start": "node config/server.dev.js"
   },
