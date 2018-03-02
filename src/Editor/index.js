@@ -430,6 +430,8 @@ export default class WysiwygEditor extends Component {
   };
 
   handlePastedText = (text, html) => {
+    const { editorState } = this.state;
+
     if (this.props.handlePastedText) {
       return this.props.handlePastedText(
         text,
@@ -439,7 +441,6 @@ export default class WysiwygEditor extends Component {
       );
     }
     if (!this.props.stripPastedStyles) {
-      const { editorState } = this.state;
       return handlePastedText(text, html, editorState, this.onChange);
     }
     return false;
