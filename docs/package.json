@@ -62,7 +62,7 @@
     "codemirror": "^5.32.0",
     "react-color": "^2.13.8",
     "react-dom": "^16.2.0",
-    "react-draft-wysiwyg": "file:../",
+    "react-draft-wysiwyg": "^1.12.11",
     "react-router": "^3.0.2"
   }
 }

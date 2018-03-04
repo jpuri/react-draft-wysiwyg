@@ -123,3 +123,6 @@ Initial stable release
 - #425, text alignment broken for multiple text.
 - #549, Prop stripPastedStyles is ignored.
 - Support for Japanese locale.
+
+## 4/3/2018 (1.12.11)
+- #621, variable declaration causes handlePastedText function error after js minified.
