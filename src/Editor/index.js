@@ -25,7 +25,7 @@ import KeyDownHandler from '../event-handler/keyDown';
 import SuggestionHandler from '../event-handler/suggestions';
 import blockStyleFn from '../utils/BlockStyle';
 import { mergeRecursive } from '../utils/toolbar';
-import { hasProperty, filter } from '../utils/common';
+import { hasProperty, filter, isObject } from '../utils/common';
 import { handlePastedText } from '../utils/handlePaste';
 import Controls from '../controls';
 import getLinkDecorator from '../decorators/Link';
@@ -368,7 +368,7 @@ export default class WysiwygEditor extends Component {
     if (this.props.handlePastedText) {
       return this.props.handlePastedText(text, html, editorState, this.onChange);
     }
-    const { editorState } = this.state;    
+    const { editorState } = this.state;
     return handlePastedText(text, html, editorState, this.onChange);
   }
 
@@ -380,28 +380,22 @@ export default class WysiwygEditor extends Component {
     }
   };
 
-  render() {
+  renderToolsButton = () => {
     const {
       editorState,
-      editorFocused,
       toolbar,
+      editorFocused,
     } = this.state;
     const {
       locale,
       localization: { locale: newLocale, translations },
       toolbarCustomButtons,
-      toolbarOnFocus,
       toolbarClassName,
-      toolbarHidden,
-      editorClassName,
-      wrapperClassName,
-      toolbarStyle,
-      editorStyle,
-      wrapperStyle,
       uploadCallback,
-      ariaLabel,
+      toolbarStyle,
+      toolbarOnFocus,
+      toolbarHidden,
     } = this.props;
-
     const controlProps = {
       modalHandler: this.modalHandler,
       editorState,
@@ -410,6 +404,68 @@ export default class WysiwygEditor extends Component {
     };
     const toolbarShow = !toolbarHidden &&
       (editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus);
+    let extendControls = mergeRecursive(Controls, {});
+    const toolbarCustomButtonsClone = toolbarCustomButtons && toolbarCustomButtons.slice();
+    const customIdxButton = {};
+    let toolbarOpts = toolbar.options.slice();
+    if (toolbarCustomButtons) {
+      toolbarCustomButtons.forEach((button, idx) => {
+        if (isObject(button) && hasProperty(button, 'positionAfter')
+         && hasProperty(button, 'component')) {
+          if (button.positionAfter in Controls) {
+            const controlName = button.positionAfter;
+            customIdxButton[controlName] = button.component;
+            toolbarCustomButtonsClone.splice(idx);
+          }
+        }
+      });
+
+      toolbar.options.forEach((opt, index) => {
+        if (opt in customIdxButton) {
+          extendControls = Object.assign(extendControls, {
+            [`after${opt}`]: React.cloneElement(customIdxButton[opt], { ...controlProps }),
+          });
+          toolbarOpts = toolbarOpts.slice(0, index + 1).concat(`after${opt}`, toolbarOpts.slice(index + 1));
+        }
+      });
+    }
+
+
+    return (
+      <div
+        className={classNames('rdw-editor-toolbar', toolbarClassName)}
+        style={{ visibility: toolbarShow ? 'visible' : 'hidden', ...toolbarStyle }}
+        onMouseDown={this.preventDefault}
+        aria-label="rdw-toolbar"
+        aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+        onFocus={this.onToolbarFocus}
+      >
+        {toolbarOpts.map((opt, index) => {
+          const Control = extendControls[opt];
+          const config = toolbar[opt] || {};
+          if (/after/i.test(opt)) {
+            return extendControls[opt];
+          }
+          if (opt === 'image' && uploadCallback) {
+            config.uploadCallback = uploadCallback;
+          }
+          return <Control key={index} {...controlProps} config={config} />;
+        })}
+        {toolbarCustomButtonsClone && toolbarCustomButtonsClone.map((button, index) =>
+          React.cloneElement(button, { key: index, ...controlProps }))}
+      </div>);
+  }
+
+  render() {
+    const { editorState } = this.state;
+    const {
+      editorClassName,
+      wrapperClassName,
+      editorStyle,
+      wrapperStyle,
+      ariaLabel,
+    } = this.props;
+
     return (
       <div
         id={this.wrapperId}
@@ -420,25 +476,6 @@ export default class WysiwygEditor extends Component {
         aria-label="rdw-wrapper"
       >
         <div
-          className={classNames('rdw-editor-toolbar', toolbarClassName)}
-          style={{ visibility: toolbarShow ? 'visible' : 'hidden', ...toolbarStyle }}
-          onMouseDown={this.preventDefault}
-          aria-label="rdw-toolbar"
-          aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-          onFocus={this.onToolbarFocus}
-        >
-          {toolbar.options.map((opt, index) => {
-            const Control = Controls[opt];
-            const config = toolbar[opt];
-            if (opt === 'image' && uploadCallback) {
-              config.uploadCallback = uploadCallback;
-            }
-            return <Control key={index} {...controlProps} config={config} />;
-          })}
-          {toolbarCustomButtons && toolbarCustomButtons.map((button, index) =>
-            React.cloneElement(button, { key: index, ...controlProps }))}
-        </div>
-        <div
           ref={this.setWrapperReference}
           className={classNames(editorClassName, 'rdw-editor-main')}
           style={editorStyle}
@@ -448,6 +485,7 @@ export default class WysiwygEditor extends Component {
           onKeyDown={KeyDownHandler.onKeyDown}
           onMouseDown={this.onEditorMouseDown}
         >
+          {this.renderToolsButton()}
           <Editor
             ref={this.setEditorReference}
             onTab={this.onTab}
