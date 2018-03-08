@@ -38,7 +38,10 @@ const CustomToolbar = () =>
       toolbarClassName="rdw-storybook-toolbar"
       wrapperClassName="rdw-storybook-wrapper"
       editorClassName="rdw-storybook-editor"
-      toolbarCustomButtons={[<CustomOption />]}
+      toolbarCustomButtons={[<CustomOption />, {
+        component: <CustomOption />,
+        positionAfter: 'fontSize',
+      }]}
     />
   </div>);
 

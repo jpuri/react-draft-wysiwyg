@@ -58,3 +58,6 @@ export function filter(obj, keys) {
 export function stopPropagation(event) {
   event.stopPropagation();
 }
+
+
+export const isObject = obj => obj === Object(obj)
