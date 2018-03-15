@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { EditorState } from 'draft-js';
+import { EditorState, SelectionState, Modifier } from 'draft-js';
 import classNames from 'classnames';
 import Option from '../../components/Option';
 import './styles.css';
@@ -40,6 +40,27 @@ const getImageComponent = config => class Image extends Component {
     });
   };
 
+  removeEntity: Function = (): void => {
+    const { block, contentState } = this.props;
+
+    const blockKey = block.getKey();
+    const afterKey = contentState.getKeyAfter(blockKey);
+    const targetRange = new SelectionState({
+        anchorKey: blockKey,
+        anchorOffset: 0,
+        focusKey: afterKey,
+        focusOffset: 0
+    });
+    let newContentState = Modifier.setBlockType(
+      contentState,
+      targetRange,
+      'unstyled'
+    );
+
+    newContentState = Modifier.removeRange(newContentState, targetRange, 'backward');
+    config.onChange(EditorState.push(config.getEditorState(), newContentState, 'remove-range'));
+  };
+
   toggleHovered: Function = (): void => {
     const hovered = !this.state.hovered;
     this.setState({
@@ -47,16 +68,9 @@ const getImageComponent = config => class Image extends Component {
     });
   };
 
-  renderAlignmentOptions(alignment): Object {
+  renderAlignmentOptions(): Object {
     return (
-      <div
-        className={classNames(
-          'rdw-image-alignment-options-popup',
-          {
-            'rdw-image-alignment-options-popup-right': alignment === 'right',
-          },
-        )}
-      >
+      <React.Fragment>
         <Option
           onClick={this.setEntityAlignmentLeft}
           className="rdw-image-alignment-option"
@@ -75,23 +89,36 @@ const getImageComponent = config => class Image extends Component {
         >
           R
         </Option>
-      </div>
+      </React.Fragment>
+    );
+  }
+
+  renderDeletionOption(): Object {
+    return (
+      <Option
+        onClick={this.removeEntity}
+        className="rdw-image-deletion-option"
+      >
+        X
+      </Option>
     );
   }
 
   render(): Object {
     const { block, contentState } = this.props;
     const { hovered } = this.state;
-    const { isReadOnly, isImageAlignmentEnabled } = config;
+    const { isReadOnly, isImageAlignmentEnabled, isImageDeletionEnabled } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
     const { src, alignment, height, width, alt } = entity.getData();
+    const isAlignmentEnabled = isImageAlignmentEnabled();
+    const isDeletionEnabled = isImageDeletionEnabled();
 
     return (
       <span
         onMouseEnter={this.toggleHovered}
         onMouseLeave={this.toggleHovered}
         className={classNames(
-          'rdw-image-alignment',
+          'rdw-image',
           {
             'rdw-image-left': alignment === 'left',
             'rdw-image-right': alignment === 'right',
@@ -109,11 +136,31 @@ const getImageComponent = config => class Image extends Component {
             }}
           />
           {
-            !isReadOnly() && hovered && isImageAlignmentEnabled() ?
-              this.renderAlignmentOptions(alignment)
+            !isReadOnly() && hovered && (isAlignmentEnabled || isDeletionEnabled) ?
+              <div
+                className={classNames(
+                  'rdw-image-options-popup',
+                  {
+                    'rdw-image-options-popup-right': alignment === 'right',
+                  },
+                )}
+              >
+              {
+                isAlignmentEnabled ?
+                  this.renderAlignmentOptions()
+                  :
+                  false
+              }
+              {
+                isDeletionEnabled ?
+                  this.renderDeletionOption()
+                  :
+                  false
+              }
+              </div>
               :
               undefined
-          }
+            }
         </span>
       </span>
     );

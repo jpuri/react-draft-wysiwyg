@@ -764,7 +764,7 @@
   padding: 1px 2px;
   border-radius: 2px;
 }
-.rdw-image-alignment-options-popup {
+.rdw-image-options-popup {
   position: absolute;;
   background: white;
   display: flex;
@@ -775,7 +775,7 @@
   cursor: pointer;
   z-index: 100;
 }
-.rdw-alignment-option-left {
+.rdw-option-left {
   justify-content: flex-start;
 }
 .rdw-image-alignment-option {
@@ -783,7 +783,13 @@
   width: 15px;
   min-width: 15px;
 }
-.rdw-image-alignment {
+.rdw-image-deletion-option {
+  height: 15px;
+  width: 15px;
+  min-width: 15px;
+  color: red;
+}
+.rdw-image {
   position: relative;
 }
 .rdw-image-imagewrapper {
@@ -800,7 +806,7 @@
   display: flex;
   justify-content: flex-end;
 }
-.rdw-image-alignment-options-popup-right {
+.rdw-image-options-popup-right {
   right: 0;
 }
 .rdw-editor-main {

@@ -115,6 +115,7 @@ export default "{\n" +
   "    urlEnabled: true,\n" +
   "    uploadEnabled: true,\n" +
   "    alignmentEnabled: true,\n" +
+  "    deletionEnabled: false,\n" +
   "    uploadCallback: undefined,\n" +
   "    previewImage: false,\n" +
   "    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',\n" +

@@ -195,6 +195,14 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>image: deletionEnabled</b>
+        <span>
+          : The property can be used to configure if image deletion should be
+          enabled in options. Image can also be deleted with backspace. Default value
+          is false.
+        </span>
+      </li>
+      <li>
         <b>image: inputAccept</b>
         <span>
           : The property can be used to configure which file types should be
