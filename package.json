@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.12.3",
+  "version": "1.12.11",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -10,7 +10,7 @@
   "author": "Jyoti Puri",
   "devDependencies": {
     "@storybook/react": "^3.2.17",
-    "autoprefixer": "^7.2.1",
+    "autoprefixer": "^8.0.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.3",
     "babel-loader": "^7.1.2",
@@ -23,7 +23,7 @@
     "cross-env": "^5.1.1",
     "css-loader": "^0.28.7",
     "draft-js": "^0.10.4",
-    "draftjs-to-html": "^0.8.2",
+    "draftjs-to-html": "^0.8.3",
     "draftjs-to-markdown": "^0.5.1",
     "enzyme": "^3.2.0",
     "enzyme-adapter-react-16": "^1.1.0",
@@ -35,26 +35,26 @@
     "eslint-plugin-react": "^7.5.1",
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.5",
-    "flow-bin": "^0.60.1",
-    "html-to-draftjs": "^1.1.2",
+    "flow-bin": "^0.66.0",
     "immutable": "^4.0.0-rc.1",
     "jsdom": "^11.5.1",
-    "mocha": "^4.0.1",
+    "mocha": "^5.0.1",
     "postcss-loader": "^2.0.9",
-    "precss": "^2.0.0",
+    "precss": "^3.1.0",
     "react": "^16.2.0",
     "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0",
     "rimraf": "^2.6.2",
     "sinon": "^4.1.2",
-    "style-loader": "^0.19.0",
+    "style-loader": "^0.20.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "draftjs-utils": "^0.8.8",
+    "draftjs-utils": "^0.9.3",
+    "html-to-draftjs": "^1.3.0",
     "linkify-it": "^2.0.3",
     "prop-types": "^15.6.0"
   },
@@ -62,13 +62,16 @@
     "draft-js": "^0.10.x",
     "immutable": "3.x.x || 4.x.x",
     "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || 16.x.x",
-    "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || 16.x.x"
+    "react-dom":
+      "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || 16.x.x"
   },
   "scripts": {
     "clean": "rimraf dist",
-    "build:webpack": "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
+    "build:webpack":
+      "cross-env NODE_ENV=production webpack --config config/webpack.config.js",
     "build": "npm run clean && npm run build:webpack",
-    "test": "cross-env BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js src/**/*Test.js",
+    "test":
+      "cross-env BABEL_ENV=test mocha --compilers js:config/test-compiler.js config/test-setup.js src/**/*Test.js",
     "lint": "eslint src",
     "lintdocs": "eslint docs/src",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",

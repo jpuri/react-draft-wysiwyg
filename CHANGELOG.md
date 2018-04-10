@@ -104,4 +104,25 @@ Initial stable release
 - #502, In some scenario, editor does not extract inline style when editorState is changed 
 
 ## 1/1/2018 (1.12.3)
-# Adding UMD module bundling.
+- # Adding UMD module bundling.
+
+## 8/1/2018 (1.12.3)
+- #514, Avoid error when an alignment is not defined. 
+- #555, Image preview option.
+
+## 15/1/2018
+- #549, stripPastedStyles not working.
+
+## 25/1/2018
+- Adding ref property to editor to get teference of underlying DraftJS editor.
+
+## 26/1/2018
+- #581, onBlur not firing.
+
+## 14/2/2018 (1.12.9)
+- #425, text alignment broken for multiple text.
+- #549, Prop stripPastedStyles is ignored.
+- Support for Japanese locale.
+
+## 4/3/2018 (1.12.11)
+- #621, variable declaration causes handlePastedText function error after js minified.
