@@ -227,7 +227,7 @@ export default class WysiwygEditor extends Component {
   onWrapperBlur: Function = (event: Object) => {
     const { onBlur } = this.props;
     if (onBlur && this.focusHandler.isEditorBlur(event)) {
-      onBlur(event);
+      onBlur(event, this.getEditorState());
     }
   };
 
