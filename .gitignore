@@ -4,3 +4,5 @@ npm-debug.log
 dist
 docs/.yalc/
 docs/yalc.lock
+stats.json
+report.html
