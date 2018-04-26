@@ -156,14 +156,15 @@ class FileControl extends Component {
   };
 
   addFile: Function = (src: string, height: string, width: string, alt: string, fileType: string): void => {
-    console.warn("addFile", src, height, width, alt, fileType);
-    const { editorState, onChange, config } = this.props;
+    console.warn('addFile', src, height, width, alt, fileType);
+    console.warn('AddFile', this.props)
+    const { editorState, onChange, config, onHandleRichTextChange } = this.props;
     const entityData = { src, height, width };
 
     // Add an image
-    if(fileType.indexOf("image/") > -1) {
+    if (fileType.indexOf('image/') > -1) {
       if (config.alt.present) {
-        entityData.alt = (alt && alt !== "" ? alt : src);
+        entityData.alt = (alt && alt !== '' ? alt : src);
       }
       const entityKey = editorState
         .getCurrentContent()
@@ -176,9 +177,11 @@ class FileControl extends Component {
         );
         onChange(newEditorState);
     } else { // Add a file as link
-      this.addLink(alt, src, "_blank");
+      this.addLink(alt, src, '_blank');
     }
-
+    if (onHandleRichTextChange && typeof onHandleRichTextChange === 'function') {
+      onHandleRichTextChange();
+    }
 
     this.doCollapse();
   };

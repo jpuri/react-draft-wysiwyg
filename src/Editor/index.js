@@ -73,6 +73,7 @@ export default class WysiwygEditor extends Component {
     editorStyle: PropTypes.object,
     wrapperStyle: PropTypes.object,
     uploadCallback: PropTypes.func,
+    onHandleRichTextChange: PropTypes.func,
     onFocus: PropTypes.func,
     onBlur: PropTypes.func,
     onTab: PropTypes.func,
@@ -111,7 +112,7 @@ export default class WysiwygEditor extends Component {
     this.state = {
       editorState: undefined,
       editorFocused: false,
-      fieldClass: "",
+      fieldClass: '',
       toolbar,
     };
     const wrapperId = props.wrapperId ? props.wrapperId : Math.floor(Math.random() * 10000);
@@ -139,15 +140,15 @@ export default class WysiwygEditor extends Component {
 
   componentDidMount(): void {
     this.modalHandler.init(this.wrapperId);
-    document.addEventListener("dragover", this._fileDragEnter, false);
-    document.addEventListener("dragleave", this._fileDragLeave, false);
+    document.addEventListener('dragover', this._fileDragEnter, false);
+    document.addEventListener('dragleave', this._fileDragLeave, false);
     document.addEventListener('drop', this._fileDragDrop, false);
   }
 
-  componentWillUnmount() {
-    document.removeEventListener("dragover", this._fileDragEnter, false);
-    document.removeEventListener("dragleave", this._fileDragLeave, false);
-    document.removeEventListener("drop", this._fileDragDrop, false);
+  componentWillUnmount(): void {
+    document.removeEventListener('dragover', this._fileDragEnter, false);
+    document.removeEventListener('dragleave', this._fileDragLeave, false);
+    document.removeEventListener('drop', this._fileDragDrop, false);
   }
 
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
@@ -267,23 +268,23 @@ export default class WysiwygEditor extends Component {
       if(e.dataTransfer.items) {
         for(const item of e.dataTransfer.items) {
           if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !item.type.match(this.props.toolbar.file.inputAccept.split(","))) {
-            this.setState({fieldClass: "file-drag-enter-not-allowed"});
+            this.setState({fieldClass: 'file-drag-enter-not-allowed'});
           } else {
-            if(this.state.fieldClass === "") {
-              this.setState({fieldClass: "file-drag-enter"});
+            if(this.state.fieldClass === '') {
+              this.setState({fieldClass: 'file-drag-enter'});
             }
           }
         }
-        if(this.state.fieldClass === "") {
-          this.setState({fieldClass: "file-drag-enter"});
+        if(this.state.fieldClass === '') {
+          this.setState({ fieldClass: 'file-drag-enter'} );
         }
       } else {
         for(const file of e.dataTransfer.files) {
           if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(","))) {
-            this.setState({fieldClass: "file-drag-enter-not-allowed"});
+            this.setState({ fieldClass: 'file-drag-enter-not-allowed'} );
           } else {
-            if(this.state.fieldClass === "") {
-              this.setState({fieldClass: "file-drag-enter"});
+            if(this.state.fieldClass === '') {
+              this.setState({ fieldClass: 'file-drag-enter'} );
             }
           }
         }
@@ -297,8 +298,8 @@ export default class WysiwygEditor extends Component {
   _fileDragLeave = (e: EventT) => {
     e.stopPropagation();
     e.preventDefault();
-    if(this.state.fieldClass !== "") {
-      this.setState({fieldClass: ""})
+    if(this.state.fieldClass !== '') {
+      this.setState({ fieldClass: '' })
     }
   }
 
@@ -306,8 +307,8 @@ export default class WysiwygEditor extends Component {
     e.stopPropagation();
     e.preventDefault();
 
-    if(this.state.fieldClass !== "") {
-      this.setState({fieldClass: ""})
+    if (this.state.fieldClass !== '') {
+      this.setState({ fieldClass: '' });
     }
   }
 
@@ -409,7 +410,7 @@ export default class WysiwygEditor extends Component {
     'editorClassName', 'toolbarHidden', 'wrapperClassName', 'toolbarStyle', 'editorStyle',
     'wrapperStyle', 'uploadCallback', 'onFocus', 'onBlur', 'onTab', 'mention',
     'quickResponse', 'templateUsageCount', 'renderTemplate', 'hashtag',
-    'ariaLabel', 'customBlockRenderFunc', 'customDecorators',
+    'ariaLabel', 'customBlockRenderFunc', 'customDecorators', 'onHandleRichTextChange'
   ]);
 
   changeEditorState = (contentState) => {
@@ -459,6 +460,10 @@ export default class WysiwygEditor extends Component {
 
   handlePastedText = (text, html) => {
     const { editorState } = this.state;
+    // Support onHandleRichTextChange callback parent if added to the component.
+    if (this.props.onHandleRichTextChange && typeof this.props.onHandleRichTextChange === 'function') {
+      this.props.onHandleRichTextChange({text: text, html: html});
+    }
     return handlePastedText(text, html, editorState, this.onChange);
   }
 
@@ -477,16 +482,16 @@ export default class WysiwygEditor extends Component {
 
       for(const file of files) {
         if(this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(","))) {
-          console.warn("Error file type not allowed", file.type);
+          console.warn('Error file type not allowed', file.type);
           return;
         }
-        console.warn("handleDroppedFiles", file)
+
         this.props.toolbar.file.uploadCallback(file)
           .then(({ data }) => {
             this.addFile(data.link, file.height, file.width, file.name, file.type)
           })
           .catch((exception: *) => {
-            console.warn("exception", exception)
+            console.warn('exception', exception)
           })
       }
     }
@@ -498,27 +503,27 @@ export default class WysiwygEditor extends Component {
     if(this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.uploadCallback) {
       for(const file of files) {
         if(this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(","))) {
-          console.warn("Error file type not allowed", file.type);
+          console.warn('Error file type not allowed', file.type);
           return;
         }
         this.props.toolbar.file.uploadCallback(file)
           .then(({ data }) => {
             this.addFile(data.link, file.height, file.width, file.name, file.type)
+
           })
           .catch((exception: *) => {
-            console.warn("exception", exception)
+            console.warn('exception', exception)
           })
       }
     }
   }
 
-  addFile: Function = (src: string, height: string, width: string, alt: string, fileType: string): void => {
-    console.warn("addFile", src, height, width, alt, fileType);
-    const { onChange, config } = this.props;
+  addFile = (src: string, height: string, width: string, alt: string, fileType: string): void => {
+    const { onChange, config, onHandleRichTextChange } = this.props;
     const { editorState } = this.state;
 
     // Add an image
-    if(fileType.indexOf("image/") > -1) {
+    if (fileType.indexOf('image/') > -1) {
       const entityData = { src, height, width, alt };
       const entityKey = editorState
         .getCurrentContent()
@@ -531,7 +536,10 @@ export default class WysiwygEditor extends Component {
         );
         this.onChange(newEditorState);
     } else { // Add a file as link
-      this.addLink(alt, src, "_blank");
+      this.addLink(alt, src, '_blank');
+    }
+    if (onHandleRichTextChange && typeof onHandleRichTextChange === 'function') {
+      onHandleRichTextChange()
     }
   };
 
@@ -581,25 +589,21 @@ export default class WysiwygEditor extends Component {
     if(e.dataTransfer) {
       if(e.dataTransfer.items) {
         for(const item of e.dataTransfer.items) {
-          if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !item.type.match(this.props.toolbar.file.inputAccept.split(","))) {
-            this.setState({fieldClass: "file-drag-enter-not-allowed"});
-          } else {
-            if(this.state.fieldClass === "") {
-              this.setState({fieldClass: "file-drag-enter"});
-            }
+          if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !item.type.match(this.props.toolbar.file.inputAccept.split(','))) {
+            this.setState({fieldClass: 'file-drag-enter-not-allowed'});
+          } else if(this.state.fieldClass === '') {
+            this.setState({fieldClass: 'file-drag-enter'});
           }
         }
-        if(this.state.fieldClass === "") {
-          this.setState({fieldClass: "file-drag-enter"});
+        if(this.state.fieldClass === '') {
+          this.setState({fieldClass: 'file-drag-enter'});
         }
       } else {
         for(const file of e.dataTransfer.files) {
-          if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(","))) {
-            this.setState({fieldClass: "file-drag-enter-not-allowed"});
-          } else {
-            if(this.state.fieldClass === "") {
-              this.setState({fieldClass: "file-drag-enter"});
-            }
+          if (this.props.toolbar && this.props.toolbar.file && this.props.toolbar.file.uploadEnabled && this.props.toolbar.file.inputAccept && !file.type.match(this.props.toolbar.file.inputAccept.split(','))) {
+            this.setState({fieldClass: 'file-drag-enter-not-allowed'});
+          } else if(this.state.fieldClass === '') {
+            this.setState({fieldClass: 'file-drag-enter'});
           }
         }
       }
@@ -612,8 +616,8 @@ export default class WysiwygEditor extends Component {
   _fileDragLeave = (e: EventT) => {
     e.stopPropagation();
     e.preventDefault();
-    if(this.state.fieldClass !== "") {
-      this.setState({fieldClass: ""})
+    if(this.state.fieldClass !== '') {
+      this.setState({fieldClass: ''})
     }
   }
 
@@ -621,8 +625,8 @@ export default class WysiwygEditor extends Component {
     e.stopPropagation();
     e.preventDefault();
 
-    if(this.state.fieldClass !== "") {
-      this.setState({fieldClass: ""})
+    if(this.state.fieldClass !== '') {
+      this.setState({fieldClass: ''})
     }
   }
 
@@ -650,12 +654,14 @@ export default class WysiwygEditor extends Component {
       templateUsageCount,
       renderTemplate,
       ariaLabel,
+      onHandleRichTextChange,
     } = this.props;
 
     const controlProps = {
       modalHandler: this.modalHandler,
       editorState,
       onChange: this.onChange,
+      onHandleRichTextChange: (onHandleRichTextChange && typeof onHandleRichTextChange === 'function' ? onHandleRichTextChange : null),
       translations: { ...localeTranslations[locale || newLocale], ...translations },
     };
     const toolbarShow = !toolbarHidden &&

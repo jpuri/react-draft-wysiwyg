@@ -13,6 +13,7 @@ class ImageControl extends Component {
     modalHandler: PropTypes.object,
     config: PropTypes.object,
     translations: PropTypes.object,
+    onHandleRichTextChange: PropTypes.func,
   };
 
   state: Object = {
@@ -53,7 +54,7 @@ class ImageControl extends Component {
   }
 
   addImage: Function = (src: string, height: string, width: string, alt: string): void => {
-    const { editorState, onChange, config } = this.props;
+    const { editorState, onChange, config, onHandleRichTextChange } = this.props;
     const entityData = { src, height, width };
     if (config.alt.present) {
       entityData.alt = alt;
@@ -69,6 +70,10 @@ class ImageControl extends Component {
     );
     onChange(newEditorState);
     this.doCollapse();
+
+    if (onHandleRichTextChange && typeof onHandleRichTextChange === 'function') {
+      onHandleRichTextChange();
+    }
   };
 
   render(): Object {

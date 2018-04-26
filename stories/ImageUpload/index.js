@@ -31,6 +31,9 @@ const ImageUpload = () =>
       toolbarClassName="rdw-storybook-toolbar"
       wrapperClassName="rdw-storybook-wrapper"
       editorClassName="rdw-storybook-editor"
+      onHandleRichTextChange={(payload: *) => {
+        console.warn('onHandleRichTextChange', payload);
+      }}
       uploadCallback={uploadImageCallBack}
       toolbar={{
         image: {
