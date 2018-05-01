@@ -135,7 +135,7 @@ export default class WysiwygEditor extends Component {
   componentWillMount(): void {
     this.compositeDecorator = this.getCompositeDecorator();
     const editorState = this.createEditorState(this.compositeDecorator);
-    extractInlineStyle(editorState);
+    //extractInlineStyle(editorState); // Remove because it adds style and html.
     this.setState({
       editorState
     });
@@ -190,7 +190,8 @@ export default class WysiwygEditor extends Component {
       props.editorState !== this.props.editorState ||
       props.contentState !== this.props.contentState
     ) {
-      extractInlineStyle(newState.editorState);
+      // Remove because it adds style and html.
+      //extractInlineStyle(newState.editorState);
     }
     this.setState(newState);
     this.editorProps = this.filterEditorProps(props);
