@@ -7,7 +7,7 @@ import uploadImageCallBack from '../../../util/uploadImageCallBack';
 
 const EditorImage = () => (
   <div className="demo-section">
-    <h3>10. Editor with image upload option and mandatory alt field</h3>
+    <h3>10. Editor with image upload option, mandatory alt field and image preview enabled.</h3>
     <div className="demo-section-wrapper">
       <div className="demo-editor-wrapper">
         <Editor
@@ -18,7 +18,7 @@ const EditorImage = () => (
               inline: { inDropdown: true },
               link: { inDropdown: true },
               history: { inDropdown: true },
-              image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true } },
+              image: { uploadCallback: uploadImageCallBack, alt: { present: true, mandatory: true }, previewImage: true },
             }}
           />
       </div>

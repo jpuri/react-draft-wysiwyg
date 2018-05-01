@@ -10,7 +10,7 @@ class ConvertToRawDraftContentEditor extends Component {
     editorState: EditorState.createEmpty(),
   }
 
-  onEditorStateChange: Function = (editorState) => {
+  onEditorStateChange = (editorState) => {
     this.setState({
       editorState,
     });

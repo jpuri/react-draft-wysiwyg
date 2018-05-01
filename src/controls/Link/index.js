@@ -8,8 +8,11 @@ import {
   getEntityRange,
   getSelectionEntity,
 } from 'draftjs-utils';
+import linkifyIt from 'linkify-it';
 
 import LayoutComponent from './Component';
+
+const linkify = linkifyIt();
 
 class Link extends Component {
   static propTypes = {
@@ -57,7 +60,9 @@ class Link extends Component {
 
   onChange = (action, title, target, targetOption) => {
     if (action === 'link') {
-      this.addLink(title, target, targetOption);
+      const links = linkify.match(target);
+      const linkifiedTarget = links && links[0] ? links[0].url : '';
+      this.addLink(title, linkifiedTarget, targetOption);
     } else {
       this.removeLink();
     }
@@ -72,7 +77,7 @@ class Link extends Component {
       currentValues.link = {};
       const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
       currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get('data').url;
-      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get('data').target;
+      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get('data').targetOption;
       currentValues.link.title = (entityRange && entityRange.text);
     }
     currentValues.selectionText = getSelectionText(editorState);
@@ -126,7 +131,7 @@ class Link extends Component {
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', { url: linkTarget, target: linkTargetOption })
+      .createEntity('LINK', 'MUTABLE', { url: linkTarget, targetOption: linkTargetOption })
       .getLastCreatedEntityKey();
 
     let contentState = Modifier.replaceText(

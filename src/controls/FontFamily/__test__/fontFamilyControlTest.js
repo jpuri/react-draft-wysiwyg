@@ -42,8 +42,8 @@ describe('FontFamilyControl test suite', () => {
         translations={localeTranslations.en}
       />,
     );
-    assert.equal(control.childAt(0).props().children.length, 2);
+    assert.equal(control.find(Dropdown).length, 1);
+    assert.equal(control.find(Dropdown).prop('children').length, 2);
     assert.isDefined(control.childAt(0).props().onChange);
-    assert.equal(control.childAt(0).type(), Dropdown);
   });
 });

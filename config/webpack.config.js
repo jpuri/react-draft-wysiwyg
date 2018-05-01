@@ -12,7 +12,8 @@ module.exports = {
   output: {
     path: path.join(__dirname, '../dist'),
     filename: 'react-draft-wysiwyg.js',
-    libraryTarget: 'commonjs2',
+    library: 'reactDraftWysiwyg',
+    libraryTarget: 'umd',
   },
   externals: {
     react: 'react',

@@ -163,6 +163,7 @@ export default {
     popupClassName: undefined,
     urlEnabled: true,
     uploadEnabled: true,
+    previewImage: false,
     alignmentEnabled: true,
     uploadCallback: undefined,
     inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',
