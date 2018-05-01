@@ -132,7 +132,7 @@ class LayoutComponent extends Component {
         this.setState({
           showImageLoading: false,
           dragEnter: false,
-          imgSrc: data.link,
+          imgSrc: data.link || data.url,
         });
         this.fileUpload = false;
       }).catch(() => {
