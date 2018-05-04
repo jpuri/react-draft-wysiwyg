@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Option from '../../../components/Option';
+import { getFirstIcon } from '../../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
 
@@ -36,32 +37,38 @@ class LayoutComponent extends Component {
   }
 
   getBlockTypes = translations => [
-    { label: 'Normal', displayName: translations['components.controls.blocktype.normal'] },
-    { label: 'H1', displayName: translations['components.controls.blocktype.h1'] },
-    { label: 'H2', displayName: translations['components.controls.blocktype.h2'] },
-    { label: 'H3', displayName: translations['components.controls.blocktype.h3'] },
-    { label: 'H4', displayName: translations['components.controls.blocktype.h4'] },
-    { label: 'H5', displayName: translations['components.controls.blocktype.h5'] },
-    { label: 'H6', displayName: translations['components.controls.blocktype.h6'] },
-    { label: 'Blockquote', displayName: translations['components.controls.blocktype.blockquote'] },
-    { label: 'Code', displayName: translations['components.controls.blocktype.code'] },
+    { label: 'normal', displayName: translations['components.controls.blocktype.normal'] },
+    { label: 'h1', displayName: translations['components.controls.blocktype.h1'] },
+    { label: 'h2', displayName: translations['components.controls.blocktype.h2'] },
+    { label: 'h3', displayName: translations['components.controls.blocktype.h3'] },
+    { label: 'h4', displayName: translations['components.controls.blocktype.h4'] },
+    { label: 'h5', displayName: translations['components.controls.blocktype.h5'] },
+    { label: 'h6', displayName: translations['components.controls.blocktype.h6'] },
+    { label: 'blockquote', displayName: translations['components.controls.blocktype.blockquote'] },
+    { label: 'code', displayName: translations['components.controls.blocktype.code'] },
   ];
 
   renderFlat(blocks: Array<Object>): void {
-    const { config: { className }, onChange, currentState: { blockType } } = this.props;
+    const { config: { className, ...config }, onChange, currentState: { blockType } } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
         {
-          blocks.map((block, index) =>
-            (<Option
-              key={index}
-              value={block.label}
-              active={blockType === block.label}
-              onClick={onChange}
-            >
-              {block.displayName}
-            </Option>),
-          )
+          blocks.map((block, index) => {
+              const blockClassName = config[block.label] ? config[block.label].className || '' : '';
+              const icon = config[block.label] ? config[block.label].icon : null;
+              console.log(icon)
+              return (
+                <Option
+                  key={index}
+                  value={block.label}
+                  active={blockType === block.label}
+                  onClick={onChange}
+                  className={blockClassName}
+                >
+                  {icon ? (<img alt="" src={icon} title={block.displayName}/>) : block.displayName}
+                </Option>
+              )            
+          })
         }
       </div>
     );
@@ -69,7 +76,7 @@ class LayoutComponent extends Component {
 
   renderInDropdown(blocks: Array<Object>): void {
     const {
-      config: { className, dropdownClassName, title },
+      config: { className, dropdownClassName, title, ...config },
       currentState: { blockType },
       expanded,
       doExpand,
@@ -81,6 +88,7 @@ class LayoutComponent extends Component {
     const { blockTypes } = this.state;
     const currentBlockData = blockTypes.filter(blk => blk.label === blockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].displayName;
+    const firstIcon = getFirstIcon(config);
     return (
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">
         <Dropdown
@@ -93,16 +101,24 @@ class LayoutComponent extends Component {
           onExpandEvent={onExpandEvent}
           title={title || translations['components.controls.blocktype.blocktype']}
         >
-          <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
           {
-            blocks.map((block, index) =>
-              (<DropdownOption
-                active={blockType === block.label}
-                value={block.label}
-                key={index}
-              >
-                {block.displayName}
-              </DropdownOption>))
+            firstIcon ? <img src={firstIcon} alt=""/> : <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
+          }          
+          {
+            blocks.map((block, index) => {
+              const blockClassName = config[block.label] ? config[block.label].className : '';
+              const icon = config[block.label] ? config[block.label].icon : null;
+              return (
+                <DropdownOption
+                  active={blockType === block.label}
+                  value={block.label}
+                  key={index}
+                  className={blockClassName}
+                >
+                  {icon ? (<img alt="" src={icon} title={block.displayName}/>) : block.displayName}
+                </DropdownOption>
+              )
+            })
           }
         </Dropdown>
       </div>

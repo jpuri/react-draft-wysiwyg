@@ -57,15 +57,15 @@ class BlockType extends Component {
   }
 
   blocksTypes: Array<Object> = [
-    { label: 'Normal', style: 'unstyled' },
-    { label: 'H1', style: 'header-one' },
-    { label: 'H2', style: 'header-two' },
-    { label: 'H3', style: 'header-three' },
-    { label: 'H4', style: 'header-four' },
-    { label: 'H5', style: 'header-five' },
-    { label: 'H6', style: 'header-six' },
-    { label: 'Blockquote', style: 'blockquote' },
-    { label: 'Code', style: 'code' },
+    { label: 'normal', style: 'unstyled' },
+    { label: 'h1', style: 'header-one' },
+    { label: 'h2', style: 'header-two' },
+    { label: 'h3', style: 'header-three' },
+    { label: 'h4', style: 'header-four' },
+    { label: 'h5', style: 'header-five' },
+    { label: 'h6', style: 'header-six' },
+    { label: 'blockquote', style: 'blockquote' },
+    { label: 'code', style: 'code' },
   ];
 
   doExpand: Function = (): void => {
