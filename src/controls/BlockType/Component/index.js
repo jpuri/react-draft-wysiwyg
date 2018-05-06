@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Option from '../../../components/Option';
-import { getFirstIcon } from '../../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
 
@@ -37,16 +36,29 @@ class LayoutComponent extends Component {
   }
 
   getBlockTypes = translations => [
-    { label: 'normal', displayName: translations['components.controls.blocktype.normal'] },
-    { label: 'h1', displayName: translations['components.controls.blocktype.h1'] },
-    { label: 'h2', displayName: translations['components.controls.blocktype.h2'] },
-    { label: 'h3', displayName: translations['components.controls.blocktype.h3'] },
-    { label: 'h4', displayName: translations['components.controls.blocktype.h4'] },
-    { label: 'h5', displayName: translations['components.controls.blocktype.h5'] },
-    { label: 'h6', displayName: translations['components.controls.blocktype.h6'] },
-    { label: 'blockquote', displayName: translations['components.controls.blocktype.blockquote'] },
-    { label: 'code', displayName: translations['components.controls.blocktype.code'] },
+    { label: 'Normal', displayName: translations['components.controls.blocktype.normal'] },
+    { label: 'H1', displayName: translations['components.controls.blocktype.h1'] },
+    { label: 'H2', displayName: translations['components.controls.blocktype.h2'] },
+    { label: 'H3', displayName: translations['components.controls.blocktype.h3'] },
+    { label: 'H4', displayName: translations['components.controls.blocktype.h4'] },
+    { label: 'H5', displayName: translations['components.controls.blocktype.h5'] },
+    { label: 'H6', displayName: translations['components.controls.blocktype.h6'] },
+    { label: 'Blockquote', displayName: translations['components.controls.blocktype.blockquote'] },
+    { label: 'Code', displayName: translations['components.controls.blocktype.code'] },
   ];
+
+  getBlockOptions = (config, blockLabel) => {
+    let options = {
+      icon: null,
+      blockClassName: ''
+    };
+    const blockConfig = config[blockLabel] || config[blockLabel.toLowerCase()];
+    if (blockConfig) {
+      options.icon = blockConfig.icon;
+      options.blockClassName = blockConfig.className;
+    }
+    return options;
+  };
 
   renderFlat(blocks: Array<Object>): void {
     const { config: { className, ...config }, onChange, currentState: { blockType } } = this.props;
@@ -54,8 +66,7 @@ class LayoutComponent extends Component {
       <div className={classNames('rdw-inline-wrapper', className)}>
         {
           blocks.map((block, index) => {
-              const blockClassName = config[block.label] ? config[block.label].className || '' : '';
-              const icon = config[block.label] ? config[block.label].icon : null;
+              const {blockClassName, icon} = this.getBlockOptions(config, block.label);
               return (
                 <Option
                   key={index}
@@ -87,7 +98,8 @@ class LayoutComponent extends Component {
     const { blockTypes } = this.state;
     const currentBlockData = blockTypes.filter(blk => blk.label === blockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].displayName;
-    const firstIcon = getFirstIcon(config);
+    const firstBlock = blockTypes[0];
+    const firstBlockIcon = this.getBlockOptions(config, firstBlock.label).icon;
     return (
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">
         <Dropdown
@@ -101,12 +113,11 @@ class LayoutComponent extends Component {
           title={title || translations['components.controls.blocktype.blocktype']}
         >
           {
-            firstIcon ? <img src={firstIcon} alt=""/> : <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
+            firstBlockIcon ? <img src={firstBlockIcon} alt=""/> : <span> {firstBlock.displayName} </span>
           }          
           {
             blocks.map((block, index) => {
-              const blockClassName = config[block.label] ? config[block.label].className : '';
-              const icon = config[block.label] ? config[block.label].icon : null;
+              const {blockClassName, icon} = this.getBlockOptions(config, block.label);
               return (
                 <DropdownOption
                   active={blockType === block.label}
