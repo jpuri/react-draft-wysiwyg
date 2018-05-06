@@ -56,7 +56,6 @@ class LayoutComponent extends Component {
           blocks.map((block, index) => {
               const blockClassName = config[block.label] ? config[block.label].className || '' : '';
               const icon = config[block.label] ? config[block.label].icon : null;
-              console.log(icon)
               return (
                 <Option
                   key={index}
