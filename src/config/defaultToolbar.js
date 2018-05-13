@@ -106,6 +106,7 @@ export default {
   },
   link: {
     inDropdown: false,
+    normalize: true,
     className: undefined,
     component: undefined,
     popupClassName: undefined,
