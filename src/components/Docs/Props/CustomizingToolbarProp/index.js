@@ -52,7 +52,7 @@ export default () => (
         "import { Editor } from 'react-draft-wysiwyg';\n" +
         "\n\n" +
         "<Editor\n" +
-        "  toolbarOnFocus\n" +
+        "  toolbarHidden\n" +
         '  wrapperClassName="wrapper-class"\n' +
         '  editorClassName="editor-class"\n' +
         '  toolbarClassName="toolbar-class"\n' +
