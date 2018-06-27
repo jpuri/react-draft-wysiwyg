@@ -55,6 +55,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "draftjs-utils": "^0.9.3",
+    "embed-video": "^2.0.4",
     "html-to-draftjs": "^1.4.0",
     "linkify-it": "^2.0.3",
     "prop-types": "^15.6.0"

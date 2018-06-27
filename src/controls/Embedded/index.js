@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AtomicBlockUtils } from 'draft-js';
+import embed from 'embed-video';
 
 import LayoutComponent from './Component';
 
@@ -54,9 +55,11 @@ class Embedded extends Component {
 
   addEmbeddedLink: Function = (embeddedLink, height, width): void => {
     const { editorState, onChange } = this.props;
+    const detectedSrc = /<iframe.*? src="(.*?)"/.exec(embed(embeddedLink));
+    const src = (detectedSrc && detectedSrc[1]) || embeddedLink;
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('EMBEDDED_LINK', 'MUTABLE', { src: embeddedLink, height, width })
+      .createEntity('EMBEDDED_LINK', 'MUTABLE', { src, height, width })
       .getLastCreatedEntityKey();
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
