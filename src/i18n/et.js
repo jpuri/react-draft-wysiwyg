@@ -14,7 +14,7 @@ module.exports = {
   'components.controls.blocktype.blockquote': 'Tsitaat',
   'components.controls.blocktype.code': 'Kood',
   'components.controls.blocktype.blocktype': 'Stiil',
-  'components.controls.blocktype.normal': 'Tavaline tekst',
+  'components.controls.blocktype.normal': 'Tavaline',
 
   // Color Picker
   'components.controls.colorpicker.colorpicker': 'Värvivalik',
@@ -42,9 +42,9 @@ module.exports = {
 
   // Image
   'components.controls.image.image': 'Pilt',
-  'components.controls.image.fileUpload': 'Faili üles laadimine',
+  'components.controls.image.fileUpload': 'Vali fail',
   'components.controls.image.byURL': 'URL',
-  'components.controls.image.dropFileText': 'Lohista failid siia või vajuta siia',
+  'components.controls.image.dropFileText': 'Lohista fail siia või vajuta, et valida',
 
   // Inline
   'components.controls.inline.bold': 'Paks',
@@ -64,8 +64,8 @@ module.exports = {
 
   // List
   'components.controls.list.list': 'Loend',
-  'components.controls.list.unordered': 'Nummerdatud loend',
-  'components.controls.list.ordered': 'Täpploend',
+  'components.controls.list.unordered': 'Täpploend',
+  'components.controls.list.ordered': 'Nummerdatud loend',
   'components.controls.list.indent': 'Suurenda taanet',
   'components.controls.list.outdent': 'Vähenda taanet',
 
