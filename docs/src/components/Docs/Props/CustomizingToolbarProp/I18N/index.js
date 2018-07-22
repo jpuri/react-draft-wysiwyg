@@ -10,7 +10,7 @@ export default () => (
         <ol>
           <li>
             <b>locale</b>
-            : This can be used to pass locale. Editor has support builtin for lcoales: en, fr, zh, ru, pt, ko, it, nl, de, da, zh_tw, pl, es.
+            : This can be used to pass locale. Editor has support builtin for lcoales: da, de, en, es, et, fr, it, ko, nl, pl, pt, ru, zh, zh_tw.
           </li>
           <li>
             <b>translations</b>
