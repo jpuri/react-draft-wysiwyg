@@ -12,6 +12,7 @@ import zh_tw from './zh_tw';
 import pl from './pl';
 import es from './es';
 import ja from './ja';
+import et from './et';
 
 module.exports = {
   en,
@@ -27,5 +28,6 @@ module.exports = {
   zh_tw,
   pl,
   es,
-  ja
+  ja,
+  et
 };

@@ -26,6 +26,7 @@ class I18n extends Component {
           <select value={locale} onChange={this.onLocaleChange}>
             <option value="zh">Chinese</option>
             <option value="en">English</option>
+            <option value="et">Estonian</option>
             <option value="fr">French</option>
             <option value="ko">Korean</option>
             <option value="pt">Portuguese</option>
