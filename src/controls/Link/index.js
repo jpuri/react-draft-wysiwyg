@@ -108,10 +108,18 @@ class Link extends Component {
     let selection = editorState.getSelection();
     if (currentEntity) {
       const entityRange = getEntityRange(editorState, currentEntity);
-      selection = selection.merge({
-        anchorOffset: entityRange.start,
-        focusOffset: entityRange.end,
-      });
+      const isBackward = selection.getIsBackward();
+      if (isBackward) {
+        selection = selection.merge({
+          anchorOffset: entityRange.end,
+          focusOffset: entityRange.start,
+        });
+      } else {
+        selection = selection.merge({
+          anchorOffset: entityRange.start,
+          focusOffset: entityRange.end,
+        });
+      }
       onChange(RichUtils.toggleLink(editorState, selection, null));
     }
   };
@@ -123,10 +131,18 @@ class Link extends Component {
 
     if (currentEntity) {
       const entityRange = getEntityRange(editorState, currentEntity);
-      selection = selection.merge({
-        anchorOffset: entityRange.start,
-        focusOffset: entityRange.end,
-      });
+      const isBackward = selection.getIsBackward();
+      if (isBackward) {
+        selection = selection.merge({
+          anchorOffset: entityRange.end,
+          focusOffset: entityRange.start,
+        });
+      } else {
+        selection = selection.merge({
+          anchorOffset: entityRange.start,
+          focusOffset: entityRange.end,
+        });
+      }
     }
     const entityKey = editorState
       .getCurrentContent()
