@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>microphone</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA083-microphone" fill="#000000" fill-rule="nonzero">
+            <g id="microphone" transform="translate(120.000000, 24.000000)">
+                <path d="M160,352 C213.02,352 256,309.02 256,256 L256,96 C256,42.98 213.02,0 160,0 C106.98,0 64,42.98 64,96 L64,256 C64,309.02 106.98,352 160,352 Z M96,96 C96,60.71 124.71,32 160,32 C195.29,32 224,60.71 224,96 L224,256 C224,291.29 195.29,320 160,320 C124.71,320 96,291.29 96,256 L96,96 Z M312,192 L296,192 C291.58,192 288,195.58 288,200 L288,256 C288,329.46 225.8,388.68 151.27,383.71 C83.3,379.18 32,319.61 32,251.49 L32,200 C32,195.58 28.42,192 24,192 L8,192 C3.58,192 0,195.58 0,200 L0,250.34 C0,333.73 61.65,406.46 144,414.77 L144,480 L72,480 C67.58,480 64,483.58 64,488 L64,504 C64,508.42 67.58,512 72,512 L248,512 C252.42,512 256,508.42 256,504 L256,488 C256,483.58 252.42,480 248,480 L176,480 L176,414.99 C256.71,406.9 320,338.8 320,256 L320,200 C320,195.58 316.42,192 312,192 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

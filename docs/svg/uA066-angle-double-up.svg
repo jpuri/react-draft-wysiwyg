@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA066-angle-double-up</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA066-angle-double-up" fill="#000000" fill-rule="nonzero">
+            <g id="angle-double-up" transform="translate(151.000000, 141.000000)">
+                <path d="M137.5,132.1 L253.5,249.9 C258.2,254.6 258.2,262.2 253.5,266.9 L246.4,274 C241.7,278.7 234.1,278.7 229.4,274 L129,171.7 L28.6,273.9 C23.9,278.6 16.3,278.6 11.6,273.9 L4.5,266.8 C-0.2,262.1 -0.2,254.5 4.5,249.8 L120.5,132 C125.2,127.4 132.8,127.4 137.5,132.1 Z M120.5,4.1 L4.5,121.9 C-0.2,126.6 -0.2,134.2 4.5,138.9 L11.6,146 C16.3,150.7 23.9,150.7 28.6,146 L129,43.7 L229.4,145.9 C234.1,150.6 241.7,150.6 246.4,145.9 L253.5,138.8 C258.2,134.1 258.2,126.5 253.5,121.8 L137.5,4 C132.8,-0.6 125.2,-0.6 120.5,4.1 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

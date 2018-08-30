@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA182-caret-square-right</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA182-caret-square-right" fill="#000000" fill-rule="nonzero">
+            <g id="caret-square-right" transform="translate(56.000000, 56.000000)">
+                <path d="M0,48 L0,400 C0,426.5 21.5,448 48,448 L400,448 C426.5,448 448,426.5 448,400 L448,48 C448,21.5 426.5,0 400,0 L48,0 C21.5,0 0,21.5 0,48 Z M400,32 C408.8,32 416,39.2 416,48 L416,400 C416,408.8 408.8,416 400,416 L48,416 C39.2,416 32,408.8 32,400 L32,48 C32,39.2 39.2,32 48,32 L400,32 Z M192,128 L288,224 L192,320 L192,128 Z M160,320 C160,348.4 194.5,362.8 214.6,342.6 L310.6,246.6 C323.1,234.1 323.1,213.8 310.6,201.3 L214.6,105.3 C194.5,85.2 160,99.4 160,127.9 L160,320 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

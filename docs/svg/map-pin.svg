@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>map-pin</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA239-map-pin" fill="#000000" fill-rule="nonzero">
+            <g id="map-pin" transform="translate(136.000000, 24.000000)">
+                <path d="M288,144 C288,65.097 224.54,1.016 145.876,0.012 C66.447,-1.002 0.017,64.534 -4.06166698e-16,143.969 C-0.016,218.103 55.992,279.149 128,287.111 L128,482.918 L138.452,508.286 C140.493,513.238 147.507,513.238 149.547,508.286 L160,482.917 L160,287.111 C231.998,279.15 288,218.12 288,144 Z M144,256 C82.102,256 32,205.908 32,144 C32,82.102 82.092,32 144,32 C205.898,32 256,82.092 256,144 C256,205.898 205.908,256 144,256 Z M152,80 C152,88.837 144.837,96 136,96 C113.944,96 96,113.944 96,136 C96,144.837 88.837,152 80,152 C71.163,152 64,144.837 64,136 C64,96.299 96.299,64 136,64 C144.837,64 152,71.163 152,80 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

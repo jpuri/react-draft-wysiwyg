@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>youtube</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA335-youtube" fill="#000000" fill-rule="nonzero">
+            <g id="youtube" transform="translate(6.000000, 88.000000)">
+                <path d="M535.655,60.083 C529.374,36.433 510.868,17.807 487.371,11.486 C444.781,0 274,0 274,0 C274,0 103.22,0 60.629,11.486 C37.132,17.808 18.626,36.433 12.345,60.083 C0.933,102.95 0.933,192.388 0.933,192.388 C0.933,192.388 0.933,281.826 12.345,324.693 C18.626,348.343 37.132,366.193 60.629,372.514 C103.22,384 274,384 274,384 C274,384 444.78,384 487.371,372.514 C510.868,366.193 529.374,348.343 535.655,324.693 C547.067,281.826 547.067,192.388 547.067,192.388 C547.067,192.388 547.067,102.95 535.655,60.083 Z M218.145,273.591 L218.145,111.185 L360.884,192.39 L218.145,273.591 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

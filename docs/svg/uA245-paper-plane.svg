@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA245-paper-plane</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA245-paper-plane" fill="#000000" fill-rule="nonzero">
+            <g id="paper-plane" transform="translate(24.000000, 24.000000)">
+                <path d="M464,5.3 L16,263.7 C-7,277 -4.7,310.9 19.8,321 L160,379 L160,481 C160,511.2 197.8,524.3 216.7,501.3 L277.4,427.5 L403.8,479.7 C422.9,487.6 444.5,475.5 447.6,455 L511.6,37.9 C515.7,11.2 487,-8 464,5.3 Z M192,481 L192,392.2 L246.5,414.7 L192,481 Z M416,450.1 L209.8,364.9 L409.3,129.1 C414.1,123.5 406.4,115.9 400.8,120.7 L145.5,338.3 L32,291.5 L480,33 L416,450.1 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

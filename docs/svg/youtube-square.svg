@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>youtube-square</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA336-youtube-square" fill="#000000" fill-rule="nonzero">
+            <g id="youtube-square" transform="translate(56.000000, 56.000000)">
+                <path d="M186.8,170.1 L282,224.2 L186.8,278.3 L186.8,170.1 Z M448,48 L448,400 C448,426.5 426.5,448 400,448 L48,448 C21.5,448 0,426.5 0,400 L0,48 C0,21.5 21.5,0 48,0 L400,0 C426.5,0 448,21.5 448,48 Z M406,224.3 C406,224.3 406,164.7 398.4,136.1 C394.2,120.3 381.9,107.9 366.2,103.7 C337.9,96 224,96 224,96 C224,96 110.1,96 81.8,103.7 C66.1,107.9 53.8,120.3 49.6,136.1 C42,164.6 42,224.3 42,224.3 C42,224.3 42,283.9 49.6,312.5 C53.8,328.3 66.1,340.2 81.8,344.4 C110.1,352 224,352 224,352 C224,352 337.9,352 366.2,344.3 C381.9,340.1 394.2,328.2 398.4,312.4 C406,283.9 406,224.3 406,224.3 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

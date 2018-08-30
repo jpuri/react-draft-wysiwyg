@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA086-check-circle</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA086-check-circle" fill="#000000" fill-rule="nonzero">
+            <g id="check-circle" transform="translate(32.000000, 32.000000)">
+                <path d="M248,0 C111.033,0 0,111.033 0,248 C0,384.967 111.033,496 248,496 C384.967,496 496,384.967 496,248 C496,111.033 384.967,0 248,0 Z M248,464 C129.336,464 32,367.945 32,248 C32,129.337 128.055,32 248,32 C366.664,32 464,128.055 464,248 C464,366.663 367.945,464 248,464 Z M389.63,189.039 L209.15,368.071 C204.445,372.738 196.847,372.708 192.18,368.003 L106.302,281.431 C101.635,276.726 101.665,269.128 106.37,264.461 L114.89,256.01 C119.595,251.343 127.193,251.373 131.86,256.078 L200.836,325.611 L364.277,163.481 C368.982,158.814 376.58,158.844 381.247,163.549 L389.698,172.069 C394.366,176.774 394.335,184.372 389.63,189.039 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA159-browser</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA159-browser" fill="#000000" fill-rule="nonzero">
+            <g id="browser" transform="translate(24.000000, 56.000000)">
+                <path d="M464,0 L48,0 C21.5,0 0,21.5 0,48 L0,400 C0,426.5 21.5,448 48,448 L464,448 C490.5,448 512,426.5 512,400 L512,48 C512,21.5 490.5,0 464,0 Z M32,48 C32,39.2 39.2,32 48,32 L96,32 L96,96 L32,96 L32,48 Z M480,400 C480,408.8 472.8,416 464,416 L48,416 C39.2,416 32,408.8 32,400 L32,128 L480,128 L480,400 Z M480,96 L128,96 L128,32 L464,32 C472.8,32 480,39.2 480,48 L480,96 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

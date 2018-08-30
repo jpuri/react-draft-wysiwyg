@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>box</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA154-box" fill="#000000" fill-rule="nonzero">
+            <g id="box" transform="translate(24.000000, 24.000000)">
+                <path d="M509.5,184.6 L458.9,32.8 C452.4,13.2 434.1,0 413.4,0 L98.6,0 C77.9,0 59.6,13.2 53.1,32.8 L2.5,184.6 C0.9,189.5 0,194.6 0,199.8 L0,464 C0,490.5 21.5,512 48,512 L464,512 C490.5,512 512,490.5 512,464 L512,199.8 C512,194.6 511.2,189.5 509.5,184.6 Z M32,199.8 C32,198.1 32.3,196.4 32.8,194.7 L83.4,42.9 C85.6,36.4 91.7,32 98.6,32 L240,32 L240,200 L32,200 L32,199.8 Z M480,464 C480,472.8 472.8,480 464,480 L48,480 C39.2,480 32,472.8 32,464 L32,232 L480,232 L480,464 Z M480,200 L272,200 L272,32 L413.4,32 C420.3,32 426.4,36.4 428.6,42.9 L479.2,194.7 C479.7,196.3 480,198 480,199.8 L480,200 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

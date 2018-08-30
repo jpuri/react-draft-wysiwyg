@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>concierge-bell</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA204-concierge-bell" fill="#000000" fill-rule="nonzero">
+            <g id="concierge-bell" transform="translate(24.000000, 88.000000)">
+                <path d="M504,352 L480,352 L480,288 C480,169.69 388.21,73.04 272,64.81 L272,32 L312,32 C316.42,32 320,28.42 320,24 L320,8 C320,3.58 316.42,0 312,0 L200,0 C195.58,0 192,3.58 192,8 L192,24 C192,28.42 195.58,32 200,32 L240,32 L240,64.81 C123.79,73.04 32,169.69 32,288 L32,352 L8,352 C3.58,352 0,355.58 0,360 L0,376 C0,380.42 3.58,384 8,384 L504,384 C508.42,384 512,380.42 512,376 L512,360 C512,355.58 508.42,352 504,352 Z M448,352 L64,352 L64,288 C64,187.83 142.3,103.81 242.26,96.73 C259.13,95.54 252.59,95.52 269.74,96.73 C369.7,103.81 448,187.83 448,288 L448,352 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

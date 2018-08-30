@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>sign-in</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA262-sign-in" fill="#000000" fill-rule="nonzero">
+            <g id="sign-in" transform="translate(24.000000, 88.000000)">
+                <path d="M184,19.5 L348.5,183.5 C353.2,188.2 353.2,195.8 348.5,200.5 L184,364.5 C179.3,369.2 171.7,369.2 167,364.5 L159.9,357.4 C155.2,352.7 155.2,345.1 159.9,340.4 L291.9,209 L12,209 C5.4,209 0,203.6 0,197 L0,187 C0,180.4 5.4,175 12,175 L291.9,175 L160,43.6 C155.3,38.9 155.3,31.3 160,26.6 L167.1,19.5 C171.7,14.8 179.3,14.8 184,19.5 Z M512,336 L512,48 C512,21.5 490.5,0 464,0 L332,0 C325.4,0 320,5.4 320,12 L320,20 C320,26.6 325.4,32 332,32 L464,32 C472.8,32 480,39.2 480,48 L480,336 C480,344.8 472.8,352 464,352 L332,352 C325.4,352 320,357.4 320,364 L320,372 C320,378.6 325.4,384 332,384 L464,384 C490.5,384 512,362.5 512,336 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

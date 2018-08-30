@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA360-widget-hide</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA360-widget-hide" fill="#000000" fill-rule="nonzero">
+            <g id="chat-widget-hide" transform="translate(0.000000, 84.000000)">
+                <path d="M553,364 L532,364 L532,28 C532,12.53875 519.46125,0 504,0 L56,0 C40.53875,0 28,12.53875 28,28 L28,364 L7,364 C3.1325,364 0,367.1325 0,371 L0,385 C0,388.8675 3.1325,392 7,392 L553,392 C556.8675,392 560,388.8675 560,385 L560,371 C560,367.1325 556.8675,364 553,364 Z M252,364 L252,308 L420,308 L420,364 L252,364 Z M448,364 L448,308 C448,292.53875 435.46125,280 420,280 L252,280 C236.53875,280 224,292.53875 224,308 L224,364 L56,364 L56,28 L504,28 L504,364 L448,364 Z M448.5,142.5 L441.4,135.4 C436.7,130.7 429.1,130.7 424.4,135.4 L356,203.9 L356,67 C356,60.4 350.6,55 344,55 L334,55 C327.4,55 322,60.4 322,67 L322,203.9 L253.5,135.4 C248.8,130.7 241.2,130.7 236.5,135.4 L229.4,142.5 C224.7,147.2 224.7,154.8 229.4,159.5 L330.4,260.6 C335.1,265.3 342.7,265.3 347.4,260.6 L448.4,159.5 C453.2,154.7 453.2,147.2 448.5,142.5 Z" id="Combined-Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

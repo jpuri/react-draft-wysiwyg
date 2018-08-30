@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>caret-down</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA171-caret-down" fill="#000000" fill-rule="nonzero">
+            <g id="caret-down" transform="translate(120.000000, 184.000000)">
+                <path d="M287.968,0 L32.038,0 C3.613,0 -10.729,34.488 9.411,54.627 L137.373,182.627 C149.869,195.123 170.131,195.124 182.628,182.627 L310.596,54.627 C330.695,34.528 316.45,0 287.968,0 Z M160,160 L32,32 L288,32 L160,160 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

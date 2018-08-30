@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>info-square</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA017-info-square" fill="#000000" fill-rule="nonzero">
+            <g id="info-square" transform="translate(56.000000, 56.000000)">
+                <path d="M400,0 L48,0 C21.49,0 0,21.49 0,48 L0,400 C0,426.51 21.49,448 48,448 L400,448 C426.51,448 448,426.51 448,400 L448,48 C448,21.49 426.51,0 400,0 Z M416,400 C416,408.822 408.822,416 400,416 L48,416 C39.178,416 32,408.822 32,400 L32,48 C32,39.178 39.178,32 48,32 L400,32 C408.822,32 416,39.178 416,48 L416,400 Z M188,320 L200,320 L200,200 L188,200 C181.373,200 176,194.627 176,188 L176,180 C176,173.373 181.373,168 188,168 L236,168 C242.627,168 248,173.373 248,180 L248,320 L260,320 C266.627,320 272,325.373 272,332 L272,340 C272,346.627 266.627,352 260,352 L188,352 C181.373,352 176,346.627 176,340 L176,332 C176,325.373 181.373,320 188,320 Z M224,80 C206.327,80 192,94.327 192,112 C192,129.673 206.327,144 224,144 C241.673,144 256,129.673 256,112 C256,94.327 241.673,80 224,80 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

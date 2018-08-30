@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA175-caret-circle-down</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA175-caret-circle-down" fill="#000000" fill-rule="nonzero">
+            <g id="caret-circle-down" transform="translate(41.000000, 41.000000)">
+                <path d="M248,0 C111,0 0,111 0,248 C0,385 111,496 248,496 C385,496 496,385 496,248 C496,111 385,0 248,0 Z M464,248 C464,366.7 367.9,464 248,464 C129.3,464 32,367.9 32,248 C32,129.3 128.1,32 248,32 C366.7,32 464,128.1 464,248 Z M344,216 L248,312 L152,216 L344,216 Z M152,184 C123.6,184 109.2,218.5 129.4,238.6 L225.4,334.6 C237.9,347.1 258.2,347.1 270.7,334.6 L366.7,238.6 C386.8,218.5 372.6,184 344.1,184 L152,184 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA134-adjust</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA134-adjust" fill="#000000" fill-rule="nonzero">
+            <g id="adjust" transform="translate(32.000000, 32.000000)">
+                <path d="M248,32 C367.945,32 464,129.337 464,248 C464,367.945 366.663,464 248,464 C128.055,464 32,366.663 32,248 C32,128.055 129.337,32 248,32 Z M248,0 C111.033,0 0,111.033 0,248 C0,384.967 111.033,496 248,496 C384.967,496 496,384.967 496,248 C496,111.033 384.967,0 248,0 Z M216,124.01 L216,371.99 C162.145,358.19 120,308.989 120,248 C120,187.01 162.145,137.81 216,124.01 Z M248,88 C159.634,88 88,159.634 88,248 C88,336.366 159.634,408 248,408 L248,88 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

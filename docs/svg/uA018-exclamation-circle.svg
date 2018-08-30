@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA018-exclamation-circle</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA018-exclamation-circle" fill="#000000" fill-rule="nonzero">
+            <g id="exclamation-circle" transform="translate(32.000000, 32.000000)">
+                <path d="M248,32 C366.621,32 464,128.075 464,248 C464,367.291 367.39,464 248,464 C128.756,464 32,367.438 32,248 C32,128.797 128.602,32 248,32 Z M248,0 C111.043,0 0,111.083 0,248 C0,384.997 111.043,496 248,496 C384.957,496 496,384.997 496,248 C496,111.083 384.957,0 248,0 Z M236.51,120 L259.489,120 C266.312,120 271.763,125.682 271.479,132.5 L264.479,300.5 C264.211,306.928 258.923,312 252.489,312 L243.51,312 C237.077,312 231.788,306.927 231.52,300.5 L224.52,132.5 C224.237,125.682 229.687,120 236.51,120 Z M248,332 C232.536,332 220,344.536 220,360 C220,375.464 232.536,388 248,388 C263.464,388 276,375.464 276,360 C276,344.536 263.464,332 248,332 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

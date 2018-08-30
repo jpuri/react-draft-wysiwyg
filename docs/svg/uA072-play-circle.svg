@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA072-play-circle</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA072-play-circle" fill="#000000" fill-rule="nonzero">
+            <g id="play-circle" transform="translate(32.000000, 32.000000)">
+                <path d="M248,496 C385,496 496,385 496,248 C496,111 385,0 248,0 C111,0 0,111 0,248 C0,385 111,496 248,496 Z M32,248 C32,129.3 128.1,32 248,32 C366.7,32 464,128.1 464,248 C464,366.7 367.9,464 248,464 C129.3,464 32,367.9 32,248 Z M363.7,230 L187.7,123 C171.9,114.2 152,125.5 152,144 L152,352 C152,370.4 171.8,381.8 187.7,373 L363.7,272 C380.1,262.9 380.1,239.2 363.7,230 Z M184,327.8 L184,168.9 C184,164.2 189.1,161.3 193.1,163.8 L327.6,245.5 C331.5,247.9 331.4,253.6 327.5,255.8 L193,333 C189,335.3 184,332.4 184,327.8 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

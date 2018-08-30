@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>star-full</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA271-star-full" fill="#000000" fill-rule="nonzero">
+            <g id="star-full" transform="translate(12.000000, 23.000000)">
+                <path d="M508.1,172.5 L362,151.2 L296.7,18.8 C285,-4.8 251.1,-5.1 239.3,18.8 L174,151.2 L27.9,172.5 C1.7,176.3 -8.8,208.6 10.2,227.1 L115.9,330.1 L90.9,475.6 C86.4,501.9 114.1,521.6 137.3,509.3 L268,440.6 L398.7,509.3 C421.9,521.5 449.6,501.9 445.1,475.6 L420.1,330.1 L525.8,227.1 C544.8,208.6 534.3,176.3 508.1,172.5 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

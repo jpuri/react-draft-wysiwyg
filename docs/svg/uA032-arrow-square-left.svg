@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA032-arrow-square-left</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA032-arrow-square-left" fill="#000000" fill-rule="nonzero">
+            <g id="arrow-square-left" transform="translate(56.000000, 56.000000)">
+                <path d="M211.5,347.5 L96.4,232.5 C91.7,227.8 91.7,220.2 96.4,215.5 L211.5,100.5 C216.2,95.8 223.8,95.8 228.5,100.5 L235.4,107.4 C240.1,112.1 240.1,119.9 235.2,124.5 L149.7,207 L340,207 C346.6,207 352,212.4 352,219 L352,229 C352,235.6 346.6,241 340,241 L149.7,241 L235.3,323.5 C240.1,328.2 240.2,335.9 235.5,340.6 L228.6,347.5 C223.8,352.2 216.2,352.2 211.5,347.5 Z M400,448 L48,448 C21.5,448 0,426.5 0,400 L0,48 C0,21.5 21.5,0 48,0 L400,0 C426.5,0 448,21.5 448,48 L448,400 C448,426.5 426.5,448 400,448 Z M400,416 C408.8,416 416,408.8 416,400 L416,48 C416,39.2 408.8,32 400,32 L48,32 C39.2,32 32,39.2 32,48 L32,400 C32,408.8 39.2,416 48,416 L400,416 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

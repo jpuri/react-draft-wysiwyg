@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA085-check</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA085-check" fill="#000000" fill-rule="nonzero">
+            <g id="check" transform="translate(58.000000, 112.000000)">
+                <path d="M411.505,3.951 L131.49,283.966 L32.495,184.971 C27.809,180.285 20.211,180.285 15.524,184.971 L4.211,196.284 C-0.475,200.97 -0.475,208.568 4.211,213.255 L123.005,332.049 C127.691,336.735 135.289,336.735 139.976,332.049 L439.789,32.236 C444.475,27.55 444.475,19.952 439.789,15.265 L428.475,3.951 C423.789,-0.735 416.191,-0.735 411.505,3.951 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

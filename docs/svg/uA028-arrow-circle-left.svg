@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA028-arrow-circle-left</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA028-arrow-circle-left" fill="#000000" fill-rule="nonzero">
+            <g id="arrow-circle-left" transform="translate(32.000000, 32.000000)">
+                <path d="M496,248 C496,111 385,0 248,0 C111,0 0,111 0,248 C0,385 111,496 248,496 C385,496 496,385 496,248 Z M248,464 C129.3,464 32,367.9 32,248 C32,129.3 128.1,32 248,32 C366.7,32 464,128.1 464,248 C464,366.7 367.9,464 248,464 Z M235.5,371.5 L120.4,256.5 C115.7,251.8 115.7,244.2 120.4,239.5 L235.5,124.5 C240.2,119.8 247.8,119.8 252.5,124.5 L259.4,131.4 C264.1,136.1 264.1,143.9 259.2,148.5 L173.7,231 L364,231 C370.6,231 376,236.4 376,243 L376,253 C376,259.6 370.6,265 364,265 L173.7,265 L259.3,347.5 C264.1,352.2 264.2,359.9 259.5,364.6 L252.6,371.5 C247.8,376.2 240.2,376.2 235.5,371.5 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

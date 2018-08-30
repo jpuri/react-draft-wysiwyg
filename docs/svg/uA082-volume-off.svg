@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA082-volume-off</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA082-volume-off" fill="#000000" fill-rule="nonzero">
+            <g id="volume-off" transform="translate(152.000000, 88.000000)">
+                <path d="M256,24.017 L256,359.981 C256,381.417 230.058,391.98 215.029,376.952 L126.059,288 L24,288 C10.745,288 0,277.255 0,264 L0,120 C0,106.745 10.745,96 24,96 L126.059,96 L215.03,7.046 C230.037,-7.962 256,2.551 256,24.017 Z M224,43.328 L146.341,120.972 C141.840212,125.47187 135.736426,127.999857 129.372,128 L32,128 L32,256 L129.372,256 C135.736426,256.000143 141.840212,258.52813 146.341,263.028 L224,340.67 L224,43.328 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>plug</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA250-plug" fill="#000000" fill-rule="nonzero">
+            <g id="plug" transform="translate(88.000000, 24.000000)">
+                <path d="M360,160 L24,160 C10.745,160 0,170.745 0,184 L0,232 C0,245.255 10.745,256 24,256 L32,256 C32,338.965 95.147,407.178 176,415.206 L176,512 L208,512 L208,415.206 C288.853,407.178 352,338.965 352,256 L360,256 C373.255,256 384,245.255 384,232 L384,184 C384,170.745 373.255,160 360,160 Z M352,224 L320,224 L320,256 C320,326.74 262.751,384 192,384 C121.26,384 64,326.751 64,256 L64,224 L32,224 L32,192 L352,192 L352,224 Z M272,144 L272,16 C272,7.163 279.163,0 288,0 C296.837,0 304,7.163 304,16 L304,144 L272,144 Z M80,144 L80,16 C80,7.163 87.163,0 96,0 C104.837,0 112,7.163 112,16 L112,144 L80,144 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

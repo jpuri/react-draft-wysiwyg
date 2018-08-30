@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA038-arrow-square-down Copy</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA038-arrow-square-down-Copy" fill="#000000" fill-rule="nonzero">
+            <g id="long-arrow-down" transform="translate(152.000000, 56.000000)">
+                <path d="M252.485,311.03 L245.415,303.959 C240.729,299.273 233.131,299.273 228.444,303.959 L145,387.887 L145,12 C145,5.373 139.627,0 133,0 L123,0 C116.373,0 111,5.373 111,12 L111,387.887 L27.556,303.959 C22.87,299.273 15.272,299.273 10.585,303.959 L3.515,311.03 C-1.171,315.716 -1.171,323.314 3.515,328 L119.515,444.485 C124.201,449.171 131.799,449.171 136.486,444.485 L252.486,328 C257.172,323.314 257.172,315.716 252.485,311.03 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

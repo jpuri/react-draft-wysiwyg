@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>user</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA090-user" fill="#000000" fill-rule="nonzero">
+            <g id="user" transform="translate(56.000000, 24.000000)">
+                <path d="M313.6,288 C284.9,288 271.1,304 224,304 C176.9,304 163.2,288 134.4,288 C60.2,288 0,348.2 0,422.4 L0,464 C0,490.5 21.5,512 48,512 L400,512 C426.5,512 448,490.5 448,464 L448,422.4 C448,348.2 387.8,288 313.6,288 Z M416,464 C416,472.8 408.8,480 400,480 L48,480 C39.2,480 32,472.8 32,464 L32,422.4 C32,365.9 77.9,320 134.4,320 C154,320 173.5,336 224,336 C274.4,336 294,320 313.6,320 C370.1,320 416,365.9 416,422.4 L416,464 Z M224,256 C294.7,256 352,198.7 352,128 C352,57.3 294.7,0 224,0 C153.3,0 96,57.3 96,128 C96,198.7 153.3,256 224,256 Z M224,32 C276.9,32 320,75.1 320,128 C320,180.9 276.9,224 224,224 C171.1,224 128,180.9 128,128 C128,75.1 171.1,32 224,32 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

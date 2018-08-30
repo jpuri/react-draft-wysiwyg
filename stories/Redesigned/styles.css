@@ -1,0 +1,81 @@
+.rdw-storybook-root {
+  font-family: 'Open Sans';
+  position: relative;
+}
+
+.rdw-storybook-toolbar {
+  height: 50px;
+  position: absolute;
+  top: 143px !important;
+  width: 98.3%;
+  z-index: 2;
+  border-bottom: 1px solid #F1F1F1 !important;
+  /* height: 50px; */
+}
+
+.rdw-editor-toolbar {
+  border-bottom: 1px solid #F1F1F1 !important;
+  border-left: 1px solid #F1F1F1 !important;
+  /* border: none !important; */
+}
+
+.rdw-storybook-editor {
+  width: 100%;
+  position: relative;
+  padding: 0px 10px 0px 10px !important;
+}
+
+.rdw-option-wrapper {
+  border: none;
+}
+
+.rdw-option-wrapper:hover {
+  box-shadow: none;
+}
+
+.rdw-dropdown-wrapper {
+  height: 30px;
+  width: 100px;
+  border: 1px solid #5A5A5A;
+  border-radius: 8px;
+  font-size: 12px;
+}
+
+.rdw-editor-toolbar {
+  border: none;
+  margin-bottom: 0;
+  /* border-bottom: none; */
+}
+
+.public-DraftStyleDefault-block > span {
+  font-style: italic;
+}
+
+.rdw-dropdown-optionwrapper {
+  width: 100px;
+}
+
+.rdw-quick-response-modal {
+  position: absolute;
+  top: -205px;
+}
+
+.rdw-link-modal {
+  position: absolute;
+  top: -235px;
+}
+
+.rdw-file-modal {
+  position: absolute;
+  top: -223px;
+}
+
+.rdw-dropdown-optionwrapper {
+  position: absolute;
+  top: -215px;
+}
+
+.rdw-emoji-modal, .rdw-embedded-modal, .rdw-image-modal {
+  position: absolute;
+  top: -210px;
+}

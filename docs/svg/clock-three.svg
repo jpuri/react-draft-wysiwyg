@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>clock-three</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA301-clock-three" fill="#000000" fill-rule="nonzero">
+            <g id="clock-three" transform="translate(32.000000, 32.000000)">
+                <path d="M248,0 C111,0 0,111 0,248 C0,385 111,496 248,496 C385,496 496,385 496,248 C496,111 385,0 248,0 Z M464,248 C464,366.7 367.9,464 248,464 C129.3,464 32,367.9 32,248 C32,129.3 128.1,32 248,32 C366.7,32 464,128.1 464,248 Z M228,249.95 L228,108 C228,101.4 233.4,96 240,96 L254,96 C260.6,96 266,101.4 266,108 L266,266.95 L245,266.95 C235.611159,266.95 228,259.338841 228,249.95 Z M228,229 L336.95,229 C343.55,229 348.95,234.4 348.95,241 L348.95,255 C348.95,261.6 343.55,267 336.95,267 L244,267 C235.163444,267 228,259.836556 228,251 L228,229 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA189-clipboard</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA189-clipboard" fill="#000000" fill-rule="nonzero">
+            <g id="clipboard" transform="translate(88.000000, 24.000000)">
+                <path d="M336,64 L247.419,64 C247.794,61.386 248,58.717 248,56 C248,25.121 222.878,0 192,0 C161.122,0 136,25.121 136,56 C136,58.717 136.205,61.386 136.581,64 L48,64 C21.49,64 0,85.49 0,112 L0,464 C0,490.51 21.49,512 48,512 L336,512 C362.51,512 384,490.51 384,464 L384,112 C384,85.49 362.51,64 336,64 Z M352,464 C352,472.822 344.822,480 336,480 L48,480 C39.178,480 32,472.822 32,464 L32,112 C32,103.178 39.178,96 48,96 L96,96 L96,116 C96,122.627 101.373,128 108,128 L276,128 C282.627,128 288,122.627 288,116 L288,96 L336,96 C344.822,96 352,103.178 352,112 L352,464 Z M192,32 C205.255,32 216,42.745 216,56 C216,69.255 205.255,80 192,80 C178.745,80 168,69.255 168,56 C168,42.745 178.745,32 192,32 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

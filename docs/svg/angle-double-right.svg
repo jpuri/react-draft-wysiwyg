@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>angle-double-right</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA069-angle-double-right" fill="#000000" fill-rule="nonzero">
+            <g id="angle-double-right" transform="translate(141.000000, 151.000000)">
+                <path d="M145.9,137.5 L28.1,253.5 C23.4,258.2 15.8,258.2 11.1,253.5 L4,246.4 C-0.7,241.7 -0.7,234.1 4,229.4 L106.3,129 L4.1,28.6 C-0.6,23.9 -0.6,16.3 4.1,11.6 L11.2,4.5 C15.9,-0.2 23.5,-0.2 28.2,4.5 L146,120.5 C150.6,125.2 150.6,132.8 145.9,137.5 Z M273.9,120.5 L156.1,4.5 C151.4,-0.2 143.8,-0.2 139.1,4.5 L132,11.6 C127.3,16.3 127.3,23.9 132,28.6 L234.3,129 L132.1,229.4 C127.4,234.1 127.4,241.7 132.1,246.4 L139.2,253.5 C143.9,258.2 151.5,258.2 156.2,253.5 L274,137.5 C278.6,132.8 278.6,125.2 273.9,120.5 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>calendar-exclamation</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA167-calendar-exclamation" fill="#000000" fill-rule="nonzero">
+            <g id="calendar-exclamation" transform="translate(56.000000, 24.000000)">
+                <path d="M400,64 L352,64 L352,12 C352,5.4 346.6,0 340,0 L332,0 C325.4,0 320,5.4 320,12 L320,64 L128,64 L128,12 C128,5.4 122.6,0 116,0 L108,0 C101.4,0 96,5.4 96,12 L96,64 L48,64 C21.5,64 0,85.5 0,112 L0,464 C0,490.5 21.5,512 48,512 L400,512 C426.5,512 448,490.5 448,464 L448,112 C448,85.5 426.5,64 400,64 Z M48,96 L400,96 C408.8,96 416,103.2 416,112 L416,160 L32,160 L32,112 C32,103.2 39.2,96 48,96 Z M400,480 L48,480 C39.2,480 32,472.8 32,464 L32,192 L416,192 L416,464 C416,472.8 408.8,480 400,480 Z M212.7,224 L235.3,224 C242.2,224 247.7,229.8 247.3,236.7 L240.6,356.7 C240.2,363.1 235,368 228.6,368 L219.3,368 C212.9,368 207.7,363 207.3,356.7 L200.6,236.7 C200.3,229.8 205.8,224 212.7,224 Z M252,416 C252,431.5 239.5,444 224,444 C208.5,444 196,431.5 196,416 C196,400.5 208.5,388 224,388 C239.5,388 252,400.5 252,416 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

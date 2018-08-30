@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>dots-v</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA013-dots-v" fill="#000000" fill-rule="nonzero">
+            <g id="dots-v" transform="translate(248.000000, 128.000000)">
+                <path d="M32,120 C49.7,120 64,134.3 64,152 C64,169.7 49.7,184 32,184 C14.3,184 0,169.7 0,152 C0,134.3 14.3,120 32,120 Z M0,32 C0,49.7 14.3,64 32,64 C49.7,64 64,49.7 64,32 C64,14.3 49.7,0 32,0 C14.3,0 0,14.3 0,32 Z M0,272 C0,289.7 14.3,304 32,304 C49.7,304 64,289.7 64,272 C64,254.3 49.7,240 32,240 C14.3,240 0,254.3 0,272 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

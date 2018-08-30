@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA157-briefcase</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA157-briefcase" fill="#000000" fill-rule="nonzero">
+            <g id="briefcase" transform="translate(24.000000, 56.000000)">
+                <path d="M464,64 L352,64 L352,24 C352,10.745 341.255,0 328,0 L184,0 C170.745,0 160,10.745 160,24 L160,64 L48,64 C21.49,64 0,85.49 0,112 L0,400 C0,426.51 21.49,448 48,448 L464,448 C490.51,448 512,426.51 512,400 L512,112 C512,85.49 490.51,64 464,64 Z M192,32 L320,32 L320,64 L192,64 L192,32 Z M480,400 C480,408.822 472.822,416 464,416 L48,416 C39.178,416 32,408.822 32,400 L32,256 L192,256 L192,296 C192,309.255 202.745,320 216,320 L296,320 C309.255,320 320,309.255 320,296 L320,256 L480,256 L480,400 Z M224,256 L288,256 L288,288 L224,288 L224,256 Z M32,224 L32,112 C32,103.178 39.178,96 48,96 L464,96 C472.822,96 480,103.178 480,112 L480,224 L32,224 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

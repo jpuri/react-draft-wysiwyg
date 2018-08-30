@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA242-mobile</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA242-mobile" fill="#000000" fill-rule="nonzero">
+            <g id="mobile" transform="translate(120.000000, 24.000000)">
+                <path d="M192,416 C192,433.7 177.7,448 160,448 C142.3,448 128,433.7 128,416 C128,398.3 142.3,384 160,384 C177.7,384 192,398.3 192,416 Z M320,48 L320,464 C320,490.5 298.5,512 272,512 L48,512 C21.5,512 0,490.5 0,464 L0,48 C0,21.5 21.5,0 48,0 L272,0 C298.5,0 320,21.5 320,48 Z M288,48 C288,39.2 280.8,32 272,32 L48,32 C39.2,32 32,39.2 32,48 L32,464 C32,472.8 39.2,480 48,480 L272,480 C280.8,480 288,472.8 288,464 L288,48 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

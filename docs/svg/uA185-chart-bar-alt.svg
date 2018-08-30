@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA185-chart-bar-alt</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA185-chart-bar-alt" fill="#000000" fill-rule="nonzero">
+            <g id="chart-bar-alt" transform="translate(120.000000, 152.000000)">
+                <path d="M32,250 L32,166 C32,162.7 29.3,160 26,160 L6,160 C2.7,160 0,162.7 0,166 L0,250 C0,253.3 2.7,256 6,256 L26,256 C29.3,256 32,253.3 32,250 Z M320,250 L320,6 C320,2.7 317.3,0 314,0 L294,0 C290.7,0 288,2.7 288,6 L288,250 C288,253.3 290.7,256 294,256 L314,256 C317.3,256 320,253.3 320,250 Z M224,250 L224,102 C224,98.7 221.3,96 218,96 L198,96 C194.7,96 192,98.7 192,102 L192,250 C192,253.3 194.7,256 198,256 L218,256 C221.3,256 224,253.3 224,250 Z M128,250 L128,38 C128,34.7 125.3,32 122,32 L102,32 C98.7,32 96,34.7 96,38 L96,250 C96,253.3 98.7,256 102,256 L122,256 C125.3,256 128,253.3 128,250 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA061-bars</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA061-bars" fill="#000000" fill-rule="nonzero">
+            <g id="bars" transform="translate(56.000000, 102.000000)">
+                <path d="M442,36 L6,36 C2.6862915,36 4.05812251e-16,33.3137085 0,30 L0,6 C-4.05812251e-16,2.6862915 2.6862915,0 6,0 L442,0 C445.313708,0 448,2.6862915 448,6 L448,30 C448,33.3137085 445.313708,36 442,36 Z M442,196 L6,196 C2.6862915,196 4.05812251e-16,193.313708 0,190 L0,166 C-4.05812251e-16,162.686292 2.6862915,160 6,160 L442,160 C445.313708,160 448,162.686292 448,166 L448,190 C448,193.313708 445.313708,196 442,196 Z M442,356 L6,356 C2.6862915,356 4.05812251e-16,353.313708 0,350 L0,326 C-4.05812251e-16,322.686292 2.6862915,320 6,320 L442,320 C445.313708,320 448,322.686292 448,326 L448,350 C448,353.313708 445.313708,356 442,356 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

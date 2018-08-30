@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>box-alt</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA155-box-alt" fill="#000000" fill-rule="nonzero">
+            <g id="box-alt" transform="translate(56.000000, 56.000000)">
+                <path d="M447.9,144 C447.9,133.4 445.3,123 440.3,113.7 L391.2,21.8 C386.9,8.8 374.7,-1.77635684e-14 360.9,-1.77635684e-14 L87.1,-1.77635684e-14 C73.3,-1.77635684e-14 61.1,8.8 56.7,21.9 L7.6,113.8 C2.6,123.1 0,133.5 0,144.1 C0.1,204.6 0,416 0,416 C0,433.7 14.3,448 32,448 L416,448 C433.7,448 448,433.7 448,416 C448,416 447.9,204.6 447.9,144 Z M360.9,32 L411.7,128 L286.1,128 L274.1,32 L360.9,32 Z M192,160 L256,160 L256,224 L192,224 L192,160 Z M241.9,32 L253.9,128 L194.1,128 L206.1,32 L241.9,32 Z M87.1,32 L173.9,32 L161.9,128 L36.3,128 L87.1,32 Z M32,416 C32,416 32.1,234.9 32.1,160 L160,160 L160,224 C160,241.7 174.3,256 192,256 L256,256 C273.7,256 288,241.7 288,224 L288,160 L415.9,160 C415.9,234.9 416,416 416,416 L32,416 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA122-chat-minus</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA122-chat-minus" fill="#000000" fill-rule="nonzero">
+            <g id="chat-minus" transform="translate(24.000000, 56.000000)">
+                <path d="M345,192 L169,192 C164.6,192 161,195.6 161,200 L161,216 C161,220.4 164.6,224 169,224 L345,224 C349.4,224 353,220.4 353,216 L353,200 C353,195.6 349.4,192 345,192 Z M257,0 C115.6,0 1,93.1 1,208 C1,255.6 20.9,299.2 53.9,334.3 C39,373.7 8,407.1 7.5,407.5 C0.9,414.5 -0.9,424.7 2.9,433.5 C6.7,442.3 15.4,448 25,448 C86.5,448 135,422.3 164.1,401.7 C193,410.8 224.2,416 257,416 C398.4,416 513,322.9 513,208 C513,93.1 398.4,0 257,0 Z M257,384 C228.7,384 200.7,379.7 173.8,371.2 L158.6,366.4 L145.6,375.6 C122.6,391.9 87.1,410.9 43,415.2 C55,400.1 72.8,374.8 83.8,345.6 L90.9,326.9 L77.2,312.3 C48.3,281.7 33,245.6 33,208 C33,111 133.5,32 257,32 C380.5,32 481,111 481,208 C481,305 380.5,384 257,384 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

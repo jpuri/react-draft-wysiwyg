@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>uA173-caret-left</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA173-caret-left" fill="#000000" fill-rule="nonzero">
+            <g id="caret-left" transform="translate(184.000000, 120.000000)">
+                <path d="M192,287.968 L192,32.038 C192,3.613 157.512,-10.729 137.373,9.411 L9.373,137.373 C-3.123,149.869 -3.124,170.131 9.373,182.628 L137.373,310.596 C157.472,330.695 192,316.45 192,287.968 Z M32,160 L160,32 L160,288 L32,160 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

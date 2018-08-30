@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>arrow-down</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA022-arrow-down" fill="#000000" fill-rule="nonzero">
+            <g id="arrow-down" transform="translate(56.000000, 56.000000)">
+                <path d="M443.5,216.5 L436.4,209.4 C431.7,204.7 424.1,204.7 419.4,209.4 L241,387.9 L241,12 C241,5.4 235.6,0 229,0 L219,0 C212.4,0 207,5.4 207,12 L207,387.9 L28.5,209.4 C23.8,204.7 16.2,204.7 11.5,209.4 L4.4,216.5 C-0.3,221.2 -0.3,228.8 4.4,233.5 L215.4,444.6 C220.1,449.3 227.7,449.3 232.4,444.6 L443.4,233.5 C448.2,228.7 448.2,221.2 443.5,216.5 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

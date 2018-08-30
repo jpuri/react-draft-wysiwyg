@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>search-minus</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA011-search-minus" fill="#000000" fill-rule="nonzero">
+            <g id="search-minus" transform="translate(24.000000, 24.000000)">
+                <path d="M308.8,224.8 L108.8,224.8 C102.2,224.8 96.8,219.4 96.8,212.8 L96.8,204.8 C96.8,198.2 102.2,192.8 108.8,192.8 L308.8,192.8 C315.4,192.8 320.8,198.2 320.8,204.8 L320.8,212.8 C320.8,219.4 315.4,224.8 308.8,224.8 Z M509.3,498 L498,509.3 C493.3,514 485.7,514 481,509.3 L352,380.3 C349.7,378 348.5,375 348.5,371.8 L348.5,363.3 C311.6,396.7 262.7,417 209,417 C94.8,417 2.5,325.9 1,211.7 C-0.5,94.7 94.7,-0.5 211.7,1 C325.9,2.5 417,94.8 417,209 C417,262.7 396.7,311.6 363.3,348.5 L371.8,348.5 C375,348.5 378,349.8 380.3,352 L509.3,481 C514,485.7 514,493.3 509.3,498 Z M385,209 C385,111.7 306.3,33 209,33 C111.7,33 33,111.7 33,209 C33,306.3 111.7,385 209,385 C306.3,385 385,306.3 385,209 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

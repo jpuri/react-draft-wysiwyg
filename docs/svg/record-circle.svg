@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="560px" height="560px" viewBox="0 0 560 560" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>record-circle</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="uA078-record-circle" fill="#000000" fill-rule="nonzero">
+            <g id="record-circle" transform="translate(32.000000, 32.000000)">
+                <path d="M248,496 C385,496 496,385 496,248 C496,111 385,0 248,0 C111,0 0,111 0,248 C0,385 111,496 248,496 Z M32,248 C32,129.3 128.1,32 248,32 C366.7,32 464,128.1 464,248 C464,366.7 367.9,464 248,464 C129.3,464 32,367.9 32,248 Z M248,312 C283.346224,312 312,283.346224 312,248 C312,212.653776 283.346224,184 248,184 C212.653776,184 184,212.653776 184,248 C184,283.346224 212.653776,312 248,312 Z M248,344 C194.980664,344 152,301.019336 152,248 C152,194.980664 194.980664,152 248,152 C301.019336,152 344,194.980664 344,248 C344,301.019336 301.019336,344 248,344 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
