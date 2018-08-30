@@ -29,6 +29,15 @@
   border: none;
 }
 
+.rdw-option-active {
+  box-shadow: none;
+  background-color: #F1F1F1;
+}
+
+.rdw-option-active {
+
+}
+
 .rdw-option-wrapper:hover {
   box-shadow: none;
 }
@@ -48,7 +57,7 @@
 }
 
 .public-DraftStyleDefault-block > span {
-  font-style: italic;
+
 }
 
 .rdw-dropdown-optionwrapper {
