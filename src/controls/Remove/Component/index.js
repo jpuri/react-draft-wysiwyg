@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Option from '../../../components/Option';
+import Icon from '../../../components/Icon';
 import './styles.css';
 
 const RemoveComponent = ({ config, onChange, translations }) => {
@@ -16,10 +17,7 @@ const RemoveComponent = ({ config, onChange, translations }) => {
         onClick={onChange}
         title={title || translations['components.controls.remove.remove']}
       >
-        <img
-          src={icon}
-          alt=""
-        />
+        <Icon src={icon} />
       </Option>
     </div>
   );
