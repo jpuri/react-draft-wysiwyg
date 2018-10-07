@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Option from '../../../components/Option';
+import Icon from '../../../components/Icon';
 import Spinner from '../../../components/Spinner';
 import './styles.css';
 
@@ -229,7 +230,7 @@ class LayoutComponent extends Component {
                   className="rdw-image-modal-upload-option-label"
                 >
                   { previewImage && imgSrc
-                    ? <img
+                    ? <Icon
                       src={imgSrc}
                       alt={imgSrc}
                       className="rdw-image-modal-upload-option-image-preview"
@@ -336,10 +337,7 @@ class LayoutComponent extends Component {
           onClick={onExpandEvent}
           title={title || translations['components.controls.image.image']}
         >
-          <img
-            src={icon}
-            alt=""
-          />
+          <Icon src={icon} />
         </Option>
         {expanded ? this.renderAddImageModal() : undefined}
       </div>

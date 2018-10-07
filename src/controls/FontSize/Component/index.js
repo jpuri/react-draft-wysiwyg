@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import Icon from '../../../components/Icon';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
 
@@ -64,7 +65,7 @@ export default class LayoutComponent extends Component {
         >
           {currentFontSize ?
             <span>{currentFontSize}</span> :
-            <img src={icon} alt="" />
+            <Icon src={icon} />
           }
           {
             options.map((size, index) =>
