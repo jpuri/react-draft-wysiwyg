@@ -6,6 +6,7 @@ import classNames from 'classnames';
 
 import { stopPropagation } from '../../../utils/common';
 import Option from '../../../components/Option';
+import Icon from '../../../components/Icon';
 import './styles.css';
 
 class LayoutComponent extends Component {
@@ -61,10 +62,7 @@ class LayoutComponent extends Component {
           value="unordered-list-item"
           onClick={onExpandEvent}
         >
-          <img
-            src={icon}
-            alt=""
-          />
+          <Icon src={icon} />
         </Option>
         {expanded ? this.renderEmojiModal() : undefined}
       </div>
