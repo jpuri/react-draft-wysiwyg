@@ -2070,6 +2070,12 @@ ol {
   margin-bottom: 6px;
   position: relative;
 }
+.rdw-fullscreen-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
 .rdw-history-wrapper {
   display: flex;
   align-items: center;

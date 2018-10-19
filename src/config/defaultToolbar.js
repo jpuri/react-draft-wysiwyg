@@ -23,13 +23,14 @@ import undo from '../../images/undo.svg';
 import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
 import superscript from '../../images/superscript.svg';
+import openlink from '../../images/openlink.svg';
 
 /**
 * This is default toolbar configuration,
 * whatever user passes in toolbar property is deeply merged with this to over-ride defaults.
 */
 export default {
-  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history'],
+  options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'link', 'embedded', 'emoji', 'image', 'remove', 'history', 'fullscreen'],
   inline: {
     inDropdown: false,
     className: undefined,
@@ -172,6 +173,12 @@ export default {
     options: ['undo', 'redo'],
     undo: { icon: undo, className: undefined, title: undefined },
     redo: { icon: redo, className: undefined, title: undefined },
+    title: undefined,
+  },
+  fullscreen: {
+    icon: openlink,
+    className: undefined,
+    component: undefined,
     title: undefined,
   },
 };

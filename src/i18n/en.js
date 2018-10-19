@@ -78,4 +78,7 @@ module.exports = {
   'components.controls.textalign.center': 'Center',
   'components.controls.textalign.right': 'Right',
   'components.controls.textalign.justify': 'Justify',
+
+  // Fullscreen
+  'components.controls.fullscreen.fullscreen': 'Fullscreen',
 };

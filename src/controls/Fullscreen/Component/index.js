@@ -7,14 +7,14 @@ import classNames from 'classnames';
 import Option from '../../../components/Option';
 import './styles.css';
 
-const RemoveComponent = ({ config, onChange, translations }) => {
+const FullscreenComponent = ({ config, onChange, translations }) => {
   const { icon, className, title } = config;
   return (
-    <div className="rdw-remove-wrapper testtesttest" aria-label="rdw-remove-control">
+    <div className="rdw-fullscreen-wrapper" aria-label="rdw-fullscreen-control">
       <Option
         className={classNames(className)}
         onClick={onChange}
-        title={title || translations['components.controls.remove.remove']}
+        title={title || translations['components.controls.fullscreen.fullscreen']}
       >
         <img
           src={icon}
@@ -25,10 +25,10 @@ const RemoveComponent = ({ config, onChange, translations }) => {
   );
 };
 
-RemoveComponent.propTypes = {
+FullscreenComponent.propTypes = {
   onChange: PropTypes.func,
   config: PropTypes.object,
   translations: PropTypes.object,
 };
 
-export default RemoveComponent;
+export default FullscreenComponent;

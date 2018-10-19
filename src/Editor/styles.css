@@ -33,3 +33,13 @@
   border-radius: 3px;
   padding: 1px 10px;
 }
+
+#rdw-storybook-root:fullscreen {
+    background-color: #ffffff;
+}
+#rdw-storybook-root:-webkit-full-screen {
+    background-color: #ffffff;
+}
+#rdw-storybook-root:-moz-full-screen {
+    background-color: #ffffff;
+}
