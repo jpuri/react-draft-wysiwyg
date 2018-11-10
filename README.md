@@ -39,6 +39,10 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 ## Installing
 The package can be installed from npm `react-draft-wysiwyg`
 
+```
+$ npm install --save react-draft-wysiwyg draft-js
+```
+
 ## Getting started
 Editor can be used as simple React Component:
 ```js
