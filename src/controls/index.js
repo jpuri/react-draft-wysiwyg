@@ -11,6 +11,7 @@ import emoji from './Emoji';
 import image from './Image';
 import remove from './Remove';
 import history from './History';
+import fullscreen from './Fullscreen';
 
 module.exports = {
   inline,
@@ -26,4 +27,5 @@ module.exports = {
   image,
   remove,
   history,
+  fullscreen,
 };

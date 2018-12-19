@@ -719,6 +719,12 @@
 .rdw-history-dropdown {
   width: 50px;
 }
+.rdw-fullscreen-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
 .rdw-link-decorator-wrapper {
   position: relative;
 }

@@ -1,0 +1,6 @@
+.rdw-fullscreen-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+}
