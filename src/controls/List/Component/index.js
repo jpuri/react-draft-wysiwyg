@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import { getFirstIcon } from '../../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import Option from '../../../components/Option';
+import Icon from '../../../components/Icon';
 import './styles.css';
 
 export default class LayoutComponent extends Component {
@@ -60,10 +61,7 @@ export default class LayoutComponent extends Component {
           active={listType === 'unordered'}
           title={unordered.title || translations['components.controls.list.unordered']}
         >
-          <img
-            src={unordered.icon}
-            alt=""
-          />
+          <Icon src={unordered.icon} />
         </Option>}
         {options.indexOf('ordered') >= 0 && <Option
           value="ordered"
@@ -72,10 +70,7 @@ export default class LayoutComponent extends Component {
           active={listType === 'ordered'}
           title={ordered.title || translations['components.controls.list.ordered']}
         >
-          <img
-            src={ordered.icon}
-            alt=""
-          />
+          <Icon src={ordered.icon} />
         </Option>}
         {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
@@ -83,10 +78,7 @@ export default class LayoutComponent extends Component {
           className={classNames(indent.className)}
           title={indent.title || translations['components.controls.list.indent']}
         >
-          <img
-            src={indent.icon}
-            alt=""
-          />
+          <Icon src={indent.icon} />
         </Option>}
         {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
@@ -94,10 +86,7 @@ export default class LayoutComponent extends Component {
           className={classNames(outdent.className)}
           title={outdent.title || translations['components.controls.list.outdent']}
         >
-          <img
-            src={outdent.icon}
-            alt=""
-          />
+          <Icon src={outdent.icon} />
         </Option>}
       </div>
     );
@@ -127,10 +116,7 @@ export default class LayoutComponent extends Component {
         aria-label="rdw-list-control"
         title={title || translations['components.controls.list.list']}
       >
-        <img
-          src={getFirstIcon(config)}
-          alt=""
-        />
+        <Icon src={getFirstIcon(config)} />
         { this.options
           .filter(option => options.indexOf(option) >= 0)
           .map((option, index) => (<DropdownOption
@@ -141,10 +127,7 @@ export default class LayoutComponent extends Component {
             active={listType === option}
             title={config[option].title || translations[`components.controls.list.${option}`]}
           >
-            <img
-              src={config[option].icon}
-              alt=""
-            />
+            <Icon src={config[option].icon} />
           </DropdownOption>))
         }
       </Dropdown>

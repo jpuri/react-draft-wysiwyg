@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import Option from '../../../components/Option';
+import Icon from '../../../components/Icon';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import { getFirstIcon } from '../../../utils/toolbar';
 import './styles.css';
@@ -37,10 +38,7 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={left.title || translations['components.controls.textalign.left']}
         >
-          <img
-            src={left.icon}
-            alt=""
-          />
+          <Icon src={left.icon} />
         </Option>}
         {options.indexOf('center') >= 0 && <Option
           value="center"
@@ -49,10 +47,7 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={center.title || translations['components.controls.textalign.center']}
         >
-          <img
-            src={center.icon}
-            alt=""
-          />
+          <Icon src={center.icon} />
         </Option>}
         {options.indexOf('right') >= 0 && <Option
           value="right"
@@ -61,10 +56,7 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={right.title || translations['components.controls.textalign.right']}
         >
-          <img
-            src={right.icon}
-            alt=""
-          />
+          <Icon src={right.icon} />
         </Option>}
         {options.indexOf('justify') >= 0 && <Option
           value="justify"
@@ -73,10 +65,7 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={justify.title || translations['components.controls.textalign.justify']}
         >
-          <img
-            src={justify.icon}
-            alt=""
-          />
+          <Icon src={justify.icon} />
         </Option>}
       </div>
     );
@@ -106,9 +95,8 @@ export default class TextAlign extends Component {
         aria-label="rdw-textalign-control"
         title={title || translations['components.controls.textalign.textalign']}
       >
-        <img
+        <Icon
           src={(textAlignment && config[textAlignment] && config[textAlignment].icon) || getFirstIcon(config)}
-          alt=""
         />
         {options.indexOf('left') >= 0 && <DropdownOption
           value="left"
@@ -116,10 +104,7 @@ export default class TextAlign extends Component {
           className={classNames('rdw-text-align-dropdownOption', left.className)}
           title={left.title || translations['components.controls.textalign.left']}
         >
-          <img
-            src={left.icon}
-            alt=""
-          />
+          <Icon src={left.icon} />
         </DropdownOption>}
         {options.indexOf('center') >= 0 && <DropdownOption
           value="center"
@@ -127,10 +112,7 @@ export default class TextAlign extends Component {
           className={classNames('rdw-text-align-dropdownOption', center.className)}
           title={center.title || translations['components.controls.textalign.center']}
         >
-          <img
-            src={center.icon}
-            alt=""
-          />
+          <Icon src={center.icon} />
         </DropdownOption>}
         {options.indexOf('right') >= 0 && <DropdownOption
           value="right"
@@ -138,10 +120,7 @@ export default class TextAlign extends Component {
           className={classNames('rdw-text-align-dropdownOption', right.className)}
           title={right.title || translations['components.controls.textalign.right']}
         >
-          <img
-            src={right.icon}
-            alt=""
-          />
+          <Icon src={right.icon} />
         </DropdownOption>}
         {options.indexOf('justify') >= 0 && <DropdownOption
           value="justify"
@@ -149,10 +128,7 @@ export default class TextAlign extends Component {
           className={classNames('rdw-text-align-dropdownOption', justify.className)}
           title={justify.title || translations['components.controls.textalign.justify']}
         >
-          <img
-            src={justify.icon}
-            alt=""
-          />
+          <Icon src={justify.icon} />
         </DropdownOption>}
       </Dropdown>
     );
