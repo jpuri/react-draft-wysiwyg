@@ -1294,7 +1294,7 @@ span.CodeMirror-selectedtext { background: none; }
   cursor: pointer;
 }
 .docs-root {
-  width: 100%;
+  width: calc(100% - 150px);
   margin: 30px;
 }
 .docs-label {
