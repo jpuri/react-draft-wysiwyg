@@ -39,6 +39,10 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 ## Installing
 The package can be installed from npm `react-draft-wysiwyg`
 
+```
+$ npm install --save react-draft-wysiwyg draft-js
+```
+
 ## Getting started
 Editor can be used as simple React Component:
 ```js
@@ -57,7 +61,7 @@ import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 For more documentation check [here](https://jpuri.github.io/react-draft-wysiwyg/#/docs?_k=jjqinp).
 
 ## Questions Discussions
-For discussions join public channel #rd-wysiwyg in [DraftJS Slack Organization](https://draftjs.herokuapp.com/).
+For discussions join public channel #rd_wysiwyg in [DraftJS Slack Organization](https://draftjs.herokuapp.com/).
 
 ## Thanks
 Original motivation and sponsorship for this work came from [iPaoo](http://www.ipaoo.com/). I am thankful to them for allowing the Editor to be open-sourced.
