@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.12.13",
+  "version": "1.12.15",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -50,7 +50,8 @@
     "style-loader": "^0.20.2",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0",
-    "webpack-bundle-analyzer": "^2.11.1"
+    "webpack-bundle-analyzer": "^2.11.1",
+    "embed-video": "^2.0.4"
   },
   "dependencies": {
     "classnames": "^2.2.5",
