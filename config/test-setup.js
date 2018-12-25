@@ -1,10 +1,14 @@
 require('babel-register')();
 
-const jsdom = require('jsdom').jsdom;
+const { JSDOM } = require('jsdom');
+const { configure } = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
+configure({ adapter: new Adapter() });
 
 const exposedProperties = ['window', 'navigator', 'document'];
 
-global.document = jsdom('');
+const { document } = (new JSDOM('')).window;
+global.document = document;
 global.window = document.defaultView;
 global.HTMLElement = window.HTMLElement;
 global.HTMLAnchorElement = window.HTMLAnchorElement;

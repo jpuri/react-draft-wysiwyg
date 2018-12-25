@@ -60,10 +60,11 @@ class Embedded extends Component {
       embeddedLink = embeddedLink.replace("youtu.be/","youtube.com/embed/");
     }
     
-    const { editorState, onChange } = this.props;
+    const { editorState, onChange, config: { embedCallback} } = this.props;
+    const src = embedCallback ? embedCallback(embeddedLink) : embeddedLink;
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('EMBEDDED_LINK', 'MUTABLE', { src: embeddedLink, height, width })
+      .createEntity('EMBEDDED_LINK', 'MUTABLE', { src, height, width })
       .getLastCreatedEntityKey();
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,

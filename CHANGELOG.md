@@ -91,3 +91,45 @@ Initial stable release
 ## 23/09/2017 (1.10.12)
 - #444: Images not copied when copying content from microsoft word.
 - Translations for de and nl locales.
+
+## 7/12/2017 (1.12.0)
+- Adding custom component for rendering of mentions and hashtags.
+- Using targetOption property to save target of link.
+
+## 18/12/2017 (1.12.1)
+- Changes in German Translations.
+- Using linkify-it to linkify link targets.
+
+## 25/12/2017 (1.12.2)
+- #502, In some scenario, editor does not extract inline style when editorState is changed 
+
+## 1/1/2018 (1.12.3)
+- # Adding UMD module bundling.
+
+## 8/1/2018 (1.12.3)
+- #514, Avoid error when an alignment is not defined. 
+- #555, Image preview option.
+
+## 15/1/2018
+- #549, stripPastedStyles not working.
+
+## 25/1/2018
+- Adding ref property to editor to get teference of underlying DraftJS editor.
+
+## 26/1/2018
+- #581, onBlur not firing.
+
+## 14/2/2018 (1.12.9)
+- #425, text alignment broken for multiple text.
+- #549, Prop stripPastedStyles is ignored.
+- Support for Japanese locale.
+
+## 4/3/2018 (1.12.11)
+- #621, variable declaration causes handlePastedText function error after js minified.
+
+## 16/4/2018 (1.12.12)
+- #630, Passing editorState into onBlur callback.
+- #642, Fix an error when a tab failed to open.
+
+## 25/4/2018 (1.12.13)
+- Bundle size optimization.

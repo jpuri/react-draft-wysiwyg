@@ -11,10 +11,12 @@ export default class FocusHandler {
   }
 
   isEditorBlur = (event):void => {
-    if (event.target.tagName === 'INPUT' && !this.editorFocused) {
+    if ((event.target.tagName === 'INPUT' || event.target.tagName === 'LABEL')
+      && !this.editorFocused) {
       this.inputFocused = false;
       return true;
-    } else if (event.target.tagName !== 'INPUT' && !this.inputFocused) {
+    } else if ((event.target.tagName !== 'INPUT' || event.target.tagName !== 'LABEL')
+      && !this.inputFocused) {
       this.editorFocused = false;
       return true;
     }

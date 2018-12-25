@@ -14,7 +14,7 @@ export default class Home extends Component {
           wrapperClassName="home-wrapper"
           editorClassName="home-editor"
           toolbar={{
-            image: { uploadCallback: uploadImageCallBack, alt: { present: true } },
+            image: { uploadCallback: uploadImageCallBack, alt: { present: true }, previewImage: true },
             fontFamily: {
               options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Roboto', 'Times New Roman', 'Verdana'],
             }

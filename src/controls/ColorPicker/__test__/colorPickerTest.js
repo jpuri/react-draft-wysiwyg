@@ -41,8 +41,7 @@ describe('ColorPicker test suite', () => {
         modalHandler={new ModalHandler()}
       />,
     );
-    const colorPicker = control.find('ColorPicker');
-    const state = colorPicker.node.state;
+    const state = control.state();
     assert.isNotTrue(state.expanded);
     assert.isUndefined(state.currentColor);
     assert.isUndefined(state.currentBgColor);
@@ -59,8 +58,8 @@ describe('ColorPicker test suite', () => {
       />,
     );
     const colorPicker = control.find('ColorPicker');
-    assert.isNotTrue(colorPicker.node.signalExpanded);
+    assert.isNotTrue(colorPicker.instance().signalExpanded);
     control.find('Option').simulate('click');
-    assert.isTrue(colorPicker.node.signalExpanded);
+    assert.isTrue(colorPicker.instance().signalExpanded);
   });
 });

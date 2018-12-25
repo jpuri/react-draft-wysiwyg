@@ -1,0 +1,12 @@
+LOG:  database system was interrupted; last known up at 2018-01-01 23:12:29 IST
+LOG:  database system was not properly shut down; automatic recovery in progress
+LOG:  invalid record length at 0/30F4200: wanted 24, got 0
+LOG:  redo is not required
+LOG:  MultiXact member wraparound protections are now enabled
+LOG:  autovacuum launcher started
+LOG:  database system is ready to accept connections
+LOG:  received SIGHUP, reloading configuration files
+LOG:  autovacuum launcher shutting down
+LOG:  received smart shutdown request
+LOG:  shutting down
+LOG:  database system is shut down

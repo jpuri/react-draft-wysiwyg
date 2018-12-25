@@ -3,6 +3,7 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-image-modal {
   position: absolute;
@@ -42,7 +43,6 @@
   border-bottom: 2px solid #0a66b7;
 }
 .rdw-image-modal-upload-option {
-  height: 65px;
   width: 100%;
   color: gray;
   cursor: pointer;
@@ -55,6 +55,7 @@
   outline: 2px dashed gray;
   outline-offset: -10px;
   margin: 10px 0;
+  padding: 9px 0;
 }
 .rdw-image-modal-upload-option-highlighted {
   outline: 2px dashed #0a66b7;
@@ -70,6 +71,10 @@
 }
 .rdw-image-modal-upload-option-label span{
   padding: 0 20px;
+}
+.rdw-image-modal-upload-option-image-preview {
+  max-width: 100%;
+  max-height: 200px;
 }
 .rdw-image-modal-upload-option-input {
 	width: 0.1px;

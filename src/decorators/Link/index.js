@@ -33,7 +33,10 @@ function getLinkComponent(config) {
       const { entityKey, contentState } = this.props;
       const { url } = contentState.getEntity(entityKey).getData();
       const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
-      linkTab.focus();
+      // linkTab can be null when the window failed to open.
+      if (linkTab) {
+        linkTab.focus();
+      }
     };
 
     toggleShowPopOver: Function = () => {

@@ -11,11 +11,11 @@ export default () => (
     </div>
     <ol>
       <li><b>wrapperClassName</b>: class applied around both the editor and the toolbar</li>
-      <li><b>editorClassName</b>: class applied around both the editor</li>
-      <li><b>toolbarClassName</b>: class applied around both the toolbar</li>
+      <li><b>editorClassName</b>: class applied around the editor</li>
+      <li><b>toolbarClassName</b>: class applied around the toolbar</li>
       <li><b>wrapperStyle</b>: style object applied around both the editor and the toolbar</li>
-      <li><b>editorStyle</b>: style object applied around both the editor</li>
-      <li><b>toolbarStyle</b>: style object applied around both the toolbar</li>
+      <li><b>editorStyle</b>: style object applied around the editor</li>
+      <li><b>toolbarStyle</b>: style object applied around the toolbar</li>
     </ol>
     <Codemirror
       value={

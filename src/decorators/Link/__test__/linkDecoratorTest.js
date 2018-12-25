@@ -16,7 +16,7 @@ describe('LinkDecorator test suite', () => {
 
   it('should have a div when rendered', () => {
     const Link = LinkDecorator.component;
-    expect(shallow(<Link entityKey={entityKey} contentState={contentState}>Link</Link>).node.type).to.equal('span');
+    expect(mount(<Link entityKey={entityKey} contentState={contentState}>Link</Link>).childAt(0).type()).to.equal('span');
   });
 
   it('should have state initialized correctly', () => {
@@ -35,6 +35,6 @@ describe('LinkDecorator test suite', () => {
     const Link = LinkDecorator.component;
     const control = mount(<Link entityKey={entityKey} contentState={contentState}>Link</Link>);
     control.setState({ showPopOver: true });
-    expect(control.children().length).to.equal(2);
+    expect(control.childAt(0).children().length).to.equal(2);
   });
 });
