@@ -108,6 +108,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-inline-dropdown {
   width: 50px;
@@ -121,6 +122,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-block-dropdown {
   width: 110px;
@@ -129,6 +131,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-fontsize-dropdown {
   min-width: 40px;
@@ -141,6 +144,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-fontfamily-dropdown {
   width: 115px;
@@ -158,6 +162,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-list-dropdown {
   width: 50px;
@@ -172,6 +177,7 @@
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-text-align-dropdown {
   width: 50px;
@@ -211,6 +217,7 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-colorpicker-modal {
   position: absolute;
@@ -278,6 +285,7 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-link-dropdown {
   width: 50px;
@@ -363,6 +371,7 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-embedded-modal {
   position: absolute;
@@ -466,6 +475,7 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-emoji-modal {
   overflow: auto;
@@ -536,6 +546,7 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-image-modal {
   position: absolute;
@@ -705,11 +716,13 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-history-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-history-dropdownoption {
   height: 40px;
