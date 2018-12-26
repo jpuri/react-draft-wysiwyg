@@ -117,7 +117,6 @@ export default class WysiwygEditor extends Component {
       props.customBlockRenderFunc
     );
     this.editorProps = this.filterEditorProps(props);
-    this.customStyleMap = getCustomStyleMap();
   }
 
   componentWillMount(): void {
@@ -164,15 +163,9 @@ export default class WysiwygEditor extends Component {
         newState.editorState = EditorState.createEmpty(this.compositeDecorator);
       }
     }
-    if (
-      props.editorState !== this.props.editorState ||
-      props.contentState !== this.props.contentState
-    ) {
-      extractInlineStyle(newState.editorState);
-    }
+
     this.setState(newState);
     this.editorProps = this.filterEditorProps(props);
-    this.customStyleMap = getCustomStyleMap();
   }
 
   onEditorBlur: Function = (): void => {
