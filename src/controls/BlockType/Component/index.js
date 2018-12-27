@@ -113,7 +113,7 @@ class LayoutComponent extends Component {
     const { config } = this.props;
     const { inDropdown } = config;
     const { blockTypes } = this.state;
-    const blocks = blockTypes.filter(({ label }) => config.options.includes(label));
+    const blocks = blockTypes.filter(({ label }) => config.options.indexOf(label) > -1);
     return inDropdown ? this.renderInDropdown(blocks) : this.renderFlat(blocks);
   }
 }
