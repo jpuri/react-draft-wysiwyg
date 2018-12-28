@@ -60,7 +60,7 @@ export default () => (
       <ol>
         <li><b>onChange</b>: The function can be used to update editor state.</li>
         <li><b>editorState</b>: The current editor state. It is an instance of <EditorStateLink /></li>
-        <li><b>translations</b>: This is teh map of all teh translations in the editor.</li>
+        <li><b>translations</b>: This is the map of all the translations in the editor.</li>
         <li>
           <b>modalHandler</b>
           : In case the custom option has a dropdown or a popup. This can be used to control their opening and closing.
