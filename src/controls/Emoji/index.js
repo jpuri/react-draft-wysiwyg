@@ -34,9 +34,11 @@ export default class Emoji extends Component {
   };
 
   expandCollapse: Function = (): void => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
+    if (!!this.signalExpanded !== this.state.expanded) {
+      this.setState({
+        expanded: this.signalExpanded,
+      });
+    }
     this.signalExpanded = false;
   }
 
