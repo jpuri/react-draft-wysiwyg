@@ -82,7 +82,8 @@ export default class WysiwygEditor extends Component {
     customBlockRenderFunc: PropTypes.func,
     wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
-    editorRef: PropTypes.func
+    editorRef: PropTypes.func,
+    beforeAddLink: PropTypes.func
   };
 
   static defaultProps = {
@@ -385,7 +386,8 @@ export default class WysiwygEditor extends Component {
       "customBlockRenderFunc",
       "customDecorators",
       "handlePastedText",
-      "customStyleMap"
+      "customStyleMap",
+      "beforeAddLink"
     ]);
 
   getStyleMap = props => ({ ...getCustomStyleMap(), ...props.customStyleMap });
@@ -472,6 +474,7 @@ export default class WysiwygEditor extends Component {
       editorStyle,
       wrapperStyle,
       uploadCallback,
+      beforeAddLink,
       ariaLabel
     } = this.props;
 
@@ -512,6 +515,9 @@ export default class WysiwygEditor extends Component {
               const config = toolbar[opt];
               if (opt === "image" && uploadCallback) {
                 config.uploadCallback = uploadCallback;
+              }
+              if (opt === "link" && beforeAddLink) {
+                config.beforeAddLink = beforeAddLink;
               }
               return <Control key={index} {...controlProps} config={config} />;
             })}

@@ -58,10 +58,18 @@ class Link extends Component {
   };
 
   onChange = (action, title, target, targetOption) => {
+    const { config: { beforeAddLink } } = this.props;
+    let params = { action, title, target, targetOption };
+
     if (action === 'link') {
-      const links = linkify.match(target);
-      const linkifiedTarget = links && links[0] ? links[0].url : '';
-      this.addLink(title, linkifiedTarget, targetOption);
+      if (typeof beforeAddLink === 'function') {
+        params = beforeAddLink(params);
+      } else {
+        const links = linkify.match(target);
+        params.target = links && links[0] ? links[0].url : '';
+      }
+
+      this.addLink(params.title, params.target, params.targetOption);
     } else {
       this.removeLink();
     }
