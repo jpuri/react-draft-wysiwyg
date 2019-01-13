@@ -180,7 +180,8 @@ export default {
     defaultTargetOption: "_self",
     options: ["link", "unlink"],
     link: { icon: link, className: undefined, title: undefined },
-    unlink: { icon: unlink, className: undefined, title: undefined }
+    unlink: { icon: unlink, className: undefined, title: undefined },
+    beforeAddLink: undefined,
   },
   emoji: {
     icon: emoji,

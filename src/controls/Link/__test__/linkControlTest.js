@@ -88,7 +88,7 @@ describe('LinkControl test suite', () => {
     const onChange = spy();
     const control = mount(
       <LinkControl
-        config={{...defaultToolbar.link, beforeAddLink: (params) => params}}
+        config={{...defaultToolbar.link, beforeAddLink: params => params }}
         onChange={onChange}
         editorState={editorState}
         translations={localeTranslations.en}
