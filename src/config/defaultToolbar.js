@@ -1,3 +1,4 @@
+import linkifyIt from 'linkify-it';
 import bold from '../../images/bold.svg';
 import italic from '../../images/italic.svg';
 import underline from '../../images/underline.svg';
@@ -23,6 +24,16 @@ import undo from '../../images/undo.svg';
 import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
 import superscript from '../../images/superscript.svg';
+
+const linkify = linkifyIt();
+const beforeAddLink = (params) => {
+  const links = linkify.match(params.target);
+  const linkifiedTarget = links && links[0] ? links[0].url : '';
+  return {
+    ...params,
+    target: linkifiedTarget,
+  };
+};
 
 /**
 * This is default toolbar configuration,
@@ -181,7 +192,7 @@ export default {
     options: ["link", "unlink"],
     link: { icon: link, className: undefined, title: undefined },
     unlink: { icon: unlink, className: undefined, title: undefined },
-    beforeAddLink: undefined,
+    beforeAddLink,
   },
   emoji: {
     icon: emoji,
