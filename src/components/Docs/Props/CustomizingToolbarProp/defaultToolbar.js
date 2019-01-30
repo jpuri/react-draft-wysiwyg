@@ -79,6 +79,7 @@ export default "{\n" +
   "    options: ['link', 'unlink'],\n" +
   "    link: { icon: link, className: undefined },\n" +
   "    unlink: { icon: unlink, className: undefined },\n" +
+  "    linkCallback: undefined\n" +
   "  },\n" +
   "  emoji: {\n" +
   "    icon: emoji,\n" +
