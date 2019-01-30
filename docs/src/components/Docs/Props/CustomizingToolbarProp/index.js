@@ -141,6 +141,25 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>link: linkCallback</b>
+        <span>
+          : This is callback to process the link added by the user. By default
+          library{" "}
+          <a href="https://github.com/markdown-it/linkify-it" target="blank">
+            linkify-it
+          </a>{" "}
+          is used for the purpose. <br />
+          The callback is passed an object with following details
+          <code className="code_sm">
+            {
+              "{title: <text>,target: <link>,targetOption: <_blank|_self|_parent|_top>}"
+            }
+          </code>
+          . It is expected to return a similar object with new details which
+          will be saved iin the link.
+        </span>
+      </li>
+      <li>
         <b>emoji: emojis</b>
         <span>
           : The property is arrary of emoji characters (unicodes). Which are
