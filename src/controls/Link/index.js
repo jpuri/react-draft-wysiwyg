@@ -59,7 +59,8 @@ class Link extends Component {
 
     if (action === 'link') {
       const link = beforeAddLink({action, title, target, targetOption});
-      this.addLink(link.title, link.target, link.targetOption);
+      const linkifiedTarget = links && links[0] ? links[0].url : target;
+      this.addLink(title, linkifiedTarget, targetOption);
     } else {
       this.removeLink();
     }
