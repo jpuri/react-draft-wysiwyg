@@ -1294,7 +1294,7 @@ span.CodeMirror-selectedtext { background: none; }
   cursor: pointer;
 }
 .docs-root {
-  width: 100%;
+  width: calc(100% - 150px);
   margin: 30px;
 }
 .docs-label {
@@ -1472,6 +1472,7 @@ ol {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-inline-dropdown {
   width: 50px;
@@ -1485,6 +1486,7 @@ ol {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-block-dropdown {
   width: 110px;
@@ -1493,6 +1495,7 @@ ol {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-fontsize-dropdown {
   min-width: 40px;
@@ -1505,6 +1508,7 @@ ol {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-fontfamily-dropdown {
   width: 115px;
@@ -1522,6 +1526,7 @@ ol {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-list-dropdown {
   width: 50px;
@@ -1536,6 +1541,7 @@ ol {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-text-align-dropdown {
   width: 50px;
@@ -1575,6 +1581,7 @@ ol {
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-colorpicker-modal {
   position: absolute;
@@ -1642,6 +1649,7 @@ ol {
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-link-dropdown {
   width: 50px;
@@ -1727,6 +1735,7 @@ ol {
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-embedded-modal {
   position: absolute;
@@ -1830,6 +1839,7 @@ ol {
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-emoji-modal {
   overflow: auto;
@@ -1900,6 +1910,7 @@ ol {
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-image-modal {
   position: absolute;
@@ -2069,11 +2080,13 @@ ol {
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }
 .rdw-history-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
+  flex-wrap: wrap
 }
 .rdw-history-dropdownoption {
   height: 40px;

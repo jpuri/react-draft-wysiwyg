@@ -1,14 +1,1 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg width="14px" height="17px" viewBox="0 0 14 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-    <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
-    <title>undo</title>
-    <desc>Created with Sketch.</desc>
-    <defs></defs>
-    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="undo" fill="#000000">
-            <g id="Capa_1">
-                <path d="M7,14.875 C9.67231731,14.875 11.8461538,12.7302773 11.8461538,10.09375 C11.8461538,7.45722266 9.67231731,5.3125 7,5.3125 L7,8.5 L1.61538462,4.25 L7,0 L7,3.1875 C10.8596923,3.1875 14,6.2857832 14,10.09375 C14,13.90175 10.8596923,17 7,17 C3.14034135,17 0,13.90175 0,10.09375 L2.15384615,10.09375 C2.15384615,12.7302773 4.32768269,14.875 7,14.875 L7,14.875 Z" id="Shape"></path>
-            </g>
-        </g>
-    </g>
-</svg>
+<svg width="14" height="17" xmlns="http://www.w3.org/2000/svg"><path d="M7 14.875c2.672 0 4.846-2.145 4.846-4.781 0-2.637-2.174-4.781-4.846-4.781V8.5L1.615 4.25 7 0v3.188c3.86 0 7 3.098 7 6.906S10.86 17 7 17s-7-3.098-7-6.906h2.154c0 2.636 2.174 4.781 4.846 4.781z" fill="#000" fill-rule="evenodd"/></svg>

@@ -83,4 +83,51 @@ describe('LinkControl test suite', () => {
     const lastCall = contentState.getLastCreatedEntityKey();
     assert.equal(contentState.getEntity(lastCall).getData().url, 'http://www.google.com');
   });
+
+  it('should use custom linkifier if one is set with beforeAddLink', () => {
+    const onChange = spy();
+    const control = mount(
+      <LinkControl
+        config={{...defaultToolbar.link, beforeAddLink: params => params }}
+              onChange={onChange}
+        editorState={editorState}
+        translations={localeTranslations.en}
+        modalHandler={new ModalHandler()}
+      />,
+    );
+    control.setState({ expanded: true });
+    const buttons = control.find('.rdw-option-wrapper');
+    buttons.first().simulate('click');
+    const inputs = control.find('.rdw-link-modal-input');
+    inputs.last().simulate('change', { target: { name: 'linkTitle', value: 'the google' } });
+    inputs.first().simulate('change', { target: { name: 'linkTarget', value: 'www.google.com' } });
+    const addButton = control.find('.rdw-link-modal-btn').first();
+    addButton.simulate('click');
+    const lastCall = contentState.getLastCreatedEntityKey();
+    assert.equal(contentState.getEntity(lastCall).getData().url, 'www.google.com');
+  });
+});
+
+it('should return input value by default', () => {
+    const onChange = spy();
+    const control = mount(
+      <LinkControl
+        config={defaultToolbar.link}
+        onChange={onChange}
+        editorState={editorState}
+        translations={localeTranslations.en}
+        modalHandler={new ModalHandler()}
+      />,
+    );
+    control.setState({ expanded: true });
+    const buttons = control.find('.rdw-option-wrapper');
+    buttons.first().simulate('click');
+    const inputs = control.find('.rdw-link-modal-input');
+    inputs.last().simulate('change', { target: { name: 'linkTitle', value: 'the google' } });
+    inputs.first().simulate('change', { target: { name: 'linkTarget', value: '#hash-link' } });
+    const addButton = control.find('.rdw-link-modal-btn').first();
+    addButton.simulate('click');
+    const lastCall = contentState.getLastCreatedEntityKey();
+    assert.equal(contentState.getEntity(lastCall).getData().url, '#hash-link');
+  });
 });

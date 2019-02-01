@@ -66,7 +66,7 @@ module.exports = {
   'components.controls.list.unordered': 'Désordonnée',
   'components.controls.list.ordered': 'Ordonnée',
   'components.controls.list.indent': 'Augmenter le retrait',
-  'components.controls.list.outdent': 'Diminuer le retrat',
+  'components.controls.list.outdent': 'Diminuer le retrait',
 
   // Remove
   'components.controls.remove.remove': 'Supprimer',

@@ -11,8 +11,8 @@ export default () => (
         <li><b>onBlur</b>: this callback is called when editor is blurred.</li>
         <li>
           <b>onTab</b>
-          : this callback is called when editor receives 'tab' keydown. Default behavior of editor on tab 
-          is to change depth of block if current block is of type list. If onTab callback returns true editor assumes 
+          : this callback is called when editor receives 'tab' keydown. Default behavior of editor on tab
+          is to change depth of block if current block is of type list. If onTab callback returns true editor assumes
           that Tab has been handled by the callback and the default behavior is not executed.
         </li>
       </ol>
@@ -26,9 +26,9 @@ export default () => (
         '  <Editor\n' +
         '    wrapperClassName="demo-wrapper"\n' +
         '    editorClassName="demo-editor"\n' +
-        '    onFocus={() => {}}\n' +
-        '    onBlur={() => {}}\n' +
-        '    onTab={() => {}}\n' +
+        '    onFocus={(event) => {}}\n' +
+        '    onBlur={(event, editorState) => {}}\n' +
+        '    onTab={(event) => {}}\n' +
         '  />\n' +
         ')'
       }

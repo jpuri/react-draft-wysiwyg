@@ -118,7 +118,7 @@ export default class WysiwygEditor extends Component {
       props.customBlockRenderFunc
     );
     this.editorProps = this.filterEditorProps(props);
-    this.customStyleMap = getCustomStyleMap();
+    this.customStyleMap = this.getStyleMap(props);
   }
 
   componentWillMount(): void {
@@ -173,7 +173,7 @@ export default class WysiwygEditor extends Component {
     }
     this.setState(newState);
     this.editorProps = this.filterEditorProps(props);
-    this.customStyleMap = getCustomStyleMap();
+    this.customStyleMap = this.getStyleMap(props);
   }
 
   onEditorBlur: Function = (): void => {
@@ -228,7 +228,7 @@ export default class WysiwygEditor extends Component {
   onWrapperBlur: Function = (event: Object) => {
     const { onBlur } = this.props;
     if (onBlur && this.focusHandler.isEditorBlur(event)) {
-      onBlur(event);
+      onBlur(event, this.getEditorState());
     }
   };
 
@@ -387,8 +387,11 @@ export default class WysiwygEditor extends Component {
       "ariaLabel",
       "customBlockRenderFunc",
       "customDecorators",
-      "handlePastedText"
+      "handlePastedText",
+      "customStyleMap"
     ]);
+
+  getStyleMap = props => ({ ...getCustomStyleMap(), ...props.customStyleMap });
 
   changeEditorState = contentState => {
     const newContentState = convertFromRaw(contentState);
@@ -539,7 +542,7 @@ export default class WysiwygEditor extends Component {
             editorState={editorState}
             onChange={this.onChange}
             blockStyleFn={blockStyleFn}
-            customStyleMap={getCustomStyleMap()}
+            customStyleMap={this.getStyleMap(this.props)}
             handleReturn={this.handleReturn}
             handlePastedText={this.handlePastedText}
             blockRendererFn={this.blockRendererFn}
