@@ -18,7 +18,7 @@ export default class FocusHandler {
       this.inputFocused = false;
       return true;
     } else if (
-      (event.target.tagName !== 'INPUT' || event.target.tagName !== 'LABEL' || event.target.tagName === 'TEXTAREA') &&
+      (event.target.tagName !== 'INPUT' || event.target.tagName !== 'LABEL' || event.target.tagName !== 'TEXTAREA') &&
       !this.inputFocused
     ) {
       this.editorFocused = false;
