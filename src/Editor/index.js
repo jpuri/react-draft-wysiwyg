@@ -496,32 +496,30 @@ export default class WysiwygEditor extends Component {
         aria-label="rdw-wrapper"
       >
         {!toolbarHidden && (
-        <div>
-          <div
-            className={classNames("rdw-editor-toolbar", toolbarClassName)}
-            style={{
-              visibility: toolbarShow ? "visible" : "hidden",
-              ...toolbarStyle
-            }}
-            onMouseDown={this.preventDefault}
-            aria-label="rdw-toolbar"
-            aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-            onFocus={this.onToolbarFocus}
-          >
-            {toolbar.options.map((opt, index) => {
-              const Control = Controls[opt];
-              const config = toolbar[opt];
-              if (opt === 'image' && uploadCallback) {
-                config.uploadCallback = uploadCallback;
-              }
-              return <Control key={index} {...controlProps} config={config} />;
-            })}
-            {toolbarCustomButtons &&
-              toolbarCustomButtons.map((button, index) =>
-                React.cloneElement(button, { key: index, ...controlProps })
-              )}
-          </div>  
-        </div>
+        <div
+          className={classNames("rdw-editor-toolbar", toolbarClassName)}
+          style={{
+            visibility: toolbarShow ? "visible" : "hidden",
+            ...toolbarStyle
+          }}
+          onMouseDown={this.preventDefault}
+          aria-label="rdw-toolbar"
+          aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+          onFocus={this.onToolbarFocus}
+        >
+          {toolbar.options.map((opt, index) => {
+            const Control = Controls[opt];
+            const config = toolbar[opt];
+            if (opt === 'image' && uploadCallback) {
+              config.uploadCallback = uploadCallback;
+            }
+            return <Control key={index} {...controlProps} config={config} />;
+          })}
+          {toolbarCustomButtons &&
+            toolbarCustomButtons.map((button, index) =>
+              React.cloneElement(button, { key: index, ...controlProps })
+            )}
+        </div>  
         )}
         <div
           ref={this.setWrapperReference}
