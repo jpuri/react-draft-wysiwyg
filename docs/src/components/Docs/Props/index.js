@@ -20,6 +20,7 @@ import TextAlignmentProp from './TextAlignmentProp';
 import ReadOnlyProp from './ReadOnlyProp';
 import DecoratorProp from './DecoratorProp';
 import BlockRenderingProp from './BlockRenderingProp';
+import CustomStyleProp from "./CustomStyleProp";
 import WrapperIdProp from './WrapperIdProp';
 
 const Props = () => (
@@ -37,6 +38,7 @@ const Props = () => (
     <ReadOnlyProp />
     <DecoratorProp />
     <BlockRenderingProp />
+    <CustomStyleProp />
     <WrapperIdProp />
   </div>
 );

@@ -7,7 +7,22 @@ import { Editor } from '../../src';
 class ConvertFromRawDraftContent extends Component {
   constructor(props) {
     super(props);
-    const contentState = convertFromRaw({"entityMap":{},"blocks":[{"key":"637gr","text":"Initialized from content state.","type":"unstyled","depth":0,"inlineStyleRanges":[],"entityRanges":[],"data":{}}]});
+    const contentState = convertFromRaw({
+      "blocks": [
+        {
+          "key": "637gr",
+          "text": "Initialized from content state.",
+          "type": "unstyled",
+          "depth": 0,
+          "inlineStyleRanges": [],
+          "entityRanges": [],
+          "data": {
+            "text-align": "center"
+          }
+        }
+      ],
+      "entityMap": {}
+    });
     const editorState = EditorState.createWithContent(contentState);
     this.state = {
       editorState,

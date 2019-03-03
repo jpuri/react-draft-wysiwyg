@@ -118,3 +118,18 @@ Initial stable release
 
 ## 26/1/2018
 - #581, onBlur not firing.
+
+## 14/2/2018 (1.12.9)
+- #425, text alignment broken for multiple text.
+- #549, Prop stripPastedStyles is ignored.
+- Support for Japanese locale.
+
+## 4/3/2018 (1.12.11)
+- #621, variable declaration causes handlePastedText function error after js minified.
+
+## 16/4/2018 (1.12.12)
+- #630, Passing editorState into onBlur callback.
+- #642, Fix an error when a tab failed to open.
+
+## 25/4/2018 (1.12.13)
+- Bundle size optimization.

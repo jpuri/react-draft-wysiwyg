@@ -1,18 +1,22 @@
 /* @flow */
 
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { RichUtils, EditorState, Modifier } from 'draft-js';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { RichUtils, EditorState, Modifier } from "draft-js";
 import {
   getSelectionText,
   getEntityRange,
-  getSelectionEntity,
-} from 'draftjs-utils';
-import linkifyIt from 'linkify-it';
+  getSelectionEntity
+} from "draftjs-utils";
+import linkifyIt from "linkify-it";
 
-import LayoutComponent from './Component';
+import LayoutComponent from "./Component";
 
 const linkify = linkifyIt();
+const linkifyLink = params => {
+  const links = linkify.match(params.target);
+  return { ...params, target: (links && links[0] && links[0].url) || params.target };
+};
 
 class Link extends Component {
   static propTypes = {
@@ -20,20 +24,20 @@ class Link extends Component {
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
-    translations: PropTypes.object,
+    translations: PropTypes.object
   };
 
   state: Object = {
     expanded: false,
     link: undefined,
-    selectionText: undefined,
+    selectionText: undefined
   };
 
   componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
-        currentEntity: getSelectionEntity(editorState),
+        currentEntity: getSelectionEntity(editorState)
       });
     }
     modalHandler.registerCallBack(this.expandCollapse);
@@ -41,8 +45,10 @@ class Link extends Component {
 
   componentWillReceiveProps(properties: Object): void {
     const newState = {};
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
+    if (
+      properties.editorState &&
+      this.props.editorState !== properties.editorState
+    ) {
       newState.currentEntity = getSelectionEntity(properties.editorState);
     }
     this.setState(newState);
@@ -58,47 +64,58 @@ class Link extends Component {
   };
 
   onChange = (action, title, target, targetOption) => {
-    if (action === 'link') {
-      const links = linkify.match(target);
-      const linkifiedTarget = links && links[0] ? links[0].url : '';
-      this.addLink(title, linkifiedTarget, targetOption);
+    const {
+      config: { linkCallback }
+    } = this.props;
+
+    if (action === "link") {
+      const linkifyCallback = linkCallback || linkifyLink;
+      const linkified = linkifyCallback({ title, target, targetOption });
+      this.addLink(linkified.title, linkified.target, linkified.targetOption);
     } else {
       this.removeLink();
     }
-  }
+  };
 
   getCurrentValues = () => {
     const { editorState } = this.props;
     const { currentEntity } = this.state;
     const contentState = editorState.getCurrentContent();
     const currentValues = {};
-    if (currentEntity && (contentState.getEntity(currentEntity).get('type') === 'LINK')) {
+    if (
+      currentEntity &&
+      contentState.getEntity(currentEntity).get("type") === "LINK"
+    ) {
       currentValues.link = {};
-      const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
-      currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get('data').url;
-      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get('data').targetOption;
-      currentValues.link.title = (entityRange && entityRange.text);
+      const entityRange =
+        currentEntity && getEntityRange(editorState, currentEntity);
+      currentValues.link.target =
+        currentEntity && contentState.getEntity(currentEntity).get("data").url;
+      currentValues.link.targetOption =
+        currentEntity &&
+        contentState.getEntity(currentEntity).get("data").targetOption;
+      currentValues.link.title = entityRange && entityRange.text;
     }
     currentValues.selectionText = getSelectionText(editorState);
     return currentValues;
-  }
+  };
 
   doExpand: Function = (): void => {
     this.setState({
-      expanded: true,
+      expanded: true
     });
   };
 
   expandCollapse: Function = (): void => {
     this.setState({
-      expanded: this.signalExpanded,
+      expanded: this.signalExpanded
     });
     this.signalExpanded = false;
-  }
+  };
 
   doCollapse: Function = (): void => {
     this.setState({
-      expanded: false,
+      expanded: false
     });
   };
 
@@ -108,10 +125,18 @@ class Link extends Component {
     let selection = editorState.getSelection();
     if (currentEntity) {
       const entityRange = getEntityRange(editorState, currentEntity);
-      selection = selection.merge({
-        anchorOffset: entityRange.start,
-        focusOffset: entityRange.end,
-      });
+      const isBackward = selection.getIsBackward();
+      if (isBackward) {
+        selection = selection.merge({
+          anchorOffset: entityRange.end,
+          focusOffset: entityRange.start
+        });
+      } else {
+        selection = selection.merge({
+          anchorOffset: entityRange.start,
+          focusOffset: entityRange.end
+        });
+      }
       onChange(RichUtils.toggleLink(editorState, selection, null));
     }
   };
@@ -123,14 +148,25 @@ class Link extends Component {
 
     if (currentEntity) {
       const entityRange = getEntityRange(editorState, currentEntity);
-      selection = selection.merge({
-        anchorOffset: entityRange.start,
-        focusOffset: entityRange.end,
-      });
+      const isBackward = selection.getIsBackward();
+      if (isBackward) {
+        selection = selection.merge({
+          anchorOffset: entityRange.end,
+          focusOffset: entityRange.start
+        });
+      } else {
+        selection = selection.merge({
+          anchorOffset: entityRange.start,
+          focusOffset: entityRange.end
+        });
+      }
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', { url: linkTarget, targetOption: linkTargetOption })
+      .createEntity("LINK", "MUTABLE", {
+        url: linkTarget,
+        targetOption: linkTargetOption
+      })
       .getLastCreatedEntityKey();
 
     let contentState = Modifier.replaceText(
@@ -138,24 +174,30 @@ class Link extends Component {
       selection,
       `${linkTitle}`,
       editorState.getCurrentInlineStyle(),
-      entityKey,
+      entityKey
     );
-    let newEditorState = EditorState.push(editorState, contentState, 'insert-characters');
+    let newEditorState = EditorState.push(
+      editorState,
+      contentState,
+      "insert-characters"
+    );
 
     // insert a blank space after link
     selection = newEditorState.getSelection().merge({
-      anchorOffset: selection.get('anchorOffset') + linkTitle.length,
-      focusOffset: selection.get('anchorOffset') + linkTitle.length,
+      anchorOffset: selection.get("anchorOffset") + linkTitle.length,
+      focusOffset: selection.get("anchorOffset") + linkTitle.length
     });
     newEditorState = EditorState.acceptSelection(newEditorState, selection);
     contentState = Modifier.insertText(
       newEditorState.getCurrentContent(),
       selection,
-      ' ',
+      " ",
       newEditorState.getCurrentInlineStyle(),
-      undefined,
+      undefined
     );
-    onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
+    onChange(
+      EditorState.push(newEditorState, contentState, "insert-characters")
+    );
     this.doCollapse();
   };
 
@@ -174,7 +216,7 @@ class Link extends Component {
         doCollapse={this.doCollapse}
         currentState={{
           link,
-          selectionText,
+          selectionText
         }}
         onChange={this.onChange}
       />

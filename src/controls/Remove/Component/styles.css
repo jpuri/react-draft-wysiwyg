@@ -3,4 +3,5 @@
   align-items: center;
   margin-bottom: 6px;
   position: relative;
+  flex-wrap: wrap
 }

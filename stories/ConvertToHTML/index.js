@@ -39,6 +39,11 @@ class ConvertToRawDraftContent extends Component {
         wrapperClassName="rdw-storybook-wrapper"
         editorClassName="rdw-storybook-editor"
         onEditorStateChange={this.onEditorStateChange}
+        toolbar={{
+          link: {
+            defaultTargetOption: '_blank',
+          },
+        }}
       />
       <textarea
         readOnly

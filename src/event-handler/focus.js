@@ -10,18 +10,22 @@ export default class FocusHandler {
     this.inputFocused = true;
   }
 
-  isEditorBlur = (event):void => {
-    if ((event.target.tagName === 'INPUT' || event.target.tagName === 'LABEL')
-      && !this.editorFocused) {
+  isEditorBlur = (event): void => {
+    if (
+      (event.target.tagName === 'INPUT' || event.target.tagName === 'LABEL' || event.target.tagName === 'TEXTAREA') &&
+      !this.editorFocused
+    ) {
       this.inputFocused = false;
       return true;
-    } else if ((event.target.tagName !== 'INPUT' || event.target.tagName !== 'LABEL')
-      && !this.inputFocused) {
+    } else if (
+      (event.target.tagName !== 'INPUT' || event.target.tagName !== 'LABEL' || event.target.tagName !== 'TEXTAREA') &&
+      !this.inputFocused
+    ) {
       this.editorFocused = false;
       return true;
     }
     return false;
-  }
+  };
 
   isEditorFocused = ():void => {
     if (!this.inputFocused) {
