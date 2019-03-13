@@ -94,7 +94,9 @@ class LayoutComponent extends Component {
   }
 
   renderAddLinkModal() {
-    const { config: { popupClassName }, doCollapse, translations } = this.props;
+    const {
+      config: { popupClassName, targetPlaceholder }, doCollapse, translations
+    } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
     return (
       <div
@@ -122,6 +124,7 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="linkTarget"
           value={linkTarget}
+          placeholder={targetPlaceholder}
         />
         <label className="rdw-link-modal-target-option" htmlFor="openLinkInNewWindow">
           <input
