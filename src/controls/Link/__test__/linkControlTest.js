@@ -139,4 +139,21 @@ describe("LinkControl test suite", () => {
     const lastCall = contentState.getLastCreatedEntityKey();
     assert.equal(contentState.getEntity(lastCall).getData().url, "#hash-link");
   });
+  
+  it("should use custom targetPlaceholder if provided", () => {
+    const expectedText = "www.google.com";
+    const control = mount(
+      <LinkControl
+        onChange={() => {}}
+        editorState={editorState}
+        config={{ ...defaultToolbar.link, targetPlaceholder: expectedText }}
+        translations={localeTranslations.en}
+        modalHandler={new ModalHandler()}
+      />
+    );
+    control.setState({ expanded: true });
+    const buttons = control.find(".rdw-option-wrapper");
+    buttons.first().simulate("click");
+    expect(control.find(`#linkTarget [placeholder="${expectedText}"]`)).to.have.length(1);
+  });
 });
