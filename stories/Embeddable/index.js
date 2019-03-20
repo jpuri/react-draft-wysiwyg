@@ -1,12 +1,12 @@
 /* @flow */
 
-import React from 'react';
+import React from "react";
 import embed from "embed-video";
 
-import { Editor } from '../../src';
+import { Editor } from "../../src";
 
-const Embeddable = () =>
-  (<div className="rdw-storybook-root">
+const Embeddable = () => (
+  <div className="rdw-storybook-root">
     <h3>Image option supports image upload also.</h3>
     <Editor
       spellCheck
@@ -14,14 +14,18 @@ const Embeddable = () =>
       wrapperClassName="rdw-storybook-wrapper"
       editorClassName="rdw-storybook-editor"
       toolbar={{
+        link: {
+          linkCallback: params => ({ ...params })
+        },
         embedded: {
           embedCallback: link => {
             const detectedSrc = /<iframe.*? src="(.*?)"/.exec(embed(link));
             return (detectedSrc && detectedSrc[1]) || link;
-          },
-        },
+          }
+        }
       }}
     />
-  </div>);
+  </div>
+);
 
 export default Embeddable;
