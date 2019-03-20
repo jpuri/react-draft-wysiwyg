@@ -25,6 +25,7 @@ describe('ImageRenderer test suite', () => {
     const Image = getImageComponent({
       isReadOnly: () => false,
       isImageAlignmentEnabled: () => true,
+      isImageDeletionEnabled: () => true
     });
     expect(
       mount(
@@ -38,6 +39,7 @@ describe('ImageRenderer test suite', () => {
     const Image = getImageComponent({
       isReadOnly: () => false,
       isImageAlignmentEnabled: () => true,
+      isImageDeletionEnabled: () => true
     });
     const control = shallow(
       <Image block={getAllBlocks(newEditorState).get(1)} contentState={contentState} />,
@@ -49,6 +51,7 @@ describe('ImageRenderer test suite', () => {
     const Image = getImageComponent({
       isReadOnly: () => false,
       isImageAlignmentEnabled: () => true,
+      isImageDeletionEnabled: () => true
     });
     const control = shallow(
       <Image block={getAllBlocks(newEditorState).get(1)} contentState={contentState} />,

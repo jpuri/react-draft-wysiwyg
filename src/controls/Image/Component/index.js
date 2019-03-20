@@ -54,6 +54,16 @@ class LayoutComponent extends Component {
     });
   };
 
+  validImageType: Function = (type: String): void => {
+    const {
+      config: {
+        inputAccept,
+      }
+    } = this.props;
+
+    return inputAccept.includes(type);
+  };
+
   onImageDrop: Function = (event: Object): void => {
     event.preventDefault();
     event.stopPropagation();
@@ -73,7 +83,10 @@ class LayoutComponent extends Component {
       dataIsItems = false;
     }
     for (let i = 0; i < data.length; i += 1) {
-      if ((!dataIsItems || data[i].kind === 'file') && data[i].type.match('^image/')) {
+      if ((!dataIsItems || data[i].kind === 'file') &&
+           data[i].type.match('^image/') &&
+           this.validImageType(data[i].type)
+        ) {
         const file = dataIsItems ? data[i].getAsFile() : data[i];
         this.uploadImage(file);
       }

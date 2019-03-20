@@ -91,7 +91,7 @@ export default () => (
           option. Only those options specified in this property are added to
           toolbar and in the order in which they are specified. By default all
           options are present. In case of fontSize options can be used to add
-          more font-sizes to the droption.
+          more font-sizes to the dropdown.
         </span>
       </li>
       <li>
@@ -221,6 +221,14 @@ export default () => (
           : The property can be used to configure if image alignment should be
           enabled. Alignment options are LEFT, RIGHT and CENTER. Default value
           is true.
+        </span>
+      </li>
+      <li>
+        <b>image: deletionEnabled</b>
+        <span>
+          : The property can be used to configure if image deletion should be
+          enabled in options. Image can also be deleted with backspace. Default value
+          is false.
         </span>
       </li>
       <li>
