@@ -122,6 +122,7 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="linkTarget"
           value={linkTarget}
+          autoFocus={true}
         />
         <label className="rdw-link-modal-target-option" htmlFor="openLinkInNewWindow">
           <input
