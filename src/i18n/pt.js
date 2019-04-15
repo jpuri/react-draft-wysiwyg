@@ -50,8 +50,8 @@ module.exports = {
   'components.controls.inline.bold': 'Negrito',
   'components.controls.inline.italic': 'Itálico',
   'components.controls.inline.underline': 'Sublinhado',
-  'components.controls.inline.strikethrough': 'Strikethrough',
-  'components.controls.inline.monospace': 'Monospace',
+  'components.controls.inline.strikethrough': 'Tachado',
+  'components.controls.inline.monospace': 'Monoespaçada',
   'components.controls.inline.superscript': 'Sobrescrito',
   'components.controls.inline.subscript': 'Subscrito',
 
