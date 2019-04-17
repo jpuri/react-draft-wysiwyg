@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getSelectionInlineStyle } from 'draftjs-utils';
-import { RichUtils, EditorState, Modifier } from 'draft-js';
+import { RichUtils } from 'draft-js';
 import { forEach } from '../../utils/common';
 
 import LayoutComponent from './Component';
@@ -64,13 +64,14 @@ export default class Inline extends Component {
       newStyle,
     );
     if (style === 'subscript' || style === 'superscript') {
-      const removeStyle = style === 'subscript' ? 'SUPERSCRIPT' : 'SUBSCRIPT';
-      const contentState = Modifier.removeInlineStyle(
-        newState.getCurrentContent(),
-        newState.getSelection(),
-        removeStyle,
-      );
-      newState = EditorState.push(newState, contentState, 'change-inline-style');
+      const { currentStyles } = this.state;
+      const excludedStyle = style === 'subscript' ? 'superscript' : 'subscript';
+      if (currentStyles[excludedStyle]) {
+        newState = RichUtils.toggleInlineStyle(
+          newState,
+          excludedStyle.toUpperCase()
+        );
+      }
     }
     if (newState) {
       onChange(newState);
