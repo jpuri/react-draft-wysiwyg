@@ -56,11 +56,11 @@ class Suggestion {
         if ((index === undefined || index < 0) && text[0] === trigger) {
           index = 0;
           preText = trigger;
-        }    
+        }
         if (index >= 0) {
           const quickResponseText = text.substr(index + preText.length, text.length);
-          const suggestionPresent =
-          getSuggestions().some((suggestion) => {
+
+          const suggestionPresent = quickResponseText[0] !== separator && getSuggestions().some((suggestion) => {
             if (suggestion.text) {
               if (this.config.caseSensitive) {
                 return suggestion.text.indexOf(quickResponseText) >= 0;
@@ -71,7 +71,7 @@ class Suggestion {
             return false;
           });
           if (suggestionPresent) {
-            callback(index === 0 ? 0 : index + 1, text.length);
+            callback(index + preText.length - 1, text.length);
           }
         }
       }

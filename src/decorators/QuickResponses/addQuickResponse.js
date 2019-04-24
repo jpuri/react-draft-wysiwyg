@@ -18,7 +18,8 @@ export default function addQuickResponse(
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
-  const index = (selectedBlockText.lastIndexOf(separator) || 0) + 1;
+  const lastIndexOfTrigger = selectedBlockText.lastIndexOf(trigger);
+  const index = lastIndexOfTrigger === -1 ? 0 : lastIndexOfTrigger;
   let focusOffset;
   let spaceAlreadyPresent = false;
   if (selectedBlockText.length === index + 1) {
