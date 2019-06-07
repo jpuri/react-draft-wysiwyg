@@ -2,7 +2,7 @@ module.exports = {
 
     // Generic
     'generic.add': 'Додати',
-    'generic.cancel': 'Відмінити',
+    'generic.cancel': 'Скасувати',
 
     // BlockType
     'components.controls.blocktype.h1': 'Заголовок 1',
@@ -51,7 +51,7 @@ module.exports = {
     'components.controls.inline.italic': 'Курсив',
     'components.controls.inline.underline': 'Підкресленний',
     'components.controls.inline.strikethrough': 'Закресленний',
-    'components.controls.inline.monospace': 'Monospace',
+    'components.controls.inline.monospace': 'Моноширинний',
     'components.controls.inline.superscript': 'Верхній індекс',
     'components.controls.inline.subscript': 'Нижній індекс',
 
