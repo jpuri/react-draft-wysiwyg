@@ -41,10 +41,9 @@ const getImageComponent = config => class Image extends Component {
   };
 
   toggleHovered: Function = (): void => {
-    const hovered = !this.state.hovered;
-    this.setState({
-      hovered,
-    });
+    this.setState(prevState => ({
+      hovered: !prevState.hovered,
+    }));
   };
 
   renderAlignmentOptions(alignment): Object {
