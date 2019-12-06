@@ -190,6 +190,7 @@
   src: local('Roboto Black Italic'), local('Roboto-BlackItalic'), url(https://fonts.gstatic.com/s/roboto/v15/bmC0pGMXrhphrZJmniIZpYgp9Q8gbYrhqGlRav_IXfk.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000;
 }
+
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
 
 /**
@@ -609,6 +610,7 @@ textarea {
   -webkit-appearance: button; /* 1 */
   font: inherit; /* 2 */
 }
+
 .menu-root {
   width: 120px;
   display: flex;
@@ -630,6 +632,7 @@ textarea {
 .menu-option-active {
   color: #a21717;
 }
+
 .app-root {
   width: 100%;
 }
@@ -693,6 +696,7 @@ textarea {
   margin-left: 50px;
   cursor: pointer;
 }
+
 .root {
   width: 100%;
   display: flex;
@@ -756,6 +760,7 @@ textarea {
 .discussion {
   margin-top: 15px;
 }
+
 .demo-color-wrapper {
   display: flex;
   align-items: center;
@@ -774,7 +779,8 @@ textarea {
   right: -70px;
   top: 135%;
   z-index: 10;
-}/* BASICS */
+}
+/* BASICS */
 
 .CodeMirror {
   /* Set height, width, borders, and global font properties here */
@@ -789,7 +795,8 @@ textarea {
 .CodeMirror-lines {
   padding: 4px 0; /* Vertical padding around content */
 }
-.CodeMirror pre {
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
   padding: 0 4px; /* Horizontal padding of content */
 }
 
@@ -872,7 +879,7 @@ textarea {
 
 .CodeMirror-rulers {
   position: absolute;
-  left: 0; right: 0; top: -50px; bottom: -20px;
+  left: 0; right: 0; top: -50px; bottom: 0;
   overflow: hidden;
 }
 .CodeMirror-ruler {
@@ -1012,7 +1019,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
   cursor: text;
   min-height: 1px; /* prevents collapsing before first draw */
 }
-.CodeMirror pre {
+.CodeMirror pre.CodeMirror-line,
+.CodeMirror pre.CodeMirror-line-like {
   /* Reset some styles that the rest of the page might have set */
   -moz-border-radius: 0; -webkit-border-radius: 0; border-radius: 0;
   border-width: 0;
@@ -1031,7 +1039,8 @@ div.CodeMirror span.CodeMirror-nonmatchingbracket {color: #a22;}
   -webkit-font-variant-ligatures: contextual;
   font-variant-ligatures: contextual;
 }
-.CodeMirror-wrap pre {
+.CodeMirror-wrap pre.CodeMirror-line,
+.CodeMirror-wrap pre.CodeMirror-line-like {
   word-wrap: break-word;
   white-space: pre-wrap;
   word-break: normal;
@@ -1120,6 +1129,7 @@ div.CodeMirror-dragcursors {
 
 /* Help users use markselection to safely style text background */
 span.CodeMirror-selectedtext { background: none; }
+
 .demo-root {
   width: 90%;
   display: flex;
@@ -1293,6 +1303,7 @@ span.CodeMirror-selectedtext { background: none; }
   padding-bottom: 2px;
   cursor: pointer;
 }
+
 .docs-root {
   width: calc(100% - 150px);
   margin: 30px;
@@ -1354,7 +1365,8 @@ ol {
 }
 .docs-property {
   display: flex;
-}.author-root {
+}
+.author-root {
   margin: 30px;
   width: 50%;
 }
@@ -1362,6 +1374,7 @@ ol {
   height: 150px;
   width: auto;
 }
+
 .rdw-option-wrapper {
   border: 1px solid #F1F1F1;
   padding: 5px;
@@ -1389,6 +1402,7 @@ ol {
   opacity: 0.3;
   cursor: default;
 }
+
 .rdw-dropdown-wrapper {
   height: 30px;
   background: white;
@@ -1452,6 +1466,7 @@ ol {
   box-shadow: 1px 1px 0px #BFBDBD;
   background-color: #FFFFFF;
 }
+
 .rdw-dropdownoption-default {
   min-height: 25px;
   display: flex;
@@ -1468,6 +1483,7 @@ ol {
   opacity: 0.3;
   cursor: default;
 }
+
 .rdw-inline-wrapper {
   display: flex;
   align-items: center;
@@ -1482,6 +1498,7 @@ ol {
   display: flex;
   justify-content: center;
 }
+
 .rdw-block-wrapper {
   display: flex;
   align-items: center;
@@ -1491,6 +1508,7 @@ ol {
 .rdw-block-dropdown {
   width: 110px;
 }
+
 .rdw-fontsize-wrapper {
   display: flex;
   align-items: center;
@@ -1504,6 +1522,7 @@ ol {
   display: flex;
   justify-content: center;
 }
+
 .rdw-fontfamily-wrapper {
   display: flex;
   align-items: center;
@@ -1522,6 +1541,7 @@ ol {
 .rdw-fontfamily-optionwrapper {
   width: 140px;
 }
+
 .rdw-list-wrapper {
   display: flex;
   align-items: center;
@@ -1537,6 +1557,7 @@ ol {
   display: flex;
   justify-content: center;
 }
+
 .rdw-text-align-wrapper {
   display: flex;
   align-items: center;
@@ -1576,6 +1597,7 @@ ol {
 .rdw-justify-aligned-block > div {
   display: inline-block;
 }
+
 .rdw-colorpicker-wrapper {
   display: flex;
   align-items: center;
@@ -1644,6 +1666,7 @@ ol {
 .rdw-colorpicker-option-active {
   box-shadow: 0px 0px 2px 2px #BFBDBD;
 }
+
 .rdw-link-wrapper {
   display: flex;
   align-items: center;
@@ -1730,6 +1753,7 @@ ol {
 .rdw-history-dropdown {
   width: 50px;
 }
+
 .rdw-embedded-wrapper {
   display: flex;
   align-items: center;
@@ -1834,6 +1858,7 @@ ol {
 .rdw-embedded-modal-size-input:focus {
   outline: none;
 }
+
 .rdw-emoji-wrapper {
   display: flex;
   align-items: center;
@@ -1867,6 +1892,7 @@ ol {
   justify-content: center;
   align-items: center;
 }
+
 .rdw-spinner {
   display: flex;
   align-items: center;
@@ -1905,6 +1931,7 @@ ol {
     transform: scale(1.0);
   }
 }
+
 .rdw-image-wrapper {
   display: flex;
   align-items: center;
@@ -2075,6 +2102,7 @@ ol {
   margin-left: 3px;
   margin-right: 3px;
 }
+
 .rdw-remove-wrapper {
   display: flex;
   align-items: center;
@@ -2082,6 +2110,7 @@ ol {
   position: relative;
   flex-wrap: wrap
 }
+
 .rdw-history-wrapper {
   display: flex;
   align-items: center;
@@ -2096,6 +2125,7 @@ ol {
 .rdw-history-dropdown {
   width: 50px;
 }
+
 .rdw-link-decorator-wrapper {
   position: relative;
 }
@@ -2106,6 +2136,7 @@ ol {
   cursor: pointer;
   background-color: white;
 }
+
 .rdw-mention-link {
   text-decoration: none;
   color: #1236ff;
@@ -2113,6 +2144,7 @@ ol {
   padding: 1px 2px;
   border-radius: 2px;
 }
+
 .rdw-suggestion-wrapper {
   position: relative;
 }
@@ -2134,6 +2166,7 @@ ol {
 .rdw-suggestion-option-active {
   background-color: #F1F1F1;
 }
+
 .rdw-hashtag-link {
   text-decoration: none;
   color: #1236ff;
@@ -2141,6 +2174,7 @@ ol {
   padding: 1px 2px;
   border-radius: 2px;
 }
+
 .rdw-image-alignment-options-popup {
   position: absolute;
   background: white;
@@ -2180,6 +2214,7 @@ ol {
 .rdw-image-alignment-options-popup-right {
   right: 0;
 }
+
 .rdw-editor-main {
   height: 100%;
   overflow: auto;
@@ -2214,7 +2249,8 @@ ol {
   background: #f1f1f1;
   border-radius: 3px;
   padding: 1px 10px;
-}/**
+}
+/**
  * Draft v0.9.1
  *
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -2225,4 +2261,5 @@ ol {
  * of patent rights can be found in the PATENTS file in the same directory.
  */
 .DraftEditor-editorContainer,.DraftEditor-root,.public-DraftEditor-content{height:inherit;text-align:initial}.public-DraftEditor-content[contenteditable=true]{-webkit-user-modify:read-write-plaintext-only}.DraftEditor-root{position:relative}.DraftEditor-editorContainer{background-color:rgba(255,255,255,0);border-left:.1px solid transparent;position:relative;z-index:1}.public-DraftEditor-block{position:relative}.DraftEditor-alignLeft .public-DraftStyleDefault-block{text-align:left}.DraftEditor-alignLeft .public-DraftEditorPlaceholder-root{left:0;text-align:left}.DraftEditor-alignCenter .public-DraftStyleDefault-block{text-align:center}.DraftEditor-alignCenter .public-DraftEditorPlaceholder-root{margin:0 auto;text-align:center;width:100%}.DraftEditor-alignRight .public-DraftStyleDefault-block{text-align:right}.DraftEditor-alignRight .public-DraftEditorPlaceholder-root{right:0;text-align:right}.public-DraftEditorPlaceholder-root{color:#9197a3;position:absolute;z-index:0}.public-DraftEditorPlaceholder-hasFocus{color:#bdc1c9}.DraftEditorPlaceholder-hidden{display:none}.public-DraftStyleDefault-block{position:relative;white-space:pre-wrap}.public-DraftStyleDefault-ltr{direction:ltr;text-align:left}.public-DraftStyleDefault-rtl{direction:rtl;text-align:right}.public-DraftStyleDefault-listLTR{direction:ltr}.public-DraftStyleDefault-listRTL{direction:rtl}.public-DraftStyleDefault-ol,.public-DraftStyleDefault-ul{margin:16px 0;padding:0}.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listLTR{margin-left:1.5em}.public-DraftStyleDefault-depth0.public-DraftStyleDefault-listRTL{margin-right:1.5em}.public-DraftStyleDefault-depth1.public-DraftStyleDefault-listLTR{margin-left:3em}.public-DraftStyleDefault-depth1.public-DraftStyleDefault-listRTL{margin-right:3em}.public-DraftStyleDefault-depth2.public-DraftStyleDefault-listLTR{margin-left:4.5em}.public-DraftStyleDefault-depth2.public-DraftStyleDefault-listRTL{margin-right:4.5em}.public-DraftStyleDefault-depth3.public-DraftStyleDefault-listLTR{margin-left:6em}.public-DraftStyleDefault-depth3.public-DraftStyleDefault-listRTL{margin-right:6em}.public-DraftStyleDefault-depth4.public-DraftStyleDefault-listLTR{margin-left:7.5em}.public-DraftStyleDefault-depth4.public-DraftStyleDefault-listRTL{margin-right:7.5em}.public-DraftStyleDefault-unorderedListItem{list-style-type:square;position:relative}.public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth0{list-style-type:disc}.public-DraftStyleDefault-unorderedListItem.public-DraftStyleDefault-depth1{list-style-type:circle}.public-DraftStyleDefault-orderedListItem{list-style-type:none;position:relative}.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listLTR:before{left:-36px;position:absolute;text-align:right;width:30px}.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-listRTL:before{position:absolute;right:-36px;text-align:left;width:30px}.public-DraftStyleDefault-orderedListItem:before{content:counter(ol0) ". ";counter-increment:ol0}.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth1:before{content:counter(ol1) ". ";counter-increment:ol1}.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth2:before{content:counter(ol2) ". ";counter-increment:ol2}.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth3:before{content:counter(ol3) ". ";counter-increment:ol3}.public-DraftStyleDefault-orderedListItem.public-DraftStyleDefault-depth4:before{content:counter(ol4) ". ";counter-increment:ol4}.public-DraftStyleDefault-depth0.public-DraftStyleDefault-reset{counter-reset:ol0}.public-DraftStyleDefault-depth1.public-DraftStyleDefault-reset{counter-reset:ol1}.public-DraftStyleDefault-depth2.public-DraftStyleDefault-reset{counter-reset:ol2}.public-DraftStyleDefault-depth3.public-DraftStyleDefault-reset{counter-reset:ol3}.public-DraftStyleDefault-depth4.public-DraftStyleDefault-reset{counter-reset:ol4}
+
 /*# sourceMappingURL=main.css.map*/

@@ -21,7 +21,6 @@
     "draftjs-to-html": "^0.8.4",
     "draftjs-to-markdown": "^0.5.1",
     "express": "^4.17.1",
-    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^5.0.2",
     "flow-bin": "^0.113.0",
     "html-to-draftjs": "^1.4.0",
@@ -40,7 +39,8 @@
     "url-loader": "^3.0.0",
     "webpack": "^4.41.2",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-hot-middleware": "^2.25.0"
+    "webpack-hot-middleware": "^2.25.0",
+    "uglifyjs-webpack-plugin": "^2.2.0"
   },
   "repository": {
     "type": "git",
@@ -48,7 +48,7 @@
   },
   "scripts": {
     "clean": "rimraf static",
-    "build:webpack": "NODE_ENV=production webpack --config config/webpack.prod.config.js",
+    "build:webpack": "NODE_ENV=production webpack --mode production --config config/webpack.prod.config.js",
     "build": "npm run clean && npm run build:webpack",
     "start": "node config/server.dev.js"
   },
