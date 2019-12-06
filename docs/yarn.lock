@@ -3219,7 +3219,7 @@ commander@2.9.x, commander@~2.9.0:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commander@^2.19.0, commander@^2.20.0:
+commander@^2.19.0, commander@^2.20.0, commander@~2.20.3:
   version "2.20.3"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.3.tgz#fd485e84c03eb4881c20722ba48035e8531aeb33"
 
@@ -3768,7 +3768,7 @@ draftjs-to-markdown@^0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.5.1.tgz#ad4cd3f6d1dfffd01680c6f2588e24e67e9ec988"
 
-draftjs-utils@^0.9.3:
+draftjs-utils@^0.9.4:
   version "0.9.4"
   resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.9.4.tgz#976c61aa133dbbbfedd65ae1dd6627d7b98c6f08"
 
@@ -5275,9 +5275,9 @@ lines-and-columns@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
 
-linkify-it@^2.0.3:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-2.1.0.tgz#c4caf38a6cd7ac2212ef3c7d2bde30a91561f9db"
+linkify-it@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/linkify-it/-/linkify-it-2.2.0.tgz#e3b54697e78bf915c70a38acd78fd09e0058b1cf"
   dependencies:
     uc.micro "^1.0.1"
 
@@ -6918,13 +6918,13 @@ react-dom@^16.12.0, react-dom@^16.8.3:
     scheduler "^0.18.0"
 
 "react-draft-wysiwyg@file:.yalc/react-draft-wysiwyg":
-  version "1.13.1-d655c373"
+  version "1.13.2-02e76e6c"
   dependencies:
-    classnames "^2.2.5"
-    draftjs-utils "^0.9.3"
+    classnames "^2.2.6"
+    draftjs-utils "^0.9.4"
     html-to-draftjs "^1.4.0"
-    linkify-it "^2.0.3"
-    prop-types "^15.6.0"
+    linkify-it "^2.2.0"
+    prop-types "^15.7.2"
 
 react-draggable@^4.0.3:
   version "4.1.0"
@@ -8118,6 +8118,27 @@ uglify-js@3.0.x:
   dependencies:
     commander "~2.9.0"
     source-map "~0.5.1"
+
+uglify-js@^3.6.0:
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.7.1.tgz#35c7de17971a4aa7689cd2eae0a5b39bb838c0c5"
+  dependencies:
+    commander "~2.20.3"
+    source-map "~0.6.1"
+
+uglifyjs-webpack-plugin@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/uglifyjs-webpack-plugin/-/uglifyjs-webpack-plugin-2.2.0.tgz#e75bc80e7f1937f725954c9b4c5a1e967ea9d0d7"
+  dependencies:
+    cacache "^12.0.2"
+    find-cache-dir "^2.1.0"
+    is-wsl "^1.1.0"
+    schema-utils "^1.0.0"
+    serialize-javascript "^1.7.0"
+    source-map "^0.6.1"
+    uglify-js "^3.6.0"
+    webpack-sources "^1.4.0"
+    worker-farm "^1.7.0"
 
 unfetch@^4.1.0:
   version "4.1.0"

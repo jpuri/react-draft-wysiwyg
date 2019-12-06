@@ -30,7 +30,7 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: 'react-draft-wysiwyg.css',
       chunkFilename: '[id].css',
       ignoreOrder: false,
     }),
