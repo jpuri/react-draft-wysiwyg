@@ -1,9 +1,9 @@
-import Mention from './Mention';
-import Suggestion from './Suggestion';
+import Mention from "./Mention";
+import Suggestion from "./Suggestion";
 
 const getDecorators = config => [
-  (new Mention(config.mentionClassName)).getMentionDecorator(),
-  (new Suggestion(config)).getSuggestionDecorator(),
+  new Mention(config.mentionClassName).getMentionDecorator(),
+  new Suggestion(config).getSuggestionDecorator()
 ];
 
-module.exports = getDecorators;
+export default getDecorators;
