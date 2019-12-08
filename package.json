@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.13.2",
+  "version": "1.14.0",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
@@ -22,8 +22,8 @@
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.1",
     "draft-js": "^0.11.2",
-    "draftjs-to-html": "^0.8.4",
-    "draftjs-to-markdown": "^0.5.1",
+    "draftjs-to-html": "^0.9.0",
+    "draftjs-to-markdown": "^0.6.0",
     "embed-video": "^2.0.4",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.15.1",
@@ -56,13 +56,13 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "draftjs-utils": "^0.9.4",
-    "html-to-draftjs": "^1.4.0",
+    "draftjs-utils": "^0.10.2",
+    "html-to-draftjs": "^1.5.0",
     "linkify-it": "^2.2.0",
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "draft-js": "^0.11.x",
+    "draft-js": "^0.10.x || ^0.11.x",
     "immutable": "3.x.x || 4.x.x",
     "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x",
     "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x"

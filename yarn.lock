@@ -3621,17 +3621,20 @@ draft-js@^0.11.2:
     immutable "~3.7.4"
     object-assign "^4.1.1"
 
-draftjs-to-html@^0.8.4:
-  version "0.8.4"
-  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.8.4.tgz#bda0adc00945db1f1baf0191b34b49b24191f1df"
+draftjs-to-html@^0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.9.0.tgz#c6f645b3b34572398a9396a3d7fc3335c7e882b2"
+  integrity sha512-tyP1WY0lH++WFWrz/3KkCDP+GCgKrqdraqBZ+HnTlv37TDJtZbwYHtiZCsAOZyCArxtFLQeSBYQMCRDIpevl8w==
 
-draftjs-to-markdown@^0.5.1:
-  version "0.5.1"
-  resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.5.1.tgz#ad4cd3f6d1dfffd01680c6f2588e24e67e9ec988"
+draftjs-to-markdown@^0.6.0:
+  version "0.6.0"
+  resolved "https://registry.yarnpkg.com/draftjs-to-markdown/-/draftjs-to-markdown-0.6.0.tgz#78ec1850c909a8d97132c211dc4d52345c79cd90"
+  integrity sha512-nmze89CrGOQCzPLd16i2hYpmVyQhZnZuIuuLK7SCuGCRCYTPSnf6PE2f9ONcvjT357G+yEdEQh3K3Ry5cNVMcQ==
 
-draftjs-utils@^0.9.4:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.9.4.tgz#976c61aa133dbbbfedd65ae1dd6627d7b98c6f08"
+draftjs-utils@^0.10.2:
+  version "0.10.2"
+  resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.10.2.tgz#a7f16d2c1c174ac38ba3bbf700c256f176b2699c"
+  integrity sha512-EstHqr3R3JVcilJrBaO/A+01GvwwKmC7e4TCjC7S94ZeMh4IVmf60OuQXtHHpwItK8C2JCi3iljgN5KHkJboUg==
 
 duplexer3@^0.1.4:
   version "0.1.4"
@@ -5156,9 +5159,10 @@ html-minifier-terser@^5.0.1:
     relateurl "^0.2.7"
     terser "^4.3.9"
 
-html-to-draftjs@^1.4.0:
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/html-to-draftjs/-/html-to-draftjs-1.4.0.tgz#8a3cbbba5b49d50be8ce85cc08b112d5bf00fc1d"
+html-to-draftjs@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/html-to-draftjs/-/html-to-draftjs-1.5.0.tgz#0df0eabf429deaedb63f5c859889e2c983606e86"
+  integrity sha512-kggLXBNciKDwKf+KYsuE+V5gw4dZ7nHyGMX9m0wy7urzWjKGWyNFetmArRLvRV0VrxKN70WylFsJvMTJx02OBQ==
 
 html-webpack-plugin@^4.0.0-beta.2:
   version "4.0.0-beta.11"
