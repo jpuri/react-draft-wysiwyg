@@ -27,7 +27,7 @@ class LayoutComponent extends Component {
     };
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  UNSAFE_componentWillReceiveProps(properties: Object): void {
     if (this.props.translations !== properties.translations) {
       this.setState({
         blockTypes: this.getBlockTypes(properties.translations),

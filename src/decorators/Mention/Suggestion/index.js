@@ -132,7 +132,7 @@ function getSuggestionComponent() {
       this.filterSuggestions(this.props);
     }
 
-    componentWillReceiveProps(props) {
+    UNSAFE_componentWillReceiveProps(props) {
       if (this.props.children !== props.children) {
         this.filterSuggestions(props);
         this.setState({

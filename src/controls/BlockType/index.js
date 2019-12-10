@@ -21,7 +21,7 @@ class BlockType extends Component {
     currentBlockType: 'unstyled',
   };
 
-  componentWillMount(): void {
+  UNSAFE_componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
@@ -31,7 +31,7 @@ class BlockType extends Component {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  UNSAFE_componentWillReceiveProps(properties: Object): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       this.setState({

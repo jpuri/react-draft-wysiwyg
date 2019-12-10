@@ -19,12 +19,12 @@ export default class TextAlign extends Component {
     currentTextAlignment: undefined,
   }
 
-  componentWillMount(): void {
+  UNSAFE_componentWillMount(): void {
     const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties) {
+  UNSAFE_componentWillReceiveProps(properties) {
     if (properties.editorState !== this.props.editorState) {
       this.setState({
         currentTextAlignment: getSelectedBlocksMetadata(properties.editorState).get('text-align'),

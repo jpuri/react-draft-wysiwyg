@@ -28,7 +28,7 @@ class LayoutComponent extends Component {
     alt: '',
   };
 
-  componentWillReceiveProps(props: Object): void {
+  UNSAFE_componentWillReceiveProps(props: Object): void {
     if (this.props.expanded && !props.expanded) {
       this.setState({
         imgSrc: '',

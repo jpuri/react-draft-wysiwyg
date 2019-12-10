@@ -29,7 +29,7 @@ class LayoutComponent extends Component {
     linkTargetOption: this.props.config.defaultTargetOption,
   };
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     if (this.props.expanded && !props.expanded) {
       this.setState({
         showModal: false,
