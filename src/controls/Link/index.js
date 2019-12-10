@@ -33,7 +33,7 @@ class Link extends Component {
     selectionText: undefined
   };
 
-  componentWillMount(): void {
+  UNSAFE_componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({
@@ -43,7 +43,7 @@ class Link extends Component {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  UNSAFE_componentWillReceiveProps(properties: Object): void {
     const newState = {};
     if (
       properties.editorState &&

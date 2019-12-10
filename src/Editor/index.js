@@ -120,7 +120,7 @@ export default class WysiwygEditor extends Component {
     this.customStyleMap = this.getStyleMap(props);
   }
 
-  componentWillMount(): void {
+  UNSAFE_componentWillMount(): void {
     this.compositeDecorator = this.getCompositeDecorator();
     const editorState = this.createEditorState(this.compositeDecorator);
     extractInlineStyle(editorState);
@@ -134,7 +134,7 @@ export default class WysiwygEditor extends Component {
   }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     const newState = {};
     if (this.props.toolbar !== props.toolbar) {
       const toolbar = mergeRecursive(defaultToolbar, props.toolbar);

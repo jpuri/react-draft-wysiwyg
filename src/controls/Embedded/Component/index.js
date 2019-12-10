@@ -24,7 +24,7 @@ class LayoutComponent extends Component {
     width: this.props.config.defaultSize.width,
   };
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     if (this.props.expanded && !props.expanded) {
       const { height, width } = this.props.config.defaultSize;
       this.setState({

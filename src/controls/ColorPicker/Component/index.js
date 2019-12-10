@@ -22,7 +22,7 @@ class LayoutComponent extends Component {
     currentStyle: 'color',
   };
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     if (!this.props.expanded && props.expanded) {
       this.setState({
         currentStyle: 'color',

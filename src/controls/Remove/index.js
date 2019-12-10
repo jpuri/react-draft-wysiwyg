@@ -21,7 +21,7 @@ export default class Remove extends Component {
     expanded: false,
   }
 
-  componentWillMount(): void {
+  UNSAFE_componentWillMount(): void {
     const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }

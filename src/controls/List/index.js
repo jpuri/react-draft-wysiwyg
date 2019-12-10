@@ -21,7 +21,7 @@ export default class List extends Component {
     currentBlock: undefined,
   };
 
-  componentWillMount(): void {
+  UNSAFE_componentWillMount(): void {
     const { editorState, modalHandler } = this.props;
     if (editorState) {
       this.setState({ currentBlock: getSelectedBlock(editorState) });
@@ -29,7 +29,7 @@ export default class List extends Component {
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillReceiveProps(properties: Object): void {
+  UNSAFE_componentWillReceiveProps(properties: Object): void {
     if (properties.editorState &&
       this.props.editorState !== properties.editorState) {
       const currentBlock = getSelectedBlock(properties.editorState);

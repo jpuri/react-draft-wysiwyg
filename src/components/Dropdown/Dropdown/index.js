@@ -25,7 +25,7 @@ export default class Dropdown extends Component {
     highlighted: -1,
   };
 
-  componentWillReceiveProps(props) {
+  UNSAFE_componentWillReceiveProps(props) {
     if (this.props.expanded && !props.expanded) {
       this.setState({
         highlighted: -1,
