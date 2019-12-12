@@ -8,7 +8,8 @@ import {
   RichUtils,
   convertToRaw,
   convertFromRaw,
-  CompositeDecorator
+  CompositeDecorator,
+  getDefaultKeyBinding
 } from "draft-js";
 import {
   changeDepth,
@@ -196,25 +197,28 @@ export default class WysiwygEditor extends Component {
     this.focusHandler.onEditorMouseDown();
   };
 
-  onTab: Function = (event): boolean => {
-    const { onTab } = this.props;
-    if (!onTab || !onTab(event)) {
-      const editorState = changeDepth(
-        this.state.editorState,
-        event.shiftKey ? -1 : 1,
-        4
-      );
-      if (editorState && editorState !== this.state.editorState) {
-        this.onChange(editorState);
+  keyBindingFn = event => {
+    if (event.key === "Tab") {
+      const { onTab } = this.props;
+      if (!onTab || !onTab(event)) {
+        const editorState = changeDepth(
+          this.state.editorState,
+          event.shiftKey ? -1 : 1,
+          4
+        );
+        if (editorState && editorState !== this.state.editorState) {
+          this.onChange(editorState);
+          event.preventDefault();
+        }
+      }
+      return null;
+    }
+    if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+      if (SuggestionHandler.isOpen()) {
         event.preventDefault();
       }
     }
-  };
-
-  onUpDownArrow: Function = (event): boolean => {
-    if (SuggestionHandler.isOpen()) {
-      event.preventDefault();
-    }
+    return getDefaultKeyBinding(event);
   };
 
   onToolbarFocus: Function = (event): void => {
@@ -409,7 +413,10 @@ export default class WysiwygEditor extends Component {
   };
 
   handleKeyCommand: Function = (command: Object): boolean => {
-    const { editorState, toolbar: { inline } } = this.state;
+    const {
+      editorState,
+      toolbar: { inline }
+    } = this.state;
     if (inline && inline.options.indexOf(command) >= 0) {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
@@ -450,7 +457,11 @@ export default class WysiwygEditor extends Component {
   };
 
   preventDefault: Function = (event: Object) => {
-    if (event.target.tagName === "INPUT" || event.target.tagName === "LABEL" || event.target.tagName === "TEXTAREA") {
+    if (
+      event.target.tagName === "INPUT" ||
+      event.target.tagName === "LABEL" ||
+      event.target.tagName === "TEXTAREA"
+    ) {
       this.focusHandler.onInputMouseDown();
     } else {
       event.preventDefault();
@@ -496,30 +507,30 @@ export default class WysiwygEditor extends Component {
         aria-label="rdw-wrapper"
       >
         {!toolbarHidden && (
-        <div
-          className={classNames("rdw-editor-toolbar", toolbarClassName)}
-          style={{
-            visibility: toolbarShow ? "visible" : "hidden",
-            ...toolbarStyle
-          }}
-          onMouseDown={this.preventDefault}
-          aria-label="rdw-toolbar"
-          aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-          onFocus={this.onToolbarFocus}
-        >
-          {toolbar.options.map((opt, index) => {
-            const Control = Controls[opt];
-            const config = toolbar[opt];
-            if (opt === 'image' && uploadCallback) {
-              config.uploadCallback = uploadCallback;
-            }
-            return <Control key={index} {...controlProps} config={config} />;
-          })}
-          {toolbarCustomButtons &&
-            toolbarCustomButtons.map((button, index) =>
-              React.cloneElement(button, { key: index, ...controlProps })
-            )}
-        </div>  
+          <div
+            className={classNames("rdw-editor-toolbar", toolbarClassName)}
+            style={{
+              visibility: toolbarShow ? "visible" : "hidden",
+              ...toolbarStyle
+            }}
+            onMouseDown={this.preventDefault}
+            aria-label="rdw-toolbar"
+            aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+            onFocus={this.onToolbarFocus}
+          >
+            {toolbar.options.map((opt, index) => {
+              const Control = Controls[opt];
+              const config = toolbar[opt];
+              if (opt === "image" && uploadCallback) {
+                config.uploadCallback = uploadCallback;
+              }
+              return <Control key={index} {...controlProps} config={config} />;
+            })}
+            {toolbarCustomButtons &&
+              toolbarCustomButtons.map((button, index) =>
+                React.cloneElement(button, { key: index, ...controlProps })
+              )}
+          </div>
         )}
         <div
           ref={this.setWrapperReference}
@@ -533,9 +544,7 @@ export default class WysiwygEditor extends Component {
         >
           <Editor
             ref={this.setEditorReference}
-            onTab={this.onTab}
-            onUpArrow={this.onUpDownArrow}
-            onDownArrow={this.onUpDownArrow}
+            keyBindingFn={this.keyBindingFn}
             editorState={editorState}
             onChange={this.onChange}
             blockStyleFn={blockStyleFn}
