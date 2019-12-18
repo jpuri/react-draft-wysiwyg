@@ -47,21 +47,38 @@ class LayoutComponent extends Component {
     { label: 'Code', displayName: translations['components.controls.blocktype.code'] },
   ];
 
+  getBlockOptions = (config, blockLabel) => {
+    let options = {
+      icon: null,
+      blockClassName: ''
+    };
+    const blockConfig = config[blockLabel] || config[blockLabel.toLowerCase()];
+    if (blockConfig) {
+      options.icon = blockConfig.icon;
+      options.blockClassName = blockConfig.className;
+    }
+    return options;
+  };
+
   renderFlat(blocks: Array<Object>): void {
-    const { config: { className }, onChange, currentState: { blockType } } = this.props;
+    const { config: { className, ...config }, onChange, currentState: { blockType } } = this.props;
     return (
       <div className={classNames('rdw-inline-wrapper', className)}>
         {
-          blocks.map((block, index) =>
-            (<Option
-              key={index}
-              value={block.label}
-              active={blockType === block.label}
-              onClick={onChange}
-            >
-              {block.displayName}
-            </Option>),
-          )
+          blocks.map((block, index) => {
+              const {blockClassName, icon} = this.getBlockOptions(config, block.label);
+              return (
+                <Option
+                  key={index}
+                  value={block.label}
+                  active={blockType === block.label}
+                  onClick={onChange}
+                  className={blockClassName}
+                >
+                  {icon ? (<img alt="" src={icon} title={block.displayName}/>) : block.displayName}
+                </Option>
+              )            
+          })
         }
       </div>
     );
@@ -69,7 +86,7 @@ class LayoutComponent extends Component {
 
   renderInDropdown(blocks: Array<Object>): void {
     const {
-      config: { className, dropdownClassName, title },
+      config: { className, dropdownClassName, title, ...config },
       currentState: { blockType },
       expanded,
       doExpand,
@@ -81,6 +98,8 @@ class LayoutComponent extends Component {
     const { blockTypes } = this.state;
     const currentBlockData = blockTypes.filter(blk => blk.label === blockType);
     const currentLabel = currentBlockData && currentBlockData[0] && currentBlockData[0].displayName;
+    const firstBlock = blockTypes[0];
+    const firstBlockIcon = this.getBlockOptions(config, firstBlock.label).icon;
     return (
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">
         <Dropdown
@@ -93,16 +112,23 @@ class LayoutComponent extends Component {
           onExpandEvent={onExpandEvent}
           title={title || translations['components.controls.blocktype.blocktype']}
         >
-          <span>{currentLabel || translations['components.controls.blocktype.blocktype']}</span>
           {
-            blocks.map((block, index) =>
-              (<DropdownOption
-                active={blockType === block.label}
-                value={block.label}
-                key={index}
-              >
-                {block.displayName}
-              </DropdownOption>))
+            firstBlockIcon ? <img src={firstBlockIcon} alt=""/> : <span> {firstBlock.displayName} </span>
+          }          
+          {
+            blocks.map((block, index) => {
+              const {blockClassName, icon} = this.getBlockOptions(config, block.label);
+              return (
+                <DropdownOption
+                  active={blockType === block.label}
+                  value={block.label}
+                  key={index}
+                  className={blockClassName}
+                >
+                  {icon ? (<img alt="" src={icon} title={block.displayName}/>) : block.displayName}
+                </DropdownOption>
+              )
+            })
           }
         </Dropdown>
       </div>

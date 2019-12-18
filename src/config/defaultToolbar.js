@@ -86,7 +86,16 @@ export default {
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    title: undefined
+    normal: {icon: undefined, className: undefined},
+    blockquote: {icon: undefined, className: undefined},
+    code: {icon: undefined, className: undefined},
+    h1: {icon: undefined, className: undefined},
+    h2: {icon: undefined, className: undefined},
+    h3: {icon: undefined, className: undefined},
+    h4: {icon: undefined, className: undefined},
+    h5: {icon: undefined, className: undefined},
+    h6: {icon: undefined, className: undefined},
+    title: undefined,
   },
   fontSize: {
     icon: fontSize,
