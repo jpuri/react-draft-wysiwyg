@@ -344,7 +344,7 @@ export default {
     alignmentEnabled: true,
     uploadCallback: undefined,
     inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
-    alt: { present: false, mandatory: false },
+    alt: { present: false, mandatory: false, defaultValue: "" },
     defaultSize: {
       height: "auto",
       width: "auto"

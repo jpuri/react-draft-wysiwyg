@@ -25,7 +25,7 @@ class LayoutComponent extends Component {
     showImageLoading: false,
     height: this.props.config.defaultSize.height,
     width: this.props.config.defaultSize.width,
-    alt: '',
+    alt:  (this.props.config.alt && this.props.config.alt.defaultValue) ?  this.props.config.alt.defaultValue : '',
   };
 
   UNSAFE_componentWillReceiveProps(props: Object): void {
@@ -37,7 +37,7 @@ class LayoutComponent extends Component {
         showImageLoading: false,
         height: this.props.config.defaultSize.height,
         width: this.props.config.defaultSize.width,
-        alt: '',
+        alt:  (this.props.config.alt && this.props.config.alt.defaultValue) ?  this.props.config.alt.defaultValue : '',
       });
     } else if (props.config.uploadCallback !== this.props.config.uploadCallback ||
       props.config.uploadEnabled !== this.props.config.uploadEnabled) {
@@ -266,7 +266,7 @@ class LayoutComponent extends Component {
             value={alt}
             name="alt"
             className="rdw-image-modal-alt-input"
-            placeholder="alt"
+            placeholder={alt}
           />
           <span className="rdw-image-mandatory-sign">{altConf.mandatory && '*'}</span>
         </div>}
