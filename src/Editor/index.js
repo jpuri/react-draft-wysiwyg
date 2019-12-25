@@ -9,11 +9,12 @@ import {
   convertToRaw,
   convertFromRaw,
   CompositeDecorator,
-  getDefaultKeyBinding
+  getDefaultKeyBinding,
+  KeyBindingUtil,
+  Modifier
 } from "draft-js";
 import {
   changeDepth,
-  handleNewLine,
   blockRenderMap,
   getCustomStyleMap,
   extractInlineStyle,
@@ -83,7 +84,8 @@ export default class WysiwygEditor extends Component {
     customBlockRenderFunc: PropTypes.func,
     wrapperId: PropTypes.number,
     customDecorators: PropTypes.array,
-    editorRef: PropTypes.func
+    editorRef: PropTypes.func,
+    isSoftReturnDefault: PropTypes.bool
   };
 
   static defaultProps = {
@@ -91,7 +93,8 @@ export default class WysiwygEditor extends Component {
     toolbarHidden: false,
     stripPastedStyles: false,
     localization: { locale: "en", translations: {} },
-    customDecorators: []
+    customDecorators: [],
+    isSoftReturnDefault: false
   };
 
   constructor(props) {
@@ -427,17 +430,20 @@ export default class WysiwygEditor extends Component {
     return false;
   };
 
-  handleReturn: Function = (event: Object): boolean => {
+  handleReturn: Function = (event: Object, editorState: Object) => {
     if (SuggestionHandler.isOpen()) {
-      return true;
+      return 'handled';
     }
-    const editorState = handleNewLine(this.state.editorState, event);
-    if (editorState) {
-      this.onChange(editorState);
-      return true;
+
+    // Reverse the condition of `isSoftNewLineEvent` when soft return is set as default
+    const isSoftNewLineEvent = this.props.isSoftReturnDefault ? !KeyBindingUtil.isSoftNewlineEvent(event) : KeyBindingUtil.isSoftNewlineEvent(event);
+    if (isSoftNewLineEvent) {
+      this.onChange(RichUtils.insertSoftNewline(editorState));
+      return 'handled';
     }
-    return false;
-  };
+
+    return 'not-handled';
+  }
 
   handlePastedText = (text, html) => {
     const { editorState } = this.state;
