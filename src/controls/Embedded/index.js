@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { AtomicBlockUtils } from 'draft-js';
@@ -7,7 +5,7 @@ import { AtomicBlockUtils } from 'draft-js';
 import LayoutComponent from './Component';
 
 class Embedded extends Component {
-  static propTypes: Object = {
+  static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
@@ -15,46 +13,49 @@ class Embedded extends Component {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
   };
 
-  UNSAFE_componentWillMount(): void {
+  componentDidMount() {
     const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
-  doExpand: Function = (): void => {
+  doExpand = () => {
     this.setState({
       expanded: true,
     });
   };
 
-  doCollapse: Function = (): void => {
+  doCollapse = () => {
     this.setState({
       expanded: false,
     });
   };
 
-  addEmbeddedLink: Function = (embeddedLink, height, width): void => {
-    
-    const { editorState, onChange, config: { embedCallback} } = this.props;
+  addEmbeddedLink = (embeddedLink, height, width) => {
+    const {
+      editorState,
+      onChange,
+      config: { embedCallback },
+    } = this.props;
     const src = embedCallback ? embedCallback(embeddedLink) : embeddedLink;
     const entityKey = editorState
       .getCurrentContent()
@@ -63,13 +64,13 @@ class Embedded extends Component {
     const newEditorState = AtomicBlockUtils.insertAtomicBlock(
       editorState,
       entityKey,
-      ' ',
+      ' '
     );
     onChange(newEditorState);
     this.doCollapse();
   };
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const EmbeddedComponent = config.component || LayoutComponent;

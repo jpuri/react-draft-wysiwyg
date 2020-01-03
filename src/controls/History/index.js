@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { EditorState } from 'draft-js';
@@ -15,70 +13,69 @@ export default class History extends Component {
     translations: PropTypes.object,
   };
 
-  state: Object = {
-    expanded: false,
-    undoDisabled: false,
-    redoDisabled: false,
-  };
-
-  UNSAFE_componentWillMount(): void {
-    const { editorState, modalHandler } = this.props;
+  constructor(props) {
+    super(props);
+    const state = {
+      expanded: false,
+      undoDisabled: false,
+      redoDisabled: false,
+    };
+    const { editorState, modalHandler } = props;
     if (editorState) {
+      state.undoDisabled = editorState.getUndoStack().size === 0;
+      state.redoDisabled = editorState.getRedoStack().size === 0;
+    }
+    this.state = state;
+    modalHandler.registerCallBack(this.expandCollapse);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { editorState } = this.props;
+    if (editorState && prevProps.editorState !== editorState) {
       this.setState({
         undoDisabled: editorState.getUndoStack().size === 0,
         redoDisabled: editorState.getRedoStack().size === 0,
       });
     }
-    modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  UNSAFE_componentWillReceiveProps(properties: Object): void {
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
-      this.setState({
-        undoDisabled: properties.editorState.getUndoStack().size === 0,
-        redoDisabled: properties.editorState.getRedoStack().size === 0,
-      });
-    }
-  }
-
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  onChange: Function = (action) => {
+  onChange = action => {
     const { editorState, onChange } = this.props;
     const newState = EditorState[action](editorState);
     if (newState) {
       onChange(newState);
     }
-  }
+  };
 
-  doExpand: Function = (): void => {
+  doExpand = () => {
     this.setState({
       expanded: true,
     });
   };
 
-  doCollapse: Function = (): void => {
+  doCollapse = () => {
     this.setState({
       expanded: false,
     });
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { undoDisabled, redoDisabled, expanded } = this.state;
     const HistoryComponent = config.component || LayoutComponent;

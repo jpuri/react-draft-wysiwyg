@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
@@ -15,52 +13,55 @@ export default class TextAlign extends Component {
     translations: PropTypes.object,
   };
 
-  state = {
-    currentTextAlignment: undefined,
-  }
-
-  UNSAFE_componentWillMount(): void {
+  constructor(props) {
+    super(props);
     const { modalHandler } = this.props;
+    this.state = {
+      currentTextAlignment: undefined,
+    };
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  UNSAFE_componentWillReceiveProps(properties) {
-    if (properties.editorState !== this.props.editorState) {
+  componentDidUpdate(prevProps) {
+    const { editorState } = this.props;
+    if (editorState !== prevProps.editorState) {
       this.setState({
-        currentTextAlignment: getSelectedBlocksMetadata(properties.editorState).get('text-align'),
+        currentTextAlignment: getSelectedBlocksMetadata(editorState).get(
+          'text-align'
+        ),
       });
     }
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
-  doExpand: Function = (): void => {
+  doExpand = () => {
     this.setState({
       expanded: true,
     });
   };
 
-  doCollapse: Function = (): void => {
+  doCollapse = () => {
     this.setState({
       expanded: false,
     });
   };
 
-  addBlockAlignmentData:Function = (value: string) => {
+  addBlockAlignmentData = value => {
     const { editorState, onChange } = this.props;
     const { currentTextAlignment } = this.state;
     if (currentTextAlignment !== value) {
@@ -68,9 +69,9 @@ export default class TextAlign extends Component {
     } else {
       onChange(setBlockData(editorState, { 'text-align': undefined }));
     }
-  }
+  };
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded, currentTextAlignment } = this.state;
     const TextAlignmentComponent = config.component || LayoutComponent;

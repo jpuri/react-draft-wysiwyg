@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -18,73 +16,66 @@ export default class FontSize extends Component {
     translations: PropTypes.object,
   };
 
-  state: Object = {
-    expanded: undefined,
-    currentFontSize: undefined,
-  };
-
-  UNSAFE_componentWillMount(): void {
-    const { editorState, modalHandler } = this.props;
-    if (editorState) {
-      this.setState({
-        currentFontSize:
-          getSelectionCustomInlineStyle(editorState, ['FONTSIZE']).FONTSIZE,
-      });
-    }
+  constructor(props) {
+    super(props);
+    const { editorState, modalHandler } = props;
+    this.state = {
+      expanded: undefined,
+      currentFontSize: editorState
+        ? getSelectionCustomInlineStyle(editorState, ['FONTSIZE']).FONTSIZE
+        : undefined,
+    };
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  UNSAFE_componentWillReceiveProps(properties: Object): void {
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
+  componentDidUpdate(prevProps) {
+    const { editorState } = this.props;
+    if (editorState && editorState !== prevProps.editorState) {
       this.setState({
-        currentFontSize:
-          getSelectionCustomInlineStyle(properties.editorState, ['FONTSIZE']).FONTSIZE,
+        currentFontSize: getSelectionCustomInlineStyle(editorState, [
+          'FONTSIZE',
+        ]).FONTSIZE,
       });
     }
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
-  doExpand: Function = (): void => {
+  doExpand = () => {
     this.setState({
       expanded: true,
     });
   };
 
-  doCollapse: Function = (): void => {
+  doCollapse = () => {
     this.setState({
       expanded: false,
     });
   };
 
-  toggleFontSize: Function = (fontSize: number) => {
+  toggleFontSize = fontSize => {
     const { editorState, onChange } = this.props;
-    const newState = toggleCustomInlineStyle(
-      editorState,
-      'fontSize',
-      fontSize,
-    );
+    const newState = toggleCustomInlineStyle(editorState, 'fontSize', fontSize);
     if (newState) {
       onChange(newState);
     }
   };
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded, currentFontSize } = this.state;
     const FontSizeComponent = config.component || LayoutComponent;

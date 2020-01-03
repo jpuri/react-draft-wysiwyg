@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Modifier, EditorState } from 'draft-js';
@@ -7,7 +5,7 @@ import { Modifier, EditorState } from 'draft-js';
 import LayoutComponent from './Component';
 
 export default class Emoji extends Component {
-  static propTypes: Object = {
+  static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
@@ -15,56 +13,56 @@ export default class Emoji extends Component {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
   };
 
-  UNSAFE_componentWillMount(): void {
+  componentDidMount() {
     const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
-  doExpand: Function = (): void => {
+  doExpand = () => {
     this.setState({
       expanded: true,
     });
   };
 
-  doCollapse: Function = (): void => {
+  doCollapse = () => {
     this.setState({
       expanded: false,
     });
   };
 
-  addEmoji: Function = (emoji: string): void => {
+  addEmoji = emoji => {
     const { editorState, onChange } = this.props;
     const contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
       editorState.getSelection(),
       emoji,
-      editorState.getCurrentInlineStyle(),
+      editorState.getCurrentInlineStyle()
     );
     onChange(EditorState.push(editorState, contentState, 'insert-characters'));
     this.doCollapse();
   };
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const EmojiComponent = config.component || LayoutComponent;
