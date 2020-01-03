@@ -1,9 +1,12 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { RichUtils } from 'draft-js';
-import { changeDepth, getBlockBeforeSelectedBlock, getSelectedBlock, isListBlock } from 'draftjs-utils';
+import {
+  changeDepth,
+  getBlockBeforeSelectedBlock,
+  getSelectedBlock,
+  isListBlock,
+} from 'draftjs-utils';
 
 import LayoutComponent from './Component';
 
@@ -16,37 +19,33 @@ export default class List extends Component {
     translations: PropTypes.object,
   };
 
-  state: Object = {
-    expanded: false,
-    currentBlock: undefined,
-  };
-
-  UNSAFE_componentWillMount(): void {
+  constructor(props) {
+    super(props);
     const { editorState, modalHandler } = this.props;
-    if (editorState) {
-      this.setState({ currentBlock: getSelectedBlock(editorState) });
-    }
+    this.state = {
+      expanded: false,
+      currentBlock: editorState ? getSelectedBlock(editorState) : undefined,
+    };
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  UNSAFE_componentWillReceiveProps(properties: Object): void {
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
-      const currentBlock = getSelectedBlock(properties.editorState);
-      this.setState({ currentBlock: getSelectedBlock(properties.editorState) });
+  componentDidUpdate(prevProps) {
+    const { editorState } = this.props;
+    if (editorState && editorState !== prevProps.editorState) {
+      this.setState({ currentBlock: getSelectedBlock(editorState) });
     }
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  onChange: Function = (value: string): void => {
+  onChange = value => {
     if (value === 'unordered') {
       this.toggleBlockType('unordered-list-item');
     } else if (value === 'ordered') {
@@ -58,43 +57,36 @@ export default class List extends Component {
     }
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
-  doExpand: Function = (): void => {
+  doExpand = () => {
     this.setState({
       expanded: true,
     });
   };
 
-  doCollapse: Function = (): void => {
+  doCollapse = () => {
     this.setState({
       expanded: false,
     });
   };
 
-  toggleBlockType: Function = (blockType: String): void => {
+  toggleBlockType = blockType => {
     const { onChange, editorState } = this.props;
-    const newState = RichUtils.toggleBlockType(
-      editorState,
-      blockType,
-    );
+    const newState = RichUtils.toggleBlockType(editorState, blockType);
     if (newState) {
       onChange(newState);
     }
   };
 
-  adjustDepth: Function = (adjustment): void => {
+  adjustDepth = adjustment => {
     const { onChange, editorState } = this.props;
-    const newState = changeDepth(
-      editorState,
-      adjustment,
-      4,
-    );
+    const newState = changeDepth(editorState, adjustment, 4);
     if (newState) {
       onChange(newState);
     }
@@ -104,22 +96,27 @@ export default class List extends Component {
     const { editorState } = this.props;
     const { currentBlock } = this.state;
     const previousBlock = getBlockBeforeSelectedBlock(editorState);
-    if (!previousBlock ||
+    if (
+      !previousBlock ||
       !isListBlock(currentBlock) ||
-      (previousBlock.get('type') !== currentBlock.get('type')) ||
-      (previousBlock.get('depth') < currentBlock.get('depth'))
+      previousBlock.get('type') !== currentBlock.get('type') ||
+      previousBlock.get('depth') < currentBlock.get('depth')
     ) {
       return true;
     }
     return false;
-  }
+  };
 
   isOutdentDisabled = () => {
     const { currentBlock } = this.state;
-    return !currentBlock || !isListBlock(currentBlock) || currentBlock.get('depth') <= 0;
-  }
+    return (
+      !currentBlock ||
+      !isListBlock(currentBlock) ||
+      currentBlock.get('depth') <= 0
+    );
+  };
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { expanded, currentBlock } = this.state;
     const ListComponent = config.component || LayoutComponent;

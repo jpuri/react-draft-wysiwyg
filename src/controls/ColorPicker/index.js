@@ -1,5 +1,3 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
@@ -18,77 +16,82 @@ class ColorPicker extends Component {
     translations: PropTypes.object,
   };
 
-  state: Object = {
+  state = {
     expanded: false,
     currentColor: undefined,
     currentBgColor: undefined,
   };
 
-  UNSAFE_componentWillMount(): void {
-    const { editorState, modalHandler } = this.props;
+  constructor(props) {
+    super(props);
+    const { editorState, modalHandler } = props;
+    const state = {
+      expanded: false,
+      currentColor: undefined,
+      currentBgColor: undefined,
+    };
     if (editorState) {
-      this.setState({
-        currentColor: getSelectionCustomInlineStyle(editorState, ['COLOR']).COLOR,
-        currentBgColor: getSelectionCustomInlineStyle(editorState, ['BGCOLOR']).BGCOLOR,
-      });
+      state.currentColor = getSelectionCustomInlineStyle(editorState, [
+        'COLOR',
+      ]).COLOR;
+      state.currentBgColor = getSelectionCustomInlineStyle(editorState, [
+        'BGCOLOR',
+      ]).BGCOLOR;
     }
+    this.state = state;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
-  UNSAFE_componentWillReceiveProps(properties: Object): void {
-    const newState = {};
-    if (properties.editorState &&
-      this.props.editorState !== properties.editorState) {
-      newState.currentColor
-        = getSelectionCustomInlineStyle(properties.editorState, ['COLOR']).COLOR;
-      newState.currentBgColor
-        = getSelectionCustomInlineStyle(properties.editorState, ['BGCOLOR']).BGCOLOR;
+  componentDidUpdate(prevProps) {
+    const { editorState } = this.props;
+    if (editorState && editorState !== prevProps.editorState) {
+      this.setState({
+        currentColor: getSelectionCustomInlineStyle(editorState, ['COLOR'])
+          .COLOR,
+        currentBgColor: getSelectionCustomInlineStyle(editorState, ['BGCOLOR'])
+          .BGCOLOR,
+      });
     }
-    this.setState(newState);
   }
 
-  componentWillUnmount(): void {
+  componentWillUnmount() {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
 
-  onExpandEvent: Function = (): void => {
+  onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
   };
 
-  expandCollapse: Function = (): void => {
+  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
     this.signalExpanded = false;
-  }
+  };
 
-  doExpand: Function = (): void => {
+  doExpand = () => {
     this.setState({
       expanded: true,
     });
   };
 
-  doCollapse: Function = (): void => {
+  doCollapse = () => {
     this.setState({
       expanded: false,
     });
   };
 
-  toggleColor: Function = (style: string, color: string): void => {
+  toggleColor = (style, color) => {
     const { editorState, onChange } = this.props;
-    const newState = toggleCustomInlineStyle(
-      editorState,
-      style,
-      color,
-    );
+    const newState = toggleCustomInlineStyle(editorState, style, color);
     if (newState) {
       onChange(newState);
     }
     this.doCollapse();
   };
 
-  render(): Object {
+  render() {
     const { config, translations } = this.props;
     const { currentColor, currentBgColor, expanded } = this.state;
     const ColorPickerComponent = config.component || LayoutComponent;
