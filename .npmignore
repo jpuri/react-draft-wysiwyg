@@ -4,8 +4,8 @@ css
 docs
 images
 interfaces
-js
 scripts
+src
 stories
 node_modules
 .babelrc
@@ -17,3 +17,4 @@ node_modules
 postcss.config.js
 .npmignore
 yarn.lock
+CHANGELOG.md
