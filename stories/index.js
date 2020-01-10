@@ -13,6 +13,7 @@ import ImageUpload from './ImageUpload';
 import Embeddable from "./Embeddable";
 import ImageDataURI from './ImageDataURI';
 import SelectedOptions from './SelectedOptions';
+import ControlledSelectedOptions from './ControlledSelectedOptions';
 import FloatingToolbar from './FloatingToolbar';
 import CustomToolbar from './CustomToolbar';
 import ConvertToHTML from './ConvertToHTML';
@@ -34,7 +35,8 @@ storiesOf('ToolbarHidden', module).add('story', () => <ToolbarHidden />);
 storiesOf('FocusBlurCallbacks', module).add('story', () => <FocusBlurCallbacks />);
 storiesOf('HashTag', module).add('story', () => <HashTag />);
 storiesOf('Mention', module).add('story', () => <Mention />);
-storiesOf('SelectedOptions', module).add('story', () => <SelectedOptions />);
+storiesOf('SelectedOptions', module).add('uncontrolled', () => <SelectedOptions />)
+    .add('controlled', () => <ControlledSelectedOptions />);
 storiesOf('CustomToolbar', module).add('story', () => <CustomToolbar />);
 storiesOf('FloatingToolbar', module).add('story', () => <FloatingToolbar />);
 storiesOf('ImageUpload and Alt attribute', module).add('story', () => <ImageUpload />);
