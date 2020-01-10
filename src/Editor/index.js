@@ -75,8 +75,8 @@ class WysiwygEditor extends Component {
   componentDidUpdate(prevProps) {
     if (prevProps === this.props) return;
     const newState = {};
-    const { toolbar, editorState, contentState } = this.props;
-    if (toolbar !== prevProps.toolbar) {
+    const { editorState, contentState } = this.props;
+    if (!this.state.toolbar) {
       const toolbar = mergeRecursive(defaultToolbar, toolbar);
       newState.toolbar = toolbar;
     }

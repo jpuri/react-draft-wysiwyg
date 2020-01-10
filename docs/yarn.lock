@@ -6998,8 +6998,10 @@ react-dom@^16.12.0, react-dom@^16.8.3:
     prop-types "^15.6.2"
     scheduler "^0.18.0"
 
-"react-draft-wysiwyg@file:.yalc/react-draft-wysiwyg":
-  version "1.13.2-bd87d09a"
+react-draft-wysiwyg@1.14.3:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-1.14.3.tgz#55a42bc772f671abcadd0c4d97c922a3560f0e4b"
+  integrity sha512-DvcL/3mjWoxpy2qabXALRy/vEOinDA72OlczN993pnAMjg2BNnQQTVS6Ja9OxNLWK4K9SPR9imCLiDe04l0qeQ==
   dependencies:
     classnames "^2.2.6"
     draftjs-utils "^0.10.2"
