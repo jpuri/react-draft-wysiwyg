@@ -58,13 +58,17 @@ class Link extends Component {
 
   onChange = (action, title, target, targetOption) => {
     const {
-      config: { linkCallback },
+      config: { linkCallback, linkify }
     } = this.props;
 
-    if (action === 'link') {
-      const linkifyCallback = linkCallback || linkifyLink;
-      const linkified = linkifyCallback({ title, target, targetOption });
-      this.addLink(linkified.title, linkified.target, linkified.targetOption);
+    if (action === "link") {
+      if (linkify) {
+        const linkifyCallback = linkCallback || linkifyLink;
+        const linkified = linkifyCallback({ title, target, targetOption });
+        this.addLink(linkified.title, linkified.target, linkified.targetOption);
+      } else {
+        this.addLink(title, target, targetOption);
+      }
     } else {
       this.removeLink();
     }
