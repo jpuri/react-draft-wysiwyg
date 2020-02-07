@@ -40,7 +40,7 @@ export default {
     "components.controls.history.redo": "Znovu",
   
     // Image
-    "components.controls.image.image": "Obrázek",
+    "components.controls.image.image": "Vložit obrázek",
     "components.controls.image.fileUpload": "Nahrát soubor",
     "components.controls.image.byURL": "URL",
     "components.controls.image.dropFileText": "Přetáhněte soubor nebo klikněte pro jeho vybrání",
