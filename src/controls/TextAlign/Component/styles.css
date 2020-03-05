@@ -37,3 +37,33 @@
 .rdw-justify-aligned-block > div {
   display: inline-block;
 }
+
+/* following styles will fix the alignment when used with unordered and ordered lists */
+.rdw-right-aligned-block.public-DraftStyleDefault-orderedListItem:before {
+  position: relative !important;
+  left: 0 !important;
+}
+.rdw-left-aligned-block.public-DraftStyleDefault-orderedListItem:before {
+  position: relative !important;
+  left: 0 !important;
+}
+.rdw-center-aligned-block.public-DraftStyleDefault-orderedListItem:before {
+  position: relative !important;
+  left: 0 !important;
+}
+.rdw-justify-aligned-block.public-DraftStyleDefault-orderedListItem:before {
+  position: relative !important;
+  left: 0 !important;
+}
+.rdw-right-aligned-block.public-DraftStyleDefault-unorderedListItem {
+  list-style-position: inside;
+}
+.rdw-left-aligned-block.public-DraftStyleDefault-unorderedListItem {
+  list-style-position: inside;
+}
+.rdw-center-aligned-block.public-DraftStyleDefault-unorderedListItem {
+  list-style-position: inside;
+}
+.rdw-justify-aligned-block.public-DraftStyleDefault-unorderedListItem {
+  list-style-position: inside;
+}
