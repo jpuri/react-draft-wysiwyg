@@ -232,7 +232,7 @@ class WysiwygEditor extends Component {
 
   getWrapperRef = () => this.wrapper;
 
-  getEditorState = () => this.state.editorState;
+  getEditorState = () => this.state ? this.state.editorState : null;
 
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
