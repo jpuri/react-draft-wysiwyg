@@ -13,7 +13,9 @@ class EditorConvertToHTML extends Component {
     const html = '<p>Hey this <strong>editor</strong> rocks 😀</p>';
     const contentBlock = htmlToDraft(html);
     if (contentBlock) {
-      const contentState = ContentState.createFromBlockArray(contentBlock.contentBlocks);
+      const contentState = ContentState.createFromBlockArray(
+        contentBlock.contentBlocks
+      );
       const editorState = EditorState.createWithContent(contentState);
       this.state = {
         editorState,
@@ -21,7 +23,7 @@ class EditorConvertToHTML extends Component {
     }
   }
 
-  onEditorStateChange: Function = (editorState) => {
+  onEditorStateChange: Function = editorState => {
     this.setState({
       editorState,
     });
@@ -31,13 +33,23 @@ class EditorConvertToHTML extends Component {
     const { editorState } = this.state;
     return (
       <div className="demo-section">
-        <h3>1. Controlled editor component with conversion of content from and to HTML</h3>
+        <h3>
+          1. Controlled editor component with conversion of content from and to
+          HTML
+        </h3>
         <div className="demo-section-wrapper">
           <div className="demo-editor-wrapper">
             <Editor
               editorState={editorState}
               wrapperClassName="demo-wrapper"
               editorClassName="demo-editor"
+              toolbar={{
+                inline: { inDropdown: true },
+                list: { inDropdown: true },
+                textAlign: { inDropdown: true },
+                link: { inDropdown: true },
+                history: { inDropdown: true },
+              }}
               onEditorStateChange={this.onEditorStateChange}
             />
             <textarea
@@ -48,11 +60,11 @@ class EditorConvertToHTML extends Component {
           </div>
           <Codemirror
             value={
-              'import React, { Component } from \'react\';\n' +
-              'import { EditorState, convertToRaw } from \'draft-js\';\n' +
-              'import { Editor } from \'react-draft-wysiwyg\';\n' +
-              'import draftToHtml from \'draftjs-to-html\';\n' +
-              'import htmlToDraft from \'html-to-draftjs\';\n' +
+              "import React, { Component } from 'react';\n" +
+              "import { EditorState, convertToRaw } from 'draft-js';\n" +
+              "import { Editor } from 'react-draft-wysiwyg';\n" +
+              "import draftToHtml from 'draftjs-to-html';\n" +
+              "import htmlToDraft from 'html-to-draftjs';\n" +
               '\n\n' +
               'class EditorConvertToHTML extends Component {\n' +
               '  state = {\n' +
