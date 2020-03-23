@@ -8,10 +8,11 @@ import {
   convertFromRaw,
   CompositeDecorator,
   getDefaultKeyBinding,
+  KeyBindingUtil,
+  Modifier,
 } from 'draft-js';
 import {
   changeDepth,
-  handleNewLine,
   blockRenderMap,
   getCustomStyleMap,
   extractInlineStyle,
@@ -366,18 +367,23 @@ class WysiwygEditor extends Component {
     return false;
   };
 
-  handleReturn = event => {
+  handleReturn: Function = (event: Object, editorState: Object) => {
     if (SuggestionHandler.isOpen()) {
-      return true;
+      return 'handled';
     }
-    const { editorState } = this.state;
-    const newEditorState = handleNewLine(editorState, event);
-    if (newEditorState) {
-      this.onChange(newEditorState);
-      return true;
+
+    // Reverse the condition of `isSoftNewLineEvent` when soft return is set as default
+    const isSoftNewLineEvent = this.props.isSoftReturnDefault ? !KeyBindingUtil.isSoftNewlineEvent(event) : KeyBindingUtil.isSoftNewlineEvent(event);
+    if (isSoftNewLineEvent) {
+      const newEditorState = RichUtils.insertSoftNewline(editorState);
+      if (newEditorState) {
+        this.onChange(RichUtils.insertSoftNewline(editorState));
+      }
+      return 'handled';
     }
-    return false;
-  };
+
+    return 'not-handled';
+  }
 
   handlePastedTextFn = (text, html) => {
     const { editorState } = this.state;
@@ -548,6 +554,7 @@ WysiwygEditor.propTypes = {
   customDecorators: PropTypes.array,
   editorRef: PropTypes.func,
   handlePastedText: PropTypes.func,
+  isSoftReturnDefault: PropTypes.bool,
 };
 
 WysiwygEditor.defaultProps = {
@@ -556,6 +563,7 @@ WysiwygEditor.defaultProps = {
   stripPastedStyles: false,
   localization: { locale: 'en', translations: {} },
   customDecorators: [],
+  isSoftReturnDefault: false
 };
 
 export default WysiwygEditor;
