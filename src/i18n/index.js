@@ -12,7 +12,7 @@ import zh_tw from "./zh_tw";
 import pl from "./pl";
 import es from "./es";
 import ja from "./ja";
-import ja from "./ar";
+import ar from "./ar";
 
 export default {
   en,
