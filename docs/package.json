@@ -40,7 +40,8 @@
     "webpack": "^4.41.2",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-hot-middleware": "^2.25.0",
-    "uglifyjs-webpack-plugin": "^2.2.0"
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "react-draft-wysiwyg": "1.14.4"
   },
   "repository": {
     "type": "git",
