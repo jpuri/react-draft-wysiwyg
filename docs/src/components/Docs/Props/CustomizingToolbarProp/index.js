@@ -238,6 +238,13 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>image: sizeEnabled</b>
+        <span>
+          : The property can be used to configure if the option to specify size image
+          should be enalbled. Default value is true.
+        </span>
+      </li>
+      <li>
         <b>image: defaultSize</b>
         <span>
           : This property can be used to pass default size (height and width) of

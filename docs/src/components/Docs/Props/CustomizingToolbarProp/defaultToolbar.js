@@ -116,6 +116,7 @@ export default "{\n" +
   "    popupClassName: undefined,\n" +
   "    urlEnabled: true,\n" +
   "    uploadEnabled: true,\n" +
+  "    sizeEnabled: true,\n" +
   "    alignmentEnabled: true,\n" +
   "    uploadCallback: undefined,\n" +
   "    previewImage: false,\n" +

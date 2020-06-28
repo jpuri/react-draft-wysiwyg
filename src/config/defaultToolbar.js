@@ -340,6 +340,7 @@ export default {
     popupClassName: undefined,
     urlEnabled: true,
     uploadEnabled: true,
+    sizeEnabled: true,
     previewImage: false,
     alignmentEnabled: true,
     uploadCallback: undefined,
