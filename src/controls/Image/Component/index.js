@@ -241,9 +241,9 @@ class LayoutComponent extends Component {
                     className="rdw-image-modal-upload-option-image-preview"
                   />
                 ) : (
-                    imgSrc ||
-                    translations['components.controls.image.dropFileText']
-                  )}
+                  imgSrc ||
+                  translations['components.controls.image.dropFileText']
+                )}
               </label>
             </div>
             <input
@@ -326,8 +326,8 @@ class LayoutComponent extends Component {
             <Spinner />
           </div>
         ) : (
-            undefined
-          )}
+          undefined
+        )}
       </div>
     );
   }
