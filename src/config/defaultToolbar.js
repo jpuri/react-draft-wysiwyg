@@ -177,6 +177,7 @@ export default {
     popupClassName: undefined,
     dropdownClassName: undefined,
     showOpenOptionOnHover: true,
+    targetOptionEnabled: true,
     defaultTargetOption: "_self",
     options: ["link", "unlink"],
     link: { icon: link, className: undefined, title: undefined },

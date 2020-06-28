@@ -75,6 +75,7 @@ export default "{\n" +
   "    popupClassName: undefined,\n" +
   "    dropdownClassName: undefined,\n" +
   "    showOpenOptionOnHover: true,\n" +
+  "    targetOptionEnabled: true,\n" +
   "    defaultTargetOption: '_self',\n" +
   "    options: ['link', 'unlink'],\n" +
   "    link: { icon: link, className: undefined },\n" +

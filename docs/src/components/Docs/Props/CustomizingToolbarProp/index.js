@@ -134,6 +134,13 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>link: targetOptionEnabled</b>
+        <span>
+          : The property can be used to configure if the option to specify target option link
+          should be enalbled. Default value is true.
+        </span>
+      </li>
+      <li>
         <b>link: defaultTargetOption</b>
         <span>
           : This property sets the target of link in the editor. Default value
