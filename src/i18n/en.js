@@ -33,6 +33,9 @@ export default {
 
   // FontSize
   "components.controls.fontsize.fontsize": "Font Size",
+  
+  // LineHeight
+  "components.controls.lineHeight.lineHeight": "Line Height",
 
   // History
   "components.controls.history.history": "History",
@@ -76,5 +79,7 @@ export default {
   "components.controls.textalign.left": "Left",
   "components.controls.textalign.center": "Center",
   "components.controls.textalign.right": "Right",
-  "components.controls.textalign.justify": "Justify"
+  "components.controls.textalign.justify": "Justify",
+  'components.controls.textalign.indent': 'Indent',
+  'components.controls.textalign.outdent': 'Outdent',
 };

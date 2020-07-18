@@ -34,6 +34,9 @@ export default {
   // FontSize
   "components.controls.fontsize.fontsize": "Rozmiar czcionki",
 
+  // LineHeight
+  "components.controls.lineHeight.lineHeight": "Line Height",
+
   // History
   "components.controls.history.history": "Historia",
   "components.controls.history.undo": "Cofnij",

@@ -34,6 +34,9 @@ export default {
   // FontSize
   "components.controls.fontsize.fontsize": "字體大小",
 
+  // LineHeight
+  "components.controls.lineHeight.lineHeight": "线高",
+
   // History
   "components.controls.history.history": "歷史紀錄",
   "components.controls.history.undo": "復原",

@@ -4,6 +4,7 @@ import underline from '../../images/underline.svg';
 import strikethrough from '../../images/strikethrough.svg';
 import monospace from '../../images/monospace.svg';
 import fontSize from '../../images/font-size.svg';
+import lineHeight from '../../images/line-height.svg';
 import indent from '../../images/indent.svg';
 import outdent from '../../images/outdent.svg';
 import ordered from '../../images/list-ordered.svg';
@@ -33,6 +34,7 @@ export default {
     "inline",
     "blockType",
     "fontSize",
+    "lineHeight",
     "fontFamily",
     "list",
     "textAlign",
@@ -96,6 +98,14 @@ export default {
     dropdownClassName: undefined,
     title: undefined
   },
+  lineHeight: {
+    icon: lineHeight,
+    options: [1, 1.2, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6],
+    className: undefined,
+    component: undefined,
+    dropdownClassName: undefined,
+    title: undefined
+  },
   fontFamily: {
     options: [
       "Arial",
@@ -127,11 +137,13 @@ export default {
     className: undefined,
     component: undefined,
     dropdownClassName: undefined,
-    options: ["left", "center", "right", "justify"],
+    options: ["left", "center", "right", "justify", 'indent', 'outdent'],
     left: { icon: left, className: undefined, title: undefined },
     center: { icon: center, className: undefined, title: undefined },
     right: { icon: right, className: undefined, title: undefined },
     justify: { icon: justify, className: undefined, title: undefined },
+    indent: { icon: indent, className: undefined, title: undefined },
+    outdent: { icon: outdent, className: undefined, title: undefined },
     title: undefined
   },
   colorPicker: {

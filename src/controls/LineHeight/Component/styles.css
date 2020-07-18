@@ -1,0 +1,54 @@
+.rdw-lineheight-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+.rdw-lineheight-dropdown {
+  min-width: 50px;
+}
+.rdw-lineheight-option {
+  display: flex;
+  justify-content: center;
+}
+
+/* line-height */
+.rdw-lineheight-1 {
+  line-height: 1;
+}
+.rdw-lineheight-1-2 {
+  line-height: 1.2;
+}
+.rdw-lineheight-1-5 {
+  line-height: 1.5;
+}
+.rdw-lineheight-1-75 {
+  line-height: 1.75;
+}
+.rdw-lineheight-2 {
+  line-height: 2;
+}
+.rdw-lineheight-2-5 {
+  line-height: 2.5;
+}
+.rdw-lineheight-3 {
+  line-height: 3;
+}
+.rdw-lineheight-3-5 {
+  line-height: 3.5;
+}
+.rdw-lineheight-4 {
+  line-height: 4;
+}
+.rdw-lineheight-4-5 {
+  line-height: 4.5;
+}
+.rdw-lineheight-5 {
+  line-height: 5;
+}
+.rdw-lineheight-5-5 {
+  line-height: 5.5;
+}
+.rdw-lineheight-6 {
+  line-height: 6;
+}

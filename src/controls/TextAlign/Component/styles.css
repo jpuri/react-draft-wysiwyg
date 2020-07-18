@@ -37,3 +37,31 @@
 .rdw-justify-aligned-block > div {
   display: inline-block;
 }
+/* indent/outdent */
+.rdw-text-indent-0 {
+  text-indent: 0;
+}
+.rdw-text-indent-2em {
+  text-indent: 2em;
+}
+.rdw-text-indent-4em {
+  text-indent: 4em;
+}
+.rdw-text-indent-6em {
+  text-indent: 6em;
+}
+.rdw-text-indent-8em {
+  text-indent: 8em;
+}
+.rdw-text-indent-10em {
+  text-indent: 10em;
+}
+.rdw-text-indent-12em {
+  text-indent: 12em;
+}
+.rdw-text-indent-14em {
+  text-indent: 14em;
+}
+.rdw-text-indent-16em {
+  text-indent: 16em;
+}

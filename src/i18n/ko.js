@@ -34,6 +34,9 @@ export default {
   // FontSize
   "components.controls.fontsize.fontsize": "글꼴 크기",
 
+  // LineHeight
+  "components.controls.lineHeight.lineHeight": "선 높이",
+
   // History
   "components.controls.history.history": "히스토리",
   "components.controls.history.undo": "실행 취소",

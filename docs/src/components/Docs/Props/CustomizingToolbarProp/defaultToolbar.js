@@ -28,6 +28,13 @@ export default "{\n" +
   "    component: undefined,\n" +
   "    dropdownClassName: undefined,\n" +
   "  },\n" +
+  "  lineHeight: {\n" +
+  "    icon: lineHeight,\n" +
+  "    options: [1, 1.2, 1.5, 1.75, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6],\n" +
+  "    className: undefined,\n" +
+  "    component: undefined,\n" +
+  "    dropdownClassName: undefined,\n" +
+  "  },\n" +
   "  fontFamily: {\n" +
   "    options: ['Arial', 'Georgia', 'Impact', 'Tahoma', 'Times New Roman', 'Verdana'],\n" +
   "    className: undefined,\n" +
@@ -50,11 +57,13 @@ export default "{\n" +
   "    className: undefined,\n" +
   "    component: undefined,\n" +
   "    dropdownClassName: undefined,\n" +
-  "    options: ['left', 'center', 'right', 'justify'],\n" +
+  "    options: ['left', 'center', 'right', 'justify', \'indent\', \'outdent\'],\n" +
   "    left: { icon: left, className: undefined },\n" +
   "    center: { icon: center, className: undefined },\n" +
   "    right: { icon: right, className: undefined },\n" +
   "    justify: { icon: justify, className: undefined },\n" +
+  "    indent: { icon: indent, className: undefined },\n" +
+  "    outdent: { icon: outdent, className: undefined },\n" +
   "  },\n" +
   "  colorPicker: {\n" +
   "    icon: color,\n" +

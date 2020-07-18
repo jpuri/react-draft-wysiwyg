@@ -34,6 +34,9 @@ export default {
   // FontSize
   "components.controls.fontsize.fontsize": "Lettergrootte",
 
+  // LineHeight
+  "components.controls.lineHeight.lineHeight": "Line Height",
+
   // History
   "components.controls.history.history": "Geschiedenis",
   "components.controls.history.undo": "Ongedaan maken",
