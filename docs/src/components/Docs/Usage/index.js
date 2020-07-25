@@ -17,7 +17,7 @@ const Usage = () => (
       value={
         'import React, { Component } from \'react\';\n' +
         'import { Editor } from \'react-draft-wysiwyg\';\n' +
-        'import \'../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css\';\n' +
+        'import \'react-draft-wysiwyg/dist/react-draft-wysiwyg.css\';\n' +
         '\n\n' +
         'const EditorComponent = () => <Editor />'
       }
