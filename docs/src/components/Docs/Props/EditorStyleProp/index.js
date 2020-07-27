@@ -5,7 +5,7 @@ export default () => (
   <div>
     <h3>Styling the editor</h3>
     <div className="docs-desc">
-      The editor by default will have uses DraftJS editor as it is without
+      The editor, by default uses DraftJS editor as it is without
       any styling and it will occupy 100% width of container.
       Some styling to add border to editor and set width will be nice.
     </div>
