@@ -135,7 +135,7 @@ class Link extends Component {
   };
 
   addLink = (linkTitle, linkTarget, linkTargetOption) => {
-    const { editorState, onChange } = this.props;
+    const { editorState, onChange, config: { trailingWhitespace = false } } = this.props;
     const { currentEntity } = this.state;
     let selection = editorState.getSelection();
 
@@ -176,18 +176,20 @@ class Link extends Component {
     );
 
     // insert a blank space after link
-    selection = newEditorState.getSelection().merge({
-      anchorOffset: selection.get('anchorOffset') + linkTitle.length,
-      focusOffset: selection.get('anchorOffset') + linkTitle.length,
-    });
-    newEditorState = EditorState.acceptSelection(newEditorState, selection);
-    contentState = Modifier.insertText(
-      newEditorState.getCurrentContent(),
-      selection,
-      ' ',
-      newEditorState.getCurrentInlineStyle(),
-      undefined
-    );
+    if (trailingWhitespace) {
+      selection = newEditorState.getSelection().merge({
+        anchorOffset: selection.get('anchorOffset') + linkTitle.length,
+        focusOffset: selection.get('anchorOffset') + linkTitle.length,
+      });
+      newEditorState = EditorState.acceptSelection(newEditorState, selection);
+      contentState = Modifier.insertText(
+        newEditorState.getCurrentContent(),
+        selection,
+        ' ',
+        newEditorState.getCurrentInlineStyle(),
+        undefined,
+      );
+    }
     onChange(
       EditorState.push(newEditorState, contentState, 'insert-characters')
     );
