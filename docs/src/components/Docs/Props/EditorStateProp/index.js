@@ -4,7 +4,7 @@ import Codemirror from 'react-codemirror';
 export const EditorStateLink = () => <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content"
+    href="https://draftjs.org/docs/api-reference-editor-state/"
   >
     EditorState
   </a>;
@@ -12,7 +12,7 @@ export const EditorStateLink = () => <a
 export const RawEditorStateLink = () => <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://facebook.github.io/draft-js/docs/api-reference-data-conversion.html#content"
+    href="https://draftjs.org/docs/api-reference-data-conversion/"
   >
     RawDraftContentState
   </a>;
