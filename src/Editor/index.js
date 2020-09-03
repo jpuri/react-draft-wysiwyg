@@ -329,6 +329,7 @@ class WysiwygEditor extends Component {
       'customBlockRenderFunc',
       'customBlockStyleFunc',
       'customDecorators',
+      'handleKeyCommand',
       'handlePastedText',
       'customStyleMap',
     ]);
@@ -356,11 +357,12 @@ class WysiwygEditor extends Component {
     });
   };
 
-  handleKeyCommand = command => {
+  handleKeyCommand = (command, editorState, eventTimeStamp) => {
     const {
       editorState,
       toolbar: { inline },
     } = this.state;
+    
     if (inline && inline.options.indexOf(command) >= 0) {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
@@ -368,6 +370,11 @@ class WysiwygEditor extends Component {
         return true;
       }
     }
+
+    if (this.props.handleKeyCommand) {
+      return this.props.handleKeyCommand(command, editorState, eventTimeStamp)
+    }
+    
     return false;
   };
 
@@ -550,6 +557,7 @@ WysiwygEditor.propTypes = {
   ariaHasPopup: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   customBlockRenderFunc: PropTypes.func,
   customBlockStyleFunc: PropTypes.func,
+  handleKeyCommand: PropsTypes.func,
   wrapperId: PropTypes.number,
   customDecorators: PropTypes.array,
   editorRef: PropTypes.func,
