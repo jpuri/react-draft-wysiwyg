@@ -30,6 +30,7 @@ class I18n extends Component {
             <option value="ko">Korean</option>
             <option value="pt">Portuguese</option>
             <option value="ru">Russian</option>
+            <option value="sk">Slovak</option>
           </select>
         </div>
         <Editor
