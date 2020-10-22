@@ -81,7 +81,7 @@ export default {
       "H5",
       "H6",
       "Blockquote",
-      "Code"
+      "CodeBlock"
     ],
     className: undefined,
     component: undefined,
