@@ -1,7 +1,6 @@
 node_modules
 .DS_Store
 npm-debug.log
-dist
 docs/.yalc/
 docs/yalc.lock
 stats.json
