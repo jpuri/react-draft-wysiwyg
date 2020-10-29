@@ -359,7 +359,6 @@ class WysiwygEditor extends Component {
 
   handleKeyCommand = (command, editorState, eventTimeStamp) => {
     const {
-      editorState,
       toolbar: { inline },
     } = this.state;
     
