@@ -559,7 +559,7 @@ WysiwygEditor.propTypes = {
   customBlockRenderFunc: PropTypes.func,
   customBlockRenderMap: PropTypes.object,
   customBlockStyleFunc: PropTypes.func,
-  handleKeyCommand: PropsTypes.func,
+  handleKeyCommand: PropTypes.func,
   wrapperId: PropTypes.number,
   customDecorators: PropTypes.array,
   editorRef: PropTypes.func,
