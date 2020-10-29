@@ -56,6 +56,7 @@ class WysiwygEditor extends Component {
       props.customBlockRenderFunc
     );
     this.blockStyleFn = getBlockStyleFunc(props.customBlockStyleFunc);
+    this.blockRenderMap = blockRenderMap.merge(props.customBlockRenderMap);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = this.getStyleMap(props);
     this.compositeDecorator = this.getCompositeDecorator(toolbar);
@@ -328,6 +329,7 @@ class WysiwygEditor extends Component {
       'ariaLabel',
       'customBlockRenderFunc',
       'customBlockStyleFunc',
+      'customBlockRenderMap',
       'customDecorators',
       'handleKeyCommand',
       'handlePastedText',
@@ -504,7 +506,7 @@ class WysiwygEditor extends Component {
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
-            blockRenderMap={blockRenderMap}
+            blockRenderMap={this.blockRenderMap}
             {...this.editorProps}
           />
         </div>
@@ -555,6 +557,7 @@ WysiwygEditor.propTypes = {
   ariaExpanded: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   ariaHasPopup: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   customBlockRenderFunc: PropTypes.func,
+  customBlockRenderMap: PropTypes.object,
   customBlockStyleFunc: PropTypes.func,
   handleKeyCommand: PropsTypes.func,
   wrapperId: PropTypes.number,
