@@ -15,10 +15,13 @@ export default class TextAlign extends Component {
 
   constructor(props) {
     super(props);
-    const { modalHandler } = this.props;
     this.state = {
       currentTextAlignment: undefined,
     };
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 

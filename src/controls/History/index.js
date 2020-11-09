@@ -20,12 +20,16 @@ export default class History extends Component {
       undoDisabled: false,
       redoDisabled: false,
     };
-    const { editorState, modalHandler } = props;
+    const { editorState } = props;
     if (editorState) {
       state.undoDisabled = editorState.getUndoStack().size === 0;
       state.redoDisabled = editorState.getRedoStack().size === 0;
     }
     this.state = state;
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 

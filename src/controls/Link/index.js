@@ -30,13 +30,17 @@ class Link extends Component {
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = this.props;
+    const { editorState } = this.props;
     this.state = {
       expanded: false,
       link: undefined,
       selectionText: undefined,
       currentEntity: editorState ? getSelectionEntity(editorState) : undefined,
     };
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 

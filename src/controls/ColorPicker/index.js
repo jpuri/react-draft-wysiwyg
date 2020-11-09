@@ -24,7 +24,7 @@ class ColorPicker extends Component {
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = props;
+    const { editorState } = props;
     const state = {
       expanded: false,
       currentColor: undefined,
@@ -39,6 +39,10 @@ class ColorPicker extends Component {
       ]).BGCOLOR;
     }
     this.state = state;
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
