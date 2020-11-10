@@ -19,7 +19,7 @@ const linkifyLink = params => {
   };
 };
 
-class Button extends Component {
+class Link extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -156,7 +156,7 @@ class Button extends Component {
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('BUTTON', 'MUTABLE', {
+      .createEntity('LINK', 'MUTABLE', {
         url: linkTarget,
         targetOption: linkTargetOption,
       })
@@ -198,9 +198,9 @@ class Button extends Component {
     const { config, translations } = this.props;
     const { expanded } = this.state;
     const { link, selectionText } = this.getCurrentValues();
-    const ButtonComponent = config.component || LayoutComponent;
+    const LinkComponent = config.component || LayoutComponent;
     return (
-      <ButtonComponent
+      <LinkComponent
         config={config}
         translations={translations}
         expanded={expanded}
@@ -217,7 +217,7 @@ class Button extends Component {
   }
 }
 
-export default Button;
+export default Link;
 
 // todo refct
 // 1. better action names here

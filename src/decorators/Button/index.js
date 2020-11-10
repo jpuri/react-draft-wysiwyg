@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import openlink from '../../../images/openlink.svg';
 import './styles.css';
 
 function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
     (character) => {
-      const entityKeyButton = character.getEntity();
+      const entityKey = character.getEntity();
       return (
-        entityKeyButton !== null &&
-        contentState.getEntity(entityKeyButton).getType() === 'BUTTON'
+        entityKey !== null &&
+        contentState.getEntity(entityKey).getType() === 'BUTTON'
       );
     },
     callback,
   );
 }
 
-function getButtonComponent(config) {
+function getLinkComponent(config) {
   const showOpenOptionOnHover = config.showOpenOptionOnHover;
-
-  return class Button extends Component {
+  return class Link extends Component {
     static propTypes = {
       entityKey: PropTypes.string.isRequired,
       children: PropTypes.array,
       contentState: PropTypes.object,
     };
 
-    state = {
-      formatText: '',
+    state: Object = {
+      showPopOver: false,
     };
 
-    openLink = () => {
+    openLink: Function = () => {
       const { entityKey, contentState } = this.props;
       const { url } = contentState.getEntity(entityKey).getData();
       const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
@@ -39,16 +39,34 @@ function getButtonComponent(config) {
       }
     };
 
+    toggleShowPopOver: Function = () => {
+      const showPopOver = !this.state.showPopOver;
+      this.setState({
+        showPopOver,
+      });
+    };
+
     render() {
       const { children, entityKey, contentState } = this.props;
       const { url, targetOption } = contentState.getEntity(entityKey).getData();
-
+      const { showPopOver } = this.state;
       return (
-        <a className="rdw-button-decorator-wrapper" href={url} target={targetOption} onClick={this.openLink}>
-          <span>
-            {children}
-          </span>
-        </a>
+        <span
+          className="rdw-button-decorator-wrapper"
+          onMouseEnter={this.toggleShowPopOver}
+          onMouseLeave={this.toggleShowPopOver}
+        >
+          <a href={url} target={targetOption}>{children}</a>
+          {showPopOver && showOpenOptionOnHover ?
+            <img
+              src={openlink}
+              alt=""
+              onClick={this.openLink}
+              className="rdw-button-decorator-icon"
+            />
+            : undefined
+          }
+        </span>
       );
     }
   };
@@ -56,5 +74,5 @@ function getButtonComponent(config) {
 
 export default config => ({
   strategy: findLinkEntities,
-  component: getButtonComponent(config),
+  component: getLinkComponent(config),
 });

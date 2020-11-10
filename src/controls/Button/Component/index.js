@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+
 import { stopPropagation } from '../../../utils/common';
 import { getFirstIcon } from '../../../utils/toolbar';
 import Option from '../../../components/Option';
@@ -49,13 +50,9 @@ class LayoutComponent extends Component {
   };
 
   updateValue = event => {
-    if (this.state[`${event.target.name}`].length < 5) {
-      this.setState({
-        [`${event.target.name}`]: event.target.value,
-      });
-      return
-    }
-    console.log(this.state[`${event.target.name}`].length);
+    this.setState({
+      [`${event.target.name}`]: event.target.value,
+    });
   };
 
   updateTargetOption = event => {
@@ -100,49 +97,67 @@ class LayoutComponent extends Component {
     });
   };
 
-  limitText = (e) => {
-    if (e.target.value < 5) {
-      return;
-    }
-  }
-
   renderAddLinkModal() {
     const {
       config: { popupClassName },
       doCollapse,
       translations,
     } = this.props;
-    const { linkTarget } = this.state;
+    const { linkTitle, linkTarget, linkTargetOption } = this.state;
     return (
       <div
-        className={classNames('rdw-button-modal', popupClassName)}
+        className={classNames('rdw-link-modal', popupClassName)}
         onClick={stopPropagation}
       >
-        <div className="rdw-button-modal-inner">
-          <label className="rdw-button-modal-label" htmlFor="linkTarget">
-            URL
-          </label>
+        <label className="rdw-link-modal-label" htmlFor="linkTitle">
+          {translations['components.controls.link.linkTitle']}
+        </label>
+        <input
+          id="linkTitle"
+          className="rdw-link-modal-input"
+          onChange={this.updateValue}
+          onBlur={this.updateValue}
+          name="linkTitle"
+          value={linkTitle}
+        />
+        <label className="rdw-link-modal-label" htmlFor="linkTarget">
+          {translations['components.controls.link.linkTarget']}
+        </label>
+        <input
+          id="linkTarget"
+          className="rdw-link-modal-input"
+          onChange={this.updateValue}
+          onBlur={this.updateValue}
+          name="linkTarget"
+          value={linkTarget}
+        />
+        <label
+          className="rdw-link-modal-target-option"
+          htmlFor="openLinkInNewWindow"
+        >
           <input
-            id="linkTarget"
-            className="rdw-button-modal-input"
-            onChange={this.updateValue}
-            onBlur={this.updateValue}
-            name="linkTarget"
-            value={linkTarget}
+            id="openLinkInNewWindow"
+            type="checkbox"
+            defaultChecked={linkTargetOption === '_blank'}
+            value="_blank"
+            onChange={this.updateTargetOption}
           />
-          <span className="rdw-button-modal-buttonsection">
-            <button
-              className="rdw-button-modal-btn"
-              onClick={this.addLink}
-              disabled={!linkTarget}
-            >
-              {translations['generic.add']}
-            </button>
-            <button className="rdw-button-modal-btn" onClick={doCollapse}>
-              {translations['generic.cancel']}
-            </button>
+          <span>
+            {translations['components.controls.link.linkTargetOption']}
           </span>
-        </div>
+        </label>
+        <span className="rdw-link-modal-buttonsection">
+          <button
+            className="rdw-link-modal-btn"
+            onClick={this.addLink}
+            disabled={!linkTarget || !linkTitle}
+          >
+            {translations['generic.add']}
+          </button>
+          <button className="rdw-link-modal-btn" onClick={doCollapse}>
+            {translations['generic.cancel']}
+          </button>
+        </span>
       </div>
     );
   }
@@ -157,8 +172,8 @@ class LayoutComponent extends Component {
     const { showModal } = this.state;
     return (
       <div
-        className={classNames('rdw-button-wrapper', className)}
-        aria-label="rdw-button-control"
+        className={classNames('rdw-link-wrapper', className)}
+        aria-label="rdw-link-control"
       >
         {options.indexOf('link') >= 0 && (
           <Option
@@ -198,11 +213,13 @@ class LayoutComponent extends Component {
       doExpand,
       onChange,
       config,
+      currentState,
       translations,
     } = this.props;
     const {
       options,
       link,
+      unlink,
       className,
       dropdownClassName,
       title,
@@ -210,14 +227,14 @@ class LayoutComponent extends Component {
     const { showModal } = this.state;
     return (
       <div
-        className="rdw-button-wrapper"
+        className="rdw-link-wrapper"
         aria-haspopup="true"
         aria-label="rdw-link-control"
         aria-expanded={expanded}
         title={title}
       >
         <Dropdown
-          className={classNames('rdw-button-dropdown', className)}
+          className={classNames('rdw-link-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
           expanded={expanded && !showModal}
@@ -229,12 +246,27 @@ class LayoutComponent extends Component {
           {options.indexOf('link') >= 0 && (
             <DropdownOption
               onClick={this.forceExpandAndShowModal}
-              className={classNames('rdw-button-dropdownoption', link.className)}
+              className={classNames('rdw-link-dropdownoption', link.className)}
               title={
                 link.title || translations['components.controls.link.link']
               }
             >
               <img src={link.icon} alt="" />
+            </DropdownOption>
+          )}
+          {options.indexOf('unlink') >= 0 && (
+            <DropdownOption
+              onClick={this.removeLink}
+              disabled={!currentState.link}
+              className={classNames(
+                'rdw-link-dropdownoption',
+                unlink.className
+              )}
+              title={
+                unlink.title || translations['components.controls.link.unlink']
+              }
+            >
+              <img src={unlink.icon} alt="" />
             </DropdownOption>
           )}
         </Dropdown>

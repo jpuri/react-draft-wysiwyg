@@ -6999,9 +6999,10 @@ react-dom@^16.12.0, react-dom@^16.8.3:
     prop-types "^15.6.2"
     scheduler "^0.18.0"
 
-"react-draft-wysiwyg@git+https://github.com/wadaryohei/react-draft-wysiwyg.git":
+react-draft-wysiwyg@^1.14.5:
   version "1.14.5"
-  resolved "git+https://github.com/wadaryohei/react-draft-wysiwyg.git#05db63c4f6ee948e115963085a7cc3bc5b9b75bf"
+  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-1.14.5.tgz#82e34ae3472b815b5d9f70615f40e13afcbc2055"
+  integrity sha512-utbJEs91757QXYoBwKRb/4kB3JdswLlj0heUiAeXs/OxZAUISJXxLMFLBIixRlIcUnNkwxOsMikRshDMtWIS3g==
   dependencies:
     classnames "^2.2.6"
     draftjs-utils "^0.10.2"
