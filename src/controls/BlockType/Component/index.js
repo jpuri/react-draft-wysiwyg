@@ -113,7 +113,8 @@ class LayoutComponent extends Component {
       currentBlockData[0] &&
       currentBlockData[0].displayName;
     return (
-      <div className="rdw-block-wrapper" aria-label="rdw-block-control">
+      // <div className="rdw-block-wrapper" aria-label="rdw-block-control">
+      <React.Fragment>
         <Dropdown
           className={classNames('rdw-block-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
@@ -140,7 +141,7 @@ class LayoutComponent extends Component {
             </DropdownOption>
           ))}
         </Dropdown>
-      </div>
+      </React.Fragment>
     );
   }
 
