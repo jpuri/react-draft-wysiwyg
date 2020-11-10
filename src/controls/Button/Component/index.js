@@ -1,0 +1,257 @@
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import { stopPropagation } from '../../../utils/common';
+import { getFirstIcon } from '../../../utils/toolbar';
+import Option from '../../../components/Option';
+import { Dropdown, DropdownOption } from '../../../components/Dropdown';
+import './styles.css';
+
+class LayoutComponent extends Component {
+  static propTypes = {
+    expanded: PropTypes.bool,
+    doExpand: PropTypes.func,
+    doCollapse: PropTypes.func,
+    onExpandEvent: PropTypes.func,
+    config: PropTypes.object,
+    onChange: PropTypes.func,
+    currentState: PropTypes.object,
+    translations: PropTypes.object,
+  };
+
+  state = {
+    showModal: false,
+    linkTarget: '',
+    linkTitle: '',
+    linkTargetOption: this.props.config.defaultTargetOption,
+  };
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.expanded && !this.props.expanded) {
+      this.setState({
+        showModal: false,
+        linkTarget: '',
+        linkTitle: '',
+        linkTargetOption: this.props.config.defaultTargetOption,
+      });
+    }
+  }
+
+  removeLink = () => {
+    const { onChange } = this.props;
+    onChange('unlink');
+  };
+
+  addLink = () => {
+    const { onChange } = this.props;
+    const { linkTitle, linkTarget, linkTargetOption } = this.state;
+    onChange('link', linkTitle, linkTarget, linkTargetOption);
+  };
+
+  updateValue = event => {
+    if (this.state[`${event.target.name}`].length < 5) {
+      this.setState({
+        [`${event.target.name}`]: event.target.value,
+      });
+      return
+    }
+    console.log(this.state[`${event.target.name}`].length);
+  };
+
+  updateTargetOption = event => {
+    this.setState({
+      linkTargetOption: event.target.checked ? '_blank' : '_self',
+    });
+  };
+
+  hideModal = () => {
+    this.setState({
+      showModal: false,
+    });
+  };
+
+  signalExpandShowModal = () => {
+    const {
+      onExpandEvent,
+      currentState: { link, selectionText },
+    } = this.props;
+    const { linkTargetOption } = this.state;
+    onExpandEvent();
+    this.setState({
+      showModal: true,
+      linkTarget: (link && link.target) || '',
+      linkTargetOption: (link && link.targetOption) || linkTargetOption,
+      linkTitle: (link && link.title) || selectionText,
+    });
+  };
+
+  forceExpandAndShowModal = () => {
+    const {
+      doExpand,
+      currentState: { link, selectionText },
+    } = this.props;
+    const { linkTargetOption } = this.state;
+    doExpand();
+    this.setState({
+      showModal: true,
+      linkTarget: link && link.target,
+      linkTargetOption: (link && link.targetOption) || linkTargetOption,
+      linkTitle: (link && link.title) || selectionText,
+    });
+  };
+
+  limitText = (e) => {
+    if (e.target.value < 5) {
+      return;
+    }
+  }
+
+  renderAddLinkModal() {
+    const {
+      config: { popupClassName },
+      doCollapse,
+      translations,
+    } = this.props;
+    const { linkTarget } = this.state;
+    return (
+      <div
+        className={classNames('rdw-button-modal', popupClassName)}
+        onClick={stopPropagation}
+      >
+        <div className="rdw-button-modal-inner">
+          <label className="rdw-button-modal-label" htmlFor="linkTarget">
+            URL
+          </label>
+          <input
+            id="linkTarget"
+            className="rdw-button-modal-input"
+            onChange={this.updateValue}
+            onBlur={this.updateValue}
+            name="linkTarget"
+            value={linkTarget}
+          />
+          <span className="rdw-button-modal-buttonsection">
+            <button
+              className="rdw-button-modal-btn"
+              onClick={this.addLink}
+              disabled={!linkTarget}
+            >
+              {translations['generic.add']}
+            </button>
+            <button className="rdw-button-modal-btn" onClick={doCollapse}>
+              {translations['generic.cancel']}
+            </button>
+          </span>
+        </div>
+      </div>
+    );
+  }
+
+  renderInFlatList() {
+    const {
+      config: { options, link, unlink, className },
+      currentState,
+      expanded,
+      translations,
+    } = this.props;
+    const { showModal } = this.state;
+    return (
+      <div
+        className={classNames('rdw-button-wrapper', className)}
+        aria-label="rdw-button-control"
+      >
+        {options.indexOf('link') >= 0 && (
+          <Option
+            value="unordered-list-item"
+            className={classNames(link.className)}
+            onClick={this.signalExpandShowModal}
+            aria-haspopup="true"
+            aria-expanded={showModal}
+            title={link.title || translations['components.controls.link.link']}
+          >
+            <img src={link.icon} alt="" />
+          </Option>
+        )}
+        {options.indexOf('unlink') >= 0 && (
+          <Option
+            disabled={!currentState.link}
+            value="ordered-list-item"
+            className={classNames(unlink.className)}
+            onClick={this.removeLink}
+            title={
+              unlink.title || translations['components.controls.link.unlink']
+            }
+          >
+            <img src={unlink.icon} alt="" />
+          </Option>
+        )}
+        {expanded && showModal ? this.renderAddLinkModal() : undefined}
+      </div>
+    );
+  }
+
+  renderInDropDown() {
+    const {
+      expanded,
+      onExpandEvent,
+      doCollapse,
+      doExpand,
+      onChange,
+      config,
+      translations,
+    } = this.props;
+    const {
+      options,
+      link,
+      className,
+      dropdownClassName,
+      title,
+    } = config;
+    const { showModal } = this.state;
+    return (
+      <div
+        className="rdw-button-wrapper"
+        aria-haspopup="true"
+        aria-label="rdw-link-control"
+        aria-expanded={expanded}
+        title={title}
+      >
+        <Dropdown
+          className={classNames('rdw-button-dropdown', className)}
+          optionWrapperClassName={classNames(dropdownClassName)}
+          onChange={onChange}
+          expanded={expanded && !showModal}
+          doExpand={doExpand}
+          doCollapse={doCollapse}
+          onExpandEvent={onExpandEvent}
+        >
+          <img src={getFirstIcon(config)} alt="" />
+          {options.indexOf('link') >= 0 && (
+            <DropdownOption
+              onClick={this.forceExpandAndShowModal}
+              className={classNames('rdw-button-dropdownoption', link.className)}
+              title={
+                link.title || translations['components.controls.link.link']
+              }
+            >
+              <img src={link.icon} alt="" />
+            </DropdownOption>
+          )}
+        </Dropdown>
+        {expanded && showModal ? this.renderAddLinkModal() : undefined}
+      </div>
+    );
+  }
+
+  render() {
+    const {
+      config: { inDropdown },
+    } = this.props;
+    if (inDropdown) {
+      return this.renderInDropDown();
+    }
+    return this.renderInFlatList();
+  }
+}
+
+export default LayoutComponent;

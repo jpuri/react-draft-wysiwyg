@@ -1,0 +1,96 @@
+.rdw-button-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.rdw-button-dropdown {
+  width: 50px;
+}
+.rdw-button-dropdownOption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.rdw-button-dropdownPlaceholder {
+  margin-left: 8px;
+}
+.rdw-button-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  z-index: 100;
+  background: rgba(0, 0, 0, .4);
+}
+
+.rdw-button-modal-inner {
+  width: 80%;
+  height: 80%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+.rdw-button-modal-label {
+  font-size: 15px;
+}
+.rdw-button-modal-input {
+  border-radius: 2px;
+  border: 1px solid #F1F1F1;
+  height: 25px;
+  width: 320px;
+  padding: 20px 5px;
+  margin: 16px 0;
+  box-sizing: border-box;
+}
+.rdw-button-modal-input:focus {
+  outline: none;
+}
+
+.rdw-button-modal-buttonsection {
+  margin: 0 auto;
+}
+
+.rdw-button-modal-target-option {
+  margin-bottom: 20px;
+}
+
+.rdw-button-modal-target-option > span {
+  margin-left: 5px;
+}
+
+.rdw-button-modal-btn {
+  margin-left: 10px;
+  width: 120px;
+  height: 36px;
+  border: 1px solid #F1F1F1;
+  border-radius: 2px;
+  cursor: pointer;
+  background: white;
+  text-transform: capitalize;
+}
+
+.rdw-button-modal-btn:focus {
+  outline: none !important;
+}
+.rdw-button-modal-btn:disabled {
+  background: #ece9e9;
+}
+.rdw-button-dropdownoption {
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+.rdw-history-dropdown {
+  width: 50px;
+}
