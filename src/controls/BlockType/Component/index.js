@@ -80,7 +80,8 @@ class LayoutComponent extends Component {
       currentState: { blockType },
     } = this.props;
     return (
-      <div className={classNames('rdw-inline-wrapper', className)}>
+      // <div className={classNames('rdw-inline-wrapper', className)}>
+      <React.Fragment>
         {blocks.map((block, index) => (
           <Option
             key={index}
@@ -91,7 +92,8 @@ class LayoutComponent extends Component {
             {block.displayName}
           </Option>
         ))}
-      </div>
+      {/* </div> */}
+      </React.Fragment>
     );
   }
 
