@@ -77,7 +77,7 @@ class Button extends Component {
     const currentValues = {};
     if (
       currentEntity &&
-      contentState.getEntity(currentEntity).get('type') === 'LINK'
+      contentState.getEntity(currentEntity).get('type') === 'BUTTON'
     ) {
       currentValues.link = {};
       const entityRange =

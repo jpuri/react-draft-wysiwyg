@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import openlink from '../../../images/openlink.svg';
 import './styles.css';
 
-function findLinkEntities(contentBlock, callback, contentState) {
+function findButtonEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
     (character) => {
       const entityKey = character.getEntity();
@@ -16,9 +16,9 @@ function findLinkEntities(contentBlock, callback, contentState) {
   );
 }
 
-function getLinkComponent(config) {
+function getButtonComponent(config) {
   const showOpenOptionOnHover = config.showOpenOptionOnHover;
-  return class Link extends Component {
+  return class Button extends Component {
     static propTypes = {
       entityKey: PropTypes.string.isRequired,
       children: PropTypes.array,
@@ -73,6 +73,6 @@ function getLinkComponent(config) {
 }
 
 export default config => ({
-  strategy: findLinkEntities,
-  component: getLinkComponent(config),
+  strategy: findButtonEntities,
+  component: getButtonComponent(config),
 });
