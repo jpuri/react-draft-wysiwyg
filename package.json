@@ -5,7 +5,7 @@
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jpuri/react-draft-wysiwyg.git"
+    "url": "git+https://github.com/wadaryohei/react-draft-wysiwyg.git"
   },
   "author": "Jyoti Puri",
   "devDependencies": {
