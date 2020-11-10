@@ -1,22 +1,22 @@
-.rdw-button-wrapper {
+.rdw-link-wrapper {
   display: flex;
   align-items: center;
   margin-bottom: 6px;
   position: relative;
   flex-wrap: wrap
 }
-.rdw-button-dropdown {
+.rdw-link-dropdown {
   width: 50px;
 }
-.rdw-button-dropdownOption {
+.rdw-link-dropdownOption {
   height: 40px;
   display: flex;
   justify-content: center;
 }
-.rdw-button-dropdownPlaceholder {
+.rdw-link-dropdownPlaceholder {
   margin-left: 8px;
 }
-.rdw-button-modal {
+.rdw-link-modal {
   position: absolute;
   top: 35px;
   left: 5px;
@@ -31,10 +31,10 @@
   background: white;
   box-shadow: 3px 3px 5px #BFBDBD;
 }
-.rdw-button-modal-label {
+.rdw-link-modal-label {
   font-size: 15px;
 }
-.rdw-button-modal-input {
+.rdw-link-modal-input {
   margin-top: 5px;
   border-radius: 2px;
   border: 1px solid #F1F1F1;
@@ -42,19 +42,19 @@
   margin-bottom: 15px;
   padding: 0 5px;
 }
-.rdw-button-modal-input:focus {
+.rdw-link-modal-input:focus {
   outline: none;
 }
-.rdw-button-modal-buttonsection {
+.rdw-link-modal-buttonsection {
   margin: 0 auto;
 }
-.rdw-button-modal-target-option {
+.rdw-link-modal-target-option {
   margin-bottom: 20px;
 }
-.rdw-button-modal-target-option > span {
+.rdw-link-modal-target-option > span {
   margin-left: 5px;
 }
-.rdw-button-modal-btn {
+.rdw-link-modal-btn {
   margin-left: 10px;
   width: 75px;
   height: 30px;
@@ -64,19 +64,19 @@
   background: white;
   text-transform: capitalize;
 }
-.rdw-button-modal-btn:hover {
+.rdw-link-modal-btn:hover {
   box-shadow: 1px 1px 0px #BFBDBD;
 }
-.rdw-button-modal-btn:active {
+.rdw-link-modal-btn:active {
   box-shadow: 1px 1px 0px #BFBDBD inset;
 }
-.rdw-button-modal-btn:focus {
+.rdw-link-modal-btn:focus {
   outline: none !important;
 }
-.rdw-button-modal-btn:disabled {
+.rdw-link-modal-btn:disabled {
   background: #ece9e9;
 }
-.rdw-button-dropdownoption {
+.rdw-link-dropdownoption {
   height: 40px;
   display: flex;
   justify-content: center;
