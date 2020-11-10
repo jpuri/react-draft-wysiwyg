@@ -51,22 +51,18 @@ function getLinkComponent(config) {
       const { url, targetOption } = contentState.getEntity(entityKey).getData();
       const { showPopOver } = this.state;
       return (
-        <span
+        <a
+          href={url}
+          target={targetOption}
+          onClick={this.openLink}
           className="rdw-link-decorator-wrapper"
           onMouseEnter={this.toggleShowPopOver}
           onMouseLeave={this.toggleShowPopOver}
         >
-          <a href={url} target={targetOption}>{children}</a>
-          {showPopOver && showOpenOptionOnHover ?
-            <img
-              src={openlink}
-              alt=""
-              onClick={this.openLink}
-              className="rdw-link-decorator-icon"
-            />
-            : undefined
-          }
-        </span>
+          <span>
+            {children}
+          </span>
+        </a>
       );
     }
   };
