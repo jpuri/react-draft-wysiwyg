@@ -106,33 +106,33 @@ class LayoutComponent extends Component {
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
     return (
       <div
-        className={classNames('rdw-link-modal', popupClassName)}
+        className={classNames('rdw-button-modal', popupClassName)}
         onClick={stopPropagation}
       >
-        <label className="rdw-link-modal-label" htmlFor="linkTitle">
+        <label className="rdw-button-modal-label" htmlFor="linkTitle">
           {translations['components.controls.link.linkTitle']}
         </label>
         <input
           id="linkTitle"
-          className="rdw-link-modal-input"
+          className="rdw-button-modal-input"
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTitle"
           value={linkTitle}
         />
-        <label className="rdw-link-modal-label" htmlFor="linkTarget">
+        <label className="rdw-button-modal-label" htmlFor="linkTarget">
           {translations['components.controls.link.linkTarget']}
         </label>
         <input
           id="linkTarget"
-          className="rdw-link-modal-input"
+          className="rdw-button-modal-input"
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTarget"
           value={linkTarget}
         />
         <label
-          className="rdw-link-modal-target-option"
+          className="rdw-button-modal-target-option"
           htmlFor="openLinkInNewWindow"
         >
           <input
@@ -146,15 +146,15 @@ class LayoutComponent extends Component {
             {translations['components.controls.link.linkTargetOption']}
           </span>
         </label>
-        <span className="rdw-link-modal-buttonsection">
+        <span className="rdw-button-modal-buttonsection">
           <button
-            className="rdw-link-modal-btn"
+            className="rdw-button-modal-btn"
             onClick={this.addLink}
             disabled={!linkTarget || !linkTitle}
           >
             {translations['generic.add']}
           </button>
-          <button className="rdw-link-modal-btn" onClick={doCollapse}>
+          <button className="rdw-button-modal-btn" onClick={doCollapse}>
             {translations['generic.cancel']}
           </button>
         </span>
@@ -172,8 +172,8 @@ class LayoutComponent extends Component {
     const { showModal } = this.state;
     return (
       <div
-        className={classNames('rdw-link-wrapper', className)}
-        aria-label="rdw-link-control"
+        className={classNames('rdw-button-wrapper', className)}
+        aria-label="rdw-button-control"
       >
         {options.indexOf('link') >= 0 && (
           <Option
@@ -227,14 +227,14 @@ class LayoutComponent extends Component {
     const { showModal } = this.state;
     return (
       <div
-        className="rdw-link-wrapper"
+        className="rdw-button-wrapper"
         aria-haspopup="true"
-        aria-label="rdw-link-control"
+        aria-label="rdw-button-control"
         aria-expanded={expanded}
         title={title}
       >
         <Dropdown
-          className={classNames('rdw-link-dropdown', className)}
+          className={classNames('rdw-button-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
           expanded={expanded && !showModal}
@@ -246,7 +246,7 @@ class LayoutComponent extends Component {
           {options.indexOf('link') >= 0 && (
             <DropdownOption
               onClick={this.forceExpandAndShowModal}
-              className={classNames('rdw-link-dropdownoption', link.className)}
+              className={classNames('rdw-button-dropdownoption', link.className)}
               title={
                 link.title || translations['components.controls.link.link']
               }
@@ -259,7 +259,7 @@ class LayoutComponent extends Component {
               onClick={this.removeLink}
               disabled={!currentState.link}
               className={classNames(
-                'rdw-link-dropdownoption',
+                'rdw-button-dropdownoption',
                 unlink.className
               )}
               title={

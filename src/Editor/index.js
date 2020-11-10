@@ -213,7 +213,7 @@ class WysiwygEditor extends Component {
         showOpenOptionOnHover: toolbar.link.showOpenOptionOnHover,
       }),
       getButtonDecorator({
-        showOpenOptionOnHover: toolbar.link.showOpenOptionOnHover,
+        showOpenOptionOnHover: toolbar.button.showOpenOptionOnHover,
       }),
     ];
     if (this.props.mention) {

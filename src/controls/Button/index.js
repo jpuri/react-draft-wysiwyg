@@ -19,7 +19,7 @@ const linkifyLink = params => {
   };
 };
 
-class Link extends Component {
+class Button extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
@@ -156,7 +156,7 @@ class Link extends Component {
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', {
+      .createEntity('BUTTON', 'MUTABLE', {
         url: linkTarget,
         targetOption: linkTargetOption,
       })
@@ -217,7 +217,7 @@ class Link extends Component {
   }
 }
 
-export default Link;
+export default Button;
 
 // todo refct
 // 1. better action names here
