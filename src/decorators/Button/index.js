@@ -55,20 +55,12 @@ function getButtonComponent(config) {
           className="rdw-button-decorator-wrapper"
           href={url}
           target={targetOption}
+          onClick={this.openLink}
           onMouseEnter={this.toggleShowPopOver}
           onMouseLeave={this.toggleShowPopOver}
         >
-          {children}
           <span>
-            {showPopOver && showOpenOptionOnHover ?
-              <img
-              src={openlink}
-              alt=""
-              onClick={this.openLink}
-              className="rdw-button-decorator-icon"
-            />
-            : undefined
-            }
+            {children}
           </span>
         </a>
         // <span
