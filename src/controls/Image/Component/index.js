@@ -337,12 +337,8 @@ class LayoutComponent extends Component {
       translations,
     } = this.props;
     return (
-      <div
-        className="rdw-image-wrapper"
-        aria-haspopup="true"
-        aria-expanded={expanded}
-        aria-label="rdw-image-control"
-      >
+      // <div className="rdw-image-wrapper" aria-haspopup="true" aria-expanded={expanded} aria-label="rdw-image-control">
+      <React.Fragment>
         <Option
           className={classNames(className)}
           value="unordered-list-item"
@@ -352,7 +348,8 @@ class LayoutComponent extends Component {
           <img src={icon} alt="" />
         </Option>
         {expanded ? this.renderAddImageModal() : undefined}
-      </div>
+        {/* </div> */}
+      </React.Fragment>
     );
   }
 }
