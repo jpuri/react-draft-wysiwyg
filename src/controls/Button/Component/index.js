@@ -109,7 +109,7 @@ class LayoutComponent extends Component {
         className={classNames('rdw-button-modal', popupClassName)}
         onClick={stopPropagation}
       >
-        <label className="rdw-button-modal-label" htmlFor="linkTitle">
+        {/* <label className="rdw-button-modal-label" htmlFor="linkTitle">
           {translations['components.controls.link.linkTitle']}
         </label>
         <input
@@ -119,7 +119,7 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="linkTitle"
           value={linkTitle}
-        />
+        /> */}
         <label className="rdw-button-modal-label" htmlFor="linkTarget">
           {translations['components.controls.link.linkTarget']}
         </label>
