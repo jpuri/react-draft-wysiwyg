@@ -171,10 +171,11 @@ class LayoutComponent extends Component {
     } = this.props;
     const { showModal } = this.state;
     return (
-      <div
-        className={classNames('rdw-link-wrapper', className)}
-        aria-label="rdw-link-control"
-      >
+      // <div
+      //   className={classNames('rdw-link-wrapper', className)}
+      //   aria-label="rdw-link-control"
+      // >
+      <React.Fragment>
         {options.indexOf('link') >= 0 && (
           <Option
             value="unordered-list-item"
@@ -201,7 +202,8 @@ class LayoutComponent extends Component {
           </Option>
         )}
         {expanded && showModal ? this.renderAddLinkModal() : undefined}
-      </div>
+      {/* </div> */}
+      </React.Fragment>
     );
   }
 

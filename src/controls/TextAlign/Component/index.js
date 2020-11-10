@@ -29,7 +29,8 @@ export default class TextAlign extends Component {
       translations,
     } = this.props;
     return (
-      <div className={classNames('rdw-text-align-wrapper', className)} aria-label="rdw-textalign-control">
+      // <div className={classNames('rdw-text-align-wrapper', className)} aria-label="rdw-textalign-control">
+      <React.Fragment>
         {options.indexOf('left') >= 0 && <Option
           value="left"
           className={classNames(left.className)}
@@ -78,7 +79,8 @@ export default class TextAlign extends Component {
             alt=""
           />
         </Option>}
-      </div>
+      {/* </div> */}
+      </React.Fragment>
     );
   }
 
