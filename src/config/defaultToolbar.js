@@ -15,6 +15,7 @@ import justify from '../../images/align-justify.svg';
 import color from '../../images/color.svg';
 import eraser from '../../images/eraser.svg';
 import link from '../../images/link.svg';
+import button from '../../images/linkbutton.svg';
 import unlink from '../../images/unlink.svg';
 import emoji from '../../images/emoji.svg';
 import embedded from '../../images/embedded.svg';
@@ -32,12 +33,13 @@ export default {
   options: [
     "inline",
     "blockType",
-    "fontSize",
-    "fontFamily",
+    // "fontSize",
+    // "fontFamily",
     "list",
     "textAlign",
     "colorPicker",
     "link",
+    "button",
     "embedded",
     "emoji",
     "image",
@@ -178,9 +180,21 @@ export default {
     dropdownClassName: undefined,
     showOpenOptionOnHover: true,
     defaultTargetOption: "_self",
-    options: ["link", "unlink"],
+    options: ["link"],
     link: { icon: link, className: undefined, title: undefined },
     unlink: { icon: unlink, className: undefined, title: undefined },
+    linkCallback: undefined
+  },
+  button: {
+    inDropdown: false,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    dropdownClassName: undefined,
+    showOpenOptionOnHover: true,
+    defaultTargetOption: "_self",
+    options: ["link"],
+    link: { icon: button, className: undefined, title: undefined },
     linkCallback: undefined
   },
   emoji: {
