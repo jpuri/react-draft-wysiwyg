@@ -51,22 +51,42 @@ function getButtonComponent(config) {
       const { url, targetOption } = contentState.getEntity(entityKey).getData();
       const { showPopOver } = this.state;
       return (
-        <span
+        <a
           className="rdw-button-decorator-wrapper"
+          href={url}
+          target={targetOption}
           onMouseEnter={this.toggleShowPopOver}
           onMouseLeave={this.toggleShowPopOver}
         >
-          <a href={url} target={targetOption}>{children}</a>
-          {showPopOver && showOpenOptionOnHover ?
-            <img
+          {children}
+          <span>
+            {showPopOver && showOpenOptionOnHover ?
+              <img
               src={openlink}
               alt=""
               onClick={this.openLink}
               className="rdw-button-decorator-icon"
             />
             : undefined
-          }
-        </span>
+            }
+          </span>
+        </a>
+        // <span
+        //   className="rdw-button-decorator-wrapper"
+        //   onMouseEnter={this.toggleShowPopOver}
+        //   onMouseLeave={this.toggleShowPopOver}
+        // >
+        //   <a href={url} target={targetOption}>{children}</a>
+        //   {showPopOver && showOpenOptionOnHover ?
+        //     <img
+        //       src={openlink}
+        //       alt=""
+        //       onClick={this.openLink}
+        //       className="rdw-button-decorator-icon"
+        //     />
+        //     : undefined
+        //   }
+        // </span>
       );
     }
   };
