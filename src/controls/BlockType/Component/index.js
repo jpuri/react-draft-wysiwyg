@@ -5,6 +5,8 @@ import classNames from 'classnames';
 import Option from '../../../components/Option';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
+import bold from '../../../../images/bold.svg';
+
 
 class LayoutComponent extends Component {
   static propTypes = {
@@ -80,18 +82,43 @@ class LayoutComponent extends Component {
       currentState: { blockType },
     } = this.props;
     return (
-      <div className={classNames('rdw-inline-wrapper', className)}>
-        {blocks.map((block, index) => (
-          <Option
-            key={index}
-            value={block.label}
-            active={blockType === block.label}
-            onClick={onChange}
-          >
-            {block.displayName}
+      // <div className={classNames('rdw-inline-wrapper', className)}>
+      // blocks.map((block, index) => {
+      //   return ()
+      // }
+      // <Option
+      //   key={index}
+      //   value={block.label}
+      //   active={blockType === block.label}
+      //   onClick={onChange}
+      // >
+      //   {block.displayName}
+      // </Option>
+      <>
+        {blocks[0].displayName === 'H1' && (
+          <Option key={"H1"} value={blocks[0].label} active={blockType === blocks[0].label} onClick={onChange}>
+            <img src={bold} alt="" />
           </Option>
-        ))}
-      </div>
+        )}
+
+        {blocks[1].displayName === 'H2' && (
+          <Option key={"H2"} value={blocks[1].label} active={blockType === blocks[1].label} onClick={onChange}>
+            <img src={bold} alt="" />
+          </Option>
+        )}
+
+        {blocks[2].displayName === 'Blockquote' && (
+          <Option key={"Blockquote"} value={blocks[2].label} active={blockType === blocks[2].label} onClick={onChange}>
+            <img src={bold} alt="" />
+          </Option>
+        )}
+
+        {blocks[3].displayName === 'Code' && (
+          <Option key={"Code"} value={blocks[3].label} active={blockType === blocks[3].label} onClick={onChange}>
+            <img src={bold} alt="" />
+          </Option>
+        )}
+      </>
     );
   }
 
@@ -113,7 +140,8 @@ class LayoutComponent extends Component {
       currentBlockData[0] &&
       currentBlockData[0].displayName;
     return (
-      <div className="rdw-block-wrapper" aria-label="rdw-block-control">
+      // <div className="rdw-block-wrapper" aria-label="rdw-block-control">
+      <>
         <Dropdown
           className={classNames('rdw-block-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
@@ -140,7 +168,7 @@ class LayoutComponent extends Component {
             </DropdownOption>
           ))}
         </Dropdown>
-      </div>
+      </>
     );
   }
 

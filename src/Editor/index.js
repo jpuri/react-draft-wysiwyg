@@ -28,6 +28,7 @@ import { hasProperty, filter } from '../utils/common';
 import { handlePastedText } from '../utils/handlePaste';
 import Controls from '../controls';
 import getLinkDecorator from '../decorators/Link';
+import getButtonDecorator from '../decorators/Button';
 import getMentionDecorators from '../decorators/Mention';
 import getHashtagDecorator from '../decorators/HashTag';
 import getBlockRenderFunc from '../renderer';
@@ -210,6 +211,9 @@ class WysiwygEditor extends Component {
       ...this.props.customDecorators,
       getLinkDecorator({
         showOpenOptionOnHover: toolbar.link.showOpenOptionOnHover,
+      }),
+      getButtonDecorator({
+        showOpenOptionOnHover: toolbar.button.showOpenOptionOnHover,
       }),
     ];
     if (this.props.mention) {
