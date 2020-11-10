@@ -33,8 +33,8 @@ export default {
   options: [
     "inline",
     "blockType",
-    // "fontSize",
-    // "fontFamily",
+    "fontSize",
+    "fontFamily",
     "list",
     "textAlign",
     "colorPicker",

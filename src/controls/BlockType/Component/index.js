@@ -94,7 +94,7 @@ class LayoutComponent extends Component {
       // >
       //   {block.displayName}
       // </Option>
-      <>
+      <React.Fragment>
         {blocks[0].displayName === 'H1' && (
           <Option key={"H1"} value={blocks[0].label} active={blockType === blocks[0].label} onClick={onChange}>
             <img src={bold} alt="" />
@@ -118,7 +118,7 @@ class LayoutComponent extends Component {
             <img src={bold} alt="" />
           </Option>
         )}
-      </>
+      </React.Fragment>
     );
   }
 
@@ -141,7 +141,7 @@ class LayoutComponent extends Component {
       currentBlockData[0].displayName;
     return (
       // <div className="rdw-block-wrapper" aria-label="rdw-block-control">
-      <>
+      <React.Fragment>
         <Dropdown
           className={classNames('rdw-block-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
@@ -168,7 +168,7 @@ class LayoutComponent extends Component {
             </DropdownOption>
           ))}
         </Dropdown>
-      </>
+      </React.Fragment>
     );
   }
 

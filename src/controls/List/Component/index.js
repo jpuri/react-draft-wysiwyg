@@ -53,7 +53,7 @@ export default class LayoutComponent extends Component {
     const { options, unordered, ordered, indent, outdent, className } = config;
     return (
       // <div className={classNames('rdw-list-wrapper', className)} aria-label="rdw-list-control">
-      <>
+      <React.Fragment>
         {options.indexOf('unordered') >= 0 && <Option
           value="unordered"
           onClick={this.toggleBlockType}
@@ -100,7 +100,7 @@ export default class LayoutComponent extends Component {
             alt=""
           />
         </Option>}
-      </>
+      </React.Fragment>
     );
   }
 
