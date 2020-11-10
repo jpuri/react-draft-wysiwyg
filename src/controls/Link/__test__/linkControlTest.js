@@ -33,7 +33,7 @@ describe("LinkControl test suite", () => {
     ).to.equal(true);
   });
 
-  it("should have 2 child elements by default", () => {
+  it("should have 1 child elements by default", () => {
     const control = mount(
       <LinkControl
         onChange={() => {}}
@@ -43,7 +43,7 @@ describe("LinkControl test suite", () => {
         modalHandler={new ModalHandler()}
       />
     );
-    expect(control.find(Option).length).to.equal(2);
+    expect(control.find(Option).length).to.equal(1);
   });
 
   it("should have no value for state variable link default", () => {
