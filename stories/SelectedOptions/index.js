@@ -14,6 +14,7 @@ const SelectedOptions = () => (
         list: { inDropdown: true },
         textAlign: { inDropdown: true },
         link: { inDropdown: true },
+        button: { inDropdown: true },
         history: { inDropdown: true },
       }}
     />

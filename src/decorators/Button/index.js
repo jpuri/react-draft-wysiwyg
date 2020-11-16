@@ -3,22 +3,22 @@ import PropTypes from 'prop-types';
 import openlink from '../../../images/openlink.svg';
 import './styles.css';
 
-function findLinkEntities(contentBlock, callback, contentState) {
+function findButtonEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
     (character) => {
       const entityKey = character.getEntity();
       return (
         entityKey !== null &&
-        contentState.getEntity(entityKey).getType() === 'LINK'
+        contentState.getEntity(entityKey).getType() === 'BUTTON'
       );
     },
     callback,
   );
 }
 
-function getLinkComponent(config) {
+function getButtonComponent(config) {
   const showOpenOptionOnHover = config.showOpenOptionOnHover;
-  return class Link extends Component {
+  return class Button extends Component {
     static propTypes = {
       entityKey: PropTypes.string.isRequired,
       children: PropTypes.array,
@@ -52,10 +52,10 @@ function getLinkComponent(config) {
       const { showPopOver } = this.state;
       return (
         <a
+          className="rdw-button-decorator-wrapper"
           href={url}
           target={targetOption}
           onClick={this.openLink}
-          className="rdw-link-decorator-wrapper"
           onMouseEnter={this.toggleShowPopOver}
           onMouseLeave={this.toggleShowPopOver}
         >
@@ -63,12 +63,28 @@ function getLinkComponent(config) {
             {children}
           </span>
         </a>
+        // <span
+        //   className="rdw-button-decorator-wrapper"
+        //   onMouseEnter={this.toggleShowPopOver}
+        //   onMouseLeave={this.toggleShowPopOver}
+        // >
+        //   <a href={url} target={targetOption}>{children}</a>
+        //   {showPopOver && showOpenOptionOnHover ?
+        //     <img
+        //       src={openlink}
+        //       alt=""
+        //       onClick={this.openLink}
+        //       className="rdw-button-decorator-icon"
+        //     />
+        //     : undefined
+        //   }
+        // </span>
       );
     }
   };
 }
 
 export default config => ({
-  strategy: findLinkEntities,
-  component: getLinkComponent(config),
+  strategy: findButtonEntities,
+  component: getButtonComponent(config),
 });

@@ -109,7 +109,7 @@ class LayoutComponent extends Component {
         className={classNames('rdw-link-modal', popupClassName)}
         onClick={stopPropagation}
       >
-        <label className="rdw-link-modal-label" htmlFor="linkTitle">
+        {/* <label className="rdw-link-modal-label" htmlFor="linkTitle">
           {translations['components.controls.link.linkTitle']}
         </label>
         <input
@@ -119,7 +119,7 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="linkTitle"
           value={linkTitle}
-        />
+        /> */}
         <label className="rdw-link-modal-label" htmlFor="linkTarget">
           {translations['components.controls.link.linkTarget']}
         </label>
@@ -171,10 +171,7 @@ class LayoutComponent extends Component {
     } = this.props;
     const { showModal } = this.state;
     return (
-      // <div
-      //   className={classNames('rdw-link-wrapper', className)}
-      //   aria-label="rdw-link-control"
-      // >
+      // <div className={classNames('rdw-link-wrapper', className)} aria-label="rdw-link-control">
       <React.Fragment>
         {options.indexOf('link') >= 0 && (
           <Option

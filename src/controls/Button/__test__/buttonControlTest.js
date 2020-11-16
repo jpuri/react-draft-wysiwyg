@@ -75,14 +75,14 @@ describe("LinkControl test suite", () => {
     control.setState({ expanded: true });
     const buttons = control.find(".rdw-option-wrapper");
     buttons.first().simulate("click");
-    const inputs = control.find(".rdw-link-modal-input");
+    const inputs = control.find(".rdw-button-modal-input");
     inputs.last().simulate("change", {
       target: { name: "linkTitle", value: "the google" }
     });
     inputs.first().simulate("change", {
       target: { name: "linkTarget", value: "www.google.com" }
     });
-    const addButton = control.find(".rdw-link-modal-btn").first();
+    const addButton = control.find(".rdw-button-modal-btn").first();
     addButton.simulate("click");
     const lastCall = contentState.getLastCreatedEntityKey();
     assert.equal(
@@ -97,14 +97,14 @@ describe("LinkControl test suite", () => {
     control.setState({ expanded: true });
     const buttons = control.find(".rdw-option-wrapper");
     buttons.first().simulate("click");
-    const inputs = control.find(".rdw-link-modal-input");
+    const inputs = control.find(".rdw-button-modal-input");
     inputs.last().simulate("change", {
       target: { name: "linkTitle", value: "the google" }
     });
     inputs.first().simulate("change", {
       target: { name: "linkTarget", value: "www.google.com" }
     });
-    const addButton = control.find(".rdw-link-modal-btn").first();
+    const addButton = control.find(".rdw-button-modal-btn").first();
     addButton.simulate("click");
     const lastCall = contentState.getLastCreatedEntityKey();
     assert.equal(
@@ -127,14 +127,14 @@ describe("LinkControl test suite", () => {
     control.setState({ expanded: true });
     const buttons = control.find(".rdw-option-wrapper");
     buttons.first().simulate("click");
-    const inputs = control.find(".rdw-link-modal-input");
+    const inputs = control.find(".rdw-button-modal-input");
     inputs.last().simulate("change", {
       target: { name: "linkTitle", value: "the google" }
     });
     inputs.first().simulate("change", {
       target: { name: "linkTarget", value: "#hash-link" }
     });
-    const addButton = control.find(".rdw-link-modal-btn").first();
+    const addButton = control.find(".rdw-button-modal-btn").first();
     addButton.simulate("click");
     const lastCall = contentState.getLastCreatedEntityKey();
     assert.equal(contentState.getEntity(lastCall).getData().url, "#hash-link");
