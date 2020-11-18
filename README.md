@@ -8,6 +8,7 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 ![](http://i.imgur.com/tU7kJ6i.gif)
 
 ## Features
+
 - Configurable toolbar with option to add/remove controls.
 - Option to change the order of the controls in the toolbar.
 - Option to add custom controls to the toolbar.
@@ -37,6 +38,7 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 - Support for internationalization.
 
 ## Installing
+
 The package can be installed from npm `react-draft-wysiwyg`
 
 ```
@@ -44,27 +46,37 @@ $ npm install --save react-draft-wysiwyg draft-js
 ```
 
 ## Getting started
+
 Editor can be used as simple React Component:
+
 ```js
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 <Editor
   editorState={editorState}
   toolbarClassName="toolbarClassName"
   wrapperClassName="wrapperClassName"
   editorClassName="editorClassName"
   onEditorStateChange={this.onEditorStateChange}
-/>
+/>;
 ```
 
 ## Docs
+
 For more documentation check [here](https://jpuri.github.io/react-draft-wysiwyg/#/docs?_k=jjqinp).
 
 ## Questions Discussions
+
 For discussions join public channel #rd_wysiwyg in [DraftJS Slack Organization](https://draftjs.herokuapp.com/).
 
+## Fund
+
+You can fund project at [Patreon](https://www.patreon.com/jyotipuri).
+
 ## Thanks
+
 Original motivation and sponsorship for this work came from [iPaoo](http://www.ipaoo.com/). I am thankful to them for allowing the Editor to be open-sourced.
 
 ## License
+
 MIT.
