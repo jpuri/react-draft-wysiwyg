@@ -10,15 +10,22 @@ module.exports = {
   entry: ['./src/index'],
   output: {
     path: path.join(__dirname, '../dist'),
-    filename: 'react-draft-wysiwyg.js',
-    library: 'reactDraftWysiwyg',
+    filename: 'rich-text-editor.js',
+    library: 'richText',
     libraryTarget: 'umd',
   },
   externals: {
     react: 'react',
-    immutable: 'immutable',
+    //immutable: 'immutable',
     'react-dom': 'react-dom',
-    'draft-js': 'draft-js',
+    //'draft-js': 'draft-js',
+    '@innovaccer/design-system': {
+      root: 'InnovaccerDesignSystem',
+      commonjs2: 'InnovaccerDesignSystem',
+      commonjs: 'InnovaccerDesignSystem',
+      amd: 'InnovaccerDesignSystem',
+      umd: 'InnovaccerDesignSystem',
+    }
   },
   optimization: {
     minimizer: [new UglifyJsPlugin()],
@@ -30,7 +37,7 @@ module.exports = {
       },
     }),
     new MiniCssExtractPlugin({
-      filename: 'react-draft-wysiwyg.css',
+      filename: 'rich-text-editor.css',
       chunkFilename: '[id].css',
       ignoreOrder: false,
     }),
@@ -65,6 +72,14 @@ module.exports = {
         test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
         use: [{ loader: 'url-loader?limit=10000&mimetype=image/svg+xml' }],
       },
+      {
+        test: /\.(woff2?|eot|ttf|otf)$/,
+        loader: 'file-loader',
+        options: {
+          limit: 10000,
+          name: '[name].[hash:7].[ext]'
+        }
+      }
     ],
   },
   resolve: {

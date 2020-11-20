@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import './styles.css';
+import { Icon } from '@innovaccer/design-system';
 
 import { stopPropagation } from '../../../utils/common';
 
@@ -11,10 +11,12 @@ export default class Dropdown extends Component {
     onChange: PropTypes.func,
     className: PropTypes.string,
     expanded: PropTypes.bool,
+    menu: PropTypes.bool,
     doExpand: PropTypes.func,
     doCollapse: PropTypes.func,
     onExpandEvent: PropTypes.func,
     optionWrapperClassName: PropTypes.string,
+    triggerClassName: PropTypes.string,
     ariaLabel: PropTypes.string,
     title: PropTypes.string,
   };
@@ -61,35 +63,39 @@ export default class Dropdown extends Component {
       children,
       className,
       optionWrapperClassName,
+      triggerClassName,
       ariaLabel,
       onExpandEvent,
-      title,
+      menu,
     } = this.props;
+
     const { highlighted } = this.state;
     const options = children.slice(1, children.length);
+
+    const DropdownWrapperClass = classNames({
+      ['Editor-dropdown']: true,
+      ['Editor-dropdown--expanded']: expanded,
+    }, className);
+
     return (
       <div
-        className={classNames('rdw-dropdown-wrapper', className)}
+        className={DropdownWrapperClass}
         aria-expanded={expanded}
-        aria-label={ariaLabel || 'rdw-dropdown'}
+        aria-label={ariaLabel || 'Editor-dropdown'}
       >
         <a
-          className="rdw-dropdown-selectedtext"
+          className={triggerClassName}
           onClick={onExpandEvent}
-          title={title}
         >
           {children[0]}
-          <div
-            className={classNames({
-              'rdw-dropdown-carettoclose': expanded,
-              'rdw-dropdown-carettoopen': !expanded,
-            })}
-          />
+          {!menu && (
+            <Icon name="keyboard_arrow_down" />
+          )}
         </a>
-        {expanded ? (
+        {expanded && (
           <ul
             className={classNames(
-              'rdw-dropdown-optionwrapper',
+              'Editor-dropdown-optionWrapper',
               optionWrapperClassName
             )}
             onClick={stopPropagation}
@@ -106,8 +112,6 @@ export default class Dropdown extends Component {
               return temp;
             })}
           </ul>
-        ) : (
-          undefined
         )}
       </div>
     );

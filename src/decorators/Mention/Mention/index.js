@@ -1,25 +1,36 @@
 import React from "react";
 import PropTypes from "prop-types";
-import classNames from "classnames";
-import "./styles.css";
+import { Chip } from '@innovaccer/design-system';
 
 class Mention {
-  constructor(className) {
-    this.className = className;
+  constructor(config) {
+    this.config = config;
+    this.chipOptions = config.chipOptions;
   }
+
+  first = (array) => {
+    return (array != null && array.length)
+      ? array[0]
+      : undefined
+  };
+
   getMentionComponent = () => {
-    const className = this.className;
     const MentionComponent = ({ entityKey, children, contentState }) => {
-      const { url, value } = contentState.getEntity(entityKey).getData();
+      const { value } = contentState.getEntity(entityKey).getData();
+      const chipOptions = {
+        type: 'input',
+        name: value,
+        ...this.chipOptions,
+        clearButton: false,
+        label: children,
+        className: 'Editor-mention-chip'
+      };
+
       return (
-        <a
-          href={url || value}
-          className={classNames("rdw-mention-link", className)}
-        >
-          {children}
-        </a>
+          <Chip {...chipOptions} />
       );
     };
+
     MentionComponent.propTypes = {
       entityKey: PropTypes.number,
       children: PropTypes.array,
@@ -27,6 +38,7 @@ class Mention {
     };
     return MentionComponent;
   };
+
   getMentionDecorator = () => ({
     strategy: this.findMentionEntities,
     component: this.getMentionComponent()

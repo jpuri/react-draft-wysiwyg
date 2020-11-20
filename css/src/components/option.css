@@ -1,0 +1,18 @@
+.Editor-option {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  text-transform: capitalize;
+  height: var(--spacing-3);
+  width: var(--spacing-3);
+  border-radius: var(--spacing-m);
+}
+
+.Editor-option:hover {
+  background-color: var(--secondary-light);
+}
+
+.Editor-option--active {
+  background-color: var(--primary-lightest) !important;
+}

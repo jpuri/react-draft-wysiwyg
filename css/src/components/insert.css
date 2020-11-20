@@ -1,0 +1,56 @@
+.Editor-insert-imageLabel {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Editor-insert-imageInput {
+  height: 0px;
+  width: 0px;
+  opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.Editor-image {
+  box-sizing: border-box;
+}
+
+.Editor-image-delete {
+  height: 48px;
+  width: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: var(--spacing-m);
+}
+
+.Editor-image--delete {
+  border-radius: var(--spacing-m);
+  border: var(--spacing-xs) solid var(--primary-lighter);
+}
+
+.Editor-link {
+  max-width: var(--spacing-9);
+  margin-right: var(--spacing-m);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Editor-linkButtons {
+  height: var(--spacing-3);
+  width: var(--spacing-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.Editor-mention-suggestion {
+  position: relative;
+}

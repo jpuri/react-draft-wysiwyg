@@ -13,12 +13,12 @@ class ColorPicker extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
-    translations: PropTypes.object,
+    className: PropTypes.string,
   };
 
   state = {
     expanded: false,
-    currentColor: undefined,
+    currentColor: 'var(--text)',
     currentBgColor: undefined,
   };
 
@@ -33,11 +33,13 @@ class ColorPicker extends Component {
     if (editorState) {
       state.currentColor = getSelectionCustomInlineStyle(editorState, [
         'COLOR',
-      ]).COLOR;
+      ]).COLOR || "color-var(--text)";
+
       state.currentBgColor = getSelectionCustomInlineStyle(editorState, [
         'BGCOLOR',
       ]).BGCOLOR;
     }
+
     this.state = state;
     modalHandler.registerCallBack(this.expandCollapse);
   }
@@ -47,7 +49,7 @@ class ColorPicker extends Component {
     if (editorState && editorState !== prevProps.editorState) {
       this.setState({
         currentColor: getSelectionCustomInlineStyle(editorState, ['COLOR'])
-          .COLOR,
+          .COLOR || "color-var(--text)",
         currentBgColor: getSelectionCustomInlineStyle(editorState, ['BGCOLOR'])
           .BGCOLOR,
       });
@@ -92,15 +94,16 @@ class ColorPicker extends Component {
   };
 
   render() {
-    const { config, translations } = this.props;
+    const { config, className } = this.props;
     const { currentColor, currentBgColor, expanded } = this.state;
     const ColorPickerComponent = config.component || LayoutComponent;
     const color = currentColor && currentColor.substring(6);
     const bgColor = currentBgColor && currentBgColor.substring(8);
+
     return (
       <ColorPickerComponent
         config={config}
-        translations={translations}
+        className={className}
         onChange={this.toggleColor}
         expanded={expanded}
         onExpandEvent={this.onExpandEvent}

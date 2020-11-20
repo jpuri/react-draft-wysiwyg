@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import addMention from '../addMention';
 import KeyDownHandler from '../../../event-handler/keyDown';
 import SuggestionHandler from '../../../event-handler/suggestions';
-import './styles.css';
+import { Icon, Text } from '@innovaccer/design-system'
 
 class Suggestion {
   constructor(config) {
@@ -16,9 +16,9 @@ class Suggestion {
       getEditorState,
       getWrapperRef,
       caseSensitive,
-      dropdownClassName,
       optionClassName,
       modalHandler,
+      dropdownOptions
     } = config;
     this.config = {
       separator,
@@ -28,7 +28,7 @@ class Suggestion {
       getEditorState,
       getWrapperRef,
       caseSensitive,
-      dropdownClassName,
+      dropdownOptions,
       optionClassName,
       modalHandler,
     };
@@ -41,7 +41,7 @@ class Suggestion {
         trigger,
         getSuggestions,
         getEditorState,
-      } = this.config;
+      } = this.config;;
       const selection = getEditorState().getSelection();
       if (
         selection.get('anchorKey') === contentBlock.get('key') &&
@@ -151,18 +151,19 @@ function getSuggestionComponent() {
     onEditorKeyDown = event => {
       const { activeOption } = this.state;
       const newState = {};
+
       if (event.key === 'ArrowDown') {
         event.preventDefault();
         if (activeOption === this.filteredSuggestions.length - 1) {
           newState.activeOption = 0;
         } else {
-          newState.activeOption = activeOption + 1;
+          newState.activeOption = Number(activeOption) + 1;
         }
       } else if (event.key === 'ArrowUp') {
         if (activeOption <= 0) {
           newState.activeOption = this.filteredSuggestions.length - 1;
         } else {
-          newState.activeOption = activeOption - 1;
+          newState.activeOption = Number(activeOption) - 1;
         }
       } else if (event.key === 'Escape') {
         newState.showSuggestions = false;
@@ -232,47 +233,82 @@ function getSuggestionComponent() {
       }
     };
 
-    render() {
-      const { children } = this.props;
-      const { activeOption, showSuggestions } = this.state;
-      const { dropdownClassName, optionClassName } = config;
+    getOptionClass = (index) => {
+      const { activeOption } = this.state;
+
+      const OptionClass = classNames({
+        ['Editor-dropdown-option']: true,
+        ['Editor-dropdown-option--highlight']: index === activeOption
+      });
+
+      return OptionClass;
+    };
+
+    renderOption = (suggestion, index) => {
+      const { dropdownOptions = {} } = config;
+      const { customOptionRenderer } = dropdownOptions;
+      const { icon, label } = suggestion;
+
+      if (customOptionRenderer) {
+        const optionRenderer = customOptionRenderer(suggestion, this.state.activeOption, index);
+        const CustomOption = React.cloneElement(optionRenderer, {
+          key: index,
+          spellCheck: false,
+          onClick: this.addMention,
+          'data-index': index,
+          onMouseEnter: this.onOptionMouseEnter,
+          onMouseLeave: this.onOptionMouseLeave,
+        });
+        return CustomOption;
+      }
+
       return (
         <span
-          className="rdw-suggestion-wrapper"
+          key={index}
+          spellCheck={false}
+          onClick={this.addMention}
+          data-index={index}
+          onMouseEnter={this.onOptionMouseEnter}
+          onMouseLeave={this.onOptionMouseLeave}
+          className={this.getOptionClass(index)}
+        >
+          {icon && <Icon name={icon} className="mr-4" />}
+          <Text>{label}</Text>
+        </span>
+      );
+    };
+
+    render() {
+      const { children } = this.props;
+      const { showSuggestions } = this.state;
+      const { dropdownOptions = {} } = config;
+      const { dropdownClassName } = dropdownOptions;
+
+      const DropdownClass = classNames({
+        ['Popover']: true,
+        [`${dropdownClassName}`]: dropdownClassName !== undefined,
+        ['Editor-mention-dropdown']: true,
+      });
+
+      return (
+        <span
+          className="Editor-mention-suggestion"
           ref={this.setSuggestionReference}
           onClick={config.modalHandler.onSuggestionClick}
           aria-haspopup="true"
-          aria-label="rdw-suggestion-popup"
         >
           <span>{children}</span>
           {showSuggestions && (
             <span
-              className={classNames(
-                'rdw-suggestion-dropdown',
-                dropdownClassName
-              )}
+              className={DropdownClass}
               contentEditable="false"
               suppressContentEditableWarning
               style={this.state.style}
               ref={this.setDropdownReference}
             >
-              {this.filteredSuggestions.map((suggestion, index) => (
-                <span
-                  key={index}
-                  spellCheck={false}
-                  onClick={this.addMention}
-                  data-index={index}
-                  onMouseEnter={this.onOptionMouseEnter}
-                  onMouseLeave={this.onOptionMouseLeave}
-                  className={classNames(
-                    'rdw-suggestion-option',
-                    optionClassName,
-                    { 'rdw-suggestion-option-active': index === activeOption }
-                  )}
-                >
-                  {suggestion.text}
-                </span>
-              ))}
+              {this.filteredSuggestions.map((suggestion, index) =>
+                this.renderOption(suggestion, index)
+              )}
             </span>
           )}
         </span>

@@ -1,0 +1,11 @@
+.bg-secondary {
+  background-color: var(--secondary);
+}
+
+.bg-primary-lightest {
+  background-color: var(--primary-lightest);
+}
+
+div {
+  margin: 0px;
+}

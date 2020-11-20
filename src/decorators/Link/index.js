@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ensureSafeUrl } from '../../utils/url'
-import openlink from '../../../images/openlink.svg';
-import './styles.css';
+import {
+  Popover,
+  Text,
+  Icon,
+  Link as DesignSystemLink
+} from '@innovaccer/design-system';
+import { Modifier, EditorState } from 'draft-js';
+import { getEntityRange } from 'draftjs-utils';
 
 function findLinkEntities(contentBlock, callback, contentState) {
   contentBlock.findEntityRanges(
@@ -18,7 +23,7 @@ function findLinkEntities(contentBlock, callback, contentState) {
 }
 
 function getLinkComponent(config) {
-  const showOpenOptionOnHover = config.showOpenOptionOnHover;
+
   return class Link extends Component {
     static propTypes = {
       entityKey: PropTypes.string.isRequired,
@@ -27,47 +32,99 @@ function getLinkComponent(config) {
     };
 
     state: Object = {
-      showPopOver: false,
+      open: false,
     };
 
-    openLink: Function = () => {
-      const { entityKey, contentState } = this.props;
-      const { url } = contentState.getEntity(entityKey).getData();
-      const linkTab = window.open(ensureSafeUrl(url), 'blank'); // eslint-disable-line no-undef
-      // linkTab can be null when the window failed to open.
-      if (linkTab) {
-        linkTab.focus();
+    onDeleteLink = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const editorState = config.getEditorState();
+      let selection = editorState.getSelection();
+      const { contentState, entityKey } = this.props;
+
+      const entityRange = getEntityRange(editorState, entityKey);
+      const isBackward = selection.getIsBackward();
+      if (isBackward) {
+        selection = selection.merge({
+          anchorOffset: entityRange.end,
+          focusOffset: entityRange.start,
+        });
+      } else {
+        selection = selection.merge({
+          anchorOffset: entityRange.start,
+          focusOffset: entityRange.end,
+        });
       }
+      let newContentState = Modifier.setBlockType(
+        contentState,
+        selection,
+        'unstyled'
+      );
+
+      newContentState = Modifier.removeRange(newContentState, selection, 'backward');
+      config.onChange(EditorState.push(config.getEditorState(), newContentState, 'remove-range'));
+    }
+
+    onEditLink = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+
+      config.onEditLink();
+
+      this.setState({
+        open: false
+      })
     };
 
-    toggleShowPopOver: Function = () => {
-      const showPopOver = !this.state.showPopOver;
+    onToggle = (updatedOpen) => {
       this.setState({
-        showPopOver,
+        open: updatedOpen
       });
     };
 
     render() {
       const { children, entityKey, contentState } = this.props;
-      const { url, targetOption } = contentState.getEntity(entityKey).getData();
-      const { showPopOver } = this.state;
-      return (
+      const { url } = contentState.getEntity(entityKey).getData();
+      const { open } = this.state;
+
+      const trigger = (
         <span
-          className="rdw-link-decorator-wrapper"
-          onMouseEnter={this.toggleShowPopOver}
-          onMouseLeave={this.toggleShowPopOver}
+          contentEditable="false"
+          suppressContentEditableWarning
         >
-          <a href={ensureSafeUrl(url)} target={targetOption}>{children}</a>
-          {showPopOver && showOpenOptionOnHover ?
-            <img
-              src={openlink}
-              alt=""
-              onClick={this.openLink}
-              className="rdw-link-decorator-icon"
-            />
-            : undefined
-          }
+          <Text appearance="link">{children}</Text>
         </span>
+      );
+
+      return (
+        <Popover
+          trigger={trigger}
+          appendToBody={false}
+          open={open}
+          onToggle={this.onToggle}
+        >
+          <div
+            contentEditable="false"
+            suppressContentEditableWarning
+            className="d-flex pl-5 py-5 pr-4 align-items-center"
+          >
+            <DesignSystemLink
+              href={url}
+              target="_new"
+              className="Editor-link"
+            >
+              {url}
+            </DesignSystemLink>
+            <span className="Editor-seperator" />
+            <span className="Editor-linkButtons" onClick={this.onEditLink}>
+              <Icon name="edit" size={20} />
+            </span>
+            <span className="Editor-seperator" />
+            <span className="Editor-linkButtons" onClick={this.onDeleteLink}>
+              <Icon name="delete" size={20} />
+            </span>
+          </div>
+        </Popover>
       );
     }
   };

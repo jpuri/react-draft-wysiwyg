@@ -1,9 +1,7 @@
 /* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import './styles.css';
 
 export default class Option extends Component {
   static propTypes = {
@@ -29,20 +27,20 @@ export default class Option extends Component {
   };
 
   render() {
-    const { children, className, activeClassName, active, disabled, title } = this.props;
+    const { children, className, activeClassName, active, disabled } = this.props;
+
+    const OptionClass = classNames({
+      ['Editor-option']: true,
+      [`Editor-option--active`]: active && !activeClassName,
+      [`${activeClassName}`]: active && activeClassName,
+      ['Editor-option--disabled']: disabled,
+    }, className);
+
     return (
       <div
-        className={classNames(
-          'rdw-option-wrapper',
-          className,
-          {
-            [`rdw-option-active ${activeClassName}`]: active,
-            'rdw-option-disabled': disabled,
-          },
-        )}
+        className={OptionClass}
         onClick={this.onClick}
         aria-selected={active}
-        title={title}
       >
         {children}
       </div>

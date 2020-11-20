@@ -23,37 +23,48 @@ class Link extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
+    onCloseLinkPopover: PropTypes.func.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
-    translations: PropTypes.object,
+    inDropdown: PropTypes.boolean,
+    linkPopoverOpen: PropTypes.bool
   };
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = this.props;
+    const { editorState, linkPopoverOpen } = this.props;
+
     this.state = {
-      expanded: false,
-      link: undefined,
+      expanded: linkPopoverOpen,
       selectionText: undefined,
+      link: undefined,
       currentEntity: editorState ? getSelectionEntity(editorState) : undefined,
     };
-    modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentDidUpdate(prevProps) {
-    const { editorState } = this.props;
+    const { editorState, linkPopoverOpen } = this.props;
     if (editorState && editorState !== prevProps.editorState) {
       this.setState({ currentEntity: getSelectionEntity(editorState) });
     }
-  }
 
-  componentWillUnmount() {
-    const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.expandCollapse);
+    if (prevProps.linkPopoverOpen !== linkPopoverOpen && linkPopoverOpen) {
+      this.setState({
+        expanded: linkPopoverOpen,
+      });
+    }
   }
 
   onExpandEvent = () => {
-    this.signalExpanded = !this.state.expanded;
+    const isPopoverOpen = !this.state.expanded;
+
+    this.setState({
+      expanded: isPopoverOpen
+    });
+
+    if (!isPopoverOpen) {
+      this.props.onCloseLinkPopover();
+    }
   };
 
   onChange = (action, title, target, targetOption) => {
@@ -72,9 +83,10 @@ class Link extends Component {
 
   getCurrentValues = () => {
     const { editorState } = this.props;
-    const { currentEntity } = this.state;
+    const { currentEntity, link } = this.state;
     const contentState = editorState.getCurrentContent();
     const currentValues = {};
+    
     if (
       currentEntity &&
       contentState.getEntity(currentEntity).get('type') === 'LINK'
@@ -83,11 +95,11 @@ class Link extends Component {
       const entityRange =
         currentEntity && getEntityRange(editorState, currentEntity);
       currentValues.link.target =
-        currentEntity && contentState.getEntity(currentEntity).get('data').url;
+        currentEntity && (contentState.getEntity(currentEntity).get('data').url);
       currentValues.link.targetOption =
         currentEntity &&
         contentState.getEntity(currentEntity).get('data').targetOption;
-      currentValues.link.title = entityRange && entityRange.text;
+      currentValues.link.title = entityRange && (entityRange.text);
     }
     currentValues.selectionText = getSelectionText(editorState);
     return currentValues;
@@ -159,6 +171,7 @@ class Link extends Component {
       .createEntity('LINK', 'MUTABLE', {
         url: linkTarget,
         targetOption: linkTargetOption,
+        targetText: linkTitle
       })
       .getLastCreatedEntityKey();
 
@@ -189,21 +202,22 @@ class Link extends Component {
       undefined
     );
     onChange(
-      EditorState.push(newEditorState, contentState, 'insert-characters')
+      EditorState.push(newEditorState, contentState, 'insert-characters'),
     );
+    this.props.onCloseLinkPopover();
     this.doCollapse();
   };
 
   render() {
-    const { config, translations } = this.props;
+    const { config, inDropdown } = this.props;
     const { expanded } = this.state;
     const { link, selectionText } = this.getCurrentValues();
-    const LinkComponent = config.component || LayoutComponent;
+
     return (
-      <LinkComponent
+      <LayoutComponent
         config={config}
-        translations={translations}
         expanded={expanded}
+        inDropdown={inDropdown}
         onExpandEvent={this.onExpandEvent}
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
@@ -218,8 +232,3 @@ class Link extends Component {
 }
 
 export default Link;
-
-// todo refct
-// 1. better action names here
-// 2. align update signatue
-// 3. align current value signature

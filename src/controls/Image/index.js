@@ -8,52 +8,27 @@ class ImageControl extends Component {
   static propTypes = {
     editorState: PropTypes.object.isRequired,
     onChange: PropTypes.func.isRequired,
-    modalHandler: PropTypes.object,
     config: PropTypes.object,
-    translations: PropTypes.object,
+    inDropdown: PropTypes.bool,
   };
 
   constructor(props) {
     super(props);
-    const { modalHandler } = this.props;
     this.state = {
       expanded: false,
     };
-    modalHandler.registerCallBack(this.expandCollapse);
+    //modalHandler.registerCallBack(this.expandCollapse);
   }
 
   componentWillUnmount() {
-    const { modalHandler } = this.props;
-    modalHandler.deregisterCallBack(this.expandCollapse);
+    //const { modalHandler } = this.props;
+    //modalHandler.deregisterCallBack(this.expandCollapse);
   }
-
-  onExpandEvent = () => {
-    this.signalExpanded = !this.state.expanded;
-  };
-
-  doExpand = () => {
-    this.setState({
-      expanded: true,
-    });
-  };
-
-  doCollapse = () => {
-    this.setState({
-      expanded: false,
-    });
-  };
-
-  expandCollapse = () => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
-  };
 
   addImage = (src, height, width, alt) => {
     const { editorState, onChange, config } = this.props;
     const entityData = { src, height, width };
-    if (config.alt.present) {
+    if (config.alt) {
       entityData.alt = alt;
     }
     const entityKey = editorState
@@ -66,22 +41,16 @@ class ImageControl extends Component {
       ' '
     );
     onChange(newEditorState);
-    this.doCollapse();
   };
 
   render() {
-    const { config, translations } = this.props;
-    const { expanded } = this.state;
-    const ImageComponent = config.component || LayoutComponent;
+    const { config, inDropdown } = this.props;
+
     return (
-      <ImageComponent
+      <LayoutComponent
         config={config}
-        translations={translations}
+        inDropdown={inDropdown}
         onChange={this.addImage}
-        expanded={expanded}
-        onExpandEvent={this.onExpandEvent}
-        doExpand={this.doExpand}
-        doCollapse={this.doCollapse}
       />
     );
   }

@@ -35,7 +35,7 @@ export default function addMention(
   let contentState = Modifier.replaceText(
     newEditorState.getCurrentContent(),
     updatedSelection,
-    `${trigger}${value}`,
+    `${value}`,
     newEditorState.getCurrentInlineStyle(),
     entityKey,
   );
@@ -44,8 +44,8 @@ export default function addMention(
   if (!spaceAlreadyPresent) {
     // insert a blank space after mention
     updatedSelection = newEditorState.getSelection().merge({
-      anchorOffset: mentionIndex + value.length + trigger.length,
-      focusOffset: mentionIndex + value.length + trigger.length,
+      anchorOffset: mentionIndex + value.length,
+      focusOffset: mentionIndex + value.length,
     });
     newEditorState = EditorState.acceptSelection(newEditorState, updatedSelection);
     contentState = Modifier.insertText(

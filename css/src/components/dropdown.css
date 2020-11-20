@@ -1,0 +1,47 @@
+.Editor-dropdown {
+  height: var(--spacing-3);
+  cursor: pointer;
+  border-radius: var(--spacing-m);
+  text-transform: capitalize;
+}
+
+.Editor-dropdown:focus {
+  outline: none;
+}
+
+.Editor-dropdown:hover {
+  background-color: var(--secondary-light);
+}
+
+.Editor-dropdown:active,
+.Editor-dropdown--expanded {
+  background-color: var(--secondary) !important;
+}
+
+.Editor-dropdown-optionWrapper {
+  z-index: 500;
+  position: absolute;
+  margin-top: var(--spacing);
+  box-shadow: var(--shadow-l);
+  background: var(--white);
+  padding: var(--spacing-m) 0 var(--spacing-m) 0;
+}
+
+.Editor-dropdown-option {
+  display: flex;
+  align-items: center;
+  padding-left: var(--spacing-l);
+  padding-right: var(--spacing-l);
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.Editor-dropdown-option:hover,
+.Editor-dropdown-option--highlight {
+  background-color: var(--secondary-lightest);
+  cursor: pointer;
+}
+
+.Editor-dropdown-option--active {
+  background-color: var(--primary) !important;
+}

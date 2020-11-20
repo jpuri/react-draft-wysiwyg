@@ -1,8 +1,8 @@
 {
-  "name": "react-draft-wysiwyg",
-  "version": "1.14.7",
-  "description": "A wysiwyg on top of DraftJS.",
-  "main": "dist/react-draft-wysiwyg.js",
+  "name": "@innovaccer/rich-text-editor",
+  "version": "1.14.5",
+  "description": "A rich text on top of DraftJS.",
+  "main": "dist/rich-text-editor.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/jpuri/react-draft-wysiwyg.git"
@@ -14,6 +14,7 @@
     "@babel/preset-react": "^7.7.4",
     "@babel/register": "^7.7.4",
     "@storybook/react": "^5.2.8",
+    "@innovaccer/design-system": "^1.4.0-0",
     "autoprefixer": "^9.7.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -21,7 +22,6 @@
     "chai": "^4.2.0",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.1",
-    "draft-js": "^0.11.2",
     "draftjs-to-html": "^0.9.0",
     "draftjs-to-markdown": "^0.6.0",
     "embed-video": "^2.0.4",
@@ -35,7 +35,6 @@
     "eslint-plugin-react": "^7.17.0",
     "file-loader": "^5.0.2",
     "flow-bin": "^0.113.0",
-    "immutable": "^4.0.0-rc.12",
     "jsdom": "^15.2.1",
     "mini-css-extract-plugin": "^0.8.0",
     "mocha": "^6.2.2",
@@ -55,6 +54,8 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
+    "draft-js": "^0.11.7",
+    "immutable": "^4.0.0-rc.12",
     "classnames": "^2.2.6",
     "draftjs-utils": "^0.10.2",
     "html-to-draftjs": "^1.5.0",
@@ -62,15 +63,15 @@
     "prop-types": "^15.7.2"
   },
   "peerDependencies": {
-    "draft-js": "^0.10.x || ^0.11.x",
-    "immutable": "3.x.x || 4.x.x",
-    "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x || ^17.x.x",
-    "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x || ^17.x.x"
+    "@innovaccer/design-system": "^1.4.0-0",
+    "react": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x",
+    "react-dom": "0.13.x || 0.14.x || ^15.0.0-0 || 15.x.x || ^16.0.0-0 || ^16.x.x"
   },
   "scripts": {
+    "build:css": "cp ./node_modules/@innovaccer/design-system/css/dist/* dist/",
     "clean": "rimraf dist",
     "build:webpack": "cross-env NODE_ENV=production webpack  --mode production --config config/webpack.config.js",
-    "build": "npm run clean && npm run build:webpack",
+    "build": "npm run clean && npm run build:webpack && npm run build:css",
     "test": "cross-env BABEL_ENV=test mocha --require config/test-compiler.js config/test-setup.js src/**/*Test.js",
     "lint": "eslint src",
     "lintdocs": "eslint docs/src",

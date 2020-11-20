@@ -1,9 +1,6 @@
-/* @flow */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import './styles.css';
 
 export default class DropDownOption extends Component {
   static propTypes = {
@@ -21,6 +18,7 @@ export default class DropDownOption extends Component {
     disabledClassName: PropTypes.string,
     highlightedClassName: PropTypes.string,
     title: PropTypes.string,
+    isCheckbox: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -59,29 +57,28 @@ export default class DropDownOption extends Component {
       disabled,
       highlighted,
       className,
+      isCheckbox,
       activeClassName,
       disabledClassName,
       highlightedClassName,
-      title,
     } = this.props;
+
+    const OptionClass = classNames({
+      ['Editor-dropdown-option']: true,
+      [`Editor-dropdown-option--active ${activeClassName}`]: active && !isCheckbox,
+      [`${highlightedClassName}`]: highlighted,
+      [`${disabledClassName}`]: disabled
+    }, className);
+
     return (
       <li
-        className={classNames(
-          'rdw-dropdownoption-default',
-          className,
-          { [`rdw-dropdownoption-active ${activeClassName}`]: active,
-            [`rdw-dropdownoption-highlighted ${highlightedClassName}`]: highlighted,
-            [`rdw-dropdownoption-disabled ${disabledClassName}`]: disabled,
-          })
-        }
+        className={OptionClass}
         onMouseEnter={this.setHighlighted}
         onMouseLeave={this.resetHighlighted}
         onClick={this.onClick}
-        title={title}
       >
         {children}
       </li>
     );
   }
 }
-// todo: review classname use above.

@@ -1,0 +1,12 @@
+.Editor-textDecoration {
+  display: flex;
+  align-items: center;
+}
+
+.Editor-textDecoration-moreIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--spacing-3);
+  width: var(--spacing-3);
+}

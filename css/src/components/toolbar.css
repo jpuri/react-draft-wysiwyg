@@ -1,0 +1,35 @@
+.Editor-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  padding-top: var(--spacing);
+  padding-bottom: var(--spacing);
+  padding-left: var(--spacing-m);
+  border-radius: 3px;
+  background-color: var(--secondary-lightest);
+  user-select: none;
+  flex-wrap: wrap;
+}
+
+.Editor-toolbar-options {
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+  height: var(--spacing-3);
+  border-right: var(--border);
+}
+
+.Editor-toolbar-insert {
+  display: flex;
+  padding-left: var(--spacing);
+  padding-right: var(--spacing);
+  height: var(--spacing-3);
+}
+
+.Editor-heading-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  height: var(--spacing-3);
+  padding-right: var(--spacing);
+  padding-left: var(--spacing);
+}

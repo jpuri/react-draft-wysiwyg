@@ -1,5 +1,5 @@
-import inline from "./Inline";
-import blockType from "./BlockType";
+import textDecoration from "./TextDecoration";
+import heading from "./Heading";
 import fontSize from "./FontSize";
 import fontFamily from "./FontFamily";
 import list from "./List";
@@ -11,11 +11,13 @@ import emoji from "./Emoji";
 import image from "./Image";
 import remove from "./Remove";
 import history from "./History";
+import insert from './Insert';
 
 export default {
-  inline,
-  blockType,
+  textDecoration,
+  heading,
   fontSize,
+  insert,
   fontFamily,
   list,
   textAlign,

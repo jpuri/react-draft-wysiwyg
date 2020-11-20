@@ -17,6 +17,7 @@ export default class List extends Component {
     modalHandler: PropTypes.object,
     config: PropTypes.object,
     translations: PropTypes.object,
+    className: PropTypes.string,
   };
 
   constructor(props) {
@@ -79,6 +80,7 @@ export default class List extends Component {
   toggleBlockType = blockType => {
     const { onChange, editorState } = this.props;
     const newState = RichUtils.toggleBlockType(editorState, blockType);
+
     if (newState) {
       onChange(newState);
     }
@@ -117,19 +119,21 @@ export default class List extends Component {
   };
 
   render() {
-    const { config, translations } = this.props;
+    const { config, translations, className } = this.props;
     const { expanded, currentBlock } = this.state;
-    const ListComponent = config.component || LayoutComponent;
+
     let listType;
     if (currentBlock.get('type') === 'unordered-list-item') {
       listType = 'unordered';
     } else if (currentBlock.get('type') === 'ordered-list-item') {
       listType = 'ordered';
     }
-    const indentDisabled = this.isIndentDisabled();
-    const outdentDisabled = this.isOutdentDisabled();
+
+    // const indentDisabled = this.isIndentDisabled();
+    // const outdentDisabled = this.isOutdentDisabled();
+
     return (
-      <ListComponent
+      <LayoutComponent
         config={config}
         translations={translations}
         currentState={{ listType }}
@@ -138,8 +142,9 @@ export default class List extends Component {
         doExpand={this.doExpand}
         doCollapse={this.doCollapse}
         onChange={this.onChange}
-        indentDisabled={indentDisabled}
-        outdentDisabled={outdentDisabled}
+        className={className}
+      // indentDisabled={indentDisabled}
+      // outdentDisabled={outdentDisabled}
       />
     );
   }

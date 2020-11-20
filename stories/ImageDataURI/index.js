@@ -7,7 +7,8 @@ function uploadImageCallBack(file) {
   return new Promise(
     (resolve, reject) => {
       const reader = new FileReader(); // eslint-disable-line no-undef
-      reader.onload = e => resolve({ data: { link: e.target.result } });
+      console.log(reader);
+      reader.onload = e => resolve({ data: { link: reader.result, reader } });
       reader.onerror = e => reject(e);
       reader.readAsDataURL(file);
     });
@@ -21,11 +22,19 @@ const ImageUpload = () =>
       wrapperClassName="rdw-storybook-wrapper"
       editorClassName="rdw-storybook-editor"
       toolbar={{
-        image: {
-          uploadCallback: uploadImageCallBack,
-          previewImage: true,
-        },
+        insert: {
+          image: {
+            //uploadCallback: uploadImageCallBack,
+            previewImage: true,
+          }
+        }
       }}
+      // toolbar={{
+      //   image: {
+      //     uploadCallback: uploadImageCallBack,
+      //     previewImage: true,
+      //   },
+      // }}
     />
   </div>);
 

@@ -3,8 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Dropdown } from '@innovaccer/design-system';
 
-import { Dropdown, DropdownOption } from '../../../components/Dropdown';
+//import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
 
 export default class LayoutComponent extends Component {
@@ -35,6 +36,14 @@ export default class LayoutComponent extends Component {
     }
   }
 
+  renderCustomTrigger() {
+    return (
+      <div>
+        Riya
+      </div>
+    )
+  }
+
   render() {
     const {
       config: { icon, className, dropdownClassName, options, title },
@@ -45,6 +54,7 @@ export default class LayoutComponent extends Component {
       doExpand,
       translations,
     } = this.props;
+
     let { currentState: { fontSize: currentFontSize } } = this.props;
     let { defaultFontSize } = this.state;
     defaultFontSize = Number(defaultFontSize);
@@ -53,6 +63,20 @@ export default class LayoutComponent extends Component {
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         <Dropdown
+          className={classNames('rdw-fontsize-dropdown', className)}
+          onChange={onChange}
+          customTrigger={this.renderCustomTrigger}
+          icon={"text_fields"}
+          placeholder={""}
+          options={options.map((option) => {
+            return {
+              label: option,
+              value: option,
+              selected: option === 14
+            }
+          })}
+        />
+        {/* <Dropdown
           className={classNames('rdw-fontsize-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
@@ -78,7 +102,7 @@ export default class LayoutComponent extends Component {
               </DropdownOption>),
             )
           }
-        </Dropdown>
+        </Dropdown> */}
       </div>
     );
   }

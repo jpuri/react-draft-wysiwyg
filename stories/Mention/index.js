@@ -15,14 +15,14 @@ const Mention = () =>
       separator: ' ',
       trigger: '@',
       suggestions: [
-        { text: 'APPLE', value: 'apple', url: 'apple' },
-        { text: 'BANANA', value: 'banana', url: 'banana' },
-        { text: 'CHERRY', value: 'cherry', url: 'cherry' },
-        { text: 'DURIAN', value: 'durian', url: 'durian' },
-        { text: 'EGGFRUIT', value: 'eggfruit', url: 'eggfruit' },
-        { text: 'FIG', value: 'fig', url: 'fig' },
-        { text: 'GRAPEFRUIT', value: 'grapefruit', url: 'grapefruit' },
-        { text: 'HONEYDEW', value: 'honeydew', url: 'honeydew' },
+        { label: 'APPLE', value: 'apple', icon: 'events' },
+        { label: 'BANANA', value: 'banana', icon: 'events' },
+        { label: 'CHERRY', value: 'cherry', icon: 'events' },
+        { label: 'DURIAN', value: 'durian', icon: 'events' },
+        { label: 'EGGFRUIT', value: 'eggfruit', icon: 'events' },
+        { label: 'FIG', value: 'fig', icon: 'events' },
+        { label: 'GRAPEFRUIT', value: 'grapefruit', icon: 'events' },
+        { label: 'HONEYDEW', value: 'honeydew', icon: 'events' },
       ],
     }}
     toolbarClassName="rdw-storybook-toolbar"

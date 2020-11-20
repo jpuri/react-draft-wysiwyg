@@ -1,0 +1,23 @@
+.Editor-colorPicker {
+  display: flex;
+  padding: var(--spacing) 0 var(--spacing) var(--spacing);
+}
+  
+.Editor-colorPicker-circleWrapper {
+  margin-right: var(--spacing);
+  position: relative;
+}
+  
+.Editor-colorPicker-circle {
+  height: var(--spacing-xl);
+  width: var(--spacing-xl);
+  border-radius: 50%;
+  cursor: pointer;
+}
+  
+.Editor-colorPicker-selectedCircle {
+  position: absolute;
+  top: var(--spacing-m);
+  left: var(--spacing-m);
+}
+  
