@@ -12,20 +12,16 @@ module.exports = {
     path: path.join(__dirname, '../dist'),
     filename: 'rich-text-editor.js',
     library: 'richText',
-    libraryTarget: 'umd',
+    libraryTarget: 'commonjs-module',
   },
   externals: {
-    react: 'react',
-    //immutable: 'immutable',
-    'react-dom': 'react-dom',
-    //'draft-js': 'draft-js',
-    '@innovaccer/design-system': {
-      root: 'InnovaccerDesignSystem',
-      commonjs2: 'InnovaccerDesignSystem',
-      commonjs: 'InnovaccerDesignSystem',
-      amd: 'InnovaccerDesignSystem',
-      umd: 'InnovaccerDesignSystem',
-    }
+    react: 'React',
+    'react-dom': 'ReactDOM',
+    // react: 'react',
+    // immutable: 'immutable',
+    // 'react-dom': 'react-dom',
+    // 'draft-js': 'draft-js',
+    '@innovaccer/design-system': 'InnovaccerDesignSystem'
   },
   optimization: {
     minimizer: [new UglifyJsPlugin()],
