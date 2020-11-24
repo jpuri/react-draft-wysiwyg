@@ -21,7 +21,7 @@ module.exports = {
     // immutable: 'immutable',
     // 'react-dom': 'react-dom',
     // 'draft-js': 'draft-js',
-    '@innovaccer/design-system': 'InnovaccerDesignSystem'
+    //'@innovaccer/design-system': 'InnovaccerDesignSystem'
   },
   optimization: {
     minimizer: [new UglifyJsPlugin()],
