@@ -8,27 +8,26 @@ import { Editor } from '../../src';
  * thus there fields are optional.
 */
 const Mention = () =>
-(<div className="rdw-storybook-root">
-  <span>Type @ to see suggestions</span>
-  <Editor
-    mention={{
-      separator: ' ',
-      trigger: '@',
-      suggestions: [
-        { label: 'APPLE', value: 'apple', icon: 'events' },
-        { label: 'BANANA', value: 'banana', icon: 'events' },
-        { label: 'CHERRY', value: 'cherry', icon: 'events' },
-        { label: 'DURIAN', value: 'durian', icon: 'events' },
-        { label: 'EGGFRUIT', value: 'eggfruit', icon: 'events' },
-        { label: 'FIG', value: 'fig', icon: 'events' },
-        { label: 'GRAPEFRUIT', value: 'grapefruit', icon: 'events' },
-        { label: 'HONEYDEW', value: 'honeydew', icon: 'events' },
-      ],
-    }}
-    toolbarClassName="rdw-storybook-toolbar"
-    wrapperClassName="rdw-storybook-wrapper"
-    editorClassName="rdw-storybook-editor"
-  />
-</div>);
+  (<div className="rdw-storybook-root">
+    <span>Type @ to see suggestions</span>
+    <Editor
+      mention={{
+        separator: ' ',
+        trigger: '@',
+        dropdownOptions: { dropdownClassName: 'Editor-mention-story' },
+        suggestions: [
+          { label: 'Address', value: 'Address' },
+          { label: 'Appointment date', value: 'Appointment Date' },
+          { label: 'DOB', value: 'DOB' },
+          { label: 'First Name', value: 'First Name' },
+          { label: 'Last Name', value: 'Last Name' },
+          { label: 'PCP', value: 'PCP' },
+        ],
+      }}
+      toolbarClassName="rdw-storybook-toolbar"
+      wrapperClassName="rdw-storybook-wrapper"
+      editorClassName="rdw-storybook-editor"
+    />
+  </div>);
 
 export default Mention;
