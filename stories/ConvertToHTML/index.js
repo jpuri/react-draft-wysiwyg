@@ -1,8 +1,8 @@
 /* @flow */
 
 import React, { Component } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
-import draftToHtml from 'draftjs-to-html';
+import { EditorState } from 'draft-js';
+// import draftToHtml from 'draftjs-to-html';
 import { Editor } from '../../src';
 
 class ConvertToRawDraftContent extends Component {
@@ -48,7 +48,7 @@ class ConvertToRawDraftContent extends Component {
       <textarea
         readOnly
         className="rdw-storybook-textarea"
-        value={draftToHtml(convertToRaw(editorState.getCurrentContent()))}
+        value={Editor.utils.stateToHTML(editorState)}
       />
     </div>);
   }

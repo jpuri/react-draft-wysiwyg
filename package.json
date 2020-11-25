@@ -13,8 +13,9 @@
     "@babel/preset-env": "^7.7.4",
     "@babel/preset-react": "^7.7.4",
     "@babel/register": "^7.7.4",
-    "@storybook/react": "^5.2.8",
     "@innovaccer/design-system": "^1.4.0-0",
+    "@storybook/react": "^5.2.8",
+    "@storybook/storybook-deployer": "^2.8.7",
     "autoprefixer": "^9.7.3",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -22,7 +23,6 @@
     "chai": "^4.2.0",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.1",
-    "draftjs-to-html": "^0.9.0",
     "draftjs-to-markdown": "^0.6.0",
     "embed-video": "^2.0.4",
     "enzyme": "^3.10.0",
@@ -58,6 +58,7 @@
     "immutable": "^4.0.0-rc.12",
     "classnames": "^2.2.6",
     "draftjs-utils": "^0.10.2",
+    "draftjs-to-html": "^0.9.0",
     "html-to-draftjs": "^1.5.0",
     "linkify-it": "^2.2.0",
     "prop-types": "^15.7.2"
@@ -78,7 +79,8 @@
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "check": "npm run lint && npm run flow",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "deploy-storybook": "storybook-to-ghpages"
   },
   "license": "MIT"
 }

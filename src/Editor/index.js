@@ -19,6 +19,7 @@ import {
   extractInlineStyle,
   getSelectedBlocksType,
 } from 'draftjs-utils';
+import { htmlToState, stateToHTML } from '../utils/utils';
 import { Map } from 'immutable';
 import classNames from 'classnames';
 import ModalHandler from '../event-handler/modals';
@@ -560,7 +561,9 @@ RichText.utils = {
   ContentState,
   RichUtils,
   convertFromRaw,
-  convertToRaw
+  convertToRaw,
+  htmlToState,
+  stateToHTML
 };
 
 RichText.propTypes = {
