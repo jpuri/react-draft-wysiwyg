@@ -9,8 +9,8 @@ import { Icon, Text } from '@innovaccer/design-system'
 class Suggestion {
   constructor(config) {
     const {
-      separator,
-      trigger,
+      separator = ' ',
+      trigger = '@',
       getSuggestions,
       onChange,
       getEditorState,

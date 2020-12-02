@@ -99,7 +99,7 @@ function getLinkComponent(config) {
       return (
         <Popover
           trigger={trigger}
-          appendToBody={false}
+          appendToBody={true}
           open={open}
           onToggle={this.onToggle}
         >

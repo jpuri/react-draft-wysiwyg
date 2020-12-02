@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import {
-  Editor,
+  Editor as RichTextEditor,
   EditorState,
   ContentState,
   RichUtils,
@@ -38,11 +38,11 @@ import getBlockRenderFunc from '../renderer';
 import defaultToolbar from '../config/defaultToolbar';
 import localeTranslations from '../i18n';
 import { Heading, Text } from '@innovaccer/design-system';
-// import '@innovaccer/design-system/css';
+import { toolbarShape } from '../types/toolbar';
 import '../../css/Draft.css';
 import '../../css/src/components';
 
-class RichText extends Component {
+class Editor extends Component {
   constructor(props) {
     super(props);
     const toolbar = mergeRecursive(defaultToolbar, props.toolbar);
@@ -60,7 +60,7 @@ class RichText extends Component {
         getEditorState: this.getEditorState,
         onChange: this.onChange,
       },
-      props.customBlockRenderFunc
+      //props.customBlockRenderFunc
     );
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = this.getStyleMap(props);
@@ -150,17 +150,18 @@ class RichText extends Component {
   keyBindingFn = event => {
     if (event.key === 'Tab') {
       const { onTab } = this.props;
-      if (!onTab || !onTab(event)) {
-        const editorState = changeDepth(
-          this.state.editorState,
-          event.shiftKey ? -1 : 1,
-          4
-        );
-        if (editorState && editorState !== this.state.editorState) {
-          this.onChange(editorState);
-          event.preventDefault();
-        }
+      // if (!onTab || !onTab(event)) {
+      const editorState = changeDepth(
+        this.state.editorState,
+        event.shiftKey ? -1 : 1,
+        4
+      );
+      if (editorState && editorState !== this.state.editorState) {
+        this.onChange(editorState);
+        event.preventDefault();
       }
+      // }
+      if (onTab) onTab(event, editorState)
       return null;
     }
     if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
@@ -232,7 +233,7 @@ class RichText extends Component {
 
   getCompositeDecorator = toolbar => {
     const decorators = [
-      ...this.props.customDecorators,
+      //...this.props.customDecorators,
       getLinkDecorator({
         focusHandler: this.focusHandler,
         getEditorState: this.getEditorState,
@@ -268,10 +269,10 @@ class RichText extends Component {
   afterChange = editorState => {
 
     setTimeout(() => {
-      const { onChange, onContentStateChange } = this.props;
-      if (onChange) {
-        onChange(convertToRaw(editorState.getCurrentContent()));
-      }
+      const { onContentStateChange } = this.props;
+      // if (onChange) {
+      //   onChange(convertToRaw(editorState.getCurrentContent()));
+      // }
       if (onContentStateChange) {
         onContentStateChange(convertToRaw(editorState.getCurrentContent()));
       }
@@ -306,11 +307,10 @@ class RichText extends Component {
         editorState = EditorState.moveSelectionToEnd(editorState);
       }
     } else if (
-      hasProperty(this.props, 'defaultContentState') ||
-      hasProperty(this.props, 'initialContentState')
+      hasProperty(this.props, 'defaultContentState')
     ) {
       let contentState =
-        this.props.defaultContentState || this.props.initialContentState;
+        this.props.defaultContentState;
       if (contentState) {
         contentState = convertFromRaw(contentState);
         editorState = EditorState.createWithContent(
@@ -336,9 +336,9 @@ class RichText extends Component {
       'contentState',
       'editorState',
       'defaultEditorState',
-      'locale',
-      'localization',
-      'toolbarOnFocus',
+      // 'locale',
+      // 'localization',
+      //'toolbarOnFocus',
       'toolbar',
       'toolbarCustomButtons',
       'toolbarClassName',
@@ -355,6 +355,7 @@ class RichText extends Component {
       'mention',
       'hashtag',
       'ariaLabel',
+      // 'placeholder',
       'customBlockRenderFunc',
       'customDecorators',
       'handlePastedText',
@@ -413,16 +414,12 @@ class RichText extends Component {
     const { editorState } = this.state;
     const {
       handlePastedText: handlePastedTextProp,
-      stripPastedStyles,
     } = this.props;
 
     if (handlePastedTextProp) {
       return handlePastedTextProp(text, html, editorState, this.onChange);
     }
-    if (!stripPastedStyles) {
-      return handlePastedText(text, html, editorState, this.onChange);
-    }
-    return false;
+    return handlePastedText(text, html, editorState, this.onChange);
   };
 
   preventDefault = event => {
@@ -462,10 +459,9 @@ class RichText extends Component {
     const { editorState, editorFocused, toolbar } = this.state;
 
     const {
-      locale,
-      localization: { locale: newLocale, translations },
-      toolbarCustomButtons,
-      toolbarOnFocus,
+      // locale,
+      // localization: { locale: newLocale, translations },
+      //toolbarCustomButtons,,
       toolbarClassName,
       editorClassName,
       wrapperClassName,
@@ -479,13 +475,11 @@ class RichText extends Component {
       modalHandler: this.modalHandler,
       editorState,
       onChange: this.onChange,
-      translations: {
-        ...localeTranslations[locale || newLocale],
-        ...translations,
-      },
+      // translations: {
+      //   ...localeTranslations[locale || newLocale],
+      //   ...translations,
+      // },
     };
-    const toolbarShow =
-      editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus;
 
     const ToolbarClass = classNames({
       ['Editor-toolbar']: true,
@@ -508,10 +502,8 @@ class RichText extends Component {
       >
         <div
           className={ToolbarClass}
-          style={{ visibility: toolbarShow ? 'visible' : 'hidden' }}
           onMouseDown={this.preventDefault}
           aria-label="Editor-toolbar"
-          aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
           onFocus={this.onToolbarFocus}
         >
           {toolbar.options.map((opt, index) => {
@@ -519,10 +511,10 @@ class RichText extends Component {
             const config = toolbar[opt];
             return <Control key={index} {...controlProps} config={config} className="Editor-toolbar-options" />;
           })}
-          {toolbarCustomButtons &&
+          {/* {toolbarCustomButtons &&
             toolbarCustomButtons.map((button, index) =>
               React.cloneElement(button, { key: index, ...controlProps })
-            )}
+            )} */}
         </div>
         <div
           ref={this.setWrapperReference}
@@ -534,8 +526,8 @@ class RichText extends Component {
           onKeyDown={KeyDownHandler.onKeyDown}
           onMouseDown={this.onEditorMouseDown}
         >
-          <Editor
-            preserveSelectionOnBlur={true}
+          <RichTextEditor
+            //preserveSelectionOnBlur={true}
             ref={this.setEditorReference}
             keyBindingFn={this.keyBindingFn}
             editorState={editorState}
@@ -556,7 +548,7 @@ class RichText extends Component {
   }
 }
 
-RichText.utils = {
+Editor.utils = {
   EditorState,
   ContentState,
   RichUtils,
@@ -566,62 +558,197 @@ RichText.utils = {
   stateToHTML
 };
 
-RichText.propTypes = {
-  onChange: PropTypes.func,
-  onEditorStateChange: PropTypes.func,
-  onContentStateChange: PropTypes.func,
-  // initialContentState is deprecated
-  initialContentState: PropTypes.object,
-  defaultContentState: PropTypes.object,
-  contentState: PropTypes.object,
+Editor.propTypes = {
+  /**
+   * Used to enable mention in the editor
+   * 
+   * | Name | Description | Default |
+   * | --- | --- | --- |
+   * | seperator | Character that separates a mention from word preceding it | '  ' |
+   * | trigger | Character that causes mention suggestions to appear, | '@' |
+   * | suggestion | Properties: label, value, icon | |
+   * | chipOptions | [Design System Chip Props](https://innovaccer.github.io/design-system/?path=/docs/atoms-chip--all) | |
+   * | dropdownOptions | Properties: dropdownClassName, customOptionRenderer = (suggestion, active, index) => React.ReactNode | |
+   */
+  mention: PropTypes.shape({
+    separator: PropTypes.string,
+    trigger: PropTypes.string,
+    chipOptions: PropTypes.object,
+    dropdownOptions: PropTypes.shape({
+      dropdownClassName: PropTypes.string,
+      customOptionRenderer: PropTypes.func
+    }),
+    suggestions: PropTypes.shape({
+      label: PropTypes.string,
+      value: PropTypes.string,
+      icon: PropTypes.string
+    })
+  }),
+  /**
+   * The EditorState object is a complete snapshot of the state of the editor, including contents, cursor, and undo/redo history.
+   * 
+   * All changes to content and selection within the editor will create new EditorState objects.
+   * 
+   * [Read More about Editor State](https://draftjs.org/docs/api-reference-editor-state)
+   * 
+   * **Works in case of controlled `Editor`**
+   */
   editorState: PropTypes.object,
+  /**
+   * Callback function called each time there is change in state of editor
+   * 
+   * onChange: (editorState: EditorState) => void;
+   */
+  onEditorStateChange: PropTypes.func,
+  /**
+   * Property to initialize editor state once when its created.
+   * 
+   * **Works in case of uncontrolled `Editor`**
+   */
   defaultEditorState: PropTypes.object,
-  toolbarOnFocus: PropTypes.bool,
+  /**
+   * Callback function called each time there is change in state of editor
+   * 
+   * onChange: (contentState: ContentState) => void;
+   */
+  onContentStateChange: PropTypes.func,
+  /**
+   *  Property to initialize content state once when its created.
+   * 
+   * **Works in case of uncontrolled `Editor`**
+   */
+  defaultContentState: PropTypes.object,
+  /**
+   * ContentState is an object with the entire contents of an editor: text, block and inline styles, and entity ranges.
+   *
+   * [Read More about Content State](https://draftjs.org/docs/api-reference-content-state)
+   */
+  contentState: PropTypes.object,
+  /**
+   * Checks for misspellings in a text.
+   */
   spellCheck: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
-  stripPastedStyles: PropTypes.bool, // eslint-disable-line react/no-unused-prop-types
-  toolbar: PropTypes.object,
-  toolbarCustomButtons: PropTypes.array,
-  toolbarClassName: PropTypes.string,
-  //toolbarHidden: PropTypes.bool,
-  locale: PropTypes.string,
-  localization: PropTypes.object,
+  /**
+   * <pre style="font-family: monospace; font-size: 13px; background: #f8f8f8">
+   * Customizes pre-built option in the toolbar
+   * 
+   * ToolbarShape: {
+   *   textDecoration: {
+   *     max: number; // default: 3
+   *     bold: { label: string, title: string },
+   *     italic: { label: string, title: string },
+   *     underline: { label: string, title: string },
+   *     strikethrough: { label: string, title: string },
+   *   },
+   *   colorPicker: {
+   *     colors: string[];
+   *   },
+   *   insert: {
+   *     max: number, // default: 2
+   *     link: { isVisible: boolean, title: string },
+   *     image: {
+   *       isVisible: boolean,
+   *       title: string,
+   *       alt: string,
+   *       defaultSize: { height: string, width: string },
+   *       uploadCallback: 
+   *         (file) => Promise<{ data: { link: <THE_URL>}}>
+   *     }
+   *   }
+   * }
+   * </pre>
+   * 
+   * | Name | Description | Default |
+   * | --- | --- | --- |
+   * | max | Max controls visible on toolbar, rest are visible inside dropdown | |
+   * | label | Label of control in dropdown |  |
+   * | title | Tooltip of control on toolbar | |
+   * | colors | Array of colors to be shown in color-picker | |
+   * | isVisible | Determines if control is visible | true |
+   * | alt | Used to enable alt field for images | |
+   * | defaultSize | Used to pass default size (height and width) of image | height: '100px', width: '300px' |
+   * | uploadCallback | Returns a promise that resolves to give image src.  | |
+   */
+  toolbar: toolbarShape,
+  /**
+   * Class applied around the editor
+   */
   editorClassName: PropTypes.string,
+  /**
+   * Class applied around both the editor and the toolbar
+   */
   wrapperClassName: PropTypes.string,
-  //toolbarStyle: PropTypes.object,
+  /**
+   * Class applied around the toolbar
+   */
+  toolbarClassName: PropTypes.string,
+  /**
+   * Style object applied around the editor
+   */
   editorStyle: PropTypes.object,
-  //wrapperStyle: PropTypes.object,
-  uploadCallback: PropTypes.func,
+  /**
+   * Callback called when editor is focused.
+   * 
+   * onFocus = (event) => void;
+   */
   onFocus: PropTypes.func,
+  /**
+   * Callback called when editor is blurred.
+   * 
+   * onFocus = (event, editorState) => void;
+   */
   onBlur: PropTypes.func,
+  /**
+   * Callback called when editor receives 'tab' keydown
+   * 
+   * onTab = (event, editorState) => void;
+   */
   onTab: PropTypes.func,
-  mention: PropTypes.object,
-  hashtag: PropTypes.object,
-  textAlignment: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  /**
+   * Specify whether text alignment should be forced in a direction
+   * regardless of input characters.
+   */
+  textAlignment: PropTypes.oneOf(['left', 'right', 'center']), // eslint-disable-line react/no-unused-prop-types
+  /**
+   * Set whether the `Editor` component should be editable.
+   */
   readOnly: PropTypes.bool,
+  /**
+   * Determines if element should automatically get focus when the page loads
+   */
   autoFocus: PropTypes.bool,
-  tabIndex: PropTypes.number, // eslint-disable-line react/no-unused-prop-types
+  /**
+   * Text to display when `Editor` is empty
+   */
   placeholder: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  /**
+   * Attribute used to define a string that labels the current element.
+   * 
+   * Used in cases where a text label is not visible on the screen. 
+   */
   ariaLabel: PropTypes.string,
-  ariaOwneeID: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  ariaActiveDescendantID: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  ariaAutoComplete: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  ariaDescribedBy: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  ariaExpanded: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  ariaHasPopup: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
-  customBlockRenderFunc: PropTypes.func,
+  //ariaOwneeID: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
+  // customBlockRenderFunc: PropTypes.func,
+  /**
+   * Custom id added to wrapper around the editor. 
+   */
   wrapperId: PropTypes.number,
-  customDecorators: PropTypes.array,
+  // customDecorators: PropTypes.array,
+  /**
+   * Reference of Editor can be obtained using editorRef property.
+   * 
+   * This can be used to raise events on editor like focus editor.
+   * 
+   * editorRef = (ref) => void;
+   */
   editorRef: PropTypes.func,
   handlePastedText: PropTypes.func,
 };
 
-RichText.defaultProps = {
-  toolbarOnFocus: false,
+Editor.defaultProps = {
   autoFocus: true,
-  //toolbarHidden: false,
-  stripPastedStyles: false,
-  localization: { locale: 'en', translations: {} },
-  customDecorators: [],
+  // stripPastedStyles: false,
+  //customDecorators: [],
 };
 
-export default RichText;
+export default Editor;
