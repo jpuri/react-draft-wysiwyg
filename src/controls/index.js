@@ -6,6 +6,7 @@ import list from "./List";
 import textAlign from "./TextAlign";
 import colorPicker from "./ColorPicker";
 import link from "./Link";
+import mention from "./Mention";
 import embedded from "./Embedded";
 import emoji from "./Emoji";
 import image from "./Image";
@@ -23,6 +24,7 @@ export default {
   textAlign,
   colorPicker,
   link,
+  mention,
   embedded,
   emoji,
   image,

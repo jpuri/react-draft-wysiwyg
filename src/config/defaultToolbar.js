@@ -54,8 +54,8 @@ export default {
     ],
   },
   insert: {
-    max: 2,
-    options: ["image", "link"],
+    max: 3,
+    options: ["image", "mention", "link"],
     image: {
       icon: 'insert_photo',
       isVisible: true,
@@ -82,6 +82,11 @@ export default {
       linkCallback: undefined,
       title: 'Link'
     },
+    mention: {
+      isVisible: true,
+      icon: 'alternate_email',
+      title: 'Personalization'
+    }
   },
   // link: {
   //   inDropdown: false,

@@ -41,13 +41,14 @@ class Suggestion {
         trigger,
         getSuggestions,
         getEditorState,
-      } = this.config;;
+      } = this.config;
       const selection = getEditorState().getSelection();
       if (
         selection.get('anchorKey') === contentBlock.get('key') &&
         selection.get('anchorKey') === selection.get('focusKey')
       ) {
         let text = contentBlock.getText();
+
         text = text.substr(
           0,
           selection.get('focusOffset') === text.length - 1
@@ -60,6 +61,7 @@ class Suggestion {
           index = 0;
           preText = trigger;
         }
+
         if (index >= 0) {
           const mentionText = text.substr(index + preText.length, text.length);
           const suggestionPresent = getSuggestions().some(suggestion => {
@@ -75,6 +77,7 @@ class Suggestion {
             }
             return false;
           });
+
           if (suggestionPresent) {
             callback(index === 0 ? 0 : index + 1, text.length);
           }

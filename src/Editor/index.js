@@ -467,6 +467,7 @@ class Editor extends Component {
       wrapperClassName,
       editorStyle,
       ariaLabel,
+      mention,
     } = this.props;
 
     const controlProps = {
@@ -509,7 +510,15 @@ class Editor extends Component {
           {toolbar.options.map((opt, index) => {
             const Control = Controls[opt];
             const config = toolbar[opt];
-            return <Control key={index} {...controlProps} config={config} className="Editor-toolbar-options" />;
+            return (
+              <Control
+                key={index}
+                {...controlProps}
+                config={config}
+                mention={mention}
+                className="Editor-toolbar-options"
+              />
+            );
           })}
           {/* {toolbarCustomButtons &&
             toolbarCustomButtons.map((button, index) =>

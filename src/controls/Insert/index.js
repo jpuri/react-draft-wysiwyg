@@ -11,6 +11,7 @@ export default class Insert extends Component {
     editorState: PropTypes.object.isRequired,
     modalHandler: PropTypes.object,
     config: PropTypes.object,
+    mention: PropTypes.object,
     linkPopoverOpen: PropTypes.bool,
     translations: PropTypes.object,
   };
@@ -135,6 +136,10 @@ export default class Insert extends Component {
             .map((style, index) => {
               const conf = config[style];
               const Control = Controls[style];
+
+              if (!this.props.mention && style === 'mention') {
+                return null;
+              }
 
               return conf.isVisible ? (
                 <Control
