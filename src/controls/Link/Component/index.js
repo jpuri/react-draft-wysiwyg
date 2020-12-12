@@ -19,6 +19,7 @@ class LayoutComponent extends Component {
 
   state = {
     showModal: false,
+    editing: false,
     linkTarget: '',
     linkTitle: '',
     linkTargetOption: this.props.config.defaultTargetOption,
@@ -42,6 +43,7 @@ class LayoutComponent extends Component {
         linkTarget: link && link.target,
         linkTitle: (link && link.title) || selectionText,
         linkTargetOption: this.props.config.defaultTargetOption,
+        editing: link !== undefined
       });
     }
   }
@@ -69,7 +71,8 @@ class LayoutComponent extends Component {
       onExpandEvent
     } = this.props;
 
-    const { linkTitle, linkTarget } = this.state;
+    const { linkTitle, linkTarget, editing } = this.state;
+    const label = editing ? 'Edit' : 'Add';
 
     return (
       <div
@@ -77,7 +80,7 @@ class LayoutComponent extends Component {
         onClick={stopPropagation}
       >
         <Text weight="strong" size="large">
-          Add a link
+          {label} a link
         </Text>
         <Input
           icon="insert_link"
@@ -109,7 +112,7 @@ class LayoutComponent extends Component {
             disabled={!linkTarget || !linkTitle}
             appearance="primary"
           >
-            Add
+            {label}
           </Button>
         </div>
       </div>
