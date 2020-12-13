@@ -54,6 +54,7 @@ class WysiwygEditor extends Component {
         isImageSizeEnabled: this.isImageSizeEnabled,
         getEditorState: this.getEditorState,
         onChange: this.onChange,
+        imageSizeOptionsSetting : this.getImageSizeOptionsSetting
       },
       props.customBlockRenderFunc
     );
@@ -235,6 +236,8 @@ class WysiwygEditor extends Component {
   getWrapperRef = () => this.wrapper;
 
   getEditorState = () => this.state ? this.state.editorState : null;
+
+  getImageSizeOptionsSetting = () => this.state ? this.state.toolbar.image.sizeOptionSetting : null;
 
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 

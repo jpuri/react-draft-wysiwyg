@@ -343,6 +343,11 @@ export default {
     previewImage: false,
     alignmentEnabled: true,
     sizeEnabled: true,
+    sizeOptionSetting: [
+      { label:"small", size:"10rem" },
+      { label:"large", size:"30rem" },
+      { label:"auto", size:"auto" },
+    ],
     uploadCallback: undefined,
     inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
     alt: { present: false, mandatory: false },

@@ -25,6 +25,16 @@ const PasteAndDropImages = () =>
       editorClassName="rdw-storybook-editor"
       handlePastedImage={handlePastedImage}
       handleDroppedImages={handleDroppedImage}
+      toolbar={{
+        image:{
+          sizeOptionSetting: [
+            { label:"small", size:"10rem" },
+            { label:"medium", size:"20rem" },
+            { label:"large", size:"30rem" },
+            { label:"auto", size:"auto" },
+          ]
+        }
+      }}
     />
   </div>
 )
