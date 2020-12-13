@@ -54,7 +54,8 @@ class WysiwygEditor extends Component {
         isImageSizeEnabled: this.isImageSizeEnabled,
         getEditorState: this.getEditorState,
         onChange: this.onChange,
-        imageSizeOptionsSetting : this.getImageSizeOptionsSetting
+        imageSizeOptionsSetting : this.getImageSizeOptionsSetting,
+        imageAlignmentIcons : this.getImageAlignIcons
       },
       props.customBlockRenderFunc
     );
@@ -238,6 +239,8 @@ class WysiwygEditor extends Component {
   getEditorState = () => this.state ? this.state.editorState : null;
 
   getImageSizeOptionsSetting = () => this.state ? this.state.toolbar.image.sizeOptionSetting : null;
+
+  getImageAlignIcons = () => this.state ? this.state.toolbar.image.imageAlignIcon : null;
 
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 

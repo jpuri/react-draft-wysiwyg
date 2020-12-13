@@ -342,6 +342,11 @@ export default {
     uploadEnabled: true,
     previewImage: false,
     alignmentEnabled: true,
+    imageAlignIcon: {
+      left : left,
+      right : right,
+      center : center
+    },
     sizeEnabled: true,
     sizeOptionSetting: [
       { label:"small", size:"10rem" },

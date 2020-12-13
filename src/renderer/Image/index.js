@@ -27,20 +27,6 @@ const getImageComponent = config => class Image extends Component {
     this.setEntityAlignment('none');
   };
 
-
-  setEntitySizeSmall: Function = (): void => {
-    this.setEntitySize('small');
-  };
-
-  setEntitySizeLarge: Function = (): void => {
-    this.setEntitySize('large');
-  };
-
-  setEntitySizeAuto: Function = (): void => {
-    this.setEntitySize('auto');
-  };
-
-
   setEntitySize: Function = (size): void => {
     const { block, contentState } = this.props;
     const entityKey = block.getEntityAt(0);
@@ -78,7 +64,7 @@ const getImageComponent = config => class Image extends Component {
     });
   };
 
-  renderAlignmentOptions(alignment): Object {
+  renderAlignmentOptions(alignment,icons): Object {
     return (
       <div
         className={classNames(
@@ -92,19 +78,19 @@ const getImageComponent = config => class Image extends Component {
           onClick={this.setEntityAlignmentLeft}
           className="rdw-image-alignment-option"
         >
-          L
+          {icons.left ?<img src={icons.left} /> : 'L'}
         </Option>
         <Option
           onClick={this.setEntityAlignmentCenter}
           className="rdw-image-alignment-option"
         >
-          C
+          {icons.center ?<img src={icons.center} /> : 'C'}
         </Option>
         <Option
           onClick={this.setEntityAlignmentRight}
           className="rdw-image-alignment-option"
         >
-          R
+          {icons.right ?<img src={icons.right} /> : 'R'}
         </Option>
       </div>
     );
@@ -126,7 +112,7 @@ const getImageComponent = config => class Image extends Component {
           options.map(option => {
             return (
               < Option
-                key={option.label}
+                key={option.size}
                 onClick={this.setEntitySize}
                 value={option.size}
                 className="rdw-image-size-option"
@@ -143,12 +129,12 @@ const getImageComponent = config => class Image extends Component {
 
   render(): Object {
     const { block, contentState } = this.props;
-    // const { hovered } = this.state;
-    const hovered  = true
-    const { isReadOnly, isImageAlignmentEnabled, isImageSizeEnabled, imageSizeOptionsSetting } = config;
+    const { hovered } = this.state;
+    const { isReadOnly, isImageAlignmentEnabled, isImageSizeEnabled, imageSizeOptionsSetting, imageAlignmentIcons } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
     const { src, alignment, height, width, alt } = entity.getData();
     const wrapperAlign = alignment === 'none' ? 'center' : alignment
+    const alignIcons = imageAlignmentIcons()
     return (
       <span
         onMouseEnter={this.toggleHovered}
@@ -174,7 +160,7 @@ const getImageComponent = config => class Image extends Component {
           <div className="rdw-image-options-wrapper">
             {
               !isReadOnly() && hovered && isImageAlignmentEnabled() ?
-                this.renderAlignmentOptions(alignment)
+                this.renderAlignmentOptions(alignment,alignIcons)
                 :
                 undefined
             }

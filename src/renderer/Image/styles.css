@@ -26,6 +26,7 @@
   padding-right: .5rem;
   height: 15px;
   width: fit-content;
+  font-size: smaller;
 }
 .rdw-image-alignment {
   position: relative;
