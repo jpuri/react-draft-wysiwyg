@@ -8,6 +8,7 @@ import {
   convertFromRaw,
   CompositeDecorator,
   getDefaultKeyBinding,
+  AtomicBlockUtils
 } from 'draft-js';
 import {
   changeDepth,
@@ -395,6 +396,86 @@ class WysiwygEditor extends Component {
     return false;
   };
 
+  handlePastedFilesFn = (files) => {
+    const { toolbar } = this.state;
+    const {
+      handlePastedFiles: handlePastedFilesProp,
+      handlePastedImage: handlePastedImageProp
+    } = this.props;
+
+    if (handlePastedImageProp) {
+      if (files[0].type.startsWith('image')) {
+        const promise = handlePastedImageProp(files[0])
+        promise
+          .then(({ data }) => {
+            const src = data.link || data.url
+            this.addImage(src,toolbar.image.defaultSize.height,toolbar.image.defaultSize.width,'')
+          })
+          .catch(() => {
+
+          });
+        return 
+      }
+    }
+
+    if (handlePastedFilesProp) {
+      handlePastedFilesProp(files);
+      return 
+    }
+
+  };
+
+
+  handleDropedFilesFn = (selection,files) => {
+    const { toolbar } = this.state;
+    const {
+      handleDroppedFiles: handleDropedFilesProp,
+      handleDroppedImages: handleDropedImagesProp
+    } = this.props;
+    console.log(files);
+
+    if (handleDropedImagesProp) {
+      if (files[0].type.startsWith('image')) {
+        const promise = handleDropedImagesProp(files[0])
+        promise
+          .then(({ data }) => {
+            const src = data.link || data.url
+            this.addImage(src,toolbar.image.defaultSize.height,toolbar.image.defaultSize.width,'')
+          })
+          .catch(() => {
+
+          });
+        return 
+      }
+    }
+
+    if (handleDropedFilesProp) {
+      handleDropedFilesProp(selection,files);
+      return 
+    }
+
+  };
+
+  addImage = (src, height, width, alt) => {
+    
+    const { editorState } = this.state;
+    const entityData = { src, height, width };
+
+    const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('IMAGE', 'MUTABLE', entityData)
+      .getLastCreatedEntityKey();
+      
+    const newEditorState = AtomicBlockUtils.insertAtomicBlock(
+      editorState,
+      entityKey,
+      ' '
+    );
+    
+    console.log(newEditorState);
+    this.onChange(newEditorState);
+  };
+
   preventDefault = event => {
     if (
       event.target.tagName === 'INPUT' ||
@@ -490,6 +571,8 @@ class WysiwygEditor extends Component {
             customStyleMap={this.getStyleMap(this.props)}
             handleReturn={this.handleReturn}
             handlePastedText={this.handlePastedTextFn}
+            handlePastedFiles={this.handlePastedFilesFn}
+            handleDroppedFiles={this.handleDropedFilesFn}
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
@@ -548,6 +631,10 @@ WysiwygEditor.propTypes = {
   customDecorators: PropTypes.array,
   editorRef: PropTypes.func,
   handlePastedText: PropTypes.func,
+  handlePastedFiles: PropTypes.func,
+  handlePastedImages: PropTypes.func,
+  handleDroppedFiles: PropTypes.func,
+  handleDroppedImages: PropTypes.func,
 };
 
 WysiwygEditor.defaultProps = {
