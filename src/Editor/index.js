@@ -437,7 +437,6 @@ class WysiwygEditor extends Component {
       handleDroppedFiles: handleDropedFilesProp,
       handleDroppedImages: handleDropedImagesProp
     } = this.props;
-    console.log(files);
 
     if (handleDropedImagesProp) {
       if (files[0].type.startsWith('image')) {
@@ -477,7 +476,6 @@ class WysiwygEditor extends Component {
       ' '
     );
     
-    console.log(newEditorState);
     this.onChange(newEditorState);
   };
 
