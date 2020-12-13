@@ -27,6 +27,54 @@ const getImageComponent = config => class Image extends Component {
     this.setEntityAlignment('none');
   };
 
+
+  setEntitySizeSmall: Function = (): void => {
+    this.setEntitySize('small');
+  };
+
+  setEntitySizeLarge: Function = (): void => {
+    this.setEntitySize('large');
+  };
+
+  setEntitySizeAuto: Function = (): void => {
+    this.setEntitySize('auto');
+  };
+
+
+  setEntitySize: Function = (size): void => {
+    const { block, contentState } = this.props;
+    const entityKey = block.getEntityAt(0);
+
+    let entityHeight = 'auto'
+
+    switch (size) {
+      case 'small':
+        entityHeight = '10rem'
+        break;
+      case 'large':
+        entityHeight = '30rem'
+        break;
+      case 'auto':
+        entityHeight = 'auto'
+        break;
+
+      default:
+        break;
+    }
+    console.log(entityHeight);
+    contentState.mergeEntityData(
+      entityKey,
+      {
+        height: entityHeight,
+        width: 'auto'
+      },
+    );
+    config.onChange(EditorState.push(config.getEditorState(), contentState, 'change-block-data'));
+    this.setState({
+      dummy: true,
+    });
+  };
+
   setEntityAlignment: Function = (alignment): void => {
     const { block, contentState } = this.props;
     const entityKey = block.getEntityAt(0);
@@ -79,10 +127,44 @@ const getImageComponent = config => class Image extends Component {
     );
   }
 
+
+  renderSizeOptions(alignment): Object {
+    return (
+      <div
+        className={classNames(
+          'rdw-image-alignment-options-popup',
+          {
+            'rdw-image-alignment-options-popup-right': alignment === 'right',
+          },
+          'rdw-image-alignment-options-separator',
+        )}
+      >
+        <Option
+          onClick={this.setEntitySizeSmall}
+          className="rdw-image-size-option"
+        >
+          Small
+        </Option>
+        <Option
+          onClick={this.setEntitySizeLarge}
+          className="rdw-image-size-option"
+        >
+          Large
+        </Option>
+        <Option
+          onClick={this.setEntitySizeAuto}
+          className="rdw-image-size-option"
+        >
+          Auto
+        </Option>
+      </div>
+    );
+  }
+
   render(): Object {
     const { block, contentState } = this.props;
     const { hovered } = this.state;
-    const { isReadOnly, isImageAlignmentEnabled } = config;
+    const { isReadOnly, isImageAlignmentEnabled, isImageSizeEnabled } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
     const { src, alignment, height, width, alt } = entity.getData();
 
@@ -108,12 +190,20 @@ const getImageComponent = config => class Image extends Component {
               width,
             }}
           />
-          {
-            !isReadOnly() && hovered && isImageAlignmentEnabled() ?
-              this.renderAlignmentOptions(alignment)
-              :
-              undefined
-          }
+          <div className="rdw-image-options-wrapper">
+            {
+              !isReadOnly() && hovered && isImageAlignmentEnabled() ?
+                this.renderAlignmentOptions(alignment)
+                :
+                undefined
+            }
+            {
+              !isReadOnly() && hovered && isImageSizeEnabled() ?
+                this.renderSizeOptions(alignment)
+                :
+                undefined
+            }
+          </div>
         </span>
       </span>
     );
