@@ -3,15 +3,45 @@
 import React from 'react';
 import { Editor } from '../../src';
 
-const handlePastedImage = files => {
+const handlePastedImage = file => {
   return new Promise(resolve => {
-    resolve({ data: { link: "https://via.placeholder.com/500" } })
+    const xhr = new XMLHttpRequest(); // eslint-disable-line no-undef
+    xhr.open('POST', 'https://api.imgur.com/3/image');
+    xhr.setRequestHeader('Authorization', 'Client-ID 8d26ccd12712fca');
+    const data = new FormData(); // eslint-disable-line no-undef
+    data.append('image', file);
+    xhr.send(data);
+    xhr.addEventListener('load', () => {
+      const response = JSON.parse(xhr.responseText);
+      resolve(response);
+    });
+    xhr.addEventListener('error', () => {
+      const error = JSON.parse(xhr.responseText);
+      reject(error);
+    });
+    // resolve({ data: { link: "https://via.placeholder.com/500" } })
   })
 }
 
-const handleDroppedImage = (selection, files) => {
+const handleDroppedImage = (selection, file) => {
   return new Promise(resolve => {
-    resolve({ data: { link: "https://via.placeholder.com/500" } })
+
+    const xhr = new XMLHttpRequest(); // eslint-disable-line no-undef
+    xhr.open('POST', 'https://api.imgur.com/3/image');
+    xhr.setRequestHeader('Authorization', 'Client-ID 8d26ccd12712fca');
+    const data = new FormData(); // eslint-disable-line no-undef
+    data.append('image', file);
+    xhr.send(data);
+    xhr.addEventListener('load', () => {
+      const response = JSON.parse(xhr.responseText);
+      resolve(response);
+    });
+    xhr.addEventListener('error', () => {
+      const error = JSON.parse(xhr.responseText);
+      reject(error);
+    });
+
+    //resolve({ data: { link: "https://via.placeholder.com/500" } })
   })
 }
 
@@ -26,12 +56,12 @@ const PasteAndDropImages = () =>
       handlePastedImage={handlePastedImage}
       handleDroppedImages={handleDroppedImage}
       toolbar={{
-        image:{
+        image: {
           sizeOptionSetting: [
-            { label:"small", size:"10rem" },
-            { label:"medium", size:"20rem" },
-            { label:"large", size:"30rem" },
-            { label:"auto", size:"auto" },
+            { label: "small", size: "10rem" },
+            { label: "medium", size: "20rem" },
+            { label: "large", size: "30rem" },
+            { label: "auto", size: "auto" },
           ]
         }
       }}

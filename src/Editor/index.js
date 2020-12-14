@@ -443,7 +443,7 @@ class WysiwygEditor extends Component {
 
     if (handleDropedImagesProp) {
       if (files[0].type.startsWith('image')) {
-        const promise = handleDropedImagesProp(files[0])
+        const promise = handleDropedImagesProp(selection,files[0])
         promise
           .then(({ data }) => {
             const src = data.link || data.url
