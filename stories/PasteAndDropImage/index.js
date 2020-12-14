@@ -51,7 +51,7 @@ const PasteAndDropImages = () =>
       wrapperClassName="rdw-storybook-wrapper"
       editorClassName="rdw-storybook-editor"
       handlePastedImage={handlePastedImage}
-      handleDroppedImages={handleDroppedImage}
+      handleDroppedImage={handleDroppedImage}
       toolbar={{
         image: {
           sizeOptionSetting: [
