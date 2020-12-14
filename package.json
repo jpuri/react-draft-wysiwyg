@@ -1,6 +1,6 @@
 {
   "name": "@innovaccer/rich-text-editor",
-  "version": "1.0.0-1",
+  "version": "1.0.0-2",
   "description": "A rich text on top of DraftJS.",
   "main": "dist/rich-text-editor.js",
   "repository": {
@@ -57,14 +57,15 @@
     "webpack-cli": "^3.3.10"
   },
   "dependencies": {
-    "draft-js": "^0.11.7",
-    "immutable": "^4.0.0-rc.12",
     "classnames": "^2.2.6",
-    "draftjs-utils": "^0.10.2",
+    "draft-js": "^0.11.7",
     "draftjs-to-html": "^0.9.0",
+    "draftjs-utils": "^0.10.2",
     "html-to-draftjs": "^1.5.0",
+    "immutable": "^4.0.0-rc.12",
     "linkify-it": "^2.2.0",
-    "prop-types": "^15.7.2"
+    "prop-types": "^15.7.2",
+    "redraft": "^0.10.2"
   },
   "peerDependencies": {
     "@innovaccer/design-system": "^1.4.0-0",

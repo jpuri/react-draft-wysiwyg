@@ -3,6 +3,15 @@ import color from '../../images/color.svg';
 import embedded from '../../images/embedded.svg';
 import image from '../../images/image.svg';
 
+export const defaultColors = [
+  'var(--text)',
+  'var(--secondary)',
+  'var(--success)',
+  'var(--primary)',
+  'var(--alert)',
+  'var(--accent1)',
+];
+
 export default {
   options: [
     "heading",
@@ -44,14 +53,7 @@ export default {
   },
   colorPicker: {
     icon: color,
-    colors: [
-      'var(--text)',
-      'var(--secondary)',
-      'var(--success)',
-      'var(--primary)',
-      'var(--alert)',
-      'var(--accent1)',
-    ],
+    colors: defaultColors,
   },
   insert: {
     max: 3,

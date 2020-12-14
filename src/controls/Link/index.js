@@ -179,7 +179,7 @@ class Link extends Component {
       editorState.getCurrentContent(),
       selection,
       `${linkTitle}`,
-      editorState.getCurrentInlineStyle(),
+      null,
       entityKey
     );
     let newEditorState = EditorState.push(

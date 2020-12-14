@@ -12,9 +12,10 @@ export default function addMention(
   suggestion: Object,
 ): void {
   const { label, value, url } = suggestion;
+
   const entityKey = editorState
     .getCurrentContent()
-    .createEntity('MENTION', 'IMMUTABLE', { text: `${trigger}${label}`, value, url })
+    .createEntity('MENTION', 'IMMUTABLE', { text: `${trigger}${value}`, value, url })
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
@@ -36,7 +37,7 @@ export default function addMention(
     newEditorState.getCurrentContent(),
     updatedSelection,
     `${label}`,
-    newEditorState.getCurrentInlineStyle(),
+    null,
     entityKey,
   );
   newEditorState = EditorState.push(newEditorState, contentState, 'insert-characters');
@@ -56,5 +57,6 @@ export default function addMention(
       undefined,
     );
   }
+
   onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
 }

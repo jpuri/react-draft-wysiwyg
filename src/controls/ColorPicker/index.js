@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {
   toggleCustomInlineStyle,
   getSelectionCustomInlineStyle,
+  getSelectionEntity
 } from 'draftjs-utils';
 
 import LayoutComponent from './Component';
@@ -86,6 +87,15 @@ class ColorPicker extends Component {
 
   toggleColor = (style, color) => {
     const { editorState, onChange } = this.props;
+    const entityKey = getSelectionEntity(editorState);
+
+    if (entityKey) {
+      const entityType = editorState.getCurrentContent().getEntity(entityKey).getType();
+      if (entityType === 'MENTION' || entityType === 'LINK') {
+        return;
+      }
+    }
+
     const newState = toggleCustomInlineStyle(editorState, style, color);
     if (newState) {
       onChange(newState);

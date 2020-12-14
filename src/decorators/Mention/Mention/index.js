@@ -34,7 +34,7 @@ class Mention {
         const editorState = config.getEditorState();
         const updatedContentState = editorState.getCurrentContent();
         let selection = editorState.getSelection();
-    
+
         const entityRange = getEntityRange(editorState, entityKey);
         const isBackward = selection.getIsBackward();
 

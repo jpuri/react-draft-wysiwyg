@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { getSelectionInlineStyle } from 'draftjs-utils';
+import { getSelectionInlineStyle, getSelectionEntity } from 'draftjs-utils';
 import { RichUtils, EditorState, Modifier } from 'draft-js';
 import { forEach } from '../../utils/common';
 
@@ -53,8 +53,18 @@ export default class Inline extends Component {
   };
 
   toggleInlineStyle = style => {
-    const newStyle = style.toUpperCase();
     const { editorState, onChange } = this.props;
+
+    const newStyle = style.toUpperCase();
+    const entityKey = getSelectionEntity(editorState);
+
+    if (entityKey) {
+      const entityType = editorState.getCurrentContent().getEntity(entityKey).getType();
+      if (entityType === 'MENTION' || entityType === 'LINK') {
+        return;
+      }
+    }
+
     let newState = RichUtils.toggleInlineStyle(editorState, newStyle);
 
     if (newState) {
