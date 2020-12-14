@@ -224,6 +224,26 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>image: imageAlignIcon</b>
+        <span>
+          : The property can be used to configure the icons of alignment options by setting the left right or center property with image object.
+        </span>
+      </li>
+      <li>
+        <b>image: sizeEnabled</b>
+        <span>
+          : The property can be used to configure if image size options should be
+          enabled. Default value
+          is true.
+        </span>
+      </li>
+      <li>
+        <b>image: sizeOptionSetting</b>
+        <span>
+          : The property can be used to configure image size options by setting an array of object <code className="code_sm">{"{ label: <LABEL TEXT>, size: <CSS SIZE>}"}</code>.
+        </span>
+      </li>
+      <li>
         <b>image: inputAccept</b>
         <span>
           : The property can be used to configure which file types should be

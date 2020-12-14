@@ -438,12 +438,12 @@ class WysiwygEditor extends Component {
     const { toolbar } = this.state;
     const {
       handleDroppedFiles: handleDropedFilesProp,
-      handleDroppedImages: handleDropedImagesProp
+      handleDroppedImage: handleDropedImageProp
     } = this.props;
 
-    if (handleDropedImagesProp) {
+    if (handleDropedImageProp) {
       if (files[0].type.startsWith('image')) {
-        const promise = handleDropedImagesProp(selection,files[0])
+        const promise = handleDropedImageProp(selection,files[0])
         promise
           .then(({ data }) => {
             const src = data.link || data.url
@@ -640,7 +640,7 @@ WysiwygEditor.propTypes = {
   handlePastedFiles: PropTypes.func,
   handlePastedImages: PropTypes.func,
   handleDroppedFiles: PropTypes.func,
-  handleDroppedImages: PropTypes.func,
+  handleDropedImage: PropTypes.func,
 };
 
 WysiwygEditor.defaultProps = {

@@ -19,7 +19,6 @@ const handlePastedImage = file => {
       const error = JSON.parse(xhr.responseText);
       reject(error);
     });
-    // resolve({ data: { link: "https://via.placeholder.com/500" } })
   })
 }
 
@@ -40,8 +39,6 @@ const handleDroppedImage = (selection, file) => {
       const error = JSON.parse(xhr.responseText);
       reject(error);
     });
-
-    //resolve({ data: { link: "https://via.placeholder.com/500" } })
   })
 }
 

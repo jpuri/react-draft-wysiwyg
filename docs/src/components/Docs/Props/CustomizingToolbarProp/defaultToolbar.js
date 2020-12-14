@@ -110,21 +110,33 @@ export default "{\n" +
   "    },\n" +
   "  },\n" +
   "  image: {\n" +
-  "    icon: image,\n" +
-  "    className: undefined,\n" +
-  "    component: undefined,\n" +
-  "    popupClassName: undefined,\n" +
-  "    urlEnabled: true,\n" +
-  "    uploadEnabled: true,\n" +
-  "    alignmentEnabled: true,\n" +
-  "    uploadCallback: undefined,\n" +
-  "    previewImage: false,\n" +
-  "    inputAccept: 'image/gif,image/jpeg,image/jpg,image/png,image/svg',\n" +
-  "    alt: { present: false, mandatory: false },\n" +
-  "    defaultSize: {\n" +
-  "      height: 'auto',\n" +
-  "      width: 'auto',\n" +
-  "    },\n" +
+  "    icon: image,\n"+
+  "    className: undefined,\n"+
+  "    component: undefined,\n"+
+  "    popupClassName: undefined,\n"+
+  "    urlEnabled: true,\n"+
+  "    uploadEnabled: true,\n"+
+  "    previewImage: false,\n"+
+  "    alignmentEnabled: true,\n"+
+  "    imageAlignIcon: {\n"+
+  "      left : left,\n"+
+  "      right : right,\n"+
+  "      center : center\n"+
+  "    },\n"+
+  "    sizeEnabled: true,\n"+
+  "    sizeOptionSetting: [\n"+
+  "      { label:\"small\", size:\"10rem\" },\n"+
+  "      { label:\"large\", size:\"30rem\" },\n"+
+  "      { label:\"auto\", size:\"auto\" },\n"+
+  "    ],\n"+
+  "    uploadCallback: undefined,\n"+
+  "    inputAccept: \"image/gif,image/jpeg,image/jpg,image/png,image/svg\",\n"+
+  "    alt: { present: false, mandatory: false },\n"+
+  "    defaultSize: {\n"+
+  "      height: \"auto\",\n"+
+  "      width: \"auto\"\n"+
+  "    },\n"+
+  "    title: undefined\n"+
   "  },\n" +
   "  remove: { icon: eraser, className: undefined, component: undefined },\n" +
   "  history: {\n" +
