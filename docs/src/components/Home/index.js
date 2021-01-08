@@ -6,39 +6,47 @@ import uploadImageCallBack from "../../util/uploadImageCallBack";
 import "./styles.css";
 
 export default class Home extends Component {
+  componentDidMount() {
+    const script = document.createElement("script");
+    script.id = "_carbonads_js";
+    script.type = "text/javascript";
+    script.src =
+      "//cdn.carbonads.com/carbon.js?serve=CEBIP5Q7&placement=jpurigithubio";
+    script.async = true;
+
+    document.getElementById("carbon_ad").appendChild(script);
+  }
+
   render() {
     return (
       <div className="root">
-        <Editor
-          wrapperClassName="home-wrapper"
-          editorClassName="home-editor"
-          toolbar={{
-            image: {
-              uploadCallback: uploadImageCallBack,
-              alt: { present: true },
-              previewImage: true,
-            },
-            fontFamily: {
-              options: [
-                "Arial",
-                "Georgia",
-                "Impact",
-                "Tahoma",
-                "Roboto",
-                "Times New Roman",
-                "Verdana",
-              ],
-            },
-          }}
-          placeholder="Begin typing..."
-          hashtag={{}}
-        />
-        <script
-          async
-          type="text/javascript"
-          src="//cdn.carbonads.com/carbon.js?serve=CEBIP5Q7&placement=jpurigithubio"
-          id="_carbonads_js"
-        ></script>
+        <div className="carbon_wrapper">
+          <div id="carbon_ad" className="carbon_ad" />
+          <Editor
+            wrapperClassName="home-wrapper"
+            editorClassName="home-editor"
+            toolbar={{
+              image: {
+                uploadCallback: uploadImageCallBack,
+                alt: { present: true },
+                previewImage: true,
+              },
+              fontFamily: {
+                options: [
+                  "Arial",
+                  "Georgia",
+                  "Impact",
+                  "Tahoma",
+                  "Roboto",
+                  "Times New Roman",
+                  "Verdana",
+                ],
+              },
+            }}
+            placeholder="Begin typing..."
+            hashtag={{}}
+          />
+        </div>
         <div className="quote-section">
           <div className="quote">
             <span className="quote-text">This is incredibly well done!</span>

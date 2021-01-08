@@ -1,55 +1,51 @@
 #carbonads {
+  display: flex;
+  float: right;
+  margin: 0 0 20px 20px;
+  max-width: 130px;
+  border-radius: 4px;
+  background-color: hsl(0, 0%, 98%);
+  box-shadow: 0 0 1px hsla(0, 0%, 0%, 0.15);
+  font-size: 11px;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", Helvetica, Arial,
     sans-serif;
 }
 
-#carbonads {
-  display: flex;
-  max-width: 330px;
-  background-color: hsl(0, 0%, 98%);
-  box-shadow: 0 1px 4px 1px hsla(0, 0%, 0%, 0.1);
-}
-
 #carbonads a {
-  color: inherit;
+  color: #111;
   text-decoration: none;
 }
 
 #carbonads a:hover {
-  color: inherit;
-}
-
-#carbonads span {
-  position: relative;
-  display: block;
-  overflow: hidden;
-}
-
-#carbonads .carbon-wrap {
-  display: flex;
+  color: #111;
 }
 
 .carbon-img {
   display: block;
-  margin: 0;
+  margin-bottom: 8px;
+  max-width: 130px;
   line-height: 1;
 }
 
 .carbon-img img {
   display: block;
+  margin: 0 auto;
+  max-width: 130px;
+  width: 130px;
+  height: auto;
 }
 
 .carbon-text {
-  font-size: 13px;
-  padding: 10px;
-  line-height: 1.5;
+  display: block;
+  padding: 0 10px 8px;
   text-align: left;
+  line-height: 1.35;
 }
 
 .carbon-poweredby {
   display: block;
-  padding: 8px 10px;
+  padding: 10px;
   background: repeating-linear-gradient(
       -45deg,
       transparent,
@@ -58,12 +54,43 @@
       hsla(0, 0%, 0%, 0.025) 10px
     )
     hsla(203, 11%, 95%, 0.4);
-  text-align: center;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 600;
-  font-size: 9px;
-  line-height: 1;
+  font-size: 8px;
+  line-height: 0;
+}
+
+@media only screen and (min-width: 320px) and (max-width: 759px) {
+  #carbonads {
+    position: relative;
+    float: none;
+    margin: 20px 0;
+    max-width: 330px;
+  }
+
+  .carbon-wrap {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .carbon-img {
+    margin: 0;
+  }
+
+  .carbon-text {
+    padding: 10px 10px 0 10px;
+    font-size: 12px;
+  }
+
+  .carbon-poweredby {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    border-radius: 0;
+    border-top-left-radius: 3px;
+    text-align: center;
+  }
 }
 
 /* latin-ext */
@@ -791,7 +818,7 @@ textarea {
   height: 400px !important;
 }
 .home-editor {
-  border: 1px solid #F1F1F1 !important;
+  border: 1px solid #f1f1f1 !important;
   padding: 5px !important;
   border-radius: 2px !important;
   height: 80% !important;
@@ -827,6 +854,14 @@ textarea {
 }
 .discussion {
   margin-top: 15px;
+}
+.carbon_wrapper {
+  display: flex;
+}
+.carbon_ad {
+  margin-left: -200px;
+  margin-right: 50px;
+  margin-top: 50px;
 }
 
 .demo-color-wrapper {

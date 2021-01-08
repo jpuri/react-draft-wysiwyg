@@ -24,7 +24,7 @@
   height: 400px !important;
 }
 .home-editor {
-  border: 1px solid #F1F1F1 !important;
+  border: 1px solid #f1f1f1 !important;
   padding: 5px !important;
   border-radius: 2px !important;
   height: 80% !important;
@@ -60,4 +60,12 @@
 }
 .discussion {
   margin-top: 15px;
+}
+.carbon_wrapper {
+  display: flex;
+}
+.carbon_ad {
+  margin-left: -200px;
+  margin-right: 50px;
+  margin-top: 50px;
 }
