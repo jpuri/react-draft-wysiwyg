@@ -22,7 +22,7 @@ import ModalHandler from '../event-handler/modals';
 import FocusHandler from '../event-handler/focus';
 import KeyDownHandler from '../event-handler/keyDown';
 import SuggestionHandler from '../event-handler/suggestions';
-import blockStyleFn from '../utils/BlockStyle';
+import getBlockStyleFunc from '../utils/BlockStyle';
 import { mergeRecursive } from '../utils/toolbar';
 import { hasProperty, filter } from '../utils/common';
 import { handlePastedText } from '../utils/handlePaste';
@@ -55,6 +55,8 @@ class WysiwygEditor extends Component {
       },
       props.customBlockRenderFunc
     );
+    this.blockStyleFn = getBlockStyleFunc(props.customBlockStyleFunc);
+    this.blockRenderMap = blockRenderMap.merge(props.customBlockRenderMap);
     this.editorProps = this.filterEditorProps(props);
     this.customStyleMap = this.getStyleMap(props);
     this.compositeDecorator = this.getCompositeDecorator(toolbar);
@@ -232,7 +234,7 @@ class WysiwygEditor extends Component {
 
   getWrapperRef = () => this.wrapper;
 
-  getEditorState = () => this.state ? this.state.editorState : null;
+  getEditorState = () => (this.state ? this.state.editorState : null);
 
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
@@ -326,12 +328,18 @@ class WysiwygEditor extends Component {
       'hashtag',
       'ariaLabel',
       'customBlockRenderFunc',
+      'customBlockStyleFunc',
+      'customBlockRenderMap',
       'customDecorators',
+      'handleKeyCommand',
       'handlePastedText',
       'customStyleMap',
     ]);
 
-  getStyleMap = props => ({ ...getCustomStyleMap(), ...props.customStyleMap });
+  getStyleMap = props => ({
+    ...getCustomStyleMap(),
+    ...props.customStyleMap,
+  });
 
   changeEditorState = contentState => {
     const newContentState = convertFromRaw(contentState);
@@ -351,11 +359,11 @@ class WysiwygEditor extends Component {
     });
   };
 
-  handleKeyCommand = command => {
+  handleKeyCommand = (command, editorState, eventTimeStamp) => {
     const {
-      editorState,
       toolbar: { inline },
     } = this.state;
+    
     if (inline && inline.options.indexOf(command) >= 0) {
       const newState = RichUtils.handleKeyCommand(editorState, command);
       if (newState) {
@@ -363,6 +371,11 @@ class WysiwygEditor extends Component {
         return true;
       }
     }
+
+    if (this.props.handleKeyCommand) {
+      return this.props.handleKeyCommand(command, editorState, eventTimeStamp)
+    }
+    
     return false;
   };
 
@@ -486,14 +499,14 @@ class WysiwygEditor extends Component {
             keyBindingFn={this.keyBindingFn}
             editorState={editorState}
             onChange={this.onChange}
-            blockStyleFn={blockStyleFn}
+            blockStyleFn={this.blockStyleFn}
             customStyleMap={this.getStyleMap(this.props)}
             handleReturn={this.handleReturn}
             handlePastedText={this.handlePastedTextFn}
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
-            blockRenderMap={blockRenderMap}
+            blockRenderMap={this.blockRenderMap}
             {...this.editorProps}
           />
         </div>
@@ -544,6 +557,9 @@ WysiwygEditor.propTypes = {
   ariaExpanded: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   ariaHasPopup: PropTypes.string, // eslint-disable-line react/no-unused-prop-types
   customBlockRenderFunc: PropTypes.func,
+  customBlockRenderMap: PropTypes.object,
+  customBlockStyleFunc: PropTypes.func,
+  handleKeyCommand: PropTypes.func,
   wrapperId: PropTypes.number,
   customDecorators: PropTypes.array,
   editorRef: PropTypes.func,

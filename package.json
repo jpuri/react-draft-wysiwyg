@@ -69,6 +69,7 @@
   },
   "scripts": {
     "clean": "rimraf dist",
+    "prepare": "npm run build",
     "build:webpack": "cross-env NODE_ENV=production webpack  --mode production --config config/webpack.config.js",
     "build": "npm run clean && npm run build:webpack",
     "test": "cross-env BABEL_ENV=test mocha --require config/test-compiler.js config/test-setup.js src/**/*Test.js",
