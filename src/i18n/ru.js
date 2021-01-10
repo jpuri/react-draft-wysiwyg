@@ -34,6 +34,9 @@ export default {
   // FontSize
   "components.controls.fontsize.fontsize": "Размер шрифта",
 
+  // LineHeight
+  "components.controls.lineHeight.lineHeight": "Высота линии",
+
   // History
   "components.controls.history.history": "История",
   "components.controls.history.undo": "Отменить",

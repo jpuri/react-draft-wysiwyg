@@ -34,6 +34,9 @@ export default {
   // FontSize
   "components.controls.fontsize.fontsize": "Tamaño de fuente",
 
+  // LineHeight
+  "components.controls.lineHeight.lineHeight": "Altura de la línea",
+
   // History
   "components.controls.history.history": "Histórico",
   "components.controls.history.undo": "Deshacer",

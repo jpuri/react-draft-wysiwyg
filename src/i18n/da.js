@@ -34,6 +34,9 @@ export default {
   // FontSize
   "components.controls.fontsize.fontsize": "Fontstørrelser",
 
+  // LineHeight
+  "components.controls.lineHeight.lineHeight": "Linjehøyde",
+
   // History
   "components.controls.history.history": "Historie",
   "components.controls.history.undo": "Fortryd",
