@@ -47,9 +47,24 @@ export default class LayoutComponent extends Component {
     } = this.props;
     let { currentState: { fontSize: currentFontSize } } = this.props;
     let { defaultFontSize } = this.state;
+    let optionsWithLabels = options.map((item) => {
+        if (typeof item === 'object' && item !== null) {
+            return item;
+        } else {
+            return {label: item, value: item};
+        }
+    });
     defaultFontSize = Number(defaultFontSize);
     currentFontSize = currentFontSize ||
-      (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
+                     (optionsWithLabels &&
+                      optionsWithLabels.find(element => element.value === defaultFontSize) !== null &&
+                      defaultFontSize);
+    let optionWithLabel = optionsWithLabels &&
+                          optionsWithLabels.find(element => element.value === currentFontSize);
+    let label = currentFontSize;
+    if (optionWithLabel !== undefined) {
+        label = optionWithLabel.label;
+    }
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         <Dropdown
@@ -63,18 +78,18 @@ export default class LayoutComponent extends Component {
           title={title || translations['components.controls.fontsize.fontsize']}
         >
           {currentFontSize ?
-            <span>{currentFontSize}</span> :
+            <span>{label}</span> :
             <img src={icon} alt="" />
           }
           {
-            options.map((size, index) =>
+            optionsWithLabels.map((size, index) =>
               (<DropdownOption
                 className="rdw-fontsize-option"
-                active={currentFontSize === size}
-                value={size}
+                active={currentFontSize === size.value}
+                value={size.value}
                 key={index}
               >
-                {size}
+                {size.label}
               </DropdownOption>),
             )
           }
