@@ -18,13 +18,17 @@ export default class FontFamily extends Component {
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = props;
+    const { editorState } = props;
     this.state = {
       expanded: undefined,
       currentFontFamily: editorState
         ? getSelectionCustomInlineStyle(editorState, ['FONTFAMILY']).FONTFAMILY
         : undefined,
     };
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 

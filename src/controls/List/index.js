@@ -21,11 +21,15 @@ export default class List extends Component {
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = this.props;
+    const { editorState } = this.props;
     this.state = {
       expanded: false,
       currentBlock: editorState ? getSelectedBlock(editorState) : undefined,
     };
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 

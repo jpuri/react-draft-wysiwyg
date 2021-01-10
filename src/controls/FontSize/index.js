@@ -18,13 +18,17 @@ export default class FontSize extends Component {
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = props;
+    const { editorState } = props;
     this.state = {
       expanded: undefined,
       currentFontSize: editorState
         ? getSelectionCustomInlineStyle(editorState, ['FONTSIZE']).FONTSIZE
         : undefined,
     };
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
     modalHandler.registerCallBack(this.expandCollapse);
   }
 
