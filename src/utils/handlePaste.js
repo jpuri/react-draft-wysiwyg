@@ -5,7 +5,7 @@ import { OrderedMap, List } from "immutable";
 
 export const handlePastedText = (text, html, editorState, onChange) => {
   const selectedBlock = getSelectedBlock(editorState);
-  if (selectedBlock && selectedBlock.type === "code") {
+  if (selectedBlock && selectedBlock.type === "code-block") {
     const contentState = Modifier.replaceText(
       editorState.getCurrentContent(),
       editorState.getSelection(),
