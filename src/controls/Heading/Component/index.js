@@ -76,6 +76,7 @@ class LayoutComponent extends Component {
             >
               <Heading
                 size={block.size}
+                className="Editor-heading-option"
                 appearance={blockType === block.label ? 'white' : 'default'}
               >
                 {block.displayName}

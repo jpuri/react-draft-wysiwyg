@@ -33,3 +33,7 @@
   padding-right: var(--spacing);
   padding-left: var(--spacing);
 }
+
+.Editor-heading-option {
+  white-space: nowrap;
+}

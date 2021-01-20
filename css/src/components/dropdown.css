@@ -1,5 +1,6 @@
 .Editor-dropdown {
   height: var(--spacing-3);
+  position: relative;
   cursor: pointer;
   border-radius: var(--spacing-m);
   text-transform: capitalize;
