@@ -4,6 +4,16 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import './styles.css';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+import { withStyles } from '@material-ui/core/styles';
+
+const StyledToggleButton = withStyles((theme) => ({
+  root: {
+    margin: theme.spacing(0.5),
+    padding: theme.spacing(0.5),
+    border: 'none',
+  },
+}))(ToggleButton);
 
 export default class Option extends Component {
   static propTypes = {
@@ -21,31 +31,25 @@ export default class Option extends Component {
     activeClassName: '',
   }
 
-  onClick: Function = () => {
+  onClick: Function = (event) => {
     const { disabled, onClick, value } = this.props;
     if (!disabled) {
-      onClick(value);
+      onClick(value, event);
     }
   };
 
   render() {
     const { children, className, activeClassName, active, disabled, title } = this.props;
     return (
-      <div
-        className={classNames(
-          'rdw-option-wrapper',
-          className,
-          {
-            [`rdw-option-active ${activeClassName}`]: active,
-            'rdw-option-disabled': disabled,
-          },
-        )}
+      <StyledToggleButton
+        disabled={disabled}
+        value="left"
+        selected={active}
         onClick={this.onClick}
         aria-selected={active}
-        title={title}
       >
         {children}
-      </div>
+      </StyledToggleButton>
     );
   }
 }

@@ -35,6 +35,7 @@ import defaultToolbar from '../config/defaultToolbar';
 import localeTranslations from '../i18n';
 import './styles.css';
 import '../../css/Draft.css';
+import { Divider, Grow, Paper } from '@material-ui/core';
 
 class WysiwygEditor extends Component {
   constructor(props) {
@@ -446,30 +447,40 @@ class WysiwygEditor extends Component {
         aria-label="rdw-wrapper"
       >
         {!toolbarHidden && (
-          <div
-            className={classNames('rdw-editor-toolbar', toolbarClassName)}
-            style={{
-              visibility: toolbarShow ? 'visible' : 'hidden',
-              ...toolbarStyle,
-            }}
-            onMouseDown={this.preventDefault}
-            aria-label="rdw-toolbar"
-            aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-            onFocus={this.onToolbarFocus}
-          >
-            {toolbar.options.map((opt, index) => {
-              const Control = Controls[opt];
-              const config = toolbar[opt];
-              if (opt === 'image' && uploadCallback) {
-                config.uploadCallback = uploadCallback;
-              }
-              return <Control key={index} {...controlProps} config={config} />;
-            })}
-            {toolbarCustomButtons &&
-              toolbarCustomButtons.map((button, index) =>
-                React.cloneElement(button, { key: index, ...controlProps })
-              )}
-          </div>
+          <Grow in={toolbarShow}>
+            <Paper
+              elevation={3}
+              className={classNames('rdw-editor-toolbar', toolbarClassName)}
+              style={{
+                visibility: toolbarShow ? 'visible' : 'hidden',
+                ...toolbarStyle,
+              }}
+              onMouseDown={this.preventDefault}
+              aria-label="rdw-toolbar"
+              aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+              onFocus={this.onToolbarFocus}
+            >
+              {toolbar.options.map((opt, index) => {
+                const Control = Controls[opt];
+                const config = toolbar[opt];
+                if (opt === 'image' && uploadCallback) {
+                  config.uploadCallback = uploadCallback;
+                }
+                return <>
+                  <Control key={index} {...controlProps} focusEditor={this.onEditorFocus} config={config} />
+                  {
+                    toolbar.options.length - 1 !== index &&
+                    <Divider orientation="vertical" flexItem style={{ margin: "8px 2px" }} />
+
+                  }
+                </>;
+              })}
+              {toolbarCustomButtons &&
+                toolbarCustomButtons.map((button, index) =>
+                  React.cloneElement(button, { key: index, ...controlProps })
+                )}
+            </Paper>
+          </Grow>
         )}
         <div
           ref={this.setWrapperReference}

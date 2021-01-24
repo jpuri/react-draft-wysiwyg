@@ -95,10 +95,13 @@ export default class History extends Component {
           disabled={undoDisabled}
           title={undo.title || translations['components.controls.history.undo']}
         >
-          <img
+          {/* <img
             src={undo.icon}
             alt=""
-          />
+          /> */}
+          {
+            undo.icon
+          }
         </Option>}
         {options.indexOf('redo') >= 0 && <Option
           value="redo"
@@ -107,10 +110,13 @@ export default class History extends Component {
           disabled={redoDisabled}
           title={redo.title || translations['components.controls.history.redo']}
         >
-          <img
+          {/* <img
             src={redo.icon}
             alt=""
-          />
+          /> */}
+          {
+            redo.icon
+          }
         </Option>}
       </div>
     );

@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
 
@@ -52,7 +54,7 @@ export default class LayoutComponent extends Component {
       (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
-        <Dropdown
+        {/* <Dropdown
           className={classNames('rdw-fontsize-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
@@ -78,7 +80,25 @@ export default class LayoutComponent extends Component {
               </DropdownOption>),
             )
           }
-        </Dropdown>
+        </Dropdown> */}
+        <Select
+          onOpen={() => {
+            this.props.focusEditor(); 
+          }}
+          open={expanded}
+          value={currentFontSize}
+          onChange={e => onChange(e.target.value)}
+          style={{ margin: 4 }}
+        >
+          {
+            options.map((size, index) =>
+            (<MenuItem active={currentFontSize === size}
+              value={size}
+              key={index}>
+              {size}
+            </MenuItem>))
+          }
+        </Select>
       </div>
     );
   }

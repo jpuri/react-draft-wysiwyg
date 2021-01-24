@@ -5,7 +5,8 @@ import classNames from 'classnames';
 import { stopPropagation } from '../../../utils/common';
 import Option from '../../../components/Option';
 import './styles.css';
-
+import ColorizeOutlinedIcon from '@material-ui/icons/ColorizeOutlined';
+import Popover from '@material-ui/core/Popover';
 class LayoutComponent extends Component {
   static propTypes = {
     expanded: PropTypes.bool,
@@ -52,12 +53,21 @@ class LayoutComponent extends Component {
       config: { popupClassName, colors },
       currentState: { color, bgColor },
       translations,
+      expanded
     } = this.props;
     const { currentStyle } = this.state;
     const currentSelectedColor = currentStyle === 'color' ? color : bgColor;
     return (
-      <div
-        className={classNames('rdw-colorpicker-modal', popupClassName)}
+      <Popover
+        open={expanded}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
         onClick={stopPropagation}
       >
         <span className="rdw-colorpicker-modal-header">
@@ -97,7 +107,7 @@ class LayoutComponent extends Component {
             </Option>
           ))}
         </span>
-      </div>
+      </Popover>
     );
   };
 
@@ -119,9 +129,10 @@ class LayoutComponent extends Component {
         }
       >
         <Option onClick={onExpandEvent} className={classNames(className)}>
-          <img src={icon} alt="" />
+          {/* <img src={icon} alt="" /> */}
+          {icon}
         </Option>
-        {expanded ? this.renderModal() : undefined}
+        {this.renderModal()}
       </div>
     );
   }

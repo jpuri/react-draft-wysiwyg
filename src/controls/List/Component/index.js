@@ -8,6 +8,11 @@ import { getFirstIcon } from '../../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import Option from '../../../components/Option';
 import './styles.css';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
+import FormatIndentDecreaseIcon from '@material-ui/icons/FormatIndentDecrease';
+import FormatIndentIncreaseIcon from '@material-ui/icons/FormatIndentIncrease';
 
 export default class LayoutComponent extends Component {
   static propTypes = {
@@ -60,10 +65,13 @@ export default class LayoutComponent extends Component {
           active={listType === 'unordered'}
           title={unordered.title || translations['components.controls.list.unordered']}
         >
-          <img
-            src={unordered.icon}
-            alt=""
-          />
+          {/* {
+            typeof unordered.icon === "string" ? <img
+              src={unordered.icon}
+              alt=""
+            /> : unordered.icon
+          } */}
+          <FormatListBulletedIcon />
         </Option>}
         {options.indexOf('ordered') >= 0 && <Option
           value="ordered"
@@ -72,10 +80,11 @@ export default class LayoutComponent extends Component {
           active={listType === 'ordered'}
           title={ordered.title || translations['components.controls.list.ordered']}
         >
-          <img
+          {/* <img
             src={ordered.icon}
             alt=""
-          />
+          /> */}
+          <FormatListNumberedIcon />
         </Option>}
         {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
@@ -83,10 +92,11 @@ export default class LayoutComponent extends Component {
           className={classNames(indent.className)}
           title={indent.title || translations['components.controls.list.indent']}
         >
-          <img
+          {/* <img
             src={indent.icon}
             alt=""
-          />
+          /> */}
+          <FormatIndentDecreaseIcon />
         </Option>}
         {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
@@ -94,10 +104,11 @@ export default class LayoutComponent extends Component {
           className={classNames(outdent.className)}
           title={outdent.title || translations['components.controls.list.outdent']}
         >
-          <img
+          <FormatIndentIncreaseIcon />
+          {/* <img
             src={outdent.icon}
             alt=""
-          />
+          /> */}
         </Option>}
       </div>
     );

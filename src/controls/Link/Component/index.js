@@ -184,7 +184,10 @@ class LayoutComponent extends Component {
             aria-expanded={showModal}
             title={link.title || translations['components.controls.link.link']}
           >
-            <img src={link.icon} alt="" />
+            {/* <img src={link.icon} alt="" /> */}
+            {
+              link.icon
+            }
           </Option>
         )}
         {options.indexOf('unlink') >= 0 && (
@@ -197,7 +200,10 @@ class LayoutComponent extends Component {
               unlink.title || translations['components.controls.link.unlink']
             }
           >
-            <img src={unlink.icon} alt="" />
+            {/* <img src={unlink.icon} alt="" /> */}
+            {
+              unlink.icon
+            }
           </Option>
         )}
         {expanded && showModal ? this.renderAddLinkModal() : undefined}

@@ -5,6 +5,12 @@ import classNames from 'classnames';
 import Option from '../../../components/Option';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import TextFieldsIcon from '@material-ui/icons/TextFields';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { Menu } from '@material-ui/core';
 
 class LayoutComponent extends Component {
   static propTypes = {
@@ -22,7 +28,16 @@ class LayoutComponent extends Component {
     super(props);
     this.state = {
       blockTypes: this.getBlockTypes(props.translations),
+      el: null
     };
+  }
+
+  onOpen = (value, event) => {
+    const { onExpandEvent, focusEditor } = this.props;
+    onExpandEvent(value);
+    this.setState({
+      el: event.currentTarget
+    }, focusEditor)
   }
 
   componentDidUpdate(prevProps) {
@@ -114,7 +129,7 @@ class LayoutComponent extends Component {
       currentBlockData[0].displayName;
     return (
       <div className="rdw-block-wrapper" aria-label="rdw-block-control">
-        <Dropdown
+        {/* <Dropdown
           className={classNames('rdw-block-dropdown', className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
@@ -139,7 +154,34 @@ class LayoutComponent extends Component {
               {block.displayName}
             </DropdownOption>
           ))}
-        </Dropdown>
+        </Dropdown> */}
+        <Option
+          className={classNames(className)}
+          value="unordered-list-item"
+          onClick={this.onOpen}
+          title={title || translations['components.controls.image.image']}
+        >
+          <TextFieldsIcon />
+        <ArrowDropDownIcon />
+        </Option>
+        <Menu
+          //className={classNames('rdw-block-dropdown', className)}
+          id="simple-menu"
+          keepMounted
+          anchorEl={this.state.el}
+          open={Boolean(expanded)}
+        >
+          {
+            blocks.map((block, index) =>
+            (<MenuItem
+              selected={blockType === block.label}
+              value={block.label}
+              onClick={() => onChange(block.label)}
+              key={index}>
+              {block.displayName}
+            </MenuItem>))
+          }
+        </Menu>
       </div>
     );
   }

@@ -1648,7 +1648,7 @@ ol {
 .rdw-list-wrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
   flex-wrap: wrap
 }
 .rdw-list-dropdown {
@@ -1664,7 +1664,7 @@ ol {
 .rdw-text-align-wrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
   flex-wrap: wrap
 }
 .rdw-text-align-dropdown {
@@ -1773,7 +1773,7 @@ ol {
 .rdw-link-wrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
   position: relative;
   flex-wrap: wrap
 }

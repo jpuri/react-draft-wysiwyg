@@ -23,6 +23,21 @@ import undo from '../../images/undo.svg';
 import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
 import superscript from '../../images/superscript.svg';
+import FormatBoldIcon from '@material-ui/icons/FormatBold';
+import FormatItalicIcon from '@material-ui/icons/FormatItalic';
+import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
+import React from 'react';
+import FormatColorFillIcon from '@material-ui/icons/FormatColorFill';
+import InsertEmoticonIcon from '@material-ui/icons/InsertEmoticon';
+import LinkIcon from '@material-ui/icons/Link';
+import LinkOffIcon from '@material-ui/icons/LinkOff';
+import WebIcon from '@material-ui/icons/Web';
+import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
+import UndoOutlinedIcon from '@material-ui/icons/UndoOutlined';
+import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined';
+import CodeOutlinedIcon from '@material-ui/icons/CodeOutlined';
+import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
+import DeleteSweepOutlinedIcon from '@material-ui/icons/DeleteSweepOutlined';
 
 /**
 * This is default toolbar configuration,
@@ -58,15 +73,15 @@ export default {
       "superscript",
       "subscript"
     ],
-    bold: { icon: bold, className: undefined, title: undefined },
-    italic: { icon: italic, className: undefined, title: undefined },
-    underline: { icon: underline, className: undefined, title: undefined },
+    bold: { icon: <FormatBoldIcon />, className: undefined, title: undefined },
+    italic: { icon: <FormatItalicIcon />, className: undefined, title: undefined },
+    underline: { icon: <FormatUnderlinedIcon />, className: undefined, title: undefined },
     strikethrough: {
-      icon: strikethrough,
+      icon: <StrikethroughSIcon />,
       className: undefined,
       title: undefined
     },
-    monospace: { icon: monospace, className: undefined, title: undefined },
+    monospace: { icon: <CodeOutlinedIcon />, className: undefined, title: undefined },
     superscript: { icon: superscript, className: undefined, title: undefined },
     subscript: { icon: subscript, className: undefined, title: undefined }
   },
@@ -135,7 +150,7 @@ export default {
     title: undefined
   },
   colorPicker: {
-    icon: color,
+    icon: <FormatColorFillIcon />,
     className: undefined,
     component: undefined,
     popupClassName: undefined,
@@ -179,12 +194,12 @@ export default {
     showOpenOptionOnHover: true,
     defaultTargetOption: "_self",
     options: ["link", "unlink"],
-    link: { icon: link, className: undefined, title: undefined },
-    unlink: { icon: unlink, className: undefined, title: undefined },
+    link: { icon: <LinkIcon />, className: undefined, title: undefined },
+    unlink: { icon: <LinkOffIcon />, className: undefined, title: undefined },
     linkCallback: undefined
   },
   emoji: {
-    icon: emoji,
+    icon: <InsertEmoticonIcon />,
     className: undefined,
     component: undefined,
     popupClassName: undefined,
@@ -322,7 +337,7 @@ export default {
     title: undefined
   },
   embedded: {
-    icon: embedded,
+    icon: <WebIcon />,
     className: undefined,
     component: undefined,
     popupClassName: undefined,
@@ -334,7 +349,7 @@ export default {
     title: undefined
   },
   image: {
-    icon: image,
+    icon: <ImageOutlinedIcon />,
     className: undefined,
     component: undefined,
     popupClassName: undefined,
@@ -352,7 +367,7 @@ export default {
     title: undefined
   },
   remove: {
-    icon: eraser,
+    icon: <DeleteSweepOutlinedIcon />,
     className: undefined,
     component: undefined,
     title: undefined
@@ -363,8 +378,8 @@ export default {
     component: undefined,
     dropdownClassName: undefined,
     options: ["undo", "redo"],
-    undo: { icon: undo, className: undefined, title: undefined },
-    redo: { icon: redo, className: undefined, title: undefined },
+    undo: { icon: <UndoOutlinedIcon />, className: undefined, title: undefined },
+    redo: { icon: <RedoOutlinedIcon />, className: undefined, title: undefined },
     title: undefined
   }
 };

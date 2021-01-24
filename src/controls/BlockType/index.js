@@ -86,7 +86,7 @@ class BlockType extends Component {
   };
 
   render() {
-    const { config, translations } = this.props;
+    const { config, translations, focusEditor } = this.props;
     const { expanded, currentBlockType } = this.state;
     const BlockTypeComponent = config.component || LayoutComponent;
     const blockType = this.blocksTypes.find(
@@ -94,6 +94,7 @@ class BlockType extends Component {
     );
     return (
       <BlockTypeComponent
+        focusEditor={focusEditor}
         config={config}
         translations={translations}
         currentState={{ blockType: blockType && blockType.label }}
