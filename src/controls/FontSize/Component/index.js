@@ -8,7 +8,19 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import { withStyles } from '@material-ui/core/styles';
 
+
+import { Button, Grow, Menu, MenuList, Paper, Popper } from '@material-ui/core';
+import ToggleButton from '@material-ui/lab/ToggleButton';
+
+const StyledToggleButton = withStyles((theme) => ({
+  root: {
+    padding: theme.spacing(.5, 1),
+    border: 'none',
+  },
+}))(ToggleButton);
 export default class LayoutComponent extends Component {
   static propTypes = {
     expanded: PropTypes.bool,
@@ -37,6 +49,15 @@ export default class LayoutComponent extends Component {
     }
   }
 
+  onOpen = (e) => {
+    this.setState({
+      el: e.currentTarget
+    }, () => {
+        this.props.onExpandEvent(e);
+        this.props.doExpand(e);
+    })
+  }
+
   render() {
     const {
       config: { icon, className, dropdownClassName, options, title },
@@ -52,6 +73,7 @@ export default class LayoutComponent extends Component {
     defaultFontSize = Number(defaultFontSize);
     currentFontSize = currentFontSize ||
       (options && options.indexOf(defaultFontSize) >= 0 && defaultFontSize);
+    
     return (
       <div className="rdw-fontsize-wrapper" aria-label="rdw-font-size-control">
         {/* <Dropdown
@@ -70,35 +92,40 @@ export default class LayoutComponent extends Component {
           }
           {
             options.map((size, index) =>
-              (<DropdownOption
-                className="rdw-fontsize-option"
-                active={currentFontSize === size}
-                value={size}
-                key={index}
-              >
-                {size}
-              </DropdownOption>),
+            (<DropdownOption
+              className="rdw-fontsize-option"
+              active={currentFontSize === size}
+              value={size}
+              key={index}
+            >
+              {size}
+            </DropdownOption>),
             )
           }
         </Dropdown> */}
-        <Select
-          onOpen={() => {
-            this.props.focusEditor(); 
-          }}
-          open={expanded}
-          value={currentFontSize}
-          onChange={e => onChange(e.target.value)}
-          style={{ margin: 4 }}
-        >
-          {
-            options.map((size, index) =>
-            (<MenuItem active={currentFontSize === size}
-              value={size}
-              key={index}>
-              {size}
-            </MenuItem>))
-          }
-        </Select>
+        <StyledToggleButton onClick={this.onOpen} endIcon={<ArrowDropDownIcon />}>
+          Size<ArrowDropDownIcon />
+        </StyledToggleButton>
+        <Popper open={!!expanded} anchorEl={this.state.el} transition >
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <Paper>
+              <MenuList>
+                {
+                  options.map((size, index) =>
+                  (<MenuItem
+                    onClick={() => onChange(size)}
+                    active={currentFontSize === size}
+                    value={size}
+                    key={index}>
+                    {size}
+                  </MenuItem>))
+                }
+                </MenuList>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
       </div>
     );
   }

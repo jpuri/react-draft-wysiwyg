@@ -10,7 +10,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import TextFieldsIcon from '@material-ui/icons/TextFields';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { Menu } from '@material-ui/core';
+import { Grow, Menu, MenuList, Paper, Popper, Typography } from '@material-ui/core';
 
 class LayoutComponent extends Component {
   static propTypes = {
@@ -33,11 +33,11 @@ class LayoutComponent extends Component {
   }
 
   onOpen = (value, event) => {
-    const { onExpandEvent, focusEditor } = this.props;
+    const { onExpandEvent } = this.props;
     onExpandEvent(value);
     this.setState({
       el: event.currentTarget
-    }, focusEditor)
+    })
   }
 
   componentDidUpdate(prevProps) {
@@ -162,9 +162,9 @@ class LayoutComponent extends Component {
           title={title || translations['components.controls.image.image']}
         >
           <TextFieldsIcon />
-        <ArrowDropDownIcon />
+          <ArrowDropDownIcon />
         </Option>
-        <Menu
+        {/* <Menu
           //className={classNames('rdw-block-dropdown', className)}
           id="simple-menu"
           keepMounted
@@ -181,8 +181,30 @@ class LayoutComponent extends Component {
               {block.displayName}
             </MenuItem>))
           }
-        </Menu>
-      </div>
+        </Menu> */}
+        <Popper open={!!expanded} anchorEl={this.state.el} transition >
+          {({ TransitionProps }) => (
+            <Grow {...TransitionProps}>
+              <Paper>
+                <MenuList>
+                  {
+                    blocks.map((block, index) =>
+                    (<MenuItem
+                      selected={blockType === block.label}
+                      value={block.label}
+                      onClick={() => onChange(block.label)}
+                      key={index}>
+                      <Typography variant={block.displayName.toLowerCase()}>
+                        {block.displayName}
+                      </Typography>
+                    </MenuItem>))
+                  }
+                </MenuList>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div >
     );
   }
 

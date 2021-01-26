@@ -35,7 +35,10 @@ import defaultToolbar from '../config/defaultToolbar';
 import localeTranslations from '../i18n';
 import './styles.css';
 import '../../css/Draft.css';
-import { Divider, Grow, Paper } from '@material-ui/core';
+import { Divider, Grow, MuiThemeProvider, Paper } from '@material-ui/core';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { theme } from './theme';
+
 
 class WysiwygEditor extends Component {
   constructor(props) {
@@ -438,6 +441,8 @@ class WysiwygEditor extends Component {
     const toolbarShow =
       editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus;
     return (
+      <MuiThemeProvider theme={theme}>
+      <CssBaseline />
       <div
         id={this.wrapperId}
         className={classNames(wrapperClassName, 'rdw-editor-wrapper')}
@@ -449,7 +454,7 @@ class WysiwygEditor extends Component {
         {!toolbarHidden && (
           <Grow in={toolbarShow}>
             <Paper
-              elevation={3}
+              elevation={4}
               className={classNames('rdw-editor-toolbar', toolbarClassName)}
               style={{
                 visibility: toolbarShow ? 'visible' : 'hidden',
@@ -467,7 +472,7 @@ class WysiwygEditor extends Component {
                   config.uploadCallback = uploadCallback;
                 }
                 return <>
-                  <Control key={index} {...controlProps} focusEditor={this.onEditorFocus} config={config} />
+                  <Control key={index} {...controlProps} config={config} />
                   {
                     toolbar.options.length - 1 !== index &&
                     <Divider orientation="vertical" flexItem style={{ margin: "8px 2px" }} />
@@ -508,7 +513,8 @@ class WysiwygEditor extends Component {
             {...this.editorProps}
           />
         </div>
-      </div>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

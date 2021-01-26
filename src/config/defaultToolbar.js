@@ -38,6 +38,8 @@ import RedoOutlinedIcon from '@material-ui/icons/RedoOutlined';
 import CodeOutlinedIcon from '@material-ui/icons/CodeOutlined';
 import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import DeleteSweepOutlinedIcon from '@material-ui/icons/DeleteSweepOutlined';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
 
 /**
 * This is default toolbar configuration,
@@ -150,7 +152,7 @@ export default {
     title: undefined
   },
   colorPicker: {
-    icon: <FormatColorFillIcon />,
+    icon: <><FormatColorFillIcon /><ArrowDropDownIcon /></>,
     className: undefined,
     component: undefined,
     popupClassName: undefined,
