@@ -64,6 +64,7 @@ class LayoutComponent extends Component {
           className={classNames(className)}
           value="unordered-list-item"
           onClick={onExpandEvent}
+          title={title || translations['components.controls.emoji.emoji']}
         >
           {/* <img
             src={icon}

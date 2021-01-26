@@ -159,7 +159,9 @@ class LayoutComponent extends Component {
           className={classNames(className)}
           value="unordered-list-item"
           onClick={this.onOpen}
-          title={title || translations['components.controls.image.image']}
+          title={
+            title || translations['components.controls.blocktype.blocktype']
+          }
         >
           <TextFieldsIcon />
           <ArrowDropDownIcon />

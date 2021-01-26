@@ -39,6 +39,11 @@ import CodeOutlinedIcon from '@material-ui/icons/CodeOutlined';
 import StrikethroughSIcon from '@material-ui/icons/StrikethroughS';
 import DeleteSweepOutlinedIcon from '@material-ui/icons/DeleteSweepOutlined';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import FormatListBulletedIcon from '@material-ui/icons/FormatListBulleted';
+import FormatListNumberedIcon from '@material-ui/icons/FormatListNumbered';
+import FormatIndentDecreaseIcon from '@material-ui/icons/FormatIndentDecrease';
+import FormatIndentIncreaseIcon from '@material-ui/icons/FormatIndentIncrease';
+
 
 
 /**
@@ -133,10 +138,10 @@ export default {
     component: undefined,
     dropdownClassName: undefined,
     options: ["unordered", "ordered", "indent", "outdent"],
-    unordered: { icon: unordered, className: undefined, title: undefined },
-    ordered: { icon: ordered, className: undefined, title: undefined },
-    indent: { icon: indent, className: undefined, title: undefined },
-    outdent: { icon: outdent, className: undefined, title: undefined },
+    unordered: { icon: <FormatListBulletedIcon />, className: undefined, title: undefined },
+    ordered: { icon: <FormatListNumberedIcon />, className: undefined, title: undefined },
+    indent: { icon: <FormatIndentIncreaseIcon />, className: undefined, title: undefined },
+    outdent: { icon: <FormatIndentDecreaseIcon />, className: undefined, title: undefined },
     title: undefined
   },
   textAlign: {

@@ -148,7 +148,9 @@ class LayoutComponent extends Component {
           title || translations['components.controls.colorpicker.colorpicker']
         }
       >
-        <Option onClick={this.onOpen} className={classNames(className)}>
+        <Option onClick={this.onOpen} className={classNames(className)} title={
+          title || translations['components.controls.colorpicker.colorpicker']
+        }>
           {/* <img src={icon} alt="" /> */}
           {icon}
         </Option>
