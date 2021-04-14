@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { ensureSafeUrl } from '../../utils/url'
 import openlink from '../../../images/openlink.svg';
 import './styles.css';
 
@@ -32,7 +33,7 @@ function getLinkComponent(config) {
     openLink: Function = () => {
       const { entityKey, contentState } = this.props;
       const { url } = contentState.getEntity(entityKey).getData();
-      const linkTab = window.open(url, 'blank'); // eslint-disable-line no-undef
+      const linkTab = window.open(ensureSafeUrl(url), 'blank'); // eslint-disable-line no-undef
       // linkTab can be null when the window failed to open.
       if (linkTab) {
         linkTab.focus();
@@ -56,7 +57,7 @@ function getLinkComponent(config) {
           onMouseEnter={this.toggleShowPopOver}
           onMouseLeave={this.toggleShowPopOver}
         >
-          <a href={url} target={targetOption}>{children}</a>
+          <a href={ensureSafeUrl(url)} target={targetOption}>{children}</a>
           {showPopOver && showOpenOptionOnHover ?
             <img
               src={openlink}

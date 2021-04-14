@@ -13,6 +13,9 @@ describe('LinkDecorator test suite', () => {
   const entityKey = contentState
     .createEntity('LINK', 'MUTABLE', { title: 'title', url: 'url' })
     .getLastCreatedEntityKey();
+  const xssEntityKey = contentState
+    .createEntity('LINK', 'MUTABLE', { title: 'title', url: 'javascript:alert(1)' })
+    .getLastCreatedEntityKey();
 
   it('should have a div when rendered', () => {
     const Link = LinkDecorator.component;
@@ -36,5 +39,11 @@ describe('LinkDecorator test suite', () => {
     const control = mount(<Link entityKey={entityKey} contentState={contentState}>Link</Link>);
     control.setState({ showPopOver: true });
     expect(control.childAt(0).children().length).to.equal(2);
+  });
+
+  it('should filter xss in href', () => {
+    const Link = LinkDecorator.component;
+    const control = mount(<Link entityKey={xssEntityKey} contentState={contentState}>Link</Link>);
+    expect(control.childAt(0).childAt(0).props().href).to.equal('#');
   });
 });
