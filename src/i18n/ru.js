@@ -12,7 +12,7 @@ export default {
   "components.controls.blocktype.h6": "Заголовок 6",
   "components.controls.blocktype.blockquote": "Цитата",
   "components.controls.blocktype.code": "Код",
-  "components.controls.blocktype.blocktype": "Форматирование",
+  "components.controls.blocktype.blocktype": "Стиль",
   "components.controls.blocktype.normal": "Обычный",
 
   // Color Picker
@@ -29,7 +29,7 @@ export default {
   "components.controls.emoji.emoji": "Эмодзи",
 
   // FontFamily
-  "components.controls.fontfamily.fontfamily": "Шрифт",
+  "components.controls.fontfamily.fontfamily": "Гарнитура",
 
   // FontSize
   "components.controls.fontsize.fontsize": "Размер шрифта",
@@ -47,35 +47,35 @@ export default {
     "Переместите в эту область файлы или кликните для загрузки",
 
   // Inline
-  "components.controls.inline.bold": "Жирный",
+  "components.controls.inline.bold": "Полужирный",
   "components.controls.inline.italic": "Курсив",
-  "components.controls.inline.underline": "Подчеркивание",
-  "components.controls.inline.strikethrough": "Зачеркивание",
-  "components.controls.inline.monospace": "Monospace",
+  "components.controls.inline.underline": "Подчёркнутый",
+  "components.controls.inline.strikethrough": "Зачёркнутый",
+  "components.controls.inline.monospace": "Моноширинный",
   "components.controls.inline.superscript": "Верхний индекс",
   "components.controls.inline.subscript": "Нижний индекс",
 
   // Link
-  "components.controls.link.linkTitle": "Текст",
+  "components.controls.link.linkTitle": "Текст ссылки",
   "components.controls.link.linkTarget": "Адрес ссылки",
   "components.controls.link.linkTargetOption": "Открывать в новом окне",
-  "components.controls.link.link": "Ссылка",
+  "components.controls.link.link": "Добавить ссылку",
   "components.controls.link.unlink": "Убрать ссылку",
 
   // List
   "components.controls.list.list": "Список",
-  "components.controls.list.unordered": "Неупорядоченный",
-  "components.controls.list.ordered": "Упорядоченный",
+  "components.controls.list.unordered": "Маркированный список",
+  "components.controls.list.ordered": "Нумерованный список",
   "components.controls.list.indent": "Отступ",
   "components.controls.list.outdent": "Выступ",
 
   // Remove
-  "components.controls.remove.remove": "Удалить",
+  "components.controls.remove.remove": "Очистить форматирование",
 
   // TextAlign
   "components.controls.textalign.textalign": "Выравнивание текста",
-  "components.controls.textalign.left": "Слева",
+  "components.controls.textalign.left": "По левому краю",
   "components.controls.textalign.center": "По центру",
-  "components.controls.textalign.right": "Справа",
-  "components.controls.textalign.justify": "Выравнить"
+  "components.controls.textalign.right": "По правому краю",
+  "components.controls.textalign.justify": "По ширине"
 };
