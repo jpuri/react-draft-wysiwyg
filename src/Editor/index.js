@@ -447,7 +447,7 @@ class WysiwygEditor extends Component {
       >
         {!toolbarHidden && (
           <div
-            className={classNames('rdw-editor-toolbar', toolbarClassName)}
+            className={classNames(toolbarClassName, 'rdw-editor-toolbar')}
             style={{
               visibility: toolbarShow ? 'visible' : 'hidden',
               ...toolbarStyle,
