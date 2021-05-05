@@ -1,6 +1,6 @@
 {
   "name": "react-draft-wysiwyg",
-  "version": "1.14.6",
+  "version": "1.14.7",
   "description": "A wysiwyg on top of DraftJS.",
   "main": "dist/react-draft-wysiwyg.js",
   "repository": {
