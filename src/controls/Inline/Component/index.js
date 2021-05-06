@@ -7,6 +7,10 @@ import classNames from 'classnames';
 import { getFirstIcon } from '../../../utils/toolbar';
 import Option from '../../../components/Option';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
+import FormatBoldIcon from '@material-ui/icons/FormatBold';
+import FormatItalicIcon from '@material-ui/icons/FormatItalic';
+import FormatUnderlinedIcon from '@material-ui/icons/FormatUnderlined';
+
 
 import './styles.css';
 
@@ -29,22 +33,31 @@ export default class Inline extends Component {
         {
           config.options
             .map((style, index) =>
-              (<Option
-                key={index}
-                value={style}
-                onClick={onChange}
-                className={classNames(config[style].className)}
-                active={
-                  currentState[style] === true ||
-                  (style === 'MONOSPACE' && currentState.CODE)
-                }
-                title={config[style].title || translations[`components.controls.inline.${style}`]}
-              >
-                <img
+            (<>
+              {
+                typeof config[style].icon !== "string" && <Option
+                  key={index}
+                  value={style}
+                  onClick={onChange}
+                  className={classNames(config[style].className)}
+                  active={
+                    currentState[style] === true ||
+                    (style === 'MONOSPACE' && currentState.CODE)
+                  }
+                  title={config[style].title || translations[`components.controls.inline.${style}`]}
+                >
+                  {/* {<img
                   alt=""
                   src={config[style].icon}
-                />
-              </Option>),
+                />} */}
+                  {
+                    typeof config[style].icon !== "string" &&
+                    config[style].icon
+                  }
+                </Option>
+              }
+
+            </>),
             )
         }
       </div>
@@ -82,21 +95,21 @@ export default class Inline extends Component {
         {
           config.options
             .map((style, index) =>
-              (<DropdownOption
-                key={index}
-                value={style}
-                className={classNames('rdw-inline-dropdownoption', config[style].className)}
-                active={
-                  currentState[style] === true ||
-                  (style === 'MONOSPACE' && currentState.CODE)
-                }
-                title={config[style].title || translations[`components.controls.inline.${style}`]}
-              >
-                <img
-                  src={config[style].icon}
-                  alt=""
-                />
-              </DropdownOption>))
+            (<DropdownOption
+              key={index}
+              value={style}
+              className={classNames('rdw-inline-dropdownoption', config[style].className)}
+              active={
+                currentState[style] === true ||
+                (style === 'MONOSPACE' && currentState.CODE)
+              }
+              title={config[style].title || translations[`components.controls.inline.${style}`]}
+            >
+              <img
+                src={config[style].icon}
+                alt=""
+              />
+            </DropdownOption>))
         }
       </Dropdown>
     );

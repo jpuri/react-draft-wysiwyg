@@ -8,6 +8,10 @@ import Option from '../../../components/Option';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import { getFirstIcon } from '../../../utils/toolbar';
 import './styles.css';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
+import FormatAlignCenterIcon from '@material-ui/icons/FormatAlignCenter';
+import FormatAlignRightIcon from '@material-ui/icons/FormatAlignRight';
+import FormatAlignJustifyIcon from '@material-ui/icons/FormatAlignJustify';
 
 export default class TextAlign extends Component {
   static propTypes = {
@@ -37,10 +41,11 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={left.title || translations['components.controls.textalign.left']}
         >
-          <img
+          {/* <img
             src={left.icon}
             alt=""
-          />
+          /> */}
+          <FormatAlignLeftIcon />
         </Option>}
         {options.indexOf('center') >= 0 && <Option
           value="center"
@@ -49,10 +54,12 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={center.title || translations['components.controls.textalign.center']}
         >
-          <img
+          {/* <img
             src={center.icon}
             alt=""
-          />
+          /> */}
+          <FormatAlignCenterIcon />
+
         </Option>}
         {options.indexOf('right') >= 0 && <Option
           value="right"
@@ -61,10 +68,12 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={right.title || translations['components.controls.textalign.right']}
         >
-          <img
+          {/* <img
             src={right.icon}
             alt=""
-          />
+          /> */}
+          <FormatAlignRightIcon />
+
         </Option>}
         {options.indexOf('justify') >= 0 && <Option
           value="justify"
@@ -73,10 +82,11 @@ export default class TextAlign extends Component {
           onClick={onChange}
           title={justify.title || translations['components.controls.textalign.justify']}
         >
-          <img
+          {/* <img
             src={justify.icon}
             alt=""
-          />
+          /> */}
+          <FormatAlignJustifyIcon />
         </Option>}
       </div>
     );

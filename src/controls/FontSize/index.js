@@ -76,12 +76,13 @@ export default class FontSize extends Component {
   };
 
   render() {
-    const { config, translations } = this.props;
+    const { config, translations, focusEditor } = this.props;
     const { expanded, currentFontSize } = this.state;
     const FontSizeComponent = config.component || LayoutComponent;
     const fontSize = currentFontSize && Number(currentFontSize.substring(9));
     return (
       <FontSizeComponent
+        focusEditor={focusEditor}
         config={config}
         translations={translations}
         currentState={{ fontSize }}

@@ -16,10 +16,13 @@ const RemoveComponent = ({ config, onChange, translations }) => {
         onClick={onChange}
         title={title || translations['components.controls.remove.remove']}
       >
-        <img
+        {/* <img
           src={icon}
           alt=""
-        />
+        /> */}
+        {
+          icon
+        }
       </Option>
     </div>
   );

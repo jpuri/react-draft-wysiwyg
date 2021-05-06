@@ -7,6 +7,7 @@ import { getFirstIcon } from '../../../utils/toolbar';
 import Option from '../../../components/Option';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
+import { FormControlLabel, Checkbox, TextField, Box, Button } from '@material-ui/core';
 
 class LayoutComponent extends Component {
   static propTypes = {
@@ -109,7 +110,7 @@ class LayoutComponent extends Component {
         className={classNames('rdw-link-modal', popupClassName)}
         onClick={stopPropagation}
       >
-        <label className="rdw-link-modal-label" htmlFor="linkTitle">
+        {/* <label className="rdw-link-modal-label" htmlFor="linkTitle">
           {translations['components.controls.link.linkTitle']}
         </label>
         <input
@@ -130,8 +131,15 @@ class LayoutComponent extends Component {
           onBlur={this.updateValue}
           name="linkTarget"
           value={linkTarget}
-        />
-        <label
+        /> */}
+        <Box py={1}>
+          <TextField size="small" id="outlined-basic" label={translations['components.controls.link.linkTitle']} variant="outlined" />
+        </Box>
+        <Box py={1}>
+          <TextField size="small" id="outlined-basic" label={translations['components.controls.link.linkTarget']} variant="outlined" />
+        </Box>
+
+        {/* <label
           className="rdw-link-modal-target-option"
           htmlFor="openLinkInNewWindow"
         >
@@ -145,9 +153,13 @@ class LayoutComponent extends Component {
           <span>
             {translations['components.controls.link.linkTargetOption']}
           </span>
-        </label>
+        </label> */}
+        <FormControlLabel
+          control={<Checkbox checked={linkTargetOption === '_blank'} onChange={this.updateTargetOption} name="_blank" size="small"/>}
+          label={translations['components.controls.link.linkTargetOption']}
+        />
         <span className="rdw-link-modal-buttonsection">
-          <button
+          {/* <button
             className="rdw-link-modal-btn"
             onClick={this.addLink}
             disabled={!linkTarget || !linkTitle}
@@ -156,7 +168,14 @@ class LayoutComponent extends Component {
           </button>
           <button className="rdw-link-modal-btn" onClick={doCollapse}>
             {translations['generic.cancel']}
-          </button>
+          </button> */}
+          <Button>
+            {translations['generic.add']}
+          </Button>
+          <Button>
+            {translations['generic.cancel']}
+
+          </Button>
         </span>
       </div>
     );
@@ -184,7 +203,10 @@ class LayoutComponent extends Component {
             aria-expanded={showModal}
             title={link.title || translations['components.controls.link.link']}
           >
-            <img src={link.icon} alt="" />
+            {/* <img src={link.icon} alt="" /> */}
+            {
+              link.icon
+            }
           </Option>
         )}
         {options.indexOf('unlink') >= 0 && (
@@ -197,7 +219,10 @@ class LayoutComponent extends Component {
               unlink.title || translations['components.controls.link.unlink']
             }
           >
-            <img src={unlink.icon} alt="" />
+            {/* <img src={unlink.icon} alt="" /> */}
+            {
+              unlink.icon
+            }
           </Option>
         )}
         {expanded && showModal ? this.renderAddLinkModal() : undefined}

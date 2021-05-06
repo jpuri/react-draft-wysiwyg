@@ -1,7 +1,7 @@
 .rdw-fontsize-wrapper {
   display: flex;
   align-items: center;
-  margin-bottom: 6px;
+  /* margin-bottom: 6px; */
   flex-wrap: wrap
 }
 .rdw-fontsize-dropdown {

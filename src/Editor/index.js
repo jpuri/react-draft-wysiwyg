@@ -35,6 +35,10 @@ import defaultToolbar from '../config/defaultToolbar';
 import localeTranslations from '../i18n';
 import './styles.css';
 import '../../css/Draft.css';
+import { Divider, Grow, MuiThemeProvider, Paper } from '@material-ui/core';
+import CssBaseline from "@material-ui/core/CssBaseline";
+import { theme } from './theme';
+
 
 class WysiwygEditor extends Component {
   constructor(props) {
@@ -437,67 +441,80 @@ class WysiwygEditor extends Component {
     const toolbarShow =
       editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus;
     return (
-      <div
-        id={this.wrapperId}
-        className={classNames(wrapperClassName, 'rdw-editor-wrapper')}
-        style={wrapperStyle}
-        onClick={this.modalHandler.onEditorClick}
-        onBlur={this.onWrapperBlur}
-        aria-label="rdw-wrapper"
-      >
-        {!toolbarHidden && (
-          <div
-            className={classNames('rdw-editor-toolbar', toolbarClassName)}
-            style={{
-              visibility: toolbarShow ? 'visible' : 'hidden',
-              ...toolbarStyle,
-            }}
-            onMouseDown={this.preventDefault}
-            aria-label="rdw-toolbar"
-            aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
-            onFocus={this.onToolbarFocus}
-          >
-            {toolbar.options.map((opt, index) => {
-              const Control = Controls[opt];
-              const config = toolbar[opt];
-              if (opt === 'image' && uploadCallback) {
-                config.uploadCallback = uploadCallback;
-              }
-              return <Control key={index} {...controlProps} config={config} />;
-            })}
-            {toolbarCustomButtons &&
-              toolbarCustomButtons.map((button, index) =>
-                React.cloneElement(button, { key: index, ...controlProps })
-              )}
-          </div>
-        )}
+      <MuiThemeProvider theme={theme}>
+        <CssBaseline />
         <div
-          ref={this.setWrapperReference}
-          className={classNames(editorClassName, 'rdw-editor-main')}
-          style={editorStyle}
-          onClick={this.focusEditor}
-          onFocus={this.onEditorFocus}
-          onBlur={this.onEditorBlur}
-          onKeyDown={KeyDownHandler.onKeyDown}
-          onMouseDown={this.onEditorMouseDown}
+          id={this.wrapperId}
+          className={classNames(wrapperClassName, 'rdw-editor-wrapper')}
+          style={wrapperStyle}
+          onClick={this.modalHandler.onEditorClick}
+          onBlur={this.onWrapperBlur}
+          aria-label="rdw-wrapper"
         >
-          <Editor
-            ref={this.setEditorReference}
-            keyBindingFn={this.keyBindingFn}
-            editorState={editorState}
-            onChange={this.onChange}
-            blockStyleFn={blockStyleFn}
-            customStyleMap={this.getStyleMap(this.props)}
-            handleReturn={this.handleReturn}
-            handlePastedText={this.handlePastedTextFn}
-            blockRendererFn={this.blockRendererFn}
-            handleKeyCommand={this.handleKeyCommand}
-            ariaLabel={ariaLabel || 'rdw-editor'}
-            blockRenderMap={blockRenderMap}
-            {...this.editorProps}
-          />
+          {!toolbarHidden && (
+            <Grow in={toolbarShow}>
+              <Paper
+                elevation={4}
+                className={classNames('rdw-editor-toolbar', toolbarClassName)}
+                style={{
+                  visibility: toolbarShow ? 'visible' : 'hidden',
+                  ...toolbarStyle,
+                }}
+                onMouseDown={this.preventDefault}
+                aria-label="rdw-toolbar"
+                aria-hidden={(!editorFocused && toolbarOnFocus).toString()}
+                onFocus={this.onToolbarFocus}
+              >
+                {toolbar.options.map((opt, index) => {
+                  const Control = Controls[opt];
+                  const config = toolbar[opt];
+                  if (opt === 'image' && uploadCallback) {
+                    config.uploadCallback = uploadCallback;
+                  }
+                  return <>
+                    <Control key={index} {...controlProps} config={config} />
+                    {
+                      toolbar.options.length - 1 !== index &&
+                      <Divider orientation="vertical" flexItem style={{ margin: "8px 2px" }} />
+
+                    }
+                  </>;
+                })}
+                {toolbarCustomButtons &&
+                  toolbarCustomButtons.map((button, index) =>
+                    React.cloneElement(button, { key: index, ...controlProps })
+                  )}
+              </Paper>
+            </Grow>
+          )}
+          <Paper
+            ref={this.setWrapperReference}
+            className={classNames(editorClassName, 'rdw-editor-main')}
+            style={editorStyle}
+            onClick={this.focusEditor}
+            onFocus={this.onEditorFocus}
+            onBlur={this.onEditorBlur}
+            onKeyDown={KeyDownHandler.onKeyDown}
+            onMouseDown={this.onEditorMouseDown}
+          >
+            <Editor
+              ref={this.setEditorReference}
+              keyBindingFn={this.keyBindingFn}
+              editorState={editorState}
+              onChange={this.onChange}
+              blockStyleFn={blockStyleFn}
+              customStyleMap={this.getStyleMap(this.props)}
+              handleReturn={this.handleReturn}
+              handlePastedText={this.handlePastedTextFn}
+              blockRendererFn={this.blockRendererFn}
+              handleKeyCommand={this.handleKeyCommand}
+              ariaLabel={ariaLabel || 'rdw-editor'}
+              blockRenderMap={blockRenderMap}
+              {...this.editorProps}
+            />
+          </Paper>
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

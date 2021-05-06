@@ -349,7 +349,10 @@ class LayoutComponent extends Component {
           onClick={onExpandEvent}
           title={title || translations['components.controls.image.image']}
         >
-          <img src={icon} alt="" />
+          {/* <img src={icon} alt="" /> */}
+          {
+            icon
+          }
         </Option>
         {expanded ? this.renderAddImageModal() : undefined}
       </div>

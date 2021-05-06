@@ -1,5 +1,5 @@
 .rdw-option-wrapper {
-  border: 1px solid #F1F1F1;
+  /* border: 1px solid #F1F1F1; */
   padding: 5px;
   min-width: 25px;
   height: 20px;
@@ -13,13 +13,13 @@
   text-transform: capitalize;
 }
 .rdw-option-wrapper:hover {
-  box-shadow: 1px 1px 0px #BFBDBD;
+  /* box-shadow: 1px 1px 0px #BFBDBD; */
 }
 .rdw-option-wrapper:active {
-  box-shadow: 1px 1px 0px #BFBDBD inset;
+  /* box-shadow: 1px 1px 0px #BFBDBD inset; */
 }
 .rdw-option-active {
-  box-shadow: 1px 1px 0px #BFBDBD inset;
+  /* box-shadow: 1px 1px 0px #BFBDBD inset; */
 }
 .rdw-option-disabled {
   opacity: 0.3;

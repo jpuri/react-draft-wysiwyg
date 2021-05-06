@@ -8,6 +8,7 @@ import { getFirstIcon } from '../../../utils/toolbar';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import Option from '../../../components/Option';
 import './styles.css';
+import FormatAlignLeftIcon from '@material-ui/icons/FormatAlignLeft';
 
 export default class LayoutComponent extends Component {
   static propTypes = {
@@ -60,10 +61,7 @@ export default class LayoutComponent extends Component {
           active={listType === 'unordered'}
           title={unordered.title || translations['components.controls.list.unordered']}
         >
-          <img
-            src={unordered.icon}
-            alt=""
-          />
+          {unordered.icon}
         </Option>}
         {options.indexOf('ordered') >= 0 && <Option
           value="ordered"
@@ -72,10 +70,7 @@ export default class LayoutComponent extends Component {
           active={listType === 'ordered'}
           title={ordered.title || translations['components.controls.list.ordered']}
         >
-          <img
-            src={ordered.icon}
-            alt=""
-          />
+          {ordered.icon}
         </Option>}
         {options.indexOf('indent') >= 0 && <Option
           onClick={this.indent}
@@ -83,10 +78,7 @@ export default class LayoutComponent extends Component {
           className={classNames(indent.className)}
           title={indent.title || translations['components.controls.list.indent']}
         >
-          <img
-            src={indent.icon}
-            alt=""
-          />
+          {indent.icon}
         </Option>}
         {options.indexOf('outdent') >= 0 && <Option
           onClick={this.outdent}
@@ -94,10 +86,7 @@ export default class LayoutComponent extends Component {
           className={classNames(outdent.className)}
           title={outdent.title || translations['components.controls.list.outdent']}
         >
-          <img
-            src={outdent.icon}
-            alt=""
-          />
+          {outdent.icon}
         </Option>}
       </div>
     );

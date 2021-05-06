@@ -3,7 +3,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { Dropdown, DropdownOption } from '../../../components/Dropdown';
 import './styles.css';
 
@@ -53,7 +55,7 @@ class LayoutComponent extends Component {
         defaultFontFamily);
     return (
       <div className="rdw-fontfamily-wrapper" aria-label="rdw-font-family-control">
-        <Dropdown
+        {/* <Dropdown
           className={classNames('rdw-fontfamily-dropdown', className)}
           optionWrapperClassName={classNames('rdw-fontfamily-optionwrapper', dropdownClassName)}
           onChange={onChange}
@@ -76,7 +78,23 @@ class LayoutComponent extends Component {
                 {family}
               </DropdownOption>))
           }
-        </Dropdown>
+        </Dropdown> */}
+        <Select
+          onOpen={this.props.focusEditor}
+          open={expanded}
+          value={currentFontFamily}
+          onChange={e => onChange(e.target.value)}
+          style={{ margin: 4 }}
+        >
+          {
+            options.map((family, index) =>
+            (<MenuItem
+              value={family}
+              key={index}>
+              {family}
+            </MenuItem>))
+          }
+        </Select>
       </div>
     );
   }

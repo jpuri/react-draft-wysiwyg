@@ -80,12 +80,13 @@ export default class FontFamily extends Component {
   };
 
   render() {
-    const { config, translations } = this.props;
+    const { config, translations, focusEditor } = this.props;
     const { expanded, currentFontFamily } = this.state;
     const FontFamilyComponent = config.component || LayoutComponent;
     const fontFamily = currentFontFamily && currentFontFamily.substring(11);
     return (
       <FontFamilyComponent
+        focusEditor={focusEditor}
         translations={translations}
         config={config}
         currentState={{ fontFamily }}
