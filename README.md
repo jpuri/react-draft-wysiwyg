@@ -60,7 +60,22 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
   onEditorStateChange={this.onEditorStateChange}
 />;
 ```
+If you are using SSR (e.g NextJS) you should disable ssr:
+```js
+imprort dynamic from "next/dynamic";
 
+const Editor = dynamic(
+
+  () => {
+
+    return import('react-draft-wysiwyg').then((mod) => mod.Editor);
+
+  },
+
+  { loading: () => null, ssr: false },
+
+);
+```
 ## Docs
 
 For more documentation check [here](https://jpuri.github.io/react-draft-wysiwyg/#/docs?_k=jjqinp).
