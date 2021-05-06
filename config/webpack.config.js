@@ -13,6 +13,7 @@ module.exports = {
     filename: 'react-draft-wysiwyg.js',
     library: 'reactDraftWysiwyg',
     libraryTarget: 'umd',
+    globalObject: 'this',
   },
   externals: {
     react: 'react',
