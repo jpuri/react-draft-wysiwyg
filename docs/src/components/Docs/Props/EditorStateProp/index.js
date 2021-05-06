@@ -4,15 +4,15 @@ import Codemirror from 'react-codemirror';
 export const EditorStateLink = () => <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content"
+    href="https://draftjs.org/docs/api-reference-editor-state/"
   >
     EditorState
   </a>;
 
-export const RawEditorStateLink = () => <a
+export const RawDraftContentStateLink= () => <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://facebook.github.io/draft-js/docs/api-reference-data-conversion.html#content"
+    href="https://draftjs.org/docs/api-reference-data-conversion/"
   >
     RawDraftContentState
   </a>;
@@ -26,16 +26,16 @@ export default () => (
       &nbsp;or un-controlled component using&nbsp;
       <EditorStateLink />
       &nbsp;or&nbsp;
-      <RawEditorStateLink />.
+      <RawDraftContentStateLink/>.
     </div>
     <ol>
       <li><b>defaultEditorState</b>: Property to initialize editor state once when its created. Object of type&nbsp;<EditorStateLink />.</li>
       <li><b>editorState</b>: Property to update editor state in controlled way.</li>
       <li><b>onEditorStateChange</b>: Function is called each time there is change in state of editor, function argument passed is object of type&nbsp;<EditorStateLink />.</li>
-      <li><b>defaultContentState</b>: Property to initialize editor state once when its created. Object of type&nbsp;<RawEditorStateLink />.</li>
+      <li><b>defaultContentState</b>: Property to initialize editor state once when its created. Object of type&nbsp;<RawDraftContentStateLink/>.</li>
       <li><b>contentState</b>: Property to update editor state in controlled way.</li>
-      <li><b>onChange</b>: Function is called each time there is change in state of editor, function argument passed is object of type&nbsp;<RawEditorStateLink />.</li>
-      <li><b>onContentStateChange</b>: Function is called each time there is change in state of editor, function argument passed is object of type&nbsp;<RawEditorStateLink />.</li>
+      <li><b>onChange</b>: Function is called each time there is change in state of editor, function argument passed is object of type&nbsp;<RawDraftContentStateLink/>.</li>
+      <li><b>onContentStateChange</b>: Function is called each time there is change in state of editor, function argument passed is object of type&nbsp;<RawDraftContentStateLink/>.</li>
     </ol>
     <div className="docs-desc top-margined">
       <b>Controlled editor using <EditorStateLink />.</b>
@@ -122,7 +122,7 @@ export default () => (
       }}
     />
     <div className="docs-desc top-margined">
-      <b>Uncontrolled editor using <RawEditorStateLink />.</b>
+      <b>Uncontrolled editor using <RawDraftContentStateLink/>.</b>
     </div>
     <Codemirror
       value={
@@ -164,7 +164,7 @@ export default () => (
       }}
     />
     <div className="docs-desc top-margined">
-      Its not recommended to use <RawEditorStateLink /> to achieve controlled behavior by editor.
+      Its not recommended to use <RawDraftContentStateLink/> to achieve controlled behavior by editor.
       Conversion of contentState to instance of editorState impact performance.
     </div>
   </div>
