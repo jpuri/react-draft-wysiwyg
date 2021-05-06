@@ -12,6 +12,7 @@ import zh_tw from "./zh_tw";
 import pl from "./pl";
 import es from "./es";
 import ja from "./ja";
+import ar from "./ar";
 
 export default {
   en,
@@ -27,5 +28,6 @@ export default {
   zh_tw,
   pl,
   es,
-  ja
+  ja,
+  ar
 };
