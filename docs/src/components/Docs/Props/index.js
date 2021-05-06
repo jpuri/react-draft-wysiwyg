@@ -22,6 +22,7 @@ import DecoratorProp from './DecoratorProp';
 import BlockRenderingProp from './BlockRenderingProp';
 import CustomStyleProp from "./CustomStyleProp";
 import WrapperIdProp from './WrapperIdProp';
+import PasteAndDropImageProp from './PasteAndDropImageProp';
 
 const Props = () => (
   <div className="docs-section">
@@ -29,6 +30,7 @@ const Props = () => (
     <EditorStyleProp />
     <EditorStateProp />
     <CustomizingToolbarProp />
+    <PasteAndDropImageProp />
     <MentionProp />
     <HashtagProp />
     <EditorRef />
