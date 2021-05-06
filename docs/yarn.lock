@@ -3208,11 +3208,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
-  version "2.2.5"
-  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
-
-classnames@^2.2.6:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
 
@@ -6995,9 +6991,9 @@ react-dom@^16.12.0, react-dom@^16.8.3:
     scheduler "^0.18.0"
 
 react-draft-wysiwyg@^1.14.3:
-  version "1.14.5"
-  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-1.14.5.tgz#82e34ae3472b815b5d9f70615f40e13afcbc2055"
-  integrity sha512-utbJEs91757QXYoBwKRb/4kB3JdswLlj0heUiAeXs/OxZAUISJXxLMFLBIixRlIcUnNkwxOsMikRshDMtWIS3g==
+  version "1.14.6"
+  resolved "https://registry.yarnpkg.com/react-draft-wysiwyg/-/react-draft-wysiwyg-1.14.6.tgz#3ea1f9a0a6c767f2be2901034100b9c5a0e3ea9a"
+  integrity sha512-EMIteBVnlMAP3T97OfjlKchsHZ15mYWQwRw8QIInOtAvlZnnTydRjuHMCN0PuQ2dsXwMkJ7+MWc2aTL5RiXmFg==
   dependencies:
     classnames "^2.2.6"
     draftjs-utils "^0.10.2"
