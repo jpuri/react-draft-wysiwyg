@@ -118,7 +118,7 @@ class LayoutComponent extends Component {
           title || translations['components.controls.colorpicker.colorpicker']
         }
       >
-        <Option onClick={onExpandEvent} className={classNames(className)}>
+        <Option onClick={onExpandEvent} className={classNames(className)} active={expanded}>
           <img src={icon} alt="" />
         </Option>
         {expanded ? this.renderModal() : undefined}
