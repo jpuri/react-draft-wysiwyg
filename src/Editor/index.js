@@ -520,10 +520,6 @@ class Editor extends Component {
               />
             );
           })}
-          {/* {toolbarCustomButtons &&
-            toolbarCustomButtons.map((button, index) =>
-              React.cloneElement(button, { key: index, ...controlProps })
-            )} */}
         </div>
         <div
           ref={this.setWrapperReference}
@@ -536,7 +532,6 @@ class Editor extends Component {
           onMouseDown={this.onEditorMouseDown}
         >
           <RichTextEditor
-            //preserveSelectionOnBlur={true}
             ref={this.setEditorReference}
             keyBindingFn={this.keyBindingFn}
             editorState={editorState}

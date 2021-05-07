@@ -1,11 +1,8 @@
 .Editor {
-    /* max-height: 150px; */
-  overflow: auto;
   box-sizing: border-box;
-  padding-top: var(--spacing);
-  padding-bottom: var(--spacing);
-  padding-left: var(--spacing-l);
-  padding-right: var(--spacing-l);
+  margin-top: var(--spacing);
+  margin-bottom: var(--spacing);
+  margin-left: var(--spacing-l);
 }
 
 .Editor-wrapper {
@@ -16,17 +13,6 @@
 
 .Editor-wrapper:focus {
   outline: none;
-}
-
-.Editor::-webkit-scrollbar {
-  width: var(--spacing-2);
-}
-
-.Editor::-webkit-scrollbar-thumb {
-  border: var(--spacing-s) solid rgba(0, 0, 0, 0);
-  background-clip: padding-box;
-  border-radius: var(--spacing);
-  background-color: var(--secondary-dark);
 }
 
 .Editor-seperator {
