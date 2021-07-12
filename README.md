@@ -61,6 +61,28 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 />;
 ```
 
+
+###  [Next.js](https://nextjs.org/)
+
+To use react-draft-wysiwyg with Next.js, please use the dynamic import syntax like below:
+
+```javascript
+import dynamic from "next/dynamic";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"; 
+
+const Editor = dynamic( () => import("react-draft-wysiwyg").then((module) => module.Editor),{
+  ssr: false 
+});
+
+<Editor
+  editorState={editorState}
+  toolbarClassName="toolbarClassName"
+  wrapperClassName="wrapperClassName"
+  editorClassName="editorClassName"
+  onEditorStateChange={this.onEditorStateChange}
+/>;
+```
+
 ## Docs
 
 For more documentation check [here](https://jpuri.github.io/react-draft-wysiwyg/#/docs?_k=jjqinp).
