@@ -44,6 +44,7 @@ class WysiwygEditor extends Component {
       ? props.wrapperId
       : Math.floor(Math.random() * 10000);
     this.wrapperId = `rdw-wrapper-${wrapperId}`;
+    this.wrapperIdElement;
     this.modalHandler = new ModalHandler();
     this.focusHandler = new FocusHandler();
     this.blockRendererFn = getBlockRenderFunc(
@@ -68,7 +69,8 @@ class WysiwygEditor extends Component {
   }
 
   componentDidMount() {
-    this.modalHandler.init(this.wrapperId);
+    const element = this.wrapperIdElement
+    this.modalHandler.init(element);
   }
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
@@ -439,6 +441,7 @@ class WysiwygEditor extends Component {
     return (
       <div
         id={this.wrapperId}
+        ref={(element) => this.wrapperIdElement = element}
         className={classNames(wrapperClassName, 'rdw-editor-wrapper')}
         style={wrapperStyle}
         onClick={this.modalHandler.onEditorClick}
