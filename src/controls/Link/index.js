@@ -184,7 +184,6 @@ class Link extends Component {
     contentState = Modifier.insertText(
       newEditorState.getCurrentContent(),
       selection,
-      ' ',
       newEditorState.getCurrentInlineStyle(),
       undefined
     );
