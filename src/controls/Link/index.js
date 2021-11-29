@@ -174,7 +174,6 @@ class Link extends Component {
       contentState,
       'insert-characters'
     );
-    
     onChange(
       EditorState.push(newEditorState, contentState, 'insert-characters')
     );
