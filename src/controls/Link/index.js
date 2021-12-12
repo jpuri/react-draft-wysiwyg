@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { RichUtils, EditorState, Modifier } from 'draft-js';
-import {
-  getSelectionText,
-  getEntityRange,
-  getSelectionEntity,
-} from 'draftjs-utils';
-import linkifyIt from 'linkify-it';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { RichUtils, EditorState, Modifier } from "draft-js";
+import { getSelectionText, getEntityRange, getSelectionEntity } from "draftjs-utils";
+import linkifyIt from "linkify-it";
 
-import LayoutComponent from './Component';
+import LayoutComponent from "./Component";
 
 const linkify = linkifyIt();
-const linkifyLink = params => {
+const linkifyLink = (params) => {
   const links = linkify.match(params.target);
   return {
     ...params,
@@ -61,7 +57,7 @@ class Link extends Component {
       config: { linkCallback },
     } = this.props;
 
-    if (action === 'link') {
+    if (action === "link") {
       const linkifyCallback = linkCallback || linkifyLink;
       const linkified = linkifyCallback({ title, target, targetOption });
       this.addLink(linkified.title, linkified.target, linkified.targetOption);
@@ -75,18 +71,11 @@ class Link extends Component {
     const { currentEntity } = this.state;
     const contentState = editorState.getCurrentContent();
     const currentValues = {};
-    if (
-      currentEntity &&
-      contentState.getEntity(currentEntity).get('type') === 'LINK'
-    ) {
+    if (currentEntity && contentState.getEntity(currentEntity).get("type") === "LINK") {
       currentValues.link = {};
-      const entityRange =
-        currentEntity && getEntityRange(editorState, currentEntity);
-      currentValues.link.target =
-        currentEntity && contentState.getEntity(currentEntity).get('data').url;
-      currentValues.link.targetOption =
-        currentEntity &&
-        contentState.getEntity(currentEntity).get('data').targetOption;
+      const entityRange = currentEntity && getEntityRange(editorState, currentEntity);
+      currentValues.link.target = currentEntity && contentState.getEntity(currentEntity).get("data").url;
+      currentValues.link.targetOption = currentEntity && contentState.getEntity(currentEntity).get("data").targetOption;
       currentValues.link.title = entityRange && entityRange.text;
     }
     currentValues.selectionText = getSelectionText(editorState);
@@ -135,7 +124,11 @@ class Link extends Component {
   };
 
   addLink = (linkTitle, linkTarget, linkTargetOption) => {
-    const { editorState, onChange, config: { trailingWhitespace = true } } = this.props;
+    const {
+      editorState,
+      onChange,
+      config: { trailingWhitespace = false },
+    } = this.props;
     const { currentEntity } = this.state;
     let selection = editorState.getSelection();
 
@@ -156,7 +149,7 @@ class Link extends Component {
     }
     const entityKey = editorState
       .getCurrentContent()
-      .createEntity('LINK', 'MUTABLE', {
+      .createEntity("LINK", "MUTABLE", {
         url: linkTarget,
         targetOption: linkTargetOption,
       })
@@ -169,30 +162,24 @@ class Link extends Component {
       editorState.getCurrentInlineStyle(),
       entityKey
     );
-    let newEditorState = EditorState.push(
-      editorState,
-      contentState,
-      'insert-characters'
-    );
+    let newEditorState = EditorState.push(editorState, contentState, "insert-characters");
 
     // insert a blank space after link
     if (trailingWhitespace) {
       selection = newEditorState.getSelection().merge({
-        anchorOffset: selection.get('anchorOffset') + linkTitle.length,
-        focusOffset: selection.get('anchorOffset') + linkTitle.length,
+        anchorOffset: selection.get("anchorOffset") + linkTitle.length,
+        focusOffset: selection.get("anchorOffset") + linkTitle.length,
       });
       newEditorState = EditorState.acceptSelection(newEditorState, selection);
       contentState = Modifier.insertText(
         newEditorState.getCurrentContent(),
         selection,
-        ' ',
+        " ",
         newEditorState.getCurrentInlineStyle(),
         undefined
       );
     }
-    onChange(
-      EditorState.push(newEditorState, contentState, 'insert-characters')
-    );
+    onChange(EditorState.push(newEditorState, contentState, "insert-characters"));
     this.doCollapse();
   };
 
