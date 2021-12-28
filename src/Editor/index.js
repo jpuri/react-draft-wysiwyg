@@ -48,6 +48,8 @@ class WysiwygEditor extends Component {
       {
         isReadOnly: this.isReadOnly,
         isImageAlignmentEnabled: this.isImageAlignmentEnabled,
+        isImageSizeEnabled: this.isImageSizeEnabled,
+        isImageDeletionEnabled: this.isImageDeletionEnabled,
         getEditorState: this.getEditorState,
         onChange: this.onChange,
       },
@@ -230,6 +232,10 @@ class WysiwygEditor extends Component {
   isReadOnly = () => this.props.readOnly;
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
+
+  isImageSizeEnabled = () => this.state.toolbar.image.sizeEnabled;
+
+  isImageDeletionEnabled = () => this.state.toolbar.image.deletionEnabled;
 
   createEditorState = (compositeDecorator) => {
     let editorState;
