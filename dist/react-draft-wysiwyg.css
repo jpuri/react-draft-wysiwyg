@@ -803,15 +803,22 @@
 }
 
 .rdw-image-alignment-options-popup {
-  position: absolute;
+  /* position: absolute; */
   background: white;
   display: flex;
   padding: 5px 2px;
   border-radius: 2px;
   border: 1px solid #F1F1F1;
-  width: 105px;
+  /* width: 105px; */
+  width: fit-content;
   cursor: pointer;
   z-index: 100;
+  margin-left: 5px;
+}
+.rdw-image-options-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .rdw-alignment-option-left {
   justify-content: flex-start;
@@ -820,6 +827,12 @@
   height: 15px;
   width: 15px;
   min-width: 15px;
+}
+.rdw-image-size-option{
+  padding-left: .5rem;
+  padding-right: .5rem;
+  height: 15px;
+  width: fit-content;
 }
 .rdw-image-alignment {
   position: relative;
@@ -841,7 +854,70 @@
 .rdw-image-alignment-options-popup-right {
   right: 0;
 }
+.size-to-update{
+  width: 38px;
+  height: 20px;
+  border: 1px solid #F1F1F1;
+  border-radius: 2px;
+  font-size: 12px;
+}
 
+/*POPUP*/
+
+body {
+  margin: 0;
+  padding: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Popup style */
+.popup-box {
+  position: fixed;
+  background: #00000050;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.box {
+  position: relative;
+  width: 70%;
+  margin: 0 auto;
+  height: auto;
+  max-height: 70vh;
+  margin-top: calc(100vh - 85vh - 20px);
+  background: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  border: 1px solid #999;
+  overflow: auto;
+}
+
+.close-icon {
+  content: 'x';
+  cursor: pointer;
+  position: fixed;
+  right: calc(15% - 30px);
+  top: calc(100vh - 85vh - 33px);
+  background: #ededed;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  line-height: 20px;
+  text-align: center;
+  border: 1px solid #999;
+  font-size: 20px;
+}
 .rdw-editor-main {
   height: 100%;
   overflow: auto;

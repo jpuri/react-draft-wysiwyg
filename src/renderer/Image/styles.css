@@ -1,13 +1,21 @@
 .rdw-image-alignment-options-popup {
-  position: absolute;
+  /* position: absolute; */
   background: white;
   display: flex;
+  align-items: center;
   padding: 5px 2px;
   border-radius: 2px;
   border: 1px solid #F1F1F1;
-  width: 105px;
+  /* width: 105px; */
+  width: fit-content;
   cursor: pointer;
   z-index: 100;
+  margin-left: 5px;
+}
+.rdw-image-options-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .rdw-alignment-option-left {
   justify-content: flex-start;
@@ -16,6 +24,21 @@
   height: 15px;
   width: 15px;
   min-width: 15px;
+}
+.rdw-image-size-option{
+  padding-left: .5rem;
+  padding-right: .5rem;
+  height: 15px;
+  width: fit-content;
+}
+.rdw-image-size-option-update{
+  padding-left: .5rem;
+  padding-right: .5rem;
+  height: 15px;
+  width: fit-content;
+  padding: 0;
+  min-width: none;
+  border: unset;
 }
 .rdw-image-alignment {
   position: relative;
@@ -36,4 +59,15 @@
 }
 .rdw-image-alignment-options-popup-right {
   right: 0;
+}
+.size-to-update{
+  width: 38px;
+  height: 20px;
+  border: 1px solid #F1F1F1;
+  border-radius: 2px;
+  font-size: 12px;
+}
+
+.size-arrow{
+  width: 13px;
 }

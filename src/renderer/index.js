@@ -10,6 +10,8 @@ const getBlockRenderFunc = (config, customBlockRenderer) => (block) => {
     const contentState = config.getEditorState().getCurrentContent();
     const entity = contentState.getEntity(block.getEntityAt(0));
     if (entity && entity.type === 'IMAGE') {
+      console.log('rerender')
+
       return {
         component: getImageComponent(config),
         editable: false,
