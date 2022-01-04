@@ -23,6 +23,9 @@ import undo from '../../images/undo.svg';
 import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
 import superscript from '../../images/superscript.svg';
+import upArrow from '../../images/up-arrow.svg';
+import downArrow from '../../images/down-arrow.svg';
+
 
 /**
 * This is default toolbar configuration,
@@ -133,6 +136,15 @@ export default {
     right: { icon: right, className: undefined, title: undefined },
     justify: { icon: justify, className: undefined, title: undefined },
     title: undefined
+  },
+  imageAlign:{
+    left,
+    center ,
+    right,
+  },
+  imageSizing:{
+    upArrow,
+    downArrow
   },
   colorPicker: {
     icon: color,
@@ -342,6 +354,8 @@ export default {
     uploadEnabled: true,
     previewImage: false,
     alignmentEnabled: true,
+    sizeEnabled: true,
+    deletionEnabled: true,
     uploadCallback: undefined,
     inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
     alt: { present: false, mandatory: false },

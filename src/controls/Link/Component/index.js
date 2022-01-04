@@ -1,12 +1,16 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
 
-import { stopPropagation } from '../../../utils/common';
-import { getFirstIcon } from '../../../utils/toolbar';
-import Option from '../../../components/Option';
-import { Dropdown, DropdownOption } from '../../../components/Dropdown';
-import './styles.css';
+import { stopPropagation } from "../../../utils/common";
+import { getFirstIcon } from "../../../utils/toolbar";
+import Option from "../../../components/Option";
+import { Dropdown, DropdownOption } from "../../../components/Dropdown";
+import "./styles.css";
+
+const validLinkPattern = new RegExp(
+  /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i
+);
 
 class LayoutComponent extends Component {
   static propTypes = {
@@ -22,42 +26,79 @@ class LayoutComponent extends Component {
 
   state = {
     showModal: false,
-    linkTarget: '',
-    linkTitle: '',
+    linkTarget: "",
+    linkTitle: "",
     linkTargetOption: this.props.config.defaultTargetOption,
+    validations: { linkTitleValid: false, linkTargetValid: false },
   };
 
   componentDidUpdate(prevProps) {
     if (prevProps.expanded && !this.props.expanded) {
       this.setState({
         showModal: false,
-        linkTarget: '',
-        linkTitle: '',
+        linkTarget: "",
+        linkTitle: "",
         linkTargetOption: this.props.config.defaultTargetOption,
+        validations: { linkTitleValid: false, linkTargetValid: false },
       });
     }
   }
 
+  validateLink = (linkProp, value) => {
+    const {
+      config: { allowRelative },
+    } = this.props;
+    switch (linkProp) {
+      case "linkTitle":
+        return !!value;
+      case "linkTarget":
+        if (!allowRelative) {
+          return !!value && validLinkPattern.test(value);
+        } else {
+          return !!value;
+        }
+      default:
+        return true;
+    }
+  };
+
   removeLink = () => {
     const { onChange } = this.props;
-    onChange('unlink');
+    onChange("unlink");
   };
 
   addLink = () => {
-    const { onChange } = this.props;
+    const {
+      config: { allowRelative },
+      onChange,
+    } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
-    onChange('link', linkTitle, linkTarget, linkTargetOption);
+
+    if (!allowRelative && !/^https?:\/\//i.test(linkTarget)) {
+      onChange("link", linkTitle, `https://${linkTarget}`, linkTargetOption);
+    } else {
+      onChange("link", linkTitle, linkTarget, linkTargetOption);
+    }
   };
 
-  updateValue = event => {
+  updateValue = (event) => {
+    const { linkTitle, linkTarget } = this.state;
+    const target = event.target;
+    const name = target.name;
+    const value = target.value;
+
     this.setState({
-      [`${event.target.name}`]: event.target.value,
+      [`${name}`]: value,
+      validations: {
+        ...this.state.validations,
+        [`${name}Valid`]: this.validateLink(name, value),
+      },
     });
   };
 
-  updateTargetOption = event => {
+  updateTargetOption = (event) => {
     this.setState({
-      linkTargetOption: event.target.checked ? '_blank' : '_self',
+      linkTargetOption: event.target.checked ? "_blank" : "_self",
     });
   };
 
@@ -73,12 +114,19 @@ class LayoutComponent extends Component {
       currentState: { link, selectionText },
     } = this.props;
     const { linkTargetOption } = this.state;
+    const linkTitle = (link && link.title) || selectionText;
+    const linkTarget = (link && link.target) || "";
     onExpandEvent();
     this.setState({
       showModal: true,
-      linkTarget: (link && link.target) || '',
+      linkTarget: (link && link.target) || "",
+      linkTarget: linkTarget,
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
-      linkTitle: (link && link.title) || selectionText,
+      linkTitle: linkTitle,
+      validations: {
+        linkTitleValid: this.validateLink("linkTitle", linkTitle),
+        linkTargetValid: this.validateLink("linkTarget", linkTarget),
+      },
     });
   };
 
@@ -88,12 +136,18 @@ class LayoutComponent extends Component {
       currentState: { link, selectionText },
     } = this.props;
     const { linkTargetOption } = this.state;
+    const linkTitle = (link && link.title) || selectionText;
+    const linkTarget = link && link.target;
     doExpand();
     this.setState({
       showModal: true,
-      linkTarget: link && link.target,
+      linkTarget: linkTarget,
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
-      linkTitle: (link && link.title) || selectionText,
+      linkTitle: linkTitle,
+      validations: {
+        linkTitleValid: this.validateLink("linkTitle", linkTitle),
+        linkTargetValid: this.validateLink("linkTarget", linkTarget),
+      },
     });
   };
 
@@ -103,59 +157,53 @@ class LayoutComponent extends Component {
       doCollapse,
       translations,
     } = this.props;
-    const { linkTitle, linkTarget, linkTargetOption } = this.state;
+    const {
+      linkTitle,
+      linkTarget,
+      linkTargetOption,
+      validations: { linkTitleValid, linkTargetValid },
+    } = this.state;
+    const linkIsValid = linkTitleValid && linkTargetValid;
     return (
-      <div
-        className={classNames('rdw-link-modal', popupClassName)}
-        onClick={stopPropagation}
-      >
+      <div className={classNames("rdw-link-modal", popupClassName)} onClick={stopPropagation}>
         <label className="rdw-link-modal-label" htmlFor="linkTitle">
-          {translations['components.controls.link.linkTitle']}
+          {translations["components.controls.link.linkTitle"]}
         </label>
         <input
           id="linkTitle"
-          className="rdw-link-modal-input"
+          className={classNames({ "rdw-link-modal-input": true, valid: linkTitleValid, invalid: !linkTitleValid })}
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTitle"
           value={linkTitle}
         />
         <label className="rdw-link-modal-label" htmlFor="linkTarget">
-          {translations['components.controls.link.linkTarget']}
+          {translations["components.controls.link.linkTarget"]}
         </label>
         <input
           id="linkTarget"
-          className="rdw-link-modal-input"
+          className={classNames({ "rdw-link-modal-input": true, valid: linkTargetValid, invalid: !linkTargetValid })}
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTarget"
           value={linkTarget}
         />
-        <label
-          className="rdw-link-modal-target-option"
-          htmlFor="openLinkInNewWindow"
-        >
+        <label className="rdw-link-modal-target-option" htmlFor="openLinkInNewWindow">
           <input
             id="openLinkInNewWindow"
             type="checkbox"
-            defaultChecked={linkTargetOption === '_blank'}
+            defaultChecked={linkTargetOption === "_blank"}
             value="_blank"
             onChange={this.updateTargetOption}
           />
-          <span>
-            {translations['components.controls.link.linkTargetOption']}
-          </span>
+          <span>{translations["components.controls.link.linkTargetOption"]}</span>
         </label>
         <span className="rdw-link-modal-buttonsection">
-          <button
-            className="rdw-link-modal-btn"
-            onClick={this.addLink}
-            disabled={!linkTarget || !linkTitle}
-          >
-            {translations['generic.add']}
+          <button className="rdw-link-modal-btn" onClick={this.addLink} disabled={!linkIsValid}>
+            {translations["generic.add"]}
           </button>
           <button className="rdw-link-modal-btn" onClick={doCollapse}>
-            {translations['generic.cancel']}
+            {translations["generic.cancel"]}
           </button>
         </span>
       </div>
@@ -171,31 +219,26 @@ class LayoutComponent extends Component {
     } = this.props;
     const { showModal } = this.state;
     return (
-      <div
-        className={classNames('rdw-link-wrapper', className)}
-        aria-label="rdw-link-control"
-      >
-        {options.indexOf('link') >= 0 && (
+      <div className={classNames("rdw-link-wrapper", className)} aria-label="rdw-link-control">
+        {options.indexOf("link") >= 0 && (
           <Option
             value="unordered-list-item"
             className={classNames(link.className)}
             onClick={this.signalExpandShowModal}
             aria-haspopup="true"
             aria-expanded={showModal}
-            title={link.title || translations['components.controls.link.link']}
+            title={link.title || translations["components.controls.link.link"]}
           >
             <img src={link.icon} alt="" />
           </Option>
         )}
-        {options.indexOf('unlink') >= 0 && (
+        {options.indexOf("unlink") >= 0 && (
           <Option
             disabled={!currentState.link}
             value="ordered-list-item"
             className={classNames(unlink.className)}
             onClick={this.removeLink}
-            title={
-              unlink.title || translations['components.controls.link.unlink']
-            }
+            title={unlink.title || translations["components.controls.link.unlink"]}
           >
             <img src={unlink.icon} alt="" />
           </Option>
@@ -206,24 +249,8 @@ class LayoutComponent extends Component {
   }
 
   renderInDropDown() {
-    const {
-      expanded,
-      onExpandEvent,
-      doCollapse,
-      doExpand,
-      onChange,
-      config,
-      currentState,
-      translations,
-    } = this.props;
-    const {
-      options,
-      link,
-      unlink,
-      className,
-      dropdownClassName,
-      title,
-    } = config;
+    const { expanded, onExpandEvent, doCollapse, doExpand, onChange, config, currentState, translations } = this.props;
+    const { options, link, unlink, className, dropdownClassName, title } = config;
     const { showModal } = this.state;
     return (
       <div
@@ -234,7 +261,7 @@ class LayoutComponent extends Component {
         title={title}
       >
         <Dropdown
-          className={classNames('rdw-link-dropdown', className)}
+          className={classNames("rdw-link-dropdown", className)}
           optionWrapperClassName={classNames(dropdownClassName)}
           onChange={onChange}
           expanded={expanded && !showModal}
@@ -243,28 +270,21 @@ class LayoutComponent extends Component {
           onExpandEvent={onExpandEvent}
         >
           <img src={getFirstIcon(config)} alt="" />
-          {options.indexOf('link') >= 0 && (
+          {options.indexOf("link") >= 0 && (
             <DropdownOption
               onClick={this.forceExpandAndShowModal}
-              className={classNames('rdw-link-dropdownoption', link.className)}
-              title={
-                link.title || translations['components.controls.link.link']
-              }
+              className={classNames("rdw-link-dropdownoption", link.className)}
+              title={link.title || translations["components.controls.link.link"]}
             >
               <img src={link.icon} alt="" />
             </DropdownOption>
           )}
-          {options.indexOf('unlink') >= 0 && (
+          {options.indexOf("unlink") >= 0 && (
             <DropdownOption
               onClick={this.removeLink}
               disabled={!currentState.link}
-              className={classNames(
-                'rdw-link-dropdownoption',
-                unlink.className
-              )}
-              title={
-                unlink.title || translations['components.controls.link.unlink']
-              }
+              className={classNames("rdw-link-dropdownoption", unlink.className)}
+              title={unlink.title || translations["components.controls.link.unlink"]}
             >
               <img src={unlink.icon} alt="" />
             </DropdownOption>

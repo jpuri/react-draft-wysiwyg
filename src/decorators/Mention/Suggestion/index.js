@@ -251,7 +251,7 @@ function getSuggestionComponent() {
                 'rdw-suggestion-dropdown',
                 dropdownClassName
               )}
-              contentEditable="false"
+              contentEditable="true"
               suppressContentEditableWarning
               style={this.state.style}
               ref={this.setDropdownReference}
