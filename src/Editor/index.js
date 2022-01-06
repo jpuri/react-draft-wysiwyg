@@ -73,6 +73,9 @@ class WysiwygEditor extends Component {
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
   componentDidUpdate(prevProps) {
+    const blocks = convertToRaw(this.state.editorState.getCurrentContent()).blocks;
+    console.log(blocks)
+    const value = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
     if (prevProps === this.props) return;
     const newState = {};
     const { editorState, contentState } = this.props;
@@ -104,6 +107,7 @@ class WysiwygEditor extends Component {
     if (Object.keys(newState).length) this.setState(newState);
     this.editorProps = this.filterEditorProps(this.props);
     this.customStyleMap = this.getStyleMap(this.props);
+
   }
 
   onEditorBlur = () => {
@@ -218,6 +222,7 @@ class WysiwygEditor extends Component {
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
   afterChange = (editorState) => {
+
     setTimeout(() => {
       const { onChange, onContentStateChange } = this.props;
       if (onChange) {

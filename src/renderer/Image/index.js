@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { EditorState, SelectionState, Modifier } from 'draft-js';
+import { EditorState, SelectionState, Modifier,convertToRaw } from 'draft-js';
+
 import classNames from 'classnames';
 import Option from '../../components/Option';
 import defaultToolbar from '../../config/defaultToolbar';  
+import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils';
 import './styles.css';
 
 const getImageComponent = config => class Image extends Component {
@@ -14,7 +16,6 @@ const getImageComponent = config => class Image extends Component {
 
 
   componentDidMount=()=>{
-    console.log('MOUNT')
     const { block, contentState } = this.props;
     const entity = contentState.getEntity(block.getEntityAt(0));
     const { height, width } = entity.getData();
@@ -26,7 +27,42 @@ const getImageComponent = config => class Image extends Component {
     hovered: false,
     height:'0px',
     width:'0px',
+    currentImageAlignment:undefined
   };
+
+  setBlockLock = (editorState, value) => {
+    const { block } = this.props;
+
+    const oldData = convertToRaw(editorState.getCurrentContent()).blocks.find(b=>b.key==block.getKey()).data
+
+    // save the actual selection to use later
+    const userSelection = editorState.getSelection()
+
+    // create a new selection with the block I want to change
+    const selection = SelectionState.createEmpty(block.getKey())
+  
+    const newContent = Modifier.setBlockData(editorState.getCurrentContent(), selection, {...oldData,...value})
+
+    const newEditor = EditorState.push(editorState, newContent, 'change-block-data')
+  
+    // return a new editor state, applying the selection we stored before
+    return EditorState.forceSelection(newEditor, userSelection)
+  }
+
+  addBlockAlignmentData = value => {
+    const { currentImageAlignment } = this.state;
+    if (currentImageAlignment !== value) {
+      config.onChange(this.setBlockLock(config.getEditorState(),{'image-align': value }));
+    } else {
+      config.onChange(setBlockData(config.getEditorState(), { 'text-align': undefined }));
+    }
+  };
+
+  addBlockSizeData = () => {
+    const { height,width } = this.state;
+    config.onChange(this.setBlockLock(config.getEditorState(),{'height': height,'width': width }));
+  };
+
   
   removeImage: Function = (): void => {
     const { block, contentState } = this.props;
@@ -51,28 +87,39 @@ const getImageComponent = config => class Image extends Component {
 
   setEntityAlignmentLeft: Function = (): void => {
     this.setEntityAlignment('left');
+    this.addBlockAlignmentData('left')
   };
 
   setEntityAlignmentRight: Function = (): void => {
     this.setEntityAlignment('right');
+    this.addBlockAlignmentData('right')
+
   };
 
   setEntityAlignmentCenter: Function = (): void => {
     this.setEntityAlignment('none');
+    this.addBlockAlignmentData('center')
+
   };
 
   setEntitySizeAuto: Function = (): void => {
-    this.setState({height:'auto',width:'auto'})
-    this.setEntitySize('auto','auto');
+    this.setState({height:'auto',width:'auto'},()=>{
+      this.setEntitySize();
+      this.addBlockSizeData();
+    })
+
   };
 
   applySize: Function = (): void => {
-    this.setEntitySize(this.state.height,this.state.width);
+    this.setEntitySize();
+    this.addBlockSizeData();
   };
 
 
-  setEntitySize: Function = (height,width): void => {
+  setEntitySize: Function = (): void => {
     const { block, contentState } = this.props;
+    const { height,width } = this.state;
+
     const entityKey = block.getEntityAt(0);
 
     let entityHeight = height
@@ -159,7 +206,6 @@ const getImageComponent = config => class Image extends Component {
 
   handleChangeHeight(increase){
     let height;
-    console.log(document.getElementById('image').clientHeight)
     if(this.state.height=='auto'){
       height = document.getElementById('image').clientHeight
     }else{
