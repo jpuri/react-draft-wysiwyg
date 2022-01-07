@@ -52,7 +52,8 @@ const getImageComponent = config => class Image extends Component {
     const newContent = Modifier.setBlockData(editorState.getCurrentContent(), selection, {...oldData,...value})
 
     const newEditor = EditorState.push(editorState, newContent, 'change-block-data')
-  
+    console.log(convertToRaw(newEditor.getCurrentContent()))
+
     // return a new editor state, applying the selection we stored before
     return EditorState.forceSelection(newEditor, userSelection)
   }
@@ -67,6 +68,7 @@ const getImageComponent = config => class Image extends Component {
   };
 
   addBlockSizeData = () => {
+    console.log('ggj')
     const { height,width } = this.state;
     config.onChange(this.setBlockLock(config.getEditorState(),{'height': height,'width': width }));
   };
@@ -84,6 +86,10 @@ const getImageComponent = config => class Image extends Component {
         focusOffset: 0,
       });
       let newContentState = Modifier.setBlockType(contentState, targetRange, "unstyled");
+
+      newContentState = Modifier.removeRange(newContentState, targetRange, 'backward');
+    config.onChange(EditorState.push(config.getEditorState(), newContentState, 'remove-range'));
+  }
 
   setEntityAlignmentLeft: Function = (): void => {
     this.setEntityAlignment('left');
@@ -115,9 +121,6 @@ const getImageComponent = config => class Image extends Component {
     this.addBlockSizeData();
   };
 
-    applySize: Function = (): void => {
-      this.setEntitySize(this.state.height, this.state.width);
-    };
 
   setEntitySize: Function = (): void => {
     const { block, contentState } = this.props;
@@ -125,59 +128,89 @@ const getImageComponent = config => class Image extends Component {
 
     const entityKey = block.getEntityAt(0);
 
-      let entityHeight = height;
-      let entityWidth = width;
+    let entityHeight = height
+    let entityWidth = width
 
-      contentState.mergeEntityData(entityKey, {
+    contentState.mergeEntityData(
+      entityKey,
+      {
         height: entityHeight,
-        width: entityWidth,
-      });
-      config.onChange(EditorState.push(config.getEditorState(), contentState, "change-block-data"));
-      this.setState({
-        dummy: true,
-      });
-    };
+        width: entityWidth
+      },
+    );
+    config.onChange(EditorState.push(config.getEditorState(), contentState, 'change-block-data'));
+    this.setState({
+      dummy: true,
+    });
+  };
 
-    setEntityAlignment: Function = (alignment): void => {
-      const { block, contentState } = this.props;
-      const entityKey = block.getEntityAt(0);
-      contentState.mergeEntityData(entityKey, { alignment });
-      config.onChange(EditorState.push(config.getEditorState(), contentState, "change-block-data"));
-      this.setState({
-        dummy: true,
-      });
-    };
 
-    toggleHovered: Function = (): void => {
-      const hovered = !this.state.hovered;
-      this.setState({
-        hovered,
-      });
-    };
+  setEntityAlignment: Function = (alignment): void => {
+    const { block, contentState } = this.props;
+    const entityKey = block.getEntityAt(0);
+    contentState.mergeEntityData(
+      entityKey,
+      { alignment },
+    );
+    config.onChange(EditorState.push(config.getEditorState(), contentState, 'change-block-data'));
+    this.setState({
+      dummy: true,
+    });
+  };
 
-    renderAlignmentOptions(alignment): Object {
-      const icons = defaultToolbar.imageAlign;
+  toggleHovered: Function = (): void => {
+    const hovered = !this.state.hovered;
+    this.setState({
+      hovered,
+    });
+  };
 
-      return (
-        <div
-          className={classNames("rdw-image-alignment-options-popup", {
-            "rdw-image-alignment-options-popup-right": alignment === "right",
-          })}
+  renderAlignmentOptions(alignment): Object {
+    const icons = defaultToolbar.imageAlign
+
+    return (
+      <div
+        className={classNames(
+          'rdw-image-alignment-options-popup',
+          {
+            'rdw-image-alignment-options-popup-right': alignment === 'right',
+          },
+        )}
+      >
+        <Option
+          onClick={this.setEntityAlignmentLeft}
+          className="rdw-image-alignment-option"
         >
-          <Option onClick={this.setEntityAlignmentLeft} className="rdw-image-alignment-option">
-            <img className="" src={icons.left} alt="" />
-          </Option>
-          <Option onClick={this.setEntityAlignmentCenter} className="rdw-image-alignment-option">
-            <img src={icons.center} alt="" />
-          </Option>
-          <Option onClick={this.setEntityAlignmentRight} className="rdw-image-alignment-option">
-            <img src={icons.right} alt="" />
-          </Option>
-        </div>
-      );
-    }
+          <img
+          className=''
+            src={icons.left}
+            alt=""
+          />
+          
+        </Option>
+        <Option
+          onClick={this.setEntityAlignmentCenter}
+          className="rdw-image-alignment-option"
+        >
+          <img
+            src={icons.center}
+            alt=""
+          />
+        </Option>
+        <Option
+          onClick={this.setEntityAlignmentRight}
+          className="rdw-image-alignment-option"
+        >
+          <img
+            src={icons.right}
+            alt=""
+          />
+        </Option>
+      </div>
+    );
+  }
 
-    handleChangeHeight(increase){
+  handleChangeHeight(increase){
     let height;
     if(this.state.height=='auto'){
       height = document.getElementById('image').clientHeight
@@ -199,7 +232,7 @@ const getImageComponent = config => class Image extends Component {
     this.setState({width:(newWidth).toString().concat('px')})
   }
 
-renderSizeOptions(alignment): Object {
+  renderSizeOptions(alignment): Object {
     const icons = defaultToolbar.imageSizing
 
     return (
@@ -236,57 +269,54 @@ renderSizeOptions(alignment): Object {
             className="rdw-image-size-option-update"
           >
             <img className='size-arrow' src={icons.upArrow}/>
-            </Option>
-            <Option onClick={() => this.handleChangeHeight(false)} className="rdw-image-size-option-update">
-              <img className="size-arrow" src={icons.downArrow} />
-            </Option>
-          </div>
-          <input
-            className="size-to-update"
-            type={`${this.state.width == `auto` ? `text` : `number`}`}
-            value={this.state.width.replace("px", "")}
-            onClick={(e) => {
-              e.preventDefault();
-            }}
-            onChange={(e) => {
-              e.preventDefault(), this.setState({ width: e.target.value.concat("px") });
-            }}
-          />
-          <div>
-            <Option onClick={() => this.handleChangeWidth(true)} className="rdw-image-size-option-update">
-              <img className="size-arrow" src={icons.upArrow} />
-            </Option>
-            <Option onClick={() => this.handleChangeWidth(false)} className="rdw-image-size-option-update">
-              <img className="size-arrow" src={icons.downArrow} />
-            </Option>
-          </div>
-          <Option onClick={this.applySize} className="rdw-image-size-option">
-            Apply
           </Option>
-          <Option onClick={this.setEntitySizeAuto} className="rdw-image-size-option">
-            Auto
+          <Option
+            onClick={()=>this.handleChangeWidth(false)}
+            className="rdw-image-size-option-update"
+          >
+            <img className='size-arrow' src={icons.downArrow}/>
           </Option>
+          
         </div>
-      );
-    }
-
-    renderDeletionOption(alignment): Object {
-      return (
-        <div
-          className={classNames(
-            "rdw-image-alignment-options-popup",
-            {
-              "rdw-image-alignment-options-popup-right": alignment === "right",
-            },
-            "rdw-image-alignment-options-separator"
-          )}
+        <Option
+          onClick={this.applySize}
+          className="rdw-image-size-option"
         >
-          <Option onClick={this.removeImage} className="rdw-image-size-option">
-            X
-          </Option>
-        </div>
-      );
-    }
+          Apply
+        </Option>
+        <Option
+          onClick={this.setEntitySizeAuto}
+          className="rdw-image-size-option"
+        >
+          Auto
+        </Option>
+      </div>
+    );
+  }
+
+  renderDeletionOption(alignment): Object {
+    return (
+      <div
+        className={classNames(
+          'rdw-image-alignment-options-popup',
+          {
+            'rdw-image-alignment-options-popup-right': alignment === 'right',
+          },
+          'rdw-image-alignment-options-separator',
+        )}
+      >
+
+        <Option
+          onClick={this.removeImage}
+          className="rdw-image-size-option"
+        >
+          X
+        </Option>
+
+      </div>
+    );
+  }
+
 
     render(): Object {
       const { block, contentState } = this.props;

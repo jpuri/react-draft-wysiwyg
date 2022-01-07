@@ -163,6 +163,7 @@ class WysiwygEditor extends Component {
   };
 
   onChange = (editorState) => {
+    // console.log(convertToRaw(editorState.getCurrentContent()))
     const { readOnly, onEditorStateChange } = this.props;
     if (!readOnly && !(getSelectedBlocksType(editorState) === "atomic" && editorState.getSelection().isCollapsed)) {
       if (onEditorStateChange) {
