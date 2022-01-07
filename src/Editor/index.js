@@ -104,6 +104,7 @@ class WysiwygEditor extends Component {
     if (Object.keys(newState).length) this.setState(newState);
     this.editorProps = this.filterEditorProps(this.props);
     this.customStyleMap = this.getStyleMap(this.props);
+
   }
 
   onEditorBlur = () => {
@@ -162,6 +163,7 @@ class WysiwygEditor extends Component {
   };
 
   onChange = (editorState) => {
+    // console.log(convertToRaw(editorState.getCurrentContent()))
     const { readOnly, onEditorStateChange } = this.props;
     if (!readOnly && !(getSelectedBlocksType(editorState) === "atomic" && editorState.getSelection().isCollapsed)) {
       if (onEditorStateChange) {
@@ -218,6 +220,7 @@ class WysiwygEditor extends Component {
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
   afterChange = (editorState) => {
+
     setTimeout(() => {
       const { onChange, onContentStateChange } = this.props;
       if (onChange) {
