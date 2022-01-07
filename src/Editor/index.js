@@ -73,9 +73,6 @@ class WysiwygEditor extends Component {
   // todo: change decorators depending on properties recceived in componentWillReceiveProps.
 
   componentDidUpdate(prevProps) {
-    const blocks = convertToRaw(this.state.editorState.getCurrentContent()).blocks;
-    console.log(blocks)
-    const value = blocks.map(block => (!block.text.trim() && '\n') || block.text).join('\n');
     if (prevProps === this.props) return;
     const newState = {};
     const { editorState, contentState } = this.props;
