@@ -52,7 +52,6 @@ const getImageComponent = config => class Image extends Component {
     const newContent = Modifier.setBlockData(editorState.getCurrentContent(), selection, {...oldData,...value})
 
     const newEditor = EditorState.push(editorState, newContent, 'change-block-data')
-    console.log(convertToRaw(newEditor.getCurrentContent()))
 
     // return a new editor state, applying the selection we stored before
     return EditorState.forceSelection(newEditor, userSelection)
@@ -68,7 +67,6 @@ const getImageComponent = config => class Image extends Component {
   };
 
   addBlockSizeData = () => {
-    console.log('ggj')
     const { height,width } = this.state;
     config.onChange(this.setBlockLock(config.getEditorState(),{'height': height,'width': width }));
   };
@@ -352,7 +350,7 @@ const getImageComponent = config => class Image extends Component {
                     top: 0,
                   }}
                 >
-                  {!isReadOnly() /*&& hovered*/ && isImageDeletionEnabled()
+                  {!isReadOnly() && hovered && isImageDeletionEnabled()
                     ? this.renderDeletionOption("right")
                     : undefined}
                 </div>
@@ -368,10 +366,10 @@ const getImageComponent = config => class Image extends Component {
               </div>
 
               <div className="rdw-image-options-wrapper">
-                {!isReadOnly() /*&& hovered*/ && isImageAlignmentEnabled()
+                {!isReadOnly() && hovered && isImageAlignmentEnabled()
                   ? this.renderAlignmentOptions(alignment)
                   : undefined}
-                {!isReadOnly() /*&& hovered*/ && isImageSizeEnabled() ? this.renderSizeOptions(alignment) : undefined}
+                {!isReadOnly() && hovered && isImageSizeEnabled() ? this.renderSizeOptions(alignment) : undefined}
               </div>
             </span>
           </span>
