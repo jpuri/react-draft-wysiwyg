@@ -28,7 +28,7 @@ class LayoutComponent extends Component {
     showModal: false,
     linkTarget: "",
     linkTitle: "",
-    linkTargetOption: this.props.config.defaultTargetOption,
+    linkTargetOption: "_blank",
     validations: { linkTitleValid: false, linkTargetValid: false },
   };
 
@@ -38,7 +38,7 @@ class LayoutComponent extends Component {
         showModal: false,
         linkTarget: "",
         linkTitle: "",
-        linkTargetOption: this.props.config.defaultTargetOption,
+        linkTargetOption: "_blank",
         validations: { linkTitleValid: false, linkTargetValid: false },
       });
     }
@@ -93,12 +93,6 @@ class LayoutComponent extends Component {
         ...this.state.validations,
         [`${name}Valid`]: this.validateLink(name, value),
       },
-    });
-  };
-
-  updateTargetOption = (event) => {
-    this.setState({
-      linkTargetOption: event.target.checked ? "_blank" : "_self",
     });
   };
 
@@ -160,7 +154,6 @@ class LayoutComponent extends Component {
     const {
       linkTitle,
       linkTarget,
-      linkTargetOption,
       validations: { linkTitleValid, linkTargetValid },
     } = this.state;
     const linkIsValid = linkTitleValid && linkTargetValid;
@@ -188,16 +181,6 @@ class LayoutComponent extends Component {
           name="linkTarget"
           value={linkTarget}
         />
-        <label className="rdw-link-modal-target-option" htmlFor="openLinkInNewWindow">
-          <input
-            id="openLinkInNewWindow"
-            type="checkbox"
-            defaultChecked={linkTargetOption === "_blank"}
-            value="_blank"
-            onChange={this.updateTargetOption}
-          />
-          <span>{translations["components.controls.link.linkTargetOption"]}</span>
-        </label>
         <span className="rdw-link-modal-buttonsection">
           <button className="rdw-link-modal-btn" onClick={this.addLink} disabled={!linkIsValid}>
             {translations["generic.add"]}
