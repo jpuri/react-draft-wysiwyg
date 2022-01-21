@@ -427,8 +427,9 @@ class WysiwygEditor extends Component {
           onFocus={this.onEditorFocus}
           onBlur={this.onEditorBlur}
           onKeyDown={KeyDownHandler.onKeyDown}
+          onKeyUp={(event)=>event.key === 'Enter' || event.keyCode === 13?document.getElementsByClassName("rdw-editor-main")[0].scrollBy(0, 35):false}
           onMouseDown={this.onEditorMouseDown}
-        >
+        > 
           <Editor
             ref={this.setEditorReference}
             keyBindingFn={this.keyBindingFn}
