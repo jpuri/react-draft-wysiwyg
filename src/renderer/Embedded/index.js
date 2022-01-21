@@ -5,6 +5,10 @@ const Embed = ({ block, contentState }) => {
   const entity = contentState.getEntity(block.getEntityAt(0));
   const { src, height, width } = entity.getData();
 
+  const isYTBvideo = (url: string) => {
+    return url.includes('youtu')
+  }
+
   const getId = (url) => {
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
     const match = url.match(regExp);
@@ -16,7 +20,7 @@ const convertYTBUrl = (url: string) => {
     return "https://www.youtube.com/embed/" + getId(url);
 };
 
-  return (<iframe height={height} width={width} src={convertYTBUrl(src)} frameBorder="0" allowFullScreen title="Wysiwyg Embedded Content" />);
+  return (<iframe height={height} width={width} src={isYTBvideo?convertYTBUrl(src):src} frameBorder="0" allowFullScreen title="Wysiwyg Embedded Content" />);
 };
 
 Embed.propTypes = {
