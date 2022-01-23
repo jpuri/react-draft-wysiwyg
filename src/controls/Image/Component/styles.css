@@ -68,6 +68,7 @@
   justify-content: center;
   align-items: center;
   padding: 15px;
+  word-break: break-all;
 }
 .rdw-image-modal-upload-option-label span{
   padding: 0 20px;
