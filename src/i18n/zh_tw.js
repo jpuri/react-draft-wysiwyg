@@ -45,6 +45,10 @@ export default {
   "components.controls.image.byURL": "網址",
   "components.controls.image.dropFileText": "點擊或拖曳檔案上傳",
 
+  // Attachment
+  "components.controls.attachment.attachment": "依恋",
+  "components.controls.attachment.dropFileText": "點擊或拖曳檔案上傳",
+
   // Inline
   "components.controls.inline.bold": "粗體",
   "components.controls.inline.italic": "斜體",

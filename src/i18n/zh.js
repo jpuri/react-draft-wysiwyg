@@ -45,6 +45,10 @@ export default {
   "components.controls.image.byURL": "在线图片",
   "components.controls.image.dropFileText": "点击或者拖拽文件上传",
 
+  // Attachment
+  "components.controls.attachment.attachment": "依恋",
+  "components.controls.attachment.dropFileText": "点击或者拖拽文件上传",
+
   // Inline
   "components.controls.inline.bold": "粗体",
   "components.controls.inline.italic": "斜体",

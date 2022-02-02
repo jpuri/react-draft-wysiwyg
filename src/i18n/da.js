@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Drop filen eller klik for at uploade",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Vedhæftet fil",
+  "components.controls.attachment.dropFileText":
+    "Drop filen eller klik for at uploade",
+
   // Inline
   "components.controls.inline.bold": "Fed",
   "components.controls.inline.italic": "Kursiv",
