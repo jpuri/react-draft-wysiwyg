@@ -15,6 +15,8 @@ export default class Option extends Component {
     active: PropTypes.bool,
     disabled: PropTypes.bool,
     title: PropTypes.string,
+    hasPopup: PropTypes.bool,
+    expanded: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -29,7 +31,7 @@ export default class Option extends Component {
   };
 
   render() {
-    const { children, className, activeClassName, active, disabled, title } = this.props;
+    const { children, className, activeClassName, active, disabled, title, hasPopup, expanded } = this.props;
     return (
       <div
         className={classNames(
@@ -42,6 +44,8 @@ export default class Option extends Component {
         )}
         onClick={this.onClick}
         aria-selected={active}
+        aria-haspopup={hasPopup}
+        aria-expanded={expanded}
         title={title}
       >
         {children}

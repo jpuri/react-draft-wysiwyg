@@ -180,8 +180,8 @@ class LayoutComponent extends Component {
             value="unordered-list-item"
             className={classNames(link.className)}
             onClick={this.signalExpandShowModal}
-            aria-haspopup="true"
-            aria-expanded={showModal}
+            hasPopup={true}
+            expanded={showModal}
             title={link.title || translations['components.controls.link.link']}
           >
             <img src={link.icon} alt="" />
