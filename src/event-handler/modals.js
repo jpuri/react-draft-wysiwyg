@@ -10,10 +10,9 @@ export default class ModalHandler {
     });
   };
 
-  init = (wrapperId: string) => {
-    const wrapper = document.getElementById(wrapperId); // eslint-disable-line no-undef
-    if (wrapper) {
-      wrapper.addEventListener('click', () => {
+  init = (wrapperElement) => {
+    if (wrapperElement) {
+      wrapperElement.addEventListener('click', () => {
         this.editorFlag = true;
       });
     }
