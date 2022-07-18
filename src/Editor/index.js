@@ -157,8 +157,34 @@ class WysiwygEditor extends Component {
         event.preventDefault();
       }
     }
+    if (event.key === 'Backspace') {
+      if (this.isEmptyListBlock()) {
+        // If user presses backspace key on empty list block, unselect the block type from toolbar
+        const newState = RichUtils.toggleBlockType(this.state.editorState);
+
+        if (newState) {
+          this.onChange(newState);
+          this.setState({
+            editorState: EditorState.moveFocusToEnd(EditorState.createEmpty())
+          });
+          return true;
+        }
+      }
+    }
     return getDefaultKeyBinding(event);
   };
+
+  isEmptyListBlock = () => {
+
+    // If the user changes block type before entering any text, we can hide the placeholder
+    var contentState = this.state.editorState.getCurrentContent();
+    if (!contentState.hasText()) {
+      if (contentState.getBlockMap().first().getType() !== 'unstyled') {
+        return true;
+      }
+    }
+    return false;
+  }
 
   onToolbarFocus = event => {
     const { onFocus } = this.props;
@@ -436,6 +462,12 @@ class WysiwygEditor extends Component {
     };
     const toolbarShow =
       editorFocused || this.focusHandler.isInputFocused() || !toolbarOnFocus;
+
+    const EditorClass = classNames({
+      ['rdw-editor-main']: true,
+      ['hide-placeholder']: this.isEmptyListBlock()
+    }, editorClassName);
+
     return (
       <div
         id={this.wrapperId}
@@ -473,7 +505,7 @@ class WysiwygEditor extends Component {
         )}
         <div
           ref={this.setWrapperReference}
-          className={classNames(editorClassName, 'rdw-editor-main')}
+          className={EditorClass}
           style={editorStyle}
           onClick={this.focusEditor}
           onFocus={this.onEditorFocus}
