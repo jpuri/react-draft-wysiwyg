@@ -134,6 +134,13 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>link: targetOptionEnabled</b>
+        <span>
+          : The property can be used to configure if the option to specify target option link
+          should be enalbled. Default value is true.
+        </span>
+      </li>
+      <li>
         <b>link: defaultTargetOption</b>
         <span>
           : This property sets the target of link in the editor. Default value
@@ -235,6 +242,13 @@ export default () => (
         <span>
           : The property can be used to enable alt field for images and
           optionally make it mandatory.
+        </span>
+      </li>
+      <li>
+        <b>image: sizeEnabled</b>
+        <span>
+          : The property can be used to configure if the option to specify size image
+          should be enalbled. Default value is true.
         </span>
       </li>
       <li>
