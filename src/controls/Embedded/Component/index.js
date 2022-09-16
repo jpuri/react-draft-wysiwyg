@@ -144,7 +144,10 @@ class LayoutComponent extends Component {
           onClick={onExpandEvent}
           title={title || translations['components.controls.embedded.embedded']}
         >
-          <img src={icon} alt="" />
+          {/* <img src={icon} alt="" /> */}
+          {
+            icon
+          }
         </Option>
         {expanded ? this.rendeEmbeddedLinkModal() : undefined}
       </div>

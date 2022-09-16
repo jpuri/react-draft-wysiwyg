@@ -5,7 +5,9 @@ import classNames from 'classnames';
 import { stopPropagation } from '../../../utils/common';
 import Option from '../../../components/Option';
 import './styles.css';
-
+import { CirclePicker } from 'react-color';
+import Popover from '@material-ui/core/Popover';
+import { Box, Grow, Paper, Popper, Tab, Tabs } from '@material-ui/core';
 class LayoutComponent extends Component {
   static propTypes = {
     expanded: PropTypes.bool,
@@ -35,13 +37,15 @@ class LayoutComponent extends Component {
     onChange(currentStyle, color);
   };
 
-  setCurrentStyleColor = () => {
+  setCurrentStyleColor = (e) => {
+    e.nativeEvent.stopImmediatePropagation();
     this.setState({
       currentStyle: 'color',
     });
   };
 
-  setCurrentStyleBgcolor = () => {
+  setCurrentStyleBgcolor = (e) => {
+    e.nativeEvent.stopImmediatePropagation();
     this.setState({
       currentStyle: 'bgcolor',
     });
@@ -52,15 +56,18 @@ class LayoutComponent extends Component {
       config: { popupClassName, colors },
       currentState: { color, bgColor },
       translations,
+      expanded
     } = this.props;
     const { currentStyle } = this.state;
     const currentSelectedColor = currentStyle === 'color' ? color : bgColor;
     return (
-      <div
-        className={classNames('rdw-colorpicker-modal', popupClassName)}
+      <Popper
+        open={!!expanded}
+        anchorEl={this.state.el}
         onClick={stopPropagation}
+        transition
       >
-        <span className="rdw-colorpicker-modal-header">
+        {/* <span className="rdw-colorpicker-modal-header">
           <span
             className={classNames('rdw-colorpicker-modal-style-label', {
               'rdw-colorpicker-modal-style-label-active':
@@ -79,9 +86,15 @@ class LayoutComponent extends Component {
           >
             {translations['components.controls.colorpicker.background']}
           </span>
-        </span>
-        <span className="rdw-colorpicker-modal-options">
-          {colors.map((c, index) => (
+        </span> */}
+        {({ TransitionProps }) => (
+          <Grow {...TransitionProps}>
+            <Paper>
+              <Tabs value={currentStyle}>
+                <Tab value={'color'} label={translations['components.controls.colorpicker.text']} onClick={this.setCurrentStyleColor} />
+                <Tab value={'bgcolor'} label={translations['components.controls.colorpicker.background']} onClick={this.setCurrentStyleBgcolor} />
+              </Tabs>
+              {/* {colors.map((c, index) => (
             <Option
               value={c}
               key={index}
@@ -95,10 +108,27 @@ class LayoutComponent extends Component {
                 className="rdw-colorpicker-cube"
               />
             </Option>
-          ))}
-        </span>
-      </div>
+          ))} */}
+              <Box p={2}>
+                <CirclePicker width={300} onChangeComplete={this.handleChangeComplete} colors={colors} />
+              </Box>
+            </Paper>
+          </Grow>
+        )}
+      </Popper>
     );
+  };
+
+  onOpen = (value, event) => {
+    const { onExpandEvent } = this.props;
+    onExpandEvent(value);
+    this.setState({
+      el: event.currentTarget
+    })
+  }
+
+  handleChangeComplete = (color, event) => {
+    this.onChange(color.hex)
   };
 
   render() {
@@ -118,10 +148,13 @@ class LayoutComponent extends Component {
           title || translations['components.controls.colorpicker.colorpicker']
         }
       >
-        <Option onClick={onExpandEvent} className={classNames(className)}>
-          <img src={icon} alt="" />
+        <Option onClick={this.onOpen} className={classNames(className)} title={
+          title || translations['components.controls.colorpicker.colorpicker']
+        }>
+          {/* <img src={icon} alt="" /> */}
+          {icon}
         </Option>
-        {expanded ? this.renderModal() : undefined}
+        {this.renderModal()}
       </div>
     );
   }
