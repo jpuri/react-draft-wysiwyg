@@ -49,7 +49,7 @@ function getLinkComponent(config) {
 
     render() {
       const { children, entityKey, contentState } = this.props;
-      const { url, targetOption } = contentState.getEntity(entityKey).getData();
+      const { url, targetOption, rel } = contentState.getEntity(entityKey).getData();
       const { showPopOver } = this.state;
       return (
         <span
@@ -57,7 +57,7 @@ function getLinkComponent(config) {
           onMouseEnter={this.toggleShowPopOver}
           onMouseLeave={this.toggleShowPopOver}
         >
-          <a href={ensureSafeUrl(url)} target={targetOption}>{children}</a>
+          <a href={ensureSafeUrl(url)} target={targetOption} rel={rel}>{children}</a>
           {showPopOver && showOpenOptionOnHover ?
             <img
               src={openlink}
