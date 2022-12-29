@@ -37,7 +37,7 @@
     "flow-bin": "^0.113.0",
     "immutable": "^4.0.0-rc.12",
     "jsdom": "^15.2.1",
-    "mini-css-extract-plugin": "^0.8.0",
+    "mini-css-extract-plugin": "^2.7.2",
     "mocha": "^6.2.2",
     "postcss-loader": "^3.0.0",
     "precss": "^4.0.0",
