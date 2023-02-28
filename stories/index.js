@@ -22,6 +22,7 @@ import ConvertToMarkdown from './ConvertToMarkdown';
 import FocusBlurCallbacks from './FocusBlurCallbacks';
 import ConvertFromRawDraftContent from './ConvertFromRawDraftContent';
 import ConvertToRawDraftContent from './ConvertToRawDraftContent';
+import PasteAndDropImage from './PasteAndDropImage';
 
 import './styles.css';
 
@@ -47,3 +48,4 @@ storiesOf('ConvertToRawDraftContent', module).add('story', () => <ConvertToRawDr
 storiesOf('ConvertToHTML', module).add('story', () => <ConvertToHTML />);
 storiesOf('ConvertFromHTML', module).add('story', () => <ConvertFromHTML />);
 storiesOf('ConvertToMarkdown', module).add('story', () => <ConvertToMarkdown />);
+storiesOf('PasteAndDropImage', module).add('story', () => <PasteAndDropImage />);

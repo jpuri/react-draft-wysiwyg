@@ -8,6 +8,7 @@ import {
   convertFromRaw,
   CompositeDecorator,
   getDefaultKeyBinding,
+  AtomicBlockUtils
 } from 'draft-js';
 import {
   changeDepth,
@@ -50,8 +51,11 @@ class WysiwygEditor extends Component {
       {
         isReadOnly: this.isReadOnly,
         isImageAlignmentEnabled: this.isImageAlignmentEnabled,
+        isImageSizeEnabled: this.isImageSizeEnabled,
         getEditorState: this.getEditorState,
         onChange: this.onChange,
+        imageSizeOptionsSetting : this.getImageSizeOptionsSetting,
+        imageAlignmentIcons : this.getImageAlignIcons
       },
       props.customBlockRenderFunc
     );
@@ -234,6 +238,10 @@ class WysiwygEditor extends Component {
 
   getEditorState = () => this.state ? this.state.editorState : null;
 
+  getImageSizeOptionsSetting = () => this.state ? this.state.toolbar.image.sizeOptionSetting : null;
+
+  getImageAlignIcons = () => this.state ? this.state.toolbar.image.imageAlignIcon : null;
+
   getSuggestions = () => this.props.mention && this.props.mention.suggestions;
 
   afterChange = editorState => {
@@ -251,6 +259,7 @@ class WysiwygEditor extends Component {
   isReadOnly = () => this.props.readOnly;
 
   isImageAlignmentEnabled = () => this.state.toolbar.image.alignmentEnabled;
+  isImageSizeEnabled = () => this.state.toolbar.image.sizeEnabled;
 
   createEditorState = compositeDecorator => {
     let editorState;
@@ -395,6 +404,82 @@ class WysiwygEditor extends Component {
     return false;
   };
 
+  handlePastedFilesFn = (files) => {
+    const { toolbar } = this.state;
+    const {
+      handlePastedFiles: handlePastedFilesProp,
+      handlePastedImage: handlePastedImageProp
+    } = this.props;
+
+    if (handlePastedImageProp) {
+      if (files[0].type.startsWith('image')) {
+        const promise = handlePastedImageProp(files[0])
+        promise
+          .then((src) => {
+            this.addImage(src,toolbar.image.defaultSize.height,toolbar.image.defaultSize.width,'')
+          })
+          .catch(() => {
+
+          });
+        return 
+      }
+    }
+
+    if (handlePastedFilesProp) {
+      handlePastedFilesProp(files);
+      return 
+    }
+
+  };
+
+
+  handleDropedFilesFn = (selection,files) => {
+    const { toolbar } = this.state;
+    const {
+      handleDroppedFiles: handleDropedFilesProp,
+      handleDroppedImage: handleDropedImageProp
+    } = this.props;
+
+    if (handleDropedImageProp) {
+      if (files[0].type.startsWith('image')) {
+        const promise = handleDropedImageProp(selection,files[0])
+        promise
+          .then((src) => {
+            this.addImage(src,toolbar.image.defaultSize.height,toolbar.image.defaultSize.width,'')
+          })
+          .catch(() => {
+
+          });
+        return 
+      }
+    }
+
+    if (handleDropedFilesProp) {
+      handleDropedFilesProp(selection,files);
+      return 
+    }
+
+  };
+
+  addImage = (src, height, width, alt) => {
+    
+    const { editorState } = this.state;
+    const entityData = { src, height, width };
+
+    const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('IMAGE', 'MUTABLE', entityData)
+      .getLastCreatedEntityKey();
+      
+    const newEditorState = AtomicBlockUtils.insertAtomicBlock(
+      editorState,
+      entityKey,
+      ' '
+    );
+    
+    this.onChange(newEditorState);
+  };
+
   preventDefault = event => {
     if (
       event.target.tagName === 'INPUT' ||
@@ -490,6 +575,8 @@ class WysiwygEditor extends Component {
             customStyleMap={this.getStyleMap(this.props)}
             handleReturn={this.handleReturn}
             handlePastedText={this.handlePastedTextFn}
+            handlePastedFiles={this.handlePastedFilesFn}
+            handleDroppedFiles={this.handleDropedFilesFn}
             blockRendererFn={this.blockRendererFn}
             handleKeyCommand={this.handleKeyCommand}
             ariaLabel={ariaLabel || 'rdw-editor'}
@@ -548,6 +635,10 @@ WysiwygEditor.propTypes = {
   customDecorators: PropTypes.array,
   editorRef: PropTypes.func,
   handlePastedText: PropTypes.func,
+  handlePastedFiles: PropTypes.func,
+  handlePastedImages: PropTypes.func,
+  handleDroppedFiles: PropTypes.func,
+  handleDropedImage: PropTypes.func,
 };
 
 WysiwygEditor.defaultProps = {

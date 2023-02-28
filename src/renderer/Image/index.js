@@ -24,7 +24,24 @@ const getImageComponent = config => class Image extends Component {
   };
 
   setEntityAlignmentCenter: Function = (): void => {
-    this.setEntityAlignment('none');
+    this.setEntityAlignment('center');
+  };
+
+  setEntitySize: Function = (size): void => {
+    const { block, contentState } = this.props;
+    const entityKey = block.getEntityAt(0);
+
+    contentState.mergeEntityData(
+      entityKey,
+      {
+        height: size || 'auto',
+        width: 'auto'
+      },
+    );
+    config.onChange(EditorState.push(config.getEditorState(), contentState, 'change-block-data'));
+    this.setState({
+      dummy: true,
+    });
   };
 
   setEntityAlignment: Function = (alignment): void => {
@@ -47,7 +64,7 @@ const getImageComponent = config => class Image extends Component {
     });
   };
 
-  renderAlignmentOptions(alignment): Object {
+  renderAlignmentOptions(alignment,icons): Object {
     return (
       <div
         className={classNames(
@@ -61,31 +78,63 @@ const getImageComponent = config => class Image extends Component {
           onClick={this.setEntityAlignmentLeft}
           className="rdw-image-alignment-option"
         >
-          L
+          {icons.left ?<img src={icons.left} /> : 'L'}
         </Option>
         <Option
           onClick={this.setEntityAlignmentCenter}
           className="rdw-image-alignment-option"
         >
-          C
+          {icons.center ?<img src={icons.center} /> : 'C'}
         </Option>
         <Option
           onClick={this.setEntityAlignmentRight}
           className="rdw-image-alignment-option"
         >
-          R
+          {icons.right ?<img src={icons.right} /> : 'R'}
         </Option>
       </div>
+    );
+  }
+
+
+  renderSizeOptions(options, alignment): Object {
+    return (
+      <div
+        className={classNames(
+          'rdw-image-alignment-options-popup',
+          {
+            'rdw-image-alignment-options-popup-right': alignment === 'right',
+          },
+          'rdw-image-alignment-options-separator',
+        )}
+      >
+        {
+          options.map(option => {
+            return (
+              < Option
+                key={option.size}
+                onClick={this.setEntitySize}
+                value={option.size}
+                className="rdw-image-size-option"
+              >
+                {option.label}
+              </Option>
+            )
+          })
+
+        }
+      </div >
     );
   }
 
   render(): Object {
     const { block, contentState } = this.props;
     const { hovered } = this.state;
-    const { isReadOnly, isImageAlignmentEnabled } = config;
+    const { isReadOnly, isImageAlignmentEnabled, isImageSizeEnabled, imageSizeOptionsSetting, imageAlignmentIcons } = config;
     const entity = contentState.getEntity(block.getEntityAt(0));
     const { src, alignment, height, width, alt } = entity.getData();
-
+    const wrapperAlign = alignment === 'none' ? 'center' : alignment
+    const alignIcons = imageAlignmentIcons()
     return (
       <span
         onMouseEnter={this.toggleHovered}
@@ -95,11 +144,11 @@ const getImageComponent = config => class Image extends Component {
           {
             'rdw-image-left': alignment === 'left',
             'rdw-image-right': alignment === 'right',
-            'rdw-image-center': !alignment || alignment === 'none',
+            'rdw-image-center': !alignment || alignment === 'center',
           },
         )}
       >
-        <span className="rdw-image-imagewrapper">
+        <span className="rdw-image-imagewrapper" style={{textAlign:wrapperAlign}}>
           <img
             src={src}
             alt={alt}
@@ -108,12 +157,20 @@ const getImageComponent = config => class Image extends Component {
               width,
             }}
           />
-          {
-            !isReadOnly() && hovered && isImageAlignmentEnabled() ?
-              this.renderAlignmentOptions(alignment)
-              :
-              undefined
-          }
+          <div className="rdw-image-options-wrapper">
+            {
+              !isReadOnly() && hovered && isImageAlignmentEnabled() ?
+                this.renderAlignmentOptions(alignment,alignIcons)
+                :
+                undefined
+            }
+            {
+              !isReadOnly() && hovered && isImageSizeEnabled() ?
+                this.renderSizeOptions(imageSizeOptionsSetting(),alignment)
+                :
+                undefined
+            }
+          </div>
         </span>
       </span>
     );

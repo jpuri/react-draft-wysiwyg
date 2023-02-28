@@ -1,13 +1,17 @@
 .rdw-image-alignment-options-popup {
-  position: absolute;
   background: white;
   display: flex;
   padding: 5px 2px;
   border-radius: 2px;
   border: 1px solid #F1F1F1;
-  width: 105px;
+  width: fit-content;
   cursor: pointer;
   z-index: 100;
+  margin-left: 5px;
+}
+.rdw-image-options-wrapper{
+  display: flex;
+  flex-direction: row;
 }
 .rdw-alignment-option-left {
   justify-content: flex-start;
@@ -16,6 +20,13 @@
   height: 15px;
   width: 15px;
   min-width: 15px;
+}
+.rdw-image-size-option{
+  padding-left: .5rem;
+  padding-right: .5rem;
+  height: 15px;
+  width: fit-content;
+  font-size: smaller;
 }
 .rdw-image-alignment {
   position: relative;

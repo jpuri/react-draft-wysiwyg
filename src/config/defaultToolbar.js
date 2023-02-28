@@ -342,6 +342,17 @@ export default {
     uploadEnabled: true,
     previewImage: false,
     alignmentEnabled: true,
+    imageAlignIcon: {
+      left : left,
+      right : right,
+      center : center
+    },
+    sizeEnabled: true,
+    sizeOptionSetting: [
+      { label:"small", size:"10rem" },
+      { label:"large", size:"30rem" },
+      { label:"auto", size:"auto" },
+    ],
     uploadCallback: undefined,
     inputAccept: "image/gif,image/jpeg,image/jpg,image/png,image/svg",
     alt: { present: false, mandatory: false },
