@@ -3,43 +3,29 @@
 import React from 'react';
 import { Editor } from '../../src';
 
+/**
+ * This function is simulating an api call or whatever operation needed to store the image 
+ * handlePastedImage and handleDroppedImage expect a promise returning a URL to be used as value of `src` attribute in an `img` element
+ * this demo uses FileReader to transform the pasted or dropped image as base64 url. 
+ * you might want to upload the image to an API or S3 and use its URL instead
+ */
+const saveFile = (file) => new Promise((resolve, reject) => {
+  var reader = new FileReader();
+  reader.readAsDataURL(file);
+  reader.onload = function () {
+    resolve(reader.result);
+  };
+  reader.onerror = function (error) {
+    reject(error);
+  };
+})
+
 const handlePastedImage = file => {
-  return new Promise(resolve => {
-    const xhr = new XMLHttpRequest(); // eslint-disable-line no-undef
-    xhr.open('POST', 'https://api.imgur.com/3/image');
-    xhr.setRequestHeader('Authorization', 'Client-ID 8d26ccd12712fca');
-    const data = new FormData(); // eslint-disable-line no-undef
-    data.append('image', file);
-    xhr.send(data);
-    xhr.addEventListener('load', () => {
-      const response = JSON.parse(xhr.responseText);
-      resolve(response);
-    });
-    xhr.addEventListener('error', () => {
-      const error = JSON.parse(xhr.responseText);
-      reject(error);
-    });
-  })
+  return saveFile(file);
 }
 
 const handleDroppedImage = (selection, file) => {
-  return new Promise(resolve => {
-
-    const xhr = new XMLHttpRequest(); // eslint-disable-line no-undef
-    xhr.open('POST', 'https://api.imgur.com/3/image');
-    xhr.setRequestHeader('Authorization', 'Client-ID 8d26ccd12712fca');
-    const data = new FormData(); // eslint-disable-line no-undef
-    data.append('image', file);
-    xhr.send(data);
-    xhr.addEventListener('load', () => {
-      const response = JSON.parse(xhr.responseText);
-      resolve(response);
-    });
-    xhr.addEventListener('error', () => {
-      const error = JSON.parse(xhr.responseText);
-      reject(error);
-    });
-  })
+  return saveFile(file);
 }
 
 const PasteAndDropImages = () =>

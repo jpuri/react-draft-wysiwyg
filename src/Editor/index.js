@@ -415,8 +415,7 @@ class WysiwygEditor extends Component {
       if (files[0].type.startsWith('image')) {
         const promise = handlePastedImageProp(files[0])
         promise
-          .then(({ data }) => {
-            const src = data.link || data.url
+          .then((src) => {
             this.addImage(src,toolbar.image.defaultSize.height,toolbar.image.defaultSize.width,'')
           })
           .catch(() => {
@@ -445,8 +444,7 @@ class WysiwygEditor extends Component {
       if (files[0].type.startsWith('image')) {
         const promise = handleDropedImageProp(selection,files[0])
         promise
-          .then(({ data }) => {
-            const src = data.link || data.url
+          .then((src) => {
             this.addImage(src,toolbar.image.defaultSize.height,toolbar.image.defaultSize.width,'')
           })
           .catch(() => {
