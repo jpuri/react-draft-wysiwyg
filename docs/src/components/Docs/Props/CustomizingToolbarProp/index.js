@@ -160,6 +160,14 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>link: linkValidator</b>
+        <span>
+          : This is a function validate the link added by the user. 
+          The validator is passed the link text input by the user and is 
+          expected to return a boolean.
+        </span>
+      </li>
+      <li>
         <b>emoji: emojis</b>
         <span>
           : The property is arrary of emoji characters (unicodes). Which are

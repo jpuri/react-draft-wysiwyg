@@ -113,6 +113,23 @@ describe("LinkControl test suite", () => {
     );
   });
 
+  it("should use custom validator if one is set with linkValidator", () => {
+    const onChange = spy();
+    const control = mount(<LinkControl config={{ ...defaultToolbar.link, linkValidator: target => false }} onChange={onChange} editorState={editorState} translations={localeTranslations.en} modalHandler={new ModalHandler()} />);
+    control.setState({ expanded: true });
+    const buttons = control.find(".rdw-option-wrapper");
+    buttons.first().simulate("click");
+    const inputs = control.find(".rdw-link-modal-input");
+    inputs.last().simulate("change", {
+      target: { name: "linkTitle", value: "the google" }
+    });
+    inputs.first().simulate("change", {
+      target: { name: "linkTarget", value: "www.google.com" }
+    });
+    const addButton = control.find(".rdw-link-modal-btn").first();
+    assert.isTrue(addButton.prop('disabled'));
+  });
+
   it("should return input value by default", () => {
     const onChange = spy();
     const control = mount(
