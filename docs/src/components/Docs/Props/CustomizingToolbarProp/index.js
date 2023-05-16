@@ -190,6 +190,13 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>embedded: embedValidator</b>
+        <span>
+          : This is a function validate the url added by the user. The validator
+          is passed the url input by the user and is expected to return a boolean.
+        </span>
+      </li>
+      <li>
         <b>image: urlEnabled</b>
         <span>
           : The property can be used to configure if the option to specify image

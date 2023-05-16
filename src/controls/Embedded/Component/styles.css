@@ -53,6 +53,10 @@
   font-size: 15px;
   padding: 0 5px;
 }
+.rdw-embedded-modal-link-input.invalid {
+  border: 1px solid #ffadad;
+  background: #fffafa;
+}
 .rdw-embedded-modal-link-input-wrapper {
   display: flex;
   align-items: center;
@@ -98,6 +102,10 @@
   border: 1px solid #F1F1F1;
   border-radius: 2px;
   font-size: 12px;
+}
+.rdw-embedded-modal-size-input.invalid {
+  border: 1px solid #ffadad;
+  background: #fffafa;
 }
 .rdw-embedded-modal-size-input:focus {
   outline: none;

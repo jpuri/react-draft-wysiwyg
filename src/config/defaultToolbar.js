@@ -328,6 +328,7 @@ export default {
     component: undefined,
     popupClassName: undefined,
     embedCallback: undefined,
+    embedValidator: undefined,
     defaultSize: {
       height: "auto",
       width: "auto"
