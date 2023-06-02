@@ -1,13 +1,15 @@
-require('@babel/register')();
-const Adapter = require('enzyme-adapter-react-16');
-const { shallow, configure } = require('enzyme');
+require("@babel/register")();
+const { configure } = require("enzyme");
+const Adapter = require("@wojtekmaj/enzyme-adapter-react-17");
 
-const jsdom = require('jsdom');
+configure({ adapter: new Adapter() });
+
+const jsdom = require("jsdom");
 
 const { JSDOM } = jsdom;
 
 const { document } = new JSDOM({
-  url: 'http://localhost',
+  url: "http://localhost",
 }).window;
 global.document = document;
 
@@ -16,7 +18,7 @@ global.HTMLElement = window.HTMLElement;
 global.HTMLAnchorElement = window.HTMLAnchorElement;
 
 global.navigator = {
-  userAgent: 'node.js',
+  userAgent: "node.js",
 };
 
 configure({ adapter: new Adapter() });
