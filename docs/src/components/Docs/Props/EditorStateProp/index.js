@@ -106,7 +106,7 @@ export default () => (
         '    const { editorState } = this.state;\n' +
         '    return (\n' +
         '      <Editor\n' +
-        '        initialEditorState={editorState}\n' +
+        '        defaultEditorState={editorState}\n' +
         '        wrapperClassName="demo-wrapper"\n' +
         '        editorClassName="demo-editor"\n' +
         '        onEditorStateChange={this.onEditorStateChange}\n' +
