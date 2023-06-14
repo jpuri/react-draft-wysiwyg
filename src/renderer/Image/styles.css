@@ -37,3 +37,9 @@
 .rdw-image-alignment-options-popup-right {
   right: 0;
 }
+.rdw-image{
+  display: block;
+  resize: both;
+  overflow: auto;
+  border:solid 2px black;
+}
