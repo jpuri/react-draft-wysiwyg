@@ -290,7 +290,7 @@ class LayoutComponent extends Component {
             value={height}
             name="height"
             className="rdw-image-modal-size-input"
-            placeholder="Height"
+            placeholder={translations["components.controls.image.height"] || "Height"}
           />
           <span className="rdw-image-mandatory-sign">*</span>
           &nbsp;&#8596;&nbsp;
@@ -300,7 +300,7 @@ class LayoutComponent extends Component {
             value={width}
             name="width"
             className="rdw-image-modal-size-input"
-            placeholder="Width"
+            placeholder={translations["components.controls.image.width"] || "Width"}
           />
           <span className="rdw-image-mandatory-sign">*</span>
         </div>
