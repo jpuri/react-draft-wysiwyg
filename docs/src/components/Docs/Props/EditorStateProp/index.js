@@ -4,7 +4,7 @@ import Codemirror from 'react-codemirror';
 export const EditorStateLink = () => <a
     target="_blank"
     rel="noopener noreferrer"
-    href="https://facebook.github.io/draft-js/docs/api-reference-editor-state.html#content"
+    href="https://facebook.github.io/draft-js/docs/api-reference-editor-state#content"
   >
     EditorState
   </a>;
