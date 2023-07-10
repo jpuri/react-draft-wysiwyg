@@ -160,6 +160,14 @@ export default () => (
         </span>
       </li>
       <li>
+        <b>link: linkValidator</b>
+        <span>
+          : This is a function to validate the link added by the user. 
+          The validator is passed the link text input by the user and is 
+          expected to return a boolean.
+        </span>
+      </li>
+      <li>
         <b>emoji: emojis</b>
         <span>
           : The property is arrary of emoji characters (unicodes). Which are
@@ -179,6 +187,13 @@ export default () => (
           : This callback is called after user add a url to be embedded, it can
           be used to do any required modifications to the url. The callback is
           passed a url and should return url only.
+        </span>
+      </li>
+      <li>
+        <b>embedded: embedValidator</b>
+        <span>
+          : This is a function to validate the url added by the user. The validator
+          is passed the url input by the user and is expected to return a boolean.
         </span>
       </li>
       <li>

@@ -25,6 +25,8 @@ class LayoutComponent extends Component {
     linkTarget: '',
     linkTitle: '',
     linkTargetOption: this.props.config.defaultTargetOption,
+    linkTargetValid: false,
+    linkTitleValid: false,
   };
 
   componentDidUpdate(prevProps) {
@@ -34,8 +36,23 @@ class LayoutComponent extends Component {
         linkTarget: '',
         linkTitle: '',
         linkTargetOption: this.props.config.defaultTargetOption,
+        linkTargetValid: false,
+        linkTitleValid: false,
       });
     }
+  }
+
+  validateValue = (name, value) => {
+    if (name === 'linkTarget') {
+      const { linkValidator } = this.props.config;
+      return !!value && (!linkValidator ? true : linkValidator(value));
+    }
+    return !!value
+  }
+
+  isValid = () => {
+    const { linkTitleValid, linkTargetValid } = this.state;
+    return linkTitleValid && linkTargetValid;
   }
 
   removeLink = () => {
@@ -44,14 +61,17 @@ class LayoutComponent extends Component {
   };
 
   addLink = () => {
+    if (!this.isValid()) return;
     const { onChange } = this.props;
     const { linkTitle, linkTarget, linkTargetOption } = this.state;
     onChange('link', linkTitle, linkTarget, linkTargetOption);
   };
 
   updateValue = event => {
+    const { name, value } = event.target;
     this.setState({
-      [`${event.target.name}`]: event.target.value,
+      [`${name}`]: value,
+      [`${name}Valid`]: this.validateValue(name, value),
     });
   };
 
@@ -73,12 +93,16 @@ class LayoutComponent extends Component {
       currentState: { link, selectionText },
     } = this.props;
     const { linkTargetOption } = this.state;
+    const linkTarget = (link && link.target) || '';
+    const linkTitle = (link && link.title) || selectionText;
     onExpandEvent();
     this.setState({
       showModal: true,
-      linkTarget: (link && link.target) || '',
+      linkTarget,
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
-      linkTitle: (link && link.title) || selectionText,
+      linkTitle,
+      linkTargetValid: this.validateValue('linkTarget', linkTarget),
+      linkTitleValid: this.validateValue('linkTitle', linkTitle),
     });
   };
 
@@ -88,12 +112,16 @@ class LayoutComponent extends Component {
       currentState: { link, selectionText },
     } = this.props;
     const { linkTargetOption } = this.state;
+    const linkTarget = (link && link.target);
+    const linkTitle = (link && link.title) || selectionText;
     doExpand();
     this.setState({
       showModal: true,
-      linkTarget: link && link.target,
+      linkTarget,
       linkTargetOption: (link && link.targetOption) || linkTargetOption,
-      linkTitle: (link && link.title) || selectionText,
+      linkTitle,
+      linkTargetValid: this.validateValue('linkTarget', linkTarget),
+      linkTitleValid: this.validateValue('linkTitle', linkTitle),
     });
   };
 
@@ -103,7 +131,13 @@ class LayoutComponent extends Component {
       doCollapse,
       translations,
     } = this.props;
-    const { linkTitle, linkTarget, linkTargetOption } = this.state;
+    const {
+      linkTitle,
+      linkTarget,
+      linkTargetOption,
+      linkTitleValid,
+      linkTargetValid,
+    } = this.state;
     return (
       <div
         className={classNames('rdw-link-modal', popupClassName)}
@@ -114,7 +148,11 @@ class LayoutComponent extends Component {
         </label>
         <input
           id="linkTitle"
-          className="rdw-link-modal-input"
+          className={classNames({
+            'rdw-link-modal-input': true,
+            valid: linkTitleValid,
+            invalid: !linkTitleValid,
+          })}
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTitle"
@@ -125,7 +163,11 @@ class LayoutComponent extends Component {
         </label>
         <input
           id="linkTarget"
-          className="rdw-link-modal-input"
+          className={classNames({
+            'rdw-link-modal-input': true,
+            valid: linkTargetValid,
+            invalid: !linkTargetValid,
+          })}
           onChange={this.updateValue}
           onBlur={this.updateValue}
           name="linkTarget"
@@ -150,7 +192,7 @@ class LayoutComponent extends Component {
           <button
             className="rdw-link-modal-btn"
             onClick={this.addLink}
-            disabled={!linkTarget || !linkTitle}
+            disabled={!this.isValid()}
           >
             {translations['generic.add']}
           </button>

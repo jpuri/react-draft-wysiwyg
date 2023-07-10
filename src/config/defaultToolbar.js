@@ -181,7 +181,8 @@ export default {
     options: ["link", "unlink"],
     link: { icon: link, className: undefined, title: undefined },
     unlink: { icon: unlink, className: undefined, title: undefined },
-    linkCallback: undefined
+    linkCallback: undefined,
+    linkValidator: undefined
   },
   emoji: {
     icon: emoji,
@@ -327,6 +328,7 @@ export default {
     component: undefined,
     popupClassName: undefined,
     embedCallback: undefined,
+    embedValidator: undefined,
     defaultSize: {
       height: "auto",
       width: "auto"

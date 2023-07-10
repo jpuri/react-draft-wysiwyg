@@ -20,6 +20,9 @@ class LayoutComponent extends Component {
     embeddedLink: '',
     height: this.props.config.defaultSize.height,
     width: this.props.config.defaultSize.width,
+    embeddedLinkValid: false,
+    heightValid: !!this.props.config.defaultSize.height,
+    widthValid: !!this.props.config.defaultSize.width,
   };
 
   componentDidUpdate(prevProps) {
@@ -30,24 +33,54 @@ class LayoutComponent extends Component {
         embeddedLink: '',
         height,
         width,
+        embeddedLinkValid: false,
+        heightValid: !!height,
+        widthValid: !!width,
       });
     }
   }
 
+  validateValue = (name, value) => {
+    if (name === 'embeddedLink') {
+      const { embedValidator } = this.props.config;
+      return !!value && (!embedValidator ? true : embedValidator(value));
+    }
+    return !!value;
+  }
+
+  isValid = () => {
+    const {
+      embeddedLinkValid,
+      heightValid,
+      widthValid,
+    } = this.state;
+    return embeddedLinkValid && heightValid && widthValid;
+  }
+
   onChange = () => {
+    if (!this.isValid()) return;
     const { onChange } = this.props;
     const { embeddedLink, height, width } = this.state;
     onChange(embeddedLink, height, width);
   };
 
   updateValue = event => {
+    const { name, value } = event.target;
     this.setState({
-      [`${event.target.name}`]: event.target.value,
+      [`${name}`]: value,
+      [`${name}Valid`]: this.validateValue(name, value),
     });
   };
 
   rendeEmbeddedLinkModal() {
-    const { embeddedLink, height, width } = this.state;
+    const {
+      embeddedLink,
+      height,
+      width,
+      embeddedLinkValid,
+      heightValid,
+      widthValid,
+    } = this.state;
     const {
       config: { popupClassName },
       doCollapse,
@@ -67,7 +100,11 @@ class LayoutComponent extends Component {
         <div className="rdw-embedded-modal-link-section">
           <span className="rdw-embedded-modal-link-input-wrapper">
             <input
-              className="rdw-embedded-modal-link-input"
+              className={classNames({
+                'rdw-embedded-modal-link-input': true,
+                valid: embeddedLinkValid,
+                invalid: !embeddedLinkValid,
+              })}
               placeholder={
                 translations['components.controls.embedded.enterlink']
               }
@@ -85,7 +122,11 @@ class LayoutComponent extends Component {
                 onBlur={this.updateValue}
                 value={height}
                 name="height"
-                className="rdw-embedded-modal-size-input"
+                className={classNames({
+                  'rdw-embedded-modal-size-input': true,
+                  valid: heightValid,
+                  invalid: !heightValid,
+                })}
                 placeholder="Height"
               />
               <span className="rdw-image-mandatory-sign">*</span>
@@ -96,7 +137,11 @@ class LayoutComponent extends Component {
                 onBlur={this.updateValue}
                 value={width}
                 name="width"
-                className="rdw-embedded-modal-size-input"
+                className={classNames({
+                  'rdw-embedded-modal-size-input': true,
+                  valid: widthValid,
+                  invalid: !widthValid,
+                })}
                 placeholder="Width"
               />
               <span className="rdw-image-mandatory-sign">*</span>
@@ -108,7 +153,7 @@ class LayoutComponent extends Component {
             type="button"
             className="rdw-embedded-modal-btn"
             onClick={this.onChange}
-            disabled={!embeddedLink || !height || !width}
+            disabled={!this.isValid()}
           >
             {translations['generic.add']}
           </button>

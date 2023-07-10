@@ -45,6 +45,10 @@
 .rdw-link-modal-input:focus {
   outline: none;
 }
+.rdw-link-modal-input.invalid {
+  border: 1px solid #ffadad;
+  background: #fffafa;
+}
 .rdw-link-modal-buttonsection {
   margin: 0 auto;
 }
