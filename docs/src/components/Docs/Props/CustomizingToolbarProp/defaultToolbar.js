@@ -105,6 +105,7 @@ export default "{\n" +
   "    popupClassName: undefined,\n" +
   "    embedCallback: undefined,\n" +
   "    embedValidator: undefined,\n" +
+  "    linkValidator: undefined,\n" +
   "    defaultSize: {\n" +
   "      height: 'auto',\n" +
   "      width: 'auto',\n" +

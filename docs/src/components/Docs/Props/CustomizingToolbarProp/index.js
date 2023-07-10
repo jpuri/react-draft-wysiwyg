@@ -162,7 +162,7 @@ export default () => (
       <li>
         <b>link: linkValidator</b>
         <span>
-          : This is a function validate the link added by the user. 
+          : This is a function to validate the link added by the user. 
           The validator is passed the link text input by the user and is 
           expected to return a boolean.
         </span>
@@ -192,7 +192,7 @@ export default () => (
       <li>
         <b>embedded: embedValidator</b>
         <span>
-          : This is a function validate the url added by the user. The validator
+          : This is a function to validate the url added by the user. The validator
           is passed the url input by the user and is expected to return a boolean.
         </span>
       </li>

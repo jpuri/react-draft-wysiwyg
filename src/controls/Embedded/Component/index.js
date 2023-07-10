@@ -81,7 +81,6 @@ class LayoutComponent extends Component {
       heightValid,
       widthValid,
     } = this.state;
-    console.log('heightValid', heightValid);
     const {
       config: { popupClassName },
       doCollapse,
