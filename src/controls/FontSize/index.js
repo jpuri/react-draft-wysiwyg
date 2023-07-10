@@ -79,7 +79,10 @@ export default class FontSize extends Component {
     const { config, translations } = this.props;
     const { expanded, currentFontSize } = this.state;
     const FontSizeComponent = config.component || LayoutComponent;
-    const fontSize = currentFontSize && Number(currentFontSize.substring(9));
+    let fontSize;
+    if (/\d+/.test(currentFontSize)) {
+      fontSize = Number(currentFontSize.match(/\d+/)[0]);
+    }
     return (
       <FontSizeComponent
         config={config}
