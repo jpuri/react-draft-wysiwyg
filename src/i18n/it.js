@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Trascina il file o clicca per caricare",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Allegato",
+  "components.controls.attachment.dropFileText":
+    "Trascina il file o clicca per caricare",
+
   // Inline
   "components.controls.inline.bold": "Grassetto",
   "components.controls.inline.italic": "Corsivo",

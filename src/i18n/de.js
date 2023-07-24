@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Dateien ziehen und ablegen, oder klicken zum Hochladen",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Anhang",
+  "components.controls.attachment.dropFileText":
+    "Dateien ziehen und ablegen, oder klicken zum Hochladen",
+
   // Inline
   "components.controls.inline.bold": "Fett",
   "components.controls.inline.italic": "Kursiv",

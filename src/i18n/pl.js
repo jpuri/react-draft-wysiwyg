@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Upuść plik lub kliknij, aby przesłać",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Załącznik",
+  "components.controls.attachment.dropFileText":
+    "Upuść plik lub kliknij, aby przesłać",
+
   // Inline
   "components.controls.inline.bold": "Pogrubienie",
   "components.controls.inline.italic": "Kursywa",

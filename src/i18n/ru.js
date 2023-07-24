@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Переместите в эту область файлы или кликните для загрузки",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Вложение",
+  "components.controls.attachment.dropFileText":
+    "Переместите в эту область файлы или кликните для загрузки",
+
   // Inline
   "components.controls.inline.bold": "Жирный",
   "components.controls.inline.italic": "Курсив",

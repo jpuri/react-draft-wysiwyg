@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Glisser une image ou cliquer pour télécharger",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Attachement",
+  "components.controls.attachment.dropFileText":
+    "Glisser un fichier ou cliquer pour télécharger",
+
   // Inline
   "components.controls.inline.bold": "Gras",
   "components.controls.inline.italic": "Italique",

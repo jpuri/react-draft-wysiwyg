@@ -43,7 +43,13 @@ export default {
   "components.controls.image.image": "Image",
   "components.controls.image.fileUpload": "File Upload",
   "components.controls.image.byURL": "URL",
-  "components.controls.image.dropFileText": "Drop the file or click to upload",
+  "components.controls.image.dropFileText":
+    "Drop the file or click to upload",
+
+  // Attachment
+  "components.controls.attachment.attachment": "Attachment",
+  "components.controls.attachment.dropFileText":
+    "Drop the file or click to upload",
 
   // Inline
   "components.controls.inline.bold": "Bold",

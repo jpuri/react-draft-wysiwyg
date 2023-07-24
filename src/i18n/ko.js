@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "클릭하거나 파일을 드롭하여 업로드하세요",
 
+  // Attachment
+  "components.controls.attachment.attachment": "부착",
+  "components.controls.attachment.dropFileText":
+    "클릭하거나 파일을 드롭하여 업로드하세요",
+
   // Inline
   "components.controls.inline.bold": "굵게",
   "components.controls.inline.italic": "기울임꼴",

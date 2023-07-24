@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Arraste uma imagem aqui ou clique para carregar",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Anexo",
+  "components.controls.attachment.dropFileText":
+    "Arraste um arquivo aqui ou clique para carregar",
+
   // Inline
   "components.controls.inline.bold": "Negrito",
   "components.controls.inline.italic": "Itálico",
