@@ -15,11 +15,18 @@ class ImageControl extends Component {
 
   constructor(props) {
     super(props);
-    const { modalHandler } = this.props;
     this.state = {
       expanded: false,
     };
-    modalHandler.registerCallBack(this.expandCollapse);
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
+
+    if (this.registerCallBack) {
+      modalHandler.registerCallBack(this.expandCollapse);
+    }
+    this.registerCallBack = true;
   }
 
   componentWillUnmount() {
@@ -29,6 +36,13 @@ class ImageControl extends Component {
 
   onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
+    this.setState({
+      expanded: this.signalExpanded,
+    });
+  };
+
+  expandCollapse = () => {
+    this.signalExpanded = false;
   };
 
   doExpand = () => {
@@ -41,13 +55,6 @@ class ImageControl extends Component {
     this.setState({
       expanded: false,
     });
-  };
-
-  expandCollapse = () => {
-    this.setState({
-      expanded: this.signalExpanded,
-    });
-    this.signalExpanded = false;
   };
 
   addImage = (src, height, width, alt) => {
