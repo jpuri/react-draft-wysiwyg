@@ -26,7 +26,7 @@ export default class LayoutComponent extends Component {
   componentDidMount(): void {
     const editorElm = document.getElementsByClassName('DraftEditor-root');
     if (editorElm && editorElm.length > 0) {
-      const editorStyles = window.getComputedStyle(editorElm[0]);
+      const editorStyles = (typeof window !== "undefined") ? window.getComputedStyle(editorElm[0]) : undefined;
       let defaultFontSize = editorStyles.getPropertyValue('font-size');
       defaultFontSize = defaultFontSize.substring(0, defaultFontSize.length - 2);
       this.setState({ // eslint-disable-line react/no-did-mount-set-state

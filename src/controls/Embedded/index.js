@@ -19,7 +19,11 @@ class Embedded extends Component {
 
   componentDidMount() {
     const { modalHandler } = this.props;
-    modalHandler.registerCallBack(this.expandCollapse);
+
+    if (this.registerCallBack) {
+      modalHandler.registerCallBack(this.expandCollapse);
+    }
+    this.registerCallBack = true;
   }
 
   componentWillUnmount() {
@@ -29,12 +33,12 @@ class Embedded extends Component {
 
   onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
-  };
-
-  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
+  };
+
+  expandCollapse = () => {
     this.signalExpanded = false;
   };
 

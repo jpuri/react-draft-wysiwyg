@@ -30,14 +30,22 @@ class Link extends Component {
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = this.props;
+    const { editorState } = this.props;
     this.state = {
       expanded: false,
       link: undefined,
       selectionText: undefined,
       currentEntity: editorState ? getSelectionEntity(editorState) : undefined,
     };
-    modalHandler.registerCallBack(this.expandCollapse);
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
+
+    if (this.registerCallBack) {
+      modalHandler.registerCallBack(this.expandCollapse);
+    }
+    this.registerCallBack = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -51,10 +59,6 @@ class Link extends Component {
     const { modalHandler } = this.props;
     modalHandler.deregisterCallBack(this.expandCollapse);
   }
-
-  onExpandEvent = () => {
-    this.signalExpanded = !this.state.expanded;
-  };
 
   onChange = (action, title, target, targetOption) => {
     const {
@@ -99,10 +103,14 @@ class Link extends Component {
     });
   };
 
-  expandCollapse = () => {
+  onExpandEvent = () => {
+    this.signalExpanded = !this.state.expanded;
     this.setState({
       expanded: this.signalExpanded,
     });
+  };
+
+  expandCollapse = () => {
     this.signalExpanded = false;
   };
 

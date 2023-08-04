@@ -33,7 +33,7 @@ function getLinkComponent(config) {
     openLink: Function = () => {
       const { entityKey, contentState } = this.props;
       const { url } = contentState.getEntity(entityKey).getData();
-      const linkTab = window.open(ensureSafeUrl(url), 'blank'); // eslint-disable-line no-undef
+      const linkTab = (typeof window !== "undefined") ? window.open(ensureSafeUrl(url), 'blank') : undefined; // eslint-disable-line no-undef
       // linkTab can be null when the window failed to open.
       if (linkTab) {
         linkTab.focus();
