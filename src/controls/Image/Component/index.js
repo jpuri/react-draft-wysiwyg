@@ -347,6 +347,7 @@ class LayoutComponent extends Component {
           className={classNames(className)}
           value="unordered-list-item"
           onClick={onExpandEvent}
+          active={expanded}
           title={title || translations['components.controls.image.image']}
         >
           <img src={icon} alt="" />
