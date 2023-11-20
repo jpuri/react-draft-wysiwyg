@@ -77,7 +77,7 @@ class WysiwygEditor extends Component {
     const newState = {};
     const { editorState, contentState } = this.props;
     if (!this.state.toolbar) {
-      const toolbar = mergeRecursive(defaultToolbar, toolbar);
+      const toolbar = mergeRecursive(defaultToolbar, this.state.toolbar);
       newState.toolbar = toolbar;
     }
     if (
@@ -216,9 +216,14 @@ class WysiwygEditor extends Component {
       decorators.push(
         ...getMentionDecorators({
           ...this.props.mention,
-          onChange: this.onChange,
+          onChange: this.props?.mention?.onChange ? (editorState, selectedSuggestion) => {
+            this.props.mention.onChange(selectedSuggestion, editorState);
+            this.onChange(editorState);
+          } : this.onChange,
           getEditorState: this.getEditorState,
-          getSuggestions: this.getSuggestions,
+          getSuggestions: this.props?.mention?.getSuggestions ? (mentionText) => {
+            return this.props.mention.getSuggestions(mentionText)
+          } : this.getSuggestions,
           getWrapperRef: this.getWrapperRef,
           modalHandler: this.modalHandler,
         })

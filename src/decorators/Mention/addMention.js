@@ -56,5 +56,5 @@ export default function addMention(
       undefined,
     );
   }
-  onChange(EditorState.push(newEditorState, contentState, 'insert-characters'));
+  onChange(EditorState.push(newEditorState, contentState, 'insert-characters'), suggestion);
 }
