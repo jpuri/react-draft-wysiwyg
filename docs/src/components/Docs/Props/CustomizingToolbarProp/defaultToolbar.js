@@ -75,6 +75,7 @@ export default "{\n" +
   "    popupClassName: undefined,\n" +
   "    dropdownClassName: undefined,\n" +
   "    showOpenOptionOnHover: true,\n" +
+  "    targetOptionEnabled: true,\n" +
   "    defaultTargetOption: '_self',\n" +
   "    options: ['link', 'unlink'],\n" +
   "    link: { icon: link, className: undefined },\n" +
@@ -116,6 +117,7 @@ export default "{\n" +
   "    popupClassName: undefined,\n" +
   "    urlEnabled: true,\n" +
   "    uploadEnabled: true,\n" +
+  "    sizeEnabled: true,\n" +
   "    alignmentEnabled: true,\n" +
   "    uploadCallback: undefined,\n" +
   "    previewImage: false,\n" +

@@ -99,7 +99,10 @@ class LayoutComponent extends Component {
 
   renderAddLinkModal() {
     const {
-      config: { popupClassName },
+      config: {
+        popupClassName,
+        targetOptionEnabled,
+      },
       doCollapse,
       translations,
     } = this.props;
@@ -131,21 +134,23 @@ class LayoutComponent extends Component {
           name="linkTarget"
           value={linkTarget}
         />
-        <label
-          className="rdw-link-modal-target-option"
-          htmlFor="openLinkInNewWindow"
-        >
-          <input
-            id="openLinkInNewWindow"
-            type="checkbox"
-            defaultChecked={linkTargetOption === '_blank'}
-            value="_blank"
-            onChange={this.updateTargetOption}
-          />
-          <span>
-            {translations['components.controls.link.linkTargetOption']}
-          </span>
-        </label>
+        {targetOptionEnabled &&
+          <label
+            className="rdw-link-modal-target-option"
+            htmlFor="openLinkInNewWindow"
+          >
+            <input
+              id="openLinkInNewWindow"
+              type="checkbox"
+              defaultChecked={linkTargetOption === '_blank'}
+              value="_blank"
+              onChange={this.updateTargetOption}
+            />
+            <span>
+              {translations['components.controls.link.linkTargetOption']}
+            </span>
+          </label>
+        }
         <span className="rdw-link-modal-buttonsection">
           <button
             className="rdw-link-modal-btn"

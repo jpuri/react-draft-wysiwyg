@@ -179,6 +179,7 @@ class LayoutComponent extends Component {
         uploadCallback,
         uploadEnabled,
         urlEnabled,
+        sizeEnabled,
         previewImage,
         inputAccept,
         alt: altConf,
@@ -254,18 +255,18 @@ class LayoutComponent extends Component {
             />
           </div>
         ) : (
-          <div className="rdw-image-modal-url-section">
-            <input
-              className="rdw-image-modal-url-input"
-              placeholder={translations['components.controls.image.enterlink']}
-              name="imgSrc"
-              onChange={this.updateValue}
-              onBlur={this.updateValue}
-              value={imgSrc}
-            />
-            <span className="rdw-image-mandatory-sign">*</span>
-          </div>
-        )}
+            <div className="rdw-image-modal-url-section">
+              <input
+                className="rdw-image-modal-url-input"
+                placeholder={translations['components.controls.image.enterlink']}
+                name="imgSrc"
+                onChange={this.updateValue}
+                onBlur={this.updateValue}
+                value={imgSrc}
+              />
+              <span className="rdw-image-mandatory-sign">*</span>
+            </div>
+          )}
         {altConf.present && (
           <div className="rdw-image-modal-size">
             <span className="rdw-image-modal-alt-lbl">Alt Text</span>
@@ -282,28 +283,30 @@ class LayoutComponent extends Component {
             </span>
           </div>
         )}
-        <div className="rdw-image-modal-size">
-          &#8597;&nbsp;
+        {sizeEnabled &&
+          <div className="rdw-image-modal-size">
+            &#8597;&nbsp;
           <input
-            onChange={this.updateValue}
-            onBlur={this.updateValue}
-            value={height}
-            name="height"
-            className="rdw-image-modal-size-input"
-            placeholder="Height"
-          />
-          <span className="rdw-image-mandatory-sign">*</span>
+              onChange={this.updateValue}
+              onBlur={this.updateValue}
+              value={height}
+              name="height"
+              className="rdw-image-modal-size-input"
+              placeholder="Height"
+            />
+            <span className="rdw-image-mandatory-sign">*</span>
           &nbsp;&#8596;&nbsp;
           <input
-            onChange={this.updateValue}
-            onBlur={this.updateValue}
-            value={width}
-            name="width"
-            className="rdw-image-modal-size-input"
-            placeholder="Width"
-          />
-          <span className="rdw-image-mandatory-sign">*</span>
-        </div>
+              onChange={this.updateValue}
+              onBlur={this.updateValue}
+              value={width}
+              name="width"
+              className="rdw-image-modal-size-input"
+              placeholder="Width"
+            />
+            <span className="rdw-image-mandatory-sign">*</span>
+          </div>
+        }
         <span className="rdw-image-modal-btn-section">
           <button
             className="rdw-image-modal-btn"
