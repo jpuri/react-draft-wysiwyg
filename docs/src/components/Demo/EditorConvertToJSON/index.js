@@ -69,6 +69,7 @@ class EditorConvertToJSON extends Component {
               '    return (\n' +
               '      <div>\n' +
               '        <Editor\n' +
+              '          defaultContentState={content}\n' +
               '          wrapperClassName="demo-wrapper"\n' +
               '          editorClassName="demo-editor"\n' +
               '          onContentStateChange={this.onContentStateChange}\n' +
