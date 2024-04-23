@@ -11,7 +11,7 @@ export default () => (
     <Codemirror
       value={
         'const setEditorReference = (ref) => {\n' +
-        '  this.editorReferece = ref;\n' +
+        '  this.editorReference = ref;\n' +
         '  ref.focus();\n' +
         '}\n' +
         '\n\n' +
