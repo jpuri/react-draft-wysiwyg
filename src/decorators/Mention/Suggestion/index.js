@@ -222,14 +222,17 @@ function getSuggestionComponent() {
         });
     };
 
-    addMention = () => {
-      const { activeOption } = this.state;
+    addMention = (mention) => {
+      if (!mention) return;
       const editorState = config.getEditorState();
       const { onChange, separator, trigger } = config;
-      const selectedMention = this.filteredSuggestions[activeOption];
-      if (selectedMention) {
-        addMention(editorState, onChange, separator, trigger, selectedMention);
-      }
+      addMention(editorState, onChange, separator, trigger, mention);
+      // Now we receive the mention as method param, since it comes from the same structure
+      // The following block was generating error -> filteredSuggestions sometimes was undefined
+      // const selectedMention = this.filteredSuggestions[activeOption];
+      // if (selectedMention) {
+      // addMention(editorState, onChange, separator, trigger, mention);
+      // }
     };
 
     render() {
@@ -260,7 +263,16 @@ function getSuggestionComponent() {
                 <span
                   key={index}
                   spellCheck={false}
-                  onClick={this.addMention}
+                  onClick={(e) => {
+                    e.preventDefault(),
+                    e.stopPropagation(),
+                    this.addMention(suggestion);
+                  }}
+                  onTouchEnd={(e) => {
+                    e.preventDefault(),
+                    e.stopPropagation(),
+                    this.addMention(suggestion);
+                  }}
                   data-index={index}
                   onMouseEnter={this.onOptionMouseEnter}
                   onMouseLeave={this.onOptionMouseLeave}
