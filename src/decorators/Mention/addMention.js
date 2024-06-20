@@ -7,9 +7,9 @@ import { getSelectedBlock } from 'draftjs-utils';
 export default function addMention(
   editorState: EditorState,
   onChange: Function,
-  separator: string,
   trigger: string,
   suggestion: Object,
+  mentionIndex: number
 ): void {
   const { value, url } = suggestion;
   const entityKey = editorState
@@ -18,12 +18,8 @@ export default function addMention(
     .getLastCreatedEntityKey();
   const selectedBlock = getSelectedBlock(editorState);
   const selectedBlockText = selectedBlock.getText();
-  let focusOffset = editorState.getSelection().focusOffset;
-  const mentionIndex = (selectedBlockText.lastIndexOf(separator + trigger, focusOffset) || 0) + 1;
+  const focusOffset = mentionIndex + 1
   let spaceAlreadyPresent = false;
-  if (selectedBlockText.length === mentionIndex + 1) {
-    focusOffset = selectedBlockText.length;
-  }
   if (selectedBlockText[focusOffset] === ' ') {
     spaceAlreadyPresent = true;
   }
