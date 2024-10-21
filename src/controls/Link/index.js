@@ -11,6 +11,21 @@ import linkifyIt from 'linkify-it';
 import LayoutComponent from './Component';
 
 const linkify = linkifyIt();
+
+linkify.add("mailto:", {
+  validate: (text, pos) => {
+    const tail = text.slice(pos - 7);
+    const mailtoRegex =
+        /^mailto:[\w.%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(?:\?((subject=[\w\s%+-]*)?&?(body=[\w\s%+-]*)?)?)?$/;
+    const match = tail.match(mailtoRegex);
+    if (match) {
+      return match[0].length;
+    }
+    return 0;
+  },
+});
+
+
 const linkifyLink = params => {
   const links = linkify.match(params.target);
   return {
