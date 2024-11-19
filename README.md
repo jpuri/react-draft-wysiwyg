@@ -7,6 +7,10 @@ A Wysiwyg editor built using ReactJS and DraftJS libraries.
 
 ![](http://i.imgur.com/tU7kJ6i.gif)
 
+## React Draft Wysiwyg AI Bot
+
+[React Draft Wysiwyg](https://codeparrot.ai/oracle?owner=jpuri&repo=react-draft-wysiwyg) Bot will help you understand this repository better. You can ask for code examples, installation guide, debugging help and much more.
+
 ## Features
 
 - Configurable toolbar with option to add/remove controls.
