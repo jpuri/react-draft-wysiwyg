@@ -16,14 +16,22 @@ class BlockType extends Component {
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = props;
+    const { editorState } = props;
     this.state = {
       expanded: false,
       currentBlockType: editorState
         ? getSelectedBlocksType(editorState)
         : 'unstyled',
     };
-    modalHandler.registerCallBack(this.expandCollapse);
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
+
+    if (this.registerCallBack) {
+      modalHandler.registerCallBack(this.expandCollapse);
+    }
+    this.registerCallBack = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -42,12 +50,12 @@ class BlockType extends Component {
 
   onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
-  };
-
-  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
+  };
+
+  expandCollapse = () => {
     this.signalExpanded = false;
   };
 

@@ -24,7 +24,7 @@ class ColorPicker extends Component {
 
   constructor(props) {
     super(props);
-    const { editorState, modalHandler } = props;
+    const { editorState } = props;
     const state = {
       expanded: false,
       currentColor: undefined,
@@ -39,7 +39,15 @@ class ColorPicker extends Component {
       ]).BGCOLOR;
     }
     this.state = state;
-    modalHandler.registerCallBack(this.expandCollapse);
+  }
+
+  componentDidMount() {
+    const { modalHandler } = this.props;
+
+    if (this.registerCallBack) {
+      modalHandler.registerCallBack(this.expandCollapse);
+    }
+    this.registerCallBack = true;
   }
 
   componentDidUpdate(prevProps) {
@@ -61,12 +69,12 @@ class ColorPicker extends Component {
 
   onExpandEvent = () => {
     this.signalExpanded = !this.state.expanded;
-  };
-
-  expandCollapse = () => {
     this.setState({
       expanded: this.signalExpanded,
     });
+  };
+
+  expandCollapse = () => {
     this.signalExpanded = false;
   };
 
