@@ -350,7 +350,7 @@ class WysiwygEditor extends Component {
 
   focusEditor = () => {
     setTimeout(() => {
-      this.editor.focus();
+      this.editor?.focus();
     });
   };
 
