@@ -23,6 +23,7 @@ import undo from '../../images/undo.svg';
 import redo from '../../images/redo.svg';
 import subscript from '../../images/subscript.svg';
 import superscript from '../../images/superscript.svg';
+import attachment from '../../images/attachment.svg';
 
 /**
 * This is default toolbar configuration,
@@ -42,7 +43,8 @@ export default {
     "emoji",
     "image",
     "remove",
-    "history"
+    "history",
+    "attachment"
   ],
   inline: {
     inDropdown: false,
@@ -182,6 +184,16 @@ export default {
     link: { icon: link, className: undefined, title: undefined },
     unlink: { icon: unlink, className: undefined, title: undefined },
     linkCallback: undefined
+  },
+  attachment: {
+    icon: attachment,
+    className: undefined,
+    component: undefined,
+    popupClassName: undefined,
+    uploadCallback: undefined,
+    inputAccept: "application/pdf",
+    targetOption: '_blank',
+    title: undefined
   },
   emoji: {
     icon: emoji,

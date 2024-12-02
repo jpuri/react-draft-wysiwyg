@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "ここに画像をドラッグするか、クリックしてください",
 
+  // Attachment
+  "components.controls.attachment.attachment": "アタッチメント",
+  "components.controls.attachment.dropFileText":
+    "ここに画像をドラッグするか、クリックしてください",
+
   // Inline
   "components.controls.inline.bold": "太字",
   "components.controls.inline.italic": "斜体",

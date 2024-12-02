@@ -1,0 +1,61 @@
+.rdw-attachment-wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 6px;
+  position: relative;
+  flex-wrap: wrap;
+}
+.rdw-attachment-modal {
+  overflow: auto;
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 235px;
+  height: 180px;
+  border: 1px solid #f1f1f1;
+  padding: 15px;
+  border-radius: 2px;
+  z-index: 100;
+  background: white;
+  box-shadow: 3px 3px 5px #bfbdbd;
+  /*  */
+}
+
+.rdw-attachment-modal-upload-label {
+  position: relative;
+  width: 100%;
+  color: gray;
+  cursor: pointer;
+  display: flex;
+  font-size: 15px;
+  align-items: center;
+  justify-content: center;
+  background-color: #f1f1f1;
+  border: 2px dashed gray;
+}
+
+.rdw-attachment-modal-upload-highlighted {
+  border: 2px dashed #0a66b7;
+}
+
+.rdw-attachment-modal-upload-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.rdw-attachment-modal-spinner {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: inherit;
+  height: inherit;
+  background-color: rgba(241, 241, 241, 50%);
+}

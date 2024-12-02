@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Drop het bestand hier of klik om te uploaden",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Bijlage",
+  "components.controls.attachment.dropFileText":
+    "Drop het bestand hier of klik om te uploaden",
+
   // Inline
   "components.controls.inline.bold": "Dikgedrukt",
   "components.controls.inline.italic": "Schuingedrukt",

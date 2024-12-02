@@ -46,6 +46,11 @@ export default {
   "components.controls.image.dropFileText":
     "Arrastra el archivo o haz click para subirlo",
 
+  // Attachment
+  "components.controls.attachment.attachment": "Adjunto archivo",
+  "components.controls.attachment.dropFileText":
+    "Arrastra el archivo o haz click para subirlo",
+
   // Inline
   "components.controls.inline.bold": "Negrita",
   "components.controls.inline.italic": "Cursiva",
