@@ -222,20 +222,22 @@ function getSuggestionComponent() {
         });
     };
 
-    addMention = () => {
+    addMention = (mentionIndexOnClick) => {
       const { activeOption } = this.state;
       const editorState = config.getEditorState();
-      const { onChange, separator, trigger } = config;
+      const { onChange, trigger } = config;
       const selectedMention = this.filteredSuggestions[activeOption];
+      const mentionIndex = mentionIndexOnClick ?? editorState.getSelection().focusOffset - 1;
       if (selectedMention) {
-        addMention(editorState, onChange, separator, trigger, selectedMention);
+        addMention(editorState, onChange, trigger, selectedMention, mentionIndex);
       }
     };
 
     render() {
       const { children } = this.props;
       const { activeOption, showSuggestions } = this.state;
-      const { dropdownClassName, optionClassName } = config;
+      const { dropdownClassName, getEditorState, optionClassName } = config;
+      const mentionIndex = getEditorState().getSelection().focusOffset - 1;
       return (
         <span
           className="rdw-suggestion-wrapper"
@@ -260,7 +262,7 @@ function getSuggestionComponent() {
                 <span
                   key={index}
                   spellCheck={false}
-                  onClick={this.addMention}
+                  onClick={() => this.addMention(mentionIndex)}
                   data-index={index}
                   onMouseEnter={this.onOptionMouseEnter}
                   onMouseLeave={this.onOptionMouseLeave}
