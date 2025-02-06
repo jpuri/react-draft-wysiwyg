@@ -60,6 +60,7 @@ class LayoutComponent extends Component {
           className={classNames(className)}
           value="unordered-list-item"
           onClick={onExpandEvent}
+          active={expanded}
         >
           <img
             src={icon}

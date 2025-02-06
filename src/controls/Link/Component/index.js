@@ -182,6 +182,7 @@ class LayoutComponent extends Component {
             onClick={this.signalExpandShowModal}
             aria-haspopup="true"
             aria-expanded={showModal}
+            active={expanded && showModal}
             title={link.title || translations['components.controls.link.link']}
           >
             <img src={link.icon} alt="" />
