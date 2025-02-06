@@ -174,14 +174,14 @@ class LayoutComponent extends Component {
       <div
         className={classNames('rdw-link-wrapper', className)}
         aria-label="rdw-link-control"
+        aria-haspopup="true"
+        aria-expanded={showModal}
       >
         {options.indexOf('link') >= 0 && (
           <Option
             value="unordered-list-item"
             className={classNames(link.className)}
             onClick={this.signalExpandShowModal}
-            aria-haspopup="true"
-            aria-expanded={showModal}
             title={link.title || translations['components.controls.link.link']}
           >
             <img src={link.icon} alt="" />
