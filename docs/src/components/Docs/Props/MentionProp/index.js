@@ -8,7 +8,7 @@ export default () => (
       Mentions can be enabled in the editor as showed in example below. 
       separator is character that separates a mention from word preceding it, default value is space ' '. 
       trigger is character that causes mention suggestions to appear, default value is '@'.
-      Each suggestion has 3 peoperties:
+      Each suggestion has 3 properties:
       <ol>
         <li><b>text</b>: this is value that is displayed in the editor.</li>
         <li><b>value</b>: the filtering of suggestions is done using this value.</li>
